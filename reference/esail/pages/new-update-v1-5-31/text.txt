@@ -1,0 +1,197 @@
+eSail Sailing Simulator update v1.5.31 – The Official Website of Virtual Sailing for PC & Mac
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+“The most technically accurate sailing simulator
+
+I have experienced.”
+
+SIM UK
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Support
+
+Home
+
+The World of eSail
+
+How to Purchase
+
+Live Sailing & Sandbox
+
+Sailing Challenges
+
+The World of Shearwater
+
+Learn To Sail with eSail
+
+About Us
+
+Videos & Gallery
+
+eSail Add-Ons
+
+Man Overboard
+
+eSail Pro
+
+Reviews
+
+eSail News
+
+eSail Community News
+
+eSail Development
+
+eSail Reviews
+
+eSail Updates
+
+Featured
+
+Chris Baldwin
+
+eSail Sailing Simulator update v1.5.31
+
+(15 September 2019) This minor update has been launched to improve anchoring performance in eSail.
+
+These issues have now been fixed:
+
+1) The anchor was tending to slide along the sea bed (except when the chain was hidden).
+
+2) When the chain was hidden it tended to break on retraction. This should be improved but that doesn’t mean its impossible to break the simulation!
+
+3) Live Sailing saving of anchor / chain sometimes caused the anchor/chain to vanish.
+
+4) If you motored with the anchor compartment open, the anchor could fly off. Now the top chain links and anchor are locked when not being extended/retracted. (We have also added some notes to the anchoring tutorial about being careful about speed and steering to avoid breaking the simulation – as in real life you would want to avoid breaking the windless!)
+
+5) Weird anchor behaviour – floating/ not digging in etc.
+
+6) Anchor sliding down hill – see above. It should now lock to a slope when not being pulled or when chain is extending. It will still slide when being pulled.
+
+7) When swapping between users (from inside eSail) sometimes Live Sailing got confused and saved the wrong location.
+
+8) Some physics changes have been to improve chain stability.
+
+eSail
+
+Posted in
+
+eSail Updates
+
+Follow Us
+
+Support
+
+How to Purchase
+
+Registered Office:
+
+Suite 3 1-3 Warren Court Park Road, Crowborough, East Sussex, England, TN6 2QX
+
+eSail ® is a registered trademark. © 2026 Copyright eSail Ltd.
+
+While all reasonable care has been taken in producing eSail the publisher can accept no responsibility for any errors or omissions or consequences of using any methods or processes described. The world and charts included in eSail are entirely fictional and must not be used for navigation.
+
+Privacy Policy
+
+We've detected you might be speaking a different language. Do you want to change to:
+
+English
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Change Language
+
+Close and do not switch language
+
+We've detected you might be speaking a different language. Do you want to change to:
+
+English
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Change Language
+
+Close and do not switch language

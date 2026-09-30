@@ -1,0 +1,221 @@
+NEW eSail Sailing Simulator V2 released! – The Official Website of Virtual Sailing for PC & Mac
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+“The most technically accurate sailing simulator
+
+I have experienced.”
+
+SIM UK
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Support
+
+Home
+
+The World of eSail
+
+How to Purchase
+
+Live Sailing & Sandbox
+
+Sailing Challenges
+
+The World of Shearwater
+
+Learn To Sail with eSail
+
+About Us
+
+Videos & Gallery
+
+eSail Add-Ons
+
+Man Overboard
+
+eSail Pro
+
+Reviews
+
+eSail News
+
+eSail Community News
+
+eSail Development
+
+eSail Reviews
+
+eSail Updates
+
+Featured
+
+Chris Baldwin
+
+NEW eSail Sailing Simulator V2 released!
+
+(Jul 29th 2021) eSail V2 represents over a year’s development work and introduces a whole new virtual sailing experience. Here is a full list of major new features:
+
+Multiplayer. Now users can interact with each other in multiplayer Live Sailing. As before you are subject to the ever changing Shearwater weather, but now you can ‘VHF’ chat to other eSailors and take part in races against other boats. VHF chat is similar to real VHF in that it is possible to talk over other radio users, so you need to follow some protocols (which are explained in the simulator).
+
+New languages added by our amazing community translators – Turkish, Spanish, Portuguese, Greek, Italian, Dutch (existing languages are English, French, Russian and German). All languages are subject to constant update and improvement, so please contact us if have feedback or can add anything.
+
+Live Sailing Courses. Here you can create your own courses including race courses and passages. Once you have a course you can set up private races by simply sending friends or other boats an access code.
+
+Multiplayer races. Join in with regular eSail multiplayer races. These will be added depending on demand so just let us know the best times and we will do our best to create challenges for you!
+
+eSail Server. You can now get information about the status of the Shearwater world including the weather/forecast and the location of other boats, race results etc. by going straight to our server web page: https://esail-server-ui.herokuapp.com/
+
+Asymmetric spinnaker. This sail is great for everything from a beam reach to running downwind. The ‘asy’ is deployed in a snuffer, and when released tends to lift the bow giving higher boat speeds (in the right wind). Using the asymmetric you can exceed hull speed and plane. See the Advanced Tutorial for details on how to deploy and handle the sail.
+
+Sandbox. This is a fantastic way of getting the best from your eSail boat. You can set wind direction & strength and wave height, then adjust your sails to match. If you note down the best trim this can give a real advantage when racing!
+
+New Settings options:
+
+Detailed sky giving more realistic atmospheric effects such as ‘god rays’.
+
+Prop walk so you can set how the propeller affects how the stern is kicked sideways in reverse. This is really useful when practising mooring.
+
+Physics priority. This helps tune eSail to match the capabilities of your machine.
+
+Multiplayer mode, including the option to set time to +12 hours (so you don’t have to sail in the dark!)
+
+New music and option to turn music off.
+
+Other enhancements include:
+
+Better boat detailing, including new textures on the sail bag and hull.
+
+Deck and cabin lights making night sailing easier.
+
+Better modelling of heel, so it is actually possible to broach or capsize under extreme conditions.
+
+F11 to toggle user interface on and off.
+
+eSail version 2 has been extensively Beta tested, but it is just the start of the V2 development roadmap, so please report any issues experienced. We will fix these as quickly as possible in future updates as well as adding more exciting new features!
+
+eSail V2 trailer
+
+How to Purchase
+
+eSail
+
+Posted in
+
+eSail Community News
+
+Follow Us
+
+Support
+
+How to Purchase
+
+Registered Office:
+
+Suite 3 1-3 Warren Court Park Road, Crowborough, East Sussex, England, TN6 2QX
+
+eSail ® is a registered trademark. © 2026 Copyright eSail Ltd.
+
+While all reasonable care has been taken in producing eSail the publisher can accept no responsibility for any errors or omissions or consequences of using any methods or processes described. The world and charts included in eSail are entirely fictional and must not be used for navigation.
+
+Privacy Policy
+
+We've detected you might be speaking a different language. Do you want to change to:
+
+English
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Change Language
+
+Close and do not switch language
+
+We've detected you might be speaking a different language. Do you want to change to:
+
+English
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Change Language
+
+Close and do not switch language

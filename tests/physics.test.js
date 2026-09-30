@@ -1,0 +1,11 @@
+import test from 'node:test';
+import assert from 'node:assert/strict';
+import { initialState, step, angleDifference, depthAt, islands } from '../src/physics.js';
+const run=(s,seconds)=>{for(let i=0;i<seconds*20;i++)step(s,.05);return s;};
+test('a yacht accelerates and makes headway on a reach',()=>{const s=run(initialState(),45);assert.ok(s.speed>3);assert.ok(s.z<100);assert.ok(s.distance>50);});
+test('sailing directly into the wind stalls the yacht',()=>{const s=initialState();s.heading=s.windDirection;run(s,30);assert.equal(s.speed,0);});
+test('rudder changes course only with steerage',()=>{const s=initialState();s.sails=0;s.rudder=25;run(s,5);assert.equal(s.heading,35);s.sails=1;run(s,20);assert.ok(s.heading>40);});
+test('anchor stops forward motion after deceleration',()=>{const s=run(initialState(),30);s.anchor=true;run(s,8);assert.ok(s.speed<.001);});
+test('reefing and poor trim reduce speed',()=>{const good=run(initialState(),40),reef=initialState(),bad=initialState();reef.reef=true;bad.trim=90;run(reef,40);run(bad,40);assert.ok(reef.speed<good.speed);assert.ok(bad.speed<good.speed);});
+test('islands have shallow water and prevent passage',()=>{const island=islands[0];assert.equal(depthAt(island.x,island.z),0);const s=initialState();s.x=island.x;s.z=island.z;s.speed=5;step(s,.1);assert.equal(s.grounded,true);assert.equal(s.speed,0);});
+test('heading differences are continuous across north',()=>{assert.equal(angleDifference(5,355),10);assert.equal(angleDifference(355,5),-10);});

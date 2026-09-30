@@ -1,0 +1,201 @@
+Wind in eSail – The Official Website of Virtual Sailing for PC & Mac
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+“The most technically accurate sailing simulator
+
+I have experienced.”
+
+SIM UK
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Support
+
+Home
+
+The World of eSail
+
+How to Purchase
+
+Live Sailing & Sandbox
+
+Sailing Challenges
+
+The World of Shearwater
+
+Learn To Sail with eSail
+
+About Us
+
+Videos & Gallery
+
+eSail Add-Ons
+
+Man Overboard
+
+eSail Pro
+
+Reviews
+
+eSail News
+
+Wind in eSail
+
+How the weather works in eSail:
+
+Multiple pressure systems control the weather.
+
+NEW V3 wind is affected by the shape of the land (strength controlled by Settings).
+
+NEW V3 localised sea breezes can be seen on the water surface, so sailors can aim for the best areas for stronger wind.
+
+NEW V3 variability in wind speed and direction (controlled in Settings).
+
+NEW V3 wind funnels between islands (controlled in Settings).
+
+Pressure
+
+Across the globe, pressure systems build due to uneven heating. Because air is a fluid, just like water (and obeys the same physical laws) it seeks to flow from regions of high pressure to areas of lower pressure. On a global scale the cooler, denser polar air is constantly moving towards the equator to replace the warm, rising air. This movement, combined with the Earth’s rotation forms wind belts, circling the Earth. One of these bands is the Intertropical Convergence Zone near the equator. This is where the trade winds form, named due to their fairly dependable behaviour for sailing.
+
+In addition to the global wind currents, there are cyclones (depressions) and anticyclones (high pressure systems). As these systems traverse the Earth the wind direction and speed moves in a fairly predictable manner. A series of these pressure systems are modelled in eSail. They move across the Shearwater area in a SW to NE direction. The eSail wind speed is sensitive to changes in pressure, so a falling barometer (available in eSail Pro) can be a useful indication of stronger winds.
+
+Local wind
+
+More local wind conditions can be formed by the shape and proximity of nearby land. During the day, the land warms, air rises and moves from the sea to the land (anabatic wind). The process reverses at night where the sea may be warmer than the rapidly cooling land. In this case the air moves down the slopes towards the sea (katabatic wind).
+
+Sea breezes
+
+In eSail the islands are too small to form predictable anabatic or katabatic winds. However, patchy anabatic sea breezes do form (new in eSail V3). You can identify areas of stronger wind by the patches of water with less reflection (caused by small ripples). These patches are easier to spot from a distance. As you get closer the effect on the water is much less noticeable, but you should see an increase in wind speed and sometimes a shift in wind direction. The effect is more pronounced at lower wind speeds. In fact with any wind over 25 knots you will not see much difference.
+
+The shape of land can also affect the wind direction. This is modelled in eSail (from V3). If the wind is coming over a nearby island, as you sail towards a headland, the wind will often shift, as the wind flows around the island. If you are close hauled this can be frustrating as it can bring the wind direction straight onto your bow. In this case, just tack away from the land. Once you are a few hundred metres off shore the wind should revert to its previous direction. The strength of the effect can be adjusted in Settings (although it is set during challenges).
+
+From eSail V3 winds are variable (depending on Settings) in speed and direction. The gusts cause direction changes for short periods: “In open water in the Northern Hemisphere the wind will veer clockwise, and the amount of change in direction is largely dictated by the strength of the gust, but is likely to be in the order of 15° to 20°. In the Southern Hemisphere, the veer direction is anticlockwise.” Yachting Monthly (
+
+How to cope with gusts and squalls
+
+). Periods of variability are more frequent close to land. Out in open water gusty, variable wind happens less often (but when it does it can be more extreme!)
+
+In addition to all these interesting wind features, from eSail V3 the wind funnels between close islands, providing some challenging conditions in stronger winds.
+
+eSail is available for Windows and Apple Mac.
+
+Join the eSailing community now!
+
+HOW TO PURCHASE
+
+Follow Us
+
+Support
+
+How to Purchase
+
+Registered Office:
+
+Suite 3 1-3 Warren Court Park Road, Crowborough, East Sussex, England, TN6 2QX
+
+eSail ® is a registered trademark. © 2026 Copyright eSail Ltd.
+
+While all reasonable care has been taken in producing eSail the publisher can accept no responsibility for any errors or omissions or consequences of using any methods or processes described. The world and charts included in eSail are entirely fictional and must not be used for navigation.
+
+Privacy Policy
+
+We've detected you might be speaking a different language. Do you want to change to:
+
+English
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Change Language
+
+Close and do not switch language
+
+We've detected you might be speaking a different language. Do you want to change to:
+
+English
+
+English
+
+English
+
+Français
+
+Deutsch
+
+Türkçe
+
+Español
+
+Português
+
+Português do Brasil
+
+Ελληνικά
+
+Italiano
+
+Nederlands
+
+Change Language
+
+Close and do not switch language

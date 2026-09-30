@@ -1,0 +1,805 @@
+@font-face {
+    font-family: dashicons;
+    src: url(/wp-includes/fonts/dashicons.woff),
+    url(/wp-includes/fonts/dashicons.ttf) format("truetype"),
+    url(/wp-includes/fonts/dashicons.svg#dashicons) format("svg"),
+    url(/wp-includes/fonts/dashicons.eot);
+    font-weight: normal;
+    font-style: normal;
+}
+
+/*
+*   Popup General Settings
+*/
+
+#trp_ald_modal_container{
+    background-color: var(--trp-ald-popup-overlay, #00000080);
+    position: fixed;
+    inset: 0;
+    z-index: 2000000000000;
+    pointer-events: none;
+    align-items: flex-start;
+    justify-content: center;
+    box-sizing: border-box;
+    padding: 40px 24px 24px;
+    overflow-y: auto;
+}
+
+#trp_ald_modal_popup{
+    box-shadow: 0 0 10px #6c7781;
+    position: relative;
+}
+
+#trp_ald_modal_popup{
+    background-color: var(--trp-ald-popup-bg, #ffffff);
+    color: var(--trp-ald-popup-text, #143852);
+    width: min(500px, 100%);
+    border: var(--trp-ald-popup-border-width, 1px) solid var(--trp-ald-popup-border, #1438521A);
+    border-radius: var(--trp-ald-popup-radius, 3px);
+    padding: 25px 40px;
+    margin: 0;
+    pointer-events: auto;
+    box-sizing: border-box;
+}
+
+.trp-ald-animate {
+    --trp-ald-animation-distance: 72px;
+    animation-duration: 0.28s;
+    animation-fill-mode: both;
+    animation-timing-function: ease-out;
+}
+
+.trp-ald-animation-none {
+    animation: none;
+}
+
+.trp-ald-animation-fade {
+    animation-name: trp-ald-fade-in;
+}
+
+.trp-ald-animation-slide_top {
+    animation-name: trp-ald-slide-from-top;
+}
+
+.trp-ald-animation-slide_right {
+    animation-name: trp-ald-slide-from-right;
+}
+
+.trp-ald-animation-slide_bottom {
+    animation-name: trp-ald-slide-from-bottom;
+}
+
+.trp-ald-animation-slide_left {
+    animation-name: trp-ald-slide-from-left;
+}
+
+@keyframes trp-ald-fade-in {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+@keyframes trp-ald-slide-from-top {
+    from {
+        opacity: 0;
+        transform: translateY(calc(-1 * var(--trp-ald-animation-distance)));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes trp-ald-slide-from-right {
+    from {
+        opacity: 0;
+        transform: translateX(var(--trp-ald-animation-distance));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+@keyframes trp-ald-slide-from-bottom {
+    from {
+        opacity: 0;
+        transform: translateY(var(--trp-ald-animation-distance));
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes trp-ald-slide-from-left {
+    from {
+        opacity: 0;
+        transform: translateX(calc(-1 * var(--trp-ald-animation-distance)));
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/*
+ *  Popup textarea
+ */
+
+#trp_ald_popup_text{
+    color: var(--trp-ald-popup-text, #143852);
+    text-align: left;
+    font-size: 17px;
+}
+
+/*
+ *  Popup Change Language Button and Select
+ */
+
+.trp_ald_select_and_button{
+    display: flex;
+    align-items: flex-start;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 14px;
+    font-size: 17px;
+}
+
+.trp_ald_button{
+    flex: 0 1 auto;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+}
+
+#trp_ald_popup_change_language{
+    text-transform: none;
+    width: auto;
+    max-width: 100%;
+
+    background: var(--trp-ald-popup-button-bg, #143852);
+    border-color: var(--trp-ald-popup-button-border, #143852);
+    color: var(--trp-ald-popup-button-text, #fff);
+    text-decoration: none;
+    text-shadow: none;
+    justify-content: center;
+    align-items: center;
+    display: inline-grid;
+
+    font-weight: normal;
+    font-size: 17px;
+    height: auto;
+    min-height: 42px;
+    margin: 0;
+    padding: 8px 12px;
+    line-height: 1.25;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: var(--trp-ald-popup-button-radius, 3px);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+}
+
+#trp_ald_popup_change_language:hover {
+    background: var(--trp-ald-popup-button-hover-bg, #0f2a3d);
+    border-color: var(--trp-ald-popup-button-hover-bg, #0f2a3d);
+    color: var(--trp-ald-popup-button-hover-text, #fff);
+}
+
+/*
+ *  Popup Close Button and Textarea
+ */
+
+#trp_ald_x_button_and_textarea{
+    text-decoration: none;
+    display: inline-flex;
+    vertical-align: middle;
+    align-items: center;
+    gap: 4px;
+    cursor: pointer !important;
+    color: var(--trp-ald-popup-close, #143852) !important;
+    font-size: 14px;
+    margin-top: 10px;
+    width: fit-content;
+    max-width: 100%;
+    height: 100%;
+    pointer-events: visibleFill;
+    transition: opacity 0.2s ease;
+}
+
+#trp_ald_x_button_and_textarea:hover,
+#trp_ald_x_button_and_textarea:focus-visible,
+#trp_ald_no_text_popup_x_button_and_textarea:hover,
+#trp_ald_no_text_popup_x_button_and_textarea:focus-visible{
+    opacity: 0.7;
+}
+
+#trp_ald_x_button_and_textarea:focus-visible,
+#trp_ald_no_text_popup_x_button_and_textarea:focus-visible{
+    outline: 2px solid currentColor;
+    outline-offset: 2px;
+}
+
+#trp_ald_x_button_textarea{
+    text-decoration: underline;
+    height: auto;
+    width:auto;
+    line-height: 20px;
+    color: var(--trp-ald-popup-close, #143852) !important;
+    cursor: pointer !important;
+    text-align: left;
+}
+
+#trp_ald_x_button_textarea:hover{
+    background-color: transparent;
+    pointer-events: auto;
+    cursor: pointer !important;
+    z-index: 20000000000000;
+}
+
+#trp_ald_modal_popup #trp_ald_x_button{
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 20px;
+    background: 0 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    color: transparent;
+    -webkit-backface-visibility: hidden;
+    outline:none;
+    z-index: 1;
+}
+
+#trp_ald_modal_popup #trp_ald_x_button::before {
+    content: "\f153";
+    font: normal 16px/20px dashicons;
+    display: block;
+    text-align: center;
+
+    color: var(--trp-ald-popup-close, #143852) !important;
+    background: 0 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+#trp_ald_modal_popup #trp_ald_x_button::before:hover{
+    background: 0 0;
+}
+
+    /*
+     *  Popup and Hello Bar Language Switcher Aspect
+     */
+
+.trp_ald_ls_container{
+    flex: 0 1 auto;
+    width: max-content;
+    max-width: 100%;
+    min-width: 0;
+    font-size: 14px;
+}
+
+.trp_ald_ls_container .trp-shortcode-switcher__wrapper {
+    position: relative;
+    width: max-content;
+    max-width: 100%;
+    border: none;
+    --bg: var(--trp-ald-switcher-bg, #ffffff);
+    --bg-hover: var(--trp-ald-switcher-bg-hover, #143852);
+    --text: var(--trp-ald-switcher-text, #143852);
+    --text-hover: var(--trp-ald-switcher-text-hover, #ffffff);
+    --border-color: var(--trp-ald-switcher-border, #14385233);
+    --border: var(--trp-ald-switcher-border-width, 1px) solid var(--trp-ald-switcher-border, #14385233);
+    --border-radius: var(--trp-ald-switcher-radius, 5px);
+    --font-size: 14px;
+    --flag-size: 18px;
+    --flag-radius: var(--trp-ald-switcher-flag-radius, 2px);
+    --aspect-ratio: var(--trp-ald-switcher-flag-aspect-ratio, 4/3);
+    --transition-duration: 0.2s;
+}
+
+.trp_ald_ls_container .trp-shortcode-switcher {
+    position: static;
+    display: inline-block;
+    overflow: hidden;
+    width: 100%;
+    min-height: 42px;
+    margin: 0;
+    padding: 0;
+    background: var(--bg, #fff);
+    color: var(--text, #143852);
+    border: var(--border, none);
+    border-radius: var(--border-radius, 5px);
+    box-shadow: none;
+    box-sizing: border-box;
+    user-select: none;
+}
+
+.trp_ald_ls_container .trp-shortcode-anchor:not(.trp-opposite-button) {
+    visibility: hidden;
+}
+
+.trp_ald_ls_container .trp-language-switcher.trp-shortcode-overlay {
+    position: absolute;
+    left: 0;
+    top: 0;
+    z-index: 1000000000000000;
+}
+
+.trp_ald_ls_container .trp-language-switcher-inner {
+    display: flex;
+    flex-direction: column;
+}
+
+.trp_ald_ls_container .trp-current-language-item__wrapper:not(.trp-hide-arrow) {
+    display: flex;
+    align-items: center;
+    padding-right: 8px;
+    justify-content: space-between;
+}
+
+.trp_ald_ls_container .trp-ls-shortcode-current-language {
+    display: flex !important;
+    align-items: center;
+    gap: 8px;
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+    min-height: 40px;
+    padding: 0 8px;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    overflow: hidden;
+    box-sizing: border-box;
+    background: transparent !important;
+    border: 0 !important;
+    text-decoration: none;
+}
+
+.trp_ald_ls_container .trp-shortcode-overlay .trp-ls-shortcode-current-language {
+    visibility: visible !important;
+}
+
+.trp_ald_ls_container .trp-ls-shortcode-current-language:hover{
+    cursor: pointer;
+}
+
+.trp_ald_ls_container .trp-ls-shortcode-language {
+    display: flex !important;
+    flex-direction: column;
+    max-height: 0;
+    padding: 0;
+    overflow-y: hidden;
+    transition: max-height 0.2s ease-in-out;
+    transition-duration: var(--transition-duration);
+}
+
+.trp_ald_ls_container .trp-ls-dropdown.is-open .trp-switcher-dropdown-list,
+.trp_ald_ls_container .trp-ls-dropdown[aria-expanded="true"] .trp-switcher-dropdown-list,
+.trp_ald_ls_container .trp-shortcode-switcher.trp-open-on-hover.is-open .trp-switcher-dropdown-list,
+.trp_ald_ls_container .trp-shortcode-switcher[aria-expanded="true"] .trp-switcher-dropdown-list {
+    max-height: min(350px, 70vh);
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: thin;
+    scrollbar-color: var(--text) transparent;
+}
+
+.trp_ald_ls_container .trp-ls-dropdown.is-transitioning .trp-switcher-dropdown-list,
+.trp_ald_ls_container .trp-shortcode-switcher.is-transitioning .trp-switcher-dropdown-list {
+    overflow-y: hidden !important;
+}
+
+.trp_ald_ls_container .trp-shortcode-switcher.is-open .trp-shortcode-arrow {
+    transform: rotate(180deg);
+}
+
+.trp_ald_ls_container .trp-shortcode-arrow {
+    flex: 0 0 auto;
+    pointer-events: none;
+}
+
+.trp_ald_ls_container .trp-ald-popup-select {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    width: 100%;
+    min-height: 40px;
+    padding: 0 8px;
+    color: inherit;
+    font-size: 14px;
+    line-height: 1.2;
+    cursor: pointer;
+    box-sizing: border-box;
+    text-decoration: none;
+}
+
+.trp_ald_ls_container .trp-ls-shortcode-current-language .trp-language-item-name {
+    min-width: 0;
+}
+
+.trp_ald_ls_container .trp-ald-popup-select.is-current-language {
+    display: none;
+}
+
+.trp_ald_ls_container .trp-ls-shortcode-language > div:hover,
+.trp_ald_ls_container .trp-ls-shortcode-language > div:focus-visible {
+    cursor: pointer;
+    background: var(--trp-ald-switcher-bg-hover, #143852);
+    color: var(--trp-ald-switcher-text-hover, #ffffff);
+}
+
+.trp_ald_ls_container .trp-ls-shortcode-language > div:focus-visible {
+    outline: 2px solid var(--text);
+    outline-offset: -2px;
+}
+
+.trp_ald_ls_container .trp-language-item:hover .trp-language-item-name,
+.trp_ald_ls_container .trp-language-item:focus-visible .trp-language-item-name {
+    color: var(--text-hover, #ffffff);
+}
+
+.trp_ald_ls_container img.trp-flag-image {
+    display: inline-block;
+    flex: 0 0 auto;
+    margin: 0;
+    pointer-events: none;
+    width: var(--flag-size, 18px) !important;
+    height: auto !important;
+    border-radius: var(--flag-radius, 2px) !important;
+    aspect-ratio: var(--aspect-ratio, 4/3) !important;
+    object-fit: cover;
+}
+
+.trp_ald_ls_container .trp-language-item-name {
+    display: inline-block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    color: var(--text, #000);
+    font-size: var(--font-size, 14px);
+    line-height: 1.2;
+    font-family: -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Oxygen-Sans,Ubuntu,Cantarell,"Helvetica Neue",sans-serif;
+    font-weight: 400;
+}
+
+.trp_ald_ls_container .trp-switcher-dropdown-list::-webkit-scrollbar {
+    width: 6px;
+}
+
+.trp_ald_ls_container .trp-switcher-dropdown-list::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.trp_ald_ls_container .trp-switcher-dropdown-list::-webkit-scrollbar-thumb {
+    background-color: var(--text);
+    border-radius: 4px;
+}
+
+.trp_ald_ls_container .trp-switcher-dropdown-list::-webkit-scrollbar-thumb:hover {
+    background-color: var(--text-hover);
+}
+
+
+/*
+ *  Hello Bar General Settings
+ */
+
+#trp_no_text_popup_wrap{
+    position: relative;
+    width: 100%;
+    background-color: var(--trp-ald-popup-bg, #ffffff);
+    color: var(--trp-ald-popup-text, #143852);
+    z-index: 2147483647;
+    box-shadow: 0 0 10px #6c7781;
+}
+
+#trp_no_text_popup{
+    align-items: center;
+    padding: 25px 30px;
+    background-color: var(--trp-ald-popup-bg, #ffffff);
+    color: var(--trp-ald-popup-text, #143852);
+    border: var(--trp-ald-popup-border-width, 1px) solid var(--trp-ald-popup-border, grey);
+    border-radius: 0;
+    justify-content: space-between;
+    display: flex;
+    vertical-align: middle;
+
+}
+
+#trp_ald_not_text_popup_ls_and_button{
+    display: flex;
+    justify-content: center;
+    flex: 1 1 auto;
+    width: auto;
+    min-width: 0;
+    flex-wrap: wrap;
+    gap: 10px;
+    vertical-align: middle;
+    align-items: flex-start;
+}
+
+/*
+ *  Hello Bar Textarea
+ */
+#trp_ald_no_text_popup_div {
+    color: var(--trp-ald-popup-text, #143852);
+    text-align: left;
+    font-size: 17px;
+    flex: 0 1 auto;
+    min-width: 0;
+    max-width: 100%;
+}
+
+
+
+/*
+ *  Hello Bar Change Language Button and Select
+ */
+
+#trp_ald_not_text_popup_buttons_wrap{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#trp_ald_not_text_popup_ls_and_button .trp_ald_ls_container{
+    max-width: 100%;
+    font-size: 14px;
+    height: 42px;
+}
+
+#trp_ald_not_text_popup_ls_and_button .trp-shortcode-switcher__wrapper,
+#trp_ald_not_text_popup_ls_and_button .trp-shortcode-anchor,
+#trp_ald_not_text_popup_ls_and_button .trp-shortcode-overlay {
+    min-height: 42px;
+}
+
+/*
+ *  Hello Bar Change Language Button
+ */
+.trp_ald_change_language_div{
+    flex: 0 1 auto;
+    width: fit-content;
+    max-width: 100%;
+    min-width: 0;
+    min-height: 42px;
+    display: flex;
+    align-items: flex-start;
+}
+#trp_ald_no_text_popup_change_language{
+    text-transform: none;
+    padding: 8px 10px;
+    height: auto;
+
+    text-align: center;
+    background: var(--trp-ald-popup-button-bg, #143852);
+    border-color: var(--trp-ald-popup-button-border, #143852);
+    color: var(--trp-ald-popup-button-text, #fff);
+    text-decoration: none;
+    text-shadow: none;
+    display: inline-grid;
+    align-items: center;
+    justify-content: center;
+
+    font-weight: normal;
+    font-size: 17px;
+    line-height: 1.25;
+    min-height: 42px;
+    margin-left: 0;
+    width: auto;
+    max-width: 100%;
+    cursor: pointer;
+    border-width: 1px;
+    border-style: solid;
+    -webkit-appearance: none;
+    border-radius: var(--trp-ald-popup-button-radius, 3px);
+    white-space: normal;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+}
+
+#trp_ald_no_text_popup_change_language:hover {
+    background: var(--trp-ald-popup-button-hover-bg, #0f2a3d);
+    border-color: var(--trp-ald-popup-button-hover-bg, #0f2a3d);
+    color: var(--trp-ald-popup-button-hover-text, #fff);
+}
+
+/*
+ * Hello Bar Close Button
+ */
+
+#trp_ald_no_text_popup_x{
+    flex: 0 0 auto;
+    width: auto;
+    padding-left: 5px;
+}
+
+#trp_no_text_popup #trp_close{
+    width: 0;
+    background: 0 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    color: transparent;
+    -webkit-backface-visibility: hidden;
+    outline:none;
+}
+
+#trp_no_text_popup #trp_close::before {
+    content: "\f153";
+    font: normal 35px/40px dashicons;
+    text-align: center;
+    cursor: pointer;
+
+    color: var(--trp-ald-popup-close, #143852) !important;
+    background: 0 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+#trp_ald_no_text_popup_x_button_and_textarea{
+    display:none;
+    align-items: center;
+    gap: 4px;
+    width: 100%;
+    padding: 0;
+    background: transparent;
+    border: 0;
+    color: var(--trp-ald-popup-close, #143852);
+    text-align: left;
+    cursor: pointer;
+    vertical-align: middle;
+    transition: opacity 0.2s ease;
+}
+
+#trp_ald_no_text_popup_x_button_textarea{
+    text-decoration: underline;
+    margin: 0;
+    color: var(--trp-ald-popup-close, #143852);
+    font-size: 15px;
+    line-height: 20px;
+}
+
+#trp_ald_no_text_popup_x_button{
+    display: inline-flex;
+    flex: 0 0 16px;
+    width: 16px;
+    height: 20px;
+    background: 0 0;
+    padding: 0;
+    border: none;
+    text-decoration: none;
+    color: transparent;
+    -webkit-backface-visibility: hidden;
+    outline:none;
+}
+
+#trp_ald_no_text_popup_x_button::before{
+    content: "\f153";
+    font: normal 16px/20px dashicons;
+    text-align: center;
+
+    color: var(--trp-ald-popup-close, #143852) !important;
+    background: 0 0 !important;
+    -webkit-font-smoothing: antialiased;
+}
+
+
+/*
+ *  Responsive Popup and Hello Bar
+ */
+@media screen and (max-width: 780px) {
+    #trp_ald_modal_popup {
+        max-width: 100%;
+    }
+
+    #trp_ald_popup_text {
+        font-size: 16px;
+    }
+
+    .trp_ald_select_and_button{
+        flex-direction: column;
+        gap: 8px;
+        width: 100%;
+        margin-top: 8px;
+    }
+
+    .trp_ald_ls_container [special-selector=trp_ald_popup_current_language]{
+        overflow: hidden;
+    }
+
+    .trp_ald_select_and_button .trp_ald_ls_container,
+    .trp_ald_select_and_button .trp-shortcode-switcher__wrapper,
+    .trp_ald_select_and_button .trp_ald_button {
+        width: 100%;
+        max-width: 100%;
+    }
+
+    .trp_ald_select_and_button .trp_ald_button {
+        margin-top: 0;
+    }
+
+    #trp_ald_popup_change_language{
+        width: 100%;
+        height: auto;
+        min-height: 42px;
+        padding: 8px 12px;
+        font-size: 14px;
+        line-height: 1.25;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        text-align: center;
+    }
+
+    #trp_ald_x_button_and_textarea{
+        width: 100%;
+    }
+
+    /*
+     *  Hello Bar
+     */
+
+    #trp_no_text_popup{
+        justify-content: center;
+    }
+
+    #trp_ald_not_text_popup_ls_and_button{
+        flex-direction: column;
+        max-width: 100%;
+    }
+    #trp_ald_no_text_popup_x{
+        display:none;
+    }
+    #trp_ald_no_text_popup_x_button_and_textarea{
+        display: flex;
+    }
+    #trp_ald_not_text_popup_ls_and_button .trp_ald_ls_container{
+        max-width: 100%;
+        margin-top: 32px;
+    }
+
+    #trp_ald_no_text_popup_select_container{
+        display: none;
+    }
+
+    .trp_ald_change_language_div{
+        width: fit-content;
+        max-width: 100%;
+        margin-top: 14px;
+        height: auto;
+        min-height: 42px;
+    }
+
+    #trp_ald_no_text_popup_change_language{
+        margin-left: 0;
+        height: auto;
+        min-height: 42px;
+        padding: 8px 10px;
+        line-height: 1.25;
+        white-space: normal;
+        overflow-wrap: anywhere;
+    }
+
+    #trp_ald_no_text_popup_x_button_and_textarea{
+        margin-top: 15px;
+    }
+
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .trp-ald-animate {
+        animation: none;
+    }
+}
