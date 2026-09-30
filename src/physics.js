@@ -19,7 +19,7 @@ export function pointOfSail(angle) {
 export function initialState() {
   return {x:0,z:100,heading:35,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
     mainHoist:1,jibHoist:1,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
-    anchor:false,anchorRode:180,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,
+    anchor:false,anchorRode:180,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
     windDirection:315,windSpeed:12,currentDirection:90,currentSpeed:0,heel:0,leeway:0,yawRate:0,
     distance:0,elapsed:0,depth:28,grounded:false,speedOverGround:0,courseOverGround:35,
     apparentWindSpeed:12,apparentWindAngle:-80,suggestedMainSheet:45,suggestedJibSheet:40,
@@ -74,13 +74,42 @@ function sailForce(angle,sheet,area,pressure,noGo,shape=1) {
     efficiency:area>0&&best>0?clamp(c.drive/best,0,1)*noGo:0,
     flow:area===0?'Lowered':noGo<.1||c.alpha<5?'Luffing':c.alpha>40&&Math.abs(angle)<120?'Stalled':'Drawing'};
 }
-function integrate(s,dt) {
+function sailDynamics(s) {
   const aw=apparentWind(s), a=Math.abs(aw.angle), twa=Math.abs(angleDifference(s.windDirection,s.heading));
   const noGo=clamp((twa-38)/9,0,1), pressure=.5*VESSEL.airDensity*(aw.speed*KNOT)**2;
   const reefArea=[1,.72,.48][s.reefLevel];
   const shape=1-.18*Math.abs(s.outhaul-clamp(s.windSpeed/25,0,1))-.12*Math.abs(s.vang-clamp(a/140,.2,.85));
   const main=sailForce(aw.angle,clamp(s.mainSheet+s.traveler,0,90),VESSEL.mainArea*s.mainHoist*reefArea,pressure,noGo,shape);
   const jib=sailForce(aw.angle,s.jibSheet,VESSEL.jibArea*s.jibHoist,pressure,noGo);
+  return {aw,main,jib,reefArea};
+}
+function sailTelemetry(s,{aw,main,jib}) {
+  s.apparentWindSpeed=aw.speed;s.apparentWindAngle=aw.angle;
+  s.suggestedMainSheet=clamp(suggestedSheet(aw.angle)-s.traveler,0,90);s.suggestedJibSheet=suggestedSheet(aw.angle);
+  s.mainEfficiency=main.efficiency;s.jibEfficiency=jib.efficiency;s.mainFlow=main.flow;s.jibFlow=jib.flow;
+}
+/** Refresh instruments after edits while paused, without integrating movement or capturing an anchor. */
+export function refreshDerived(s) {
+  reconcile(s);
+  sailTelemetry(s,sailDynamics(s));
+  s.depth=depthAt(s.x,s.z);
+  const h=s.heading*RAD,c=(s.currentDirection||0)*RAD,u=s.speed*KNOT,v=s.leeway||0;
+  const vx=Math.sin(h)*u+Math.cos(h)*v+Math.sin(c)*(s.currentSpeed||0)*KNOT;
+  const vz=-Math.cos(h)*u+Math.sin(h)*v-Math.cos(c)*(s.currentSpeed||0)*KNOT;
+  s.speedOverGround=s.grounded?0:Math.hypot(vx,vz)/KNOT;
+  if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
+  s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
+  s.turnRate=s.yawRate;
+  if(s.anchor){
+    const vertical=(s._anchor?.depth??s.depth)+VESSEL.bowHeight;
+    s.anchorScope=s.anchorRode/vertical;
+    if(s.anchorRode<vertical)s.anchorStatus='Rode too short';
+    else if(!s._anchor)s.anchorStatus=s.anchorScope<3?'Short scope · poor holding':'Deployed · settling';
+  }else{s.anchorStatus='Stowed';s.anchorScope=0;s.anchorTension=0;s.anchorDragging=false;}
+  return s;
+}
+function integrate(s,dt) {
+  const {aw,main,jib,reefArea}=sailDynamics(s);
   const u=s.speed*KNOT, hullSpeed=1.34*Math.sqrt(VESSEL.waterline/0.3048)*KNOT;
   const drag=58*u+38*u*Math.abs(u)+Math.sign(u)*180*(Math.abs(u)/hullSpeed)**6;
   const rudderDrag=16*u*Math.abs(u)*Math.sin(s.rudder*RAD)**2;
@@ -100,6 +129,7 @@ function integrate(s,dt) {
   let vx=Math.sin(h)*nextU+Math.cos(h)*s.leeway+Math.sin(c)*(s.currentSpeed||0)*KNOT;
   let vz=-Math.cos(h)*nextU+Math.sin(h)*s.leeway-Math.cos(c)*(s.currentSpeed||0)*KNOT;
   let nx=s.x+vx*dt,nz=s.z+vz*dt;
+  s.anchorDragging=false;
   if(s.anchor){
     if(!s._anchor){s._anchor={x:s.x,z:s.z,depth:depthAt(s.x,s.z)};}
     const vertical=s._anchor.depth+VESSEL.bowHeight;
@@ -117,8 +147,9 @@ function integrate(s,dt) {
         nx=s._anchor.x+rx*corrected;nz=s._anchor.z+rz*corrected;
         vx-=rx*outward*hold;vz-=rz*outward*hold;
         s.anchorTension=outward*VESSEL.mass/Math.max(dt,.02);
-        nextU=vx*Math.sin(h)-vz*Math.cos(h);s.leeway=vx*Math.cos(h)+vz*Math.sin(h);
-        if(hold<1){s._anchor.x+=rx*(dist-radius)*(1-hold);s._anchor.z+=rz*(dist-radius)*(1-hold);s.anchorStatus='Dragging · add scope';}
+        const waterX=vx-Math.sin(c)*(s.currentSpeed||0)*KNOT,waterZ=vz+Math.cos(c)*(s.currentSpeed||0)*KNOT;
+        nextU=waterX*Math.sin(h)-waterZ*Math.cos(h);s.leeway=waterX*Math.cos(h)+waterZ*Math.sin(h);
+        if(hold<1){s._anchor.x+=rx*(dist-radius)*(1-hold);s._anchor.z+=rz*(dist-radius)*(1-hold);s.anchorStatus='Dragging · add scope';s.anchorDragging=true;}
       }
     }
   }else{s._anchor=null;s.anchorStatus='Stowed';s.anchorScope=0;s.anchorTension=0;}
@@ -127,9 +158,7 @@ function integrate(s,dt) {
   else{s.speed=0;s.leeway=0;s.yawRate=0;vx=0;vz=0;}
   s.speedOverGround=Math.hypot(vx,vz)/KNOT;
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
-  s.apparentWindSpeed=aw.speed;s.apparentWindAngle=aw.angle;
-  s.suggestedMainSheet=clamp(suggestedSheet(aw.angle)-s.traveler,0,90);s.suggestedJibSheet=suggestedSheet(aw.angle);
-  s.mainEfficiency=main.efficiency;s.jibEfficiency=jib.efficiency;s.mainFlow=main.flow;s.jibFlow=jib.flow;
+  sailTelemetry(s,{aw,main,jib});
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;s.elapsed+=dt;
 }

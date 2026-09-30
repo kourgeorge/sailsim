@@ -1,7 +1,8 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,labelTexture,batchStaticMeshes } from './materials.js';
-import { angleDifference,clamp } from '../physics.js';
+import { angleDifference,clamp,islands,buoys } from '../physics.js';
+import { shoreScale } from './geography.js';
 
 function widthAt(z){
  const sections=[[-6.6,.015],[-6,.55],[-4.7,1.25],[-3,1.75],[-1,2.02],[1,2.06],[3,1.95],[5.25,1.62]];
@@ -36,9 +37,9 @@ function makeSail(parent,mat,{height,foot,jib=false}){
  const sailMat=mat.cloth.clone();sailMat.map=texture;const sail=mesh(parent,geometry,sailMat);sail.castShadow=false;
  // Visible bolt rope and leech, with real curvature rather than flat triangles.
  const edge=[];for(let i=0;i<=24;i++){const v=i/24;edge.push([0,height*v,jib?-4.8*(1-v)+foot*(1-v):foot*(1-v)]);}
- rope(parent,mat.ivory,edge,.018,36);
+ const leech=rope(parent,mat.ivory,edge,.018,36);if(jib)leech.visible=false;
  const base=new Float32Array(pos);
- return {mesh:sail,update(time,luff){const p=geometry.attributes.position;for(let i=0;i<p.count;i++){const u=uv[i*2],v=uv[i*2+1];p.setX(i,base[i*3]+Math.sin(time*8+v*15+u*5)*luff*.11*Math.sin(u*Math.PI)*(1-v));}p.needsUpdate=true;}};
+ return {mesh:sail,update(time,luff,{angle=0,side=1,outhaul=.5,vang=.5,deploy=1}={}){const p=geometry.attributes.position;for(let i=0;i<p.count;i++){const u=uv[i*2],v=uv[i*2+1],chord=foot*(1-v)*deploy;const bulge=base[i*3]*deploy*side*(1.3-outhaul*.6)+Math.sin(time*8+v*15+u*5)*luff*.11*Math.sin(u*Math.PI)*(1-v);const twist=(1-vang)*v*.14*side;const rotation=angle+twist;p.setXYZ(i,chord*u*Math.sin(rotation)+bulge*Math.cos(rotation),base[i*3+1],(jib?-4.8*(1-v):0)+chord*u*Math.cos(rotation)-bulge*Math.sin(rotation));}p.needsUpdate=true;geometry.computeVertexNormals();}};
 }
 function winch(parent,mat,x,y,z,color){
  cylinder(parent,mat.rubber,x,y,z,.18,.23,.09);cylinder(parent,mat.steel,x,y+.16,z,.13,.18,.28);
@@ -57,11 +58,11 @@ function instrument(parent,mat,x,y,z,width,height,title){
  return {update(state,time){if(Math.floor(time*5)===tick)return;tick=Math.floor(time*5);const c=tex.image.getContext('2d');c.fillStyle='#071b22';c.fillRect(0,0,512,384);c.fillStyle='#82b8b7';c.font='22px monospace';c.fillText(title,22,35);c.fillStyle='#e2f8e5';
  if(title==='CHARTPLOTTER'){
  c.fillStyle='#153e46';c.fillRect(12,49,488,280);c.strokeStyle='#ffffff12';for(let i=0;i<500;i+=35){c.beginPath();c.moveTo(i,49);c.lineTo(i,329);c.stroke();}
- c.fillStyle='#899676';[[100,110,55,33],[390,130,61,49],[415,280,28,38]].forEach(a=>{c.beginPath();c.ellipse(...a,0,0,Math.PI*2);c.fill();});
- c.save();c.translate(256,220);c.rotate(state.heading*Math.PI/180);c.fillStyle='#f6d698';c.beginPath();c.moveTo(0,-20);c.lineTo(10,13);c.lineTo(0,8);c.lineTo(-10,13);c.fill();c.restore();c.fillStyle='#e2f8e5';c.font='23px monospace';c.fillText(`COG ${String(Math.round(state.heading)).padStart(3,'0')}°  SOG ${state.speed.toFixed(1)} kn`,22,368);
- }else if(title==='WIND / TRUE'){
+ c.fillStyle='#899676';islands.forEach(a=>{c.beginPath();for(let i=0;i<=60;i++){const angle=i/60*Math.PI*2,r=shoreScale(angle),x=256+(a.x-state.x+Math.cos(angle)*a.rx*r)*.17,y=220+(a.z-state.z+Math.sin(angle)*a.rz*r)*.17;if(i===0)c.moveTo(x,y);else c.lineTo(x,y);}c.closePath();c.fill();});c.fillStyle='#f2c777';buoys.forEach(a=>{c.beginPath();c.arc(256+(a.x-state.x)*.17,220+(a.z-state.z)*.17,3,0,Math.PI*2);c.fill();});
+ c.save();c.translate(256,220);c.rotate(state.heading*Math.PI/180);c.fillStyle='#f6d698';c.beginPath();c.moveTo(0,-20);c.lineTo(10,13);c.lineTo(0,8);c.lineTo(-10,13);c.fill();c.restore();c.fillStyle='#e2f8e5';c.font='23px monospace';c.fillText(`COG ${String(Math.round(state.courseOverGround??state.heading)%360).padStart(3,'0')}°  SOG ${(state.speedOverGround??Math.abs(state.speed)).toFixed(1)} kn`,22,368);
+ }else if(title==='APPARENT WIND'){
  c.strokeStyle='#699596';c.lineWidth=2;c.beginPath();c.arc(256,200,120,0,Math.PI*2);c.stroke();for(let a=0;a<360;a+=30){const r=a*Math.PI/180;c.beginPath();c.moveTo(256+Math.sin(r)*110,200-Math.cos(r)*110);c.lineTo(256+Math.sin(r)*120,200-Math.cos(r)*120);c.stroke();}
- c.save();c.translate(256,200);c.rotate(angleDifference(state.windDirection,state.heading)*Math.PI/180);c.strokeStyle='#eec788';c.lineWidth=7;c.beginPath();c.moveTo(0,75);c.lineTo(0,-92);c.lineTo(-13,-67);c.moveTo(0,-92);c.lineTo(13,-67);c.stroke();c.restore();c.font='30px monospace';c.fillText(`${state.windSpeed.toFixed(1)} kn`,26,362);
+ c.save();c.translate(256,200);c.rotate((state.apparentWindAngle??angleDifference(state.windDirection,state.heading))*Math.PI/180);c.strokeStyle='#eec788';c.lineWidth=7;c.beginPath();c.moveTo(0,75);c.lineTo(0,-92);c.lineTo(-13,-67);c.moveTo(0,-92);c.lineTo(13,-67);c.stroke();c.restore();c.font='30px monospace';c.fillText(`${(state.apparentWindSpeed??state.windSpeed).toFixed(1)} kn  ${Math.abs(state.apparentWindAngle??0).toFixed(0)}°`,26,362);
  }else{c.font='100px monospace';c.fillText(state.speed.toFixed(1),24,150);c.font='24px monospace';c.fillText('BOAT SPEED / kn',25,185);c.strokeStyle='#385657';c.beginPath();c.moveTo(20,218);c.lineTo(490,218);c.stroke();c.font='43px monospace';c.fillText(`${String(Math.round(state.heading)%360).padStart(3,'0')}°`,25,281);c.fillText(`${state.depth.toFixed(1)}m`,275,281);c.font='21px monospace';c.fillText('HEADING',25,330);c.fillText('DEPTH',275,330);}
  tex.needsUpdate=true;}};
 }
@@ -97,6 +98,15 @@ export function createYacht(mat,{detailed=true}={}){
  for(const side of [-1,1]){const top=[],mid=[];for(const z of [-5.85,-4.4,-2.6,-.6,1.5,3.5,5.03]){const x=side*(widthAt(z)-.055);box(boat,mat.steel,x,1.13,z,.09,.04,.12);bar(boat,mat.steel,[x,1.1,z],[x,1.91,z],.021);top.push([x,1.91,z]);mid.push([x,1.53,z]);}rope(boat,mat.steel,top,.009,80);rope(boat,mat.steel,mid,.007,80);}
  rope(boat,mat.steel,[[-.67,1.91,-5.9],[-.4,1.98,-6.5],[0,2,-6.72],[.4,1.98,-6.5],[.67,1.91,-5.9]],.024,35);
  for(const side of [-1,1]){rope(boat,mat.steel,[[side*1.6,1.92,4.4],[side*1.6,1.92,5.24],[side*.63,1.92,5.3]],.023,24);bar(boat,mat.steel,[side*.64,1.05,5.27],[side*.64,1.92,5.27],.023);}
+ if(!detailed){
+  cylinder(boat,mat.aluminum,0,9.35,-1.95,.08,.105,16.5,12);
+  bar(boat,mat.aluminum,[0,2.85,-1.95],[0,2.85,3.4],.085,8);
+  box(boat,mat.navy,0,3,-.1,.35,.3,3.8,.06);
+  bar(boat,mat.steel,[0,17.5,-1.95],[0,1.25,-6.5],.012);
+  for(const side of [-1,1])bar(boat,mat.steel,[0,17.5,-1.95],[side*1.85,1.3,1],.009);
+  batchStaticMeshes(boat,mergeGeometries);
+  return {group:boat,update(){}};
+ }
  if(detailed){
   // Anchor roller, chain, mooring hardware, fenders, and swim ladder.
   box(boat,mat.steel,0,1.19,-6.32,.18,.08,.85);bar(boat,mat.steel,[0,1.2,-6.4],[0,.8,-6.95],.045);box(boat,mat.steel,0,.82,-6.98,.55,.035,.32);
@@ -125,7 +135,7 @@ export function createYacht(mat,{detailed=true}={}){
  const mainGroup=new THREE.Group();mainGroup.position.y=.15;boomGroup.add(mainGroup);const mainsail=makeSail(mainGroup,mat,{height:14.35,foot:5.2});
  const jibGroup=new THREE.Group();jibGroup.position.set(0,1.8,-1.95);boat.add(jibGroup);const jib=makeSail(jibGroup,mat,{height:15.2,foot:5.4,jib:true});
  const furled=box(boomGroup,mat.cloth,0,.13,2.5,.23,.19,4.9,.08);furled.visible=false;
- const traveler=box(boat,mat.aluminum,0,1.92,.9,2.5,.065,.065);box(boat,mat.rubber,0,1.97,.9,.19,.14,.12);
+ const traveler=box(boat,mat.aluminum,0,1.92,.9,2.5,.065,.065);const travelerCar=box(boat,mat.rubber,0,1.97,.9,.19,.14,.12);
  const sheet=bar(boat,mat.ivory,[0,2,1],[0,2.8,2.8],.023);
  // Working pedestal and wheel. Displays face aft toward the helmsman.
  box(boat,mat.gelcoat,0,1.12,3.95,.40,1.34,.44,.12);
@@ -134,24 +144,28 @@ export function createYacht(mat,{detailed=true}={}){
  for(let i=0;i<8;i++){const a=i/8*Math.PI*2;bar(wheel,mat.steel,[0,0,0],[Math.cos(a)*.6,Math.sin(a)*.6,0],.013);}
  const boss=cylinder(wheel,mat.steel,0,0,0,.084,.084,.10);boss.rotation.x=Math.PI/2;
  const compass=cylinder(boat,mat.rubber,0,1.95,3.87,.16,.19,.15);mesh(boat,new THREE.SphereGeometry(.15,24,12,0,Math.PI*2,0,Math.PI/2),mat.glass,0,2.02,3.87);
- const displayGroup=new THREE.Group();displayGroup.position.set(0,2.31,3.87);displayGroup.rotation.x=-.15;boat.add(displayGroup);
- bar(boat,mat.steel,[-.56,1.5,3.85],[-.56,2.5,3.85],.025);bar(boat,mat.steel,[.56,1.5,3.85],[.56,2.5,3.85],.025);bar(boat,mat.steel,[-.56,2.5,3.85],[.56,2.5,3.85],.025);
- const instruments=[instrument(displayGroup,mat,0,0,0,.82,.59,'CHARTPLOTTER'),instrument(boat,mat,-.63,1.94,1.17,.48,.35,'WIND / TRUE'),instrument(boat,mat,.63,1.94,1.17,.48,.35,'SAILING DATA')];
- bar(boat,mat.steel,[.25,1.44,4.03],[.4,1.8,4.03],.02);mesh(boat,new THREE.SphereGeometry(.06,12,8),mat.rubber,.4,1.8,4.03);
+ const displayGroup=new THREE.Group();displayGroup.position.set(0,2.77,3.87);displayGroup.rotation.x=-.15;boat.add(displayGroup);
+ bar(boat,mat.steel,[-.56,1.5,3.85],[-.56,2.96,3.85],.025);bar(boat,mat.steel,[.56,1.5,3.85],[.56,2.96,3.85],.025);bar(boat,mat.steel,[-.56,2.96,3.85],[.56,2.96,3.85],.025);
+ const instruments=[instrument(displayGroup,mat,0,0,0,.82,.59,'CHARTPLOTTER'),instrument(boat,mat,-.63,1.94,1.17,.48,.35,'APPARENT WIND'),instrument(boat,mat,.63,1.94,1.17,.48,.35,'SAILING DATA')];
+ const throttleLever=new THREE.Group();throttleLever.position.set(.25,1.44,4.03);boat.add(throttleLever);bar(throttleLever,mat.steel,[0,0,0],[.15,.36,0],.02);mesh(throttleLever,new THREE.SphereGeometry(.06,12,8),mat.rubber,.15,.36,0);
  // Red/green navigation lights and masthead fitting.
  for(const side of [-1,1]){const lampMat=new THREE.MeshStandardMaterial({color:side<0?'#ab3e32':'#218873',emissive:side<0?'#d13113':'#14a67c',emissiveIntensity:.35});mesh(boat,new THREE.SphereGeometry(.052,12,8),lampMat,side*.5,1.88,-6.05);}
  bar(boat,mat.steel,[0,17.6,-1.95],[0,18,-1.95],.015);const vane=box(boat,mat.red,0,17.86,-2.11,.26,.008,.09);bar(boat,mat.steel,[0,17.95,-1.95],[0,17.95,-2.37],.008);
  const bow=[];for(let i=0;i<2;i++){bow.push(mesh(boat,new THREE.PlaneGeometry(.7,2),new THREE.MeshBasicMaterial({color:'#d5f3ef',transparent:true,opacity:.15,depthWrite:false}),i?1:-1,.025,-4.5));bow[i].rotation.x=-Math.PI/2;}
- batchStaticMeshes(boat,mergeGeometries,[rudder,vane,sheet,...bow]);
+ batchStaticMeshes(boat,mergeGeometries,[rudder,vane,sheet,travelerCar,...bow]);
  return {group:boat,update(state,time){
-  const sign=Math.sign(angleDifference(state.windDirection,state.heading))||1;
-  boomGroup.rotation.y=THREE.MathUtils.lerp(boomGroup.rotation.y,-sign*state.trim*Math.PI/180,.08);
-  mainGroup.scale.y=state.reef?.68:1;mainGroup.visible=Boolean(state.sails);furled.visible=!state.sails;jibGroup.visible=Boolean(state.sails);
-  jibGroup.rotation.y=boomGroup.rotation.y*.32;
-  const luff=Math.abs(angleDifference(state.windDirection,state.heading))<38?1:.12;
-  mainsail.update(time,luff);jib.update(time,luff);
-  wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;vane.rotation.y=-state.windDirection*Math.PI/180+state.heading*Math.PI/180;
-  const tip=new THREE.Vector3(0,0,4.6).applyAxisAngle(new THREE.Vector3(0,1,0),boomGroup.rotation.y).add(boomGroup.position),base=new THREE.Vector3(0,1.99,.9),delta=tip.clone().sub(base);
+  const windAngle=state.apparentWindAngle??angleDifference(state.windDirection,state.heading),sign=Math.sign(windAngle)||1;
+  boomGroup.rotation.y=THREE.MathUtils.lerp(boomGroup.rotation.y,-sign*clamp((state.mainSheet??state.trim)+(state.traveler??0),0,90)*Math.PI/180,.12);
+  const mainHoist=state.mainHoist??Number(Boolean(state.sails)),jibHoist=state.jibHoist??Number(Boolean(state.sails));
+  mainGroup.scale.y=mainHoist*[1,.72,.48][state.reefLevel??Number(Boolean(state.reef))];mainGroup.visible=mainHoist>.01;furled.visible=mainHoist<.99;
+  jibGroup.visible=jibHoist>.01;
+  const mainLuff=state.mainFlow==='Luffing'?1:state.mainFlow==='Stalled'?.45:.08;
+  mainsail.update(time,mainLuff,{side:-sign,outhaul:state.outhaul??.5,vang:state.vang??.5});
+  jib.update(time,state.jibFlow==='Luffing'?1:.08,{angle:-sign*(state.jibSheet??40)*Math.PI/180,side:-sign,outhaul:.5,vang:.7,deploy:jibHoist});
+  travelerCar.position.x=(state.traveler??0)/20;
+  throttleLever.rotation.x=-(state.throttle??0)*.7;
+  wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;vane.rotation.y=-(state.apparentWindAngle??angleDifference(state.windDirection,state.heading))*Math.PI/180;
+  const tip=new THREE.Vector3(0,0,4.6).applyAxisAngle(new THREE.Vector3(0,1,0),boomGroup.rotation.y).add(boomGroup.position),base=new THREE.Vector3(travelerCar.position.x,1.99,.9),delta=tip.clone().sub(base);
   sheet.position.copy(tip).add(base).multiplyScalar(.5);sheet.scale.y=delta.length()/Math.hypot(.8,1.8);sheet.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());
   instruments.forEach(i=>i.update(state,time));bow.forEach(m=>{m.visible=state.speed>1;m.material.opacity=clamp(state.speed*.03,0,.22);});
  }};

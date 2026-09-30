@@ -35,7 +35,9 @@ lesson('aboard','Know your yacht',[
  q('What needs water flowing over it to steer effectively?',['The anchor','The mast','The rudder'],2,'The rudder changes the direction of water flow. With little boat speed its authority is reduced.')]);
 lesson('aboard','Lines, winches, and loads',[
  'A halyard raises a sail. A sheet adjusts its angle. A reef reduces exposed sail area. A cleat or clutch holds a line; a winch helps manage load.',
- 'On this yacht, colored sheets run aft toward the cockpit winches. Inspect the wraps and clutches in Cockpit view. The model shows these fittings, but the controls currently move the sails as a whole.',
+ 'On this yacht, colored sheets run aft toward the cockpit winches. Inspect the wraps and clutches in Cockpit view. The Boat systems panel controls the two halyards and sheets independently, plus traveler, vang, outhaul, reefs, engine, and anchor rode. The sliders represent control settings, not physical line handling.',
+ 'The main and headsail hoists set how much sail is exposed. The two sheets change sail angle independently. The traveler moves the boom’s sheeting position; vang tension controls modeled twist, while the outhaul flattens the modeled sail foot. Change one control at a time and compare the response.',
+ 'Reef level reduces mainsail area. Engine throttle selects reverse, neutral, or ahead; return to neutral for sailing assessments. Anchor rode sets deployed length and affects the available swing circle and modeled holding.',
  'Keep fingers, loose clothing, and hair clear of loaded lines. Learn real winch loading, line handling, knots, and controlled easing with an instructor; a mouse cannot teach the feel of a loaded line.'
 ],['Follow a colored sheet from the deck toward its winch.','Compare a halyard’s lifting purpose with a sheet’s trimming purpose.'], 'Treating a heavily loaded sheet like an unloaded rope, or confusing the sheet with the halyard.',[
  q('You want to adjust the mainsail’s angle. Which line has that job?',['Mainsheet','Main halyard','Anchor rode'],0,'The mainsheet controls the boom and mainsail angle; the halyard hoists the sail.'),
@@ -43,20 +45,20 @@ lesson('aboard','Lines, winches, and loads',[
 lesson('aboard','Read the instruments',[
  'Heading is the direction the bow points, measured clockwise from north: 000° north, 090° east, 180° south, 270° west. Speed is shown in knots; one knot is one nautical mile per hour.',
  'The wind display identifies the direction the wind comes from. The on-deck wind dial is relative to the bow, while the HUD compass is north-referenced. Depth is the simulator’s water-depth estimate, not clearance below the keel.',
- 'In real navigation, course over ground and speed over ground can differ from heading and speed through water because of current and leeway. This simulation does not model those effects.'
+ 'In real navigation, course over ground and speed over ground can differ from heading and speed through water because of current and leeway. This simulation estimates both effects; compare heading and water speed with course and speed over ground in Boat systems.'
 ],['Open Helm or Cockpit and compare the chartplotter and speed display with the HUD.','Open the chart and find the yacht symbol and north arrow.'], 'Reading depth as guaranteed clearance or treating heading as a guaranteed ground track.',[
  q('Which heading points east?',['000°','090°','270°'],1,'Bearings are measured clockwise from north; east is 090°.'),
  q('At 6 knots, how far would you travel in 30 minutes without current?',['6 nautical miles','12 nautical miles','3 nautical miles'],2,'Distance = speed × time. Six nautical miles per hour for half an hour is three nautical miles.')],{setup:{sails:0},steps:[step('Inspect the cockpit instruments','camera','deck'),step('Open the navigation chart','event','chart')],debrief:'You can now locate the displays. Check instruments regularly while maintaining an outside lookout.'});
 lesson('wind','Where the wind comes from',[
  'A northwesterly wind comes from the northwest and blows toward the southeast. Windward is toward the source of the wind; leeward is away from it.',
- 'True wind is the movement of air over the water. Your motion changes the wind experienced aboard: apparent wind. Our sail-force model is simplified and uses true wind angle.',
+ 'Here true wind is air motion relative to fixed ground. Apparent wind is relative to the moving yacht; some real instruments use a water reference for true wind, so check their convention. Your motion changes the wind experienced aboard: apparent wind. Our empirical sail-force model uses apparent wind; it is not a validated aerodynamic prediction.',
  'The no-go zone is the sector too close to the wind for the sails to drive the boat. Its limit varies with boat and conditions; this simulator uses 38° on either side.'
 ],['With wind from 315°, compare headings 315°, 045°, and 135° on the compass.','The 045° heading puts the wind approximately across the side.'], 'Interpreting the arrow as where the wind is going rather than where it comes from.',[
  q('A wind from 315° comes from which direction?',['Southeast','Northwest','Northeast'],1,'315° is northwest. Wind direction is conventionally named for its source.'),
  q('Why can a yacht not make useful progress aimed directly into the wind?',['The compass stops working','The keel becomes too heavy','The sails cannot generate effective driving force in that direction'],2,'You must sail outside the no-go zone and tack to make progress upwind.')]);
 lesson('wind','Raise the sails',[
  'In practice, prepare halyards and sheets, check for fouled lines, and ensure sea room before hoisting. A mainsail is commonly hoisted with the boat pointing into the wind and the sheet eased so it does not fill unexpectedly.',
- 'This simulator’s Raise sails button raises both sails at once. It does not assess the real sequence of halyards, topping lift, clutches, or headsail furling.',
+ 'The Raise sails shortcut moves both sails; Boat systems provides separate main and headsail hoist controls. These controls do not assess the real sequence of topping lift, clutches, sail slides, or furling-line handling.',
  'Once set, bear away far enough to fill the sails. A raised sail alone does not guarantee boat speed.'
 ],['Start the exercise facing into the wind with sails lowered.','Raise the sails; then turn to a sailable course in later exercises.'], 'Assuming raised sails always propel the boat, or hoisting without first checking the lines and boom area.',[
  q('Before a real mainsail hoist, what should be checked?',['Only the chart color','Clear lines, sea room, crew, and an unloaded sail','Whether the boat is at top speed'],1,'Preparation prevents jams and unexpected sail loading.'),
@@ -67,7 +69,7 @@ lesson('wind','Feel the boat accelerate',[
  'Start with small adjustments. Centering the helm stops the turn; it does not automatically restore your previous heading.'
 ],['Begin on 045° with a northwesterly wind, sails set, and anchor up.','Select Set sail and watch speed increase.'], 'Applying full helm while stationary and expecting the yacht to pivot instantly.',[
  q('When does this rudder gain steering authority?',['As water flow and boat speed increase','When the anchor is lowered','Only when sails are lowered'],0,'A yacht normally needs water flow over the rudder to respond.'),
- q('After centering the helm, what happens?',['The yacht returns automatically to north','The turn reduces and the yacht tends to maintain its new heading','The yacht stops instantly'],1,'The helm controls turning, not a selected compass heading.')],{setup:{heading:45,trim:34},steps:[step('Build speed above 3 knots','speedAbove',3,6)],debrief:'The sail force accelerated the boat; the rudder became useful as speed built.'});
+ q('After centering the helm, what happens?',['The yacht returns automatically to north','The turn reduces and the yacht tends to maintain its new heading','The yacht stops instantly'],1,'The helm controls turning, not a selected compass heading.')],{setup:{heading:45,trim:65,jibSheet:60},steps:[step('Build speed above 3 knots','speedAbove',3,6)],debrief:'The sail force accelerated the boat; the rudder became useful as speed built.'});
 lesson('wind','Hold a steady course',[
  'Steering a course is a cycle: choose a distant reference, compare the compass, make a small correction, then center the helm before overshooting.',
  'Keep a lookout beyond the instruments. A course that is accurately steered can still lead into danger.',
@@ -88,7 +90,7 @@ lesson('trim','Sail close hauled',[
  'As you head up, trim in gradually. Watch whether speed remains healthy instead of chasing the smallest possible wind angle.'
 ],['Start on a reach and steer nearer to the wind.','Trim inward as the wind angle decreases.'], 'Pinching: pointing too close to the wind and losing the speed that makes the boat and rudder work.',[
  q('What is pinching?',['Sailing too close to the wind and losing useful drive','Sailing with too much anchor chain','Turning away from the wind'],0,'A slightly lower course may produce better upwind progress because it preserves speed.'),
- q('Relative to a beam reach, a close-hauled mainsail is generally…',['Further out','Lowered completely','Trimmed closer to the centerline'],2,'As you sail closer to the wind, the sail angle normally comes inward.')],{setup:{heading:30,speed:3,trim:20},steps:[step('Hold 45°–58° off the wind above 2 knots','windAngle',[45,58],8)],debrief:'You balanced pointing with boat speed. The simulator does not assess real telltales or leeway.'});
+ q('Relative to a beam reach, a close-hauled mainsail is generally…',['Further out','Lowered completely','Trimmed closer to the centerline'],2,'As you sail closer to the wind, the sail angle normally comes inward.')],{setup:{heading:30,speed:3,trim:20},steps:[step('Hold 45°–58° off the wind above 2 knots','windAngle',[45,58],8)],debrief:'You balanced pointing with boat speed. The simulator estimates leeway but does not assess reading physical telltales.'});
 lesson('trim','Bear away to a broad reach',[
  'Bearing away turns the bow away from the wind. The wind angle increases and the sails generally need easing.',
  'On a broad reach the wind comes from aft of the beam. As you approach dead downwind, watch for an unintended gybe when the wind crosses the stern.',
@@ -98,7 +100,7 @@ lesson('trim','Bear away to a broad reach',[
  q('What maneuver becomes a concern near dead downwind?',['An unintended gybe','An automatic tack','Instant anchoring'],0,'A small heading or wind change can take the wind across the stern and move the boom.')],{setup:{heading:55,speed:3,trim:50},steps:[step('Hold a broad reach, 120°–150° off the wind','windAngle',[120,150],8)],debrief:'You increased the wind angle and kept clear of an accidental stern crossing.'});
 lesson('trim','Trim with feedback',[
  'Trim means adjusting the sail to the airflow. A mainsheet pulled in too far can stall the sail; too far out can leave it luffing. Real trimming depends on telltales, sail shape, and feel.',
- 'Here the suggested mainsheet angle is a teaching aid calculated from true wind angle. Match it, then observe boat speed. It is a model-specific guide, not a universal sail-trim formula.',
+ 'Here the suggested mainsheet angle is a teaching aid calculated from apparent wind angle. Match it, then observe boat speed. It is a model-specific guide, not a universal sail-trim formula.',
  'The trim assessment needs an angle within 6° of the model target and boat speed above 2 knots for ten seconds.'
 ],['Leave the helm centered and change only the sheet.','Wait for speed to respond instead of making constant large changes.'], 'Changing heading and sheet simultaneously so you cannot tell which adjustment improved the boat.',[
  q('For a useful trim comparison, which technique helps?',['Change all controls rapidly','Hold a steady course and adjust one thing at a time','Anchor while trimming'],1,'A stable course makes the effects of sheet changes easier to observe.'),
@@ -127,17 +129,17 @@ lesson('maneuvers','Make a planned gybe',[
 lesson('maneuvers','Recover from loss of drive',[
  'In irons means stopped or nearly stopped pointing into the wind. The sails luff and the rudder loses authority as speed falls.',
  'Avoid the situation by keeping momentum during a tack and not pinching. This exercise begins with residual forward motion: bear away promptly and trim to restore drive.',
- 'A completely stopped real yacht may require a backed sail, engine assistance, or a vessel-specific recovery method. Those techniques are not modeled here; use Restart exercise if all steerage is lost.'
+ 'A completely stopped real yacht may require a backed sail, engine assistance, or a vessel-specific recovery method. Backing sails is not modeled. The engine is available in free sailing, but this residual-way exercise requires neutral; restart if all steerage is lost.'
 ],['Use the remaining way to turn away from 315°.','Do not wait until speed reaches zero before correcting.'], 'Expecting the rudder to rotate a fully stationary yacht without water flow.',[
  q('Why should you act before all speed is lost?',['Residual water flow gives steering authority','The chart will disappear','The sails become too short'],0,'Use the remaining steerage to get outside the no-go zone.'),
- q('Does this exercise teach all methods of recovering a fully stopped real yacht?',['Yes','No; backing sails and engine recovery are not modeled','Only on starboard tack'],1,'The exercise covers recovery with residual way; real recovery depends on the vessel and situation.')],{setup:{heading:325,speed:2.6,trim:20},steps:[step('Exit the no-go zone and rebuild speed above 2 knots','recover',null,7,'Turn starboard toward 010° or beyond before the remaining way disappears.')],debrief:'You used residual momentum. A stopped-boat recovery is a separate practical skill.'});
+ q('Does this exercise teach all methods of recovering a fully stopped real yacht?',['Yes','No; this exercise assesses residual-way recovery under sail','Only on starboard tack'],1,'The exercise covers recovery with residual way; real recovery depends on the vessel and situation.')],{setup:{heading:325,speed:2.6,trim:20},steps:[step('Exit the no-go zone and rebuild speed above 2 knots','recover',null,7,'Turn starboard toward 010° or beyond before the remaining way disappears.')],debrief:'You used residual momentum. A stopped-boat recovery is a separate practical skill.'});
 lesson('conditions','True and apparent wind',[
  'A moving yacht experiences apparent wind: the air motion relative to the boat. Even on a calm day, moving forward produces airflow from ahead.',
  'As boat speed increases, apparent wind generally shifts forward relative to the true wind. Downwind, motion in the same direction as the wind can reduce the apparent wind speed.',
- 'The displayed true-wind values and simplified polar here cannot assess apparent-wind trimming. Learn the distinction now and practice reading both instruments on a real boat.'
-],['Imagine riding a bicycle in still air: you feel wind from ahead.','Distinguish this lesson’s conceptual model from the true-wind-driven simulation.'], 'Assuming true and apparent wind have identical direction and speed while the yacht is moving.',[
+ 'Compare true wind on the wind dial with apparent wind in Boat systems. Sail force and suggested sheet angles use apparent wind; this empirical model is not a substitute for reading telltales and sail shape.'
+],['Imagine riding a bicycle in still air: you feel wind from ahead.','Compare the apparent wind display as speed increases on a steady course.'], 'Assuming true and apparent wind have identical direction and speed while the yacht is moving.',[
  q('What wind does a moving sail actually experience?',['Only the weather forecast wind','Apparent wind','A fixed compass wind'],1,'Sails interact with airflow relative to the moving yacht.'),
- q('What does this prototype use for its simplified sail-force calculation?',['True wind angle','A full apparent-wind aerodynamic model','Measured masthead airflow'],0,'Do not mistake the model’s teaching aid for a complete sail-force simulation.')]);
+ q('What does this prototype use for its sail-force calculation?',['An empirical model using apparent wind','A validated full aerodynamic simulation','Measured masthead airflow'],0,'Apparent wind reflects vessel motion. The empirical force model still omits many real aerodynamic details.')]);
 lesson('conditions','Reef before you need to',[
  'Reefing reduces sail area to improve control as wind increases. A decision to reef should consider forecast, gusts, sea state, crew ability, and the boat’s behavior, not a universal wind-speed rule.',
  'Excessive heel, heavy helm, and difficulty maintaining control are reasons to reassess sail area early. Delaying can make the work harder when conditions deteriorate.',
@@ -155,7 +157,7 @@ lesson('conditions','Reduce power deliberately',[
 lesson('conditions','Choose a weather limit',[
  'Read a marine forecast for the whole intended trip and a margin beyond it. Consider mean wind, gusts, direction changes, sea state, visibility, temperature, tides, and local effects.',
  'Wind against current can steepen waves. Offshore wind can make returning difficult; an exposed lee shore can leave little room to recover from a failure.',
- 'Set a go/no-go decision and escape options before departure. The simulation has adjustable steady wind but no gust fronts, wave hazards, weather forecasting, or tidal streams.'
+ 'Set a go/no-go decision and escape options before departure. The simulation has adjustable steady wind but no gust fronts, breaking-wave hazards, weather forecasting, or changing tidal streams; adjustable current is a steady approximation.'
 ],['For a novice crew, decide what change would make you shorten or cancel a trip.','Name a sheltered alternative and a return deadline.'], 'Treating a low average wind speed as proof that the entire trip will be safe.',[
  q('The average wind is manageable but the forecast includes strong gusts and worsening visibility. What is appropriate?',['Ignore the gusts','Depart because only average speed matters','Reassess the trip against crew ability and safe alternatives'],2,'The entire forecast and its trend matter, not one number.'),
  q('Can this simulation assess handling breaking seas or wind-against-tide conditions?',['No','Yes, using the speed display','Only when reefed'],0,'Those environmental dynamics are not implemented and require separate instruction.')]);
@@ -218,10 +220,10 @@ lesson('seamanship','Make a passage decision',[
 lesson('harbor','Plan a docking approach',[
  'Docking combines wind, current, propeller effects, boat momentum, and crew coordination. Prepare fenders and lines, assign roles, choose an approach, and keep an escape route.',
  'Approach at the lowest speed that preserves the control you need. Never use a person’s body to stop the boat or put hands or feet between the yacht and dock.',
- 'This version has no engine, reverse thrust, prop walk, current, spring-line forces, or dock collision model. Docking is taught here as planning and decision-making only; touching the visual dock is not an assessed docking skill.'
+ 'Boat systems includes ahead and reverse thrust, and the model estimates current and prop walk. Spring-line forces and dock contact are not modeled. Docking is taught here as planning and decision-making; touching the visual dock is not an assessed docking skill.'
 ],['Describe your approach, crew jobs, and go-around plan before moving.','Explain why wind and current change a safe approach.'], 'Relying on crew to jump ashore or physically catch the yacht.',[
  q('If the approach becomes unstable, what should the preplanned option be?',['Ask someone to fend off with a foot','Abort and make a controlled new approach if safe','Add speed to get it over with'],1,'An escape plan is part of preparation; avoid trapping the boat or crew in an unrecoverable maneuver.'),
- q('Can arriving beside the rendered pontoon prove docking competence here?',['No; essential docking forces and controls are absent','Yes, if the boat looks aligned','Yes, at any speed'],0,'A visual result without the relevant dynamics is not a valid skill assessment.')]);
+ q('Can arriving beside the rendered pontoon prove docking competence here?',['No; dock contact, spring lines, and crew tasks are not assessed','Yes, if the boat looks aligned','Yes, at any speed'],0,'A visual result without the relevant dynamics is not a valid skill assessment.')]);
 lesson('harbor','Choose an anchorage',[
  'Choose shelter, suitable holding ground, adequate depth throughout the tidal range, and room to swing without reaching hazards or neighboring vessels.',
  'Scope compares the rode deployed with the vertical distance from bow roller to seabed. Required scope depends on rode, anchor, conditions, boat, and guidance; no single ratio guarantees holding.',
@@ -231,11 +233,11 @@ lesson('harbor','Choose an anchorage',[
  q('What must an anchorage plan consider beyond depth?',['Only the distance to a café','Only anchor color','Shelter, holding ground, tide, swing room, and hazards'],2,'Depth alone does not establish a suitable or safe anchorage.')]);
 lesson('harbor','Stop, then anchor',[
  'A real anchoring approach is controlled and slow. The crew lowers the anchor and deploys rode deliberately, then checks that it has set and continues monitoring position.',
- 'In this model, the anchor acts as a brake and holds a position. It does not simulate the seabed, rode catenary, swing, or dragging. This exercise assesses slowing and sequencing only.',
- 'Lower sails, coast below 0.8 knots with the anchor up, then drop anchor. Dropping early invalidates the attempt because it avoids the speed-control exercise.'
-],['Reduce sail power well before the intended stopping point.','Wait for speed to fall before using the anchor control.'], 'Using the simplified anchor brake to bypass a controlled approach.',[
+ 'The model estimates rode length, swing radius, and insufficient-scope dragging. It does not validate anchor setting in a particular seabed or represent full rode catenary. This exercise assesses slowing and sequencing.',
+ 'Lower sails, coast below 0.8 knots with the anchor up, then drop anchor. Expect a few minutes for momentum to decay: deploying rode is not an instant brake. Dropping early invalidates the attempt because it avoids the speed-control exercise.'
+],['Reduce sail power well before the intended stopping point.','Wait for speed to fall before using the anchor control.'], 'Deploying the anchor at speed instead of completing a controlled approach.',[
  q('What is the correct sequence in this exercise?',['Anchor at full speed, then lower sails','Lower sails, slow with anchor up, then anchor','Ignore the speed display'],1,'The exercise checks anticipation and sequencing, not the anchor’s holding ability.'),
- q('Does the stopped position demonstrate that a real anchor is properly set?',['Yes','Only after 5 seconds','No; setting, dragging, and rode forces are not modeled'],2,'Real anchoring requires checks of holding and ongoing monitoring.')],{setup:{heading:45,speed:3,trim:34},anchorOnlyAtEnd:true,steps:[step('Lower sails and coast below 0.8 knots, anchor up','coast',.8,3),step('Drop anchor and settle below 0.2 knots','anchor',true,4)],debrief:'You practiced a controlled stop and the correct simplified sequence. Real anchor setting is not assessed.'});
+ q('Does the stopped position demonstrate that a real anchor is properly set?',['Yes','Only after 5 seconds','No; modeled holding cannot prove real anchor setting'],2,'Real anchoring requires checks of holding and ongoing monitoring.')],{setup:{heading:45,speed:3,trim:34},anchorOnlyAtEnd:true,steps:[step('Lower sails and coast below 0.8 knots, anchor up','coast',.8,3),step('Drop anchor and settle below 0.2 knots','anchor',true,4)],debrief:'You practiced a controlled stop and the correct simplified sequence. Real anchor setting is not assessed.'});
 lesson('harbor','Prepare to leave',[
  'Before departure, recheck the surrounding area, intended route, conditions, and crew readiness. Make sure lines and equipment are secure and everyone knows what happens next.',
  'For this simplified departure, weigh anchor, raise sails, and establish a steady reach. The scenario is already clear of land, lines, and other craft.',

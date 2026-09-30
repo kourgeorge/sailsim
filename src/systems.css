@@ -1,0 +1,7 @@
+.systems-drawer{position:absolute;z-index:9;right:24px;top:133px;width:min(430px,calc(100% - 48px));filter:drop-shadow(0 18px 30px #061b3455)}
+.systems-drawer .vessel-panel>summary{padding-right:42px}.systems-drawer .vessel-live{font-size:9px}
+#systems-close{position:absolute;z-index:1;right:8px;top:6px;width:28px;height:28px;font-size:25px;color:#b5cccb;border-radius:50%}#systems-close:hover{background:#ffffff16}
+#systems-toggle[aria-expanded=true]{background:#ecc78e;color:#17323d}
+.systems-drawer .vessel-slider input[type=range]{height:22px;background:transparent}.systems-drawer .vessel-tabs{max-height:min(43vh,400px)}
+@media(max-width:900px){.systems-drawer{right:15px;top:135px;width:min(410px,calc(100% - 30px))}.systems-drawer .vessel-panel>summary{font-size:11px}}
+@media(max-width:650px){.systems-drawer{top:73px;right:12px;width:calc(100% - 24px)}.systems-drawer .vessel-instruments{font-size:8px;padding:12px}.systems-drawer .vessel-instruments strong{font-size:11px}.systems-drawer .vessel-tabs{max-height:55dvh}.systems-drawer .vessel-fields{gap:7px}.systems-drawer .vessel-live{display:none}}
