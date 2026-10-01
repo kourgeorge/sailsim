@@ -1,6 +1,14 @@
 // Shared training controls. Scenario content uses separately validated text-only packs.
 const languages=['es','fr','ru','he','ar'];
 const rows={
+'Ready':['Listo','Prêt','Готово','מוכן','جاهز'],
+'Scenario active':['Escenario activo','Scénario actif','Сценарий активен','תרחיש פעיל','سيناريو نشط'],
+'In simulation':['En simulación','En simulation','В симуляции','בסימולציה','في المحاكاة'],
+'Paused':['En pausa','En pause','Пауза','מושהה','متوقف مؤقتًا'],
+'Review':['Revisión','Bilan','Разбор','סקירה','مراجعة'],
+'Start':['Iniciar','Démarrer','Начать','התחלה','ابدأ'],
+'Resume':['Reanudar','Reprendre','Продолжить','המשך','تابع'],
+
 '△ Other vessels':['△ Otras embarcaciones','△ Autres bateaux','△ Другие суда','△ כלי שיט אחרים','△ سفن أخرى'],
 'Contact detected · {speed} kn closing speed':['Contacto detectado · velocidad de aproximación {speed} kn','Contact détecté · vitesse de rapprochement {speed} kn','Обнаружен контакт · скорость сближения {speed} уз','זוהתה התנגשות · מהירות התקרבות {speed} קשר','تم رصد تصادم · سرعة الاقتراب {speed} عقدة'],
 

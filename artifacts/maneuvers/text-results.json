@@ -1,11 +1,11 @@
 {
   "passed": true,
   "languages": [
-    "ar",
-    "ru"
+    "ru",
+    "ar"
   ],
   "errors": [],
-  "checkedAt": "2026-10-01T01:16:41.358Z",
+  "checkedAt": "2026-10-01T07:10:37.349Z",
   "features": [
     "100–200% text scaling",
     "localized labels",

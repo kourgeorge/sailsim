@@ -74,6 +74,6 @@ Refresh with `npm run scrape`, then `python3 scripts/build_archive_index.py`. Th
 
 Training scores, critical failures, saved debriefs and progress migration are documented in [PRACTICE_SCORING.md](docs/PRACTICE_SCORING.md). Scenarios assess their stated modeled tasks; course completion is not an on-water qualification.
 
-The persistent activity banner distinguishes study, a simulation that has not started, assessed boat handling, pauses, free practice and finished attempts. Reading freezes training and preserves the current task.
+The compact header status control distinguishes study, a simulation that has not started, assessed boat handling, pauses, free practice and finished attempts. Reading freezes training and preserves the current task.
 
 Boat and object contacts now use shared finite hulls and rigid-body impulses. Free vessels move and turn when struck; moored vessels and buoys respond within their restraints, while piers and rocks remain fixed. See [COLLISION_PHYSICS.md](docs/COLLISION_PHYSICS.md) for units, validation and model limits.
