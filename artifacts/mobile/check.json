@@ -1,0 +1,336 @@
+{
+  "passed": true,
+  "results": [
+    {
+      "name": "phone",
+      "width": 390,
+      "scrollWidth": 390,
+      "scene": {
+        "x": 0,
+        "y": 105,
+        "width": 390,
+        "height": 259.8125,
+        "top": 105,
+        "right": 390,
+        "bottom": 364.8125,
+        "left": 0
+      },
+      "lesson": {
+        "x": 0,
+        "y": 364.8125,
+        "width": 390,
+        "height": 160,
+        "top": 364.8125,
+        "right": 390,
+        "bottom": 524.8125,
+        "left": 0
+      },
+      "console": {
+        "x": 0,
+        "y": 524.8125,
+        "width": 390,
+        "height": 319.1875,
+        "top": 524.8125,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "dock": {
+        "x": 0,
+        "y": 607.6875,
+        "width": 390,
+        "height": 236.3125,
+        "top": 607.6875,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "play": {
+        "x": 12,
+        "y": 557.6875,
+        "width": 200.53125,
+        "height": 44,
+        "top": 557.6875,
+        "right": 212.53125,
+        "bottom": 601.6875,
+        "left": 12
+      }
+    },
+    {
+      "name": "small-phone",
+      "width": 320,
+      "scrollWidth": 320,
+      "scene": {
+        "x": 0,
+        "y": 105,
+        "width": 320,
+        "height": 242,
+        "top": 105,
+        "right": 320,
+        "bottom": 347,
+        "left": 0
+      },
+      "lesson": {
+        "x": 0,
+        "y": 347,
+        "width": 320,
+        "height": 150,
+        "top": 347,
+        "right": 320,
+        "bottom": 497,
+        "left": 0
+      },
+      "console": {
+        "x": 0,
+        "y": 497,
+        "width": 320,
+        "height": 267.375,
+        "top": 497,
+        "right": 320,
+        "bottom": 764.375,
+        "left": 0
+      },
+      "dock": {
+        "x": 0,
+        "y": 584.375,
+        "width": 320,
+        "height": 180,
+        "top": 584.375,
+        "right": 320,
+        "bottom": 764.375,
+        "left": 0
+      },
+      "play": {
+        "x": 12,
+        "y": 529.875,
+        "width": 130.53125,
+        "height": 48.5,
+        "top": 529.875,
+        "right": 142.53125,
+        "bottom": 578.375,
+        "left": 12
+      }
+    },
+    {
+      "name": "landscape",
+      "width": 844,
+      "scrollWidth": 844,
+      "scene": {
+        "x": 0,
+        "y": 57,
+        "width": 524,
+        "height": 210,
+        "top": 57,
+        "right": 524,
+        "bottom": 267,
+        "left": 0
+      },
+      "lesson": {
+        "x": 0,
+        "y": 267,
+        "width": 524,
+        "height": 110,
+        "top": 267,
+        "right": 524,
+        "bottom": 377,
+        "left": 0
+      },
+      "console": {
+        "x": 524,
+        "y": 57,
+        "width": 320,
+        "height": 320,
+        "top": 57,
+        "right": 844,
+        "bottom": 377,
+        "left": 524
+      },
+      "dock": {
+        "x": 524,
+        "y": 144.375,
+        "width": 320,
+        "height": 232.625,
+        "top": 144.375,
+        "right": 844,
+        "bottom": 377,
+        "left": 524
+      },
+      "play": {
+        "x": 536,
+        "y": 89.875,
+        "width": 139.53125,
+        "height": 48.5,
+        "top": 89.875,
+        "right": 675.53125,
+        "bottom": 138.375,
+        "left": 536
+      }
+    },
+    {
+      "name": "tablet",
+      "width": 768,
+      "scrollWidth": 768,
+      "scene": {
+        "x": 0,
+        "y": 105,
+        "width": 768,
+        "height": 480,
+        "top": 105,
+        "right": 768,
+        "bottom": 585,
+        "left": 0
+      },
+      "lesson": {
+        "x": 0,
+        "y": 585,
+        "width": 768,
+        "height": 160,
+        "top": 585,
+        "right": 768,
+        "bottom": 745,
+        "left": 0
+      },
+      "console": {
+        "x": 0,
+        "y": 745,
+        "width": 768,
+        "height": 327,
+        "top": 745,
+        "right": 768,
+        "bottom": 1072,
+        "left": 0
+      },
+      "dock": {
+        "x": 0,
+        "y": 802,
+        "width": 768,
+        "height": 270,
+        "top": 802,
+        "right": 768,
+        "bottom": 1072,
+        "left": 0
+      },
+      "play": {
+        "x": 435.828125,
+        "y": 752,
+        "width": 163.703125,
+        "height": 44,
+        "top": 752,
+        "right": 599.53125,
+        "bottom": 796,
+        "left": 435.828125
+      }
+    },
+    {
+      "name": "large-text",
+      "width": 390,
+      "scrollWidth": 390,
+      "scene": {
+        "x": 0,
+        "y": 133.375,
+        "width": 390,
+        "height": 242,
+        "top": 133.375,
+        "right": 390,
+        "bottom": 375.375,
+        "left": 0
+      },
+      "lesson": {
+        "x": 0,
+        "y": 375.375,
+        "width": 390,
+        "height": 150,
+        "top": 375.375,
+        "right": 390,
+        "bottom": 525.375,
+        "left": 0
+      },
+      "console": {
+        "x": 0,
+        "y": 525.375,
+        "width": 390,
+        "height": 357.5,
+        "top": 525.375,
+        "right": 390,
+        "bottom": 882.875,
+        "left": 0
+      },
+      "dock": {
+        "x": 0,
+        "y": 646.5625,
+        "width": 390,
+        "height": 236.3125,
+        "top": 646.5625,
+        "right": 390,
+        "bottom": 882.875,
+        "left": 0
+      },
+      "play": {
+        "x": 12,
+        "y": 568.96875,
+        "width": 166.390625,
+        "height": 71.59375,
+        "top": 568.96875,
+        "right": 178.390625,
+        "bottom": 640.5625,
+        "left": 12
+      }
+    },
+    {
+      "name": "hebrew-large-text",
+      "width": 390,
+      "scrollWidth": 390,
+      "scene": {
+        "x": 0,
+        "y": 105,
+        "width": 390,
+        "height": 249.09375,
+        "top": 105,
+        "right": 390,
+        "bottom": 354.09375,
+        "left": 0
+      },
+      "lesson": {
+        "x": 0,
+        "y": 354.09375,
+        "width": 390,
+        "height": 160,
+        "top": 354.09375,
+        "right": 390,
+        "bottom": 514.09375,
+        "left": 0
+      },
+      "console": {
+        "x": 0,
+        "y": 514.09375,
+        "width": 390,
+        "height": 329.90625,
+        "top": 514.09375,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "dock": {
+        "x": 0,
+        "y": 607.6875,
+        "width": 390,
+        "height": 236.3125,
+        "top": 607.6875,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "play": {
+        "x": 160.5625,
+        "y": 557.6875,
+        "width": 217.4375,
+        "height": 44,
+        "top": 557.6875,
+        "right": 378,
+        "bottom": 601.6875,
+        "left": 160.5625
+      }
+    }
+  ],
+  "errors": []
+}

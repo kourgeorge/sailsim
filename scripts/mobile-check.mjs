@@ -1,0 +1,72 @@
+import { chromium, expect } from '@playwright/test';
+import assert from 'node:assert/strict';
+import { mkdir, writeFile } from 'node:fs/promises';
+
+const browser = await chromium.launch({headless:true, args:['--use-angle=swiftshader','--enable-webgl']});
+const page = await browser.newPage({viewport:{width:390,height:844}, isMobile:true, hasTouch:true});
+page.setDefaultTimeout(90000);
+const errors=[];
+page.on('pageerror', error=>errors.push(error.message));
+const results=[];
+await mkdir('artifacts/mobile', {recursive:true});
+async function inspect(name, width, height) {
+  await page.setViewportSize({width,height});
+  await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth),{timeout:10000}).toBeLessThanOrEqual(width+1);
+  await page.waitForTimeout(300);
+  await page.evaluate(()=>{window.scrollTo(0,0);for(const selector of ['.control-dock','.lesson-card','.view-controls'])document.querySelector(selector).scrollTo(0,0);});
+  const layout=await page.evaluate(()=>{
+    const rect=s=>document.querySelector(s).getBoundingClientRect().toJSON();
+    return {width:innerWidth, scrollWidth:document.documentElement.scrollWidth, scene:rect('#scene'), lesson:rect('.lesson-card'), console:rect('.simulation-console'), dock:rect('.control-dock'), play:rect('#play')};
+  });
+  assert.ok(layout.scrollWidth<=width+1, `${name}: page must not overflow horizontally (${layout.scrollWidth}/${width})`);
+  assert.ok(layout.scene.height>=160, `${name}: visible sailing scene`);
+  assert.ok(layout.lesson.bottom<=layout.console.top+1 || width>650&&height<600, `${name}: lesson and controls do not overlap`);
+  assert.ok(layout.dock.height<=Math.max(height*.4,320), `${name}: bounded scrolling controls`);
+  assert.ok(await page.locator('.view-controls').evaluate(e=>e.clientHeight>=e.querySelector('button').offsetHeight), `${name}: camera buttons are not clipped`);
+  await page.screenshot({path:`artifacts/mobile/${name}.png`,fullPage:true,timeout:120000});
+  results.push({name,...layout});
+  console.log(`${name}: no horizontal overflow, scene and controls fit.`);
+}
+try {
+  await page.goto(process.env.SAIL_URL||'http://127.0.0.1:5195', {waitUntil:'domcontentloaded'});
+  await page.waitForFunction(()=>document.querySelector('#scene')?.dataset.drawCalls, null, {timeout:120000});
+  await inspect('phone',390,844);
+  await page.locator('[data-mode="explore"]').click();
+  await page.locator('#rudder').fill('12');
+  await expect(page.locator('#rudder-value')).toContainText('12');
+  await page.locator('#center-helm').click();
+  await expect(page.locator('#rudder')).toHaveValue('0');
+  await page.locator('#cockpit-main-hoist').selectOption('0.5');
+  await page.locator('#cockpit-anchor-rode').fill('25');
+  await page.locator('#systems-toggle').click();
+  await expect(page.locator('#systems-drawer')).toBeVisible();
+  await page.locator('#vessel-mainHoist').fill('0.25');
+  await page.locator('#systems-close').click();
+  await page.locator('#help').click();
+  await expect(page.locator('#modal')).toBeVisible();
+  await page.locator('#modal-content').evaluate(e=>e.scrollTop=e.scrollHeight);
+  await page.locator('#close-modal').click();
+  await page.locator('[data-mode="learn"]').click();
+  await page.locator('#lesson-briefing').click();
+  await expect(page.locator('#lesson-reader')).toBeVisible();
+  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth));
+  await page.locator('#reader-close').click();
+  await inspect('small-phone',320,568);
+  await inspect('landscape',844,390);
+  await inspect('tablet',768,1024);
+  await page.setViewportSize({width:1440,height:1000});
+  await expect(page.locator('.sidebar')).toBeVisible();
+  await page.screenshot({path:'artifacts/mobile/desktop.png',fullPage:true,timeout:120000});
+  await page.setViewportSize({width:390,height:844});
+  await page.locator('.text-size-control > summary').click();
+  await page.locator('#sail-text-size-range').fill('200');
+  await page.locator('.text-size-control > summary').click();
+  await inspect('large-text',390,844);
+  await page.locator('#language-select').selectOption('he');
+  await expect(page.locator('html')).toHaveAttribute('lang','he',{timeout:120000});
+  await page.waitForFunction(()=>document.querySelector('#scene')?.dataset.drawCalls, null, {timeout:120000});
+  await inspect('hebrew-large-text',390,844);
+  assert.deepEqual(errors,[]);
+  await writeFile('artifacts/mobile/check.json',JSON.stringify({passed:true,results,errors},null,2));
+  console.log('Mobile checks passed: phone, small phone, landscape, tablet, large text, RTL, controls, systems, reader and dialogs.');
+} finally { await browser.close(); }

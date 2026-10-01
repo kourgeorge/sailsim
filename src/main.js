@@ -22,6 +22,7 @@ import {anchorControlAction} from './anchoring/control-action.js';
 import {createPracticeState} from './learning/scenario-state.js';
 import {drawAnchorChart} from './anchoring/diagram.js';
 import { initialState, step, refreshDerived, angleDifference, pointOfSail, clamp } from './physics.js';
+import './mobile.css';
 
 async function startApp(){
 initializeTextSize();
