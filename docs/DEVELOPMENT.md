@@ -1,6 +1,6 @@
 # Development and rollback
 
-This project has its own Git repository at `sail/.git`. No remote hosting or public publication is configured.
+This project has its own Git repository at `sail/.git`, hosted at `git@github.com:kourgeorge/sailsim.git`. GitHub Pages serves https://kourgeorge.github.io/sailsim/ through `.github/workflows/pages.yml`; pushes to `master` run the tests and deploy the production build.
 
 The first commit, `cc541da`, preserves the in-progress simulator, collected reference archive, and initial curriculum before the integrated training/controls release. It is a recovery checkpoint, not a claim that the intermediate code was fully verified.
 

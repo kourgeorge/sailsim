@@ -2,6 +2,10 @@
 
 An original Three.js sailing simulator with a multilingual sailing school, independent yacht controls and three fictional practice areas. Inspired by the educational themes of eSail’s public website; not affiliated with eSail.
 
+**Play online:** https://kourgeorge.github.io/sailsim/ · [עברית](https://kourgeorge.github.io/sailsim/?lang=he)
+
+GitHub Actions tests, builds, and deploys GitHub Pages on every push to `master`. The production build uses `/sailsim/` as its base path; local development stays at `/`.
+
 ## Run and check
 
 ```sh
