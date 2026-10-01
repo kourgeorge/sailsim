@@ -6,7 +6,7 @@
 .scenario-visual__zoom button{font-size:calc(11px * var(--text-scale,1));min-width:44px;min-height:40px;padding:6px 10px}
 .scenario-visual__viewport{border:1px solid #bdcec1;border-radius:18px;background:#e1e9dd;overflow:auto;direction:ltr}
 .scenario-visual__viewport:focus-visible{outline:3px solid #a66e22;outline-offset:3px}
-.scenario-visual__drawing{width:calc(100% * var(--scenario-zoom,1));min-width:580px;position:relative}
+.scenario-visual__drawing{width:calc(100% * var(--scenario-zoom,1));min-width:0;position:relative}
 .scenario-visual__svg{display:block;width:100%;height:auto;max-height:none!important}
 .scenario-visual button.scenario-visual__waypoint{position:absolute;transform:translate(-50%,-50%);width:44px;height:44px;min-height:44px;border-radius:50%;padding:0;background:#fff7ddcc;border:2px solid #8b590c;color:#754904;line-height:1;font-size:27px;font-weight:500;box-shadow:0 1px 4px #173a4d25}
 .scenario-visual button.scenario-visual__waypoint:hover{background:#ffe7a7}.scenario-visual__note{font-size:calc(11px * var(--text-scale,1));color:#496a70;margin:9px 1px 14px}
