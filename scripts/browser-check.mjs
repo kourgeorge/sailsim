@@ -14,25 +14,34 @@ try {
  await page.screenshot({path:'artifacts/sail-desktop.png',fullPage:true,timeout:90000});
  // Knowledge feedback, actual mastery, and freely browsable prerequisite previews.
  await page.locator('#lesson-briefing').click();
- await page.locator('input[name="q0"][value="0"]').check();await page.locator('input[name="q1"][value="0"]').check();
- await page.locator('#knowledge-form button[type="submit"]').click();
- await expect(page.locator('#quiz-result')).toContainText('Review');
- assert.equal(await page.locator('#progress-label').textContent(),'0 / 36');
- await page.locator('input[name="q0"][value="1"]').check();await page.locator('input[name="q1"][value="1"]').check();
- await page.locator('#knowledge-form button[type="submit"]').click();
- await expect(page.locator('#quiz-result')).toContainText('mastered');
- assert.equal(await page.locator('#progress-label').textContent(),'1 / 36');
+ await expect(page.locator('#lesson-reader')).toBeVisible();
+ await expect(page.locator('#modal')).not.toBeVisible();
  await page.screenshot({path:'artifacts/sail-lesson.png',fullPage:true,timeout:90000});
- await page.locator('#close-modal').click();
+ await page.locator('[data-reader-section="question"]').click();
+ await page.locator('input[name="q0"][value="0"]').check();
+ await page.locator('#knowledge-form button[type="submit"]').click();
+ await expect(page.locator('#answer-0')).toContainText('Review');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 42');
+ await page.locator('input[name="q0"][value="1"]').check();
+ await page.locator('#knowledge-form button[type="submit"]').click();
+ await page.locator('#reader-next').click();
+ await page.locator('input[name="q1"][value="1"]').check();
+ await page.locator('#knowledge-form button[type="submit"]').click();
+ await expect(page.locator('#quiz-result')).toContainText('passed');
+ assert.equal(await page.locator('#progress-label').textContent(),'1 / 42');
+ assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')).records['sail-01'].wrongAnswers),1);
+ await page.locator('#reader-close').click();
+ await page.waitForFunction(()=>Number(document.querySelector('#scene').dataset.triangles)>10000,{timeout:60000});
  await page.locator('#course-library').click();
- assert.equal(await page.locator('[data-library-lesson]').count(),36);
+ assert.equal(await page.locator('[data-library-lesson]').count(),42);
  await page.locator('[data-library-lesson="3"]').click();
+ await page.locator('[data-reader-section="practice"]').click();
  await page.locator('#begin-assessment').click();
  await page.locator('button[data-camera="deck"]').click();
  await expect(page.locator('#objective-text')).toContainText('chart',{timeout:60000});
  await page.locator('#chart-toggle').click();await expect(page.locator('#large-chart')).toBeVisible();await page.locator('#close-modal').click();
  await expect(page.locator('#objective-text')).toContainText('Practice passed',{timeout:60000});
- assert.equal(await page.locator('#progress-label').textContent(),'1 / 36','Practice preview alone does not award mastery');
+ assert.equal(await page.locator('#progress-label').textContent(),'1 / 42','Practice preview alone does not award mastery');
  // Reset, real controls, and keyboard operation after a focused button.
  await page.locator('[data-mode="explore"]').click();
  await page.locator('button[data-camera="chase"]').click();
@@ -72,7 +81,7 @@ try {
  await page.locator('button[data-camera="chase"]').click();
  // Saved knowledge/practice restore without claiming interrupted practice continuity.
  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('#scene')?.dataset.drawCalls,{timeout:120000});
- assert.equal(await page.locator('#progress-label').textContent(),'1 / 36');
+ assert.equal(await page.locator('#progress-label').textContent(),'1 / 42');
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')));assert.equal(saved.records['sail-04'].practice,true);
  // Mobile access to the course, detailed systems, and normal controls.
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(2200);
@@ -84,6 +93,6 @@ try {
  await page.goto(new URL('/reference/esail/index.html',url).href,{waitUntil:'domcontentloaded'});await page.locator('#search').fill('reefing');assert.ok(await page.locator('#results article').count()>0);await page.locator('#images').click();await page.locator('#search').fill('');assert.equal(await page.locator('#results .image').count(),234);
  assert.deepEqual(errors,[],'No uncaught browser errors');
  assert.equal(consoleErrors.filter(s=>/Shader Error|VALIDATE_STATUS|Error creating WebGL|THREE.WebGLProgram/.test(s)).length,0,'No shader or WebGL errors');
- await writeFile('artifacts/browser-check.json',JSON.stringify({passed:true,errors,consoleErrors,checkedAt:new Date().toISOString(),features:['lesson feedback','mastery','36-lesson library','ordered practice','persistence','keyboard helm','tab visibility pause','independent sails','reef levels','traveler','vang','outhaul','engine neutral/astern','anchor rode','current','cameras','mobile','archive']},null,2));
+ await writeFile('artifacts/browser-check.json',JSON.stringify({passed:true,errors,consoleErrors,checkedAt:new Date().toISOString(),features:['lesson feedback','mastery','42-lesson library','ordered practice','persistence','keyboard helm','tab visibility pause','independent sails','reef levels','traveler','vang','outhaul','engine neutral/astern','anchor rode','current','cameras','mobile','archive']},null,2));
  console.log('Full browser checks passed: training, controls, cameras, mobile, and archive.');
 }finally{await browser.close();}

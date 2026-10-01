@@ -1,3 +1,4 @@
+import {advancedModule,advancedLessons} from './advanced-course.js';
 // Original instructional content. Practical assessments only use simulated capabilities.
 export const modules=[
  {id:'aboard',title:'Before you leave',outcome:'Use boat terminology, identify essential equipment, and prepare a safe crew briefing.'},
@@ -273,4 +274,6 @@ lesson('readiness','From simulation to the sea',[
 ],['Review your record and identify the exercises where you used hints or repeated attempts.','Write down three real-world skills that still need supervised practice.'], 'Treating a completion badge as evidence that every real boat and condition can be handled safely.',[
  q('What should follow successful completion?',['Supervised on-water training and practical assessment','Immediate solo sailing in unfamiliar conditions','Assuming docking and rescue were already mastered'],0,'The course supports preparation; it does not replace real experience and instruction.'),
  q('Which important skills remain unassessed by this simulator?',['Reading the modeled heading','Loaded line handling, engine docking, and casualty recovery','Changing the camera'],1,'Those skills require forces, equipment, coordination, and conditions that this version does not model.')]);
+modules.push(advancedModule);
+lessons.push(...advancedLessons);
 export {lessons};

@@ -35,6 +35,10 @@
     "readiness": {
       "title": "Réagissez et faites le bilan",
       "outcome": "Expliquez les priorités d’urgence et réalisez un exercice complet de navigation simulée."
+    },
+    "coastal-decisions": {
+      "title": "Décisions côtières",
+      "outcome": "Préparer des traversées côtières prudentes, calculer des marges simples et recouper les informations de navigation."
     }
   },
   "lessons": {
@@ -1456,6 +1460,210 @@
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-37": {
+      "title": "Préparer la route et le repli",
+      "concepts": [
+        "Le plan de traversée relie préparation, route, exécution et suivi. Vérifiez cartes et avis à jour, prévisions, marée et courant, durée du jour, bateau, équipage, carburant et communications. Repérez dangers, eaux sûres, solutions de repli et passages qui limitent vos choix.",
+        "Fixez les points de décision avant le départ. Dans cet exemple fictif, le cap exposé reste acceptable seulement si les marges météo et de jour convenues sont conservées. Une route abritée existe avant le cap ; après, revenir peut devenir difficile.",
+        "Une route doit être réévaluée. Comparez progression et conditions réelles au plan. Un critère de déroutement convenu évite de poursuivre simplement parce que le but est proche. Partagez route, rôles et solutions de repli."
+      ],
+      "observe": [
+        "Notez une route principale, une solution abritée et un critère précis de déroutement.",
+        "Repérez le dernier point de décision sûr avant la partie exposée."
+      ],
+      "mistake": "Suivre le waypoint de destination sans vérifier les dangers ni conserver une possibilité de repli.",
+      "quiz": [
+        {
+          "prompt": "Avant le cap, la prévision dépasse votre limite convenue. Un repli abrité reste possible. Quelle décision suit le plan ?",
+          "options": [
+            "Continuer car le cap est proche",
+            "Prendre le repli tant qu’il reste viable",
+            "Accélérer et décider après le cap"
+          ],
+          "explanation": "Agissez au point prévu. Une solution acceptable évite de vous engager dans des conditions dépassant les limites."
+        },
+        {
+          "prompt": "Qu’est-ce qui rend un repli utilisable ?",
+          "options": [
+            "Un déclencheur précis, une alternative sûre et un point de décision",
+            "La promesse d’arriver au but",
+            "Un waypoint supplémentaire sans vérifier son accès"
+          ],
+          "explanation": "Il faut une solution réalisable et un moment clair pour agir, compatibles avec les conditions et l’équipage."
+        }
+      ],
+      "transfer": "Avec un moniteur, préparez une courte traversée réelle avec cartes, prévisions et données de marée locales à jour. Examinez les replis et les endroits où revenir devient difficile."
+    },
+    "sail-38": {
+      "title": "Marée, profondeur et pied de pilote",
+      "concepts": [
+        "Les sondes de carte se rapportent à un zéro défini. On ne peut ajouter une hauteur de marée que si référence, lieu, date et heure sont compatibles. La profondeur n’est pas la hauteur d’eau sous la quille. Vérifiez la référence et le décalage du sondeur réel.",
+        "Exemple statique fictif : sonde de carte 2,4 m + marée 1,1 m = profondeur 3,5 m. Moins un tirant d’eau de 1,8 m, il reste 1,7 m sous la quille. Avec une réserve demandée de 0,8 m, il reste 0,9 m au-delà de cette réserve. Ce calcul n’autorise pas à franchir un haut-fond.",
+        "Un passage réel exige aussi la marée minimale pendant le transit, les incertitudes des levés et prévisions, les vagues, le squat, la gîte et les consignes propres au bateau. N’ajoutez pas à nouveau la marée à une mesure donnant déjà la profondeur. Une lecture favorable ne prouve pas la sécurité d’une route."
+      ],
+      "observe": [
+        "Distinguez zéro de carte, hauteur de marée, profondeur et tirant d’eau sur le schéma.",
+        "Listez les informations manquantes avant d’accepter un vrai passage peu profond."
+      ],
+      "mistake": "Prendre une sonde de carte ou une valeur affichée pour une marge garantie sous la quille.",
+      "quiz": [
+        {
+          "prompt": "Dans l’exemple, quelle hauteur statique reste sous la quille avant la réserve de 0,8 m ?",
+          "options": [
+            "3,5 m",
+            "0,6 m",
+            "1,7 m"
+          ],
+          "explanation": "La profondeur vaut 2,4 + 1,1 = 3,5 m. En retirant 1,8 m de tirant d’eau, il reste 1,7 m."
+        },
+        {
+          "prompt": "Pourquoi ce calcul ne valide-t-il pas un passage réel ?",
+          "options": [
+            "La marée ne change jamais la profondeur",
+            "Références, heure, évolution de la marée, incertitudes et effets dynamiques restent à vérifier",
+            "Toute marge positive garantit la sécurité"
+          ],
+          "explanation": "Un résultat statique omet changements et incertitudes. Vérifiez la compatibilité des données et les marges adaptées au bateau."
+        }
+      ],
+      "transfer": "Entraînez-vous avec un moniteur, une carte locale à jour et des données de marée. Vérifiez référence, fuseau horaire, station, tirant d’eau et décalage réel du sondeur."
+    },
+    "sail-39": {
+      "title": "Vecteurs de courant et durée de traversée",
+      "concepts": [
+        "Le cap indique où pointe l’étrave ; la route fond indique le déplacement par rapport au fond. Le courant ajoute un vecteur vitesse : vitesse surface et vitesse fond peuvent différer, avec aussi l’effet de la dérive due au vent. La direction du courant désigne le sens vers lequel il porte.",
+        "Exemple rectiligne fictif : 5 nœuds surface sur un trajet de 12 milles marins. Un courant constant de 1 nœud exactement contraire donne 4 nœuds fond, soit 3 heures. Exactement favorable, il donne 6 nœuds fond, soit 2 heures. Accélération et dérive sont négligées seulement dans cet exemple.",
+        "Un courant traversier se combine par vecteurs, pas par simple addition ou soustraction des vitesses. Il modifie la route fond et peut imposer un autre cap à suivre. En réalité, prévoyez courant variable, vent, bords, mer et réserve ; actualisez l’heure d’arrivée selon la progression observée."
+      ],
+      "observe": [
+        "Comparez cap et vitesse surface à route et vitesse fond dans Systèmes du bateau.",
+        "Dessinez les courants favorable, contraire et traversier avant de calculer."
+      ],
+      "mistake": "Utiliser toujours la vitesse surface pour l’arrivée ou soustraire un courant traversier comme un courant exactement contraire.",
+      "quiz": [
+        {
+          "prompt": "À 5 nœuds surface avec 1 nœud exactement contraire, combien dure le trajet de 12 milles ?",
+          "options": [
+            "2 heures",
+            "3 heures",
+            "2,4 heures"
+          ],
+          "explanation": "La vitesse fond vaut 4 nœuds. Durée = 12 milles ÷ 4 nœuds = 3 heures."
+        },
+        {
+          "prompt": "Que change un courant traversier de même vitesse ?",
+          "options": [
+            "Il faut combiner les vecteurs et revoir route fond et cap à suivre",
+            "Il faut toujours retirer 1 nœud",
+            "Cap et route fond restent nécessairement identiques"
+          ],
+          "explanation": "Le courant traversier modifie la direction du déplacement. L’arithmétique scalaire convient seulement aux vitesses colinéaires de ces exemples."
+        }
+      ],
+      "transfer": "Avec un moniteur et des courants de marée réels, tracez un cap à suivre. Comparez progression prévue et observée ; le courant de l’app n’est pas une prévision locale."
+    },
+    "sail-40": {
+      "title": "Météo : partir, attendre ou se dérouter",
+      "concepts": [
+        "Une limite météo dépend du bateau, de l’équipage, de la route et des conditions. Consultez bulletins et avertissements maritimes officiels, rafales, direction du vent, mer, visibilité, interaction marée/courant et refuges. Une seule vitesse de vent ne décrit pas le risque.",
+        "Décision fictive : l’équipage évite la partie exposée si les rafales dépassent sa capacité pratiquée ou si la visibilité supprime les repères de pilotage. L’un de ces seuils est prévu avant la fin du trajet. Attendre ou choisir une route abritée acceptable conserve la marge.",
+        "Vérifiez les mises à jour en route. Le vent contre courant peut raidir la mer ; le vent vers la terre augmente le danger d’une côte sous le vent. Réduisez la toile assez tôt selon les besoins, préservez l’équipage et changez de plan avant de manquer d’options. Prendre un ris ne rend pas toute prévision acceptable."
+      ],
+      "observe": [
+        "Définissez deux limites de départ et les endroits où les réexaminer.",
+        "Comparez route exposée et abritée selon vent, mer et visibilité."
+      ],
+      "mistake": "Prendre un seuil universel de vent ou la possibilité de réduire la toile pour une garantie de sécurité.",
+      "quiz": [
+        {
+          "prompt": "La prévision dépasse la capacité convenue avant la fin du trajet exposé. Que décider ?",
+          "options": [
+            "Prendre un ris et supposer tout risque supprimé",
+            "Ignorer la prévision car le port est calme",
+            "Attendre ou choisir une alternative vérifiée dans les limites"
+          ],
+          "explanation": "Le départ doit conserver les marges de cet équipage, de ce bateau et de cette route. Le calme au port ne décrit pas le large."
+        },
+        {
+          "prompt": "Pourquoi examiner courant et vent ensemble ?",
+          "options": [
+            "Le vent contre courant peut raidir la mer et accroître le risque",
+            "Le courant ne touche que le compas",
+            "Le courant garantit un abri"
+          ],
+          "explanation": "Vent et courant opposés peuvent aggraver la mer. Examinez ensemble exposition et prévision."
+        }
+      ],
+      "transfer": "Analysez une vraie prévision avec un moniteur, effets locaux et incertitude compris. Fixez des limites adaptées et réévaluez-les ; ces exemples ne prescrivent aucune vitesse de vent universellement sûre."
+    },
+    "sail-41": {
+      "title": "Risque d’abordage et visibilité réduite",
+      "concepts": [
+        "Assurez une veille visuelle, auditive et par tous les moyens appropriés. Répétez les observations : un navire qui approche à relèvement compas presque constant présente un risque d’abordage. Un relèvement variable ne l’exclut pas toujours, notamment à courte distance ou près d’un grand navire ou remorqueur avec remorque. En cas de doute, considérez le risque présent.",
+        "La vitesse de sécurité permet une action efficace et un arrêt adaptés aux circonstances. Visibilité, trafic, manœuvrabilité, vent, mer, courant et dangers comptent. Agissez tôt conformément aux règles applicables et contrôlez l’effet jusqu’à être passé et paré. Un symbole AIS ne constitue pas une veille complète.",
+        "La règle internationale 19 s’applique différemment des règles voile/moteur à vue lorsque les navires ne sont pas en vue l’un de l’autre dans une zone de visibilité réduite ou à proximité. Adoptez une vitesse sûre, une veille, les signaux exigés et un usage correct des équipements. Un navire à propulsion mécanique doit tenir ses machines prêtes à manœuvrer immédiatement. Étudiez les règles complètes ; cet exercice ne prescrit aucun virage universel."
+      ],
+      "observe": [
+        "Tracez des relèvements compas et distances successifs au lieu de vous fier à un aperçu.",
+        "Repérez ce qui manque lorsqu’un navire est entendu ou détecté électroniquement mais reste invisible."
+      ],
+      "mistake": "Revendiquer une priorité automatique dans le brouillard ou croire qu’aucune cible AIS signifie aucun navire.",
+      "quiz": [
+        {
+          "prompt": "La distance diminue tandis que le relèvement compas change à peine. Que conclure ?",
+          "options": [
+            "Un risque existe : évaluation continue et action à temps sont nécessaires",
+            "Le navire passera certainement derrière",
+            "Seuls les bateaux à moteur doivent agir"
+          ],
+          "explanation": "Un relèvement presque constant à l’approche indique un risque. Utilisez les informations adaptées et les règles applicables."
+        },
+        {
+          "prompt": "En visibilité réduite, l’autre navire n’est pas en vue. Quelle affirmation respecte la règle internationale 19 ?",
+          "options": [
+            "Un voilier a toujours priorité sur un moteur invisible",
+            "Appliquer le régime de visibilité réduite, une vitesse sûre et une veille correcte",
+            "Garder la vitesse jusqu’au contact visuel"
+          ],
+          "explanation": "Les règles voile/moteur à vue ne se transposent pas simplement à une cible invisible. La règle 19 et les règles générales exigent une réponse adaptée."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales et intérieures/locales applicables avec un moniteur. Pratiquez veille et équipements à bord ; cette leçon n’évalue pas l’évitement réel d’un abordage."
+    },
+    "sail-42": {
+      "title": "Pilotage nocturne et recoupements",
+      "concepts": [
+        "Préparez l’approche avant la nuit : feux et caractéristiques attendus, eaux sûres, dangers, relèvements de garde, profondeurs prévues, points de décision et repli. Utilisez cartes et publications à jour. La couleur seule n’identifie pas un feu ; l’éclairage terrestre peut tromper.",
+        "Recoupez la position électronique avec feux identifiés, relèvements, alignements et évolution des fonds, en tenant compte de marée et décalages instrumentaux. Deux écrans utilisant le même GPS ne donnent pas des positions indépendantes. Vérifiez échelle, référence et mises à jour : un symbole précis peut être erroné.",
+        "Approche fictive : le traceur vous place sur la route, mais l’alignement lumineux attendu et l’évolution des fonds le contredisent. N’avancez pas vers une zone moins profonde ou resserrée pour résoudre le doute. Réduisez le risque, restez dans des eaux sûres vérifiées ou regagnez-les si possible, recoupez les observations et révisez le plan."
+      ],
+      "observe": [
+        "Listez les repères dans l’ordre d’approche et leur méthode d’identification.",
+        "Choisissez un point de repli laissant assez d’espace avant la partie difficile."
+      ],
+      "mistake": "Croire le symbole du traceur malgré des observations contradictoires ou compter deux écrans d’un même capteur comme confirmation indépendante.",
+      "quiz": [
+        {
+          "prompt": "Deux écrans partagent le même GPS. Leur accord constitue-t-il une confirmation indépendante ?",
+          "options": [
+            "Oui, car il y a deux écrans",
+            "Seulement si les écrans sont lumineux",
+            "Non ; il faut une observation ou source réellement indépendante"
+          ],
+          "explanation": "Le capteur partagé peut reproduire la même erreur. Des repères identifiés et une profondeur bien interprétée apportent d’autres éléments."
+        },
+        {
+          "prompt": "Avant une entrée étroite, traceur, alignement et profondeur se contredisent. Quelle réponse prudente ?",
+          "options": [
+            "Garder la vitesse et suivre la ligne",
+            "Réduire le risque dans des eaux sûres vérifiées et résoudre l’écart avant de s’engager",
+            "Éteindre le sondeur"
+          ],
+          "explanation": "La contradiction réduit la confiance. Conservez de l’espace et recoupez avant une approche contrainte."
+        }
+      ],
+      "transfer": "Répétez un vrai plan de pilotage de jour avec un moniteur avant une sortie nocturne supervisée. Exercez-vous à identifier les feux et à vérifier la position indépendamment."
     }
   }
 }

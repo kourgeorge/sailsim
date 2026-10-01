@@ -1,0 +1,222 @@
+{
+  "version": 1,
+  "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+  "purpose": "Original seamanship notes supporting contextual simulator guides; not a reproduction of source manuals.",
+  "sources": [
+    {
+      "id": "imo-colregs",
+      "publisher": "International Maritime Organization",
+      "title": "COLREG — Preventing collisions at sea",
+      "url": "https://www.imo.org/en/ourwork/safety/pages/preventing-collisions.aspx",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "c101c5af42df13652912f21c7aac26b88d94473f336970b7bdcd9ad08b0f7570",
+      "retrievalBytes": 77082,
+      "notePath": "reference/sailing/seamanship/imo-colregs.md",
+      "topics": [
+        "lookout"
+      ]
+    },
+    {
+      "id": "uscg-rules",
+      "publisher": "U.S. Coast Guard Navigation Center",
+      "title": "Amalgamated Navigation Rules: International and U.S. Inland",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "7049c516e3f28c9f3f9705d0be94af2ea3dca321185981a1d334f5d9ab56c910",
+      "retrievalBytes": 284912,
+      "notePath": "reference/sailing/seamanship/uscg-rules.md",
+      "topics": [
+        "lookout"
+      ]
+    },
+    {
+      "id": "noaa-tides",
+      "publisher": "NOAA National Ocean Service",
+      "title": "What are tides?",
+      "url": "https://oceanservice.noaa.gov/facts/tides.html",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "276fa82d74dff8d524d33f37f84e46ccd9d1d7e744006ef4c124c0855963459c",
+      "retrievalBytes": 29594,
+      "notePath": "reference/sailing/seamanship/noaa-tides.md",
+      "topics": [
+        "anchor",
+        "depth"
+      ]
+    },
+    {
+      "id": "noaa-nautical",
+      "publisher": "NOAA National Ocean Service",
+      "title": "What is the difference between a nautical mile and a knot?",
+      "url": "https://oceanservice.noaa.gov/facts/nautical-mile-knot.html",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "406126b9787963c36648a1165284d6351424b64ae903f8feb9ab82107d3119d3",
+      "retrievalBytes": 32267,
+      "notePath": "reference/sailing/seamanship/noaa-nautical.md",
+      "topics": [
+        "speed"
+      ]
+    },
+    {
+      "id": "nws-marine",
+      "publisher": "NOAA National Weather Service",
+      "title": "Boating Safety Tips and Resources",
+      "url": "https://www.weather.gov/safety/safeboating",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "8d60c2f40ef37cadf6569da4b31f4bf1b778652f975869e14c4b4764ee55ac2a",
+      "retrievalBytes": 26186,
+      "notePath": "reference/sailing/seamanship/nws-marine.md",
+      "topics": [
+        "weather"
+      ]
+    },
+    {
+      "id": "nws-before",
+      "publisher": "NOAA National Weather Service",
+      "title": "Be Safe! Prepare for Hazards",
+      "url": "https://www.weather.gov/safety/safeboating-before",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "e2ae325c0a02d74de188281028e1432eccc13c29ce74cf7bfd13df23e91bf6ac",
+      "retrievalBytes": 28605,
+      "notePath": "reference/sailing/seamanship/nws-before.md",
+      "topics": [
+        "weather",
+        "emergency"
+      ]
+    },
+    {
+      "id": "nws-during",
+      "publisher": "NOAA National Weather Service",
+      "title": "Know What To Do When the Weather Changes",
+      "url": "https://www.weather.gov/safety/safeboating-during",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "f414eacdb1e1b03ac2cd2bdf9724589bf5936453b0da7536f95fa413e54fb690",
+      "retrievalBytes": 29169,
+      "notePath": "reference/sailing/seamanship/nws-during.md",
+      "topics": [
+        "reef",
+        "weather"
+      ]
+    },
+    {
+      "id": "nws-warnings",
+      "publisher": "NOAA National Weather Service",
+      "title": "Coastal and Offshore Warnings, Watches and Advisories",
+      "url": "https://www.weather.gov/safety/safeboating-ww",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "5bc1e4a895cbf21cfd24d67bc77b7e0102b00abe468295dd6626ce62984e4217",
+      "retrievalBytes": 29606,
+      "notePath": "reference/sailing/seamanship/nws-warnings.md",
+      "topics": [
+        "weather"
+      ]
+    },
+    {
+      "id": "uscg-dsc",
+      "publisher": "U.S. Coast Guard Navigation Center",
+      "title": "Digital Selective Calling",
+      "url": "https://www.navcen.uscg.gov/digital-selective-calling",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "070462bf61efe1cbb0eb4c6a546c5a65b12687132d3c45c2e2feca0052ca44e7",
+      "retrievalBytes": 39732,
+      "notePath": "reference/sailing/seamanship/uscg-dsc.md",
+      "topics": [
+        "emergency"
+      ]
+    },
+    {
+      "id": "met-beaufort",
+      "publisher": "Met Office",
+      "title": "Beaufort wind force scale",
+      "url": "https://weather.metoffice.gov.uk/guides/coast-and-sea/beaufort-scale",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "9ce9e393dda9178882ab8954bba7a2d903b9f72252ab84b649644a4c4c8d9c61",
+      "retrievalBytes": 86726,
+      "notePath": "reference/sailing/seamanship/met-beaufort.md",
+      "topics": [
+        "wind",
+        "reef",
+        "weather"
+      ]
+    },
+    {
+      "id": "noaa-tidal-current",
+      "publisher": "NOAA National Ocean Service",
+      "title": "Tidal Currents",
+      "url": "https://oceanservice.noaa.gov/education/tutorial_currents/02tidal1.html",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "79e5c2f2641468097d8c97511f1788d95a37040a26d93ab20e99116368c61106",
+      "retrievalBytes": 33857,
+      "notePath": "reference/sailing/seamanship/noaa-tidal-current.md",
+      "topics": [
+        "heading",
+        "current"
+      ]
+    },
+    {
+      "id": "uscg-distress",
+      "publisher": "U.S. Coast Guard Navigation Center",
+      "title": "DSC Distress",
+      "url": "https://www.navcen.uscg.gov/dsc-distress",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "60031c42b5f2f54ae384c496c422ad71e434100caa0c33b632a7d3bd264fe80b",
+      "retrievalBytes": 34991,
+      "notePath": "reference/sailing/seamanship/uscg-distress.md",
+      "topics": [
+        "emergency"
+      ]
+    }
+  ],
+  "excluded": [
+    {
+      "url": "https://rnli.org/safety/choose-your-activity/sailing",
+      "reason": "HTTP 403; content not accessible in this retrieval."
+    },
+    {
+      "url": "https://rnli.org/safety/know-the-risks/calling-for-help",
+      "reason": "HTTP 403; content not accessible."
+    },
+    {
+      "url": "https://oceanservice.noaa.gov/facts/currents.html",
+      "reason": "HTTP 200 with Page Not Found body; excluded."
+    },
+    {
+      "url": "https://www.rya.org.uk/knowledge/seamanship/anchoring",
+      "reason": "HTTP 404; no anchoring guidance inferred."
+    }
+  ],
+  "guideModule": "src/learning/instrument-guides.js",
+  "guideLanguages": [
+    "en",
+    "es",
+    "fr",
+    "ru",
+    "ar",
+    "he"
+  ],
+  "translationReview": "Direct translations; native nautical-instructor review pending.",
+  "modelScope": "External references support general seamanship context; empirical model behavior is documented separately in docs/PHYSICS.md and is not validated by these sources."
+}

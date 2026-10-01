@@ -1,9 +1,12 @@
 import {validateCourseLocale} from './validation.js';
 export {validateCourseLocale} from './validation.js';
 import englishUI from './en-ui.json';
+import englishManeuvers from './en-maneuvers.json';
 import {extraUI} from './supplemental.js';
+import {learningUI} from './learning-tools.js';
 export const LANGUAGES=[{code:'en',name:'English',dir:'ltr'},{code:'es',name:'Español',dir:'ltr'},{code:'ar',name:'العربية',dir:'rtl'},{code:'he',name:'עברית',dir:'rtl'},{code:'ru',name:'Русский',dir:'ltr'},{code:'fr',name:'Français',dir:'ltr'}];
 const loaders=import.meta.glob(['./*-ui.json','!./en-ui.json'],{import:'default'});
+const maneuverLoaders=import.meta.glob(['./*-maneuvers.json','!./en-maneuvers.json'],{import:'default'});
 let language='en',dictionary=englishUI,patterns=[];
 const cache=new Map();
 export function getLanguage(){return language;}
@@ -37,15 +40,16 @@ export function applyCourseLocale(payload,lessons,modules){
 }
 async function loadLanguage(code,lessons,modules){
  if(!LANGUAGES.some(l=>l.code===code))throw new Error('Unsupported language');
- if(code==='en')return {ui:englishUI,course:null};
+ if(code==='en')return {ui:englishUI,course:null,maneuvers:englishManeuvers};
  const loader=loaders[`./${code}-ui.json`];if(!loader)throw new Error('Language pack not installed');
  const [ui,response]=await Promise.all([loader(),fetch(`${import.meta.env.BASE_URL}locales/${code}.json`)]);
  if(!response.ok)throw new Error('Language pack unavailable');const course=await response.json();validateCourseLocale(course,lessons,modules);
  for(const key of Object.keys(englishUI)){if(typeof ui[key]!=='string'||!ui[key].trim())throw new Error('Missing interface translation: '+key);const required=[...key.matchAll(/\{\w+\}/g)].map(m=>m[0]).sort();const present=[...ui[key].matchAll(/\{\w+\}/g)].map(m=>m[0]).sort();if(required.join('|')!==present.join('|'))throw new Error('Invalid translation placeholders: '+key);}
- return {ui,course};
+ const maneuverLoader=maneuverLoaders[`./${code}-maneuvers.json`];if(!maneuverLoader)throw new Error('Maneuvering translations unavailable');const maneuvers=await maneuverLoader();for(const key of Object.keys(englishManeuvers)){if(typeof maneuvers[key]!=='string'||!maneuvers[key].trim())throw new Error('Missing maneuvering translation: '+key);}
+ return {ui,course,maneuvers};
 }
 export async function initializeLocalization(lessons,modules){
- const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;dictionary={...pack.ui,...(extraUI[code]||{})};patterns=compilePatterns(dictionary);cache.clear();
+ const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code]};patterns=compilePatterns(dictionary);cache.clear();
  document.documentElement.lang=code;document.documentElement.dir=LANGUAGES.find(l=>l.code===code).dir;
  if(pack.course)applyCourseLocale(pack.course,lessons,modules);
  return code;

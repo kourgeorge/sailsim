@@ -1,8 +1,10 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,labelTexture,batchStaticMeshes } from './materials.js';
-import { angleDifference,clamp,islands,buoys } from '../physics.js';
+import { angleDifference,clamp } from '../physics.js';
 import { shoreScale } from './geography.js';
+import { translate } from '../i18n/runtime.js';
+import { getLocation } from '../locations.js';
 
 function widthAt(z){
  const sections=[[-6.6,.015],[-6,.55],[-4.7,1.25],[-3,1.75],[-1,2.02],[1,2.06],[3,1.95],[5.25,1.62]];
@@ -52,19 +54,63 @@ function cleat(parent,mat,x,y,z){box(parent,mat.steel,x,y,z,.16,.035,.32);bar(pa
 function instrument(parent,mat,x,y,z,width,height,title){
  const group=new THREE.Group();group.position.set(x,y,z);parent.add(group);
  box(group,mat.rubber,0,0,0,width+.09,height+.09,.095,.04);
- const tex=canvasTexture(512,384,()=>{});const screen=mesh(group,new THREE.PlaneGeometry(width,height),new THREE.MeshBasicMaterial({map:tex}),0,0,.054);
+ const tex=canvasTexture(512,384,()=>{});
+ mesh(group,new THREE.PlaneGeometry(width,height),new THREE.MeshBasicMaterial({map:tex,toneMapped:false}),0,0,.054);
  for(let i=0;i<4;i++)cylinder(group,mat.rubber,-width/2+.09+i*width/4,-height/2-.025,.08,.019,.019,.015).rotation.x=Math.PI/2;
  let tick=-1;
- return {update(state,time){if(Math.floor(time*5)===tick)return;tick=Math.floor(time*5);const c=tex.image.getContext('2d');c.fillStyle='#071b22';c.fillRect(0,0,512,384);c.fillStyle='#82b8b7';c.font='22px monospace';c.fillText(title,22,35);c.fillStyle='#e2f8e5';
- if(title==='CHARTPLOTTER'){
- c.fillStyle='#153e46';c.fillRect(12,49,488,280);c.strokeStyle='#ffffff12';for(let i=0;i<500;i+=35){c.beginPath();c.moveTo(i,49);c.lineTo(i,329);c.stroke();}
- c.fillStyle='#899676';islands.forEach(a=>{c.beginPath();for(let i=0;i<=60;i++){const angle=i/60*Math.PI*2,r=shoreScale(angle),x=256+(a.x-state.x+Math.cos(angle)*a.rx*r)*.17,y=220+(a.z-state.z+Math.sin(angle)*a.rz*r)*.17;if(i===0)c.moveTo(x,y);else c.lineTo(x,y);}c.closePath();c.fill();});c.fillStyle='#f2c777';buoys.forEach(a=>{c.beginPath();c.arc(256+(a.x-state.x)*.17,220+(a.z-state.z)*.17,3,0,Math.PI*2);c.fill();});
- c.save();c.translate(256,220);c.rotate(state.heading*Math.PI/180);c.fillStyle='#f6d698';c.beginPath();c.moveTo(0,-20);c.lineTo(10,13);c.lineTo(0,8);c.lineTo(-10,13);c.fill();c.restore();c.fillStyle='#e2f8e5';c.font='23px monospace';c.fillText(`COG ${String(Math.round(state.courseOverGround??state.heading)%360).padStart(3,'0')}°  SOG ${(state.speedOverGround??Math.abs(state.speed)).toFixed(1)} kn`,22,368);
- }else if(title==='APPARENT WIND'){
- c.strokeStyle='#699596';c.lineWidth=2;c.beginPath();c.arc(256,200,120,0,Math.PI*2);c.stroke();for(let a=0;a<360;a+=30){const r=a*Math.PI/180;c.beginPath();c.moveTo(256+Math.sin(r)*110,200-Math.cos(r)*110);c.lineTo(256+Math.sin(r)*120,200-Math.cos(r)*120);c.stroke();}
- c.save();c.translate(256,200);c.rotate((state.apparentWindAngle??angleDifference(state.windDirection,state.heading))*Math.PI/180);c.strokeStyle='#eec788';c.lineWidth=7;c.beginPath();c.moveTo(0,75);c.lineTo(0,-92);c.lineTo(-13,-67);c.moveTo(0,-92);c.lineTo(13,-67);c.stroke();c.restore();c.font='30px monospace';c.fillText(`${(state.apparentWindSpeed??state.windSpeed).toFixed(1)} kn  ${Math.abs(state.apparentWindAngle??0).toFixed(0)}°`,26,362);
- }else{c.font='100px monospace';c.fillText(state.speed.toFixed(1),24,150);c.font='24px monospace';c.fillText('BOAT SPEED / kn',25,185);c.strokeStyle='#385657';c.beginPath();c.moveTo(20,218);c.lineTo(490,218);c.stroke();c.font='43px monospace';c.fillText(`${String(Math.round(state.heading)%360).padStart(3,'0')}°`,25,281);c.fillText(`${state.depth.toFixed(1)}m`,275,281);c.font='21px monospace';c.fillText('HEADING',25,330);c.fillText('DEPTH',275,330);}
- tex.needsUpdate=true;}};
+ return {update(state,time){
+  if(Math.floor(time*5)===tick)return;tick=Math.floor(time*5);
+  const c=tex.image.getContext('2d');
+  c.fillStyle='#071b22';c.fillRect(0,0,512,384);c.textAlign='left';
+  const label=(text,x,y,max=460)=>{c.fillStyle='#91bfba';c.font='22px sans-serif';c.fillText(translate(text),x,y,max);};
+  const number=(text,x,y,size=36,color='#edfff1',max=460)=>{c.fillStyle=color;c.font=`600 ${size}px monospace`;c.fillText(text,x,y,max);};
+  if(title==='CHARTPLOTTER'){
+   const {islands,buoys}=getLocation(state.locationId);
+   label('CHART',18,29);
+   // Readouts stay above the wheel rim. COG is undefined when stationary.
+   const sog=state.speedOverGround??Math.abs(state.speed);
+   const cog=sog>.05?`${String(Math.round(state.courseOverGround??state.heading)%360).padStart(3,'0')}°`:'—';
+   number(`COG ${cog}`,18,75,31,'#edfff1',238);
+   number(`SOG ${sog.toFixed(2)}`,266,75,31,'#edfff1',230);
+   // Clip land and marks to the screen map, preserving the readable data bands.
+   c.save();c.beginPath();c.rect(12,89,488,194);c.clip();
+   c.fillStyle='#153e46';c.fillRect(12,89,488,194);
+   c.strokeStyle='#ffffff12';c.lineWidth=1;
+   for(let i=0;i<512;i+=35){c.beginPath();c.moveTo(i,89);c.lineTo(i,283);c.stroke();}
+   for(let y=100;y<283;y+=35){c.beginPath();c.moveTo(12,y);c.lineTo(500,y);c.stroke();}
+   c.fillStyle='#899676';
+   islands.forEach(a=>{
+    c.beginPath();for(let i=0;i<=60;i++){
+     const angle=i/60*Math.PI*2,r=shoreScale(angle);
+     const x=256+(a.x-state.x+Math.cos(angle)*a.rx*r)*.14,y=210+(a.z-state.z+Math.sin(angle)*a.rz*r)*.14;
+     if(i===0)c.moveTo(x,y);else c.lineTo(x,y);
+    }c.closePath();c.fill();
+   });
+   c.fillStyle='#f2c777';buoys.forEach(a=>{c.beginPath();c.arc(256+(a.x-state.x)*.14,210+(a.z-state.z)*.14,3,0,Math.PI*2);c.fill();});
+   c.save();c.translate(256,210);c.rotate(state.heading*Math.PI/180);
+   c.fillStyle='#f6d698';c.beginPath();c.moveTo(0,-17);c.lineTo(9,12);c.lineTo(0,7);c.lineTo(-9,12);c.fill();c.restore();
+   c.fillStyle='#edfff1';c.font='20px monospace';c.fillText('N ↑',23,116);c.restore();
+   const rudder=state.rudder??0,throttle=state.throttle??0;
+   label('HELM',18,311,224);label('Engine throttle',266,311,224);
+   number(`${rudder<-.5?'←':rudder>.5?'→':'↔'} ${Math.abs(rudder).toFixed(0)}°`,18,355,34,rudder<-.5?'#f7aa9b':rudder>.5?'#91e5c9':'#edfff1',224);
+   number(`${throttle<-.005?'▼':throttle>.005?'▲':'–'} ${Math.abs(throttle*100).toFixed(0)}%`,266,355,34,Math.abs(throttle)>.005?'#f2cd88':'#edfff1',224);
+  }else if(title==='APPARENT WIND'){
+   label('APPARENT WIND',22,35);
+   c.strokeStyle='#699596';c.lineWidth=2;c.beginPath();c.arc(256,200,120,0,Math.PI*2);c.stroke();
+   for(let a=0;a<360;a+=30){const r=a*Math.PI/180;c.beginPath();c.moveTo(256+Math.sin(r)*110,200-Math.cos(r)*110);c.lineTo(256+Math.sin(r)*120,200-Math.cos(r)*120);c.stroke();}
+   c.save();c.translate(256,200);c.rotate((state.apparentWindAngle??angleDifference(state.windDirection,state.heading))*Math.PI/180);
+   c.strokeStyle='#eec788';c.lineWidth=7;c.beginPath();c.moveTo(0,75);c.lineTo(0,-92);c.lineTo(-13,-67);c.moveTo(0,-92);c.lineTo(13,-67);c.stroke();c.restore();
+   number(`${(state.apparentWindSpeed??state.windSpeed).toFixed(1)} kn  ${Math.abs(state.apparentWindAngle??0).toFixed(0)}°`,26,362,30);
+  }else{
+   label('BOAT SPEED',22,35);number(state.speed.toFixed(2),24,150,95);
+   label('knots',25,185);
+   c.strokeStyle='#385657';c.beginPath();c.moveTo(20,218);c.lineTo(490,218);c.stroke();
+   number(`${String(Math.round(state.heading)%360).padStart(3,'0')}°`,25,281,43);
+   number(`${state.depth.toFixed(1)}m`,275,281,43);
+   label('HEADING',25,330,220);label('DEPTH',275,330,215);
+  }
+  tex.needsUpdate=true;
+ }};
 }
 export function createYacht(mat,{detailed=true}={}){
  const boat=new THREE.Group();boat.name='Haven 39 sailing yacht';

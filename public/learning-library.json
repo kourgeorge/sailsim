@@ -1,0 +1,519 @@
+{
+  "schemaVersion": 1,
+  "contentPolicy": "original-summary-only",
+  "sources": [
+    {
+      "id": "imo-colregs",
+      "title": "COLREG — Preventing collisions at sea",
+      "org": "International Maritime Organization",
+      "url": "https://www.imo.org/en/ourwork/safety/pages/preventing-collisions.aspx",
+      "topics": [
+        "lookout"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- COLREG requires a proper lookout and a safe speed suited to the situation.",
+      "notes": "# COLREG — Preventing collisions at sea\n\nPublisher: International Maritime Organization\n\nSource: https://www.imo.org/en/ourwork/safety/pages/preventing-collisions.aspx\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- COLREG requires a proper lookout and a safe speed suited to the situation.\n- The summary distinguishes sailing-vessel encounters, overtaking, give-way action, and stand-on responsibilities.\n\n## Application and limits\n\nUse with the lookout and crossing lessons. Static scenery cannot assess collision avoidance with real traffic.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "met-beaufort",
+      "title": "Beaufort wind force scale",
+      "org": "Met Office",
+      "url": "https://weather.metoffice.gov.uk/guides/coast-and-sea/beaufort-scale",
+      "topics": [
+        "reef",
+        "weather",
+        "wind"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- The Beaufort table relates wind-force categories to wind-speed ranges and descriptive sea conditions.",
+      "notes": "# Beaufort wind force scale\n\nPublisher: Met Office\n\nSource: https://weather.metoffice.gov.uk/guides/coast-and-sea/beaufort-scale\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- The Beaufort table relates wind-force categories to wind-speed ranges and descriptive sea conditions.\n- Its wave-height descriptions are contextual estimates, not a promise for every fetch, tide, or coastline.\n\n## Application and limits\n\nThe simulator uses wind speed in knots. Its decorative waves do not reproduce the Beaufort table or certify conditions.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "noaa-nautical",
+      "title": "What is the difference between a nautical mile and a knot?",
+      "org": "NOAA National Ocean Service",
+      "url": "https://oceanservice.noaa.gov/facts/nautical-mile-knot.html",
+      "topics": [
+        "speed"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- The international nautical mile is exactly 1.852 kilometres.",
+      "notes": "# What is the difference between a nautical mile and a knot?\n\nPublisher: NOAA National Ocean Service\n\nSource: https://oceanservice.noaa.gov/facts/nautical-mile-knot.html\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- The international nautical mile is exactly 1.852 kilometres.\n- A knot expresses speed in nautical miles per hour, rather than distance.\n\n## Application and limits\n\nThe physics conversion is 1852/3600 metres per second per knot. This unit reference does not validate vessel resistance or sail coefficients.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "noaa-tidal-current",
+      "title": "Tidal Currents",
+      "org": "NOAA National Ocean Service",
+      "url": "https://oceanservice.noaa.gov/education/tutorial_currents/02tidal1.html",
+      "topics": [
+        "current",
+        "heading"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- Tidal water movement produces flood and ebb currents.",
+      "notes": "# Tidal Currents\n\nPublisher: NOAA National Ocean Service\n\nSource: https://oceanservice.noaa.gov/education/tutorial_currents/02tidal1.html\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- Tidal water movement produces flood and ebb currents.\n- Current changes direction and speed through the tidal cycle; the source discusses their astronomical drivers.\n\n## Application and limits\n\nThe app provides only a spatially uniform, steady current set by the user. Heading and course over ground can differ; no tidal-stream prediction is implemented.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "noaa-tides",
+      "title": "What are tides?",
+      "org": "NOAA National Ocean Service",
+      "url": "https://oceanservice.noaa.gov/facts/tides.html",
+      "topics": [
+        "anchor",
+        "depth"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- The gravitational influence of the Moon and Sun causes tidal changes in water level.",
+      "notes": "# What are tides?\n\nPublisher: NOAA National Ocean Service\n\nSource: https://oceanservice.noaa.gov/facts/tides.html\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- The gravitational influence of the Moon and Sun causes tidal changes in water level.\n- Changing water level matters to maritime activity and the available depth.\n\n## Application and limits\n\nThe app has fixed bathymetry. Its anchor vertical distance includes bow height, but it does not predict tide-dependent clearance.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "nws-before",
+      "title": "Be Safe! Prepare for Hazards",
+      "org": "NOAA National Weather Service",
+      "url": "https://www.weather.gov/safety/safeboating-before",
+      "topics": [
+        "emergency",
+        "weather"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- Preparation includes appropriate safety equipment and communication tools.",
+      "notes": "# Be Safe! Prepare for Hazards\n\nPublisher: NOAA National Weather Service\n\nSource: https://www.weather.gov/safety/safeboating-before\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- Preparation includes appropriate safety equipment and communication tools.\n- The page emphasizes wearing life jackets before going onto the water.\n\n## Application and limits\n\nUse in the pre-departure briefing. Simulated controls cannot assess fitted equipment, crew readiness, or physical checks.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "nws-during",
+      "title": "Know What To Do When the Weather Changes",
+      "org": "NOAA National Weather Service",
+      "url": "https://www.weather.gov/safety/safeboating-during",
+      "topics": [
+        "reef",
+        "weather"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- Fog, thunderstorms, rapid wind shifts, and other weather changes can make boating dangerous.",
+      "notes": "# Know What To Do When the Weather Changes\n\nPublisher: NOAA National Weather Service\n\nSource: https://www.weather.gov/safety/safeboating-during\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- Fog, thunderstorms, rapid wind shifts, and other weather changes can make boating dangerous.\n- Conditions can change during a trip; knowing the appropriate response is part of preparation.\n\n## Application and limits\n\nThe rendered sky and waves do not model all these hazards. A calm-looking scene is not evidence of safe real conditions.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "nws-marine",
+      "title": "Boating Safety Tips and Resources",
+      "org": "NOAA National Weather Service",
+      "url": "https://www.weather.gov/safety/safeboating",
+      "topics": [
+        "weather"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- The boating-safety hub links preparation, weather changes, forecasts, and warning resources.",
+      "notes": "# Boating Safety Tips and Resources\n\nPublisher: NOAA National Weather Service\n\nSource: https://www.weather.gov/safety/safeboating\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- The boating-safety hub links preparation, weather changes, forecasts, and warning resources.\n- It identifies marine forecasts and weather-radio information as resources for recreational boaters.\n\n## Application and limits\n\nSteady sliders are learning conditions, not a marine forecast or departure recommendation.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "nws-warnings",
+      "title": "Coastal and Offshore Warnings, Watches and Advisories",
+      "org": "NOAA National Weather Service",
+      "url": "https://www.weather.gov/safety/safeboating-ww",
+      "topics": [
+        "weather"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- Official warning and advisory products communicate marine weather hazards.",
+      "notes": "# Coastal and Offshore Warnings, Watches and Advisories\n\nPublisher: NOAA National Weather Service\n\nSource: https://www.weather.gov/safety/safeboating-ww\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- Official warning and advisory products communicate marine weather hazards.\n- The warning context must be considered alongside the intended waters, vessel, crew, and forecast.\n\n## Application and limits\n\nNo warning feed is connected to this app. Do not read a slider value as an all-clear decision.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "rya-coastal-skipper",
+      "title": "Coastal Skipper Practical Sailing",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/coastal-skipper-practical-sailing-course/",
+      "topics": [
+        "adverse weather",
+        "coastal passage",
+        "night"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:12.109271+00:00",
+      "summary": "This advanced five-day practical course develops coastal skippering by day and night. It expects handling at Day Skipper standard and prior experience of 15 days, including two as skipper, 300 miles and eight night hours. Published content includes passage preparation, pilotage, responsibility for crew, handling under power and sail, adverse conditions and emergencies. The course is practical, so written scenarios alone cannot demonstrate the published standard.",
+      "notes": "# Coastal Skipper Practical Sailing\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/course-finder/coastal-skipper-practical-sailing-course/\n\nRetrieved: 2026-10-01T00:44:12.109271+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nThis advanced five-day practical course develops coastal skippering by day and night. It expects handling at Day Skipper standard and prior experience of 15 days, including two as skipper, 300 miles and eight night hours. Published content includes passage preparation, pilotage, responsibility for crew, handling under power and sail, adverse conditions and emergencies. The course is practical, so written scenarios alone cannot demonstrate the published standard.\n\n## Proposed learning outcomes\n\n- Build a passage plan with contingencies and crew responsibilities.\n- Adapt a plan to weather, darkness and restricted options.\n- Recognize limits requiring further instruction or an early diversion.\n\n## Application and limits\n\nProvides direction for sail-37–42. Night and adverse-weather decisions are theory only until credible environmental and assessment systems exist.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "rya-coastal-theory",
+      "title": "Coastal Skipper/Yachtmaster Offshore Theory",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/coastal-skipperyachtmaster-offshore-theory-course/",
+      "topics": [
+        "meteorology",
+        "position fixing",
+        "tidal planning"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:47:01.461328+00:00",
+      "summary": "This shorebased course builds on Day Skipper-level knowledge and lists 40 hours plus exam time. Its public topic list includes position fixing, shaping and plotting courses, tidal knowledge, almanacs and navigation publications, electronic position finding, forecast interpretation and weather-system/barometer use. It is useful evidence for increasing decision complexity. Requirements for a particular practical exam should be checked on that exam’s own page rather than inferred from marketing copy.",
+      "notes": "# Coastal Skipper/Yachtmaster Offshore Theory\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/course-finder/coastal-skipperyachtmaster-offshore-theory-course/\n\nRetrieved: 2026-10-01T00:47:01.461328+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nThis shorebased course builds on Day Skipper-level knowledge and lists 40 hours plus exam time. Its public topic list includes position fixing, shaping and plotting courses, tidal knowledge, almanacs and navigation publications, electronic position finding, forecast interpretation and weather-system/barometer use. It is useful evidence for increasing decision complexity. Requirements for a particular practical exam should be checked on that exam’s own page rather than inferred from marketing copy.\n\n## Proposed learning outcomes\n\n- Cross-check position using independent information.\n- Account for tidal height and current when timing a passage.\n- Define forecast triggers that change a route or departure decision.\n\n## Application and limits\n\nPrimary planning source for sail-37–42; actual charts, local data and supervised navigation exercises remain necessary.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "rya-competent-crew",
+      "title": "Competent Crew Practical",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/competent-crew-practical-course/",
+      "topics": [
+        "crew",
+        "safety",
+        "sail handling"
+      ],
+      "level": "Basic",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:12.058490+00:00",
+      "summary": "This introductory five-day practical course accepts beginners and develops useful crew participation. It covers yacht language, rig and sails, ropework, safety equipment, fire precautions, person-overboard response, weather awareness, helmsmanship and general duties. Learning occurs aboard a yacht; an interactive screen does not supply the physical experience or assessment.",
+      "notes": "# Competent Crew Practical\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/course-finder/competent-crew-practical-course/\n\nRetrieved: 2026-10-01T00:44:12.058490+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Basic\n\n## Original summary\n\nThis introductory five-day practical course accepts beginners and develops useful crew participation. It covers yacht language, rig and sails, ropework, safety equipment, fire precautions, person-overboard response, weather awareness, helmsmanship and general duties. Learning occurs aboard a yacht; an interactive screen does not supply the physical experience or assessment.\n\n## Proposed learning outcomes\n\n- Identify equipment and communicate clearly with the crew.\n- Explain preparation and emergency roles before departure.\n- Transfer sail handling, steering and ropework to supervised onboard practice.\n\n## Application and limits\n\nUse sail-01–16 as preparation, with immediate review links to sail-33–34. Crew communication, knots, loaded lines and physical recovery remain on-water tasks.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "rya-day-skipper",
+      "title": "Day Skipper Practical Sailing",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/day-skipper-practical-sailing/",
+      "topics": [
+        "auxiliary power",
+        "day skippering",
+        "pilotage"
+      ],
+      "level": "Intermediate",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:12.088890+00:00",
+      "summary": "The five-day practical course prepares a skipper for short daytime trips in familiar waters aboard a cruising yacht. Entry experience includes five days aboard, 100 miles and four night hours, plus basic sailing and navigation knowledge at Day Skipper shorebased level. The public description includes pilotage, navigation, handling under sail and power, engines, weather, rules, emergencies and passage making. These prerequisites and onboard assessment prevent equivalence with a browser course.",
+      "notes": "# Day Skipper Practical Sailing\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/course-finder/day-skipper-practical-sailing/\n\nRetrieved: 2026-10-01T00:44:12.088890+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Intermediate\n\n## Original summary\n\nThe five-day practical course prepares a skipper for short daytime trips in familiar waters aboard a cruising yacht. Entry experience includes five days aboard, 100 miles and four night hours, plus basic sailing and navigation knowledge at Day Skipper shorebased level. The public description includes pilotage, navigation, handling under sail and power, engines, weather, rules, emergencies and passage making. These prerequisites and onboard assessment prevent equivalence with a browser course.\n\n## Proposed learning outcomes\n\n- Prepare a vessel, crew and day passage.\n- Connect pilotage, weather and handling decisions.\n- Explain where supervised handling and logged experience are needed.\n\n## Application and limits\n\nSail-17–36 and the engine lab support selected decisions and model-based handling. They do not establish Day Skipper competence or satisfy sea time.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "rya-day-theory",
+      "title": "Day Skipper Theory",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/day-skipper-theory-course/",
+      "topics": [
+        "chartwork",
+        "collision regulations",
+        "tides",
+        "weather"
+      ],
+      "level": "Intermediate",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:47:01.595200+00:00",
+      "summary": "The public description presents roughly 40 hours plus examination time of shorebased preparation for inexperienced skippers. Topics include seamanship, coastal navigation and pilotage, chartwork and electronic charts, position fixing, course to steer, weather, tides and collision regulations. Practical experience is desirable. This confirms that navigation knowledge is assessable independently, while practical boat handling remains a separate learning requirement.",
+      "notes": "# Day Skipper Theory\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/course-finder/day-skipper-theory-course/\n\nRetrieved: 2026-10-01T00:47:01.595200+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Intermediate\n\n## Original summary\n\nThe public description presents roughly 40 hours plus examination time of shorebased preparation for inexperienced skippers. Topics include seamanship, coastal navigation and pilotage, chartwork and electronic charts, position fixing, course to steer, weather, tides and collision regulations. Practical experience is desirable. This confirms that navigation knowledge is assessable independently, while practical boat handling remains a separate learning requirement.\n\n## Proposed learning outcomes\n\n- Explain the purpose and limitations of chart and instrument information.\n- Calculate a passage estimate and identify missing tidal information.\n- Use forecast and collision-risk information in a conservative plan.\n\n## Application and limits\n\nSail-21–28 introduce these subjects. Sail-37–42 add bounded decision examples; six short lessons do not cover the full shorebased syllabus.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "rya-icc",
+      "title": "UK International Certificate for Operators of Pleasure Craft",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/our-services/icc/",
+      "topics": [
+        "ICC",
+        "Resolution 40",
+        "competence categories",
+        "jurisdiction"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:47:29.216895+00:00",
+      "summary": "RYA explains the UK ICC as evidence of competence under UNECE Resolution No. 40 and describes its authority to issue it for the UK government. Categories concern vessel type and coastal and/or inland waters; they are not a universal Basic/Intermediate/Advanced ladder. Eligibility, evidence and acceptance depend on the issuing process and applicable flag/coastal-state legislation. A shorebased certificate alone does not establish every vessel category. The primary UNECE endpoints returned HTTP 403 during this research, so this is a verified issuing-authority explanation, not a direct verification of the resolution text.",
+      "notes": "# UK International Certificate for Operators of Pleasure Craft\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/our-services/icc/\n\nRetrieved: 2026-10-01T00:47:29.216895+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: All\n\n## Original summary\n\nRYA explains the UK ICC as evidence of competence under UNECE Resolution No. 40 and describes its authority to issue it for the UK government. Categories concern vessel type and coastal and/or inland waters; they are not a universal Basic/Intermediate/Advanced ladder. Eligibility, evidence and acceptance depend on the issuing process and applicable flag/coastal-state legislation. A shorebased certificate alone does not establish every vessel category. The primary UNECE endpoints returned HTTP 403 during this research, so this is a verified issuing-authority explanation, not a direct verification of the resolution text.\n\n## Proposed learning outcomes\n\n- Distinguish an app learning level from an ICC category.\n- Check flag/coastal-state law and receiving-country acceptance for a real voyage.\n- Seek current issuing-authority advice for eligibility and practical assessment.\n\n## Application and limits\n\nUse as a legal-scope note in course documentation; do not promise an ICC, a charter license or universal acceptance.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "rya-yachtmaster-offshore",
+      "title": "Yachtmaster Offshore Exam",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/training/certificates-of-competence/yachtmaster-offshore-exam/",
+      "topics": [
+        "competence examination",
+        "experience",
+        "navigation"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:12.097179+00:00",
+      "summary": "Yachtmaster Offshore is a practical certificate-of-competence examination, not simply an attendance course. Its scope includes passages up to 150 miles from harbour with day/night and varied weather demands. The ordinary eligibility route lists 50 days, five skipper days, 2,500 miles and five passages over 60 miles, with specified overnight and skipper experience; the page gives additional tidal, discipline, age, radio and first-aid conditions and exceptions. Consult the source for an actual application.",
+      "notes": "# Yachtmaster Offshore Exam\n\nOrganization: RYA\n\nOfficial source: https://www.rya.org.uk/training/certificates-of-competence/yachtmaster-offshore-exam/\n\nRetrieved: 2026-10-01T00:44:12.097179+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nYachtmaster Offshore is a practical certificate-of-competence examination, not simply an attendance course. Its scope includes passages up to 150 miles from harbour with day/night and varied weather demands. The ordinary eligibility route lists 50 days, five skipper days, 2,500 miles and five passages over 60 miles, with specified overnight and skipper experience; the page gives additional tidal, discipline, age, radio and first-aid conditions and exceptions. Consult the source for an actual application.\n\n## Proposed learning outcomes\n\n- Distinguish a theory result, a simulated task and an independent practical examination.\n- Identify why sea time and emergency preparation cannot be replaced by a badge.\n- Plan continued training against a recognized provider’s actual prerequisites.\n\n## Application and limits\n\nUse as a progression boundary in sail-36 and advanced debriefs. Do not award a Yachtmaster label. The detailed paid syllabus was not reproduced.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "us-bareboat",
+      "title": "Bareboat Cruising Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/bareboat-cruising/",
+      "topics": [
+        "cruising",
+        "passage planning",
+        "systems",
+        "tides"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:54.084887+00:00",
+      "summary": "Following Basic Cruising, this standard concerns an auxiliary cruiser within sight of land and anchoring by daylight. The detailed public outcomes cover charter and systems preparation, crew responsibilities, power handling, fixes and multileg navigation, reefing and heaving-to, rescue and mooring/anchor techniques. Knowledge includes tide, current, leeway, IALA regions, electronic limitations, weather changes and failures. This is evidence for progressive planning complexity, not a synonym for unrestricted offshore readiness.",
+      "notes": "# Bareboat Cruising Certification Standards\n\nOrganization: US Sailing\n\nOfficial source: https://www.ussailing.org/education/adult/certification-courses-endorsements/bareboat-cruising/\n\nRetrieved: 2026-10-01T00:44:54.084887+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nFollowing Basic Cruising, this standard concerns an auxiliary cruiser within sight of land and anchoring by daylight. The detailed public outcomes cover charter and systems preparation, crew responsibilities, power handling, fixes and multileg navigation, reefing and heaving-to, rescue and mooring/anchor techniques. Knowledge includes tide, current, leeway, IALA regions, electronic limitations, weather changes and failures. This is evidence for progressive planning complexity, not a synonym for unrestricted offshore readiness.\n\n## Proposed learning outcomes\n\n- Create a passage plan that includes navigation, systems and contingency checks.\n- Explain the effect of current, tide and leeway on a plan.\n- Assess options after steering, engine or weather changes.\n\n## Application and limits\n\nUse in Intermediate-to-Advanced transfer discussions and sail-37–40. Physical boat handling, seaworthiness checks and charter requirements remain external.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "us-basic-cruising",
+      "title": "Basic Cruising Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/basic-cruising/",
+      "topics": [
+        "auxiliary cruiser",
+        "docking",
+        "navigation",
+        "systems"
+      ],
+      "level": "Intermediate",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:54.231648+00:00",
+      "summary": "This standard follows Basic Keelboat and covers an auxiliary-powered cruising yacht by daylight within sight of land in moderate conditions. It adds vessel systems inspections, crew briefing, VHF, navigation and local regulations; power handling includes windage, prop walk, spring lines and controlled arrivals. It also requires sail controls, reefing, rescue, anchoring and emergency responses. Published practical outcomes explicitly include stopping, tying up and securing the boat.",
+      "notes": "# Basic Cruising Certification Standards\n\nOrganization: US Sailing\n\nOfficial source: https://www.ussailing.org/education/adult/certification-courses-endorsements/basic-cruising/\n\nRetrieved: 2026-10-01T00:44:54.231648+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Intermediate\n\n## Original summary\n\nThis standard follows Basic Keelboat and covers an auxiliary-powered cruising yacht by daylight within sight of land in moderate conditions. It adds vessel systems inspections, crew briefing, VHF, navigation and local regulations; power handling includes windage, prop walk, spring lines and controlled arrivals. It also requires sail controls, reefing, rescue, anchoring and emergency responses. Published practical outcomes explicitly include stopping, tying up and securing the boat.\n\n## Proposed learning outcomes\n\n- Perform a structured systems and crew preparation discussion.\n- Compare through-water control with ground movement.\n- Plan an arrival, abort and emergency response using vessel-specific information.\n\n## Application and limits\n\nSail-17–36 plus three engine drills cover only part of this material. Open-water stopping is not docking; missing contact, line forces and crew assessment must remain explicit.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "us-basic-keelboat",
+      "title": "Basic Keelboat Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/basic-keelboat/",
+      "topics": [
+        "crew",
+        "handling",
+        "keelboat",
+        "rules"
+      ],
+      "level": "Basic",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:54.144159+00:00",
+      "summary": "The public standard combines demonstrated knowledge with practical command of a simple daysailing keelboat in familiar waters and light-to-moderate conditions. It includes preparation, lifejackets, rigging, knots, halyards and sail controls, crew communication, departure and return, steering, getting out of irons, heaving-to, reefing and person-overboard recovery. Navigation rules and local aids also appear. Even an introductory recognized standard extends beyond steering and trim in this simulator.",
+      "notes": "# Basic Keelboat Certification Standards\n\nOrganization: US Sailing\n\nOfficial source: https://www.ussailing.org/education/adult/certification-courses-endorsements/basic-keelboat/\n\nRetrieved: 2026-10-01T00:44:54.144159+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Basic\n\n## Original summary\n\nThe public standard combines demonstrated knowledge with practical command of a simple daysailing keelboat in familiar waters and light-to-moderate conditions. It includes preparation, lifejackets, rigging, knots, halyards and sail controls, crew communication, departure and return, steering, getting out of irons, heaving-to, reefing and person-overboard recovery. Navigation rules and local aids also appear. Even an introductory recognized standard extends beyond steering and trim in this simulator.\n\n## Proposed learning outcomes\n\n- Operate modeled sail and helm controls with deliberate sequencing.\n- Explain lookout, crew and recovery responsibilities before an exercise.\n- Identify omitted practical skills such as knots, heaving-to and physical recovery.\n\n## Application and limits\n\nGrounds Basic sail-01–16, with cross-level review of 18, 25–27 and 33–34. Basic is a learning segment, not equivalence to this certification.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "us-coastal-navigation",
+      "title": "Coastal Navigation Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/coastal-navigation/",
+      "topics": [
+        "chartwork",
+        "current vectors",
+        "electronic limitations",
+        "fixes"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:44:54.210968+00:00",
+      "summary": "This classroom navigation standard has no prerequisite and a written examination. It integrates traditional and electronic methods: charts and publications, bearings, true/magnetic references, variation/deviation, tide and current, dead reckoning and estimated positions, fixes, danger bearings, transits, weather and electronic limitations. A navigation-theory subject can be advanced within this app without implying the learner has advanced seamanship or practical certification.",
+      "notes": "# Coastal Navigation Certification Standards\n\nOrganization: US Sailing\n\nOfficial source: https://www.ussailing.org/education/adult/certification-courses-endorsements/coastal-navigation/\n\nRetrieved: 2026-10-01T00:44:54.210968+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nThis classroom navigation standard has no prerequisite and a written examination. It integrates traditional and electronic methods: charts and publications, bearings, true/magnetic references, variation/deviation, tide and current, dead reckoning and estimated positions, fixes, danger bearings, transits, weather and electronic limitations. A navigation-theory subject can be advanced within this app without implying the learner has advanced seamanship or practical certification.\n\n## Proposed learning outcomes\n\n- Calculate simple current-adjusted ground speed and passage time.\n- Keep depth datum and tidal height separate in clearance arithmetic.\n- Cross-check electronic position against independent observations.\n\n## Application and limits\n\nPrimary source for sail-38, 39 and 42. Fictional numerical examples assess reasoning only and must state assumptions, units and uncertainty.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "uscg-distress",
+      "title": "DSC Distress",
+      "org": "U.S. Coast Guard Navigation Center",
+      "url": "https://www.navcen.uscg.gov/dsc-distress",
+      "topics": [
+        "emergency"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- Distress procedures involve the radio equipment, the vessel identity and position, and follow-up communications.",
+      "notes": "# DSC Distress\n\nPublisher: U.S. Coast Guard Navigation Center\n\nSource: https://www.navcen.uscg.gov/dsc-distress\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- Distress procedures involve the radio equipment, the vessel identity and position, and follow-up communications.\n- The page explains cancellation of a false alert and monitoring VHF channel 16 after receiving a DSC distress call.\n\n## Application and limits\n\nNever transmit a live distress alert for this exercise. The lesson concerns priorities and information, not equipment certification or rescue competence.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "uscg-dsc",
+      "title": "Digital Selective Calling",
+      "org": "U.S. Coast Guard Navigation Center",
+      "url": "https://www.navcen.uscg.gov/digital-selective-calling",
+      "topics": [
+        "emergency"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- DSC is a maritime radio calling system with distinct distress, urgency, safety, and testing procedures.",
+      "notes": "# Digital Selective Calling\n\nPublisher: U.S. Coast Guard Navigation Center\n\nSource: https://www.navcen.uscg.gov/digital-selective-calling\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- DSC is a maritime radio calling system with distinct distress, urgency, safety, and testing procedures.\n- Its official resources distinguish equipment classes and operational procedures.\n\n## Application and limits\n\nThe app contains no functioning radio or distress transmitter. Learn the fitted equipment and local procedures before departure.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "uscg-rules",
+      "title": "Amalgamated Navigation Rules: International and U.S. Inland",
+      "org": "U.S. Coast Guard Navigation Center",
+      "url": "https://www.navcen.uscg.gov/navigation-rules-amalgamated",
+      "topics": [
+        "lookout"
+      ],
+      "level": "All",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:49:02.552182+00:00",
+      "summary": "- The official combined presentation includes Rules 5–8 on lookout, safe speed, collision risk, and avoiding action.",
+      "notes": "# Amalgamated Navigation Rules: International and U.S. Inland\n\nPublisher: U.S. Coast Guard Navigation Center\n\nSource: https://www.navcen.uscg.gov/navigation-rules-amalgamated\n\nRetrieved: 2026-10-01T00:49:02.552182+00:00\n\n## Original research notes\n\n- The official combined presentation includes Rules 5–8 on lookout, safe speed, collision risk, and avoiding action.\n- International and U.S. Inland provisions are identified separately; local applicability matters.\n\n## Application and limits\n\nThe app teaches selected introductory cases, not the complete rules or jurisdiction-specific examination.\n\nThese are original notes. Source rights remain with the publisher; the complete webpage is not redistributed here.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "seamanship"
+    },
+    {
+      "id": "world-offshore",
+      "title": "Offshore Special Regulations",
+      "org": "World Sailing",
+      "url": "https://www.sailing.org/inside-world-sailing/activities-services/technical-offshore/offshore-special-regulations/",
+      "topics": [
+        "equipment",
+        "offshore racing",
+        "safety training"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:43:20.237154+00:00",
+      "summary": "The Offshore Special Regulations govern offshore racing and address structural characteristics, yacht and personal equipment, and training. They are sporting requirements, not general navigation law or a universal recreational qualification. The page identifies the 2026–2027 edition as effective from 1 January 2026 and separately a Version 2 effective from 1 January 2027. At the October 2026 review date, the future version must not be described as already effective.",
+      "notes": "# Offshore Special Regulations\n\nOrganization: World Sailing\n\nOfficial source: https://www.sailing.org/inside-world-sailing/activities-services/technical-offshore/offshore-special-regulations/\n\nRetrieved: 2026-10-01T00:43:20.237154+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nThe Offshore Special Regulations govern offshore racing and address structural characteristics, yacht and personal equipment, and training. They are sporting requirements, not general navigation law or a universal recreational qualification. The page identifies the 2026–2027 edition as effective from 1 January 2026 and separately a Version 2 effective from 1 January 2027. At the October 2026 review date, the future version must not be described as already effective.\n\n## Proposed learning outcomes\n\n- Distinguish race-entry requirements from local law and competence training.\n- Explain why equipment and training requirements depend on the event and conditions.\n- Verify the effective version before applying a regulation.\n\n## Application and limits\n\nUse for advanced scope and reference literacy, not for a simulator safety certificate. No complete regulation or equipment checklist is reproduced.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    },
+    {
+      "id": "world-survival",
+      "title": "Offshore Personal Survival",
+      "org": "World Sailing",
+      "url": "https://www.sailing.org/inside-world-sailing/activities-services/technical-offshore/technical-services/technical-and-offshore-safety/offshore-safety/offshore-personal-survival/",
+      "topics": [
+        "hands-on training",
+        "offshore racing",
+        "survival"
+      ],
+      "level": "Advanced",
+      "status": "verified-public-page",
+      "retrievedAt": "2026-10-01T00:47:01.730971+00:00",
+      "summary": "The page explains recognized offshore-survival courses delivered through national authorities against World Sailing minimum standards. It distinguishes sailing-specific personal-survival preparation from generic commercial-ship training and notes race-organizer acceptance. Its US section requires theoretical modules plus in-person hands-on work for the described World Sailing-compliant certificate. This is direct evidence that online knowledge alone does not satisfy that practical survival qualification.",
+      "notes": "# Offshore Personal Survival\n\nOrganization: World Sailing\n\nOfficial source: https://www.sailing.org/inside-world-sailing/activities-services/technical-offshore/technical-services/technical-and-offshore-safety/offshore-safety/offshore-personal-survival/\n\nRetrieved: 2026-10-01T00:47:01.730971+00:00\n\nStatus: HTTP 200, public page read\n\nSuggested app level: Advanced\n\n## Original summary\n\nThe page explains recognized offshore-survival courses delivered through national authorities against World Sailing minimum standards. It distinguishes sailing-specific personal-survival preparation from generic commercial-ship training and notes race-organizer acceptance. Its US section requires theoretical modules plus in-person hands-on work for the described World Sailing-compliant certificate. This is direct evidence that online knowledge alone does not satisfy that practical survival qualification.\n\n## Proposed learning outcomes\n\n- Separate learning emergency priorities from demonstrating survival equipment use.\n- Identify the need for hands-on training and current provider requirements.\n- Include crew capabilities and emergency preparation in passage decisions.\n\n## Application and limits\n\nUse sail-33–34 early and revisit in Advanced. The app should never issue an offshore-survival credential or count button presses as physical rescue.\n\nThis is an original research note, not the organization’s syllabus, endorsement or accreditation. Refer to the linked source for current requirements.\n",
+      "notesFormat": "text/markdown",
+      "titleLanguage": "en",
+      "orgLanguage": "en",
+      "notesLanguage": "en",
+      "collection": "training"
+    }
+  ]
+}

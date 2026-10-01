@@ -1,0 +1,111 @@
+// Original coastal decision exercises grounded in docs/COURSE_LEVELS_RESEARCH.md.
+// All examples are fictional. No simulated or physical maneuver credit is awarded.
+export const advancedModule = {
+ id:'coastal-decisions',title:'Coastal decisions',
+ outcome:'Plan conservative coastal passages, calculate simple margins, and cross-check navigation information.'
+};
+const q=(prompt,options,correct,explanation)=>({prompt,options,correct,explanation});
+const content=[
+ {
+ title:'Plan the route and the escape',
+ concepts:[
+  'A passage plan connects preparation, route, execution and monitoring. Check current charts and notices, forecast, tide and current, daylight, boat readiness, crew capability, fuel and communications. Mark hazards, safe water, alternatives and points where choices become limited.',
+  'Choose decision points before departure. In this fictional exercise, the exposed headland is acceptable only if the agreed weather and daylight margins remain available. A sheltered alternative is available before the headland; after passing it, returning may be difficult.',
+  'A route is a proposal to keep checking. Compare actual progress and conditions with the plan. A pre-agreed diversion trigger helps avoid continuing simply because the destination is close. Share the route, crew roles and contingency plan.'
+ ],
+ observe:['Write a primary route, one sheltered alternative and one clear diversion trigger.','Identify the last safe decision point before the exposed section.'],
+ mistake:'Selecting a destination and following its waypoint without checking hazards or preserving an escape option.',
+ quiz:[
+  q('Before an exposed headland, the forecast worsens beyond your agreed limit. A sheltered alternative remains open. What best follows the plan?',['Continue because the headland is nearby','Use the sheltered alternative while it remains viable','Increase speed and decide after rounding'],1,'Act at the planned decision point. Keeping an acceptable alternative avoids committing to conditions beyond the agreed limits.'),
+  q('Which makes a contingency usable?',['A specific trigger, safe alternative and decision point','A promise to reach the destination','A spare waypoint without checking its approach'],0,'A contingency needs a feasible option and a clear moment to act, checked against conditions and crew capability.')
+ ],
+ transfer:'With an instructor, plan a real short passage using current local charts, forecasts and tide information. Walk through the alternatives and the places where turning back becomes difficult.',
+ sources:['rya-coastal-skipper','us-bareboat']
+ },
+ {
+ title:'Tidal depth and clearance',
+ concepts:[
+  'Charted depths refer to a stated chart datum. A predicted tidal height can be added only when its datum, location, date and time are compatible with that chart. Water depth is not the same as clearance beneath the keel. Confirm what a real depth instrument measures and its offset.',
+  'Fictional static example: charted depth 2.4 m plus tidal height 1.1 m gives water depth 3.5 m. Subtract a 1.8 m draft to get 1.7 m static under-keel clearance. If the exercise requires a 0.8 m allowance, 0.9 m remains above that allowance. This is arithmetic, not permission to cross a shoal.',
+  'Real clearance planning also considers the lowest tide during passage, survey and forecast uncertainty, waves, squat, heel and vessel/operator guidance. Do not add tidal height again to an instrument reading that already represents water depth. A favorable single reading cannot establish a safe route.'
+ ],
+ observe:['Label chart datum, tidal height, water depth and draft separately in the example.','List information missing before you could approve a real shallow-water passage.'],
+ mistake:'Treating charted depth or a depth-display number as guaranteed under-keel clearance.',
+ quiz:[
+  q('For the stated example, what is the static clearance before the 0.8 m allowance?',['3.5 m','0.6 m','1.7 m'],2,'Water depth is 2.4 + 1.1 = 3.5 m. Subtracting the 1.8 m draft leaves 1.7 m.'),
+  q('Why does that calculation not approve a real crossing?',['Tidal height never affects depth','Datum/time, changing tide, uncertainty and dynamic allowances still need checking','Any positive clearance guarantees safety'],1,'A static arithmetic result omits changing conditions and uncertainties. Confirm compatible data and adequate vessel-specific margins.')
+ ],
+ transfer:'Practice with a current local chart and tide source under instruction. Confirm chart datum, time zone, tidal station, vessel draft and the actual sounder offset before using any number.',
+ sources:['us-coastal-navigation','rya-day-theory']
+ },
+ {
+ title:'Current vectors and passage time',
+ concepts:[
+  'Heading is where the bow points. Course over ground is the direction of movement over the seabed. Speed through water and speed over ground differ because current adds a velocity vector; leeway can add another difference. Current set names the direction it flows toward.',
+  'Fictional straight-line example: a yacht makes 5 knots through the water directly along a 12 nautical mile route. A steady 1-knot current directly against the route gives 4 knots over ground, so the leg takes 3 hours. A directly following current gives 6 knots and 2 hours. Ignore acceleration and leeway only for this example.',
+  'Cross-current must be combined as a vector, not simply added to or subtracted from speed. It changes ground track and may require a different course to steer. Real passages need time-varying current, wind, tacking, sea conditions and a reserve; recalculate ETA using observed progress.'
+ ],
+ observe:['Compare heading and water speed with course and speed over ground in Boat systems.','Draw ahead, opposing and cross-current arrows before doing arithmetic.'],
+ mistake:'Using water speed for every arrival estimate or subtracting a cross-current as if it flowed directly astern.',
+ quiz:[
+  q('At 5 knots through water with a directly opposing 1-knot current, how long is the stated 12 nautical mile leg?',['2 hours','3 hours','2.4 hours'],1,'The example gives 4 knots over ground. Time = 12 nautical miles ÷ 4 knots = 3 hours.'),
+  q('What changes when the same current flows across the route?',['Combine velocity vectors and reassess track/course to steer','Always subtract 1 knot from water speed','Heading and ground track must remain identical'],0,'A cross-current changes the direction of ground motion. Scalar addition works only for collinear velocities in these simple examples.')
+ ],
+ transfer:'Use a navigation instructor and real tidal-stream data to plot a course to steer. Compare planned and observed progress without treating this app’s current as a local forecast.',
+ sources:['us-coastal-navigation','us-bareboat']
+ },
+ {
+ title:'Weather: go, wait or divert',
+ concepts:[
+  'A weather limit belongs to a specific boat, crew, route and set of conditions. Review official marine forecasts and warnings, gusts, wind direction, sea state, visibility, tide/current interaction and safe alternatives. A single wind number does not describe the risk.',
+  'Fictional decision: your crew agreed to avoid an exposed leg if gusts increase beyond its practiced capability or visibility removes the pilotage references. Either trigger is now forecast before you can complete the leg. Waiting or choosing an acceptable sheltered route preserves the agreed margin.',
+  'Check updates and conditions underway. Wind against current can steepen seas; an onshore wind can increase lee-shore danger. Reduce sail early as appropriate, preserve crew energy and change the plan before options narrow. A reef does not make every forecast acceptable.'
+ ],
+ observe:['State two departure limits and where you would reassess them underway.','Compare the exposed route with its sheltered alternative for wind direction, sea state and visibility.'],
+ mistake:'Treating a universal wind-speed threshold or the ability to reef as proof that a passage is safe.',
+ quiz:[
+  q('The forecast exceeds your crew’s agreed capability before the exposed leg ends. What is the sound planning response?',['Reef and assume all risk is removed','Ignore the forecast if the harbor is calm','Wait or choose a checked alternative within the limits'],2,'The departure decision should preserve the margins agreed for this crew, yacht and route. Harbor conditions do not establish offshore conditions.'),
+  q('Why consider current as well as wind?',['Wind against current can steepen the sea and change the route’s risk','Current affects only the compass display','Current guarantees sheltered water'],0,'Opposing wind and current can worsen sea conditions. Exposure and the forecast must be considered together.')
+ ],
+ transfer:'Discuss a real forecast with an instructor, including local effects and uncertainty. Agree boat- and crew-specific limits and keep reassessing; these examples prescribe no universal safe wind speed.',
+ sources:['rya-coastal-theory','rya-coastal-skipper']
+ },
+ {
+ title:'Collision risk and limited visibility',
+ concepts:[
+  'Maintain a lookout by sight, hearing and all appropriate available means. Repeated observations matter: an approaching vessel with little change in compass bearing indicates collision risk. A changing bearing does not always remove risk, especially close by or near a large vessel or tow. If in doubt, treat risk as present.',
+  'Safe speed allows effective avoiding action and stopping within the circumstances. Visibility, traffic, maneuverability, wind/sea/current and nearby hazards all matter. Take timely action under the applicable rules and keep checking its effect until the other vessel is past and clear; a single AIS symbol is not a complete lookout.',
+  'Under International Rule 19, vessels not in sight of one another in or near restricted visibility use a different framework from the in-sight sailing/power encounter rules. Reduce to a safe speed, maintain lookout, use required signals and available equipment correctly. A power-driven vessel must have engines ready for immediate maneuver. Learn the complete applicable rules with an instructor; this exercise selects no universal avoiding turn.'
+ ],
+ observe:['Sketch successive compass bearings and ranges rather than relying on one glimpse.','Identify what information is missing when a vessel is heard or detected electronically but cannot be seen.'],
+ mistake:'Claiming an automatic right of way in fog or assuming that no AIS target means no vessel.',
+ quiz:[
+  q('A vessel’s range is decreasing while its compass bearing barely changes. What should you conclude?',['Collision risk exists and needs continuing assessment and timely action','The other vessel will certainly pass astern','Only motor vessels need respond'],0,'Little bearing change on approach is a collision-risk indicator. Use appropriate available information and act under the applicable rules.'),
+  q('In restricted visibility, another vessel is not in sight. Which statement is sound under International Rule 19?',['A sailing yacht always has priority over an unseen motor vessel','Apply the restricted-visibility framework, safe speed and proper lookout','Keep speed until visual contact is made'],1,'The in-sight sailing/power rules cannot simply be applied to an unseen contact. Rule 19 and the general rules require a situation-specific response.')
+ ],
+ transfer:'Study the full International and applicable inland/local rules with a qualified instructor. Practice systematic lookout and equipment use aboard; this lesson does not assess real collision avoidance.',
+ sources:['us-basic-cruising','us-coastal-navigation','uscg-rules']
+ },
+ {
+ title:'Night pilotage and cross-checks',
+ concepts:[
+  'Plan a night approach before darkness: identify expected lights and their characteristics, safe water, hazards, clearing bearings, depth expectations, decision points and a safe alternative. Use current charts and publications. A light’s color alone cannot identify it; background lights can confuse the picture.',
+  'Cross-check electronic position with independent evidence such as identified lights, bearings, transits and depth trends, allowing for tide and instrument offsets. Two displays using the same GPS source are not independent fixes. Confirm chart scale, datum and updates; a precise-looking symbol can still be wrong.',
+  'Fictional approach: the plotter suggests you are on track, but an expected leading-light alignment and the depth trend disagree. Do not continue into shallower or confined water merely to resolve the puzzle. Reduce risk, remain in or return to verified safe water if feasible, cross-check the observations and revise the plan.'
+ ],
+ observe:['List the expected navigation references in their approach order and explain how each will be identified.','Choose an abort point that leaves adequate sea room before the difficult section.'],
+ mistake:'Trusting a bright plotter symbol over conflicting observations or treating two screens sharing one sensor as independent confirmation.',
+ quiz:[
+  q('Two screens share the same GPS source. Do matching positions provide independent confirmation?',['Yes, because there are two screens','Only when both displays are bright','No; use a genuinely independent observation or source'],2,'A shared sensor can produce the same error on both screens. Identified visual references and properly interpreted depth can provide other evidence.'),
+  q('Plotter position conflicts with the expected light alignment and depth trend before a narrow entrance. What is the prudent response?',['Maintain speed and trust the plotted line','Reduce risk in verified safe water and resolve the disagreement before committing','Switch off the depth display'],1,'Conflicting observations reduce confidence. Preserve sea room and cross-check before continuing into a constrained approach.')
+ ],
+ transfer:'Rehearse a real pilotage plan with an instructor in daylight before supervised night work. Practice identifying light characteristics and obtaining independent position checks.',
+ sources:['rya-coastal-skipper','us-coastal-navigation']
+ }
+];
+export const advancedLessons=content.map((item,index)=>({
+ ...item,id:`sail-${index+37}`,module:advancedModule.id,sub:advancedModule.outcome,
+ level:'advanced',prerequisite:`sail-${index+36}`,practice:null,minutes:8,
+ type:'Theory & decisions',body:item.concepts[0],
+ goal:'Read the briefing and check your understanding',tip:item.observe[0]
+}));

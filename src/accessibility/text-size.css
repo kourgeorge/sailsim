@@ -1,0 +1,98 @@
+/* Text-only scaling: canvas resolution, chart geometry and sailing physics are unchanged. */
+html[data-text-size]{font-size:calc(16px * var(--text-scale,1))}
+.text-size-control{position:relative;flex-shrink:0;z-index:60;color:#e5eeeb}
+.text-size-control>summary{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 10px;border:1px solid #59717b;border-radius:6px;background:#163643;cursor:pointer;list-style:none;font-size:calc(12px * var(--text-scale,1));line-height:1.2;white-space:nowrap}
+.text-size-control>summary::-webkit-details-marker{display:none}
+.text-size-control>summary::marker{content:''}
+.text-size-control>summary:hover,.text-size-control[open]>summary{border-color:#ecc78e;color:#ffe0ac}
+.text-size-control :focus-visible{outline:2px solid #ecc78e;outline-offset:4px}
+.text-size-current{font-variant-numeric:tabular-nums}
+.text-size-popover{position:absolute;inset-block-start:calc(100% + 9px);inset-inline-end:0;width:min(360px,calc(100vw - 24px));max-height:calc(100dvh - 110px);overflow:auto;overscroll-behavior:contain;padding:20px;background:#12333f;border:1px solid #658088;border-radius:10px;box-shadow:0 14px 50px #0007;font-size:calc(13px * var(--text-scale,1));line-height:1.5;white-space:normal;text-align:start}
+.text-size-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
+.text-size-heading label{font-weight:600}
+.text-size-heading output{color:#ecc78e;font-size:calc(17px * var(--text-scale,1));font-variant-numeric:tabular-nums}
+.text-size-popover input[type=range]{width:100%;height:32px;margin:0;touch-action:pan-y;accent-color:#ecc78e;direction:ltr}
+.text-size-limits{display:flex;justify-content:space-between;gap:15px;font-size:calc(11px * var(--text-scale,1));color:#a8c0c5;margin:2px 0 18px}
+.text-size-limits>span{max-width:48%}
+.text-size-limits>span:last-child{text-align:end}
+.text-size-reset{display:block;width:100%;min-height:44px;border:1px solid #75918f;border-radius:6px;padding:9px 12px;font:inherit;color:#e7efdf;background:#244752;white-space:normal}
+.text-size-popover p{margin:14px 0 0;color:#aac0c5;font-size:calc(11px * var(--text-scale,1));line-height:1.6}
+
+/* Let labels gain rows instead of shrinking their fonts or clipping them. */
+html[data-text-size] .topbar{height:auto;min-height:86px;flex-wrap:wrap;gap:12px 20px;padding-block:14px}
+html[data-text-size] .topbar nav{align-self:auto;flex-wrap:wrap;min-height:44px;height:auto;gap:8px 22px}
+html[data-text-size] .nav-item{min-height:44px;line-height:1.35;padding-block:8px;white-space:normal}
+html[data-text-size] .language-switch select{font-family:inherit;min-height:44px;max-width:170px}
+html[data-text-size] .workspace{height:calc(100dvh - var(--topbar-height,86px) - var(--bottom-bar-height,44px));min-height:calc(var(--control-dock-height,151px) + 540px)}
+html[data-text-size] .sidebar{min-width:0}
+html[data-text-size] .sidebar-heading h1,html[data-text-size] .scene-title h2{overflow-wrap:anywhere}
+html[data-text-size] .lesson-row>span:nth-child(2),html[data-text-size] .course-module summary span{min-width:0;overflow-wrap:anywhere}
+html[data-text-size] .lesson-index{flex-shrink:0;min-width:28px;min-height:28px;width:auto;height:auto;padding:4px}
+html[data-text-size] .course-progress>div:first-child,html[data-text-size] .checkpoint-meta{flex-wrap:wrap;gap:6px 10px}
+html[data-text-size] #scene,html[data-text-size] .scene-vignette{bottom:var(--control-dock-height,151px)}
+html[data-text-size] .scene-footer{bottom:calc(var(--control-dock-height,151px) + 17px);gap:15px;line-height:1.5;flex-wrap:wrap}
+html[data-text-size] .scene-footer>span:first-child{min-width:0;max-width:100%}
+html[data-text-size] .lesson-card{bottom:calc(var(--control-dock-height,151px) + 53px)}
+html[data-text-size] .lesson-copy{min-width:0}
+html[data-text-size] .control-dock{height:auto;min-height:151px;grid-template-columns:repeat(auto-fit,minmax(min(100%,145px),1fr));grid-template-rows:auto;gap:20px;padding:20px 24px}
+html[data-text-size] .control-dock>*{min-width:0}
+html[data-text-size] .speed-display,html[data-text-size] .heading-display,html[data-text-size] .helm-control,html[data-text-size] .sail-control{grid-column:auto;grid-row:auto}
+html[data-text-size] .control-title{flex-wrap:wrap;gap:6px 10px;line-height:1.4}
+html[data-text-size] .control-title>span{white-space:normal}
+html[data-text-size] .control-hint{flex-wrap:wrap;line-height:1.5}
+html[data-text-size] .control-dock .sail-actions,html[data-text-size] .control-dock .play-actions{position:static;display:flex;grid-column:auto;grid-row:auto;gap:8px;align-items:stretch;flex-direction:column}
+html[data-text-size] .sail-actions button,html[data-text-size] .play-actions>button:last-child{white-space:normal;min-height:40px;line-height:1.4;padding:6px 0}
+html[data-text-size] .primary-button{min-width:0;width:100%;min-height:44px;white-space:normal;line-height:1.4}
+html[data-text-size] .heading-display{padding-inline-end:12px}
+html[data-text-size] .speed-display>span:last-child{max-width:none}
+html[data-text-size] .bottom-bar{height:auto;min-height:44px;padding-block:10px;gap:10px 20px;flex-wrap:wrap;line-height:1.5}
+html[data-text-size] .bottom-bar>div{flex-wrap:wrap;gap:10px 18px}
+html[data-text-size] dialog{max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain}
+html[data-text-size] .knowledge-question{min-width:0}
+html[data-text-size] .knowledge-question legend{max-width:100%;overflow-wrap:anywhere}
+html[data-text-size] .knowledge-question label span{min-width:0;overflow-wrap:anywhere}
+html[data-text-size] .training-button{white-space:normal;overflow-wrap:anywhere}
+html[data-text-size] .chart-legend,html[data-text-size] .setting-label{flex-wrap:wrap;gap:8px 16px}
+html[data-text-size] .vessel-fields{grid-template-columns:repeat(auto-fit,minmax(min(100%,160px),1fr))}
+html[data-text-size] .vessel-slider>span,html[data-text-size] .vessel-select{flex-wrap:wrap}
+html[data-text-size] .vessel-select select{max-width:100%;min-width:0;font:inherit}
+html[data-text-size] .vessel-live{white-space:normal;overflow:visible;text-overflow:clip;overflow-wrap:anywhere}
+html[data-text-size] .systems-drawer .vessel-panel>summary{padding-inline-end:44px;flex-wrap:wrap}
+html[data-text-size] .vessel-instruments>div{min-width:0;overflow-wrap:anywhere}
+html[data-text-size] #systems-close{width:40px;height:40px}
+html[data-text-size] .wind-value{flex-wrap:wrap}
+html[data-text-size] .point-of-sail{line-height:1.5;overflow-wrap:anywhere}
+html[data-text-size] .weather{max-width:48%;flex-wrap:wrap;justify-content:flex-end;line-height:1.4}
+html[data-text-size] .view-controls{max-width:calc(100% - 48px);flex-wrap:wrap}
+html[data-text-size] .view-controls button{white-space:normal;line-height:1.4}
+html[data-large-text] .brand-caption{display:none}
+html[data-large-text] .vessel-live{display:none}
+@media(min-width:1101px){html[data-text-size] .workspace{grid-template-columns:calc(220px + 45px * var(--text-scale,1)) minmax(0,1fr)}}
+@media(max-width:1100px){html[data-text-size] .topbar{gap:9px 13px}html[data-text-size] .topbar nav{gap:6px 16px}html[data-text-size] .language-switch label{display:none}html[data-large-text] .help-grid{grid-template-columns:1fr}}
+@media(max-width:650px){
+ html[data-text-size] .topbar{min-height:76px;padding:10px 13px;gap:8px 10px}
+ html[data-text-size] .topbar nav{width:100%;order:5;margin:0;justify-content:center;gap:4px 16px}
+ html[data-text-size] .brand{letter-spacing:1px}
+ html[data-text-size] .language-switch{margin-inline-start:auto}
+ html[data-text-size] .language-switch select{max-width:130px}
+ html[data-text-size] .workspace{height:auto;min-height:0}
+ html[data-text-size] .simulator{height:calc(100dvh - var(--topbar-height,110px) - var(--bottom-bar-height,44px));min-height:calc(var(--control-dock-height,270px) + 540px)}
+ html[data-text-size] .control-dock{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:18px 16px}
+ html[data-text-size] .lesson-card{bottom:calc(var(--control-dock-height,270px) + 53px);max-height:230px!important}
+ html[data-text-size] .lesson-card .eyebrow{letter-spacing:.6px}
+ html[data-text-size] .scene-title{max-width:calc(100% - 125px)}
+ html[data-text-size] .scene-title h2{max-width:100%}
+ html[data-text-size] .scene-title p{display:none}
+ html[data-text-size] .view-controls{max-width:none}
+ html[data-text-size] .view-controls button{flex:1 1 auto}
+ html[data-text-size] .scene-footer{inset-inline:17px}
+ html[data-text-size] .systems-drawer .vessel-tabs{max-height:50dvh}
+ html[data-text-size] .systems-drawer .vessel-fields{grid-template-columns:1fr}
+ html[data-text-size] .bottom-bar>span{max-width:none}
+ html[data-text-size] #toast{bottom:20px;max-height:45dvh;overflow:auto}
+ html[data-text-size] dialog{padding:30px 18px;width:calc(100vw - 20px)}
+ html[data-text-size] .modal-close{min-width:40px;min-height:40px}
+ .text-size-popover{position:fixed;inset-block-start:calc(var(--topbar-height,110px) + 8px);inset-inline:12px;width:auto;max-height:calc(100dvh - var(--topbar-height,110px) - 24px)}
+}
+html[data-text-size] dialog h2,html[data-text-size] dialog p,html[data-text-size] dialog li,html[data-text-size] dialog .eyebrow{overflow-wrap:anywhere;hyphens:auto}
+html[data-text-size] #modal-content>article>.eyebrow{padding-inline-end:44px}

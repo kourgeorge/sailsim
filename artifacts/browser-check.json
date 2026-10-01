@@ -2,11 +2,11 @@
   "passed": true,
   "errors": [],
   "consoleErrors": [],
-  "checkedAt": "2026-10-01T00:18:13.453Z",
+  "checkedAt": "2026-10-01T01:14:27.642Z",
   "features": [
     "lesson feedback",
     "mastery",
-    "36-lesson library",
+    "42-lesson library",
     "ordered practice",
     "persistence",
     "keyboard helm",

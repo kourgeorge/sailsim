@@ -35,6 +35,10 @@
     "readiness": {
       "title": "Responde y repasa",
       "outcome": "Explica las prioridades de emergencia y demuestra una navegación simulada completa."
+    },
+    "coastal-decisions": {
+      "title": "Decisiones costeras",
+      "outcome": "Planifica travesías costeras prudentes, calcula márgenes sencillos y contrasta la información de navegación."
     }
   },
   "lessons": {
@@ -1456,6 +1460,210 @@
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-37": {
+      "title": "Planifica la ruta y la alternativa",
+      "concepts": [
+        "El plan de travesía conecta preparación, ruta, ejecución y seguimiento. Comprueba cartas y avisos vigentes, previsión, mareas y corrientes, luz diurna, barco, tripulación, combustible y comunicaciones. Señala peligros, aguas seguras, alternativas y puntos donde se reducen las opciones.",
+        "Fija puntos de decisión antes de salir. En este ejemplo ficticio, solo se acepta el cabo expuesto si siguen disponibles los márgenes meteorológicos y de luz acordados. Existe una alternativa abrigada antes del cabo; después, regresar podría resultar difícil.",
+        "La ruta debe revisarse continuamente. Compara el avance y las condiciones reales con el plan. Un criterio de desvío acordado evita seguir solo porque el destino está cerca. Comparte la ruta, las funciones y las contingencias."
+      ],
+      "observe": [
+        "Escribe una ruta principal, una alternativa abrigada y un criterio claro de desvío.",
+        "Identifica el último punto de decisión seguro antes del tramo expuesto."
+      ],
+      "mistake": "Elegir un destino y seguir su waypoint sin comprobar peligros ni conservar una salida.",
+      "quiz": [
+        {
+          "prompt": "Antes del cabo, la previsión supera el límite acordado. Sigue abierta una alternativa abrigada. ¿Qué sigue mejor el plan?",
+          "options": [
+            "Continuar porque el cabo está cerca",
+            "Usar la alternativa mientras siga siendo viable",
+            "Acelerar y decidir después de doblarlo"
+          ],
+          "explanation": "Actúa en el punto previsto. Una alternativa aceptable evita comprometerse con condiciones que superan los límites."
+        },
+        {
+          "prompt": "¿Qué hace útil una contingencia?",
+          "options": [
+            "Un criterio concreto, una alternativa segura y un punto de decisión",
+            "Prometer llegar al destino",
+            "Un waypoint de reserva sin revisar su acceso"
+          ],
+          "explanation": "La alternativa debe ser viable y tener un momento claro de actuación, según condiciones y capacidad de la tripulación."
+        }
+      ],
+      "transfer": "Con un instructor, planifica una travesía real corta con cartas, previsiones y mareas locales vigentes. Revisa alternativas y lugares donde dar la vuelta se vuelve difícil."
+    },
+    "sail-38": {
+      "title": "Marea, profundidad y resguardo bajo la quilla",
+      "concepts": [
+        "Las sondas de carta se refieren a un datum definido. Solo añade altura de marea si coinciden datum, lugar, fecha y hora. Profundidad del agua y resguardo bajo la quilla son magnitudes diferentes. Comprueba qué mide la sonda real y su corrección.",
+        "Ejemplo estático ficticio: 2,4 m de sonda de carta más 1,1 m de marea dan 3,5 m de profundidad. Restar 1,8 m de calado deja 1,7 m bajo la quilla. Si el ejercicio exige una reserva de 0,8 m, sobran 0,9 m sobre esa reserva. Es aritmética, no autorización para cruzar un bajo.",
+        "La planificación real contempla la marea mínima durante el paso, incertidumbre de levantamientos y previsiones, olas, asentamiento dinámico, escora y orientación específica del barco. No sumes la marea otra vez a una lectura que ya indique profundidad del agua. Una lectura favorable no demuestra una ruta segura."
+      ],
+      "observe": [
+        "Separa datum, altura de marea, profundidad y calado en el dibujo.",
+        "Enumera los datos que faltan para aprobar un paso real de poca profundidad."
+      ],
+      "mistake": "Tratar la sonda de carta o la pantalla como resguardo garantizado bajo la quilla.",
+      "quiz": [
+        {
+          "prompt": "En el ejemplo, ¿cuál es el resguardo estático antes de reservar 0,8 m?",
+          "options": [
+            "3,5 m",
+            "0,6 m",
+            "1,7 m"
+          ],
+          "explanation": "La profundidad es 2,4 + 1,1 = 3,5 m. Al restar 1,8 m de calado quedan 1,7 m."
+        },
+        {
+          "prompt": "¿Por qué el cálculo no autoriza un paso real?",
+          "options": [
+            "La marea nunca cambia la profundidad",
+            "Falta verificar datum y hora, cambios de marea, incertidumbre y efectos dinámicos",
+            "Todo resguardo positivo garantiza seguridad"
+          ],
+          "explanation": "El resultado estático omite cambios e incertidumbres. Verifica datos compatibles y márgenes adecuados al barco."
+        }
+      ],
+      "transfer": "Practica con carta y mareas locales vigentes bajo instrucción. Verifica datum, huso horario, estación de marea, calado y corrección real de la sonda."
+    },
+    "sail-39": {
+      "title": "Vectores de corriente y tiempo de travesía",
+      "concepts": [
+        "El rumbo indica hacia dónde apunta la proa; el rumbo sobre el fondo indica el desplazamiento respecto al fondo. La corriente añade un vector de velocidad, por lo que velocidad en el agua y sobre el fondo difieren; el abatimiento también influye. La dirección de corriente indica hacia dónde fluye.",
+        "Ejemplo ficticio rectilíneo: 5 nudos en el agua sobre una ruta de 12 millas náuticas. Una corriente constante de 1 nudo directamente contraria deja 4 nudos sobre el fondo: 3 horas. Una corriente directamente favorable da 6 nudos: 2 horas. Solo aquí se omiten aceleración y abatimiento.",
+        "La corriente transversal se combina mediante vectores, no sumando o restando simplemente su velocidad. Cambia la derrota y puede exigir otro rumbo a gobernar. Una travesía real contempla corriente variable, viento, bordadas, mar y reserva; actualiza la llegada según el avance observado."
+      ],
+      "observe": [
+        "Compara rumbo y velocidad en el agua con rumbo y velocidad sobre el fondo en Sistemas del barco.",
+        "Dibuja corrientes favorables, contrarias y transversales antes de calcular."
+      ],
+      "mistake": "Usar siempre velocidad en el agua para estimar llegada o restar una corriente transversal como si fuera contraria.",
+      "quiz": [
+        {
+          "prompt": "A 5 nudos en el agua con 1 nudo directamente contrario, ¿cuánto dura el tramo de 12 millas?",
+          "options": [
+            "2 horas",
+            "3 horas",
+            "2,4 horas"
+          ],
+          "explanation": "La velocidad sobre el fondo es 4 nudos. Tiempo = 12 millas náuticas ÷ 4 nudos = 3 horas."
+        },
+        {
+          "prompt": "¿Qué cambia si esa corriente cruza la ruta?",
+          "options": [
+            "Hay que combinar vectores y revisar derrota y rumbo a gobernar",
+            "Siempre se resta 1 nudo",
+            "Rumbo y derrota deben seguir siendo idénticos"
+          ],
+          "explanation": "La corriente transversal cambia la dirección del movimiento. La aritmética escalar solo sirve para velocidades colineales en estos ejemplos."
+        }
+      ],
+      "transfer": "Con un instructor y datos reales de corrientes, traza el rumbo a gobernar. Compara avance previsto y observado; la corriente de esta app no es una previsión local."
+    },
+    "sail-40": {
+      "title": "Meteorología: salir, esperar o desviarse",
+      "concepts": [
+        "Un límite meteorológico corresponde a un barco, una tripulación, una ruta y unas condiciones concretas. Revisa previsiones y avisos marinos oficiales, rachas, dirección del viento, mar, visibilidad, interacción con marea/corriente y alternativas. Una sola cifra de viento no describe el riesgo.",
+        "Decisión ficticia: la tripulación ha acordado evitar el tramo expuesto si las rachas superan su capacidad practicada o si la visibilidad elimina las referencias de pilotaje. Se prevé uno de esos cambios antes de terminar el tramo. Esperar o elegir una ruta abrigada aceptable conserva el margen.",
+        "Revisa actualizaciones durante la navegación. El viento contra corriente puede aumentar la pendiente de las olas; el viento hacia tierra aumenta el peligro de costa a sotavento. Reduce vela pronto cuando proceda, conserva energía y cambia el plan antes de perder opciones. Rizar no hace aceptable cualquier previsión."
+      ],
+      "observe": [
+        "Define dos límites de salida y dónde los revisarás en ruta.",
+        "Compara exposición y abrigo según viento, mar y visibilidad."
+      ],
+      "mistake": "Creer que un umbral universal de viento o poder rizar demuestra seguridad.",
+      "quiz": [
+        {
+          "prompt": "La previsión supera el límite de la tripulación antes de acabar el tramo expuesto. ¿Qué decisión es adecuada?",
+          "options": [
+            "Rizar y suponer eliminado todo riesgo",
+            "Ignorar la previsión porque el puerto está tranquilo",
+            "Esperar o elegir una alternativa comprobada dentro de los límites"
+          ],
+          "explanation": "La decisión debe conservar márgenes para esta tripulación, barco y ruta. El puerto no demuestra las condiciones exteriores."
+        },
+        {
+          "prompt": "¿Por qué considerar corriente y viento juntos?",
+          "options": [
+            "El viento contra corriente puede empeorar el oleaje y el riesgo",
+            "La corriente solo afecta a la brújula",
+            "La corriente garantiza abrigo"
+          ],
+          "explanation": "Viento y corriente opuestos pueden empeorar el mar. Considera exposición y previsión conjuntamente."
+        }
+      ],
+      "transfer": "Comenta una previsión real con un instructor, incluidos efectos locales e incertidumbre. Acuerda límites específicos y revísalos; estos ejemplos no fijan una velocidad universal segura."
+    },
+    "sail-41": {
+      "title": "Riesgo de abordaje y visibilidad reducida",
+      "concepts": [
+        "Mantén vigilancia visual, auditiva y por todos los medios apropiados. Observa repetidamente: un buque que se acerca con demora de compás casi constante indica riesgo de abordaje. Una demora cambiante no siempre lo excluye, especialmente cerca de un buque grande o remolque. En caso de duda, considera que existe riesgo.",
+        "La velocidad de seguridad permite evitar eficazmente y detenerse en las circunstancias. Importan visibilidad, tráfico, maniobrabilidad, viento, mar, corriente y peligros. Actúa a tiempo según las reglas aplicables y verifica el efecto hasta estar pasado y franco. Un símbolo AIS no constituye toda la vigilancia.",
+        "La regla internacional 19 aplica otro marco cuando los buques no están a la vista en una zona de visibilidad reducida o cerca de ella. Usa velocidad segura, vigilancia, señales exigidas y equipos correctamente. Un buque de propulsión mecánica debe tener motores listos para maniobra inmediata. Estudia las reglas completas con un instructor; aquí no se prescribe un giro universal."
+      ],
+      "observe": [
+        "Anota demoras de compás y distancias sucesivas en vez de confiar en una mirada.",
+        "Identifica datos faltantes sobre un buque oído o detectado electrónicamente pero no visto."
+      ],
+      "mistake": "Reclamar prioridad automática en niebla o creer que sin blanco AIS no hay buque.",
+      "quiz": [
+        {
+          "prompt": "Disminuye la distancia a un buque y su demora casi no cambia. ¿Qué concluyes?",
+          "options": [
+            "Existe riesgo y exige evaluación continua y actuación oportuna",
+            "Seguro que pasará por popa",
+            "Solo responden los buques a motor"
+          ],
+          "explanation": "Una demora casi constante al acercarse indica riesgo. Usa información adecuada y las reglas aplicables."
+        },
+        {
+          "prompt": "Con visibilidad reducida, otro buque no está a la vista. Según la regla internacional 19, ¿qué es correcto?",
+          "options": [
+            "Un velero siempre tiene prioridad sobre un motor no visto",
+            "Aplicar el marco de visibilidad reducida, velocidad segura y vigilancia",
+            "Mantener velocidad hasta verlo"
+          ],
+          "explanation": "Las reglas de vela/motor a la vista no se trasladan sin más a un contacto no visto. La regla 19 y las reglas generales exigen valorar la situación."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales y locales aplicables con un instructor. Practica vigilancia y equipos a bordo; esta lección no evalúa la evasión real de abordajes."
+    },
+    "sail-42": {
+      "title": "Pilotaje nocturno y comprobaciones cruzadas",
+      "concepts": [
+        "Prepara la aproximación antes de oscurecer: luces y características esperadas, aguas seguras, peligros, demoras de seguridad, profundidades previstas, puntos de decisión y alternativa. Usa cartas y publicaciones vigentes. El color por sí solo no identifica una luz; las luces de tierra pueden confundir.",
+        "Contrasta la posición electrónica con luces identificadas, demoras, enfilaciones y tendencias de profundidad, considerando marea y correcciones instrumentales. Dos pantallas con el mismo GPS no son posiciones independientes. Verifica escala, datum y actualizaciones: un símbolo preciso puede estar equivocado.",
+        "Aproximación ficticia: el plotter indica la ruta correcta, pero la enfilación luminosa esperada y la profundidad discrepan. No entres en agua más somera o restringida para resolver la duda. Reduce el riesgo, permanece en aguas seguras verificadas o vuelve a ellas si es viable, comprueba observaciones y revisa el plan."
+      ],
+      "observe": [
+        "Enumera referencias en el orden de aproximación y cómo identificarás cada una.",
+        "Elige un punto de aborto con suficiente espacio antes del tramo difícil."
+      ],
+      "mistake": "Confiar en el símbolo del plotter frente a observaciones contradictorias o contar dos pantallas del mismo sensor como confirmación independiente.",
+      "quiz": [
+        {
+          "prompt": "Dos pantallas comparten GPS. ¿Sus posiciones coincidentes son confirmación independiente?",
+          "options": [
+            "Sí, porque hay dos pantallas",
+            "Solo si ambas brillan mucho",
+            "No; hace falta una observación o fuente realmente independiente"
+          ],
+          "explanation": "El sensor compartido puede repetir el mismo error. Referencias identificadas y profundidad bien interpretada aportan otra evidencia."
+        },
+        {
+          "prompt": "Antes de una entrada estrecha, plotter, enfilación y profundidad discrepan. ¿Qué haces?",
+          "options": [
+            "Mantener velocidad y confiar en la línea",
+            "Reducir riesgo en aguas seguras verificadas y resolver la discrepancia antes de entrar",
+            "Apagar la sonda"
+          ],
+          "explanation": "La discrepancia reduce confianza. Conserva espacio y contrasta los datos antes de comprometerte."
+        }
+      ],
+      "transfer": "Ensaya un plan real con instructor de día antes de practicar de noche bajo supervisión. Aprende características luminosas y comprobaciones independientes de posición."
     }
   }
 }

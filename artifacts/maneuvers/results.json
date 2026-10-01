@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "languages": [],
+  "errors": [],
+  "checkedAt": "2026-10-01T01:12:32.980Z",
+  "features": [
+    "reference library",
+    "three locations",
+    "map-to-course transition",
+    "diagram zoom",
+    "reader pauses physics and keyboard",
+    "real controlled stop",
+    "separate history",
+    "replay scrub/play",
+    "3D cues",
+    "helm zoom",
+    "cue cleanup"
+  ],
+  "scope": "Completed with --lab-only; text-size checks excluded from this run."
+}

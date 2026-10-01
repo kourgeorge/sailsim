@@ -18,9 +18,9 @@ export function restoreProgress(raw){
 export function recordFor(progress,id){return progress.records[id]??(progress.records[id]={practice:false,knowledge:false,attempts:0,hints:0,wrongAnswers:0,lastResult:'',passedAt:null});}
 export function masteredIds(progress){const ids=new Set();for(const l of lessons){const r=progress.records[l.id];if(r?.knowledge&&(!l.practice||r.practice)&&(!l.prerequisite||ids.has(l.prerequisite)))ids.add(l.id);}return ids;}
 export function lessonReady(progress,lesson){return !lesson.prerequisite||masteredIds(progress).has(lesson.prerequisite);}
-export function checkKnowledge(progress,lesson,answers){
+export function checkKnowledge(progress,lesson,answers,{countWrongAnswers=true}={}){
  if(!Array.isArray(answers)||answers.length!==lesson.quiz.length||answers.some((a,i)=>!Number.isInteger(a)||a<0||a>=lesson.quiz[i].options.length))return {complete:false,correct:false,results:[]};
- const results=lesson.quiz.map((q,i)=>answers[i]===q.correct),r=recordFor(progress,lesson.id);r.wrongAnswers+=results.filter(v=>!v).length;
+ const results=lesson.quiz.map((q,i)=>answers[i]===q.correct),r=recordFor(progress,lesson.id);if(countWrongAnswers)r.wrongAnswers+=results.filter(v=>!v).length;
  if(results.every(Boolean)){r.knowledge=true;if((!lesson.practice||r.practice)&&lessonReady(progress,lesson))r.passedAt=new Date().toISOString();}
  return {complete:true,correct:results.every(Boolean),results};
 }

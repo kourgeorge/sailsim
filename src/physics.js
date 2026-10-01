@@ -1,34 +1,33 @@
 import { islandRatio } from './rendering/geography.js';
+import { getLocation, DEFAULT_LOCATION_ID } from './locations.js';
 export const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 export const wrap = v => ((v % 360) + 360) % 360;
 export const angleDifference = (a, b) => ((a - b + 540) % 360 + 360) % 360 - 180;
 export const KNOT = 1852 / 3600;
 const RAD = Math.PI / 180;
 export const VESSEL = Object.freeze({ mass: 5600, waterline: 9.5, draft: 1.8, mainArea: 30, jibArea: 22, airDensity: 1.225, bowHeight: 1.2 });
-export const islands = [
-  { x: -340, z: -360, rx: 210, rz: 180, height: 65, name: 'Pine Island' },
-  { x: 390, z: -620, rx: 245, rz: 170, height: 87, name: 'North Head' },
-  { x: 630, z: 80, rx: 180, rz: 260, height: 57, name: 'Little Haven' },
-  { x: -620, z: 350, rx: 220, rz: 160, height: 42, name: 'West Cay' },
-];
-export const buoys = [{x:90,z:-140},{x:240,z:-290},{x:170,z:-470}];
+// Backward-compatible aliases for the original course and assessments.
+export const islands = getLocation().islands;
+export const buoys = getLocation().buoys;
 export function pointOfSail(angle) {
   const a = Math.abs(angleDifference(angle, 0));
   return a < 38 ? 'In irons' : a < 60 ? 'Close hauled' : a < 80 ? 'Close reach' : a < 105 ? 'Beam reach' : a < 155 ? 'Broad reach' : 'Running';
 }
-export function initialState() {
-  return {x:0,z:100,heading:35,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
+export function initialState(locationId = DEFAULT_LOCATION_ID) {
+  const location=getLocation(locationId);
+  return {locationId:location.id,...location.start,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
     mainHoist:1,jibHoist:1,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
     anchor:false,anchorRode:180,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
-    windDirection:315,windSpeed:12,currentDirection:90,currentSpeed:0,heel:0,leeway:0,yawRate:0,
-    distance:0,elapsed:0,depth:28,grounded:false,speedOverGround:0,courseOverGround:35,
-    apparentWindSpeed:12,apparentWindAngle:-80,suggestedMainSheet:45,suggestedJibSheet:40,
+    ...location.conditions,heel:0,leeway:0,yawRate:0,
+    distance:0,elapsed:0,depth:depthAt(location.start.x,location.start.z,location.id),grounded:false,speedOverGround:0,courseOverGround:location.start.heading,
+    apparentWindSpeed:location.conditions.windSpeed,apparentWindAngle:angleDifference(location.conditions.windDirection,location.start.heading),suggestedMainSheet:45,suggestedJibSheet:40,
     mainEfficiency:0,jibEfficiency:0,mainFlow:'Ready',jibFlow:'Ready',vmg:0,turnRate:0};
 }
-export function depthAt(x,z) {
-  let depth = 35;
-  for (const island of islands) depth = Math.min(depth, (islandRatio(x,z,island) - 1) * 24);
-  return clamp(depth, 0, 35);
+export function depthAt(x,z,locationId = DEFAULT_LOCATION_ID) {
+  const location=getLocation(locationId);
+  let depth=location.maxDepth;
+  for(const island of location.islands)depth=Math.min(depth,(islandRatio(x,z,island)-1)*location.shoreDepthScale);
+  return clamp(depth,0,location.maxDepth);
 }
 // Bearings describe where wind comes FROM; velocity vectors describe motion TO.
 export function apparentWind(s) {
@@ -92,7 +91,7 @@ function sailTelemetry(s,{aw,main,jib}) {
 export function refreshDerived(s) {
   reconcile(s);
   sailTelemetry(s,sailDynamics(s));
-  if(!s.grounded)s.depth=depthAt(s.x,s.z);
+  if(!s.grounded)s.depth=depthAt(s.x,s.z,s.locationId);
   const h=s.heading*RAD,c=(s.currentDirection||0)*RAD,u=s.speed*KNOT,v=s.leeway||0;
   const vx=Math.sin(h)*u+Math.cos(h)*v+Math.sin(c)*(s.currentSpeed||0)*KNOT;
   const vz=-Math.cos(h)*u+Math.sin(h)*v-Math.cos(c)*(s.currentSpeed||0)*KNOT;
@@ -141,7 +140,7 @@ function integrate(s,dt) {
   let nx=s.x+vx*dt,nz=s.z+vz*dt;
   s.anchorDragging=false;
   if(s.anchor){
-    if(!s._anchor){s._anchor={x:s.x,z:s.z,depth:depthAt(s.x,s.z)};}
+    if(!s._anchor){s._anchor={x:s.x,z:s.z,depth:depthAt(s.x,s.z,s.locationId)};}
     const vertical=s._anchor.depth+VESSEL.bowHeight;
     s.anchorScope=s.anchorRode/vertical;
     if(s.anchorRode<vertical){s.anchorStatus='Rode too short';s.anchorTension=0;}
@@ -163,7 +162,7 @@ function integrate(s,dt) {
       }
     }
   }else{s._anchor=null;s.anchorStatus='Stowed';s.anchorScope=0;s.anchorTension=0;}
-  s.depth=depthAt(nx,nz);s.grounded=s.depth<VESSEL.draft;
+  s.depth=depthAt(nx,nz,s.locationId);s.grounded=s.depth<VESSEL.draft;
   if(!s.grounded){s.distance+=Math.hypot(nx-s.x,nz-s.z);s.x=nx;s.z=nz;s.speed=nextU/KNOT;}
   else{s.speed=0;s.leeway=0;s.yawRate=0;vx=0;vz=0;}
   s.speedOverGround=Math.hypot(vx,vz)/KNOT;

@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "languages": [
+    "ar",
+    "ru"
+  ],
+  "errors": [],
+  "checkedAt": "2026-10-01T01:16:41.358Z",
+  "features": [
+    "100–200% text scaling",
+    "localized labels",
+    "desktop/mobile overflow",
+    "font persistence"
+  ]
+}

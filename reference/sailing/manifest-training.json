@@ -1,0 +1,274 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Original research summaries for curriculum design; no accreditation or copied manuals.",
+  "sources": [
+    {
+      "id": "rya-competent-crew",
+      "title": "Competent Crew Practical",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/competent-crew-practical-course/",
+      "retrievedAt": "2026-10-01T00:44:12.058490+00:00",
+      "localFile": "reference/sailing/standards/rya-competent-crew.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "crew",
+        "safety",
+        "sail handling"
+      ],
+      "level": "Basic",
+      "sourceSha256": "de31b48a603ef658ebea158d89ce65e3e545e981a932a198f965a2419ec93b37",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "rya-day-skipper",
+      "title": "Day Skipper Practical Sailing",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/day-skipper-practical-sailing/",
+      "retrievedAt": "2026-10-01T00:44:12.088890+00:00",
+      "localFile": "reference/sailing/standards/rya-day-skipper.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "day skippering",
+        "pilotage",
+        "auxiliary power"
+      ],
+      "level": "Intermediate",
+      "sourceSha256": "23c791c165fc75e52b0b26edd23593bfcc0a1a4e3fae94644dc24f624a8b2ee6",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "rya-coastal-skipper",
+      "title": "Coastal Skipper Practical Sailing",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/coastal-skipper-practical-sailing-course/",
+      "retrievedAt": "2026-10-01T00:44:12.109271+00:00",
+      "localFile": "reference/sailing/standards/rya-coastal-skipper.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "coastal passage",
+        "night",
+        "adverse weather"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "10f9351753160c4e48300e8fa3c7a35e97c2587e10fe1e7a17f3357923aeba95",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "rya-yachtmaster-offshore",
+      "title": "Yachtmaster Offshore Exam",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/training/certificates-of-competence/yachtmaster-offshore-exam/",
+      "retrievedAt": "2026-10-01T00:44:12.097179+00:00",
+      "localFile": "reference/sailing/standards/rya-yachtmaster-offshore.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "competence examination",
+        "experience",
+        "navigation"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "228b206fcf14b98bedebde439db417337301f5fc684369a37525bcd6826ebe0e",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "rya-day-theory",
+      "title": "Day Skipper Theory",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/day-skipper-theory-course/",
+      "retrievedAt": "2026-10-01T00:47:01.595200+00:00",
+      "localFile": "reference/sailing/standards/rya-day-theory.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "chartwork",
+        "tides",
+        "weather",
+        "collision regulations"
+      ],
+      "level": "Intermediate",
+      "sourceSha256": "3301f6d18f4cad27a4012999774b5ce9005779fda19af0da5e0e8352ddc7b2bd",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "rya-coastal-theory",
+      "title": "Coastal Skipper/Yachtmaster Offshore Theory",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/course-finder/coastal-skipperyachtmaster-offshore-theory-course/",
+      "retrievedAt": "2026-10-01T00:47:01.461328+00:00",
+      "localFile": "reference/sailing/standards/rya-coastal-theory.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "position fixing",
+        "tidal planning",
+        "meteorology"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "176ce8080207211dc5f3716bf0ecbaea5550ae8ac872b66ae6f3071b2e97c24a",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "us-basic-keelboat",
+      "title": "Basic Keelboat Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/basic-keelboat/",
+      "retrievedAt": "2026-10-01T00:44:54.144159+00:00",
+      "localFile": "reference/sailing/standards/us-basic-keelboat.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "keelboat",
+        "crew",
+        "handling",
+        "rules"
+      ],
+      "level": "Basic",
+      "sourceSha256": "9fd116d6c70c9b4f5122041f48a84b3e02c610722202d45867cd40f6cf9b1a2c",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "us-basic-cruising",
+      "title": "Basic Cruising Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/basic-cruising/",
+      "retrievedAt": "2026-10-01T00:44:54.231648+00:00",
+      "localFile": "reference/sailing/standards/us-basic-cruising.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "auxiliary cruiser",
+        "systems",
+        "docking",
+        "navigation"
+      ],
+      "level": "Intermediate",
+      "sourceSha256": "f74e4f9056da3aa7e470da4466e595c091434a6f89b7a16e22f9a9d59ba538dd",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "us-bareboat",
+      "title": "Bareboat Cruising Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/bareboat-cruising/",
+      "retrievedAt": "2026-10-01T00:44:54.084887+00:00",
+      "localFile": "reference/sailing/standards/us-bareboat.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "cruising",
+        "passage planning",
+        "systems",
+        "tides"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "a2ed14630b8ad5102ee003e361fa754a02a14fd1b2d06186b3995901a4981254",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "us-coastal-navigation",
+      "title": "Coastal Navigation Certification Standards",
+      "org": "US Sailing",
+      "url": "https://www.ussailing.org/education/adult/certification-courses-endorsements/coastal-navigation/",
+      "retrievedAt": "2026-10-01T00:44:54.210968+00:00",
+      "localFile": "reference/sailing/standards/us-coastal-navigation.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "chartwork",
+        "current vectors",
+        "fixes",
+        "electronic limitations"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "c234038335722f9badc77bc4d327df249d62141fa7cecb452f0b015fb9c19a98",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "world-offshore",
+      "title": "Offshore Special Regulations",
+      "org": "World Sailing",
+      "url": "https://www.sailing.org/inside-world-sailing/activities-services/technical-offshore/offshore-special-regulations/",
+      "retrievedAt": "2026-10-01T00:43:20.237154+00:00",
+      "localFile": "reference/sailing/standards/world-offshore.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "offshore racing",
+        "equipment",
+        "safety training"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "2336a7400438b99c089da00c6b6cb6c8404ebf38dc6f4b4912e592dfd1fe2495",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "world-survival",
+      "title": "Offshore Personal Survival",
+      "org": "World Sailing",
+      "url": "https://www.sailing.org/inside-world-sailing/activities-services/technical-offshore/technical-services/technical-and-offshore-safety/offshore-safety/offshore-personal-survival/",
+      "retrievedAt": "2026-10-01T00:47:01.730971+00:00",
+      "localFile": "reference/sailing/standards/world-survival.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "survival",
+        "hands-on training",
+        "offshore racing"
+      ],
+      "level": "Advanced",
+      "sourceSha256": "aa0030d43d556d62771b30d8f156b026e758fcc7073d346faa6bb41ed95e02c4",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "rya-icc",
+      "title": "UK International Certificate for Operators of Pleasure Craft",
+      "org": "RYA",
+      "url": "https://www.rya.org.uk/our-services/icc/",
+      "retrievedAt": "2026-10-01T00:47:29.216895+00:00",
+      "localFile": "reference/sailing/standards/rya-icc.md",
+      "status": "verified-public-page",
+      "httpStatus": 200,
+      "topics": [
+        "ICC",
+        "Resolution 40",
+        "jurisdiction",
+        "competence categories"
+      ],
+      "level": "All",
+      "sourceSha256": "52027f105a9827a67abdde1026fdbce9deaab2d87aa69559bfac24101d532644",
+      "contentPolicy": "original-summary-only"
+    },
+    {
+      "id": "asa-access",
+      "title": "American Sailing standards: access investigation",
+      "org": "American Sailing",
+      "url": "https://americansailing.com/certifications/asa-101-basic-keelboat-sailing/",
+      "retrievedAt": "2026-10-01T00:48:34.709352+00:00",
+      "localFile": "reference/sailing/standards/asa-access.md",
+      "status": "unavailable-not-used-as-evidence",
+      "httpStatus": null,
+      "topics": [
+        "access provenance"
+      ],
+      "level": "Reference only"
+    },
+    {
+      "id": "unece-access",
+      "title": "Resolution No. 40: direct-source access investigation",
+      "org": "UNECE",
+      "url": "https://unece.org/transport/inland-water-transport/international-certificates-operator-pleasure-craft",
+      "retrievedAt": "2026-10-01T00:48:34.710548+00:00",
+      "localFile": "reference/sailing/standards/unece-access.md",
+      "status": "unavailable-not-used-as-evidence",
+      "httpStatus": 403,
+      "topics": [
+        "access provenance"
+      ],
+      "level": "Reference only"
+    }
+  ]
+}

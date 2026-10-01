@@ -3,7 +3,10 @@ import assert from 'node:assert/strict';
 import {readFileSync} from 'node:fs';
 import {lessons,modules} from '../src/learning/curriculum.js';
 import {validateCourseLocale} from '../src/i18n/validation.js';
+import {learningUI} from '../src/i18n/learning-tools.js';
 import {extraUI} from '../src/i18n/supplemental.js';
+import {MANEUVER_TEXT} from '../src/learning/maneuvers.js';
+import {LAB_UI_STRINGS} from '../src/learning/maneuver-labels.js';
 const read=path=>JSON.parse(readFileSync(new URL('../'+path,import.meta.url),'utf8'));
 const english=read('public/locales/en.json'),ui=read('src/i18n/en-ui.json');
 const languages=['en','es','ar','he','ru','fr'];
@@ -17,4 +20,7 @@ test('missing translation of a practice hint or reordered answer length is rejec
 test('supplemental status, accessibility, and fallback strings preserve language coverage',()=>{
  for(const code of languages){assert.deepEqual(Object.keys(extraUI[code]).sort(),Object.keys(extraUI.en).sort());for(const [key,value] of Object.entries(extraUI[code])){assert.equal(typeof value,'string',`${code}: ${key}`);assert.ok(value.trim());assert.deepEqual(placeholders(value),placeholders(key),`${code}: ${key}`);}}
 });
+test('maneuvering and text-size controls are complete in all six languages',()=>{const source=read('src/i18n/en-maneuvers.json'),required=[...new Set([...LAB_UI_STRINGS,...MANEUVER_TEXT])].sort();assert.deepEqual(Object.keys(source).sort(),required);for(const code of languages){const pack=read(`src/i18n/${code}-maneuvers.json`);assert.deepEqual(Object.keys(pack).sort(),required);for(const key of required){assert.equal(typeof pack[key],'string');assert.ok(pack[key].trim());assert.deepEqual(placeholders(pack[key]),placeholders(key));if(code!=='en'&&key.length>65)assert.notEqual(pack[key],key);}}});
 test('localized payload cannot replace the numerical assessment specification',()=>{for(const code of languages){const pack=read(`public/locales/${code}.json`);for(const l of lessons){const translated=pack.lessons[l.id];assert.equal('prerequisite' in translated,false);for(const q of translated.quiz)assert.equal('correct' in q,false);for(const s of translated.practice?.steps||[]){for(const key of ['kind','value','duration'])assert.equal(key in s,false,`${code}/${l.id}/${key}`);}}}});
+
+test('reader, locations and learning library labels cover six languages with intact placeholders',()=>{for(const code of languages){assert.deepEqual(Object.keys(learningUI[code]).sort(),Object.keys(learningUI.en).sort());for(const [key,value] of Object.entries(learningUI[code])){assert.ok(value?.trim(),`${code}: ${key}`);assert.deepEqual(placeholders(value),placeholders(key));if(code!=='en'&&key.length>65)assert.notEqual(value,key);}}});
