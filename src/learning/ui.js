@@ -8,11 +8,12 @@ import {decisionDebriefReason,decisionEvidenceMarkup} from './decision-debrief.j
 import {createDecisionTraining} from './decision-ui.js';
 import {translate as t,translatedScenario} from '../i18n/runtime.js';
 import {createLessonReader} from './reader.js';
+import {practiceRequirementsMarkup,updatePracticeRequirements} from './practice-requirements.js';
 import {createPracticeBriefing} from './practice-briefing.js';
 import {levelFor,COURSE_LEVELS} from './levels.js';
 const $=s=>document.querySelector(s);
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-export function createLearning({getState,resetScenario,openModal,toast,onSelect,getMode,openManeuvers,openGuide,openFigure,onTrainingEnd=()=>{},onPause=()=>{},onResume=()=>{},getPaused=()=>true}){
+export function createLearning({getState,resetScenario,openModal,toast,onSelect,getMode,openManeuvers,openGuide,openFigure,onTrainingEnd=()=>{},onPause=()=>{},onResume=()=>{},getPaused=()=>true,onTrainingStart=()=>{}}){
  let progress;try{progress=restoreProgress(localStorage.getItem(STORAGE_KEY));}catch{progress=restoreProgress(null);}
  let selected=lessons.findIndex(l=>l.id===progress.selected),attempt=null,prepared=false,lastStatus='',lastCheckpoint=-1,saveErrorShown=false;
  const current=()=>lessons[selected];
@@ -24,6 +25,12 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
   document.querySelectorAll('[data-course-lesson]').forEach(b=>b.onclick=()=>select(+b.dataset.courseLesson));
  }
  function select(index){reader.close();decision.close();cancel('Lesson changed. Restart practice when you return.');selected=Math.max(0,Math.min(lessons.length-1,index));attempt=null;save();onSelect(selected);renderLibrary();renderCard();}
+ function placeCard(){
+  const card=$('.lesson-card'),sidebar=getMode()==='learn'&&attempt?.status==='active'&&window.matchMedia('(min-width: 901px)').matches;
+  card.classList.toggle('mission-sidebar',sidebar);
+  const parent=sidebar?$('.sidebar'):$('.simulator');if(card.parentElement!==parent){if(sidebar)parent.prepend(card);else parent.insertBefore(card,$('.scene-footer'));}
+ }
+ window.addEventListener('resize',placeCard);
  function renderCard(){
   const l=current(),r=recordFor(progress,l.id),mastered=completed().has(l.id),active=attempt?.status==='active';
   $('#card-eyebrow').textContent=`${modules.find(m=>m.id===l.module).title.toUpperCase()} · ${l.minutes} MIN`;
@@ -33,14 +40,14 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
   $('#objective-text').textContent=attempt?.status==='invalid'?attempt.message:attempt?.status==='passed'?'Training evidence saved.':active?l.practice.steps[attempt.index].label:!lessonReady(progress,l)?'Preview and practice freely. Earlier lessons must be mastered for course credit.':(l.practice?r.practice:r.decision)?'Training evidence saved.':'Start training to perform assessed tasks. Study material is available separately.';
   let panel=$('#training-actions');if(!panel){panel=document.createElement('div');panel.id='training-actions';$('.lesson-copy').append(panel);}panel.hidden=getMode()!=='learn';
   const scored=attempt?practiceAssessment(attempt,l):null,previous=scored?.status!=='active'?scored:null;
-  panel.innerHTML=`${active?'<div class="practice-session-label" id="practice-session-label" role="status"></div>':''}<div class="training-actions">${active?'<button id="practice-toggle" class="training-button primary"></button><button id="practice-end" class="training-button end-practice">End simulation</button>':'<button id="practice-start" class="training-button primary">▶ Start training</button>'}<button id="lesson-briefing" class="training-button">Study material</button><button id="course-library" class="training-button">Course</button></div><div class="training-status-line"><span>${active?`<span id="practice-goal-count" data-no-translate>${esc(t('Goals completed'))}: <bdi dir="ltr" id="practice-goal-count-value"></bdi></span>`:l.practice?'Live boat handling':'Interactive seamanship'}</span>${active?`<strong id="practice-live-score" class="practice-score" data-no-translate>${esc(t('Live score'))}: <bdi id="practice-score-value" dir="ltr"></bdi></strong>`:''}</div>${active?`<div class="checkpoint-progress"><div id="checkpoint-fill"></div></div><div class="checkpoint-meta"><span id="checkpoint-status"></span><button id="practice-hint">Show hint</button></div><div id="practice-ground-speed" class="checkpoint-meta practice-ground-speed" data-no-translate hidden><span>${esc(t('Ground speed'))}: <bdi id="practice-ground-speed-value" dir="ltr">—</bdi></span><span id="practice-ground-speed-limit">${esc(t('Speed limit'))}: <bdi id="practice-ground-speed-threshold" dir="ltr"></bdi></span></div><div id="practice-anchor-rode" class="checkpoint-meta practice-anchor-rode" data-no-translate hidden><span>${esc(t('Rode paid out'))}: <bdi id="practice-anchor-rode-value" dir="ltr">—</bdi></span><span id="practice-anchor-operation-goal"></span></div><p id="practice-tip" hidden></p>`:''}<div class="training-actions"><button id="training-goals" class="training-button">${active?'Show briefing':'Training goals'}</button>${previous||r.lastPracticeResult||r.lastDecisionResult?'<button id="practice-debrief" class="training-button">View debrief</button>':''}</div>`;
+  panel.innerHTML=`${active?'<div class="practice-session-label" id="practice-session-label" role="status"></div>':''}<div class="training-actions">${active?'<button id="practice-toggle" class="training-button primary"></button><button id="practice-end" class="training-button end-practice">End simulation</button>':'<button id="practice-start" class="training-button primary">▶ Start training</button>'}<button id="lesson-briefing" class="training-button">Study material</button><button id="course-library" class="training-button">Course</button></div><div class="training-status-line"><span>${active?`<span id="practice-goal-count" data-no-translate>${esc(t('Goals completed'))}: <bdi dir="ltr" id="practice-goal-count-value"></bdi></span>`:l.practice?'Live boat handling':'Interactive seamanship'}</span>${active?`<strong id="practice-live-score" class="practice-score" data-no-translate>${esc(t('Live score'))}: <bdi id="practice-score-value" dir="ltr"></bdi></strong>`:''}</div>${active?`${practiceRequirementsMarkup()}<div class="checkpoint-progress"><div id="checkpoint-fill"></div></div><div class="checkpoint-meta"><span id="checkpoint-status"></span><button id="practice-hint">Show hint</button></div><div id="practice-ground-speed" class="checkpoint-meta practice-ground-speed" data-no-translate hidden><span>${esc(t('Ground speed'))}: <bdi id="practice-ground-speed-value" dir="ltr">—</bdi></span><span id="practice-ground-speed-limit">${esc(t('Speed limit'))}: <bdi id="practice-ground-speed-threshold" dir="ltr"></bdi></span></div><div id="practice-anchor-rode" class="checkpoint-meta practice-anchor-rode" data-no-translate hidden><span>${esc(t('Rode paid out'))}: <bdi id="practice-anchor-rode-value" dir="ltr">—</bdi></span><span id="practice-anchor-operation-goal"></span></div><p id="practice-tip" hidden></p>`:''}<div class="training-actions"><button id="training-goals" class="training-button">${active?'Show briefing':'Training goals'}</button>${!active&&(previous||r.lastPracticeResult||r.lastDecisionResult)?'<button id="practice-debrief" class="training-button">View debrief</button>':''}</div>`;
   $('#lesson-briefing').onclick=briefing;$('#course-library').onclick=libraryModal;if($('#practice-start'))$('#practice-start').onclick=start;
   if($('#practice-toggle'))$('#practice-toggle').onclick=()=>{getPaused()?onResume():onPause();tickPanel();};
   if($('#practice-end'))$('#practice-end').onclick=endPractice;$('#training-goals').onclick=goalsModal;
   if($('#practice-debrief'))$('#practice-debrief').onclick=()=>reportModal(previous||r.lastPracticeResult||r.lastDecisionResult);
   if($('#practice-hint'))$('#practice-hint').onclick=()=>{useHint(attempt,progress);$('#practice-tip').hidden=false;$('#practice-tip').textContent=coachingTip(l,attempt,getState());save();};
   $('#next-lesson').hidden=selected===lessons.length-1;$('#next-lesson').setAttribute('aria-label','Browse next lesson (does not award credit)');
-  tickPanel();
+  placeCard();tickPanel();
  }
  // Preparing a lesson loads its boat, but does not create or time an attempt.
  function start(){
@@ -53,7 +60,7 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
   if(!l.practice){const scenario=decisionScenarios.find(s=>s.lessonId===l.id);if(scenario)decision.open(scenario);return;}
   // Restore authored setup even if controls changed after dismissing the briefing.
   resetScenario(l.practice.setup);attempt=beginAttempt(l,getState(),progress);lastStatus=attempt.status;lastCheckpoint=0;save();renderCard();
-  if(attempt.status==='active'){onResume();toast(t('Simulation started. Follow the current goal; your actions are now being scored.'));}
+  if(attempt.status==='active'){onTrainingStart();onResume();toast(t('Simulation started. Follow the current goal; your actions are now being scored.'));}
   else{onTrainingEnd();reportModal(practiceAssessment(attempt,l));}
  }
  function endPractice(){
@@ -97,16 +104,17 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
   reader.close();decision.close();const mastered=completed();openModal(`<div class="eyebrow">YOUR LEARNING LOG</div><h2>${mastered.size} of ${lessons.length} lessons mastered.</h2><p>Saved in this browser. Attempts and hints help identify useful review. Hints do not reduce your score. An interrupted practice must restart.</p><button id="export-record" class="training-button primary">Export course record</button><div class="record-table"><table><thead><tr><th>Lesson</th><th>Evidence</th><th>Attempts / hints</th></tr></thead><tbody>${lessons.map(l=>{const r=recordFor(progress,l.id);return `<tr><td><button data-review="${lessons.indexOf(l)}">${esc(l.title)}</button></td><td>${mastered.has(l.id)?'Mastered':r.knowledge||r.practice||r.decision?'In progress':'Not started'}<small>${r.knowledge?'✓ Quiz':'○ Quiz'} · ${l.practice?(r.practice?'✓':'○'):(r.decision?'✓':'○')} ${l.practice?'Live boat handling':'Interactive seamanship'}${r.lastPracticeResult||r.lastDecisionResult?` · <button data-saved-report="${lessons.indexOf(l)}">${(r.lastPracticeResult||r.lastDecisionResult).score}/100 ↗</button>`:''}</small></td><td>${r.attempts+(r.decisionAttempts||0)} / ${r.hints}${r.wrongAnswers?`<small>${r.wrongAnswers} revised answers</small>`:''}</td></tr>`;}).join('')}</tbody></table></div><p class="training-notice">This is a self-study record, not a certificate of sailing competence.</p>`);
   document.querySelectorAll('[data-saved-report]').forEach(button=>button.onclick=()=>{select(Number(button.dataset.savedReport));const r=recordFor(progress,current().id);reportModal(r.lastPracticeResult||r.lastDecisionResult);});document.querySelectorAll('[data-review]').forEach(b=>b.onclick=()=>{select(+b.dataset.review);briefing();});$('#export-record').onclick=()=>{const blob=new Blob([JSON.stringify({exportedAt:new Date().toISOString(),notice:'Self-study record; not a sailing qualification',...progress},null,2)],{type:'application/json'}),url=URL.createObjectURL(blob),link=document.createElement('a');link.href=url;link.download='sail-learning-record.json';link.click();setTimeout(()=>URL.revokeObjectURL(url),1000);};
  }
- function cancel(reason){practiceBriefing.close();prepared=false;decision.close();onPause();if(attempt?.status==='active'){invalidateAttempt(attempt,progress,reason);save();}if($('#training-actions'))$('#training-actions').hidden=getMode()!=='learn';}
+ function cancel(reason){practiceBriefing.close();prepared=false;decision.close();onPause();if(attempt?.status==='active'){invalidateAttempt(attempt,progress,reason);save();}placeCard();if($('#training-actions'))$('#training-actions').hidden=getMode()!=='learn';}
  function event(type,value){recordEvent(attempt,type,value);}
  function tickPanel(){
   if(attempt?.status!=='active'||!$('#checkpoint-status'))return;
   const s=current().practice.steps[attempt.index],state=getState();
+  updatePracticeRequirements($('#practice-requirements'),s,state,attempt,getPaused());
   $('#practice-session-label').textContent=t(getPaused()?'Simulation paused':'Simulation running');
   $('#practice-toggle').textContent=t(getPaused()?'Resume simulation':'Pause simulation');
   $('#practice-goal-count-value').textContent=`${attempt.index} / ${current().practice.steps.length}`;
   if($('#practice-score-value'))$('#practice-score-value').textContent=`${practiceAssessment(attempt,current()).score} / 100`;
-  $('#checkpoint-status').textContent=`Step ${attempt.index+1}/${current().practice.steps.length}${s.duration?` · ${attempt.held.toFixed(1)} / ${s.duration}s`:''}`;
+  $('#checkpoint-status').setAttribute('data-no-translate','');$('#checkpoint-status').innerHTML=s.duration?`${esc(t('Continuous hold'))}: <bdi dir="ltr">${attempt.held.toFixed(1)} / ${s.duration} s</bdi>`:esc(t('Step {step}/{total}').replace('{step}',attempt.index+1).replace('{total}',current().practice.steps.length));
   $('#checkpoint-fill').style.width=`${s.duration?Math.min(100,attempt.held/s.duration*100):0}%`;
   const groundRow=$('#practice-ground-speed');
   if(groundRow){
@@ -131,7 +139,7 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
   if($('#practice-tip')&&!$('#practice-tip').hidden)$('#practice-tip').textContent=coachingTip(current(),attempt,state);
  }
  function tick(dt){if(getMode()!=='learn'||attempt?.status!=='active')return;advanceAttempt(attempt,current(),getState(),dt,progress);if(lastStatus!==attempt.status||lastCheckpoint!==attempt.index){lastStatus=attempt.status;lastCheckpoint=attempt.index;save();renderLibrary();renderCard();if(attempt.status==='passed'){onTrainingEnd();toast(`${t('Training passed')} · ${practiceAssessment(attempt,current()).score} / 100`);reportModal(practiceAssessment(attempt,current()));}else if(attempt.status==='invalid'){onTrainingEnd();toast(attempt.message);reportModal(practiceAssessment(attempt,current()));}else toast(`Checkpoint complete. ${current().practice.steps[attempt.index].label}`);}tickPanel();}
- function refresh(){renderLibrary();if(getMode()==='learn')renderCard();else if($('#training-actions'))$('#training-actions').hidden=true;}
+ function refresh(){placeCard();renderLibrary();if(getMode()==='learn')renderCard();else if($('#training-actions'))$('#training-actions').hidden=true;}
  function resumeOrStart(){if(decision.active){reader.close();decision.resume();}else if(attempt?.status==='active'){reader.close();practiceBriefing.close();onResume();tickPanel();}else if(prepared){reader.close();showPracticeBriefing();}else start();}
  return {start,resumeOrStart,updateStatus:tickPanel,get briefingOpen(){return practiceBriefing.isOpen;},get prepared(){return prepared;},get practiceStatus(){return attempt?.status||'ready';},get decisionActive(){return decision.active;},get practiceActive(){return attempt?.status==='active';},get training(){return decision.isOpen;},tickDecision:decision.tick,closeTraining:decision.close,get reading(){return reader.isOpen;},closeReader:reader.close,get selected(){return selected;},get active(){return attempt?.status==='active'||decision.active;},current,select,refresh,briefing,libraryModal,tick,event,cancel};
 }

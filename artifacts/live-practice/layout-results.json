@@ -1,0 +1,10 @@
+{
+  "passed": true,
+  "language": "he",
+  "mobileTextSize": 200,
+  "taskOutsideDesktopScene": true,
+  "chartAssessment": true,
+  "reset": true,
+  "modeSwitch": true,
+  "errors": []
+}

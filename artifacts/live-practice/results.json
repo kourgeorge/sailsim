@@ -1,0 +1,103 @@
+{
+  "passed": true,
+  "report": {
+    "version": 1,
+    "windlassAssessmentVersion": 1,
+    "lessonId": "sail-09",
+    "status": "passed",
+    "score": 100,
+    "maxScore": 100,
+    "completionScore": 100,
+    "penalties": [],
+    "rubric": {
+      "passScore": 80,
+      "maxScore": 100,
+      "failedScoreCap": 79,
+      "holdLossThresholdSeconds": 1,
+      "holdLossPenalty": 2,
+      "holdLossPenaltyCap": 20,
+      "hintsAffectScore": false,
+      "criticalConditions": [
+        "grounding",
+        "conditions-changed",
+        "early-anchor",
+        "engine-engaged",
+        "collision"
+      ]
+    },
+    "assisted": false,
+    "criticalFailure": null,
+    "objectives": [
+      {
+        "id": "sail-09-objective-1",
+        "index": 0,
+        "label": "שמרו על רוח צד מעל 2 קשרים במשך 8 שניות",
+        "kind": "windAngle",
+        "target": [
+          80,
+          105
+        ],
+        "requiredSeconds": 8,
+        "minimumRode": null,
+        "requiresStoppedWindlass": false,
+        "weight": 100,
+        "status": "complete",
+        "heldSeconds": 8,
+        "bestHoldSeconds": 8,
+        "holdBreaks": 0,
+        "completedAt": 23.45,
+        "evidence": {
+          "heading": 47.11569104937706,
+          "speed": 3.573467125453753,
+          "leeway": 0.2124922949082069,
+          "depth": 35,
+          "x": 37.54877051663165,
+          "z": -11.40252496518881,
+          "rudder": 1,
+          "mainSheet": 40,
+          "jibSheet": 28,
+          "mainHoist": 1,
+          "jibHoist": 1,
+          "reefLevel": 0,
+          "throttle": 0,
+          "anchorScope": 0,
+          "anchorPaidRode": 0,
+          "anchorRode": 180,
+          "windDirection": 315,
+          "windSpeed": 12,
+          "currentDirection": 0,
+          "currentSpeed": 0,
+          "speedOverGround": 3.5972599617654497,
+          "anchor": false,
+          "grounded": false,
+          "anchorWinchRunning": false,
+          "anchorSeabedContact": false,
+          "anchorDragging": false,
+          "collisionCount": 0,
+          "contactActive": false,
+          "collision": null,
+          "mainFlow": "Drawing",
+          "observedEvents": [
+            "camera:instruments",
+            "camera:helm"
+          ],
+          "crossing": null
+        }
+      }
+    ],
+    "elapsed": 23.45,
+    "hints": 0,
+    "attemptNumber": 1,
+    "debrief": {
+      "passedObjectives": 1,
+      "totalObjectives": 1,
+      "nextObjectiveId": null,
+      "reason": null,
+      "practiceTransfer": "תרגלו זאת עם מדריך מוסמך על יאכטה אמיתית. הסימולטור אינו משחזר תיאום בין אנשי צוות, עומסים או את כל התנהגות כלי השיט.",
+      "summary": "בחרתם כיוון לפי היחס לרוח, ולא לפי המצפן בלבד."
+    }
+  },
+  "stationaryPausedPixels": true,
+  "hiddenDuplicateInstruments": true,
+  "errors": []
+}

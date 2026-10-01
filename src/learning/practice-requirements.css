@@ -1,0 +1,43 @@
+#practice-requirements{margin:10px 0;color:#254e50}
+#practice-requirements table{border-collapse:collapse;width:100%;font-size:calc(10px * var(--text-scale,1));line-height:1.4}
+#practice-requirements th,#practice-requirements td{padding:5px 4px;text-align:start;border-bottom:1px solid #c7d6ca}
+#practice-requirements th{font-weight:500}
+#practice-requirements thead th{color:#56736b;font-size:calc(9px * var(--text-scale,1))}
+#practice-requirements td{font-variant-numeric:tabular-nums;white-space:nowrap}
+#practice-requirements tr[data-met=false] th span{color:#906437}
+#practice-requirements tr[data-met=true] th span{color:#2d7b5c}
+.lesson-card #practice-requirements p{font-size:calc(10px * var(--text-scale,1));line-height:1.5;margin:7px 0 0;color:#526b61}
+.lesson-card #practice-requirements .requirement-guidance{font-weight:600;color:#285856}
+#practice-requirements[data-holding=true] .requirement-notice{color:#246643}
+/* In practice the mission occupies a corner, leaving the wheel and display free. */
+.simulator .lesson-card:has(#practice-requirements){inset-block-start:108px;inset-block-end:auto;width:min(350px,32%);max-height:calc(100% - var(--control-dock-height,151px) - 138px);padding:16px}
+.lesson-card:has(#practice-requirements) .lesson-card-icon,.lesson-card:has(#practice-requirements) #next-lesson{display:none}
+.lesson-card:has(#practice-requirements) #card-title{font-size:calc(13px * var(--text-scale,1))}
+.lesson-card:has(#practice-requirements) .objective{font-size:calc(11px * var(--text-scale,1))}
+.lesson-card:has(#practice-requirements) .lesson-copy{max-width:none;width:100%}
+/* Instruments live on the pedestal. These old DOM readouts remain available to
+   the app while the real display and its close-up view are the visible UI. */
+.right-instruments,.control-dock .speed-display,.control-dock .heading-display{display:none!important}
+html[data-text-size] .control-dock{grid-template-columns:repeat(auto-fit,minmax(min(100%,165px),1fr))}
+.simulator[data-view=instruments] .scene-title{display:none}
+.simulator[data-view=instruments] .lesson-card:has(#practice-requirements){width:min(320px,29%)}
+@media(max-width:900px){.simulator .lesson-card:has(#practice-requirements){width:290px;max-width:48%}}
+@media(max-width:650px){.simulator .lesson-card:has(#practice-requirements),.simulator[data-view=instruments] .lesson-card:has(#practice-requirements){inset-block-start:auto;inset-block-end:calc(var(--control-dock-height,270px) + 30px);width:calc(100% - 30px);max-width:none;max-height:230px!important}.view-controls{flex-wrap:wrap}.view-controls button{min-height:32px}}
+.lesson-card:has(#practice-requirements) #course-library{display:none}
+/* While sailing, the course rail becomes the mission rail. The actual display
+   and forward lookout stay unobstructed, including its Instruments close-up. */
+@media(min-width:901px){
+ .workspace:has(.mission-sidebar){grid-template-columns:320px minmax(0,1fr)}
+ .sidebar:has(.mission-sidebar){padding:0;background:#edf0e6;overflow:auto}
+ .sidebar:has(.mission-sidebar)>:not(.mission-sidebar){display:none!important}
+ .sidebar .lesson-card.mission-sidebar{position:static;display:block;width:100%;max-width:none;max-height:none;overflow:visible;margin:0;padding:24px 18px;border:0;border-radius:0;background:transparent;box-shadow:none;transform:none;opacity:1;pointer-events:auto}
+ .sidebar .mission-sidebar .lesson-copy{width:100%;max-width:none}
+ .sidebar .mission-sidebar #card-title{margin-top:0}
+ .sidebar .mission-sidebar .objective{font-size:calc(12px * var(--text-scale,1))}
+ .sidebar .mission-sidebar .training-actions{gap:8px;margin-top:12px}
+}
+@media(max-width:900px){
+ /* The close-up is a deliberate instrument inspection. Its same view button
+    returns to Your task; no mission panel covers the small display. */
+ .simulator[data-view=instruments] .lesson-card:has(#practice-requirements){display:none}
+}

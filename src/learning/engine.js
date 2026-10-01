@@ -1,5 +1,6 @@
 import { lessons } from './curriculum.js';
-import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence, practiceGroundSpeed, practiceWindlassComplete, practiceStopThreshold, WINDLASS_ASSESSMENT_VERSION } from './practice-assessment.js';
+import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence, WINDLASS_ASSESSMENT_VERSION } from './practice-assessment.js';
+import {practiceConditions} from './practice-conditions.js';
 import { restoreDecisionResult } from './decision-evidence.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
@@ -58,24 +59,7 @@ export function invalidateAttempt(attempt,progress,reason,code='interrupted',col
 export function recordEvent(attempt,type,value){if(attempt?.status==='active')attempt.events.add(`${type}:${value}`);}
 export function useHint(attempt,progress){if(attempt?.status==='active'){attempt.hints++;recordFor(progress,attempt.lessonId).hints++;}}
 function satisfied(check,state,attempt){
- const twa=Math.abs(angle(state.heading,state.windDirection));const speed=Math.abs(state.speed);
- const sails=state.mainHoist!==undefined?(state.mainHoist+state.jibHoist)/2:state.sails;
- switch(check.kind){
- case 'camera':return attempt.events.has(`camera:${check.value}`);
- case 'event':return attempt.events.has(`event:${check.value}`);
- case 'sails':return check.value===0?sails<.01:sails>.95;
- case 'speedAbove':return speed>check.value&&!state.anchor&&sails>.1&&(state.throttle??0)===0;
- case 'heading':return Math.abs(angle(state.heading,check.value))<=5&&speed>2;
- case 'windAngle':return twa>=check.value[0]&&twa<=check.value[1]&&speed>2;
- case 'trim':return (state.mainHoist??state.sails)>.95&&state.mainFlow==='Drawing'&&Math.abs((state.mainSheet??state.trim)-(state.suggestedMainSheet??Math.max(5,Math.min(88,(twa-35)/1.6))))<=check.value&&speed>2;
- case 'tack':case 'gybe':return attempt.maneuver===check.kind&&Math.sign(angle(state.heading,state.windDirection))===attempt.maneuverSide&&speed>2&&(check.kind==='tack'?twa>=40&&twa<=100:twa>=105&&twa<=175);
- case 'recover':return twa>=40&&twa<=100&&speed>2;
- case 'reef':return (state.reefLevel>0||state.reef)&&(state.mainHoist??state.sails)>.95&&speed>1;
- case 'coast':return sails<.01&&!state.anchor&&practiceGroundSpeed(state)<practiceStopThreshold(check);
- case 'anchor':return practiceWindlassComplete(state,check)&&(!check.value||(practiceGroundSpeed(state)<practiceStopThreshold(check)&&sails<.01));
- case 'waypoint':return Math.hypot(state.x-check.value.x,state.z-check.value.z)<=check.value.radius&&state.depth>=3;
- default:return false;
- }
+ return practiceConditions(check,state,attempt).every(condition=>condition.met);
 }
 export function advanceAttempt(attempt,lesson,state,dt,progress){
  if(!attempt||attempt.status!=='active')return attempt;

@@ -6,6 +6,7 @@ import { getLocation } from '../locations.js';
 import { getWorldBodyDefinitions, getWorldRockDefinitions } from '../world/bodies.js';
 import { syncBodyTransform } from './body-motion.js';
 import { islandHeight,shoreScale } from './geography.js';
+import { installHullWaterExclusion } from './hull-geometry.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,seededRandom,batchStaticMeshes } from './materials.js';
 
 function normalTexture(){
@@ -50,6 +51,7 @@ export function createEnvironment(scene,renderer,mat,{software=false,locationId=
  water.rotation.x=-Math.PI/2;water.position.y=-.07;water.material.uniforms.size.value=2.3;
  // Replace the overly reflective default with water's physical normal-incidence Fresnel value.
  water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
+ const excludeHullWater=installHullWaterExclusion(water.material);
  scene.add(water);
  // Water keeps its reflection target in a closure and exposes no dispose method.
  // Capture that target through the renderer's public API on its first reflection.
@@ -129,7 +131,7 @@ export function createEnvironment(scene,renderer,mat,{software=false,locationId=
  const wake=new THREE.Mesh(new THREE.PlaneGeometry(12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false}));wake.rotation.x=-Math.PI/2;scene.add(wake);
  for(const child of [...scene.children]){if(child.isGroup && child!==birds){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
  batchStaticMeshes(scene,mergeGeometries,[water,wake]);
- return {water,update(state,time){
+ return {water,excludeHullWater,update(state,time){
   water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;clouds.material.uniforms.time.value=time;
   sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));

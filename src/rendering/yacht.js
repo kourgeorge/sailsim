@@ -2,27 +2,13 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,labelTexture,batchStaticMeshes } from './materials.js';
 import { angleDifference,clamp,VESSEL } from '../physics.js';
-import { shoreScale } from './geography.js';
-import { translate } from '../i18n/runtime.js';
-import { getLocation } from '../locations.js';
 import { rigVisualState, smoothBoomAngle } from './rig-state.js';
 import { createKeelGeometry } from './keel-geometry.js';
 import { anchorSnapshot } from '../anchor.js';
 import { createAnchorRig } from './anchor-rig.js';
+import { widthAt,hullGeometry } from './hull-geometry.js';
+import { createHelmDisplay } from './helm-display.js';
 
-function widthAt(z){
- const sections=[[-6.6,.015],[-6,.55],[-4.7,1.25],[-3,1.75],[-1,2.02],[1,2.06],[3,1.95],[5.25,1.62]];
- for(let i=1;i<sections.length;i++)if(z<=sections[i][0]){const a=sections[i-1],b=sections[i],t=(z-a[0])/(b[0]-a[0]);return THREE.MathUtils.lerp(a[1],b[1],t);}
- return 1.62;
-}
-function hullGeometry(){
- const pos=[],uv=[],index=[],rows=96,columns=40;
- for(let i=0;i<=rows;i++){const t=i/rows,z=-6.6+t*11.85,w=widthAt(z);for(let j=0;j<=columns;j++){
-  const a=j/columns*Math.PI,side=Math.cos(a),depth=Math.sin(a),sheer=.94+.17*Math.pow((z-1)/7,2);
-  pos.push(side*w*(1-.07*depth),sheer-depth*(1.53-.45*Math.pow(Math.abs(z)/6.6,3)),z);uv.push(t,j/columns);
-  if(i<rows&&j<columns){const n=i*(columns+1)+j;index.push(n,n+columns+2,n+columns+1,n,n+1,n+columns+2);}
- }}const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));g.setIndex(index);g.computeVertexNormals();return g;
-}
 function deckOutline(){const shape=new THREE.Shape();shape.moveTo(0,6.6);for(let z=-6.6;z<=5.25;z+=.12)shape.lineTo(widthAt(z),-z);shape.lineTo(1.62,-5.25);shape.lineTo(-1.62,-5.25);for(let z=5.25;z>=-6.6;z-=.12)shape.lineTo(-widthAt(z),-z);shape.closePath();return shape;}
 
 function makeSail(parent,mat,{height,foot,jib=false}){
@@ -55,78 +41,6 @@ function winch(parent,mat,x,y,z,color){
  for(let i=0;i<16;i++){const a=i/16*Math.PI*2;bar(parent,mat.aluminum,[x+Math.cos(a)*.137,y+.07,z+Math.sin(a)*.137],[x+Math.cos(a)*.137,y+.24,z+Math.sin(a)*.137],.006,4);}
 }
 function cleat(parent,mat,x,y,z){box(parent,mat.steel,x,y,z,.16,.035,.32);bar(parent,mat.steel,[x,y,z-.1],[x,y+.13,z-.1],.022);bar(parent,mat.steel,[x,y,z+.1],[x,y+.13,z+.1],.022);bar(parent,mat.steel,[x,y+.13,z-.23],[x,y+.13,z+.23],.025);}
-function instrument(parent,mat,x,y,z,width,height,title){
- const group=new THREE.Group();group.position.set(x,y,z);parent.add(group);
- box(group,mat.rubber,0,0,0,width+.09,height+.09,.095,.04);
- const tex=canvasTexture(512,384,()=>{});
- mesh(group,new THREE.PlaneGeometry(width,height),new THREE.MeshBasicMaterial({map:tex,toneMapped:false}),0,0,.054);
- for(let i=0;i<4;i++)cylinder(group,mat.rubber,-width/2+.09+i*width/4,-height/2-.025,.08,.019,.019,.015).rotation.x=Math.PI/2;
- let tick=-1;
- return {update(state,time){
-  if(Math.floor(time*5)===tick)return;tick=Math.floor(time*5);
-  const c=tex.image.getContext('2d');
-  c.fillStyle='#071b22';c.fillRect(0,0,512,384);c.textAlign='left';
-  const label=(text,x,y,max=460)=>{c.fillStyle='#91bfba';c.font='22px sans-serif';c.fillText(translate(text),x,y,max);};
-  const number=(text,x,y,size=36,color='#edfff1',max=460)=>{c.fillStyle=color;c.font=`600 ${size}px monospace`;c.fillText(text,x,y,max);};
-  if(title==='CHARTPLOTTER'){
-   const {islands,buoys:chartedBuoys}=getLocation(state.locationId);
-   const world=state.worldBodies||[],buoys=world.filter(body=>body.visual?.type==='buoy');
-   label('CHART',18,29);
-   // Readouts stay above the wheel rim. COG is undefined when stationary.
-   const sog=state.speedOverGround??Math.abs(state.speed);
-   const cog=sog>.05?`${String(Math.round(state.courseOverGround??state.heading)%360).padStart(3,'0')}°`:'—';
-   number(`COG ${cog}`,18,75,31,'#edfff1',238);
-   number(`SOG ${sog.toFixed(2)}`,266,75,31,'#edfff1',230);
-   // Clip land and marks to the screen map, preserving the readable data bands.
-   c.save();c.beginPath();c.rect(12,89,488,194);c.clip();
-   c.fillStyle='#153e46';c.fillRect(12,89,488,194);
-   c.strokeStyle='#ffffff12';c.lineWidth=1;
-   for(let i=0;i<512;i+=35){c.beginPath();c.moveTo(i,89);c.lineTo(i,283);c.stroke();}
-   for(let y=100;y<283;y+=35){c.beginPath();c.moveTo(12,y);c.lineTo(500,y);c.stroke();}
-   c.fillStyle='#899676';
-   islands.forEach(a=>{
-    c.beginPath();for(let i=0;i<=60;i++){
-     const angle=i/60*Math.PI*2,r=shoreScale(angle);
-     const x=256+(a.x-state.x+Math.cos(angle)*a.rx*r)*.14,y=210+(a.z-state.z+Math.sin(angle)*a.rz*r)*.14;
-     if(i===0)c.moveTo(x,y);else c.lineTo(x,y);
-    }c.closePath();c.fill();
-   });
-   for(const body of world){
-    if(!['yacht','pier'].includes(body.visual?.type))continue;
-    c.save();c.translate(256+(body.x-state.x)*.14,210+(body.z-state.z)*.14);c.rotate(body.heading*Math.PI/180);
-    if(body.visual.type==='pier'){
-     c.fillStyle='#bcb093';c.fillRect(-body.shape.beam*.07,-body.shape.length*.07,body.shape.beam*.14,body.shape.length*.14);
-    }else{
-     c.fillStyle=body.kind==='free'?'#9ed9ea':'#d2d9cf';c.beginPath();c.moveTo(0,-5);c.lineTo(2.7,3.5);c.lineTo(-2.7,3.5);c.closePath();c.fill();
-    }
-    c.restore();
-   }
-   c.fillStyle='#f2c777';(buoys.length?buoys:chartedBuoys).forEach(a=>{c.beginPath();c.arc(256+(a.x-state.x)*.14,210+(a.z-state.z)*.14,3,0,Math.PI*2);c.fill();});
-   c.save();c.translate(256,210);c.rotate(state.heading*Math.PI/180);
-   c.fillStyle='#f6d698';c.beginPath();c.moveTo(0,-17);c.lineTo(9,12);c.lineTo(0,7);c.lineTo(-9,12);c.fill();c.restore();
-   c.fillStyle='#edfff1';c.font='20px monospace';c.fillText('N ↑',23,116);c.restore();
-   const rudder=state.rudder??0,throttle=state.throttle??0;
-   label('HELM',18,311,224);label('Engine throttle',266,311,224);
-   number(`${rudder<-.5?'←':rudder>.5?'→':'↔'} ${Math.abs(rudder).toFixed(0)}°`,18,355,34,rudder<-.5?'#f7aa9b':rudder>.5?'#91e5c9':'#edfff1',224);
-   number(`${throttle<-.005?'▼':throttle>.005?'▲':'–'} ${Math.abs(throttle*100).toFixed(0)}%`,266,355,34,Math.abs(throttle)>.005?'#f2cd88':'#edfff1',224);
-  }else if(title==='APPARENT WIND'){
-   label('APPARENT WIND',22,35);
-   c.strokeStyle='#699596';c.lineWidth=2;c.beginPath();c.arc(256,200,120,0,Math.PI*2);c.stroke();
-   for(let a=0;a<360;a+=30){const r=a*Math.PI/180;c.beginPath();c.moveTo(256+Math.sin(r)*110,200-Math.cos(r)*110);c.lineTo(256+Math.sin(r)*120,200-Math.cos(r)*120);c.stroke();}
-   c.save();c.translate(256,200);c.rotate((state.apparentWindAngle??angleDifference(state.windDirection,state.heading))*Math.PI/180);
-   c.strokeStyle='#eec788';c.lineWidth=7;c.beginPath();c.moveTo(0,75);c.lineTo(0,-92);c.lineTo(-13,-67);c.moveTo(0,-92);c.lineTo(13,-67);c.stroke();c.restore();
-   number(`${(state.apparentWindSpeed??state.windSpeed).toFixed(1)} kn  ${Math.abs(state.apparentWindAngle??0).toFixed(0)}°`,26,362,30);
-  }else{
-   label('BOAT SPEED',22,35);number(state.speed.toFixed(2),24,150,95);
-   label('knots',25,185);
-   c.strokeStyle='#385657';c.beginPath();c.moveTo(20,218);c.lineTo(490,218);c.stroke();
-   number(`${String(Math.round(state.heading)%360).padStart(3,'0')}°`,25,281,43);
-   number(`${state.depth.toFixed(1)}m`,275,281,43);
-   label('HEADING',25,330,220);label('DEPTH',275,330,215);
-  }
-  tex.needsUpdate=true;
- }};
-}
 export function createYacht(mat,{detailed=true}={}){
  const boat=new THREE.Group();boat.name='Haven 39 sailing yacht';
  const hullMat=mat.gelcoat.clone();hullMat.side=THREE.DoubleSide;mesh(boat,hullGeometry(),hullMat);
@@ -145,7 +59,13 @@ export function createYacht(mat,{detailed=true}={}){
  // Companionway with sliding hatch, slatted washboards, and step.
  box(boat,mat.rubber,0,1.22,1.16,1.09,.97,.035,.03);box(boat,mat.teak,0,1.23,1.19,.88,.87,.04,.025);for(let i=0;i<5;i++)box(boat,mat.rubber,0,1+i*.12,1.222,.80,.012,.015,.002);
  box(boat,mat.glass,0,1.73,.47,1.12,.07,1.4,.04);box(boat,mat.teak,0,.57,1.6,1.15,.09,.42);
- box(boat,mat.teak,0,.44,3.0,1.62,.1,3.47,.02);
+ // Continuous cockpit sole and well sides overlap the deck opening and seats.
+ // The former narrow sole left open seams at the forward edge and both sides.
+ box(boat,mat.gelcoat,0,.37,2.9,1.82,.20,3.82,.025);
+ box(boat,mat.teak,0,.465,2.875,1.74,.055,3.65,.018);
+ for(const side of [-1,1])box(boat,mat.gelcoat,side*.855,.78,2.9,.11,.64,3.80,.025);
+ box(boat,mat.gelcoat,0,.75,1.10,1.80,.61,.12,.025);
+ box(boat,mat.gelcoat,0,.75,4.72,1.80,.61,.16,.025);
  for(const side of [-1,1]){
   box(boat,mat.gelcoat,side*1.3,.94,3, .91,.66,3.85,.12);
   box(boat,mat.teak,side*1.28,1.3,3,.78,.06,3.4,.06);
@@ -204,9 +124,11 @@ export function createYacht(mat,{detailed=true}={}){
  for(let i=0;i<8;i++){const a=i/8*Math.PI*2;bar(wheel,mat.steel,[0,0,0],[Math.cos(a)*.6,Math.sin(a)*.6,0],.013);}
  const boss=cylinder(wheel,mat.steel,0,0,0,.084,.084,.10);boss.rotation.x=Math.PI/2;
  const compass=cylinder(boat,mat.rubber,0,1.95,3.87,.16,.19,.15);mesh(boat,new THREE.SphereGeometry(.15,24,12,0,Math.PI*2,0,Math.PI/2),mat.glass,0,2.02,3.87);
- const displayGroup=new THREE.Group();displayGroup.position.set(0,2.77,3.87);displayGroup.rotation.x=-.15;boat.add(displayGroup);
- bar(boat,mat.steel,[-.56,1.5,3.85],[-.56,2.96,3.85],.025);bar(boat,mat.steel,[.56,1.5,3.85],[.56,2.96,3.85],.025);bar(boat,mat.steel,[-.56,2.96,3.85],[.56,2.96,3.85],.025);
- const instruments=[instrument(displayGroup,mat,0,0,0,.82,.59,'CHARTPLOTTER'),instrument(boat,mat,-.63,1.94,1.17,.48,.35,'APPARENT WIND'),instrument(boat,mat,.63,1.94,1.17,.48,.35,'SAILING DATA')];
+ const display=createHelmDisplay(boat,mat);display.group.position.set(0,2.84,3.87);display.group.rotation.x=-.15;
+ // One multifunction screen on the pedestal guard, facing the helmsman.
+ // Its lower edge clears the wheel from the default seated/standing eye line.
+ for(const side of [-1,1])bar(boat,mat.steel,[side*.68,1.5,3.85],[side*.68,3.28,3.85],.025);
+ bar(boat,mat.steel,[-.68,3.28,3.85],[.68,3.28,3.85],.025);
  const throttleLever=new THREE.Group();throttleLever.position.set(.25,1.44,4.03);boat.add(throttleLever);bar(throttleLever,mat.steel,[0,0,0],[.15,.36,0],.02);mesh(throttleLever,new THREE.SphereGeometry(.06,12,8),mat.rubber,.15,.36,0);
  // Red/green navigation lights and masthead fitting.
  for(const side of [-1,1]){const lampMat=new THREE.MeshStandardMaterial({color:side<0?'#ab3e32':'#218873',emissive:side<0?'#d13113':'#14a67c',emissiveIntensity:.35});mesh(boat,new THREE.SphereGeometry(.052,12,8),lampMat,side*.5,1.88,-6.05);}
@@ -220,7 +142,7 @@ export function createYacht(mat,{detailed=true}={}){
  const bow=[];for(let i=0;i<2;i++){bow.push(mesh(boat,new THREE.PlaneGeometry(.7,2),new THREE.MeshBasicMaterial({color:'#d5f3ef',transparent:true,opacity:.15,depthWrite:false}),i?1:-1,.025,-4.5));bow[i].rotation.x=-Math.PI/2;}
  batchStaticMeshes(boat,mergeGeometries,[rudder,sheet,travelerCar,...bow]);
  let previousRigTime=null;
- return {group:boat,update(state,time){
+ return {group:boat,instrumentCanvas:display.canvas,update(state,time){
   const windAngle=state.apparentWindAngle??angleDifference(state.windDirection,state.heading),sign=Math.sign(windAngle)||1;
   const rig=rigVisualState(state),rigElapsed=previousRigTime===null?0:time-previousRigTime;
   boomGroup.rotation.y=previousRigTime===null?rig.boomAngle:smoothBoomAngle(boomGroup.rotation.y,rig.boomAngle,rigElapsed);
@@ -236,7 +158,7 @@ export function createYacht(mat,{detailed=true}={}){
   wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;windVane.rotation.y=rig.windVaneAngle;
   const tip=new THREE.Vector3(0,0,4.6).applyAxisAngle(new THREE.Vector3(0,1,0),boomGroup.rotation.y).add(boomGroup.position),base=new THREE.Vector3(travelerCar.position.x,1.99,.9),delta=tip.clone().sub(base);
   sheet.position.copy(tip).add(base).multiplyScalar(.5);sheet.scale.y=delta.length()/Math.hypot(.8,1.8);sheet.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());
-  instruments.forEach(i=>i.update(state,time));bow.forEach(m=>{m.visible=state.speed>1;m.material.opacity=clamp(state.speed*.03,0,.22);});
+  display.update(state,time);bow.forEach(m=>{m.visible=state.speed>1;m.material.opacity=clamp(state.speed*.03,0,.22);});
   anchorRig.update(anchorSnapshot(state),boat);
  }};
 }

@@ -49,7 +49,7 @@ The searchable learning library contains **26 verified official-source records**
 
 ## Simulator
 
-- Detailed yacht, working cockpit displays, reflective water, islands, navigation marks and location-specific coastal scenery. Chase, Helm, Cockpit and Aerial cameras support scene inspection and zoom.
+- Detailed yacht with a single live multifunction screen behind the wheel: chart, speed through water/over ground, heading/course, depth, wind, helm and throttle. Practice starts at the helm; Instruments provides a close-up view. Pausing freezes water, cloud and vessel animation while camera movement remains available. The cockpit sole is continuous and the ocean is excluded from the hull interior.
 - Three fictional maps: **Haven Islands**, **Shelter Bay** and **Windward Strait**. Chart, cockpit plotter, coastlines and depth model share location data.
 - Independent main/headsail hoists and sheets, two reefs, traveler, vang, outhaul, engine ahead/neutral/astern, anchor and rode length.
 - Timed powered windlass with separate rode target and actual paid length, stop/resume controls, and recovery that waits for unloaded rode. Bow-based 3D anchor/rode, a six-language illustrated monitor and the chart share physical geometry. Assessments require actual payout or full stowage; stopping includes current and sideways drift.
@@ -82,6 +82,6 @@ Refresh with `npm run scrape`, then `python3 scripts/build_archive_index.py`. Th
 
 Training scores, critical failures, saved debriefs and progress migration are documented in [PRACTICE_SCORING.md](docs/PRACTICE_SCORING.md). Scenarios assess their stated modeled tasks; course completion is not an on-water qualification.
 
-Start training opens a short **practice briefing over the prepared boat**. Its **Start simulation** button begins assessment; reading the illustrated lesson is optional. The lesson cover disappears during live practice. A compact status, current goal, completed-goal count, live score, and pause/resume/end controls stay available. Reopening the briefing or reading pauses the same attempt until explicit resume. End simulation saves the completed evidence and shows a debrief. The main play button follows the same lifecycle and cannot bypass assessment in lesson mode.
+Start training opens a short **practice briefing over the prepared boat**. Its **Start simulation** button begins assessment; reading the illustrated lesson is optional. The lesson cover disappears during live practice. A compact status, current goal, live requirement values and targets, continuous-hold timer, completed-goal count, live score, and pause/resume/end controls stay available. The feedback and judge share the same requirement evaluator; speed alone cannot pass a wind-angle task. Completing the final goal automatically pauses the boat and opens the scored debrief. Reopening the briefing or reading pauses the same attempt until explicit resume. End simulation saves the completed evidence and shows a debrief. The main play button follows the same lifecycle and cannot bypass assessment in lesson mode.
 
 Boat and object contacts now use shared finite hulls and rigid-body impulses. Free vessels move and turn when struck; moored vessels and buoys respond within their restraints, while piers and rocks remain fixed. See [COLLISION_PHYSICS.md](docs/COLLISION_PHYSICS.md) for units, validation and model limits.
