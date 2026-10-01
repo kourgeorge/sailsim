@@ -1,5 +1,5 @@
 import { lessons } from './curriculum.js';
-import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment } from './practice-assessment.js';
+import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence } from './practice-assessment.js';
 import { restoreDecisionResult } from './decision-evidence.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
@@ -49,10 +49,12 @@ export function crossingKind(previous,current){
 export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
- return {lessonId:lesson.id,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null};
+ const attempt={lessonId:lesson.id,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
+ if(state.contactActive===true){attempt.objectives[0].evidence=practiceEvidence(state,attempt);invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));}
+ return attempt;
 }
 function savePracticeResult(attempt,lesson,progress){const report=practiceAssessment(attempt,lesson);if(!report||report.status==='active')return;const r=recordFor(progress,attempt.lessonId);r.lastPracticeResult=report;r.practiceResults=[...(r.practiceResults??[]),report].slice(-5);}
-export function invalidateAttempt(attempt,progress,reason,code='interrupted'){if(!attempt||attempt.status!=='active')return;attempt.status='invalid';attempt.message=reason;if(code!=='interrupted')attempt.criticalFailure={code,message:reason};recordFor(progress,attempt.lessonId).lastResult=reason;const lesson=lessons.find(l=>l.id===attempt.lessonId);if(lesson)savePracticeResult(attempt,lesson,progress);}
+export function invalidateAttempt(attempt,progress,reason,code='interrupted',collision=null){if(!attempt||attempt.status!=='active')return;attempt.status='invalid';attempt.message=reason;if(code!=='interrupted')attempt.criticalFailure={code,message:reason,...(code==='collision'?{collision:collisionEvidence(collision)}:{})};recordFor(progress,attempt.lessonId).lastResult=reason;const lesson=lessons.find(l=>l.id===attempt.lessonId);if(lesson)savePracticeResult(attempt,lesson,progress);}
 export function recordEvent(attempt,type,value){if(attempt?.status==='active')attempt.events.add(`${type}:${value}`);}
 export function useHint(attempt,progress){if(attempt?.status==='active'){attempt.hints++;recordFor(progress,attempt.lessonId).hints++;}}
 function satisfied(check,state,attempt){
@@ -79,6 +81,7 @@ export function advanceAttempt(attempt,lesson,state,dt,progress){
  if(!attempt||attempt.status!=='active')return attempt;
  if(!Number.isFinite(dt)||dt<=0||dt>.25)return attempt; // No wall-clock credit after sleeping or tab suspension.
  if(attempt.objectives?.[attempt.index])attempt.objectives[attempt.index].evidence=practiceEvidence(state,attempt);
+ if(hasPlayerCollision(state,attempt.collisionBaseline)){invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));return attempt;}
  if(state.grounded){invalidateAttempt(attempt,progress,'Grounding ended this attempt. Review the chart and restart with sea room.','grounding');return attempt;}
  if(Object.entries(attempt.weather).some(([key,value])=>Math.abs((state[key]??0)-value)>.001)){invalidateAttempt(attempt,progress,'Conditions changed. Restart to assess in the prescribed weather.','conditions-changed');return attempt;}
  const current=lesson.practice.steps[attempt.index];

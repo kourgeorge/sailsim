@@ -115,5 +115,6 @@
   "Heading change from start": "Changement de cap depuis le départ",
   "Distance travelled": "Distance parcourue",
   "Speed at gate": "Vitesse à la porte",
-  "Gate offset": "Écart au centre de la porte"
+  "Gate offset": "Écart au centre de la porte",
+  "Collision ended this attempt. Keep clear of boats and fixed objects, then restart.": "Une collision a terminé cette tentative. Restez à distance des bateaux et obstacles fixes, puis recommencez."
 }

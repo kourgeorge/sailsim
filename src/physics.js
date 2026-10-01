@@ -1,5 +1,6 @@
 import { islandRatio } from './rendering/geography.js';
 import { getLocation, DEFAULT_LOCATION_ID } from './locations.js';
+import { createRigidBody, createWorldBodies, PLAYER_HULL, advanceFreeBodies, solveContacts, collisionStepLimit, separatedBeyond } from './collisions.js';
 export const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 export const wrap = v => ((v % 360) + 360) % 360;
 export const angleDifference = (a, b) => ((a - b + 540) % 360 + 360) % 360 - 180;
@@ -21,7 +22,8 @@ export function initialState(locationId = DEFAULT_LOCATION_ID) {
     ...location.conditions,heel:0,leeway:0,yawRate:0,
     distance:0,elapsed:0,depth:depthAt(location.start.x,location.start.z,location.id),grounded:false,speedOverGround:0,courseOverGround:location.start.heading,
     apparentWindSpeed:location.conditions.windSpeed,apparentWindAngle:angleDifference(location.conditions.windDirection,location.start.heading),suggestedMainSheet:45,suggestedJibSheet:40,
-    mainEfficiency:0,jibEfficiency:0,mainFlow:'Ready',jibFlow:'Ready',vmg:0,turnRate:0};
+    mainEfficiency:0,jibEfficiency:0,mainFlow:'Ready',jibFlow:'Ready',vmg:0,turnRate:0,
+    worldBodies:createWorldBodies(location.id),collision:null,collisionCount:0,collisionEvents:[],contactActive:false,_contactEpisodes:{}};
 }
 export function depthAt(x,z,locationId = DEFAULT_LOCATION_ID) {
   const location=getLocation(locationId);
@@ -171,11 +173,55 @@ function integrate(s,dt) {
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;s.elapsed+=dt;
 }
+function playerRigidBody(s){
+  const body=s._playerBody??(s._playerBody=createRigidBody({id:'player',kind:'free',mass:VESSEL.mass,shape:PLAYER_HULL,restitution:.06,friction:.3}));
+  const h=s.heading*RAD,c=(s.currentDirection||0)*RAD,u=s.speed*KNOT;
+  body.kind=s.grounded?'fixed':'free';body.x=s.x;body.z=s.z;body.heading=s.heading;body.yawRate=s.yawRate;
+  body.vx=s.grounded?0:Math.sin(h)*u+Math.cos(h)*s.leeway+Math.sin(c)*(s.currentSpeed||0)*KNOT;
+  body.vz=s.grounded?0:-Math.cos(h)*u+Math.sin(h)*s.leeway-Math.cos(c)*(s.currentSpeed||0)*KNOT;
+  return body;
+}
+function integrateContacts(s,dt){
+  const c=(s.currentDirection||0)*RAD,current={x:Math.sin(c)*(s.currentSpeed||0)*KNOT,z:-Math.cos(c)*(s.currentSpeed||0)*KNOT};
+  const craft=s.worldBodies.filter(body=>body.visual?.type==='yacht'&&!body.grounded).map(body=>({body,x:body.x,z:body.z}));
+  advanceFreeBodies(s.worldBodies,dt,current);
+  for(const {body,x,z} of craft)if(depthAt(body.x,body.z,s.locationId)<VESSEL.draft*(body.visual.scale??1)){body.x=x;body.z=z;body.vx=0;body.vz=0;body.yawRate=0;body.grounded=true;}
+  const player=playerRigidBody(s),bodies=[player,...s.worldBodies];
+  for(const bodyId of Object.keys(s._contactEpisodes)){
+    const body=s.worldBodies.find(body=>body.id===bodyId);
+    if(!body||separatedBeyond(player,body))delete s._contactEpisodes[bodyId];
+  }
+  const contacts=solveContacts(bodies);
+  const playerContacts=contacts.filter(contact=>contact.aId==='player'||contact.bId==='player');
+  s.contactActive=playerContacts.length>0||Object.keys(s._contactEpisodes).length>0;
+  for(const contact of contacts){
+    if(contact.impulse>1)for(const id of [contact.aId,contact.bId]){const body=bodies.find(body=>body.id===id);body.lastImpact={time:s.elapsed,impulse:contact.impulse,point:{...contact.point},otherId:id===contact.aId?contact.bId:contact.aId};}
+  }
+  if(playerContacts.length){
+    if(!s.grounded){
+      s.x=player.x;s.z=player.z;s.heading=player.heading;s.yawRate=player.yawRate;
+      const h=s.heading*RAD,wx=player.vx-current.x,wz=player.vz-current.z;
+      s.speed=(wx*Math.sin(h)-wz*Math.cos(h))/KNOT;s.leeway=wx*Math.cos(h)+wz*Math.sin(h);
+      s.depth=depthAt(s.x,s.z,s.locationId);if(s.depth<VESSEL.draft){s.grounded=true;s.speed=0;s.leeway=0;s.yawRate=0;}
+      refreshDerived(s);
+    }
+    for(const contact of playerContacts){
+      const bodyId=contact.aId==='player'?contact.bId:contact.aId,body=s.worldBodies.find(body=>body.id===bodyId);
+      if(s._contactEpisodes[bodyId]===undefined){
+        const direction=contact.aId==='player'?1:-1;
+        const event={bodyId,bodyKind:body.kind,point:{...contact.point},normal:{x:contact.normal.x*direction,z:contact.normal.z*direction},impulse:contact.impulse,closingSpeed:contact.closingSpeed,time:s.elapsed,sequence:++s.collisionCount};
+        s.collision=event;s.collisionEvents=[...s.collisionEvents,event].slice(-16);
+      }
+      s._contactEpisodes[bodyId]=s.elapsed;
+    }
+  }
+}
 export function step(s,dt) {
   if(!Number.isFinite(dt)||dt<=0)return s;
   reconcile(s);
+  s.worldBodies??=createWorldBodies(s.locationId);s.collisionCount??=0;s.collisionEvents??=[];s._contactEpisodes??={};
   // Bounded substeps preserve acceleration and turning when render frame rate varies.
   let remaining=Math.min(dt,2);
-  while(remaining>1e-9){const chunk=Math.min(.02,remaining);integrate(s,chunk);remaining-=chunk;}
+  while(remaining>1e-9){const chunk=Math.min(collisionStepLimit([playerRigidBody(s),...s.worldBodies]),remaining);integrate(s,chunk);integrateContacts(s,chunk);remaining-=chunk;}
   return s;
 }

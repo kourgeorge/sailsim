@@ -25,7 +25,7 @@ test('all 19 physical practices have explicit weighted objectives and required c
   }
   assert.equal(PRACTICE_SCORE_RULES.passScore, 80);
   assert.equal(PRACTICE_SCORE_RULES.hintsAffectScore, false);
-  assert.deepEqual(PRACTICE_SCORE_RULES.criticalConditions, ['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged']);
+  assert.deepEqual(PRACTICE_SCORE_RULES.criticalConditions, ['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged', 'collision']);
 });
 
 test('elapsed time and partial dwell cannot earn score or pass, even after long waits', () => {

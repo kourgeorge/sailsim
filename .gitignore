@@ -3,3 +3,6 @@ dist/
 .DS_Store
 test-results/
 playwright-report/
+
+# Transient browser failure captures
+artifacts/**/failure.png

@@ -5,6 +5,8 @@ The aim is a clear, useful training companion with defensible assessments and co
 ## Current baseline
 
 - **42 lessons / 10 modules / 84 explained questions / 19 assessed sailing practices / 23 interactive scenarios with 69 stages.** Basic covers lessons 01–16, Intermediate 17–36 and Advanced 37–42. The six Advanced lessons include assessed planning and numerical decision scenarios. All lessons are browsable, including early access to emergency lessons 33–34.
+- Persistent operating-state banner: study, not started, running, paused, unassessed practice and debrief are explicitly distinguished.
+- Finite-hull contact response shared with the rendered world, including movable yachts/buoys and fixed marina/shore obstacles. Contact evidence fails assessed runs and survives restoration.
 - Direct training launch, live scores, required objectives and saved scored debriefs across all 42 lessons; study remains a separate action that can pause and resume training.
 - A full-page illustrated reader divides study into concepts, observations, practice instructions where supported, questions and transfer to real sailing. Page navigation is separate from assessment evidence.
 - Six languages: English, Spanish, Arabic, Hebrew, Russian and French. RTL reading layouts, text scaling from 100–200%, a 125% default and saved preferences support readability.

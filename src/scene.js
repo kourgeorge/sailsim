@@ -1,10 +1,11 @@
 import * as THREE from 'three';
-import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
-import { createMaterials, batchStaticMeshes } from './rendering/materials.js';
+import { createMaterials } from './rendering/materials.js';
 import { createYacht } from './rendering/yacht.js';
 import { createEnvironment } from './rendering/environment.js';
 import { createTrainingCues } from './rendering/training-cues.js';
 import { getLocation } from './locations.js';
+import { getWorldBodyDefinitions, localToWorld } from './world/bodies.js';
+import { syncBodyTransform, impactMotion } from './rendering/body-motion.js';
 import { disposeSceneResources } from './rendering/dispose.js';
 
 export function createScene(container,{locationId='haven'}={}){
@@ -19,21 +20,20 @@ export function createScene(container,{locationId='haven'}={}){
  const camera=new THREE.PerspectiveCamera(47,container.clientWidth/container.clientHeight,.08,10000);
  const materials=createMaterials(),environment=createEnvironment(scene,renderer,materials,{software,locationId:location.id}),yacht=createYacht(materials);scene.add(yacht.group);
  const trainingCues=createTrainingCues(scene);
- // Reuse yacht geometry for moored vessels, without duplicating GPU buffers.
- const moored=[];
- if(location.marina){
-  const marina=location.marina,mooredTemplate=createYacht(materials,{detailed:false}).group;
-  const angle=-marina.heading*Math.PI/180,axis=new THREE.Vector3(0,1,0);
-  for(let i=0;i<marina.berths-1;i++){
-   const boat=mooredTemplate.clone(true),localX=-(marina.berths-1)*marina.spacing/2+(i+.5)*marina.spacing;
-   boat.position.set(localX,0,13).applyAxisAngle(axis,angle).add(new THREE.Vector3(marina.x,0,marina.z));
-   boat.rotation.y=Math.PI+angle;boat.scale.setScalar(.74+(i%2)*.13);
-   boat.traverse(o=>{o.castShadow=false;});scene.add(boat);moored.push(boat);
-  }
-  const marinaFleet=new THREE.Group();scene.add(marinaFleet);
-  for(const boat of moored){boat.updateMatrix();for(const child of [...boat.children]){if(!child.isMesh)continue;child.applyMatrix4(boat.matrix);marinaFleet.add(child);}scene.remove(boat);}
-  batchStaticMeshes(marinaFleet,mergeGeometries);
- }
+ // Keep one transform root per physical hull; cloned fittings share GPU buffers.
+ const vesselDefinitions=getWorldBodyDefinitions(location.id).filter(body=>body.visual.type==='yacht');
+ const vesselTemplate=createYacht(materials,{detailed:false}).group;
+ const vessels=vesselDefinitions.map(definition=>{
+  const group=vesselTemplate.clone(true);group.userData.bodyId=definition.id;
+  group.scale.setScalar(definition.visual.scale);group.traverse(object=>{object.castShadow=false;});
+  syncBodyTransform(group,definition,0,0,definition.visual.index);scene.add(group);
+  const tethers=(definition.visual.mooringLines||[]).map(line=>{const mesh=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(),new THREE.Vector3(),new THREE.Vector3()]),new THREE.LineBasicMaterial({color:'#b7aa87'}));scene.add(mesh);return{mesh,...line};});
+  return{group,definition,tethers};
+ });
+ const contactRings=Array.from({length:8},()=>{
+  const ring=new THREE.Mesh(new THREE.RingGeometry(.72,1,32),new THREE.MeshBasicMaterial({color:'#dcf1e9',transparent:true,opacity:0,depthWrite:false,side:THREE.DoubleSide}));
+  ring.rotation.x=-Math.PI/2;ring.visible=false;scene.add(ring);return ring;
+ });
  let disposed=false,frameCount=0, frameAverage=16;
  let view='chase',orbit=.1,elevation=0,zoom=1,lastTime=0,dragging=false,lastX=0,lastY=0;
  const offset=new THREE.Vector3(),target=new THREE.Vector3(),desired=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
@@ -57,9 +57,21 @@ export function createScene(container,{locationId='haven'}={}){
   if(!software && frameCount===30 && frameAverage>45){renderer.setPixelRatio(Math.min(devicePixelRatio,.85));resize();}
   container.dataset.fps=(1000/frameAverage).toFixed(1);container.dataset.frames=frameCount;
   const roll=Math.sin(time*.72)*.008*(state.windSpeed/12),pitch=Math.sin(time*.95)*.005;
-  yacht.group.position.set(state.x,Math.sin(time*.8)*.045,state.z);yacht.group.rotation.set(pitch,-state.heading*Math.PI/180,state.heel*Math.PI/180+roll);
+  const playerImpact=impactMotion({...state,mass:5600,lastImpact:state.collision},state.elapsed||0);
+  yacht.group.position.set(state.x,Math.sin(time*.8)*.045,state.z);yacht.group.rotation.set(pitch+playerImpact.pitch,-state.heading*Math.PI/180,state.heel*Math.PI/180+roll+playerImpact.roll);
   yacht.update(state,time);environment.update(state,time);
-  moored.forEach((b,i)=>{b.position.y=Math.sin(time*.9+i)*.045;b.rotation.z=Math.sin(time*.7+i)*.009;});
+  const worldBodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
+  vessels.forEach(({group,definition,tethers},i)=>{
+   const body=worldBodies.get(definition.id)||definition;syncBodyTransform(group,body,state.elapsed||0,time,i);
+   for(const tether of tethers){
+    const cleat=localToWorld(body,tether.local.x,tether.local.z),anchor=tether.fixed,positions=tether.mesh.geometry.attributes.position;
+    positions.setXYZ(0,cleat.x,1.1*definition.visual.scale,cleat.z);positions.setXYZ(1,(cleat.x+anchor.x)/2,.42,(cleat.z+anchor.z)/2);positions.setXYZ(2,anchor.x,.99,anchor.z);
+    positions.needsUpdate=true;tether.mesh.geometry.computeBoundingSphere();
+   }
+  });
+  const impacts=(state.collisionEvents||[]).filter(event=>(state.elapsed||0)-event.time>=0&&(state.elapsed||0)-event.time<1.3).slice(-contactRings.length);
+  contactRings.forEach((ring,i)=>{const event=impacts[i];ring.visible=Boolean(event);if(!event)return;const age=(state.elapsed||0)-event.time;ring.position.set(event.point.x,.03,event.point.z);ring.scale.setScalar(.25+age*2.6);ring.material.opacity=(1-age/1.3)*.55;});
+  container.dataset.worldVessels=String(vessels.length);container.dataset.worldBodies=String(worldBodies.size);
   const heading=state.heading*Math.PI/180,framing=Math.max(1,.9/camera.aspect);
   if(view==='helm'){
    offset.set(0,3.12,5.6);offset.applyMatrix4(yacht.group.matrix.clone().identity().makeRotationFromEuler(yacht.group.rotation));

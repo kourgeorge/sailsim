@@ -115,5 +115,6 @@
   "Heading change from start": "שינוי הכיוון מההתחלה",
   "Distance travelled": "מרחק שנעבר",
   "Speed at gate": "מהירות בשער",
-  "Gate offset": "היסט ממרכז השער"
+  "Gate offset": "היסט ממרכז השער",
+  "Collision ended this attempt. Keep clear of boats and fixed objects, then restart.": "התנגשות סיימה את הניסיון. שמרו מרחק מסירות ומעצמים קבועים והתחילו מחדש."
 }

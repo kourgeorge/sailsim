@@ -3,12 +3,27 @@
 const finite = value => Number.isFinite(value) ? Math.max(-1e7, Math.min(value, 1e7)) : null;
 const bounded = (value, max = 1e7) => Number.isFinite(value) && value >= 0 ? Math.min(value, max) : 0;
 const round = value => Math.round(value * 1000) / 1000;
+export const COLLISION_FAILURE_MESSAGE = 'Collision ended this attempt. Keep clear of boats and fixed objects, then restart.';
+export const playerCollisionCount = state => Number.isSafeInteger(state?.collisionCount) && state.collisionCount >= 0 ? state.collisionCount : 0;
+/** Only player contact episodes count; decorative actors may collide independently. */
+export const hasPlayerCollision = (state, baseline = 0) => playerCollisionCount(state) > baseline || state.contactActive === true;
+/** Persist a small, typed snapshot, never a live physics body or arbitrary payload. */
+export function collisionEvidence(value) {
+  if (!value || typeof value !== 'object' || typeof value.bodyId !== 'string' || typeof value.bodyKind !== 'string') return null;
+  const vector = (v, limit) => v && Number.isFinite(v.x) && Number.isFinite(v.z) ? { x: Math.max(-limit, Math.min(limit, v.x)), z: Math.max(-limit, Math.min(limit, v.z)) } : null;
+  return {
+    bodyId: value.bodyId.slice(0, 100), bodyKind: value.bodyKind.slice(0, 40),
+    point: vector(value.point, 1e7), normal: vector(value.normal, 1),
+    impulse: bounded(value.impulse, 1e9), closingSpeed: bounded(value.closingSpeed, 1000),
+    time: bounded(value.time), sequence: Math.floor(bounded(value.sequence, Number.MAX_SAFE_INTEGER)),
+  };
+}
 const telemetryKeys = ['heading', 'speed', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'anchorScope', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
 export const PRACTICE_SCORE_RULES = Object.freeze({
   passScore: 80, maxScore: 100, failedScoreCap: 79,
   holdLossThresholdSeconds: 1, holdLossPenalty: 2, holdLossPenaltyCap: 20,
   hintsAffectScore: false,
-  criticalConditions: Object.freeze(['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged']),
+  criticalConditions: Object.freeze(['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged', 'collision']),
 });
 
 export function practiceRubric(lesson) {
@@ -27,6 +42,8 @@ export function practiceEvidence(state, attempt) {
     ...Object.fromEntries(telemetryKeys.map(key => [key, finite(state[key])])),
     anchor: state.anchor === true, grounded: state.grounded === true,
     anchorDragging: state.anchorDragging === true,
+    collisionCount: playerCollisionCount(state), contactActive: state.contactActive === true,
+    collision: collisionEvidence(state.collision),
     mainFlow: typeof state.mainFlow === 'string' ? state.mainFlow.slice(0, 40) : null,
     observedEvents: (observed instanceof Set ? [...observed] : Array.isArray(observed) ? observed : []).filter(value => typeof value === 'string').slice(0, 16).map(value => value.slice(0, 80)),
     crossing: ['tack', 'gybe'].includes(crossing) ? crossing : null,
@@ -80,7 +97,7 @@ export function practiceAssessment(attempt, lesson) {
     version: 1, lessonId: lesson.id, status, score: status === 'failed' ? Math.min(PRACTICE_SCORE_RULES.failedScoreCap, rawScore) : rawScore,
     maxScore: 100, completionScore: round(completionScore), penalties,
     rubric: PRACTICE_SCORE_RULES, assisted: hints > 0,
-    criticalFailure: attempt.criticalFailure ? { ...attempt.criticalFailure } : null,
+    criticalFailure: attempt.criticalFailure ? { ...attempt.criticalFailure, ...(attempt.criticalFailure.code === 'collision' ? { collision: collisionEvidence(attempt.criticalFailure.collision) } : {}) } : null,
     objectives, elapsed: round(bounded(attempt.elapsed)), hints,
     attemptNumber: bounded(attempt.attemptNumber, 100000),
     debrief: {
@@ -109,6 +126,7 @@ export function restorePracticeAssessment(value, lesson) {
   }
   if (value.status === 'passed' && incomplete) return null;
   const criticalFailure = value.criticalFailure && typeof value.criticalFailure.code === 'string' && typeof value.criticalFailure.message === 'string' ? { code: value.criticalFailure.code.slice(0, 60), message: value.criticalFailure.message.slice(0, 240) } : null;
+  if (criticalFailure?.code === 'collision') criticalFailure.collision = collisionEvidence(value.criticalFailure.collision);
   if (value.status === 'passed' && criticalFailure) return null;
   return practiceAssessment({ lessonId: lesson.id, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
 }

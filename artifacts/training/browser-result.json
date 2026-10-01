@@ -1,0 +1,13 @@
+{
+  "passed": true,
+  "scenarios": 1,
+  "languages": [
+    "en",
+    "es",
+    "fr",
+    "ru",
+    "he",
+    "ar"
+  ],
+  "errors": []
+}

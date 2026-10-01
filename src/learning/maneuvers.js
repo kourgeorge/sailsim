@@ -1,5 +1,6 @@
 import { initialState, angleDifference, refreshDerived } from '../physics.js';
 import { applyControlPatch } from '../vessel-controls.js';
+import { COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence } from './practice-assessment.js';
 
 // These exercises assess maneuvering in open water, never contact with a dock.
 // Display strings are English translation keys; metrics remain language-independent.
@@ -47,6 +48,7 @@ for(const drill of maneuverDrills){
 }
 export const drills = maneuverDrills;
 const failureMessages=[
+  COLLISION_FAILURE_MESSAGE,
   'Reset the drill before starting a measured attempt.',
   'Drill interrupted. Restart for a new measured attempt.',
   'Maneuvering drill complete. Review the measured results.',
@@ -78,15 +80,17 @@ export function createDrillState(id) {
 }
 export function beginManeuver(id,state) {
   const d=lookup(id);state??=createDrillState(id);
-  const attempt={drillId:id,status:'active',index:0,held:0,elapsed:0,completed:[],events:[],metrics:{},message:'',weather:environment(state),
+  const attempt={drillId:id,status:'active',index:0,held:0,elapsed:0,completed:[],events:[],metrics:{},message:'',weather:environment(state),collisionBaseline:playerCollisionCount(state),criticalFailure:null,
     previous:{x:state.x,z:state.z,speed:state.speed,heading:state.heading},neutralHeld:0,lastGear:0,reverseSeconds:0,aheadBrakeSeconds:0,asternSteeringSeconds:0,minAsternYaw:0,maxAstern:0,overshoot:0,stopStartTime:null,entrySpeed:null,
     distance:0,stopStartDistance:null,stopDistance:0,peakSpeed:Math.abs(state.speed),maxCrossTrack:0,maxHeadingError:0,minDepth:state.depth,gateCrossing:null};
   if(Math.hypot(state.x-d.origin.x,state.z-d.origin.z)>1||Math.abs(state.speed)>.1||Math.abs(angleDifference(state.heading,d.heading))>1||gear(state)!==0||!bare(state)||state.anchor||state.grounded){
     attempt.status='failed';attempt.message='Reset the drill before starting a measured attempt.';
   }
+  if(state.contactActive===true)return failCollision(attempt,state);
   updateMetrics(attempt);return attempt;
 }
 function fail(a,message){a.status='failed';a.message=message;updateMetrics(a);return a;}
+function failCollision(a,state){const collision=collisionEvidence(state.collision);a.criticalFailure={code:'collision',message:COLLISION_FAILURE_MESSAGE,collision};a.events.push({type:'collision',time:a.elapsed,collision});return fail(a,COLLISION_FAILURE_MESSAGE);}
 export function cancelManeuver(attempt){if(attempt?.status==='active')fail(attempt,'Drill interrupted. Restart for a new measured attempt.');return attempt;}
 function completeStage(a,d){a.completed.push({stage:a.index,time:a.elapsed});a.events.push({type:'checkpoint',index:a.index,time:a.elapsed});a.index++;a.held=0;if(a.index===d.stages.length){a.status='passed';a.message='Maneuvering drill complete. Review the measured results.';}}
 
@@ -98,6 +102,7 @@ export function advanceManeuver(a,s,dt) {
   if(s.speed<-.5&&s.rudder>3&&s.yawRate<-.05){a.asternSteeringSeconds+=dt;a.minAsternYaw=Math.min(a.minAsternYaw,s.yawRate);}
   a.peakSpeed=Math.max(a.peakSpeed,speed);a.maxCrossTrack=Math.max(a.maxCrossTrack,Math.abs(cross));a.maxHeadingError=Math.max(a.maxHeadingError,headingError);a.minDepth=Math.min(a.minDepth,s.depth);
   if(a.stopStartDistance!==null)a.stopDistance=a.distance-a.stopStartDistance;
+  if(hasPlayerCollision(s,a.collisionBaseline))return failCollision(a,s);
   if(s.grounded||s.depth<3)return fail(a,'Insufficient depth. Restart with clear water.');
   if(s.anchor)return fail(a,'Keep the anchor stowed during engine maneuvering.');
   if(!bare(s))return fail(a,'Keep both sails lowered during this engine drill.');
@@ -154,7 +159,7 @@ export function maneuverTelemetry(a,s) {
     distance:a.distance,stoppingDistance:a.stopDistance,gateCrossing:a.gateCrossing,message:a.message};
 }
 export function maneuverResult(a) {
-  return {drillId:a.drillId,status:a.status,elapsed:a.elapsed,stagesCompleted:a.completed.length,peakSpeed:a.peakSpeed,
+  return {drillId:a.drillId,status:a.status,elapsed:a.elapsed,stagesCompleted:a.completed.length,peakSpeed:a.peakSpeed,criticalFailure:a.criticalFailure?{...a.criticalFailure,collision:collisionEvidence(a.criticalFailure.collision)}:null,
     maxCrossTrack:a.maxCrossTrack,maxHeadingError:a.maxHeadingError,minDepth:a.minDepth,stoppingDistance:a.stopDistance,stopDistance:a.stopDistance,stopSeconds:a.stopStartTime===null?0:a.elapsed-a.stopStartTime,entrySpeed:a.entrySpeed,overshoot:a.overshoot,maxAstern:a.maxAstern,asternSteeringSeconds:a.asternSteeringSeconds,minAsternYaw:a.minAsternYaw,gateCrossing:a.gateCrossing,message:a.message};
 }
 

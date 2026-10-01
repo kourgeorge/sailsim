@@ -1,0 +1,251 @@
+[
+  {
+    "fixture": "free",
+    "targetId": "haven:yacht:free:0",
+    "firstContact": 3.5499999999999914,
+    "maxYaw": 0.008968595870109453,
+    "maxDisplacement": 0.57216415188011,
+    "before": {
+      "player": {
+        "x": 293,
+        "z": 85,
+        "speed": 5,
+        "heading": 90
+      },
+      "target": {
+        "x": 310,
+        "z": 85,
+        "heading": 0
+      }
+    },
+    "player": {
+      "x": 302.2142817155666,
+      "z": 84.99983776012881,
+      "speed": 2.723202322610289,
+      "heading": 89.99609531023191
+    },
+    "target": {
+      "x": 310.57216409016104,
+      "z": 85.00026575717598,
+      "heading": 359.99682716662187,
+      "vx": 1.5040213927506332,
+      "vz": 0.0006985836489178659
+    },
+    "collision": {
+      "bodyId": "haven:yacht:free:0",
+      "bodyKind": "free",
+      "point": {
+        "x": 308.2867224104681,
+        "z": 85.0001389651638
+      },
+      "normal": {
+        "x": 0.9998000599800073,
+        "z": 0.01999600119958729
+      },
+      "impulse": 5143.111338587233,
+      "closingSpeed": 2.329582905419085,
+      "time": 3.5499999999999914,
+      "sequence": 1
+    },
+    "diagnostics": {
+      "location": "haven",
+      "quality": "compatibility",
+      "fps": "16.9",
+      "frames": "15",
+      "worldVessels": "5",
+      "worldBodies": "434",
+      "drawCalls": "127",
+      "triangles": "425428",
+      "camera": "chase",
+      "fov": "47.0"
+    }
+  },
+  {
+    "fixture": "glancing",
+    "targetId": "haven:yacht:free:0",
+    "firstContact": 3.7999999999999905,
+    "maxYaw": 17.81749027588816,
+    "maxDisplacement": 0.3495654235972021,
+    "before": {
+      "player": {
+        "x": 293,
+        "z": 81.5,
+        "speed": 5,
+        "heading": 90
+      },
+      "target": {
+        "x": 310,
+        "z": 85,
+        "heading": 0
+      }
+    },
+    "player": {
+      "x": 302.92416889583535,
+      "z": 81.46920828023997,
+      "speed": 3.474611983498429,
+      "heading": 89.34595554370571
+    },
+    "target": {
+      "x": 310.34600121185036,
+      "z": 85.04979103104748,
+      "heading": 6.392407244901847,
+      "vx": 0.8376466547152501,
+      "vz": 0.11157053781081566
+    },
+    "collision": {
+      "bodyId": "haven:yacht:free:0",
+      "bodyKind": "free",
+      "point": {
+        "x": 308.83506000278624,
+        "z": 81.50684248850325
+      },
+      "normal": {
+        "x": 0.9593655015712674,
+        "z": 0.2821663239915605
+      },
+      "impulse": 2857.341253386,
+      "closingSpeed": 2.2207416065104435,
+      "time": 3.7949999999999906,
+      "sequence": 1
+    },
+    "diagnostics": {
+      "location": "haven",
+      "quality": "compatibility",
+      "fps": "12.3",
+      "frames": "30",
+      "worldVessels": "5",
+      "worldBodies": "434",
+      "drawCalls": "123",
+      "triangles": "413392",
+      "camera": "chase",
+      "fov": "47.0"
+    }
+  },
+  {
+    "fixture": "moored",
+    "targetId": "haven:yacht:moored:0",
+    "firstContact": 3.074999999999993,
+    "maxYaw": 9.2615677013828e-16,
+    "maxDisplacement": 0.653370375916495,
+    "before": {
+      "player": {
+        "x": 348,
+        "z": 37,
+        "speed": 5,
+        "heading": 90
+      },
+      "target": {
+        "x": 367,
+        "z": 37,
+        "heading": 270
+      }
+    },
+    "player": {
+      "x": 356.1692180506239,
+      "z": 37,
+      "speed": 3.1597975013868593,
+      "heading": 90
+    },
+    "target": {
+      "x": 367.6533703759165,
+      "z": 37,
+      "heading": 270,
+      "vx": 1.3713256374630411,
+      "vz": -2.3247291441747656e-17
+    },
+    "collision": {
+      "bodyId": "haven:yacht:moored:0",
+      "bodyKind": "moored",
+      "point": {
+        "x": 362.13953912437665,
+        "z": 37
+      },
+      "normal": {
+        "x": 1,
+        "z": 0
+      },
+      "impulse": 4040.4847767362294,
+      "closingSpeed": 2.3604237834742445,
+      "time": 3.069999999999993,
+      "sequence": 1
+    },
+    "diagnostics": {
+      "location": "haven",
+      "quality": "compatibility",
+      "fps": "11.0",
+      "frames": "45",
+      "worldVessels": "5",
+      "worldBodies": "434",
+      "drawCalls": "119",
+      "triangles": "535842",
+      "camera": "chase",
+      "fov": "47.0"
+    },
+    "restraint": {
+      "max": 2.5034774816518848,
+      "radius": 2.5,
+      "final": 0.15377337433955063
+    }
+  },
+  {
+    "fixture": "dock",
+    "targetId": "haven:marina:spine",
+    "firstContact": 4.524999999999979,
+    "maxYaw": 0,
+    "maxDisplacement": 0,
+    "before": {
+      "player": {
+        "x": 400,
+        "z": 70,
+        "speed": 5,
+        "heading": 270
+      },
+      "target": {
+        "x": 380,
+        "z": 70,
+        "heading": 90
+      }
+    },
+    "player": {
+      "x": 389.1495942946776,
+      "z": 70,
+      "speed": -0.2636969009661205,
+      "heading": 270
+    },
+    "target": {
+      "x": 380,
+      "z": 70,
+      "heading": 90,
+      "vx": 0,
+      "vz": 0
+    },
+    "collision": {
+      "bodyId": "haven:marina:spine",
+      "bodyKind": "fixed",
+      "point": {
+        "x": 382.4911595973599,
+        "z": 70
+      },
+      "normal": {
+        "x": -1,
+        "z": 0
+      },
+      "impulse": 13478.69490460846,
+      "closingSpeed": 2.2706696267871394,
+      "time": 4.519999999999979,
+      "sequence": 1
+    },
+    "diagnostics": {
+      "location": "haven",
+      "quality": "compatibility",
+      "fps": "10.4",
+      "frames": "60",
+      "worldVessels": "5",
+      "worldBodies": "434",
+      "drawCalls": "120",
+      "triangles": "413386",
+      "camera": "chase",
+      "fov": "47.0"
+    }
+  }
+]

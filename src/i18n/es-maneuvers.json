@@ -115,5 +115,6 @@
   "Heading change from start": "Cambio de rumbo desde el inicio",
   "Distance travelled": "Distancia recorrida",
   "Speed at gate": "Velocidad en la puerta",
-  "Gate offset": "Desplazamiento respecto al centro de la puerta"
+  "Gate offset": "Desplazamiento respecto al centro de la puerta",
+  "Collision ended this attempt. Keep clear of boats and fixed objects, then restart.": "Una colisión terminó este intento. Mantén distancia de barcos y objetos fijos y vuelve a empezar."
 }

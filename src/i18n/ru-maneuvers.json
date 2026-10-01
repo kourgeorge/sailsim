@@ -115,5 +115,6 @@
   "Heading change from start": "Изменение курса от начала",
   "Distance travelled": "Пройденное расстояние",
   "Speed at gate": "Скорость у ворот",
-  "Gate offset": "Смещение от центра ворот"
+  "Gate offset": "Смещение от центра ворот",
+  "Collision ended this attempt. Keep clear of boats and fixed objects, then restart.": "Столкновение завершило попытку. Держитесь подальше от судов и неподвижных препятствий и начните заново."
 }

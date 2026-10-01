@@ -115,5 +115,6 @@
   "Heading change from start": "تغير الاتجاه منذ البداية",
   "Distance travelled": "المسافة المقطوعة",
   "Speed at gate": "السرعة عند البوابة",
-  "Gate offset": "الإزاحة عن مركز البوابة"
+  "Gate offset": "الإزاحة عن مركز البوابة",
+  "Collision ended this attempt. Keep clear of boats and fixed objects, then restart.": "أنهى التصادم هذه المحاولة. ابتعد عن القوارب والأجسام الثابتة ثم أعد المحاولة."
 }

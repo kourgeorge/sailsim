@@ -115,5 +115,6 @@
   "Heading change from start": "Heading change from start",
   "Distance travelled": "Distance travelled",
   "Speed at gate": "Speed at gate",
-  "Gate offset": "Gate offset"
+  "Gate offset": "Gate offset",
+  "Collision ended this attempt. Keep clear of boats and fixed objects, then restart.": "Collision ended this attempt. Keep clear of boats and fixed objects, then restart."
 }

@@ -65,7 +65,8 @@ function instrument(parent,mat,x,y,z,width,height,title){
   const label=(text,x,y,max=460)=>{c.fillStyle='#91bfba';c.font='22px sans-serif';c.fillText(translate(text),x,y,max);};
   const number=(text,x,y,size=36,color='#edfff1',max=460)=>{c.fillStyle=color;c.font=`600 ${size}px monospace`;c.fillText(text,x,y,max);};
   if(title==='CHARTPLOTTER'){
-   const {islands,buoys}=getLocation(state.locationId);
+   const {islands,buoys:chartedBuoys}=getLocation(state.locationId);
+   const world=state.worldBodies||[],buoys=world.filter(body=>body.visual?.type==='buoy');
    label('CHART',18,29);
    // Readouts stay above the wheel rim. COG is undefined when stationary.
    const sog=state.speedOverGround??Math.abs(state.speed);
@@ -86,7 +87,17 @@ function instrument(parent,mat,x,y,z,width,height,title){
      if(i===0)c.moveTo(x,y);else c.lineTo(x,y);
     }c.closePath();c.fill();
    });
-   c.fillStyle='#f2c777';buoys.forEach(a=>{c.beginPath();c.arc(256+(a.x-state.x)*.14,210+(a.z-state.z)*.14,3,0,Math.PI*2);c.fill();});
+   for(const body of world){
+    if(!['yacht','pier'].includes(body.visual?.type))continue;
+    c.save();c.translate(256+(body.x-state.x)*.14,210+(body.z-state.z)*.14);c.rotate(body.heading*Math.PI/180);
+    if(body.visual.type==='pier'){
+     c.fillStyle='#bcb093';c.fillRect(-body.shape.beam*.07,-body.shape.length*.07,body.shape.beam*.14,body.shape.length*.14);
+    }else{
+     c.fillStyle=body.kind==='free'?'#9ed9ea':'#d2d9cf';c.beginPath();c.moveTo(0,-5);c.lineTo(2.7,3.5);c.lineTo(-2.7,3.5);c.closePath();c.fill();
+    }
+    c.restore();
+   }
+   c.fillStyle='#f2c777';(buoys.length?buoys:chartedBuoys).forEach(a=>{c.beginPath();c.arc(256+(a.x-state.x)*.14,210+(a.z-state.z)*.14,3,0,Math.PI*2);c.fill();});
    c.save();c.translate(256,210);c.rotate(state.heading*Math.PI/180);
    c.fillStyle='#f6d698';c.beginPath();c.moveTo(0,-17);c.lineTo(9,12);c.lineTo(0,7);c.lineTo(-9,12);c.fill();c.restore();
    c.fillStyle='#edfff1';c.font='20px monospace';c.fillText('N ↑',23,116);c.restore();

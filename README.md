@@ -20,6 +20,8 @@ node scripts/check-locales.mjs            # Six-language desktop/mobile checks
 node scripts/check-new-features.mjs        # Text sizing, engine drills and replay
 node scripts/check-training-scenarios.mjs  # All 19 assessed sailing practices
 node scripts/check-decision-training.mjs --locales  # Scenarios, direct launch, scoring and six languages
+node scripts/check-activity-status.mjs  # Explicit study/ready/running/paused states
+node scripts/check-collision-visuals.mjs  # Real contacts and both-body visual response
 ```
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
@@ -71,3 +73,7 @@ See [curriculum](docs/CURRICULUM.md), [physics](docs/PHYSICS.md), [localization]
 Refresh with `npm run scrape`, then `python3 scripts/build_archive_index.py`. The scraper caches successful files. Source ownership remains with the original rights holders; archived HTML and images are reference material, while the app uses original branding, lesson prose and generated 3D geometry.
 
 Training scores, critical failures, saved debriefs and progress migration are documented in [PRACTICE_SCORING.md](docs/PRACTICE_SCORING.md). Scenarios assess their stated modeled tasks; course completion is not an on-water qualification.
+
+The persistent activity banner distinguishes study, a simulation that has not started, assessed boat handling, pauses, free practice and finished attempts. Reading freezes training and preserves the current task.
+
+Boat and object contacts now use shared finite hulls and rigid-body impulses. Free vessels move and turn when struck; moored vessels and buoys respond within their restraints, while piers and rocks remain fixed. See [COLLISION_PHYSICS.md](docs/COLLISION_PHYSICS.md) for units, validation and model limits.

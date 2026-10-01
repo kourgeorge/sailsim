@@ -1,0 +1,14 @@
+{
+  "passed": true,
+  "errors": [],
+  "states": [
+    "ready",
+    "study",
+    "scenario-running",
+    "training-running",
+    "training-paused",
+    "review",
+    "free-paused",
+    "free-running"
+  ]
+}
