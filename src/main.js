@@ -36,6 +36,7 @@ import { createPracticeState } from './learning/scenario-state.js';
 import { initialState, step, refreshDerived, pointOfSail } from './physics.js';
 import './mobile.css';
 import { mountMobileLayout } from './mobile.js';
+import { mountSailingAudio } from './audio/ui.js';
 
 async function startApp() {
   initializeTextSize();
@@ -54,7 +55,7 @@ async function startApp() {
     challengeIndex = 0,
     challengeDone = false,
     challengeTime = 0;
-  let learning, vesselControls, lab, learningTools, helmDashboard, cockpitControls;
+  let learning, vesselControls, lab, learningTools, helmDashboard, cockpitControls, sailingAudio;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
   let scene;
@@ -124,6 +125,7 @@ async function startApp() {
       $('#objective-check').textContent = '○';
       $('#next-lesson').hidden = true;
     }
+    sailingAudio?.sync(true);
   }
   function overlayOpen() {
     return $('#modal').open || Boolean(document.querySelector('.mobile-sheet[open]'));
@@ -146,6 +148,7 @@ async function startApp() {
   });
   const cockpitEnabled = () => playback.controlsEnabled;
   function syncPlayback() {
+    sailingAudio?.sync();
     cockpitControls?.syncAvailability();
     const activity = playback.state,
       button = $('#play'),
@@ -179,6 +182,7 @@ async function startApp() {
   }
   function togglePlayback() {
     playback.toggle();
+    sailingAudio?.sync(true);
     syncControls();
   }
   function syncControls() {
@@ -687,6 +691,12 @@ async function startApp() {
     if (e.key === 'Escape' && !overlayOpen()) toggleSystems(false);
   });
   mountSimulationControls();
+  sailingAudio = mountSailingAudio({
+    container: $('.view-controls'),
+    getMode: () => mode,
+    getActive: () => mode === 'explore' && !playback.paused && !document.hidden,
+    openModal,
+  });
   lesson = learning.selected;
   updateLesson();
   syncControls();

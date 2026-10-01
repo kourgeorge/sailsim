@@ -1,0 +1,103 @@
+// Columns: Spanish, French, Russian, Hebrew, Arabic.
+const rows = {
+  Sound: ['Sonido', 'Son', 'Звук', 'צליל', 'الصوت'],
+  'Sound off': ['Sonido desactivado', 'Son coupé', 'Звук выключен', 'הצליל מושתק', 'الصوت مكتوم'],
+  'Sea & music': [
+    'Mar y música',
+    'Mer et musique',
+    'Море и музыка',
+    'ים ומוזיקה',
+    'البحر والموسيقى',
+  ],
+  'Background sound': [
+    'Sonido de fondo',
+    'Ambiance sonore',
+    'Фоновый звук',
+    'צלילי רקע',
+    'صوت الخلفية',
+  ],
+  'Relaxing music': [
+    'Música relajante',
+    'Musique relaxante',
+    'Расслабляющая музыка',
+    'מוזיקה מרגיעה',
+    'موسيقى هادئة',
+  ],
+  'Sea sounds': ['Sonidos del mar', 'Bruits de la mer', 'Звуки моря', 'קולות הים', 'أصوات البحر'],
+  'Enable sound': [
+    'Activar sonido',
+    'Activer le son',
+    'Включить звук',
+    'הפעלת הצליל',
+    'تشغيل الصوت',
+  ],
+  'Mute music': [
+    'Silenciar música',
+    'Couper la musique',
+    'Выключить музыку',
+    'השתקת המוזיקה',
+    'كتم الموسيقى',
+  ],
+  'Unmute music': [
+    'Activar música',
+    'Rétablir la musique',
+    'Включить музыку',
+    'ביטול השתקת המוזיקה',
+    'إلغاء كتم الموسيقى',
+  ],
+  'Mute sea sounds': [
+    'Silenciar el mar',
+    'Couper les bruits de la mer',
+    'Выключить звуки моря',
+    'השתקת קולות הים',
+    'كتم أصوات البحر',
+  ],
+  'Unmute sea sounds': [
+    'Activar el mar',
+    'Rétablir les bruits de la mer',
+    'Включить звуки моря',
+    'ביטול השתקת קולות הים',
+    'إلغاء كتم أصوات البحر',
+  ],
+  'Slow, gentle music with the wash of the sea. Adjust each sound to suit your mood.': [
+    'Música lenta y suave con el murmullo del mar. Ajusta cada sonido a tu gusto.',
+    'Une musique lente et douce, accompagnée du murmure de la mer. Réglez chaque son selon votre humeur.',
+    'Неспешная нежная музыка и шум морских волн. Настройте каждый звук под своё настроение.',
+    'מוזיקה איטית ועדינה עם רחש גלי הים. התאימו את עוצמת כל צליל למצב הרוח שלכם.',
+    'موسيقى بطيئة وناعمة مع حفيف أمواج البحر. اضبط كل صوت بما يناسب مزاجك.',
+  ],
+  'Background audio is unavailable in this browser.': [
+    'El audio de fondo no está disponible en este navegador.',
+    'L’audio d’ambiance n’est pas disponible dans ce navigateur.',
+    'Фоновый звук недоступен в этом браузере.',
+    'צלילי הרקע אינם זמינים בדפדפן זה.',
+    'صوت الخلفية غير متاح في هذا المتصفح.',
+  ],
+  'Tap Enable sound to start the audio.': [
+    'Pulsa Activar sonido para iniciar el audio.',
+    'Appuyez sur Activer le son pour démarrer l’audio.',
+    'Нажмите «Включить звук», чтобы запустить аудио.',
+    'לחצו על ״הפעלת הצליל״ כדי להתחיל את השמע.',
+    'اضغط على «تشغيل الصوت» لبدء الاستماع.',
+  ],
+  'Background sound is playing.': [
+    'Se está reproduciendo el sonido de fondo.',
+    'L’ambiance sonore est en cours de lecture.',
+    'Фоновый звук воспроизводится.',
+    'צלילי הרקע מתנגנים.',
+    'صوت الخلفية قيد التشغيل.',
+  ],
+  'Sound begins when you resume Free sailing.': [
+    'El sonido comienza al reanudar Navegación libre.',
+    'Le son démarre lorsque vous reprenez Navigation libre.',
+    'Звук начнётся, когда вы продолжите свободное плавание.',
+    'הצליל יתחיל כשתמשיכו בשיט חופשי.',
+    'يبدأ الصوت عند استئناف الإبحار الحر.',
+  ],
+};
+export const audioUI = Object.fromEntries(
+  ['en', 'es', 'fr', 'ru', 'he', 'ar'].map((language, i) => [
+    language,
+    Object.fromEntries(Object.entries(rows).map(([key, values]) => [key, i ? values[i - 1] : key])),
+  ]),
+);

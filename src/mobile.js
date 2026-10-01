@@ -268,7 +268,7 @@ export function mountMobileLayout() {
     moves.push({node, placeholder, target});
   }
   menu.addEventListener('click', event => {
-    if (event.target.closest('button[data-mode], #help, #chart-toggle, #systems-toggle, #conditions, #reset, #location-select')) menu.close();
+    if (event.target.closest('button[data-mode], #help, #chart-toggle, #systems-toggle, #conditions, #reset, #location-select, #sound-settings')) menu.close();
   }, true);
   camera.addEventListener('change', () => menu.close());
   lessonSheet.addEventListener('click', event => {

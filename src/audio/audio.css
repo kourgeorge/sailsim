@@ -1,0 +1,19 @@
+#sound-settings{white-space:nowrap}
+#sound-settings .sound-muted{display:none}
+#sound-settings[data-audio-state=muted] .sound-muted{display:block}
+#sound-settings[data-audio-state=muted] .sound-waves{display:none}
+#sound-settings[data-audio-state=playing]{color:#ffe1a9}
+.sound-enable{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:24px 0;padding:16px 0;border-block:1px solid #ffffff24}
+.sound-enable input{width:24px;height:24px;accent-color:var(--gold);cursor:pointer}
+#sailing-audio-settings .setting-label{gap:16px;flex-wrap:wrap}
+#sailing-audio-settings input[type=range]{width:100%;min-height:44px}
+#sailing-audio-settings input:disabled{opacity:.4}
+#sailing-audio-settings #sound-status{font-size:calc(12px * var(--text-scale,1));line-height:1.6}
+
+.sound-level{display:flex;align-items:center;gap:16px}
+.sound-level input{min-width:0;flex:1}
+.sound-mute{display:grid;place-items:center;flex-shrink:0;width:44px;height:44px;border:1px solid #ffffff44;border-radius:8px}
+.sound-mute .sound-muted{display:none}
+.sound-mute[aria-pressed=true] .sound-muted{display:block}
+.sound-mute[aria-pressed=true] .sound-waves{display:none}
+.sound-mute[aria-pressed=true]{color:#8ba1a8;background:#ffffff08}

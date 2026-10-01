@@ -43,7 +43,13 @@ node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feed
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
 
-`npm run test:browser` uses the production build and owns port 5198. It covers multi-tab progress, language changes, desktop/mobile training, and real WebGL pause/resume rendering. UI state tests use the supported WebGL fallback; the rendering test uses Chromium's software GPU. Failures retain screenshots and traces in `test-results/`. GitHub Pages deployment runs this suite before uploading the site.
+`npm run test:browser` uses the production build and owns port 5198. It covers multi-tab progress, language changes, desktop/mobile training, independent music/water muting, rendered audio signals, and real WebGL pause/resume rendering. UI state tests use the supported WebGL fallback; the rendering test uses Chromium's software GPU. Failures retain screenshots and traces in `test-results/`. GitHub Pages deployment runs this suite before uploading the site.
+
+## Free-sailing ambience
+
+Free sailing has soft instrumental music and stereo sea sounds, generated locally with Web Audio. A slow chord progression, sparse upper notes, and gently changing surf play after you press the sailing play button. No recording downloads or external streaming services are needed.
+
+Open **Sound** in the scene toolbar (in the mobile menu) to set music and sea volume independently. Each layer has its own mute button; **Background sound** switches both off. Mute and volume preferences survive reloads without changing each other. Audio fades out on pause or when leaving Free sailing, suspends in hidden tabs, and never starts in lessons or challenges. The audio context is created from a user gesture and suspends when silent; browsers that block sound offer an explicit retry.
 
 ## Sailing school
 
