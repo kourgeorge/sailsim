@@ -56,7 +56,8 @@
   .mobile-menu-actions > button:first-child { flex: 1; }
   #mobile-indicators-toggle[aria-pressed=true] { color: #ffe0a9; background: #ffffff12; border-color: #ecc78e; }
   html[data-text-size] #mobile-menu .view-controls { display: flex; flex-direction: row; flex-wrap: wrap; position: static; inset: auto; width: 100%; max-width: none; margin: 0; gap: 6px; padding: 6px; border-radius: 10px; background: #ffffff08; }
-  #mobile-menu .view-controls > [data-camera] { display: none; }
+  #mobile-menu .camera-views { flex: 1 1 110px; }
+  #mobile-menu .camera-views > [data-camera] { display: none; }
   html[data-text-size] #mobile-menu .view-controls button { min-width: 44px; min-height: 44px; padding: 8px 10px; font-size: calc(12px * var(--text-scale, 1)); flex: 1 1 auto; }
   .mobile-camera { display: block; min-width: 0; min-height: 44px; width: 110px; flex: 1 1 auto; padding: 8px; font: inherit; font-size: max(16px, calc(12px * var(--text-scale, 1))); color: #f4e0b7; background: #264653; border: 0; border-radius: 6px; }
   html[data-text-size] #mobile-menu .location, html[data-text-size] #mobile-menu .weather { position: static; inset: auto; margin: 0; max-width: none; min-height: 44px; padding: 10px; width: 100%; text-align: start; justify-content: flex-start; }

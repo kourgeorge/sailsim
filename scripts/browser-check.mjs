@@ -35,15 +35,22 @@ try {
  await page.locator('#course-library').click();
  assert.equal(await page.locator('[data-library-lesson]').count(),42);
  await page.locator('[data-library-lesson="3"]').click();
+ const lessonBannerWidth=await page.locator('.lesson-card').evaluate(card=>card.getBoundingClientRect().width);
  await page.locator('#practice-start').click();await page.locator('#practice-launch').click();
  await expect(page.locator('#lesson-reader')).toBeHidden();
  await page.locator('button[data-camera="deck"]').click();
  await expect(page.locator('#objective-text')).toContainText('chart',{timeout:60000});
  await page.locator('#chart-toggle').click();await expect(page.locator('#large-chart')).toBeVisible();await page.locator('#close-modal').click();
  await expect(page.locator('.practice-debrief')).toContainText('Training passed',{timeout:60000});await page.locator('#close-modal').click();
+ // Finishing in Cockpit must restore the full lesson banner, including its copy.
+ for(const selector of ['#card-title','#card-eyebrow','#card-body','#scene-heading','#scene-subheading'])await expect(page.locator(selector)).toBeVisible();
+ await expect(page.locator('.scene-title')).toHaveCSS('opacity','1');
+ const completedBanner=await page.locator('.lesson-card').evaluate(card=>({width:card.getBoundingClientRect().width,scrollHeight:card.scrollHeight,clientHeight:card.clientHeight}));
+ assert.equal(completedBanner.width,lessonBannerWidth,'Completion preserves the lesson banner width');
+ assert.ok(completedBanner.scrollHeight<=completedBanner.clientHeight+1,'Completed lesson banner does not gain a scrollbar');
  assert.equal(await page.locator('#progress-label').textContent(),'0 / 42','Practice preview alone does not award mastery');
  // Reset, real controls, and keyboard operation after a focused button.
- await page.locator('[data-mode="explore"]').click();
+ await page.locator('button[data-mode="explore"]').click();
  await page.locator('button[data-camera="chase"]').click();
  await page.locator('#reset').click();await page.locator('#play').click();
  await page.keyboard.down('ArrowRight');
@@ -96,7 +103,7 @@ try {
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(2200);
  assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),'No horizontal mobile overflow');
  await page.screenshot({path:'artifacts/sail-mobile.png',fullPage:true,timeout:90000});
- await page.locator('[data-mode="learn"]').click();await expect(page.locator('[data-library-lesson="0"]')).toBeVisible();await page.locator('#close-modal').click();
+ await page.locator('button[data-mode="learn"]').click();await expect(page.locator('[data-library-lesson="0"]')).toBeVisible();await page.locator('#close-modal').click();
  await page.locator('#systems-toggle').click();await page.locator('#vessel-mainHoist').fill('0.25');await page.locator('#systems-close').click();
  await page.locator('#sails').click();await page.locator('#reef').click();await page.locator('#help').click();await expect(page.locator('#modal')).toBeVisible();await page.locator('#close-modal').click();
  await page.goto(new URL('/reference/esail/index.html',url).href,{waitUntil:'domcontentloaded'});await page.locator('#search').fill('reefing');assert.ok(await page.locator('#results article').count()>0);await page.locator('#images').click();await page.locator('#search').fill('');assert.equal(await page.locator('#results .image').count(),234);

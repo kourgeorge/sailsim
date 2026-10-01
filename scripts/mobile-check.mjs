@@ -12,7 +12,7 @@ await mkdir('artifacts/mobile', {recursive:true});
 const menu=async()=>{await page.locator('#mobile-menu-toggle').click();await expect(page.locator('#mobile-menu')).toBeVisible();};
 const closeMenu=()=>page.locator('#mobile-menu .mobile-sheet-close').click();
 const lessons=async()=>{await page.locator('#mobile-lesson-toggle').click();await expect(page.locator('#mobile-lessons')).toBeVisible();if(await page.locator('.simulator').getAttribute('data-mode')!=='maneuver')await expect(page.locator('.mobile-lesson[aria-current]')).toBeInViewport();};
-const mode=async value=>{await menu();await page.locator(`[data-mode="${value}"]`).click();await expect(page.locator('#mobile-menu')).toBeHidden();};
+const mode=async value=>{await menu();await page.locator(`button[data-mode="${value}"]`).click();await expect(page.locator('#mobile-menu')).toBeHidden();};
 async function inspect(name, width, height) {
   await page.setViewportSize({width,height});
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth),{timeout:10000}).toBeLessThanOrEqual(width+1);

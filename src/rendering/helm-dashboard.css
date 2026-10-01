@@ -10,7 +10,12 @@ html[dir=rtl] .helm-dashboard{direction:rtl}
 .dashboard-reading{min-width:0;border-inline-start:1px solid #41666d;padding-inline-start:8px}
 .dashboard-reading dt{font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.3;color:#b9cfce;overflow-wrap:anywhere}
 .dashboard-reading dd{font-size:calc(17px * var(--text-scale,1));font-weight:600;line-height:1.3;margin:3px 0 0;color:#f3fbf1;font-variant-numeric:tabular-nums;letter-spacing:0}
-.dashboard-reading bdi{display:inline-block;white-space:nowrap}
+.dashboard-reading bdi{display:inline-block;white-space:nowrap;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums}
+/* Reserve a steady slot through zero, missing bearings, and extra digits so
+   live updates cannot wrap neighboring readings or resize the console. */
+.dashboard-detail bdi{inline-size:6ch;flex-shrink:0}
+.dashboard-detail [data-dashboard-value=sog]{inline-size:8ch}
+.dashboard-detail [data-dashboard-value=cog],.dashboard-detail [data-dashboard-value=water-direction]{inline-size:4ch}
 .dashboard-detail{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 5px;font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.4;color:#adc7ca;min-height:1.4em}
 .dashboard-expanded{color:#eaf2ed;text-align:start}
 .dashboard-expanded .dashboard-readings{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-block:10px 26px}

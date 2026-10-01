@@ -2,6 +2,7 @@
 // anchor snapshot owns geometry, states and the model's scope coefficient.
 const languages = ['es', 'fr', 'ru', 'he', 'ar'];
 const rows = {
+  'Anchor close-up': ['Primer plano del ancla', 'Gros plan de l’ancre', 'Якорь крупным планом', 'מבט מקרוב על העוגן', 'عرض مقرّب للمرساة'],
   'Anchor monitor': ['Monitor de fondeo', 'Suivi du mouillage', 'Контроль якорной стоянки', 'ניטור העגינה', 'مراقبة المرساة'],
   'Awaiting deployment': ['Pendiente de largar', 'En attente de mouillage', 'Ожидание отдачи якоря', 'ממתין להורדת העוגן', 'بانتظار إنزال المرساة'],
   'Deployment pending': ['Largado pendiente', 'Mouillage en attente', 'Отдача якоря ожидается', 'הורדת העוגן ממתינה', 'إنزال المرساة معلق'],

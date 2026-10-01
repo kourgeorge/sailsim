@@ -31,6 +31,9 @@ node scripts/check-keyboard-controls.mjs # Browser shortcuts, focus and sailing-
 node scripts/check-decision-training.mjs --assessment-fixes # North bearings and restored reports
 node scripts/check-rig-visuals.mjs        # Traveler, masthead wind pointer, reef/hoist and boom timing
 node scripts/check-anchor-visuals.mjs     # Actual anchor/rode deployment and rendered attachments
+node scripts/check-anchor-closeup.mjs    # Live underwater inset, rendering states and responsive placement
+node scripts/check-scene-layout.mjs      # Lesson spacing, grouped cameras and default text sizing
+node scripts/check-practice-panel.mjs    # Stable live requirements across six languages and text sizes
 node scripts/check-anchor-monitor.mjs    # Anchor controls/chart and six-language large-text monitor
 node scripts/check-anchor-monitor.mjs --training-sog # Natural stopping/anchoring and saved ground-speed evidence
 node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feedback, English/Arabic
@@ -48,7 +51,7 @@ Browser scripts require the development server and Playwright Chromium (`npx pla
 | Intermediate | 17–36 | Sail power, navigation, harbor planning and emergency decisions |
 | Advanced | 37–42 | Coastal planning, tidal clearance, current/time, weather, collision risk and night pilotage; interactive decision and numerical scenarios |
 
-The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **125%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
+The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **100%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
 
 The searchable learning library contains **26 verified official-source records** with original English research notes, retrieval provenance and source links. Source documents retain their published language. Emergency lessons 33–34 can be studied immediately; level labels are learning stages, not qualifications.
 

@@ -12,11 +12,23 @@ const heading=()=>page.locator('#heading').evaluate(e=>Number(e.textContent));
 const rows=id=>page.locator(`[data-requirement="${id}"]`);
 async function checkDashboard(){
  await page.goto(`${url}/?lang=he`,{waitUntil:'domcontentloaded',timeout:120000});await activity('ready');
- await page.locator('[data-mode="explore"]').click();await activity('free-paused');
+ await page.locator('button[data-mode="explore"]').click();await activity('free-paused');
  const dashboard=page.locator('#helm-dashboard'),read=key=>dashboard.locator(`[data-dashboard-value="${key}"]`);
  await expect(dashboard).toBeVisible();await expect(dashboard).toContainText('מהירות');
  const initialHeight=await dashboard.evaluate(node=>node.getBoundingClientRect().height);
  assert.ok(initialHeight<=100,`Default desktop dashboard stays compact: ${initialHeight}px`);
+ // Wider readings must not move neighboring values or the playback strip.
+ const layouts=await dashboard.evaluate(root=>{
+  const sample=()=>[document.querySelector('#play'),root,...root.querySelectorAll('.dashboard-detail')].map(node=>{
+   const {x,y,width,height}=node.getBoundingClientRect();return {x,y,width,height};
+  });
+  return [
+   {speed:'0.00 kn',sog:'0.00 kn',cog:'—','water-speed':'0.0 kn','water-direction':'—','water-angle':'—',rudder:'↑ 0°',throttle:'– 0%'},
+   {speed:'9.99 kn',sog:'9.99 kn',cog:'009°','water-speed':'9.9 kn','water-direction':'009°','water-angle':'← 9°',rudder:'← 9°',throttle:'▲ 9%'},
+   {speed:'10.00 kn',sog:'10.00 kn',cog:'100°','water-speed':'10.0 kn','water-direction':'100°','water-angle':'→ 100°',rudder:'→ 10°',throttle:'▲ 100%'},
+  ].map(values=>{for(const [key,value] of Object.entries(values))root.querySelector(`[data-dashboard-value="${key}"]`).textContent=value;return sample();});
+ });
+ for(const layout of layouts.slice(1))assert.deepEqual(layout,layouts[0],'Live readings keep the console layout stable');
  await page.locator('#conditions').click();await page.locator('#wind-speed').fill('10');await page.locator('#wind-direction').fill('0');await page.locator('#current-speed').fill('2');await page.locator('#current-direction').fill('90');await page.locator('#close-modal').click();
  await expect(read('water-speed')).toHaveText('10.2 kn');await expect(read('water-direction')).toHaveText('011°');await expect(read('sog')).toHaveText('2.00 kn');
  for(const id of ['rudder','trim','cockpit-jib-sheet','engine-throttle','engine-neutral','cockpit-main-hoist','cockpit-jib-hoist','reef','cockpit-anchor-rode','anchor'])await expect(page.locator(`.control-dock #${id}`)).toBeVisible();
@@ -29,7 +41,7 @@ async function checkDashboard(){
  await page.locator('#play').click();await activity('free-running');await expect(page.locator('#cockpit-anchor-paid')).not.toHaveText('0.0 m');await page.locator('#play').click();await activity('free-paused');
  await page.locator('#anchor').click();const paid=await page.locator('#cockpit-anchor-paid').textContent();await page.waitForTimeout(350);await expect(page.locator('#cockpit-anchor-paid')).toHaveText(paid);
  await page.locator('#reset').click();await activity('free-paused');
- for(const camera of ['helm','chase','deck','aerial']){
+ for(const camera of ['helm','chase','deck']){
   await page.locator(`button[data-camera="${camera}"]`).click();await expect(page.locator('#scene')).toHaveAttribute('data-camera',camera);
   await expect(dashboard).toBeVisible();
   const layout=await dashboard.evaluate(node=>{const rect=node.getBoundingClientRect(),control=document.querySelector('#rudder').getBoundingClientRect();return {below:rect.top>control.bottom,clipped:[...node.querySelectorAll('dd,dt,.dashboard-detail')].some(el=>el.scrollWidth>el.clientWidth+2)};});
@@ -55,7 +67,7 @@ async function checkDashboard(){
  await page.setViewportSize({width:1440,height:1100});await page.goto(`${url}/?lang=ar`,{waitUntil:'domcontentloaded',timeout:120000});await activity('ready');
  await expect(dashboard).toContainText('سرعة');assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false,'Arabic dashboard fits');
  await page.screenshot({path:'artifacts/live-practice/dashboard-ar-200.png',fullPage:true});
- assert.deepEqual(errors,[]);await writeFile('artifacts/live-practice/dashboard-results.json',JSON.stringify({passed:true,initialHeight,dockHeight,pixelRatio,cameras:['helm','chase','deck','aerial'],languages:['he','ar'],mobileTextSize:200,currentWindReadings:true,calmUndefined:true,visibleCockpitControls:true,independentSheetsAndHoists:true,twoReefs:true,poweredAnchor:true,errors},null,2));
+ assert.deepEqual(errors,[]);await writeFile('artifacts/live-practice/dashboard-results.json',JSON.stringify({passed:true,initialHeight,dockHeight,pixelRatio,cameras:['helm','chase','deck'],languages:['he','ar'],mobileTextSize:200,currentWindReadings:true,calmUndefined:true,visibleCockpitControls:true,independentSheetsAndHoists:true,twoReefs:true,poweredAnchor:true,errors},null,2));
  console.log('Dashboard passed: compact strip, all cameras, Hebrew/Arabic, 200% mobile, enlarged readings, helm/throttle and current-derived wind.');
 }
 async function checkLayout(){
@@ -96,7 +108,7 @@ async function checkLayout(){
  await page.locator('#practice-start').click();await page.locator('#practice-launch').click();await activity('training-running');
  await page.locator('#reset').click();await activity('review');await expect(page.locator('.mission-sidebar')).toHaveCount(0);
  await page.locator('#practice-start').click();await page.locator('#practice-launch').click();await activity('training-running');
- await page.locator('[data-mode="explore"]').click();await activity('free-paused');
+ await page.locator('button[data-mode="explore"]').click();await activity('free-paused');
  await expect(page.locator('.mission-sidebar')).toHaveCount(0);
  await expect(page.locator('.simulator > .lesson-card')).toHaveCount(1);
  assert.deepEqual(errors,[]);

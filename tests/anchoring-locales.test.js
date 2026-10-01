@@ -4,7 +4,7 @@ import { ANCHOR_UI_KEYS, anchoringUI } from '../src/i18n/anchoring.js';
 
 test('anchor monitor has complete display-only copy for all six interface languages', () => {
   assert.deepEqual(Object.keys(anchoringUI).sort(), ['ar', 'en', 'es', 'fr', 'he', 'ru']);
-  assert.equal(ANCHOR_UI_KEYS.length, 32);
+  assert.equal(ANCHOR_UI_KEYS.length, 33);
   const placeholders = text => [...text.matchAll(/\{\w+\}/g)].map(match => match[0]).sort();
   for (const [language, dictionary] of Object.entries(anchoringUI)) {
     assert.deepEqual(Object.keys(dictionary), ANCHOR_UI_KEYS);

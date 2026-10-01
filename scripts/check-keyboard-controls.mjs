@@ -27,7 +27,7 @@ try{
  assert.deepEqual(await dock.locator('input,select').evaluateAll(nodes=>nodes.map(node=>node.value)),initialControls,'Inactive dashboard ignores sailing shortcuts');
  await page.locator('#dashboard-enlarge').evaluate(node=>node.click());
  await expect(page.locator('#modal')).not.toBeVisible();
- await page.locator('[data-mode="explore"]').click();
+ await page.locator('button[data-mode="explore"]').click();
  await expect(dock).toHaveAttribute('aria-disabled','false');
  await expect(page.locator('#rudder')).toBeEnabled();
  await page.locator('#rudder').fill('18');await bodyFocus();
@@ -53,7 +53,7 @@ try{
  await bodyFocus();await page.keyboard.press('m');await expect(page.locator('#large-chart')).toBeVisible();
  const beforeModal=await helm();await page.keyboard.press('c');await expect(page.locator('#rudder')).toHaveValue(beforeModal);
  await page.locator('#close-modal').click();
- await page.locator('[data-mode="learn"]').click();
+ await page.locator('button[data-mode="learn"]').click();
  await page.locator('#lesson-briefing').click();await expect(page.locator('#lesson-reader')).toBeVisible();
  await page.keyboard.press('c');await page.keyboard.press('m');await expect(page.locator('#modal')).not.toBeVisible();
  await expect(page.locator('#rudder')).toHaveValue(beforeModal);
@@ -68,7 +68,7 @@ try{
  assert.equal(await helm(),briefingHelm,'Briefing owns keyboard input');
  await page.keyboard.press('Escape');await expect(page.locator('#activity-status')).toHaveAttribute('data-state','briefing');
  // Space on a focused button should activate it once; the sailing shortcut must not also toggle.
- await page.locator('[data-mode="explore"]').click();await page.locator('#play').focus();await page.keyboard.press('Space');
+ await page.locator('button[data-mode="explore"]').click();await page.locator('#play').focus();await page.keyboard.press('Space');
  await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-running');
  await expect(dock).toHaveAttribute('aria-disabled','false');
  await page.keyboard.press('Space');await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-paused');

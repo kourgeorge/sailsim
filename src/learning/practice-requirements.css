@@ -1,14 +1,41 @@
-#practice-requirements{margin:10px 0;color:#254e50}
-#practice-requirements table{border-collapse:collapse;width:100%;font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.4}
+#practice-requirements{margin:10px 0;color:#254e50;font-size:calc(11px * var(--text-scale,1));container:practice-requirements / inline-size}
+#practice-requirements table{border-collapse:collapse;table-layout:fixed;width:100%;font-size:inherit;font-weight:500;line-height:1.4}
+#practice-requirements .requirement-label-column{width:auto}
+#practice-requirements .requirement-now-column{width:5.6em}
+#practice-requirements .requirement-target-column{width:6.2em}
+#practice-requirements caption,.requirement-cell-label{display:none}
 #practice-requirements th,#practice-requirements td{padding:5px 4px;text-align:start;border-bottom:1px solid #c7d6ca}
 #practice-requirements th{font-weight:500}
 #practice-requirements thead th{color:#56736b;font-size:calc(11px * var(--text-scale,1));font-weight:500}
-#practice-requirements td{font-variant-numeric:tabular-nums;white-space:nowrap}
+#practice-requirements td bdi,.requirement-guidance bdi{font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+#practice-requirements .requirement-target[dir=auto]{font-family:inherit;white-space:normal;overflow-wrap:anywhere}
+#practice-requirements .requirement-marker{display:inline-block;width:1.1em;text-align:center}
+#practice-requirements th{overflow-wrap:anywhere}
 #practice-requirements tr[data-met=false] th span{color:#906437}
 #practice-requirements tr[data-met=true] th span{color:#2d7b5c}
 .lesson-card #practice-requirements p{font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.5;margin:7px 0 0;color:#526b61}
 .lesson-card #practice-requirements .requirement-guidance{font-weight:600;color:#285856}
+.requirement-notices{display:grid;margin-top:7px}
+.lesson-card #practice-requirements .requirement-notices p{grid-area:1 / 1;margin:0}
+.requirement-notice-reserve,.requirement-guidance.is-inactive{visibility:hidden}
+.lesson-card:has(#practice-requirements) #practice-score-value,.lesson-card:has(#practice-requirements) #checkpoint-status bdi{display:inline-block;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-variant-numeric:tabular-nums;white-space:nowrap}
+.lesson-card:has(#practice-requirements) #practice-score-value{min-width:9ch}
+.lesson-card:has(#practice-requirements) #checkpoint-status bdi{min-width:11ch}
 #practice-requirements[data-holding=true] .requirement-notice{color:#246643}
+/* A narrow rail or enlarged text puts the label above two stable value columns. */
+@container practice-requirements (max-width:22em){
+ #practice-requirements table,#practice-requirements tbody{display:block}
+ #practice-requirements colgroup{display:none}
+ #practice-requirements caption{display:block;text-align:start;color:#56736b;margin-bottom:4px}
+ #practice-requirements thead{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%)}
+ #practice-requirements tbody tr{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));border-bottom:1px solid #c7d6ca;padding:5px 0}
+ #practice-requirements tbody th{grid-column:1 / -1}
+ #practice-requirements tbody th,#practice-requirements td{border:0;padding:2px 4px}
+ #practice-requirements .requirement-cell-label{display:block;color:#56736b;margin-bottom:2px}
+}
+@container practice-requirements (max-width:12em){
+ #practice-requirements tbody tr{grid-template-columns:minmax(0,1fr)}
+}
 /* In practice the mission occupies a corner, leaving the wheel and display free. */
 .simulator .lesson-card:has(#practice-requirements){inset-block-start:108px;inset-block-end:auto;width:min(350px,32%);max-height:calc(100% - var(--control-dock-height,151px) - 138px);padding:16px}
 .lesson-card:has(#practice-requirements) .lesson-card-icon,.lesson-card:has(#practice-requirements) #next-lesson{display:none}

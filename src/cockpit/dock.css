@@ -32,10 +32,10 @@
 .control-dock:has(#helm-dashboard){row-gap:4px;padding-block:6px 5px}
 .simulator .control-dock .helm-dashboard{padding-top:4px;border-top-color:#ffffff12;gap:6px}
 .simulator .control-dock .dashboard-readings{gap:4px 10px}
-.simulator .control-dock .dashboard-reading{padding-inline-start:8px;border-inline-start-color:#ffffff14;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"label label" "value detail";align-items:baseline;column-gap:6px}
+.simulator .control-dock .dashboard-reading{padding-inline-start:8px;border-inline-start-color:#ffffff14;display:grid;grid-template-columns:minmax(0,1fr);grid-template-areas:"label" "value" "detail";align-content:start;align-items:start;row-gap:2px}
 .simulator .control-dock .dashboard-reading dt{grid-area:label;font-size:calc(11px * var(--text-scale,1));font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#7f9ea2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
 .simulator .control-dock .dashboard-reading dd{grid-area:value;margin:0;font-size:calc(15px * var(--text-scale,1));line-height:1.2}
-.simulator .control-dock .dashboard-detail{grid-area:detail;font-size:calc(11px * var(--text-scale,1));font-weight:500;min-height:0;line-height:1.2}
+.simulator .control-dock .dashboard-detail{grid-area:detail;font-size:calc(11px * var(--text-scale,1));font-weight:500;min-height:1.2em;line-height:1.2;align-content:start}
 .simulator .control-dock .dashboard-actions button{min-height:20px;font-size:calc(11px * var(--text-scale,1));font-weight:500}
 .simulator .control-dock .dashboard-actions #dashboard-enlarge{font-size:15px}
 /* Key labels */

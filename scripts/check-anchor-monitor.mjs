@@ -90,7 +90,7 @@ try{
   await checkTrainingGroundSpeed();assert.deepEqual(errors,[]);
  }else{
  await page.goto(url,{waitUntil:'domcontentloaded',timeout:120000});await expect(monitor).toHaveAttribute('data-anchor-phase','stowed');
- await page.locator('[data-mode="explore"]').click();await page.locator('#sails').click();await openAnchor();
+ await page.locator('button[data-mode="explore"]').click();await page.locator('#sails').click();await openAnchor();
  await page.locator('#vessel-anchorRode').fill('5');await page.locator('[data-command="anchor"]').click();
  await expect(monitor).toHaveAttribute('data-anchor-phase','pending');await expect(monitor).toHaveAttribute('data-anchor-operation','paused');
  await expect(page.locator('#anchor span')).toHaveText('Stop windlass');await expect(metric('rode')).toHaveText('0.0 m');await expect(metric('target')).toHaveText('5.0 m');

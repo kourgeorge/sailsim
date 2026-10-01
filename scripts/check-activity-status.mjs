@@ -49,7 +49,7 @@ try{
  // Decision training also has a briefing, then an interactive scenario, never the reader.
  await selectLesson(0);await prepare();await page.locator('#practice-launch').click();await state('scenario-running');await expect(page.locator('#decision-training')).toBeVisible();await expect(page.locator('#lesson-reader')).toBeHidden();
  await page.locator('#training-close').click();await state('review');await page.locator('#training-finish').click();
- await page.locator('[data-mode="explore"]').click();await state('free-paused');await page.locator('#play').click();await state('free-running');await page.locator('#play').click();await state('free-paused');
+ await page.locator('button[data-mode="explore"]').click();await state('free-paused');await page.locator('#play').click();await state('free-running');await page.locator('#play').click();await state('free-paused');
  console.log('Hebrew lifecycle, authored setup, pause/resume, assessed score, explicit end, decision and free sailing passed.');
  // Every language: practice entry and large-text/mobile briefing controls stay accessible.
  for(const lang of ['en','es','fr','ru','he','ar']){

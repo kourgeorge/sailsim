@@ -5,6 +5,7 @@ import {translate as t} from './i18n/runtime.js';
 export function mountMobileLayout() {
   const simulator = document.querySelector('.simulator');
   const views = simulator.querySelector('.view-controls');
+  const cameraViews = views.querySelector('.camera-views');
   const camera = document.createElement('select');
   camera.id = 'mobile-camera';
   camera.className = 'mobile-camera';
@@ -13,7 +14,7 @@ export function mountMobileLayout() {
     const option = new Option(button.textContent.trim(), button.dataset.camera);
     camera.add(option);
   }
-  views.prepend(camera);
+  cameraViews.prepend(camera);
   camera.addEventListener('change', () => views.querySelector(`[data-camera="${camera.value}"]`).click());
   const syncCamera = () => { camera.value = simulator.dataset.view || 'chase'; };
   new MutationObserver(syncCamera).observe(simulator, {attributes: true, attributeFilter: ['data-view']});
@@ -30,6 +31,9 @@ export function mountMobileLayout() {
   drawer.className = 'mobile-controls-drawer';
   dock.before(drawer);
   drawer.append(tabs, dock);
+  new ResizeObserver(() => {
+    simulator.style.setProperty('--mobile-controls-height', `${Math.ceil(drawer.getBoundingClientRect().height)}px`);
+  }).observe(drawer);
   const toggle = document.createElement('button');
   toggle.type = 'button';
   toggle.id = 'mobile-controls-toggle';

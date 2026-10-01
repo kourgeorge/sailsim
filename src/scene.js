@@ -7,6 +7,7 @@ import { getLocation } from './locations.js';
 import { getWorldBodyDefinitions, localToWorld } from './world/bodies.js';
 import { syncBodyTransform, impactMotion } from './rendering/body-motion.js';
 import { disposeSceneResources } from './rendering/dispose.js';
+import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 
 export function createScene(container,{locationId='haven'}={}){
  const location=getLocation(locationId);container.dataset.location=location.id;
@@ -20,6 +21,7 @@ export function createScene(container,{locationId='haven'}={}){
  container.append(renderer.domElement);renderer.domElement.setAttribute('aria-label','Detailed 3D sailing yacht with working cockpit instruments, reflective sea and wooded island harbor');
  const camera=new THREE.PerspectiveCamera(47,container.clientWidth/container.clientHeight,.08,10000);
  const materials=createMaterials(),environment=createEnvironment(scene,renderer,materials,{software,locationId:location.id}),yacht=createYacht(materials);scene.add(yacht.group);
+ const anchorCloseup=createAnchorCloseup(container,renderer,yacht.group,scene.environment);
  const trainingCues=createTrainingCues(scene);
  // Keep one transform root per physical hull; cloned fittings share GPU buffers.
  const vesselDefinitions=getWorldBodyDefinitions(location.id).filter(body=>body.visual.type==='yacht');
@@ -92,8 +94,10 @@ export function createScene(container,{locationId='haven'}={}){
   }
   const smooth=1-Math.exp(-dt*7);camera.position.lerp(desired,smooth);camera.lookAt(target);const desiredFov=view==='helm'?THREE.MathUtils.clamp(views[view].fov*zoom,25,85):views[view].fov;camera.fov=THREE.MathUtils.lerp(camera.fov,desiredFov,smooth);camera.updateProjectionMatrix();
   renderer.render(scene,camera);
+  const sceneCalls=renderer.info.render.calls,sceneTriangles=renderer.info.render.triangles;
+  const anchorVisible=anchorCloseup.render(state);
   // Read-only diagnostics for browser quality/performance verification.
-  container.dataset.drawCalls=renderer.info.render.calls;container.dataset.triangles=renderer.info.render.triangles;container.dataset.camera=view;container.dataset.fov=camera.fov.toFixed(1);
+  container.dataset.drawCalls=sceneCalls+(anchorVisible?renderer.info.render.calls:0);container.dataset.triangles=sceneTriangles+(anchorVisible?renderer.info.render.triangles:0);container.dataset.camera=view;container.dataset.fov=camera.fov.toFixed(1);
  }
  camera.position.set(location.start.x+20,13,location.start.z+27);
  return {
@@ -105,7 +109,7 @@ export function createScene(container,{locationId='haven'}={}){
    if(disposed)return;disposed=true;observer.disconnect();
    const canvas=renderer.domElement;
    for(const [event,handler] of [['dblclick',resetCamera],['pointerdown',pointerDown],['pointermove',pointerMove],['pointerup',pointerUp],['pointercancel',pointerUp],['wheel',wheel]])canvas.removeEventListener(event,handler);
-   trainingCues.dispose();
+   trainingCues.dispose();anchorCloseup.dispose();
    const excludedTextures=environment.dispose();
    disposeSceneResources(scene,{extraMaterials:Object.values(materials),excludedTextures});
    renderer.dispose();renderer.forceContextLoss();canvas.remove();

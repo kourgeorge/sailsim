@@ -64,7 +64,9 @@ function anchorBody(material) {
  bar(group,material,[0,0,.045],[0,0,.54],.034);
  bar(group,material,[-.31,0,.49],[.31,0,.49],.029);
  for(const side of [-1,1]){
-  const fluke=box(group,material,side*.19,-.015,.58,.24,.055,.34,.025);fluke.rotation.y=side*-.24;
+  const shape=new THREE.Shape();shape.moveTo(-.13,0);shape.lineTo(.13,0);shape.lineTo(.09,.27);shape.lineTo(0,.44);shape.lineTo(-.09,.27);shape.closePath();
+  const fluke=mesh(group,new THREE.ExtrudeGeometry(shape,{depth:.045,bevelEnabled:true,bevelThickness:.006,bevelSize:.006,bevelSegments:1,steps:1}),material,side*.19,.015,.41);
+  fluke.rotation.set(Math.PI/2,0,side*.12);
  }
  batchStaticMeshes(group,mergeGeometries);return group;
 }

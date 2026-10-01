@@ -2,7 +2,7 @@ import { translate } from '../i18n/runtime.js';
 import './text-size.css';
 
 const STORAGE_KEY = 'sail-text-size';
-const DEFAULT_PERCENT = 125;
+const DEFAULT_PERCENT = 100;
 let currentPercent = DEFAULT_PERCENT;
 
 function boundedPercent(value) {
@@ -80,6 +80,7 @@ export function mountTextSize(container) {
   });
   for (const [selector, property] of [
     ['.topbar', '--topbar-height'], ['.simulation-console', '--control-dock-height'],
+    ['.scene-title', '--scene-title-height'], ['.lesson-card', '--lesson-card-height'],
   ]) {
     const element = document.querySelector(selector);
     if (element) { measured.set(element, property); observer.observe(element); }

@@ -8,7 +8,7 @@
 @media(min-width:651px) and (max-width:1200px){.sail-actions{display:flex;position:absolute;bottom:155px;left:22px;flex-direction:row;gap:18px}.sail-actions button{font-size:calc(11px * var(--text-scale,1));font-weight:500}.scene-footer{bottom:181px}.lesson-card{bottom:211px}}
 @media(max-width:650px){.workspace{min-height:860px}#scene,.scene-vignette{bottom:190px}.control-dock{height:190px;grid-template-rows:62px 58px;gap:10px 18px;padding-top:20px;padding-bottom:20px}.lesson-card{bottom:246px}.scene-footer{bottom:224px}.sail-actions{bottom:198px}.right-instruments{top:175px}.chart-card canvas{height:62px}#toast{bottom:235px}}
 /* Inspection cameras keep the working deck and instruments unobstructed. */
-.simulator[data-view="helm"] .scene-title,.simulator[data-view="deck"] .scene-title{opacity:0;pointer-events:none}
+.simulator:not([data-mode="learn"])[data-view="helm"] .scene-title,.simulator:not([data-mode="learn"])[data-view="deck"] .scene-title{opacity:0;pointer-events:none}
 .simulator[data-view="helm"] .lesson-card,.simulator[data-view="deck"] .lesson-card{transform:translateX(calc(-100% - 35px));opacity:0;pointer-events:none}
 .simulator[data-view="helm"] .right-instruments,.simulator[data-view="deck"] .right-instruments{opacity:.93}
 .scene-title,.lesson-card{transition:opacity .3s,transform .3s}
