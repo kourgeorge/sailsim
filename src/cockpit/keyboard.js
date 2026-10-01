@@ -58,5 +58,5 @@ export function decorateControls(root=document){
 /** Key list for the help dialog. */
 export function shortcutsTable(){
  const rows=SHORTCUTS.map(([keys,action])=>`<tr><td dir="ltr">${keys.split(' ').map(k=>`<kbd>${k}</kbd>`).join(' ')}</td><td>${t(action)}</td></tr>`).join('');
- return `<table class="shortcut-table"><tbody>${rows}</tbody></table><p class="modal-note">${t('Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.')}</p>`;
+ return `<div class="keyboard-help"><table class="shortcut-table"><tbody>${rows}</tbody></table><p class="modal-note">${t('Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.')}</p></div>`;
 }

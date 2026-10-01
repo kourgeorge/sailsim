@@ -3,6 +3,13 @@
 .mobile-control-panel, .mobile-controls-drawer { display: contents; }
 .mobile-practice-details { display: contents; }
 .mobile-practice-details > summary { display: none; }
+.touch-help { display: none; }
+
+/* Keyboard hints belong to desktop input, including help opened outside the simulator. */
+@media (max-width: 900px), (hover: none) and (pointer: coarse) {
+  .key-badge, .control-hint kbd, .keyboard-help, .shortcut-table { display: none !important; }
+  .touch-help { display: block; }
+}
 
 @media (max-width: 900px) {
   html[data-text-size] .topbar {
@@ -150,7 +157,6 @@
   .simulator .control-dock .dashboard-reading dt { white-space: normal; overflow: visible; }
   .simulator .control-dock .dashboard-reading dd { font-size: calc(20px * var(--text-scale, 1)); }
   .simulator .control-dock .dashboard-actions { flex-direction: row; justify-content: space-between; }
-  .simulator .key-badge, .simulator .control-hint kbd { display: none !important; }
   html[data-text-size] .systems-drawer { position: fixed; inset: calc(var(--topbar-height) + 8px) 12px auto; width: auto; max-height: calc(100dvh - var(--topbar-height) - 20px - env(safe-area-inset-bottom)); overflow: auto; overscroll-behavior: contain; z-index: 50; }
   html[data-text-size] .systems-drawer .vessel-tabs { max-height: none; }
   html[data-text-size] #systems-close { position: sticky; display: block; margin-inline-start: auto; top: 0; width: 44px; height: 44px; margin-bottom: -44px; background: #163643; }

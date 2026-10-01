@@ -1,5 +1,7 @@
 // Small runtime compositions and accessibility labels; course content is in locale JSON.
 const entries={
+ 'Help':['Help','Ayuda','مساعدة','עזרה','Помощь','Aide'],
+ 'Drag to look around. Use the on-screen sliders and buttons to control the boat.':['Drag to look around. Use the on-screen sliders and buttons to control the boat.','Arrastra para mirar alrededor. Usa los deslizadores y botones en pantalla para controlar el barco.','اسحب للنظر حولك. استخدم أشرطة التمرير والأزرار على الشاشة للتحكم بالقارب.','גררו כדי להביט מסביב. השתמשו במחוונים ובכפתורים שעל המסך כדי לשלוט בסירה.','Перетаскивайте для обзора. Управляйте яхтой с помощью ползунков и кнопок на экране.','Faites glisser pour regarder autour. Utilisez les curseurs et les boutons à l’écran pour contrôler le bateau.'],
  'Boat controls':['Boat controls','Controles del barco','عناصر التحكم بالقارب','בקרי הסירה','Управление яхтой','Commandes du bateau'],
  'Choose a lesson':['Choose a lesson','Elige una lección','اختر درسًا','בחירת שיעור','Выберите урок','Choisir une leçon'],
  'All lessons':['All lessons','Todas las lecciones','جميع الدروس','כל השיעורים','Все уроки','Toutes les leçons'],
