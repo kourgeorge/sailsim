@@ -51,6 +51,7 @@ async function startApp() {
   let lesson = 0,
     state = initialState(),
     mode = 'learn',
+    freeSailingStarted = false,
     camera = 'chase',
     challengeIndex = 0,
     challengeDone = false,
@@ -84,6 +85,7 @@ async function startApp() {
     learning?.refresh();
   }
   function setMode(value) {
+    if (value !== mode) freeSailingStarted = false;
     learning?.closeReader();
     learning?.closeTraining();
     if (value !== 'maneuver') lab?.leave();
@@ -148,6 +150,10 @@ async function startApp() {
   });
   const cockpitEnabled = () => playback.controlsEnabled;
   function syncPlayback() {
+    if (mode === 'explore' && !playback.paused) freeSailingStarted = true;
+    const simulator = $('.simulator');
+    if (simulator.dataset.freeSailingStarted !== String(freeSailingStarted))
+      simulator.dataset.freeSailingStarted = String(freeSailingStarted);
     sailingAudio?.sync();
     cockpitControls?.syncAvailability();
     const activity = playback.state,
@@ -288,6 +294,7 @@ async function startApp() {
     .querySelectorAll('button[data-camera]')
     .forEach((b) => (b.onclick = () => setCamera(b.dataset.camera)));
   $('#reset').onclick = () => {
+    freeSailingStarted = false;
     lab?.cancel();
     learning?.cancel('Boat reset. Restart the assessed practice to record a new attempt.');
     state = initialState(state.locationId);

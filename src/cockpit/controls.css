@@ -6,7 +6,7 @@
 .simulator .control-dock.cockpit-controls .engine-control{display:block}
 html[dir=rtl] .cockpit-control-group{direction:rtl}
 .cockpit-control-group input[type=range],.cockpit-control-group input[type=number]{direction:ltr}
-.simulator[data-mode=maneuver] .cockpit-group-sheets,.simulator[data-mode=maneuver] .cockpit-group-rig,.simulator[data-mode=maneuver] .cockpit-group-anchor{display:none!important}
+.simulator[data-mode=maneuver] .cockpit-group-sheets,.simulator[data-mode=maneuver] .cockpit-group-headsail,.simulator[data-mode=maneuver] .cockpit-group-rig,.simulator[data-mode=maneuver] .cockpit-group-anchor{display:none!important}
 .simulator[data-mode=maneuver] .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(2,minmax(0,1fr))}
 .simulator .control-dock.cockpit-controls .control-title{display:flex;align-items:baseline;justify-content:space-between;gap:6px;margin:0 0 2px;min-height:1.3em;flex-wrap:wrap}
 .simulator .control-dock.cockpit-controls .control-title label,.simulator .control-dock.cockpit-controls .control-title>span,.simulator .control-dock.cockpit-controls .control-title output,.simulator .control-dock.cockpit-controls .cockpit-rode-label{font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.35;letter-spacing:0;color:#c2d7d8}
