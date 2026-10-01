@@ -1,0 +1,339 @@
+{
+  "results": [
+    {
+      "fixture": "stowed",
+      "status": "stowed",
+      "adjustmentPending": false,
+      "stowed": true,
+      "deployed": false,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "snapshotAnchor": null,
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": null,
+      "last": null,
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 58
+    },
+    {
+      "fixture": "pending",
+      "status": "pending",
+      "adjustmentPending": true,
+      "stowed": true,
+      "deployed": false,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "snapshotAnchor": null,
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": null,
+      "last": null,
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 58
+    },
+    {
+      "fixture": "suspended",
+      "status": "suspended",
+      "adjustmentPending": false,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.14365464874670325,
+        -3.518406436445462,
+        93.44573153723823
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -3.8,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464945634207,
+        1.4815936088562016,
+        93.44573211669923
+      ],
+      "last": [
+        -0.14365464945634207,
+        -3.5184063911437984,
+        93.44573211669923
+      ],
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "paused-payout",
+      "status": "suspended",
+      "adjustmentPending": true,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.14365464874670325,
+        -34.71840643644546,
+        93.44573153723823
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -35,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464945634207,
+        1.4815936088562016,
+        93.44573211669923
+      ],
+      "last": [
+        -0.14365464945634207,
+        -34.718406677246094,
+        93.44573211669923
+      ],
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "slack",
+      "status": "slack",
+      "adjustmentPending": false,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -3.001071613439876e-17,
+        -35,
+        93.40000000000002
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -35,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464945634207,
+        1.4815935492515568,
+        93.44573211669923
+      ],
+      "last": [
+        -3.0010715913817274e-17,
+        -35,
+        93.40000025431316
+      ],
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "taut",
+      "status": "taut",
+      "adjustmentPending": false,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        207.71287926322464
+      ],
+      "anchorPoint": [
+        -1.410330185969144e-16,
+        -35,
+        93.39999999999998
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -35,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 207.66714772598644
+      },
+      "first": [
+        -0.1436546494563421,
+        1.4815935691197726,
+        207.7128804524739
+      ],
+      "last": [
+        -1.4103301727342544e-16,
+        -35,
+        93.40000152587888
+      ],
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "dragging",
+      "status": "dragging",
+      "adjustmentPending": false,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        127.96041091203257
+      ],
+      "anchorPoint": [
+        -2.998930893157416e-17,
+        -35,
+        93.42468082448997
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -35,
+        "z": 93.42468082448997
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 127.91467937479436
+      },
+      "first": [
+        -0.14365464448928833,
+        1.4815936088562025,
+        127.96041107177734
+      ],
+      "last": [
+        -2.998930958247188e-17,
+        -35,
+        93.42468007405598
+      ],
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "weighed",
+      "status": "stowed",
+      "adjustmentPending": false,
+      "stowed": true,
+      "deployed": false,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        127.96041091203257
+      ],
+      "anchorPoint": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        127.96041091203257
+      ],
+      "snapshotAnchor": null,
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 127.91467937479436
+      },
+      "first": null,
+      "last": null,
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 58
+    },
+    {
+      "fixture": "reset",
+      "status": "stowed",
+      "adjustmentPending": false,
+      "stowed": true,
+      "deployed": false,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "snapshotAnchor": null,
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": null,
+      "last": null,
+      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "positionBuffer": 582,
+      "drawCalls": 58
+    }
+  ],
+  "overhead": {
+    "stowed": 58,
+    "deployed": 59,
+    "extraCalls": 1,
+    "visibility": {
+      "stowed": {
+        "calls": 58,
+        "visibleMeshes": 58,
+        "submittedMeshes": 58,
+        "allVisibleSubmitted": true,
+        "anchorSubmitted": true,
+        "rodeSubmitted": false
+      },
+      "deployed": {
+        "calls": 59,
+        "visibleMeshes": 59,
+        "submittedMeshes": 59,
+        "allVisibleSubmitted": true,
+        "anchorSubmitted": true,
+        "rodeSubmitted": true
+      }
+    }
+  }
+}

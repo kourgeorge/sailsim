@@ -1,12 +1,15 @@
-import { islandRatio } from './rendering/geography.js';
 import { getLocation, DEFAULT_LOCATION_ID } from './locations.js';
+import { depthAt } from './water-depth.js';
+import { BOW_FAIRLEAD, bowFairlead, anchorSnapshot, anchorStatusText } from './anchor.js';
+export { depthAt } from './water-depth.js';
 import { createRigidBody, createWorldBodies, PLAYER_HULL, advanceFreeBodies, solveContacts, collisionStepLimit, separatedBeyond } from './collisions.js';
 export const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 export const wrap = v => ((v % 360) + 360) % 360;
 export const angleDifference = (a, b) => ((a - b + 540) % 360 + 360) % 360 - 180;
 export const KNOT = 1852 / 3600;
 const RAD = Math.PI / 180;
-export const VESSEL = Object.freeze({ mass: 5600, waterline: 9.5, draft: 1.8, mainArea: 30, jibArea: 22, airDensity: 1.225, bowHeight: 1.2 });
+export const VESSEL = Object.freeze({ mass: 5600, waterline: 9.5, draft: 1.8, mainArea: 30, jibArea: 22, airDensity: 1.225, bowHeight: BOW_FAIRLEAD.y });
+const YAW_INERTIA=VESSEL.mass*(PLAYER_HULL.length**2+PLAYER_HULL.beam**2)/12;
 // Backward-compatible aliases for the original course and assessments.
 export const islands = getLocation().islands;
 export const buoys = getLocation().buoys;
@@ -25,14 +28,8 @@ export function initialState(locationId = DEFAULT_LOCATION_ID) {
     mainEfficiency:0,jibEfficiency:0,mainFlow:'Ready',jibFlow:'Ready',vmg:0,turnRate:0,
     worldBodies:createWorldBodies(location.id),collision:null,collisionCount:0,collisionEvents:[],contactActive:false,_contactEpisodes:{}};
 }
-export function depthAt(x,z,locationId = DEFAULT_LOCATION_ID) {
-  const location=getLocation(locationId);
-  let depth=location.maxDepth;
-  for(const island of location.islands)depth=Math.min(depth,(islandRatio(x,z,island)-1)*location.shoreDepthScale);
-  return clamp(depth,0,location.maxDepth);
-}
 // A grounded hull is stationary relative to land even while current flows past it.
-function groundVelocity(s) {
+export function groundVelocity(s) {
   if(s.grounded)return {x:0,z:0};
   const h=s.heading*RAD,c=(s.currentDirection||0)*RAD;
   const u=s.speed*KNOT, v=s.leeway||0;
@@ -94,6 +91,21 @@ function sailTelemetry(s,{aw,main,jib}) {
   s.suggestedMainSheet=clamp(suggestedSheet(aw.angle)-s.traveler,0,90);s.suggestedJibSheet=suggestedSheet(aw.angle);
   s.mainEfficiency=main.efficiency;s.jibEfficiency=jib.efficiency;s.mainFlow=main.flow;s.jibFlow=jib.flow;
 }
+function anchorTelemetry(s) {
+  const snapshot=anchorSnapshot(s);
+  s.anchorStatus=anchorStatusText(snapshot);s.anchorScope=snapshot.scope;
+  s.anchorDragging=snapshot.status==='dragging';s.anchorTension=snapshot.tension;
+}
+// Only a running tick can lower, lift, or capture a bottom anchor. Short rode
+// follows the bow instead of leaving a fictitious fixed point beneath the boat.
+function advanceAnchorDeployment(s) {
+  if(!s.anchor){s._anchor=null;return;}
+  const point=bowFairlead(s),record=s._anchor;
+  if(!record||record.onBottom===false||s.anchorRode<record.depth+BOW_FAIRLEAD.y){
+    const depth=depthAt(point.x,point.z,s.locationId);
+    s._anchor={x:point.x,z:point.z,depth,onBottom:s.anchorRode>=depth+BOW_FAIRLEAD.y};
+  }
+}
 /** Refresh instruments after edits while paused, without integrating movement or capturing an anchor. */
 export function refreshDerived(s) {
   reconcile(s);
@@ -104,25 +116,14 @@ export function refreshDerived(s) {
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;
-  if(s.anchor){
-    const vertical=(s._anchor?.depth??s.depth)+VESSEL.bowHeight;
-    s.anchorScope=s.anchorRode/vertical;
-    if(s.anchorRode<vertical){s.anchorStatus='Rode too short';s.anchorDragging=false;s.anchorTension=0;}
-    else {
-      const radius=Math.sqrt(Math.max(0,s.anchorRode*s.anchorRode-vertical*vertical));
-      const distance=s._anchor?Math.hypot(s.x-s._anchor.x,s.z-s._anchor.z):0;
-      const taut=Boolean(s._anchor)&&distance>=radius-.2;
-      s.anchorDragging=Boolean(s.anchorDragging)&&s.anchorScope<3&&taut;
-      s.anchorStatus=s.anchorDragging?'Dragging · add scope':s.anchorScope<3?'Short scope · poor holding':taut?'Holding':'Deployed · settling';
-      if(!taut)s.anchorTension=0;
-    }
-  }else{s.anchorStatus='Stowed';s.anchorScope=0;s.anchorTension=0;s.anchorDragging=false;}
+  anchorTelemetry(s);
   return s;
 }
 function integrate(s,dt) {
+  advanceAnchorDeployment(s);
   // A keel contact remains a grounding until the boat is reset. Later substeps
   // must not erase the contact by checking the last safe (unadvanced) position.
-  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;sailTelemetry(s,sailDynamics(s));s.elapsed+=dt;return;}
+  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;sailTelemetry(s,sailDynamics(s));anchorTelemetry(s);s.elapsed+=dt;return;}
   const {aw,main,jib,reefArea}=sailDynamics(s);
   const u=s.speed*KNOT, hullSpeed=1.34*Math.sqrt(VESSEL.waterline/0.3048)*KNOT;
   const drag=58*u+38*u*Math.abs(u)+Math.sign(u)*180*(Math.abs(u)/hullSpeed)**6;
@@ -143,36 +144,36 @@ function integrate(s,dt) {
   let vx=Math.sin(h)*nextU+Math.cos(h)*s.leeway+Math.sin(c)*(s.currentSpeed||0)*KNOT;
   let vz=-Math.cos(h)*nextU+Math.sin(h)*s.leeway-Math.cos(c)*(s.currentSpeed||0)*KNOT;
   let nx=s.x+vx*dt,nz=s.z+vz*dt;
-  s.anchorDragging=false;
-  if(s.anchor){
-    if(!s._anchor){s._anchor={x:s.x,z:s.z,depth:depthAt(s.x,s.z,s.locationId)};}
+  s.anchorDragging=false;s.anchorTension=0;
+  if(s.anchor&&s._anchor?.onBottom!==false){
     const vertical=s._anchor.depth+VESSEL.bowHeight;
-    s.anchorScope=s.anchorRode/vertical;
-    if(s.anchorRode<vertical){s.anchorStatus='Rode too short';s.anchorTension=0;}
-    else {
+    const scope=s.anchorRode/vertical;
+    if(s.anchorRode>=vertical){
       const radius=Math.sqrt(Math.max(0,s.anchorRode*s.anchorRode-vertical*vertical));
-      const dx=nx-s._anchor.x,dz=nz-s._anchor.z,dist=Math.hypot(dx,dz);
-      s.anchorStatus=s.anchorScope<3?'Short scope · poor holding':dist>=radius-.2?'Holding':'Deployed · settling';
-      s.anchorTension=0;
+      const fairlead=bowFairlead({x:nx,z:nz,heading:s.heading}),arm={x:fairlead.x-nx,z:fairlead.z-nz};
+      const dx=fairlead.x-s._anchor.x,dz=fairlead.z-s._anchor.z,dist=Math.hypot(dx,dz);
       if(dist>radius && dist>0){
-        const rx=dx/dist,rz=dz/dist,outward=Math.max(0,vx*rx+vz*rz);
-        const hold=clamp((s.anchorScope-1)/2,0,1);
-        const corrected=radius+(dist-radius)*(1-hold);
-        nx=s._anchor.x+rx*corrected;nz=s._anchor.z+rz*corrected;
-        vx-=rx*outward*hold;vz-=rz*outward*hold;
-        s.anchorTension=outward*VESSEL.mass/Math.max(dt,.02);
+        const rx=dx/dist,rz=dz/dist,omega=s.yawRate*RAD;
+        const outward=Math.max(0,(vx-omega*arm.z)*rx+(vz+omega*arm.x)*rz);
+        const hold=clamp((scope-1)/2,0,1),lever=arm.x*rz-arm.z*rx;
+        const impulse=outward/(1/VESSEL.mass+lever*lever/YAW_INERTIA)*hold;
+        nx-=rx*(dist-radius)*hold;nz-=rz*(dist-radius)*hold;
+        vx-=rx*impulse/VESSEL.mass;vz-=rz*impulse/VESSEL.mass;
+        s.yawRate-=lever*impulse/YAW_INERTIA/RAD;
+        s.anchorTension=impulse/dt;
         const waterX=vx-Math.sin(c)*(s.currentSpeed||0)*KNOT,waterZ=vz+Math.cos(c)*(s.currentSpeed||0)*KNOT;
         nextU=waterX*Math.sin(h)-waterZ*Math.cos(h);s.leeway=waterX*Math.cos(h)+waterZ*Math.sin(h);
-        if(hold<1){s._anchor.x+=rx*(dist-radius)*(1-hold);s._anchor.z+=rz*(dist-radius)*(1-hold);s.anchorStatus='Dragging · add scope';s.anchorDragging=true;}
+        if(hold<1){s._anchor.x+=rx*(dist-radius)*(1-hold);s._anchor.z+=rz*(dist-radius)*(1-hold);s.anchorDragging=true;}
       }
     }
-  }else{s._anchor=null;s.anchorStatus='Stowed';s.anchorScope=0;s.anchorTension=0;}
+  }
   s.depth=depthAt(nx,nz,s.locationId);s.grounded=s.depth<VESSEL.draft;
   if(!s.grounded){s.distance+=Math.hypot(nx-s.x,nz-s.z);s.x=nx;s.z=nz;s.speed=nextU/KNOT;}
   else{s.speed=0;s.leeway=0;s.yawRate=0;vx=0;vz=0;}
   s.speedOverGround=Math.hypot(vx,vz)/KNOT;
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
   sailTelemetry(s,s.grounded?sailDynamics(s):{aw,main,jib});
+  anchorTelemetry(s);
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;s.elapsed+=dt;
 }

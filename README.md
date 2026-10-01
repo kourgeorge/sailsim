@@ -25,6 +25,9 @@ node scripts/check-collision-visuals.mjs  # Real contacts and both-body visual r
 node scripts/check-keyboard-controls.mjs # Browser shortcuts, focus and sailing-key isolation
 node scripts/check-decision-training.mjs --assessment-fixes # North bearings and restored reports
 node scripts/check-rig-visuals.mjs        # Traveler, masthead wind pointer, reef/hoist and boom timing
+node scripts/check-anchor-visuals.mjs     # Actual anchor/rode deployment and rendered attachments
+node scripts/check-anchor-monitor.mjs    # Anchor controls/chart and six-language large-text monitor
+node scripts/check-anchor-monitor.mjs --training-sog # Natural stopping/anchoring and saved ground-speed evidence
 ```
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
@@ -48,6 +51,7 @@ The searchable learning library contains **25 verified official-source records**
 - Detailed yacht, working cockpit displays, reflective water, islands, navigation marks and location-specific coastal scenery. Chase, Helm, Cockpit and Aerial cameras support scene inspection and zoom.
 - Three fictional maps: **Haven Islands**, **Shelter Bay** and **Windward Strait**. Chart, cockpit plotter, coastlines and depth model share location data.
 - Independent main/headsail hoists and sheets, two reefs, traveler, vang, outhaul, engine ahead/neutral/astern, anchor and rode length.
+- Bow-based anchor suspension, deployment and restraint, with a moving 3D anchor/rode, six-language illustrated monitor and chart swing circle. Stopping assessments check ground motion, including current and sideways drift.
 - Apparent-wind vectors, empirical sail forces, inertia, drag, speed-dependent steering and astern reversal, leeway, steady current, heel, grounding and a simplified anchor constraint.
 - A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 19 course practices.
 - Free sailing, a three-buoy route, live chart and wind/current controls. Touch controls and keyboard shortcuts: arrows to steer/trim, Space to pause, C to center the helm, M for the chart.

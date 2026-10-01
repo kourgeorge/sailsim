@@ -45,7 +45,7 @@ Develop traffic cases from verified International and applicable inland/local ru
 
 Keep current power drills focused on open-water control. Build believable contact, fenders, line constraints, propeller effects and crew roles before adding assessed berthing or spring-line maneuvers. Include failed approaches with viable abort options, not only ideal arrivals.
 
-For anchoring, distinguish approach control, deployment, setting and monitoring. The current bow anchor and chain remain visually stowed even when the modeled anchor is deployed; connect their rendered positions to the actual captured anchor and rode before teaching deployment through the 3D view. Improve rode/holding behavior against stated conditions before assessing more than sequence and settling.
+For anchoring, distinguish approach control, deployment, setting and monitoring. Anchor/rode visuals, the live monitor and chart now share bow-based deployment geometry, including suspension, bottom contact and dragging. Stopping assessments include sideways drift and current. Remaining work includes windlass/fall timing, terrain-following dragging, seabed/anchor holding behavior and changing environmental loads before assessing more than sequence and settling.
 
 Add crew briefing, equipment checks, lookout assignments and emergency decisions first. Person-overboard training needs detection, continuous observation, flotation/marking, casualty drift, approach, propeller hazards and a credible recovery/lifting process. Physical line handling, first aid and casualty recovery still require onboard or hands-on instruction even after better simulation.
 

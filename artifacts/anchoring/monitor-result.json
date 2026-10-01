@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-01T08:23:17.525Z",
+  "languages": [
+    "en",
+    "es",
+    "fr",
+    "ru",
+    "he",
+    "ar"
+  ],
+  "widths": [
+    1440,
+    390
+  ],
+  "textSize": 200,
+  "phases": [
+    "stowed",
+    "pending",
+    "suspended",
+    "slack"
+  ],
+  "errors": []
+}

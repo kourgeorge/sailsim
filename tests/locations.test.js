@@ -1,3 +1,4 @@
+import { bowFairlead } from '../src/anchor.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { LOCATIONS, DEFAULT_LOCATION_ID, getLocation } from '../src/locations.js';
@@ -46,8 +47,9 @@ for(const location of LOCATIONS){
   test(`${location.id}: cockpit refresh and anchor use the selected bathymetry`,()=>{
     const s=initialState(location.id);s.sails=0;s.anchor=true;s.anchorRode=180;
     refreshDerived(s);const depth=depthAt(s.x,s.z,location.id);
-    near(s.depth,depth);near(s.anchorScope,180/(depth+VESSEL.bowHeight));
-    step(s,.02);assert.ok(s._anchor);near(s._anchor.depth,depth);
+    const fairlead=bowFairlead(s),anchorDepth=depthAt(fairlead.x,fairlead.z,location.id);
+    near(s.depth,depth);near(s.anchorScope,180/(anchorDepth+VESSEL.bowHeight));
+    step(s,.02);assert.ok(s._anchor);near(s._anchor.depth,anchorDepth);
   });
 }
 test('grounding uses the selected location instead of the Haven fallback',()=>{

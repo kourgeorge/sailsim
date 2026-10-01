@@ -7,6 +7,8 @@ import { translate } from '../i18n/runtime.js';
 import { getLocation } from '../locations.js';
 import { rigVisualState, smoothBoomAngle } from './rig-state.js';
 import { createKeelGeometry } from './keel-geometry.js';
+import { anchorSnapshot } from '../anchor.js';
+import { createAnchorRig } from './anchor-rig.js';
 
 function widthAt(z){
  const sections=[[-6.6,.015],[-6,.55],[-4.7,1.25],[-3,1.75],[-1,2.02],[1,2.06],[3,1.95],[5.25,1.62]];
@@ -157,6 +159,7 @@ export function createYacht(mat,{detailed=true}={}){
  for(const side of [-1,1]){const top=[],mid=[];for(const z of [-5.85,-4.4,-2.6,-.6,1.5,3.5,5.03]){const x=side*(widthAt(z)-.055);box(boat,mat.steel,x,1.13,z,.09,.04,.12);bar(boat,mat.steel,[x,1.1,z],[x,1.91,z],.021);top.push([x,1.91,z]);mid.push([x,1.53,z]);}rope(boat,mat.steel,top,.009,80);rope(boat,mat.steel,mid,.007,80);}
  rope(boat,mat.steel,[[-.67,1.91,-5.9],[-.4,1.98,-6.5],[0,2,-6.72],[.4,1.98,-6.5],[.67,1.91,-5.9]],.024,35);
  for(const side of [-1,1]){rope(boat,mat.steel,[[side*1.6,1.92,4.4],[side*1.6,1.92,5.24],[side*.63,1.92,5.3]],.023,24);bar(boat,mat.steel,[side*.64,1.05,5.27],[side*.64,1.92,5.27],.023);}
+ const anchorRig=createAnchorRig(mat,{detailed});boat.add(anchorRig.group);
  if(!detailed){
   cylinder(boat,mat.aluminum,0,9.35,-1.95,.08,.105,16.5,12);
   bar(boat,mat.aluminum,[0,2.85,-1.95],[0,2.85,3.4],.085,8);
@@ -168,9 +171,7 @@ export function createYacht(mat,{detailed=true}={}){
  }
  if(detailed){
   // Anchor roller, chain, mooring hardware, fenders, and swim ladder.
-  box(boat,mat.steel,0,1.19,-6.32,.18,.08,.85);bar(boat,mat.steel,[0,1.2,-6.4],[0,.8,-6.95],.045);box(boat,mat.steel,0,.82,-6.98,.55,.035,.32);
-  for(let i=0;i<16;i++){const ring=mesh(boat,new THREE.TorusGeometry(.035,.008,5,10),mat.steel,0,1.17,-5.1-i*.07);ring.rotation.set(Math.PI/2,i%2*Math.PI/2,0);}
-  cylinder(boat,mat.steel,0,1.24,-5,.16,.16,.19);box(boat,mat.grip,0,1.2,-5.46,.8,.05,.58);
+  box(boat,mat.grip,0,1.2,-5.46,.8,.05,.58);
   for(const side of [-1,1])for(const z of [1.7,3.4]){const x=side*2.04;rope(boat,mat.ivory,[[side*1.92,1.88,z],[x,1.18,z],[x,.95,z]],.012,12);const f=mesh(boat,new THREE.CapsuleGeometry(.135,.50,5,10),mat.gelcoat,x,.63,z);f.rotation.z=side*.12;cylinder(boat,mat.navy,x,.98,z,.10,.09,.12);}
   for(const side of [-1,1])bar(boat,mat.steel,[side*.34,.3,5.55],[side*.34,-.5,5.85],.023);for(let i=0;i<4;i++)bar(boat,mat.steel,[-.34,.25-i*.2,5.6+i*.065],[.34,.25-i*.2,5.6+i*.065],.027);
   const lifering=mesh(boat,new THREE.TorusGeometry(.31,.095,10,36),mat.ivory,-1.28,1.7,5.28);for(let i=0;i<4;i++){const a=i*Math.PI/2;box(boat,mat.red,-1.28+Math.cos(a)*.31,1.7+Math.sin(a)*.31,5.33,.13,.13,.09);}
@@ -236,5 +237,6 @@ export function createYacht(mat,{detailed=true}={}){
   const tip=new THREE.Vector3(0,0,4.6).applyAxisAngle(new THREE.Vector3(0,1,0),boomGroup.rotation.y).add(boomGroup.position),base=new THREE.Vector3(travelerCar.position.x,1.99,.9),delta=tip.clone().sub(base);
   sheet.position.copy(tip).add(base).multiplyScalar(.5);sheet.scale.y=delta.length()/Math.hypot(.8,1.8);sheet.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());
   instruments.forEach(i=>i.update(state,time));bow.forEach(m=>{m.visible=state.speed>1;m.material.opacity=clamp(state.speed*.03,0,.22);});
+  anchorRig.update(anchorSnapshot(state),boat);
  }};
 }

@@ -1,5 +1,7 @@
 // Scores describe the quality of demonstrated objectives. They never decide pass/fail.
 // Every objective uses the existing engine predicate, including its continuous hold.
+import { groundVelocity, KNOT } from '../physics.js';
+import { anchorSnapshot } from '../anchor.js';
 const finite = value => Number.isFinite(value) ? Math.max(-1e7, Math.min(value, 1e7)) : null;
 const bounded = (value, max = 1e7) => Number.isFinite(value) && value >= 0 ? Math.min(value, max) : 0;
 const round = value => Math.round(value * 1000) / 1000;
@@ -18,7 +20,29 @@ export function collisionEvidence(value) {
     time: bounded(value.time), sequence: Math.floor(bounded(value.sequence, Number.MAX_SAFE_INTEGER)),
   };
 }
-const telemetryKeys = ['heading', 'speed', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'anchorScope', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
+const telemetryKeys = ['heading', 'speed', 'leeway', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'anchorScope', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
+/** Shared by assessment and feedback so the displayed stop target cannot drift. */
+export function practiceStopThreshold(check) {
+  if (check?.kind === 'coast' && Number.isFinite(check.value)) return check.value;
+  return check?.kind === 'anchor' && check.value === true ? .2 : null;
+}
+/** Stops concern motion over the seabed, including lateral drift and current.
+ * Old minimal fixtures may omit vector components; malformed supplied values
+ * cannot fall back to a cached speed-over-ground display or earn stop credit. */
+export function practiceGroundSpeed(state) {
+  if (state.grounded === true) return 0;
+  if (!Number.isFinite(state.speed)) return NaN;
+  if (['heading', 'leeway', 'currentSpeed', 'currentDirection'].every(key => state[key] === undefined)) return Math.abs(state.speed);
+  if (!Number.isFinite(state.heading) || ['leeway', 'currentSpeed', 'currentDirection'].some(key => state[key] !== undefined && !Number.isFinite(state[key]))) return NaN;
+  const velocity = groundVelocity({ ...state, leeway: state.leeway ?? 0, currentSpeed: state.currentSpeed ?? 0, currentDirection: state.currentDirection ?? 0 });
+  return Math.hypot(velocity.x, velocity.z) / KNOT;
+}
+export function practiceAnchorContact(state) {
+  // Legacy scalar fixtures have no deployment geometry. Live simulator states
+  // always carry rode length and must demonstrate the running capture step.
+  if (state.anchorRode === undefined && state.anchorStatus === undefined && state.locationId === undefined) return null;
+  return anchorSnapshot(state).seabedContact;
+}
 export const PRACTICE_SCORE_RULES = Object.freeze({
   passScore: 80, maxScore: 100, failedScoreCap: 79,
   holdLossThresholdSeconds: 1, holdLossPenalty: 2, holdLossPenaltyCap: 20,
@@ -40,7 +64,9 @@ export function practiceEvidence(state, attempt) {
   const crossing = attempt?.maneuver ?? state.crossing;
   return {
     ...Object.fromEntries(telemetryKeys.map(key => [key, finite(state[key])])),
+    speedOverGround: finite(practiceGroundSpeed(state)),
     anchor: state.anchor === true, grounded: state.grounded === true,
+    anchorSeabedContact: practiceAnchorContact(state),
     anchorDragging: state.anchorDragging === true,
     collisionCount: playerCollisionCount(state), contactActive: state.contactActive === true,
     collision: collisionEvidence(state.collision),
@@ -122,7 +148,12 @@ export function restorePracticeAssessment(value, lesson) {
     if (!saved || saved.id !== target.id || !['complete', 'missed', 'upcoming'].includes(saved.status)) return null;
     if (saved.status === 'complete' && (incomplete || !Number.isFinite(saved.completedAt) || saved.completedAt < 0 || !Number.isFinite(saved.bestHoldSeconds) || saved.bestHoldSeconds + 0.001 < target.requiredSeconds)) return null;
     if (saved.status !== 'complete') incomplete = true;
-    objectives.push({ ...target, status: saved.status, heldSeconds: bounded(saved.heldSeconds), bestHoldSeconds: bounded(saved.bestHoldSeconds), holdBreaks: Math.floor(bounded(saved.holdBreaks, 100000)), completedAt: saved.status === 'complete' ? bounded(saved.completedAt) : null, evidence: saved.evidence && typeof saved.evidence === 'object' ? practiceEvidence(saved.evidence) : null });
+    const evidence = saved.evidence && typeof saved.evidence === 'object' ? practiceEvidence(saved.evidence) : null;
+    // Saved observations never decide credit. Preserve a typed recorded SOG;
+    // old records without one do not gain a reconstructed observation.
+    if (evidence) evidence.speedOverGround = finite(saved.evidence.speedOverGround);
+    if (evidence) evidence.anchorSeabedContact = typeof saved.evidence.anchorSeabedContact === 'boolean' ? saved.evidence.anchorSeabedContact : null;
+    objectives.push({ ...target, status: saved.status, heldSeconds: bounded(saved.heldSeconds), bestHoldSeconds: bounded(saved.bestHoldSeconds), holdBreaks: Math.floor(bounded(saved.holdBreaks, 100000)), completedAt: saved.status === 'complete' ? bounded(saved.completedAt) : null, evidence });
   }
   if (value.status === 'passed' && incomplete) return null;
   const criticalFailure = value.criticalFailure && typeof value.criticalFailure.code === 'string' && typeof value.criticalFailure.message === 'string' ? { code: value.criticalFailure.code.slice(0, 60), message: value.criticalFailure.message.slice(0, 240) } : null;

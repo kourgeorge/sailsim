@@ -5,6 +5,7 @@ import englishManeuvers from './en-maneuvers.json';
 import {extraUI} from './supplemental.js';
 import {learningUI} from './learning-tools.js';
 import {trainingUI} from './training.js';
+import {anchoringUI} from './anchoring.js';
 import {validateScenarioLocale,localizeScenario} from '../learning/scenario-localization.js';
 const scenarioLoaders=import.meta.glob('./scenarios-*.js',{import:'default'});
 let scenarioPack=null;
@@ -55,7 +56,7 @@ async function loadLanguage(code,lessons,modules){
  return {ui,course,maneuvers,scenarios};
 }
 export async function initializeLocalization(lessons,modules){
- const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;scenarioPack=pack.scenarios||null;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code],...trainingUI[code]};patterns=compilePatterns(dictionary);cache.clear();
+ const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;scenarioPack=pack.scenarios||null;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code],...trainingUI[code],...anchoringUI[code]};patterns=compilePatterns(dictionary);cache.clear();
  document.documentElement.lang=code;document.documentElement.dir=LANGUAGES.find(l=>l.code===code).dir;
  if(pack.course)applyCourseLocale(pack.course,lessons,modules);
  return code;

@@ -1,6 +1,8 @@
 import './controls.css';
 import {translate as t} from './i18n/runtime.js';
 import { applyControlPatch } from './vessel-controls.js';
+import {anchorSnapshot} from './anchor.js';
+import {createAnchorMonitor} from './anchoring/monitor.js';
 const ranges = [
   {group:'rig',key:'mainHoist',label:'Main halyard',min:0,max:1,step:.05,format:v=>`${Math.round(v*100)}% hoisted`,help:'Raise or lower the main independently. Reefing reduces its working area.'},
   {group:'rig',key:'jibHoist',label:'Headsail furler',min:0,max:1,step:.05,format:v=>`${Math.round(v*100)}% exposed`,help:'Change headsail area independently of the mainsail.'},
@@ -14,7 +16,18 @@ const ranges = [
 export function mountControls(container,{getState,onChange,onAction=()=>{}}){
   const row=r=>`<label class="vessel-slider" for="vessel-${r.key}"><span>${r.label}<output id="vessel-${r.key}-value"></output></span><input id="vessel-${r.key}" data-vessel-control="${r.key}" type="range" min="${r.min}" max="${r.max}" step="${r.step}" aria-describedby="vessel-${r.key}-help"><small id="vessel-${r.key}-help">${r.help}</small></label>`;
   container.classList.add('vessel-controls');
-  container.innerHTML=`<details class="vessel-panel"><summary><span>Vessel systems</span><span class="vessel-live" data-system-status>Rig · engine · anchor</span></summary><div class="vessel-instruments" aria-label="Live vessel instruments"><div>APPARENT WIND<strong data-reading="apparent"></strong></div><div>SPEED OVER GROUND<strong data-reading="sog"></strong></div><div>HEEL<strong data-reading="heel"></strong></div><div>SAIL FLOW<strong data-reading="flow"></strong></div></div><div class="vessel-tabs"><details open><summary>Sail handling &amp; shape</summary><div class="vessel-fields">${ranges.filter(r=>r.group==='rig').map(row).join('')}<label class="vessel-select" for="vessel-reefLevel">Mainsail reefs<select id="vessel-reefLevel" data-vessel-control="reefLevel"><option value="0">Full mainsail</option><option value="1">First reef · 72% area</option><option value="2">Second reef · 48% area</option></select></label></div><div class="vessel-actions"><button type="button" data-command="hoist">Hoist both</button><button type="button" data-command="lower">Lower both</button><button type="button" data-command="ease">Ease both sheets</button></div></details><details><summary>Engine &amp; close quarters</summary>${ranges.filter(r=>r.group==='engine').map(row).join('')}<div class="vessel-actions"><button type="button" data-command="neutral">Neutral</button><button type="button" data-command="center">Center the helm</button></div><p>Astern motion reverses the steering response. Forward propwash gives limited steering at rest. Plan room to stop.</p></details><details><summary>Anchor &amp; holding</summary>${ranges.filter(r=>r.group==='anchor').map(row).join('')}<p class="vessel-anchor-status" data-reading="anchor"></p><div class="vessel-actions"><button type="button" data-command="anchor">Drop anchor</button></div><p>Rode limits the swing circle. Holding here is a simplified constraint, not a prediction for a real seabed.</p></details></div></details>`;
+  container.innerHTML=`<details class="vessel-panel"><summary><span>Vessel systems</span><span class="vessel-live" data-system-status>Rig · engine · anchor</span></summary><div class="vessel-instruments" aria-label="Live vessel instruments"><div>APPARENT WIND<strong data-reading="apparent"></strong></div><div>SPEED OVER GROUND<strong data-reading="sog"></strong></div><div>HEEL<strong data-reading="heel"></strong></div><div>SAIL FLOW<strong data-reading="flow"></strong></div></div><div class="vessel-tabs"><details open><summary>Sail handling &amp; shape</summary><div class="vessel-fields">${ranges.filter(r=>r.group==='rig').map(row).join('')}<label class="vessel-select" for="vessel-reefLevel">Mainsail reefs<select id="vessel-reefLevel" data-vessel-control="reefLevel"><option value="0">Full mainsail</option><option value="1">First reef · 72% area</option><option value="2">Second reef · 48% area</option></select></label></div><div class="vessel-actions"><button type="button" data-command="hoist">Hoist both</button><button type="button" data-command="lower">Lower both</button><button type="button" data-command="ease">Ease both sheets</button></div></details><details><summary>Engine &amp; close quarters</summary>${ranges.filter(r=>r.group==='engine').map(row).join('')}<div class="vessel-actions"><button type="button" data-command="neutral">Neutral</button><button type="button" data-command="center">Center the helm</button></div><p>Astern motion reverses the steering response. Forward propwash gives limited steering at rest. Plan room to stop.</p></details><details><summary>Anchor &amp; holding</summary>${ranges.filter(r=>r.group==='anchor').map(row).join('')}<div class="vessel-actions"><button type="button" data-command="anchor">Drop anchor</button></div><div id="anchor-monitor"></div></details></div></details>`;
+  const sections=[...container.querySelectorAll('.vessel-tabs>details')],drawer=container.closest('.systems-drawer');
+  const sectionToggle=event=>{
+    const active=sections.find(section=>section.open);
+    if(drawer)drawer.dataset.activeSystem=active?.dataset.systemSection||'';
+    if(active&&event.target===active)requestAnimationFrame(()=>{
+      const tabs=active.parentElement;
+      tabs.scrollTop+=active.getBoundingClientRect().top-tabs.getBoundingClientRect().top;
+    });
+  };
+  sections.forEach((section,index)=>{section.name='vessel-system-section';section.dataset.systemSection=['rig','engine','anchor'][index];section.addEventListener('toggle',sectionToggle);});
+  const anchorMonitor=createAnchorMonitor(container.querySelector('#anchor-monitor'),{getState});
   function change(patch){onChange(patch);onAction('vessel-control',patch);update();}
   const inputHandler=e=>{const key=e.target.dataset.vesselControl;if(key)change({[key]:Number(e.target.value)});};
   const clickHandler=e=>{const command=e.target.closest('[data-command]')?.dataset.command;if(!command)return;const patches={hoist:{mainHoist:1,jibHoist:1},lower:{mainHoist:0,jibHoist:0},ease:{mainSheet:90,jibSheet:90},neutral:{throttle:0},center:{rudder:0},anchor:{anchor:!getState().anchor}};change(patches[command]);};
@@ -25,10 +38,10 @@ export function mountControls(container,{getState,onChange,onAction=()=>{}}){
     read('apparent',`${(s.apparentWindSpeed||0).toFixed(1)} kn · ${Math.abs(s.apparentWindAngle||0).toFixed(0)}° ${(s.apparentWindAngle||0)<0?'P':'S'}`);
     read('sog',`${(s.speedOverGround||0).toFixed(1) } kn · ${(Math.round(s.courseOverGround??s.heading)%360).toString().padStart(3,'0')}°`);
     read('heel',`${Math.abs(s.heel||0).toFixed(1)}°`);read('flow',`Main ${s.mainFlow||'Ready'} · Jib ${s.jibFlow||'Ready'}`);
-    read('anchor',`${t(s.anchorStatus||'Stowed')}${s.anchor?` · scope ${(s.anchorScope||0).toFixed(1)}:1 · depth ${s.depth.toFixed(1)} m`:''}`);
-    container.querySelector('[data-command="anchor"]').textContent=s.anchor?'Weigh anchor':'Drop anchor';
-    container.querySelector('[data-system-status]').textContent=Math.abs(s.throttle||0)>.01?`Engine ${s.throttle<0?'astern':'ahead'}`:s.anchor?'Anchor deployed':`${s.reefLevel||0} reefs · Engine neutral`;
+    anchorMonitor.update();
+    container.querySelector('[data-command="anchor"]').textContent=anchorSnapshot(s).status==='pending'?'Cancel deployment':s.anchor?'Weigh anchor':'Drop anchor';
+    container.querySelector('[data-system-status]').textContent=Math.abs(s.throttle||0)>.01?`Engine ${s.throttle<0?'astern':'ahead'}`:s.anchor?t(s.anchorStatus):`${s.reefLevel||0} reefs · Engine neutral`;
   }
-  update();return {update,destroy(){container.removeEventListener('input',inputHandler);container.removeEventListener('click',clickHandler);container.replaceChildren();}};
+  update();return {update,destroy(){sections.forEach(section=>section.removeEventListener('toggle',sectionToggle));container.removeEventListener('input',inputHandler);container.removeEventListener('click',clickHandler);container.replaceChildren();}};
 }
 export { applyControlPatch };

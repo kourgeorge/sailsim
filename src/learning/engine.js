@@ -1,5 +1,5 @@
 import { lessons } from './curriculum.js';
-import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence } from './practice-assessment.js';
+import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence, practiceGroundSpeed, practiceAnchorContact, practiceStopThreshold } from './practice-assessment.js';
 import { restoreDecisionResult } from './decision-evidence.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
@@ -71,8 +71,8 @@ function satisfied(check,state,attempt){
  case 'tack':case 'gybe':return attempt.maneuver===check.kind&&Math.sign(angle(state.heading,state.windDirection))===attempt.maneuverSide&&speed>2&&(check.kind==='tack'?twa>=40&&twa<=100:twa>=105&&twa<=175);
  case 'recover':return twa>=40&&twa<=100&&speed>2;
  case 'reef':return (state.reefLevel>0||state.reef)&&(state.mainHoist??state.sails)>.95&&speed>1;
- case 'coast':return sails<.01&&!state.anchor&&speed<check.value;
- case 'anchor':return check.value?state.anchor&&state.anchorScope>=1&&speed<.2&&sails<.01&&!state.anchorDragging:!state.anchor;
+ case 'coast':return sails<.01&&!state.anchor&&practiceGroundSpeed(state)<practiceStopThreshold(check);
+ case 'anchor':return check.value?state.anchor&&state.anchorScope>=1&&practiceAnchorContact(state)!==false&&practiceGroundSpeed(state)<practiceStopThreshold(check)&&sails<.01&&!state.anchorDragging:!state.anchor;
  case 'waypoint':return Math.hypot(state.x-check.value.x,state.z-check.value.z)<=check.value.radius&&state.depth>=3;
  default:return false;
  }
