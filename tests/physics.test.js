@@ -3,7 +3,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { initialState, step, angleDifference, depthAt, islands, apparentWind, refreshDerived, KNOT, VESSEL } from '../src/physics.js';
 import { applyControlPatch } from '../src/vessel-controls.js';
-import { bowFairlead, anchorSnapshot } from '../src/anchor.js';
+import { bowFairlead, anchorSnapshot, initializeAnchoredScenario } from '../src/anchor.js';
 const ocean=patch=>Object.assign(initialState(),{x:3000,z:3000},patch);
 const run=(s,seconds,dt=.02)=>{for(let t=0;t<seconds-1e-8;t+=dt)step(s,Math.min(dt,seconds-t));return s;};
 const near=(a,b,tolerance=1e-7)=>assert.ok(Math.abs(a-b)<tolerance,`${a} ≉ ${b}`);
@@ -31,9 +31,9 @@ test('main and jib can drive independently; reefing reduces main area and heel',
 test('fully eased sails lose drive on a close reach',()=>{const good=run(ocean({heading:10,trim:35,jibSheet:35}),30),bad=run(ocean({heading:10,trim:90,jibSheet:90}),30);assert.ok(good.speed>bad.speed+1);assert.equal(bad.mainFlow,'Luffing');});
 test('large and small frame steps converge without dropping normal elapsed time',()=>{const a=run(ocean({rudder:8}),12,.01),b=run(ocean({rudder:8}),12,.1);near(a.elapsed,12);near(b.elapsed,12);near(a.speed,b.speed,.015);near(a.heading,b.heading,.03);near(a.x,b.x,.04);});
 test('current changes ground track while a bare boat has zero through-water speed',()=>{const s=run(ocean({sails:0,currentDirection:90,currentSpeed:2}),10);near(s.speed,0);near(s.x,3000+20*KNOT);near(s.z,3000);near(s.speedOverGround,2);near(s.courseOverGround,90);});
-test('anchor is a geometric rode constraint, not an instant speed brake',()=>{const s=ocean({sails:0,speed:3,anchor:true,anchorRode:180});step(s,.02);assert.ok(s.speed>2.9);assert.equal(s.anchorStatus,'Deployed · settling');assert.ok(s.anchorScope>4);});
-test('sufficient rode bounds the bow swing circle against a steady current',()=>{const s=ocean({sails:0,windSpeed:0,anchor:true,anchorRode:120,currentSpeed:2,currentDirection:90}),drop=bowFairlead(s);run(s,300);const snapshot=anchorSnapshot(s);near(snapshot.seabedPoint.x,drop.x);near(snapshot.seabedPoint.z,drop.z);assert.ok(snapshot.distance<=snapshot.swingRadius+.001);assert.equal(s.anchorStatus,'Holding');assert.equal(s.anchorDragging,false);assert.ok(s.speedOverGround<.1);assert.ok(snapshot.distance>100);});
-test('rode too short cannot reach bottom; marginal scope can drag',()=>{const short=run(ocean({sails:0,anchor:true,anchorRode:10,currentSpeed:2}),2);assert.equal(short.anchorStatus,'Rode too short');assert.ok(short.x>3000);const drag=run(ocean({sails:0,anchor:true,anchorRode:45,currentSpeed:2}),100);assert.equal(drag.anchorDragging,true);assert.ok(drag._anchor.x>3000.5);});
+test('anchor is a geometric rode constraint, not an instant speed brake',()=>{const s=ocean({sails:0,speed:3,anchor:true,anchorRode:180});step(s,.02);assert.ok(s.speed>2.9);assert.equal(s.anchorStatus,'Lowering anchor');near(s.anchorPaidRode,.008);assert.ok(s.anchorScope<.01);});
+test('sufficient rode bounds the bow swing circle against a steady current',()=>{const s=initializeAnchoredScenario(ocean({sails:0,windSpeed:0,currentSpeed:2,currentDirection:90}),{rode:120}),drop=bowFairlead(s);run(s,300);const snapshot=anchorSnapshot(s);near(snapshot.seabedPoint.x,drop.x);near(snapshot.seabedPoint.z,drop.z);assert.ok(snapshot.distance<=snapshot.swingRadius+.001);assert.equal(s.anchorStatus,'Holding');assert.equal(s.anchorDragging,false);assert.ok(s.speedOverGround<.1);assert.ok(snapshot.distance>100);});
+test('rode too short cannot reach bottom; marginal actual scope can drag',()=>{const short=run(ocean({sails:0,anchor:true,anchorRode:10,currentSpeed:2}),30);assert.equal(short.anchorStatus,'Anchor suspended');near(short.anchorPaidRode,10);assert.equal(anchorSnapshot(short).seabedContact,false);assert.ok(short.x>3000);const drag=run(initializeAnchoredScenario(ocean({sails:0,currentSpeed:2}),{rode:45}),100);assert.equal(drag.anchorDragging,true);assert.ok(drag._anchor.x>3000.5);});
 test('islands have shallow water and prevent passage',()=>{const island=islands[0];assert.equal(depthAt(island.x,island.z),0);const s=ocean({x:island.x,z:island.z,speed:5});step(s,.1);assert.equal(s.grounded,true);assert.equal(s.speed,0);assert.equal(s.speedOverGround,0);});
 test('invalid elapsed time is ignored',()=>{for(const dt of [-1,NaN,Infinity,0]){const s=initialState(),before=structuredClone(s);step(s,dt);assert.deepEqual(s,before);}});
 test('long integration remains finite at high wind and large controls',()=>{const s=ocean({windSpeed:30,rudder:35,trim:0,jibSheet:0,throttle:1});run(s,240,.1);for(const k of ['x','z','heading','speed','heel','leeway','apparentWindSpeed'])assert.ok(Number.isFinite(s[k]),k);assert.ok(s.heading>=0&&s.heading<360);assert.ok(Math.abs(s.speed)<20);});
@@ -42,7 +42,13 @@ test('port and starboard tacks are mirror symmetric in open water',()=>{const po
 test('a motionless yacht cannot gain energy in still air and still water',()=>{const s=run(ocean({windSpeed:0,rudder:35,trim:0,jibSheet:0}),60);near(s.speed,0);near(s.leeway,0);near(s.x,3000);near(s.z,3000);near(s.heading,35);});
 
 test('paused instrument refresh recomputes conditions without moving the yacht',()=>{const s=ocean({heading:0,speed:3,windDirection:0,windSpeed:10,currentDirection:0,currentSpeed:2});const keys=['x','z','heading','speed','leeway','yawRate','heel','elapsed','distance'];const before=Object.fromEntries(keys.map(k=>[k,s[k]]));refreshDerived(s);near(s.apparentWindSpeed,15);near(s.speedOverGround,5);assert.equal(s.courseOverGround,0);assert.equal(s.depth,35);for(const k of keys)assert.equal(s[k],before[k],k);assert.equal(s._anchor,undefined);s.windSpeed=20;refreshDerived(s);near(s.apparentWindSpeed,25);});
-test('paused anchor edits refresh scope without capturing a deployment or retaining a weighed anchor',()=>{const s=ocean({anchor:true,anchorRode:10});refreshDerived(s);assert.equal(s.anchorStatus,'Deployment pending');assert.equal(s._anchor,undefined);s.anchorRode=180;refreshDerived(s);assert.equal(s.anchorStatus,'Deployment pending');step(s,.02);assert.ok(s._anchor);applyControlPatch(s,{anchor:false});assert.equal(s._anchor,null);refreshDerived(s);assert.equal(s.anchorStatus,'Stowed');assert.equal(s.anchorScope,0);});
+test('paused windlass commands preserve actual scope and a retrieval request cannot instantly stow gear',()=>{
+ const s=ocean();applyControlPatch(s,{anchorRode:10,anchor:true});refreshDerived(s);
+ assert.equal(s.anchorStatus,'Lowering anchor');assert.equal(s.anchorScope,0);assert.equal(s._anchor,undefined);
+ applyControlPatch(s,{anchorRode:180});refreshDerived(s);assert.equal(s.anchorPaidRode,0);step(s,.02);assert.ok(s._anchor);near(s.anchorPaidRode,.008);
+ const record=structuredClone(s._anchor);applyControlPatch(s,{anchor:false});refreshDerived(s);assert.equal(s.anchor,true);assert.deepEqual(s._anchor,record);near(s.anchorPaidRode,.008);
+ step(s,.1);assert.equal(s.anchor,false);assert.equal(s._anchor,null);assert.equal(s.anchorStatus,'Stowed');assert.equal(s.anchorScope,0);
+});
 
 test('grounding contact survives later substeps and remains latched until reset',()=>{
  const island=islands[0],x=island.x+island.rx*shoreScale(0)*(1+VESSEL.draft/24+1e-6);
@@ -71,13 +77,14 @@ test('actual grounding updates apparent wind immediately and on subsequent simul
   assert.deepEqual({x:s.x,z:s.z,heading:s.heading,depth:s.depth},position);
  }
 });
-test('paused rode edits recompute status for an already deployed anchor',()=>{
- const s=ocean({anchor:true,anchorRode:10});step(s,.02);assert.equal(s.anchorStatus,'Rode too short');assert.ok(s._anchor);
- applyControlPatch(s,{anchorRode:180});refreshDerived(s);assert.equal(s.anchorStatus,'Deployment pending');assert.ok(s.anchorScope>4);assert.equal(s.anchorDragging,false);step(s,.02);assert.equal(s.anchorStatus,'Deployed · settling');
- applyControlPatch(s,{anchorRode:10});refreshDerived(s);assert.equal(s.anchorStatus,'Rode too short');assert.equal(s.anchorDragging,false);
+test('paused target edits cannot alter an existing actual deployment',()=>{
+ const s=initializeAnchoredScenario(ocean(),{rode:120}),record=structuredClone(s._anchor),snapshot=anchorSnapshot(s);
+ applyControlPatch(s,{anchorRode:10});refreshDerived(s);assert.equal(s.anchorWinchRunning,false);near(s.anchorPaidRode,120);near(s.anchorScope,snapshot.scope);assert.deepEqual(s._anchor,record);
+ applyControlPatch(s,{anchorWinchRunning:true});refreshDerived(s);near(s.anchorPaidRode,120);assert.equal(s.anchorStatus,'Retrieving anchor');step(s,.02);near(s.anchorPaidRode,119.995);
 });
-test('paying out rode while paused clears a previous dragging warning without moving the boat',()=>{
- const s=run(ocean({sails:0,anchor:true,anchorRode:45,currentSpeed:2}),100);assert.equal(s.anchorDragging,true);
- const position={x:s.x,z:s.z};applyControlPatch(s,{anchorRode:180});refreshDerived(s);
- assert.equal(s.anchorStatus,'Deployed · settling');assert.equal(s.anchorDragging,false);assert.equal(s.anchorTension,0);assert.equal(s.x,position.x);assert.equal(s.z,position.z);
+test('paying out target alone does not clear a dragging warning before rode is actually paid',()=>{
+ const s=run(initializeAnchoredScenario(ocean({sails:0,currentSpeed:2}),{rode:45}),100);assert.equal(s.anchorDragging,true);
+ const position={x:s.x,z:s.z},paid=s.anchorPaidRode;applyControlPatch(s,{anchorRode:180});refreshDerived(s);
+ assert.equal(s.anchorDragging,true);near(s.anchorPaidRode,paid);assert.equal(s.x,position.x);assert.equal(s.z,position.z);
+ applyControlPatch(s,{anchorWinchRunning:true});run(s,10);assert.ok(s.anchorPaidRode>paid);assert.equal(s.anchorDragging,false);
 });

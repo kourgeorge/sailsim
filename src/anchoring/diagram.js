@@ -6,9 +6,10 @@ let sequence=0;
  */
 export function anchorDiagramGeometry(snapshot){
  const verticalScale=114/Math.max(4,snapshot.vertical),waterY=42+snapshot.fairlead.y*verticalScale,bottomY=waterY+snapshot.anchorDepth*verticalScale;
- const xScale=220/Math.max(snapshot.swingRadius,snapshot.distance,snapshot.vertical,1);
- const bow={x:70+snapshot.distance*xScale,y:waterY-snapshot.fairlead.y*verticalScale};
- const anchor=snapshot.anchorPoint?{x:snapshot.seabedContact?70:bow.x,y:waterY-snapshot.anchorPoint.y*verticalScale}:null;
+ const horizontal=snapshot.anchorPoint&&Number.isFinite(snapshot.anchorPoint.x)?Math.hypot(snapshot.fairlead.x-snapshot.anchorPoint.x,snapshot.fairlead.z-snapshot.anchorPoint.z):snapshot.distance;
+ const xScale=220/Math.max(snapshot.swingRadius,horizontal,snapshot.vertical,1);
+ const bow={x:70+horizontal*xScale,y:waterY-snapshot.fairlead.y*verticalScale};
+ const anchor=snapshot.anchorPoint?{x:70,y:waterY-snapshot.anchorPoint.y*verticalScale}:null;
  const slack=snapshot.status==='slack';
  const path=!anchor?'':slack?`M${bow.x},${bow.y} Q${Math.max(25,bow.x-28)},${Math.min(bottomY,bow.y+(bottomY-bow.y)*.9)} ${anchor.x},${anchor.y}`:`M${bow.x},${bow.y} L${anchor.x},${anchor.y}`;
  return {waterY,bottomY,bow,anchor,path,slack};

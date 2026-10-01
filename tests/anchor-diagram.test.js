@@ -1,7 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {initialState,step,refreshDerived} from '../src/physics.js';
-import {anchorSnapshot} from '../src/anchor.js';
+import {anchorSnapshot,initializeAnchoredScenario} from '../src/anchor.js';
 import {anchorDiagramGeometry,renderAnchorDiagram,drawAnchorChart} from '../src/anchoring/diagram.js';
 const close=(a,b)=>assert.ok(Math.abs(a-b)<1e-8,`${a} ≠ ${b}`);
 
@@ -13,7 +13,8 @@ test('anchor diagram distinguishes unstarted, suspended and actual bottom deploy
  assert.equal(snapshot.status,'suspended');assert.ok(geometry.anchor.y<geometry.bottomY);
  close(geometry.anchor.x,geometry.bow.x);
  s.anchorRode=120;refreshDerived(s);assert.equal(anchorSnapshot(s).seabedContact,false);
- step(s,.02);snapshot=anchorSnapshot(s);geometry=anchorDiagramGeometry(snapshot);
+ step(s,.02);assert.equal(anchorSnapshot(s).status,'suspended','a target edit cannot instantly put the anchor on bottom');
+ initializeAnchoredScenario(s,{rode:120});snapshot=anchorSnapshot(s);geometry=anchorDiagramGeometry(snapshot);
  assert.equal(snapshot.status,'slack');close(geometry.anchor.y,geometry.bottomY);
  s.x+=30;snapshot=anchorSnapshot(s);geometry=anchorDiagramGeometry(snapshot);
  assert.ok(geometry.bow.x>geometry.anchor.x);

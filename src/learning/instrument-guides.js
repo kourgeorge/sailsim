@@ -10,6 +10,13 @@ export const guideLanguages = [
   "he"
 ];
 export const guideSources = {
+  "lewmar-windlass": {
+    "id": "lewmar-windlass",
+    "publisher": "Lewmar",
+    "title": "V1–V6 Windlass Owners Installation, Operation & Servicing Manual (65001201, issue 11)",
+    "url": "https://www.lewmar.com/mst_attachment/attachment/click/attachment_id/276/",
+    "notePath": "reference/sailing/seamanship/lewmar-windlass.md"
+  },
   "imo-colregs": {
     "id": "imo-colregs",
     "publisher": "International Maritime Organization",
@@ -167,7 +174,8 @@ const metadata = [
   {
     "id": "anchor",
     "sourceIds": [
-      "noaa-tides"
+      "noaa-tides",
+      "lewmar-windlass"
     ],
     "lessonIds": [
       "sail-30",

@@ -1,6 +1,6 @@
 import { getLocation, DEFAULT_LOCATION_ID } from './locations.js';
 import { depthAt } from './water-depth.js';
-import { BOW_FAIRLEAD, bowFairlead, anchorSnapshot, anchorStatusText } from './anchor.js';
+import { BOW_FAIRLEAD, bowFairlead, anchorSnapshot, anchorStatusText, reconcileAnchorControls, advanceAnchorWinch, updateAirborneAnchor } from './anchor.js';
 export { depthAt } from './water-depth.js';
 import { createRigidBody, createWorldBodies, PLAYER_HULL, advanceFreeBodies, solveContacts, collisionStepLimit, separatedBeyond } from './collisions.js';
 export const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
@@ -21,7 +21,7 @@ export function initialState(locationId = DEFAULT_LOCATION_ID) {
   const location=getLocation(locationId);
   return {locationId:location.id,...location.start,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
     mainHoist:1,jibHoist:1,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
-    anchor:false,anchorRode:180,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
+    anchor:false,anchorRode:180,anchorPaidRode:0,anchorWinchRunning:false,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
     ...location.conditions,heel:0,leeway:0,yawRate:0,
     distance:0,elapsed:0,depth:depthAt(location.start.x,location.start.z,location.id),grounded:false,speedOverGround:0,courseOverGround:location.start.heading,
     apparentWindSpeed:location.conditions.windSpeed,apparentWindAngle:angleDifference(location.conditions.windDirection,location.start.heading),suggestedMainSheet:45,suggestedJibSheet:40,
@@ -57,6 +57,7 @@ function reconcile(s) {
   for(const [key,min,max,fallback] of [['mainSheet',0,90,45],['jibSheet',0,90,40],['mainHoist',0,1,1],['jibHoist',0,1,1],['rudder',-35,35,0],['traveler',-20,20,0],['vang',0,1,.45],['outhaul',0,1,.5],['throttle',-1,1,0],['reefLevel',0,2,0],['anchorRode',0,250,180]])s[key]=clamp(Number.isFinite(s[key])?s[key]:fallback,min,max);
   s.reefLevel=Math.round(s.reefLevel);s.trim=s.mainSheet;s.sails=Math.max(s.mainHoist,s.jibHoist);s.reef=s.reefLevel>0;
   s._controls={trim:s.trim,mainSheet:s.mainSheet,sails:s.sails,reef:s.reef,reefLevel:s.reefLevel};
+  reconcileAnchorControls(s);
 }
 // Empirical sail coefficients; not a measured polar or CFD solution.
 function coefficients(angle,sheet) {
@@ -96,16 +97,6 @@ function anchorTelemetry(s) {
   s.anchorStatus=anchorStatusText(snapshot);s.anchorScope=snapshot.scope;
   s.anchorDragging=snapshot.status==='dragging';s.anchorTension=snapshot.tension;
 }
-// Only a running tick can lower, lift, or capture a bottom anchor. Short rode
-// follows the bow instead of leaving a fictitious fixed point beneath the boat.
-function advanceAnchorDeployment(s) {
-  if(!s.anchor){s._anchor=null;return;}
-  const point=bowFairlead(s),record=s._anchor;
-  if(!record||record.onBottom===false||s.anchorRode<record.depth+BOW_FAIRLEAD.y){
-    const depth=depthAt(point.x,point.z,s.locationId);
-    s._anchor={x:point.x,z:point.z,depth,onBottom:s.anchorRode>=depth+BOW_FAIRLEAD.y};
-  }
-}
 /** Refresh instruments after edits while paused, without integrating movement or capturing an anchor. */
 export function refreshDerived(s) {
   reconcile(s);
@@ -120,10 +111,10 @@ export function refreshDerived(s) {
   return s;
 }
 function integrate(s,dt) {
-  advanceAnchorDeployment(s);
+  advanceAnchorWinch(s,dt);
   // A keel contact remains a grounding until the boat is reset. Later substeps
   // must not erase the contact by checking the last safe (unadvanced) position.
-  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;sailTelemetry(s,sailDynamics(s));anchorTelemetry(s);s.elapsed+=dt;return;}
+  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;sailTelemetry(s,sailDynamics(s));updateAirborneAnchor(s,dt);anchorTelemetry(s);s.elapsed+=dt;return;}
   const {aw,main,jib,reefArea}=sailDynamics(s);
   const u=s.speed*KNOT, hullSpeed=1.34*Math.sqrt(VESSEL.waterline/0.3048)*KNOT;
   const drag=58*u+38*u*Math.abs(u)+Math.sign(u)*180*(Math.abs(u)/hullSpeed)**6;
@@ -145,11 +136,11 @@ function integrate(s,dt) {
   let vz=-Math.cos(h)*nextU+Math.sin(h)*s.leeway-Math.cos(c)*(s.currentSpeed||0)*KNOT;
   let nx=s.x+vx*dt,nz=s.z+vz*dt;
   s.anchorDragging=false;s.anchorTension=0;
-  if(s.anchor&&s._anchor?.onBottom!==false){
+  if(s.anchor&&s._anchor&&s._anchor.onBottom!==false){
     const vertical=s._anchor.depth+VESSEL.bowHeight;
-    const scope=s.anchorRode/vertical;
-    if(s.anchorRode>=vertical){
-      const radius=Math.sqrt(Math.max(0,s.anchorRode*s.anchorRode-vertical*vertical));
+    const scope=s.anchorPaidRode/vertical;
+    if(s.anchorPaidRode>=vertical){
+      const radius=Math.sqrt(Math.max(0,s.anchorPaidRode*s.anchorPaidRode-vertical*vertical));
       const fairlead=bowFairlead({x:nx,z:nz,heading:s.heading}),arm={x:fairlead.x-nx,z:fairlead.z-nz};
       const dx=fairlead.x-s._anchor.x,dz=fairlead.z-s._anchor.z,dist=Math.hypot(dx,dz);
       if(dist>radius && dist>0){
@@ -163,7 +154,7 @@ function integrate(s,dt) {
         s.anchorTension=impulse/dt;
         const waterX=vx-Math.sin(c)*(s.currentSpeed||0)*KNOT,waterZ=vz+Math.cos(c)*(s.currentSpeed||0)*KNOT;
         nextU=waterX*Math.sin(h)-waterZ*Math.cos(h);s.leeway=waterX*Math.cos(h)+waterZ*Math.sin(h);
-        if(hold<1){s._anchor.x+=rx*(dist-radius)*(1-hold);s._anchor.z+=rz*(dist-radius)*(1-hold);s.anchorDragging=true;}
+        if(hold<1){s._anchor.x+=rx*(dist-radius)*(1-hold);s._anchor.z+=rz*(dist-radius)*(1-hold);s._anchor.point={x:s._anchor.x,y:-s._anchor.depth,z:s._anchor.z};s.anchorDragging=true;}
       }
     }
   }
@@ -173,6 +164,7 @@ function integrate(s,dt) {
   s.speedOverGround=Math.hypot(vx,vz)/KNOT;
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
   sailTelemetry(s,s.grounded?sailDynamics(s):{aw,main,jib});
+  updateAirborneAnchor(s,dt);
   anchorTelemetry(s);
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;s.elapsed+=dt;

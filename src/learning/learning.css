@@ -4,3 +4,11 @@
 @media(prefers-reduced-motion:reduce){.checkpoint-progress>div{transition:none}}
 
 .practice-ground-speed{flex-wrap:wrap;gap:4px 10px}.practice-ground-speed bdi{font-variant-numeric:tabular-nums;font-weight:600}
+.practice-anchor-rode{flex-wrap:wrap;gap:4px 10px;line-height:1.5}.practice-anchor-rode bdi{font-variant-numeric:tabular-nums;font-weight:600}
+
+/* Keep task measurements visible when practice replaces the introductory copy. */
+.lesson-card:has(#checkpoint-status) #card-body,.lesson-card:has(#checkpoint-status) #card-eyebrow{display:none}
+.lesson-card:has(#checkpoint-status) h3{margin:0 0 8px}
+.lesson-card:has(#checkpoint-status) .objective{margin-top:8px}
+.lesson-card:has(#checkpoint-status) .training-actions{margin-top:8px}
+.lesson-card:has(#checkpoint-status) .checkpoint-progress{margin-top:8px}

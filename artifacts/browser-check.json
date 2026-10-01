@@ -2,7 +2,7 @@
   "passed": true,
   "errors": [],
   "consoleErrors": [],
-  "checkedAt": "2026-10-01T08:31:49.862Z",
+  "checkedAt": "2026-10-01T09:55:25.845Z",
   "features": [
     "lesson feedback",
     "mastery",
@@ -17,7 +17,8 @@
     "vang",
     "outhaul",
     "engine neutral/astern",
-    "anchor rode",
+    "timed anchor payout/retrieval",
+    "paused target preserves paid geometry",
     "current",
     "cameras",
     "mobile",

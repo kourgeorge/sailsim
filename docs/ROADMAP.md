@@ -10,7 +10,7 @@ The aim is a clear, useful training companion with defensible assessments and co
 - Direct training launch, live scores, required objectives and saved scored debriefs across all 42 lessons; study remains a separate action that can pause and resume training.
 - A full-page illustrated reader divides study into concepts, observations, practice instructions where supported, questions and transfer to real sailing. Page navigation is separate from assessment evidence.
 - Six languages: English, Spanish, Arabic, Hebrew, Russian and French. RTL reading layouts, text scaling from 100–200%, a 125% default and saved preferences support readability.
-- Thirteen contextual guides and a searchable library of 25 verified official-source records with original English notes and links. The library excludes unsuccessful retrievals; those remain documented in source manifests.
+- Thirteen contextual guides and a searchable library of 26 verified official-source records with original English notes and links. The library excludes unsuccessful retrievals; those remain documented in source manifests.
 - Three fictional locations: Haven Islands, Shelter Bay and Windward Strait. Shared geometry data supports the rendered islands, chart, plotter and depth model.
 - Three auxiliary-power drills have separate history and debriefs based on actual recorded tracks, control changes and measured performance. They supplement the 19 course practices without claiming alongside docking competence.
 - Independent yacht controls and an empirical physics model with documented reference frames and behavioral tests. No yacht-specific calibration or sea-trial validation has been completed.
@@ -45,7 +45,7 @@ Develop traffic cases from verified International and applicable inland/local ru
 
 Keep current power drills focused on open-water control. Build believable contact, fenders, line constraints, propeller effects and crew roles before adding assessed berthing or spring-line maneuvers. Include failed approaches with viable abort options, not only ideal arrivals.
 
-For anchoring, distinguish approach control, deployment, setting and monitoring. Anchor/rode visuals, the live monitor and chart now share bow-based deployment geometry, including suspension, bottom contact and dragging. Stopping assessments include sideways drift and current. Remaining work includes windlass/fall timing, terrain-following dragging, seabed/anchor holding behavior and changing environmental loads before assessing more than sequence and settling.
+For anchoring, distinguish approach control, deployment, setting and monitoring. Anchor/rode visuals, the live monitor and chart now share bow-based deployment geometry, including suspension, bottom contact and dragging. Stopping assessments include sideways drift and current. Powered payout and recovery now take time, with separate requested and actual rode, stop/resume controls, and blocked recovery until the rode is unloaded. Remaining work includes equipment-specific loaded rates, braked freefall, terrain-following dragging, seabed/anchor holding behavior and changing environmental loads before assessing more than sequence and settling.
 
 Add crew briefing, equipment checks, lookout assignments and emergency decisions first. Person-overboard training needs detection, continuous observation, flotation/marking, casualty drift, approach, propeller hazards and a credible recovery/lifting process. Physical line handling, first aid and casualty recovery still require onboard or hands-on instruction even after better simulation.
 

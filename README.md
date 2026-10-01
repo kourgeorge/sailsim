@@ -28,6 +28,7 @@ node scripts/check-rig-visuals.mjs        # Traveler, masthead wind pointer, ree
 node scripts/check-anchor-visuals.mjs     # Actual anchor/rode deployment and rendered attachments
 node scripts/check-anchor-monitor.mjs    # Anchor controls/chart and six-language large-text monitor
 node scripts/check-anchor-monitor.mjs --training-sog # Natural stopping/anchoring and saved ground-speed evidence
+node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feedback, English/Arabic
 ```
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
@@ -44,14 +45,14 @@ Browser scripts require the development server and Playwright Chromium (`npx pla
 
 The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **125%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
 
-The searchable learning library contains **25 verified official-source records** with original English research notes, retrieval provenance and source links. Source documents retain their published language. Emergency lessons 33–34 can be studied immediately; level labels are learning stages, not qualifications.
+The searchable learning library contains **26 verified official-source records** with original English research notes, retrieval provenance and source links. Source documents retain their published language. Emergency lessons 33–34 can be studied immediately; level labels are learning stages, not qualifications.
 
 ## Simulator
 
 - Detailed yacht, working cockpit displays, reflective water, islands, navigation marks and location-specific coastal scenery. Chase, Helm, Cockpit and Aerial cameras support scene inspection and zoom.
 - Three fictional maps: **Haven Islands**, **Shelter Bay** and **Windward Strait**. Chart, cockpit plotter, coastlines and depth model share location data.
 - Independent main/headsail hoists and sheets, two reefs, traveler, vang, outhaul, engine ahead/neutral/astern, anchor and rode length.
-- Bow-based anchor suspension, deployment and restraint, with a moving 3D anchor/rode, six-language illustrated monitor and chart swing circle. Stopping assessments check ground motion, including current and sideways drift.
+- Timed powered windlass with separate rode target and actual paid length, stop/resume controls, and recovery that waits for unloaded rode. Bow-based 3D anchor/rode, a six-language illustrated monitor and the chart share physical geometry. Assessments require actual payout or full stowage; stopping includes current and sideways drift.
 - Apparent-wind vectors, empirical sail forces, inertia, drag, speed-dependent steering and astern reversal, leeway, steady current, heel, grounding and a simplified anchor constraint.
 - A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 19 course practices.
 - Free sailing, a three-buoy route, live chart and wind/current controls. Touch controls and keyboard shortcuts: arrows to steer/trim, Space to pause, C to center the helm, M for the chart.

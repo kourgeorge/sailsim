@@ -3,6 +3,14 @@
     {
       "fixture": "stowed",
       "status": "stowed",
+      "operation": "stopped",
+      "rode": 0,
+      "targetRode": 180,
+      "continuity": {
+        "samples": 0,
+        "maxPositionStep": 0,
+        "maxRotationStep": 0
+      },
       "adjustmentPending": false,
       "stowed": true,
       "deployed": false,
@@ -24,13 +32,21 @@
       },
       "first": null,
       "last": null,
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 58
     },
     {
       "fixture": "pending",
       "status": "pending",
+      "operation": "lowering",
+      "rode": 0,
+      "targetRode": 8,
+      "continuity": {
+        "samples": 0,
+        "maxPositionStep": 0,
+        "maxRotationStep": 0
+      },
       "adjustmentPending": true,
       "stowed": true,
       "deployed": false,
@@ -52,53 +68,21 @@
       },
       "first": null,
       "last": null,
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 58
     },
     {
-      "fixture": "suspended",
+      "fixture": "mid-lowering",
       "status": "suspended",
-      "adjustmentPending": false,
-      "stowed": false,
-      "deployed": true,
-      "bow": [
-        -0.14365464874670322,
-        1.4815935635545372,
-        93.44573153723822
-      ],
-      "anchorPoint": [
-        -0.14365464874670325,
-        -3.518406436445462,
-        93.44573153723823
-      ],
-      "snapshotAnchor": {
-        "x": 0,
-        "y": -3.8,
-        "z": 93.4
+      "operation": "lowering",
+      "rode": 4.000000000000003,
+      "targetRode": 8,
+      "continuity": {
+        "samples": 18,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.08274074675578982
       },
-      "snapshotFairlead": {
-        "x": 0,
-        "y": 1.2,
-        "z": 93.4
-      },
-      "first": [
-        -0.14365464945634207,
-        1.4815936088562016,
-        93.44573211669923
-      ],
-      "last": [
-        -0.14365464945634207,
-        -3.5184063911437984,
-        93.44573211669923
-      ],
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
-      "positionBuffer": 582,
-      "drawCalls": 59
-    },
-    {
-      "fixture": "paused-payout",
-      "status": "suspended",
       "adjustmentPending": true,
       "stowed": false,
       "deployed": true,
@@ -108,13 +92,13 @@
         93.44573153723822
       ],
       "anchorPoint": [
-        -0.14365464874670325,
-        -34.71840643644546,
-        93.44573153723823
+        -3.001071613439876e-17,
+        -2.8000000000000025,
+        93.40000000000002
       ],
       "snapshotAnchor": {
         "x": 0,
-        "y": -35,
+        "y": -2.800000000000003,
         "z": 93.4
       },
       "snapshotFairlead": {
@@ -123,22 +107,126 @@
         "z": 93.4
       },
       "first": [
-        -0.14365464945634207,
-        1.4815936088562016,
+        -0.14365464448928836,
+        1.4815935691197717,
         93.44573211669923
       ],
       "last": [
-        -0.14365464945634207,
-        -34.718406677246094,
+        -3.0588957072476214e-17,
+        -2.800000031789143,
+        93.40000025431316
+      ],
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "stopped",
+      "status": "suspended",
+      "operation": "stopped",
+      "rode": 4.000000000000003,
+      "targetRode": 8,
+      "continuity": {
+        "samples": 18,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.08274074675578982
+      },
+      "adjustmentPending": false,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -3.001071613439876e-17,
+        -2.800000000000002,
+        93.40000000000002
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -2.8000000000000025,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464448928836,
+        1.4815935691197717,
         93.44573211669923
       ],
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "last": [
+        -3.0588957072476214e-17,
+        -2.800000031789143,
+        93.40000025431316
+      ],
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "paused-payout",
+      "status": "suspended",
+      "operation": "stopped",
+      "rode": 4.000000000000003,
+      "targetRode": 80,
+      "continuity": {
+        "samples": 18,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.08274074675578982
+      },
+      "adjustmentPending": false,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -3.001071613439876e-17,
+        -2.800000000000002,
+        93.40000000000002
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -2.8000000000000025,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464448928836,
+        1.4815935691197717,
+        93.44573211669923
+      ],
+      "last": [
+        -3.0588957072476214e-17,
+        -2.800000031789143,
+        93.40000025431316
+      ],
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 59
     },
     {
       "fixture": "slack",
       "status": "slack",
+      "operation": "stopped",
+      "rode": 80,
+      "targetRode": 80,
+      "continuity": {
+        "samples": 67,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
       "adjustmentPending": false,
       "stowed": false,
       "deployed": true,
@@ -168,27 +256,215 @@
         93.44573211669923
       ],
       "last": [
-        -3.0010715913817274e-17,
+        -3.001071481090978e-17,
         -35,
-        93.40000025431316
+        93.40000152587892
       ],
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 59
     },
     {
+      "fixture": "mid-retrieving",
+      "status": "suspended",
+      "operation": "retrieving",
+      "rode": 19.975000000000577,
+      "targetRode": 0,
+      "continuity": {
+        "samples": 145,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
+      "adjustmentPending": true,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -3.001071613439876e-17,
+        -18.775000000000578,
+        93.40000000000002
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -18.775000000000578,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464448928836,
+        1.4815935691197717,
+        93.44573211669923
+      ],
+      "last": [
+        -3.058895596956872e-17,
+        -18.77499993642171,
+        93.40000152587892
+      ],
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "near-stowed",
+      "status": "suspended",
+      "operation": "retrieving",
+      "rode": 0.22500000000026577,
+      "targetRode": 0,
+      "continuity": {
+        "samples": 167,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
+      "adjustmentPending": true,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.09820142004160219,
+        1.1674956000856687,
+        93.43126179303393
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": 0.9749999999997342,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": [
+        -0.14365464945634207,
+        1.4815935492515568,
+        93.44573211669923
+      ],
+      "last": [
+        -0.0982014189163844,
+        1.1674956083297734,
+        93.43126169840495
+      ],
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "weighed",
+      "status": "stowed",
+      "operation": "stopped",
+      "rode": 0,
+      "targetRode": 0,
+      "continuity": {
+        "samples": 175,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
+      "adjustmentPending": false,
+      "stowed": true,
+      "deployed": false,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "anchorPoint": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        93.44573153723822
+      ],
+      "snapshotAnchor": null,
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 93.4
+      },
+      "first": null,
+      "last": null,
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
+      "positionBuffer": 582,
+      "drawCalls": 58
+    },
+    {
       "fixture": "taut",
       "status": "taut",
+      "operation": "stopped",
+      "rode": 120,
+      "targetRode": 120,
+      "continuity": {
+        "samples": 175,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
       "adjustmentPending": false,
       "stowed": false,
       "deployed": true,
       "bow": [
         -0.14365464874670322,
         1.4815935635545372,
-        207.71287926322464
+        207.71870428248238
       ],
       "anchorPoint": [
-        -1.410330185969144e-16,
+        -2.520553210594301e-16,
+        -35,
+        93.4
+      ],
+      "snapshotAnchor": {
+        "x": 0,
+        "y": -35,
+        "z": 93.4
+      },
+      "snapshotFairlead": {
+        "x": 0,
+        "y": 1.2,
+        "z": 207.67297274524418
+      },
+      "first": [
+        -0.1436546494563422,
+        1.4815936088562025,
+        207.7187042236328
+      ],
+      "last": [
+        -2.520553197359411e-16,
+        -35,
+        93.4000015258789
+      ],
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
+      "positionBuffer": 582,
+      "drawCalls": 59
+    },
+    {
+      "fixture": "blocked",
+      "status": "taut",
+      "operation": "blocked",
+      "rode": 119.99000000000001,
+      "targetRode": 0,
+      "continuity": {
+        "samples": 175,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
+      "adjustmentPending": true,
+      "stowed": false,
+      "deployed": true,
+      "bow": [
+        -0.14365464874670322,
+        1.4815935635545372,
+        207.84485784509076
+      ],
+      "anchorPoint": [
+        -3.001071613439876e-17,
         -35,
         93.39999999999998
       ],
@@ -200,93 +476,81 @@
       "snapshotFairlead": {
         "x": 0,
         "y": 1.2,
-        "z": 207.66714772598644
+        "z": 207.79912630785256
       },
       "first": [
-        -0.1436546494563421,
-        1.4815935691197726,
-        207.7128804524739
+        -0.143654649456342,
+        1.4815936088562025,
+        207.844856262207
       ],
       "last": [
-        -1.4103301727342544e-16,
+        -3.0010717016724754e-17,
         -35,
-        93.40000152587888
+        93.39999898274736
       ],
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 59
     },
     {
       "fixture": "dragging",
       "status": "dragging",
+      "operation": "stopped",
+      "rode": 50,
+      "targetRode": 50,
+      "continuity": {
+        "samples": 175,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
       "adjustmentPending": false,
       "stowed": false,
       "deployed": true,
       "bow": [
         -0.14365464874670322,
         1.4815935635545372,
-        127.96041091203257
+        128.04053584246412
       ],
       "anchorPoint": [
-        -2.998930893157416e-17,
+        -2.9919811632658834e-17,
         -35,
-        93.42468082448997
+        93.50480575492156
       ],
       "snapshotAnchor": {
         "x": 0,
         "y": -35,
-        "z": 93.42468082448997
+        "z": 93.50480575492153
       },
       "snapshotFairlead": {
         "x": 0,
         "y": 1.2,
-        "z": 127.91467937479436
+        "z": 127.99480430522593
       },
       "first": [
         -0.14365464448928833,
-        1.4815936088562025,
-        127.96041107177734
+        1.4815936088562007,
+        128.04053751627606
       ],
       "last": [
-        -2.998930958247188e-17,
+        -2.9919810970312655e-17,
         -35,
-        93.42468007405598
+        93.50480651855472
       ],
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 59
     },
     {
-      "fixture": "weighed",
-      "status": "stowed",
-      "adjustmentPending": false,
-      "stowed": true,
-      "deployed": false,
-      "bow": [
-        -0.14365464874670322,
-        1.4815935635545372,
-        127.96041091203257
-      ],
-      "anchorPoint": [
-        -0.14365464874670322,
-        1.4815935635545372,
-        127.96041091203257
-      ],
-      "snapshotAnchor": null,
-      "snapshotFairlead": {
-        "x": 0,
-        "y": 1.2,
-        "z": 127.91467937479436
-      },
-      "first": null,
-      "last": null,
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
-      "positionBuffer": 582,
-      "drawCalls": 58
-    },
-    {
       "fixture": "reset",
       "status": "stowed",
+      "operation": "stopped",
+      "rode": 0,
+      "targetRode": 180,
+      "continuity": {
+        "samples": 175,
+        "maxPositionStep": 0.06976116474164674,
+        "maxRotationStep": 0.14450468238557337
+      },
       "adjustmentPending": false,
       "stowed": true,
       "deployed": false,
@@ -308,7 +572,7 @@
       },
       "first": null,
       "last": null,
-      "geometry": "493863f5-c10a-48c3-afb9-48b106b84250",
+      "geometry": "83a85a11-2897-459a-b6ec-5cc263079f9c",
       "positionBuffer": 582,
       "drawCalls": 58
     }

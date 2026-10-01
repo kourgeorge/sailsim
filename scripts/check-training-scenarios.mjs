@@ -1,20 +1,17 @@
 import {fileURLToPath} from 'node:url';
 import {resolve} from 'node:path';
-import {initialState,step,angleDifference,clamp,wrap,apparentWind,suggestedSheet} from '../src/physics.js';
+import {step,angleDifference,clamp,wrap,apparentWind,suggestedSheet} from '../src/physics.js';
 import {lessons} from '../src/learning/curriculum.js';
+import {createPracticeState} from '../src/learning/scenario-state.js';
+import {applyControlPatch} from '../src/vessel-controls.js';
+import {anchorSnapshot} from '../src/anchor.js';
 import {restoreProgress,beginAttempt,advanceAttempt,recordEvent} from '../src/learning/engine.js';
 
-export function scenarioState(setup){
- const s=Object.assign(initialState(),{x:0,z:0,heading:45,speed:0,rudder:0,trim:34,mainSheet:34,jibSheet:28,sails:1,mainHoist:1,jibHoist:1,reef:false,reefLevel:0,anchor:false,throttle:0,currentSpeed:0,currentDirection:0,windSpeed:12,windDirection:315},setup);
- if(setup.sails!==undefined)s.mainHoist=s.jibHoist=setup.sails;
- if(setup.trim!==undefined)s.mainSheet=setup.trim;
- if(setup.reef!==undefined)s.reefLevel=setup.reef?1:0;
- return s;
-}
+export const scenarioState=createPracticeState;
 /** A feedback helm controller, not a perfect trajectory: all motion goes through step(). */
 export function steer(s,heading){s.rudder=clamp(angleDifference(heading,s.heading)*1.8-s.yawRate*5,-35,35);}
 function hoist(s,value){s.mainHoist=s.jibHoist=s.sails=value;}
-export function runScenario(lesson,{maxSeconds=600,dt=.1}={}){
+export function runScenario(lesson,{maxSeconds=1200,dt=.1}={}){
  const state=scenarioState(lesson.practice.setup),progress=restoreProgress(null),attempt=beginAttempt(lesson,state,progress),checkpoints=[];
  let target=null,previousIndex=-1,minDepth=Infinity,maxSpeed=0,crossings=[];let previousRelative=angleDifference(state.heading,state.windDirection);
  for(let t=0;t<maxSeconds&&attempt.status==='active';t+=dt){
@@ -36,7 +33,7 @@ export function runScenario(lesson,{maxSeconds=600,dt=.1}={}){
   case 'sails':hoist(state,check.value);break;
   case 'reef':state.reef=true;state.reefLevel=1;break;
   case 'coast':hoist(state,0);break;
-  case 'anchor':state.anchor=check.value;if(check.value)hoist(state,0);break;
+  case 'anchor':if(check.value){if(!state.anchor)applyControlPatch(state,{anchor:true});hoist(state,0);}else if(state.anchor&&state.anchorRode!==0)applyControlPatch(state,{anchor:false});break;
   case 'waypoint':target=wrap(Math.atan2(check.value.x-state.x,state.z-check.value.z)*180/Math.PI);break;
   }
   steer(state,target);step(state,dt);
@@ -47,7 +44,7 @@ export function runScenario(lesson,{maxSeconds=600,dt=.1}={}){
   const before=attempt.index;advanceAttempt(attempt,lesson,state,dt,progress);
   if(attempt.index!==before)checkpoints.push({label:check.label,at:+attempt.elapsed.toFixed(1),x:+state.x.toFixed(1),z:+state.z.toFixed(1)});
  }
- return {id:lesson.id,title:lesson.title,status:attempt.status==='active'?'timeout':attempt.status,seconds:+attempt.elapsed.toFixed(1),minDepth:+minDepth.toFixed(1),maxSpeed:+maxSpeed.toFixed(1),checkpoint:attempt.index,checkpoints,crossings,reason:attempt.message||null,final:{heading:+state.heading.toFixed(1),speed:+state.speed.toFixed(2),x:+state.x.toFixed(1),z:+state.z.toFixed(1),anchor:state.anchor,anchorStatus:state.anchorStatus}};
+ return {id:lesson.id,title:lesson.title,status:attempt.status==='active'?'timeout':attempt.status,seconds:+attempt.elapsed.toFixed(1),minDepth:+minDepth.toFixed(1),maxSpeed:+maxSpeed.toFixed(1),checkpoint:attempt.index,checkpoints,crossings,reason:attempt.message||null,anchorGeometry:anchorSnapshot(state),final:{heading:+state.heading.toFixed(1),speed:+state.speed.toFixed(2),x:+state.x.toFixed(1),z:+state.z.toFixed(1),anchor:state.anchor,anchorStatus:state.anchorStatus,collisionCount:state.collisionCount,grounded:state.grounded}};
 }
 if(process.argv[1]&&resolve(process.argv[1])===fileURLToPath(import.meta.url)){
  const results=lessons.filter(l=>l.practice).map(l=>runScenario(l));

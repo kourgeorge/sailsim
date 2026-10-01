@@ -116,7 +116,7 @@
         "Una driza iza una vela. Una escota ajusta su ángulo. Un rizo reduce la superficie de vela expuesta. Una cornamusa o mordaza sujeta un cabo; un winch ayuda a manejar la carga.",
         "En este velero, las escotas de colores van hacia popa hasta los winches de la bañera. Observa las vueltas y las mordazas en la vista Bañera. El panel Sistemas del barco controla las dos drizas y escotas de forma independiente, además del carro, la contra, el tensor del pujamen, los rizos, el motor y la línea de fondeo. Los deslizadores representan ajustes, no el manejo físico de los cabos.",
         "Los controles de izado de mayor y proa determinan la cantidad de vela expuesta. Las dos escotas modifican sus ángulos por separado. El carro desplaza el punto de tiro de la escota de la botavara; la tensión de la contra regula la torsión simulada y el tensor del pujamen aplana la parte baja de la vela. Cambia un control cada vez y compara la respuesta.",
-        "El nivel de rizo reduce la superficie de la mayor. El mando del motor selecciona atrás, punto muerto o avante; vuelve a punto muerto para las evaluaciones a vela. La línea de fondeo determina la longitud largada y afecta al círculo de borneo y al agarre simulados.",
+        "El nivel de rizo reduce la superficie de la mayor. El acelerador selecciona marcha atrás, punto muerto o avante; vuelve a punto muerto para las evaluaciones a vela. El deslizador del fondeo fija una longitud objetivo. Pon en marcha el molinete para largar o recoger línea gradualmente; observa la longitud realmente largada y detén el molinete cuando sea necesario.",
         "Mantén dedos, ropa suelta y pelo lejos de cabos en tensión. Aprende con un instructor a cargar un winch, manejar cabos, hacer nudos y largar con control; un ratón no enseña a sentir la carga de un cabo."
       ],
       "observe": [
@@ -1215,8 +1215,9 @@
       "title": "Reduce velocidad y después fondea",
       "concepts": [
         "Una aproximación real al fondeo es lenta y controlada. La tripulación baja el ancla y larga la línea deliberadamente; después comprueba que el ancla ha agarrado y continúa vigilando la posición.",
-        "El modelo estima longitud de línea, radio de borneo y garreo por relación de fondeo insuficiente. No valida el agarre en un fondo concreto ni representa toda la catenaria. Este ejercicio evalúa la reducción de velocidad y el orden de las acciones.",
-        "Arría las velas, pierde arrancada hasta menos de 0.8 nudos con el ancla arriba y después fondea. La arrancada puede tardar unos minutos en desaparecer: largar línea no es un freno instantáneo. Fondear antes invalida el intento porque evita el ejercicio de control de velocidad."
+        "La longitud objetivo del fondeo es una orden, no la cantidad de línea en el agua. Comprueba la longitud realmente largada en Sistemas. El modelo larga a 24 metros por minuto y recoge a 15 metros por minuto; son velocidades motorizadas ilustrativas.",
+        "Arrea las velas y deja que la velocidad sobre el fondo baje de 0.8 nudos con el ancla estibada. Después fija un objetivo de 45 m y pon en marcha el molinete. Larga gradualmente y se detiene al alcanzar el objetivo. Usa «Detener el molinete» para pararlo y «Mover hasta el objetivo» para continuar. Espera hasta que haya 45 m realmente largados, el molinete esté detenido y la velocidad sobre el fondo sea inferior a 0.2 nudos. Fondear antes de tiempo invalida el intento.",
+        "El objetivo de 45 m corresponde a este ejercicio preparado en aguas poco profundas. Planifica un fondeo real según la profundidad, la marea, el abrigo, el fondo y el espacio de borneo. El modelo no valida el agarre del ancla en un fondo concreto ni representa la catenaria completa."
       ],
       "observe": [
         "Reduce la potencia vélica mucho antes del punto de parada previsto.",
@@ -1250,7 +1251,7 @@
             "label": "Arría y reduce a menos de 0.8 nudos, con el ancla arriba"
           },
           {
-            "label": "Fondea y estabilízate por debajo de 0.2 nudos"
+            "label": "Larga 45 m, detén el molinete y baja de 0.2 nudos"
           }
         ],
         "debrief": "Has practicado una parada controlada y la secuencia simplificada correcta. No se evalúa el agarre real del ancla."
@@ -1260,7 +1261,8 @@
       "title": "Prepárate para salir",
       "concepts": [
         "Antes de zarpar, revisa de nuevo el entorno, la ruta prevista, las condiciones y la preparación de la tripulación. Asegura cabos y equipo y comprueba que todos saben qué ocurrirá después.",
-        "En esta salida simplificada, leva ancla, iza velas y establece un rumbo estable abierto al viento. El escenario ya está libre de tierra, cabos y otras embarcaciones.",
+        "Este ejercicio comienza con 45 m de línea ya largada y la proa sobre el ancla. Selecciona «Levar ancla» y observa cómo disminuye la longitud real. El ancla sigue desplegada durante la recogida. Espera a que esté completamente estibada antes de izar las velas y después establece un través estable.",
+        "Si la línea se tensa mientras el barco está alejado del ancla, la recogida se interrumpe. En navegación libre, avanza despacio hacia el ancla para aflojar la línea y después continúa la recogida. No uses el molinete para arrastrar el barco hacia el ancla.",
         "En un puerto real, los planes de levar e izar dependen del abrigo, el espacio, el tráfico, el viento, la disponibilidad del motor y el barco. La preparación cómoda del simulador no es un procedimiento universal de salida."
       ],
       "observe": [
@@ -1377,6 +1379,7 @@
       "concepts": [
         "Combina las habilidades sin prisas: establece un rumbo estable, ajusta bien las velas, cambia de amura pasando la proa por el viento, recupera el control y reduce velocidad hasta una parada planificada.",
         "El simulador proporciona objetivos medibles, pero no gobierno automático. Debes completar cada etapa en orden. Varar o usar el ancla antes de la etapa final de parada invalida el intento.",
+        "La etapa final utiliza un fondeadero preparado en aguas profundas y un objetivo de 180 m de línea. Espera hasta que se hayan largado los 180 m, el molinete se detenga y la velocidad sobre el fondo baje de 0.2 nudos. Reserva unos 15 minutos para el ejercicio completo. Este objetivo es específico de estas condiciones de entrenamiento.",
         "Superarlo demuestra las tareas simuladas seleccionadas con viento constante y aguas abiertas. No demuestra competencia real de navegación, atraque, recuperación de emergencia ni patrón."
       ],
       "observe": [
@@ -1421,7 +1424,7 @@
             "label": "Arría y reduce a menos de 0.8 nudos"
           },
           {
-            "label": "Fondea y estabilízate por debajo de 0.2 nudos"
+            "label": "Larga 180 m, detén el molinete y baja de 0.2 nudos"
           }
         ],
         "debrief": "Has enlazado gobierno, ajuste, virada y parada. Revisa las pistas utilizadas y repite con menos ayuda."

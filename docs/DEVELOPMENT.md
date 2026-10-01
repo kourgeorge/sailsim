@@ -46,6 +46,7 @@ node scripts/check-activity-status.mjs
 node scripts/check-anchor-visuals.mjs
 node scripts/check-anchor-monitor.mjs
 node scripts/check-anchor-monitor.mjs --training-sog
+node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feedback, English/Arabic
 ```
 
 The development server must be running on port 5187 for browser checks. Software-rendered browser tests are intentionally allowed longer startup and frame times than hardware-accelerated interactive browsers. A passing numerical test is evidence about the implementation, not validation against a real yacht or safety certification.
@@ -71,3 +72,15 @@ The normal browser UI completed “Stop, then anchor” in 204.7 simulated secon
 After the final source edits, the full controls/training/cameras/mobile/archive browser regression passed again (`artifacts/browser-check.json`), including switching the exclusive vessel-system sections and the updated deployment labels. No uncaught browser or shader errors were recorded.
 
 The earlier six-language desktop/mobile and 200% text checks remain in `artifacts/locales/`, `artifacts/training/` and `artifacts/maneuvers/`. The current unit suite revalidates all translated scenario grading metadata. These browser runs use software WebGL; hardware GPU performance, real-yacht calibration and independent instructor/native-language review remain unverified. Consult `ROADMAP.md` for the remaining capability gaps rather than treating green regression checks as completion of the overall simulator goal.
+
+The timed-windlass increment passed **232 automated tests** and the production build. All 19 physical exercises complete under the production solver; anchoring/departure/capstone now take approximately 182.8/194.7/606.5 simulated seconds. The new anchorage tests sample the entire swing-plus-hull envelope and reject the former capstone site, despite its clear boat track. Powered rates remain explicit model assumptions; manufacturer maximum speeds are not treated as loaded operating calibration.
+
+The compact header status regression passed again, including Arabic mobile at 200% text. The anchor rendering harness passed 13 states spanning actual lowering, stopping, paused target edits, recovery, breakout, final stowage, loaded recovery, dragging and reset. It measured continuous endpoint/orientation transitions and unchanged one-draw-call deployment overhead. Screenshots and geometry measurements are in `artifacts/activity/` and `artifacts/anchor-visual-diagnostics.json`.
+
+The updated anchor monitor/browser lifecycle also passed progressive short payout and recovery, stopped motor behavior while sailing, unchanged physical geometry after a paused target edit, and prepared 45 m bottom geometry. All six languages passed control-label and overflow checks at desktop/mobile widths (1440/390 px) with 200% text. Evidence is in `artifacts/anchoring/monitor-result.json` and adjacent screenshots. An initial harness-only navigation error was corrected to switch from free sailing to learning before selecting the departure lesson.
+
+The final timed training browser run passed both anchoring lessons at 100/100 through normal controls. Lesson 31 completed in **183.198 simulated seconds**, with 45 m actually paid, a 45 m target, stopped motor, bottom contact and 0.192 kn ground speed. Lesson 32 physically recovered all rode before its first checkpoint at **181.5 seconds**, then raised and trimmed both sails and completed departure at **198 seconds**. Both saved reports carry `windlassAssessmentVersion: 1`; debriefs show actual/target rode and motor evidence. See `artifacts/anchoring/training-sog-result.json`. Earlier harness-only errors (a stale mainsheet selector and omitted sail trim) were corrected before this passing run.
+
+The live practice card now hides its generic introductory copy during an active attempt, making room for ground-speed and rode feedback without enlarging the panel. The focused `--training-layout` browser check passed English and Arabic at default desktop size and 200% mobile text, with screenshots in `artifacts/anchoring/training-layout-*`. The production build passed after this CSS adjustment.
+
+The final general browser regression passed after all source changes: training and persistence, independent vessel controls, timed anchor handling, header Pause/Resume with the systems drawer open, cameras, mobile layout and reference archive. No uncaught browser or shader errors were recorded. Current evidence is in `artifacts/browser-check.json` and adjacent screenshots.

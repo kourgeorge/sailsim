@@ -71,8 +71,17 @@ try {
  await page.getByText('Engine & close quarters',{exact:true}).click();
  await page.locator('#vessel-throttle').fill('-0.7');await expect(page.locator('[data-system-status]')).toContainText('astern');
  await page.locator('[data-command="neutral"]').click();await expect(page.locator('#vessel-throttle')).toHaveValue('0');
- await page.getByText('Anchor & holding',{exact:true}).click();await page.locator('#vessel-anchorRode').fill('140');await page.locator('[data-command="anchor"]').click();await expect(page.locator('#anchor span')).toHaveText('Weigh anchor');
- await page.locator('[data-command="anchor"]').click();await page.locator('#systems-close').click();
+ await page.getByText('Anchor & holding',{exact:true}).click();await page.locator('#vessel-anchorRode').fill('5');await page.locator('[data-command="anchor"]').click();
+ await expect(page.locator('#anchor span')).toHaveText('Stop windlass');await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-operation','lowering');
+ await page.waitForFunction(()=>parseFloat(document.querySelector('[data-anchor-metric="rode"]').textContent)>.5,null,{timeout:120000});
+ await page.locator('[data-command="anchor-stop"]').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-operation','stopped');
+ await page.locator('#activity-action').click();await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-paused');const paid=await page.locator('[data-anchor-metric="rode"]').textContent(),path=await page.locator('[data-rode]').getAttribute('d');
+ await page.locator('#vessel-anchorRode').fill('10');await expect(page.locator('[data-anchor-metric="target"]')).toHaveText('10.0 m');
+ assert.equal(await page.locator('[data-anchor-metric="rode"]').textContent(),paid);assert.equal(await page.locator('[data-rode]').getAttribute('d'),path,'Paused target does not redeploy anchor geometry');
+ await page.locator('[data-command="anchor-retrieve"]').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-operation','paused');
+ assert.equal(await page.locator('[data-anchor-metric="rode"]').textContent(),paid,'A paused retrieval request does not stow instantly');
+ await page.locator('#activity-action').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-phase','stowed',{timeout:180000});
+ await expect(page.locator('[data-anchor-metric="rode"]')).toHaveText('0.0 m');await page.locator('#systems-close').click();
  await page.locator('#conditions').click();await page.locator('#wind-speed').fill('20');await page.locator('#current-speed').fill('1.5');await page.locator('#current-direction').fill('90');await page.locator('#close-modal').click();
  await expect(page.locator('#weather-wind')).toContainText('20 kn');
  await page.locator('#reset').click();
@@ -93,6 +102,6 @@ try {
  await page.goto(new URL('/reference/esail/index.html',url).href,{waitUntil:'domcontentloaded'});await page.locator('#search').fill('reefing');assert.ok(await page.locator('#results article').count()>0);await page.locator('#images').click();await page.locator('#search').fill('');assert.equal(await page.locator('#results .image').count(),234);
  assert.deepEqual(errors,[],'No uncaught browser errors');
  assert.equal(consoleErrors.filter(s=>/Shader Error|VALIDATE_STATUS|Error creating WebGL|THREE.WebGLProgram/.test(s)).length,0,'No shader or WebGL errors');
- await writeFile('artifacts/browser-check.json',JSON.stringify({passed:true,errors,consoleErrors,checkedAt:new Date().toISOString(),features:['lesson feedback','mastery','42-lesson library','ordered practice','persistence','keyboard helm','tab visibility pause','independent sails','reef levels','traveler','vang','outhaul','engine neutral/astern','anchor rode','current','cameras','mobile','archive']},null,2));
+ await writeFile('artifacts/browser-check.json',JSON.stringify({passed:true,errors,consoleErrors,checkedAt:new Date().toISOString(),features:['lesson feedback','mastery','42-lesson library','ordered practice','persistence','keyboard helm','tab visibility pause','independent sails','reef levels','traveler','vang','outhaul','engine neutral/astern','timed anchor payout/retrieval','paused target preserves paid geometry','current','cameras','mobile','archive']},null,2));
  console.log('Full browser checks passed: training, controls, cameras, mobile, and archive.');
 }finally{await browser.close();}

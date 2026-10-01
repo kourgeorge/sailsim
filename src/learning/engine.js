@@ -1,5 +1,5 @@
 import { lessons } from './curriculum.js';
-import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence, practiceGroundSpeed, practiceAnchorContact, practiceStopThreshold } from './practice-assessment.js';
+import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence, practiceGroundSpeed, practiceWindlassComplete, practiceStopThreshold, WINDLASS_ASSESSMENT_VERSION } from './practice-assessment.js';
 import { restoreDecisionResult } from './decision-evidence.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
@@ -49,7 +49,7 @@ export function crossingKind(previous,current){
 export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
- const attempt={lessonId:lesson.id,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
+ const attempt={lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
  if(state.contactActive===true){attempt.objectives[0].evidence=practiceEvidence(state,attempt);invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));}
  return attempt;
 }
@@ -72,7 +72,7 @@ function satisfied(check,state,attempt){
  case 'recover':return twa>=40&&twa<=100&&speed>2;
  case 'reef':return (state.reefLevel>0||state.reef)&&(state.mainHoist??state.sails)>.95&&speed>1;
  case 'coast':return sails<.01&&!state.anchor&&practiceGroundSpeed(state)<practiceStopThreshold(check);
- case 'anchor':return check.value?state.anchor&&state.anchorScope>=1&&practiceAnchorContact(state)!==false&&practiceGroundSpeed(state)<practiceStopThreshold(check)&&sails<.01&&!state.anchorDragging:!state.anchor;
+ case 'anchor':return practiceWindlassComplete(state,check)&&(!check.value||(practiceGroundSpeed(state)<practiceStopThreshold(check)&&sails<.01));
  case 'waypoint':return Math.hypot(state.x-check.value.x,state.z-check.value.z)<=check.value.radius&&state.depth>=3;
  default:return false;
  }

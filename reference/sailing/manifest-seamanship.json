@@ -188,6 +188,22 @@
       "topics": [
         "emergency"
       ]
+    },
+    {
+      "id": "lewmar-windlass",
+      "publisher": "Lewmar",
+      "title": "V1–V6 Windlass Owners Installation, Operation & Servicing Manual (65001201, issue 11)",
+      "url": "https://www.lewmar.com/mst_attachment/attachment/click/attachment_id/276/",
+      "retrievedAt": "2026-10-01T08:44:51.283667+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "d15ecf7a6158a3aa2fc0e22dec00bda8cd3093773da924eaededcb7681b99bd9",
+      "retrievalBytes": 7682805,
+      "notePath": "reference/sailing/seamanship/lewmar-windlass.md",
+      "topics": [
+        "anchor"
+      ],
+      "level": "Intermediate"
     }
   ],
   "excluded": [

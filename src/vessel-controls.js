@@ -1,7 +1,9 @@
+import { applyAnchorControlPatch } from './anchor.js';
 // Apply a control patch atomically, including the original dock's aliases.
 export function applyControlPatch(state, patch) {
-  Object.assign(state,patch);
-  if('anchor' in patch && !patch.anchor)state._anchor=null;
+  const {anchor,anchorRode,anchorWinchRunning,anchorPaidRode,...direct}=patch;
+  Object.assign(state,direct);
+  applyAnchorControlPatch(state,patch);
   if('trim' in patch && !('mainSheet' in patch))state.mainSheet=patch.trim;
   if('mainSheet' in patch)state.trim=patch.mainSheet;
   if('sails' in patch && !('mainHoist' in patch) && !('jibHoist' in patch)){state.mainHoist=patch.sails?1:0;state.jibHoist=patch.sails?1:0;}

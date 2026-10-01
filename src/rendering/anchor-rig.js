@@ -8,6 +8,18 @@ const point=(x,y,z)=>({x,y,z});
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 const lerp=(a,b,t)=>a+(b-a)*t;
 const pathLength=points=>points.slice(1).reduce((sum,p,index)=>sum+distance(points[index],p),0);
+const smoothstep=value=>{const t=Math.max(0,Math.min(1,value));return t*t*(3-2*t);};
+
+// A suspended anchor retains the solver's entire 3D endpoint. Only the last
+// 60 cm blends in the small decorative hull motion so it seats on the roller
+// without a visual jump at the instant the physical paid length reaches zero.
+export function renderedAnchorPoint(snapshot,fairlead) {
+ if(!snapshot.anchorPoint)return null;
+ const end={...snapshot.anchorPoint};
+ const blend=snapshot.status==='suspended'?smoothstep(1-snapshot.rode/.6):0;
+ if(blend&&snapshot.fairlead){end.x+=(fairlead.x-snapshot.fairlead.x)*blend;end.y+=(fairlead.y-snapshot.fairlead.y)*blend;end.z+=(fairlead.z-snapshot.fairlead.z)*blend;}
+ return end;
+}
 
 /** A geometric cable illustration, not a force or catenary calculation.
  * Slack descends to the seabed, with surplus rode laid there in loose turns.
@@ -16,10 +28,11 @@ const pathLength=points=>points.slice(1).reduce((sum,p,index)=>sum+distance(poin
 export function anchorRodePath(snapshot,fairlead,segments=SEGMENTS) {
  if(!snapshot.anchorPoint||['stowed','pending'].includes(snapshot.status))return[];
  const suspended=snapshot.status==='suspended';
- const end=suspended?point(fairlead.x,fairlead.y+snapshot.anchorPoint.y-snapshot.fairlead.y,fairlead.z):{...snapshot.anchorPoint};
+ const end=renderedAnchorPoint(snapshot,fairlead);
  const straight=distance(fairlead,end),paid=Math.max(0,snapshot.rode);
  if(suspended||snapshot.status==='taut'||snapshot.status==='dragging'||paid<=straight+.05){
-  return Array.from({length:segments+1},(_,i)=>{const t=i/segments;return point(lerp(fairlead.x,end.x,t),lerp(fairlead.y,end.y,t),lerp(fairlead.z,end.z,t));});
+  const points=Array.from({length:segments+1},(_,i)=>{const t=i/segments;return point(lerp(fairlead.x,end.x,t),lerp(fairlead.y,end.y,t),lerp(fairlead.z,end.z,t));});
+  points[0]=point(fairlead.x,fairlead.y,fairlead.z);points[segments]={...end};return points;
  }
  const descentSegments=Math.floor(segments/2),remainingSegments=segments-descentSegments;
  const slack=paid-straight,sag=Math.min(Math.max(0,fairlead.y-end.y)*.45,slack*.35);
@@ -33,7 +46,9 @@ export function anchorRodePath(snapshot,fairlead,segments=SEGMENTS) {
  for(let i=0;i<12;i++){const mid=(low+high)/2;if(pathLength(makeDescent(mid))>paid)high=mid;else low=mid;}
  descent=makeDescent(low);
  const surplus=Math.max(0,paid-pathLength(descent));
- const turns=Math.min(6,Math.max(1,Math.ceil(surplus/18)));
+ // Fixed topology avoids an entire coil jumping when timed payout crosses a
+ // multiple of 18 m. Its radius continuously shrinks/grows with actual slack.
+ const turns=4;
  const circle=Array.from({length:remainingSegments+1},(_,i)=>{const angle=i/remainingSegments*Math.PI*2*turns;return point(Math.sin(angle),0,1-Math.cos(angle));});
  const radius=surplus/pathLength(circle);
  for(let i=1;i<=remainingSegments;i++)descent.push(point(end.x+circle[i].x*radius,end.y,end.z+circle[i].z*radius));
@@ -84,21 +99,36 @@ export function createAnchorRig(materials,{detailed=true}={}) {
  const localBow=new THREE.Vector3(BOW_FAIRLEAD.x,BOW_FAIRLEAD.y,BOW_FAIRLEAD.z),bow=new THREE.Vector3();
  const tangent=new THREE.Vector3(),axis=new THREE.Vector3(),normal=new THREE.Vector3(),binormal=new THREE.Vector3();
  const first=new THREE.Vector3(),last=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
- let previousShape='';
+ const bottomRotation=new THREE.Quaternion(),hangingRotation=new THREE.Quaternion(),seatRotation=new THREE.Quaternion(),boatRotation=new THREE.Quaternion();
+ const hangLocal=new THREE.Quaternion().setFromAxisAngle(new THREE.Vector3(1,0,0),Math.PI/2);
+ let previousShape='',anchorYaw=null;
  return{group,update(snapshot,boat){
   const active=Boolean(snapshot.anchorPoint)&&!['stowed','pending'].includes(snapshot.status);
   stowed.visible=!active;deployedWorld.visible=active;group.userData.anchorStatus=snapshot.status;
-  if(!active){previousShape='';group.userData.fairlead=null;group.userData.anchorPoint=null;return;}
+  if(!active){previousShape='';anchorYaw=null;group.userData.fairlead=null;group.userData.anchorPoint=null;return;}
   boat.updateWorldMatrix(true,false);bow.copy(localBow).applyMatrix4(boat.matrixWorld);
   // Cancel the yacht transform so the bottom anchor stays world-fixed while
   // the top of its cable follows the boat's exact visual pitch, heel and bob.
   deployedWorld.matrix.copy(boat.matrixWorld).invert();deployedWorld.matrixWorldNeedsUpdate=true;
+  const end=renderedAnchorPoint(snapshot,bow),floor=snapshot.seabedPoint?.y??-(snapshot.anchorDepth??Math.max(0,-snapshot.anchorPoint.y));
+  const lift=snapshot.status==='suspended'?smoothstep((snapshot.anchorPoint.y-floor)/.65):0;
+  const seating=snapshot.status==='suspended'?smoothstep(1-snapshot.rode/.6):0;
+  boat.getWorldQuaternion(boatRotation);
+  if(anchorYaw===null){
+   tangent.set(0,0,1).applyQuaternion(boatRotation);
+   anchorYaw=snapshot.status==='suspended'||Math.hypot(end.x-bow.x,end.z-bow.z)<.1?Math.atan2(tangent.x,tangent.z):Math.atan2(end.x-bow.x,end.z-bow.z);
+  }
+  // A point directly below the bow has no horizontal bearing. Preserve the
+  // deployment orientation rather than letting tiny offsets spin its flukes.
+  bottomRotation.setFromAxisAngle(up,anchorYaw);
+  hangingRotation.copy(bottomRotation).multiply(hangLocal);
+  deployed.quaternion.copy(bottomRotation).slerp(hangingRotation,lift);
+  seatRotation.copy(boatRotation).multiply(stowed.quaternion);
+  deployed.quaternion.slerp(seatRotation,seating);
+  deployed.position.set(end.x,end.y,end.z);rode.visible=snapshot.rode>1e-5;
   const shapeKey=[snapshot.status,snapshot.rode,snapshot.anchorPoint.x,snapshot.anchorPoint.y,snapshot.anchorPoint.z,bow.x,bow.y,bow.z].join('|');
   if(shapeKey===previousShape)return;previousShape=shapeKey;
-  const points=anchorRodePath(snapshot,bow),end=points.at(-1);
-  deployed.position.set(end.x,end.y,end.z);
-  if(snapshot.status==='suspended')deployed.rotation.set(Math.PI/2,0,0);
-  else deployed.rotation.set(0,Math.atan2(end.x-bow.x,end.z-bow.z),0);
+  const points=anchorRodePath(snapshot,bow);
   const positions=geometry.attributes.position,normals=geometry.attributes.normal;
   for(let i=0;i<points.length;i++){
    const p=points[i],before=points[Math.max(0,i-1)],after=points[Math.min(points.length-1,i+1)];

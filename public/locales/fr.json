@@ -116,7 +116,7 @@
         "Une drisse hisse une voile. Une écoute règle son angle. Un ris réduit la surface de voile exposée. Un taquet ou un bloqueur retient un cordage ; un winch aide à maîtriser l’effort.",
         "Sur ce voilier, les écoutes colorées rejoignent les winchs du cockpit vers l’arrière. Examinez les tours sur les winchs et les bloqueurs en vue Cockpit. Le panneau Systèmes du bateau commande séparément les deux drisses et écoutes, ainsi que le chariot, le hale-bas, la bordure, les ris, le moteur et la ligne de mouillage. Les curseurs représentent des réglages, pas la manipulation physique des cordages.",
         "Les commandes de hissage de la grand-voile et de la voile d’avant déterminent la surface exposée. Les deux écoutes règlent séparément leurs angles. Le chariot déplace le point de tire de l’écoute de bôme ; la tension du hale-bas règle la torsion simulée, tandis que la bordure aplatit le bas de la voile. Modifiez une commande à la fois et comparez la réponse.",
-        "Le niveau de ris réduit la surface de grand-voile. La commande moteur sélectionne arrière, point mort ou avant ; revenez au point mort pour les évaluations sous voiles. La ligne de mouillage détermine la longueur filée et influe sur le cercle d’évitage disponible et la tenue simulée.",
+        "Le niveau de ris réduit la surface de la grand-voile. La commande moteur sélectionne marche arrière, point mort ou marche avant ; revenez au point mort pour les évaluations à la voile. Le curseur du mouillage fixe une longueur cible. Actionnez le guindeau pour filer ou reprendre progressivement la ligne ; surveillez la longueur réellement filée et arrêtez le guindeau si nécessaire.",
         "Gardez les doigts, les vêtements amples et les cheveux loin des cordages sous tension. Apprenez avec un moniteur à charger un winch, manœuvrer les cordages, faire des nœuds et choquer progressivement ; une souris ne permet pas d’apprendre à sentir un cordage chargé."
       ],
       "observe": [
@@ -1215,8 +1215,9 @@
       "title": "Ralentissez, puis mouillez",
       "concepts": [
         "Une vraie approche de mouillage est lente et contrôlée. L’équipage descend l’ancre et file la ligne volontairement, puis vérifie que l’ancre a croché et continue de surveiller la position.",
-        "Le modèle estime la longueur de ligne, le rayon d’évitage et la chasse due à un rapport insuffisant. Il ne valide pas l’accrochage sur un fond particulier et ne représente pas toute la caténaire. Cet exercice évalue le ralentissement et l’ordre des actions.",
-        "Affalez, ralentissez sur l’erre sous 0.8 nœud avec l’ancre relevée, puis mouillez. L’erre peut mettre quelques minutes à diminuer : filer la ligne n’est pas un frein instantané. Mouiller trop tôt invalide la tentative, car cela contourne l’exercice de contrôle de vitesse."
+        "La longueur cible du mouillage est une consigne, pas la longueur dans l’eau. Vérifiez la longueur réellement filée dans Systèmes. Le modèle file à 24 mètres par minute et reprend à 15 mètres par minute ; ces vitesses motorisées sont illustratives.",
+        "Affalez les voiles et laissez la vitesse fond descendre sous 0.8 nœud, ancre rangée. Réglez ensuite une longueur cible de 45 m et actionnez le guindeau. Il file progressivement et s’arrête à la cible. Utilisez « Arrêter le guindeau » pour l’arrêter et « Atteindre la longueur cible » pour reprendre. Attendez que 45 m soient réellement filés, que le guindeau soit arrêté et que la vitesse fond soit inférieure à 0.2 nœud. Mouiller trop tôt invalide la tentative.",
+        "La cible de 45 m appartient à cet exercice préparé en eau peu profonde. Planifiez un vrai mouillage selon la profondeur, la marée, l’abri, la tenue du fond et l’espace d’évitage. Le modèle ne valide pas la tenue de l’ancre dans un fond particulier et ne représente pas toute la chaînette de la ligne."
       ],
       "observe": [
         "Réduisez la puissance des voiles bien avant le point d’arrêt prévu.",
@@ -1250,7 +1251,7 @@
             "label": "Affalez et ralentissez sous 0.8 nœud, ancre relevée"
           },
           {
-            "label": "Mouillez et stabilisez-vous sous 0.2 nœud"
+            "label": "Filez 45 m, arrêtez le guindeau et descendez sous 0.2 nœud"
           }
         ],
         "debrief": "Vous avez pratiqué un arrêt contrôlé et le bon enchaînement simplifié. L’accrochage réel de l’ancre n’est pas évalué."
@@ -1260,7 +1261,8 @@
       "title": "Préparez le départ",
       "concepts": [
         "Avant de partir, vérifiez à nouveau les alentours, la route prévue, les conditions et la préparation de l’équipage. Assurez-vous que cordages et matériel sont rangés et que chacun connaît la suite.",
-        "Pour ce départ simplifié, levez l’ancre, hissez les voiles et prenez une allure stable de travers ou de largue. Le scénario est déjà dégagé de toute terre, amarre et autre embarcation.",
+        "Cet exercice commence avec 45 m de ligne déjà filés et l’étrave au-dessus de l’ancre. Sélectionnez « Lever l’ancre » et observez la longueur réelle diminuer. L’ancre reste déployée pendant la remontée. Attendez qu’elle soit entièrement rangée avant de hisser les voiles, puis stabilisez une allure au travers.",
+        "Si la ligne se tend alors que le bateau est éloigné de l’ancre, la remontée s’interrompt. En navigation libre, avancez lentement vers l’ancre pour détendre la ligne, puis poursuivez la remontée. Le guindeau ne doit pas servir à tirer le bateau vers l’ancre.",
         "Dans un vrai port, lever l’ancre et hisser se préparent selon l’abri, l’espace, le trafic, le vent, le moteur disponible et le bateau. La configuration pratique du simulateur n’est pas une procédure universelle de départ."
       ],
       "observe": [
@@ -1377,6 +1379,7 @@
       "concepts": [
         "Combinez les compétences sans précipitation : tenez un cap stable, réglez efficacement, changez d’amure en passant l’étrave face au vent, reprenez le contrôle et ralentissez jusqu’à un arrêt prévu.",
         "Le simulateur donne des cibles mesurables, mais ne gouverne pas automatiquement. Chaque étape doit être accomplie dans l’ordre. Un échouement ou l’utilisation de l’ancre avant l’étape finale d’arrêt invalide la tentative.",
+        "La dernière étape utilise un mouillage préparé en eau profonde et une longueur cible de 180 m. Attendez que les 180 m soient filés, que le guindeau s’arrête et que la vitesse fond descende sous 0.2 nœud. Prévoyez environ 15 minutes pour l’exercice complet. Cette cible est propre à ces conditions d’entraînement.",
         "La réussite démontre les tâches simulées sélectionnées, par vent constant et en eau libre. Elle ne prouve pas la compétence réelle en navigation, accostage, récupération d’urgence ou commandement."
       ],
       "observe": [
@@ -1421,7 +1424,7 @@
             "label": "Affalez et ralentissez sous 0.8 nœud"
           },
           {
-            "label": "Mouillez et stabilisez-vous sous 0.2 nœud"
+            "label": "Filez 180 m, arrêtez le guindeau et descendez sous 0.2 nœud"
           }
         ],
         "debrief": "Vous avez enchaîné barre, réglage, virement et arrêt. Revoyez les conseils utilisés et recommencez avec moins d’aide."

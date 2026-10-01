@@ -116,7 +116,7 @@
         "A halyard raises a sail. A sheet adjusts its angle. A reef reduces exposed sail area. A cleat or clutch holds a line; a winch helps manage load.",
         "On this yacht, colored sheets run aft toward the cockpit winches. Inspect the wraps and clutches in Cockpit view. The Boat systems panel controls the two halyards and sheets independently, plus traveler, vang, outhaul, reefs, engine, and anchor rode. The sliders represent control settings, not physical line handling.",
         "The main and headsail hoists set how much sail is exposed. The two sheets change sail angle independently. The traveler moves the boom’s sheeting position; vang tension controls modeled twist, while the outhaul flattens the modeled sail foot. Change one control at a time and compare the response.",
-        "Reef level reduces mainsail area. Engine throttle selects reverse, neutral, or ahead; return to neutral for sailing assessments. Anchor rode sets deployed length and affects the available swing circle and modeled holding.",
+        "Reef level reduces mainsail area. Engine throttle selects reverse, neutral, or ahead; return to neutral for sailing assessments. The anchor rode slider sets a target. Run the windlass to pay out or retrieve line over time; watch actual paid-out rode and stop the windlass when needed.",
         "Keep fingers, loose clothing, and hair clear of loaded lines. Learn real winch loading, line handling, knots, and controlled easing with an instructor; a mouse cannot teach the feel of a loaded line."
       ],
       "observe": [
@@ -1215,8 +1215,9 @@
       "title": "Stop, then anchor",
       "concepts": [
         "A real anchoring approach is controlled and slow. The crew lowers the anchor and deploys rode deliberately, then checks that it has set and continues monitoring position.",
-        "The model estimates rode length, swing radius, and insufficient-scope dragging. It does not validate anchor setting in a particular seabed or represent full rode catenary. This exercise assesses slowing and sequencing.",
-        "Lower sails, coast below 0.8 knots with the anchor up, then drop anchor. Expect a few minutes for momentum to decay: deploying rode is not an instant brake. Dropping early invalidates the attempt because it avoids the speed-control exercise."
+        "The rode target is a command, not the length in the water. Check actual paid-out rode in Systems. Lowering runs at a modeled 24 metres per minute and retrieval at 15 metres per minute; these are illustrative powered rates.",
+        "Lower sails and coast below 0.8 knots with the anchor stowed. Then set a 45 m rode target and run the windlass. It pays out gradually and stops at the target. Use Stop windlass to halt it and Run to target to continue. Wait for 45 m actually paid out, the windlass stopped, and ground speed below 0.2 knots. Deploying early invalidates the attempt.",
+        "The 45 m target belongs to this prepared shallow-water exercise. Plan a real anchorage from its depth, tide, shelter, holding ground, and swing room. The model does not validate anchor setting in a particular seabed or represent full rode catenary."
       ],
       "observe": [
         "Reduce sail power well before the intended stopping point.",
@@ -1250,7 +1251,7 @@
             "label": "Lower sails and coast below 0.8 knots, anchor up"
           },
           {
-            "label": "Drop anchor and settle below 0.2 knots"
+            "label": "Pay out 45 m, stop the windlass, and settle below 0.2 knots"
           }
         ],
         "debrief": "You practiced a controlled stop and the correct simplified sequence. Real anchor setting is not assessed."
@@ -1260,7 +1261,8 @@
       "title": "Prepare to leave",
       "concepts": [
         "Before departure, recheck the surrounding area, intended route, conditions, and crew readiness. Make sure lines and equipment are secure and everyone knows what happens next.",
-        "For this simplified departure, weigh anchor, raise sails, and establish a steady reach. The scenario is already clear of land, lines, and other craft.",
+        "This exercise starts with 45 m of rode already paid out and the bow above the anchor. Select Weigh anchor and watch actual rode length reduce. The anchor remains deployed during retrieval. Wait until it is fully stowed before raising sails, then establish a steady reach.",
+        "If the rode becomes taut while the boat is away from the anchor, retrieval pauses. In free sailing, move slowly toward the anchor to slacken the rode, then continue recovery. The windlass must not be used to tow the boat toward the anchor.",
         "In a real harbor, weigh-anchor and sail-hoisting plans depend on shelter, space, traffic, wind, engine availability, and the vessel. The simulator’s convenient setup is not a universal departure procedure."
       ],
       "observe": [
@@ -1377,6 +1379,7 @@
       "concepts": [
         "Combine the course skills without rushing: establish a steady course, trim effectively, change tack through the bow, recover control, and slow to a planned stop.",
         "The simulator gives measured targets but no automatic steering. Each stage must be completed in order. Grounding or using the anchor before the final stopping stage invalidates the attempt.",
+        "The final stage uses a prepared deep-water anchorage and a 180 m rode target. Wait for all 180 m to be paid out, the windlass to stop, and ground speed to fall below 0.2 knots. Allow about 15 minutes for the complete exercise. This target is specific to these training conditions.",
         "Passing demonstrates the selected modeled tasks in steady wind and open water. It does not establish real-world navigation, docking, emergency recovery, or skipper competence."
       ],
       "observe": [
@@ -1421,7 +1424,7 @@
             "label": "Lower sails and coast below 0.8 knots"
           },
           {
-            "label": "Anchor and settle below 0.2 knots"
+            "label": "Pay out 180 m, stop the windlass, and settle below 0.2 knots"
           }
         ],
         "debrief": "You linked steering, trimming, tacking, and stopping. Review any hints used and repeat with less assistance."

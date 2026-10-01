@@ -20,7 +20,8 @@ export function collisionEvidence(value) {
     time: bounded(value.time), sequence: Math.floor(bounded(value.sequence, Number.MAX_SAFE_INTEGER)),
   };
 }
-const telemetryKeys = ['heading', 'speed', 'leeway', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'anchorScope', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
+const telemetryKeys = ['heading', 'speed', 'leeway', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'anchorScope', 'anchorPaidRode', 'anchorRode', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
+export const WINDLASS_ASSESSMENT_VERSION = 1;
 /** Shared by assessment and feedback so the displayed stop target cannot drift. */
 export function practiceStopThreshold(check) {
   if (check?.kind === 'coast' && Number.isFinite(check.value)) return check.value;
@@ -43,6 +44,16 @@ export function practiceAnchorContact(state) {
   if (state.anchorRode === undefined && state.anchorStatus === undefined && state.locationId === undefined) return null;
   return anchorSnapshot(state).seabedContact;
 }
+/** An anchor command or bottom contact alone does not finish powered handling. */
+export function practiceWindlassComplete(state,check) {
+  const paid=state.anchorPaidRode,target=state.anchorRode;
+  if(!Number.isFinite(paid)||paid<0||paid>250||!Number.isFinite(target)||target<0||target>250||state.anchorWinchRunning!==false)return false;
+  if(check.value===false)return state.anchor===false&&paid<=1e-8;
+  if(check.value!==true||state.anchor!==true||Math.abs(paid-target)>1e-8)return false;
+  if(Number.isFinite(check.minimumRode)&&paid+1e-8<check.minimumRode)return false;
+  const snapshot=anchorSnapshot(state);
+  return snapshot.seabedContact&&snapshot.scope>=1&&snapshot.status!=='dragging'&&state.anchorDragging!==true;
+}
 export const PRACTICE_SCORE_RULES = Object.freeze({
   passScore: 80, maxScore: 100, failedScoreCap: 79,
   holdLossThresholdSeconds: 1, holdLossPenalty: 2, holdLossPenaltyCap: 20,
@@ -55,6 +66,8 @@ export function practiceRubric(lesson) {
   return steps.map((step, index) => ({
     id: `${lesson.id}-objective-${index + 1}`, index, label: step.label, kind: step.kind,
     target: structuredClone(step.value), requiredSeconds: step.duration ?? 0,
+    minimumRode: step.kind==='anchor'&&step.value===true&&Number.isFinite(step.minimumRode)?step.minimumRode:null,
+    requiresStoppedWindlass: step.kind==='anchor',
     weight: 100 / steps.length,
   }));
 }
@@ -66,6 +79,7 @@ export function practiceEvidence(state, attempt) {
     ...Object.fromEntries(telemetryKeys.map(key => [key, finite(state[key])])),
     speedOverGround: finite(practiceGroundSpeed(state)),
     anchor: state.anchor === true, grounded: state.grounded === true,
+    anchorWinchRunning: typeof state.anchorWinchRunning==='boolean'?state.anchorWinchRunning:null,
     anchorSeabedContact: practiceAnchorContact(state),
     anchorDragging: state.anchorDragging === true,
     collisionCount: playerCollisionCount(state), contactActive: state.contactActive === true,
@@ -120,7 +134,8 @@ export function practiceAssessment(attempt, lesson) {
   const passed = attempt.status === 'passed' && complete === objectives.length && objectives.length > 0 && !attempt.criticalFailure && rawScore >= PRACTICE_SCORE_RULES.passScore;
   const status = attempt.status === 'active' ? 'active' : passed ? 'passed' : 'failed';
   return {
-    version: 1, lessonId: lesson.id, status, score: status === 'failed' ? Math.min(PRACTICE_SCORE_RULES.failedScoreCap, rawScore) : rawScore,
+    version: 1, windlassAssessmentVersion: attempt.windlassAssessmentVersion===WINDLASS_ASSESSMENT_VERSION?WINDLASS_ASSESSMENT_VERSION:null,
+    lessonId: lesson.id, status, score: status === 'failed' ? Math.min(PRACTICE_SCORE_RULES.failedScoreCap, rawScore) : rawScore,
     maxScore: 100, completionScore: round(completionScore), penalties,
     rubric: PRACTICE_SCORE_RULES, assisted: hints > 0,
     criticalFailure: attempt.criticalFailure ? { ...attempt.criticalFailure, ...(attempt.criticalFailure.code === 'collision' ? { collision: collisionEvidence(attempt.criticalFailure.collision) } : {}) } : null,
@@ -140,6 +155,7 @@ export function practiceAssessment(attempt, lesson) {
 export function restorePracticeAssessment(value, lesson) {
   if (!value || value.version !== 1 || value.lessonId !== lesson.id || !lesson.practice || !['passed', 'failed'].includes(value.status)) return null;
   const rubric = practiceRubric(lesson);
+  const windlassAssessmentVersion=value.windlassAssessmentVersion===WINDLASS_ASSESSMENT_VERSION?WINDLASS_ASSESSMENT_VERSION:null;
   if (!Array.isArray(value.objectives) || value.objectives.length !== rubric.length) return null;
   const objectives = [];
   let incomplete = false;
@@ -153,11 +169,21 @@ export function restorePracticeAssessment(value, lesson) {
     // old records without one do not gain a reconstructed observation.
     if (evidence) evidence.speedOverGround = finite(saved.evidence.speedOverGround);
     if (evidence) evidence.anchorSeabedContact = typeof saved.evidence.anchorSeabedContact === 'boolean' ? saved.evidence.anchorSeabedContact : null;
-    objectives.push({ ...target, status: saved.status, heldSeconds: bounded(saved.heldSeconds), bestHoldSeconds: bounded(saved.bestHoldSeconds), holdBreaks: Math.floor(bounded(saved.holdBreaks, 100000)), completedAt: saved.status === 'complete' ? bounded(saved.completedAt) : null, evidence });
+    if(windlassAssessmentVersion&&target.kind==='anchor'&&saved.status==='complete'){
+      if(!evidence||!Number.isFinite(evidence.anchorPaidRode)||evidence.anchorPaidRode<0||evidence.anchorPaidRode>250||!Number.isFinite(evidence.anchorRode)||evidence.anchorRode<0||evidence.anchorRode>250||evidence.anchorWinchRunning!==false)return null;
+      if(target.target===true&&(evidence.anchor!==true||evidence.anchorSeabedContact!==true||Math.abs(evidence.anchorPaidRode-evidence.anchorRode)>1e-8||(target.minimumRode!==null&&evidence.anchorPaidRode+1e-8<target.minimumRode)))return null;
+      if(target.target===false&&(evidence.anchor!==false||evidence.anchorPaidRode>1e-8))return null;
+    }
+    const historicalAnchor=!windlassAssessmentVersion&&target.kind==='anchor';
+    objectives.push({ ...target,
+      ...(historicalAnchor?{minimumRode:null,requiresStoppedWindlass:false,label:typeof saved.label==='string'?saved.label.slice(0,300):'Anchor operation (earlier criteria)'}:{}),
+      status: saved.status, heldSeconds: bounded(saved.heldSeconds), bestHoldSeconds: bounded(saved.bestHoldSeconds), holdBreaks: Math.floor(bounded(saved.holdBreaks, 100000)), completedAt: saved.status === 'complete' ? bounded(saved.completedAt) : null, evidence });
   }
   if (value.status === 'passed' && incomplete) return null;
   const criticalFailure = value.criticalFailure && typeof value.criticalFailure.code === 'string' && typeof value.criticalFailure.message === 'string' ? { code: value.criticalFailure.code.slice(0, 60), message: value.criticalFailure.message.slice(0, 240) } : null;
   if (criticalFailure?.code === 'collision') criticalFailure.collision = collisionEvidence(value.criticalFailure.collision);
   if (value.status === 'passed' && criticalFailure) return null;
-  return practiceAssessment({ lessonId: lesson.id, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
+  const report=practiceAssessment({ lessonId: lesson.id,windlassAssessmentVersion, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
+  if(!windlassAssessmentVersion&&rubric.some(objective=>objective.kind==='anchor'))report.debrief.summary=typeof value.debrief?.summary==='string'?value.debrief.summary.slice(0,1000):null;
+  return report;
 }
