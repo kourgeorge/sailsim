@@ -42,7 +42,7 @@ test('paused rendering stops after settling and wakes for camera, controls, resi
   expect(await frames()).toBe(settledFrames);
 
   await page.locator('#play').click();
-  await expect(page.locator('#activity-status')).toHaveAttribute('data-state', 'free-running');
+  await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');
   await expect
     .poll(async () => Number(await scene.getAttribute('data-visual-time')))
     .toBeGreaterThan(Number(visualTime));

@@ -1,6 +1,6 @@
 import { createChartRenderer } from './navigation/chart.js';
 import './style.css';
-import { createActivityStatus } from './activity/ui.js';
+import { mountSimulationControls } from './activity/ui.js';
 import { createActivityController } from './activity/controller.js';
 import { mountAppShell } from './app-shell.js';
 import { initializeTextSize, mountTextSize } from './accessibility/text-size.js';
@@ -54,7 +54,7 @@ async function startApp() {
     challengeIndex = 0,
     challengeDone = false,
     challengeTime = 0;
-  let learning, vesselControls, lab, learningTools, activityStatus, helmDashboard, cockpitControls;
+  let learning, vesselControls, lab, learningTools, helmDashboard, cockpitControls;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
   let scene;
@@ -144,15 +144,17 @@ async function startApp() {
     }),
     onStart: () => learning.resumeOrStart(),
   });
-  const activityContext = playback.context;
   const cockpitEnabled = () => playback.controlsEnabled;
   function syncPlayback() {
     cockpitControls?.syncAvailability();
     const activity = playback.state,
       button = $('#play'),
       action = activity.action;
-    button.hidden = !activity.command;
-    button.disabled = !activity.command;
+    const playbackAvailable = ['pause', 'resume'].includes(activity.command);
+    button.hidden = !playbackAvailable;
+    button.disabled = !playbackAvailable;
+    $('#conditions').hidden = mode === 'learn' || Boolean(lab?.active);
+    $('#reset').hidden = mode === 'learn';
     if (activity.command && button.dataset.action !== action) {
       button.dataset.action = action;
       button.replaceChildren(document.createTextNode(activity.command === 'pause' ? 'Ⅱ ' : '▶ '));
@@ -160,6 +162,7 @@ async function startApp() {
       span.textContent = t(action);
       button.append(span, keyBadge('Space'));
       button.setAttribute('aria-label', t(action));
+      button.title = `${t(action)} (Space)`;
     }
     const footer =
       mode === 'learn'
@@ -168,11 +171,11 @@ async function startApp() {
           ? t('Aground · Reset to recover')
           : t(playback.paused ? 'Simulation paused' : 'Simulation running');
     if ($('#sim-status').textContent !== footer) $('#sim-status').textContent = footer;
-    if (button.dataset.state !== activity.id) {
+    if (document.body.dataset.activity !== activity.id) {
+      document.body.dataset.activity = activity.id;
       button.dataset.state = activity.id;
       learning?.updateStatus();
     }
-    activityStatus?.update();
   }
   function togglePlayback() {
     playback.toggle();
@@ -683,11 +686,7 @@ async function startApp() {
   window.addEventListener('keydown', (e) => {
     if (e.key === 'Escape' && !overlayOpen()) toggleSystems(false);
   });
-  activityStatus = createActivityStatus({
-    getContext: activityContext,
-    controls: [$('#play'), $('#conditions'), $('#reset')],
-  });
-  $('.play-actions')?.remove();
+  mountSimulationControls();
   lesson = learning.selected;
   updateLesson();
   syncControls();

@@ -1,6 +1,23 @@
 // Separate reading, exercise preparation, and the scored simulation lifecycle.
 // Columns: Spanish, French, Russian, Hebrew, Arabic. English uses the exact key.
 const rows={
+ 'Starting conditions':['Condiciones iniciales','Conditions de départ','Начальные условия','תנאי התחלה','ظروف البداية'],
+ 'Location':['Ubicación','Lieu','Место','מיקום','الموقع'],
+ 'No current':['Sin corriente','Pas de courant','Без течения','ללא זרם','لا يوجد تيار'],
+ 'Set for this lesson. To choose your own weather, use Free sailing.':[
+  'Condiciones fijadas para esta lección. Para elegir el tiempo, usa Navegación libre.',
+  'Conditions définies pour cette leçon. Pour choisir la météo, utilisez Navigation libre.',
+  'Условия заданы для этого урока. Чтобы выбрать погоду, используйте свободное плавание.',
+  'התנאים נקבעו לשיעור זה. לבחירת מזג אוויר משלכם, עברו לשיט חופשי.',
+  'هذه الظروف محددة لهذا الدرس. لاختيار الطقس بنفسك، استخدم الإبحار الحر.'
+ ],
+ 'Review the scenario and goals. Assessment starts when you press Start simulation.':[
+  'Revisa el escenario y los objetivos. La evaluación comienza al pulsar Iniciar simulación.',
+  'Consultez le scénario et les objectifs. L’évaluation commence lorsque vous appuyez sur Démarrer la simulation.',
+  'Ознакомьтесь со сценарием и целями. Оценивание начнётся после нажатия «Запустить симуляцию».',
+  'עיינו בתרחיש וביעדים. ההערכה מתחילה בלחיצה על ״התחלת הסימולציה״.',
+  'راجع السيناريو والأهداف. يبدأ التقييم عند الضغط على «بدء المحاكاة».'
+ ],
  'Practice briefing':['Instrucciones de la práctica','Consignes de l’exercice','Инструктаж перед практикой','תדריך לתרגול','إرشادات التدريب'],
  'Simulation ready':['Simulación lista','Simulation prête','Симуляция готова','הסימולציה מוכנה','المحاكاة جاهزة'],
  'Exercise loaded. The boat is paused; scoring starts when you press Start simulation.':[

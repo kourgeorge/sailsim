@@ -251,17 +251,14 @@ export function createLearning({
       scenario = decisionScenarios.find((s) => s.lessonId === l.id),
       active = attempt?.status === 'active';
     if (!active && l.practice) resetScenario(l.practice.setup);
-    const state = getState();
     practiceBriefing.open({
       lesson: l,
+      lessonNumber: selected + 1,
       goals: l.practice ? practiceRubric(l) : translatedScenario(scenario).stages,
       active,
       score: active ? practiceAssessment(attempt, l).score : 0,
       completed: active ? attempt.index : 0,
       preview: !lessonReady(progress, l),
-      conditions: l.practice
-        ? `${t('Wind speed')}: ${state.windSpeed} ${t('knots')} · ${t('HEADING')}: ${Math.round(state.heading)}°`
-        : '',
     });
     tickPanel();
   }

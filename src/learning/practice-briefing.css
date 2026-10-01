@@ -13,7 +13,12 @@ html[data-text-size] #practice-briefing,#practice-briefing{position:fixed;inset:
 #practice-briefing h3{font-size:calc(13px * var(--text-scale,1));margin:20px 0 7px;color:#234c52}
 #practice-briefing p{font-size:calc(12px * var(--text-scale,1));line-height:1.6;color:#506b6b;margin:8px 0}
 #practice-briefing .practice-ready{border-inline-start:3px solid #438773;padding-inline-start:12px;color:#254f49}
-#practice-briefing .practice-conditions{font-size:calc(11px * var(--text-scale,1));color:#607975}
+#practice-briefing .practice-conditions{margin:18px 0;padding:14px;background:#e4e9df;border-radius:8px;font-size:calc(12px * var(--text-scale,1))}
+.practice-conditions summary{cursor:pointer;font-weight:600;color:#234c52;line-height:1.5}
+#practice-briefing .practice-conditions p{font-size:calc(11px * var(--text-scale,1));margin:10px 0 14px}
+.practice-conditions dl{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px 18px;margin:0;line-height:1.5;overflow-wrap:anywhere}
+.practice-conditions dt{color:#506b6b;font-size:calc(11px * var(--text-scale,1));margin-bottom:3px}
+.practice-conditions dd{margin:0;color:#234c52;font-weight:600}
 .practice-briefing-goals{list-style:none;padding:0;margin:12px 0;display:grid;gap:10px;font-size:calc(13px * var(--text-scale,1));line-height:1.5}
 .practice-briefing-goals li{display:flex;align-items:flex-start;gap:12px;padding:10px 0;border-bottom:1px solid #ced9d0}
 .practice-briefing-goals li>span{display:grid;place-items:center;flex-shrink:0;min-width:26px;height:26px;border:1px solid #acbfb4;border-radius:50%;font-size:calc(11px * var(--text-scale,1));color:#476d62}

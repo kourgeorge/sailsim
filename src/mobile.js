@@ -257,6 +257,9 @@ export function mountMobileLayout() {
   });
   menuTools.append(indicators);
   const moves = [];
+  const playback = document.querySelector('#play');
+  const playbackPlaceholder = document.createComment('desktop playback');
+  playback.before(playbackPlaceholder);
   for (const [selector, target] of [['.topbar', menu], ['.view-controls', menuTools], ['.location', menuTools], ['.weather', menuTools], ['#conditions', menuActions], ['#reset', menuActions], ['.mobile-course', lessonContent], ['.maneuver-live', lessonContent]]) {
     const node = document.querySelector(selector);
     if (!node) continue;
@@ -290,6 +293,8 @@ export function mountMobileLayout() {
     lessonButton.title = label;
   };
   const arrangeOverlays = () => {
+    if (mobile.matches) document.querySelector('.simulation-console').prepend(playback);
+    else playbackPlaceholder.after(playback);
     for (const {node, placeholder, target} of moves) {
       if (mobile.matches) target.append(node);
       else placeholder.after(node);

@@ -8,11 +8,11 @@ const browser=await chromium.launch({headless:true,args:['--use-angle=swiftshade
 const page=await browser.newPage({viewport:{width:1440,height:1100}});page.setDefaultTimeout(60000);
 const errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error('PAGE ERROR',e.message);});
 const url=process.env.SAIL_URL||'http://127.0.0.1:5187';
-const state=id=>expect(page.locator('#activity-status')).toHaveAttribute('data-state',id);
+const state=id=>expect(page.locator('body')).toHaveAttribute('data-activity',id);
 const records=()=>page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')||'{}'));
 async function selectLesson(index){await page.locator('#course-library').click();await page.locator(`[data-library-lesson="${index}"]`).click();}
 async function prepare(){await page.locator('#practice-start').click();await state('briefing');await expect(page.locator('#practice-briefing')).toBeVisible();await expect(page.locator('#lesson-reader')).toBeHidden();await expect(page.locator('.workspace')).toBeVisible();}
-async function launch(){await page.locator('#practice-launch').click();await state('training-running');await expect(page.locator('.scene-title')).toBeHidden();await expect(page.locator('#practice-end')).toBeVisible();}
+async function launch(){await page.locator('#practice-launch').click();await state('training-running');await expect(page.locator('.scene-title')).toBeHidden();await expect(page.locator('#practice-end')).toBeAttached();}
 async function end(){await page.locator('#practice-end').click();await state('review');await expect(page.locator('.practice-debrief')).toBeVisible();await page.locator('#close-modal').click();await expect(page.locator('.scene-title')).toBeVisible();}
 async function screenshot(name){await page.screenshot({path:`artifacts/activity/${name}.png`,fullPage:true});}
 try{
@@ -26,8 +26,8 @@ try{
  const preparedRecord=await records();await page.waitForTimeout(500);assert.deepEqual(await records(),preparedRecord,'briefing does not award or create an attempt');
  await screenshot('briefing-he');
  await page.keyboard.press('Escape');await state('briefing');await expect(page.locator('#practice-briefing')).not.toBeVisible();
- await page.locator('#conditions').click();await page.locator('#wind-speed').fill('22');await page.locator('#close-modal').click();
- await page.locator('#play').click();await state('briefing');await expect(page.locator('#practice-briefing')).toBeVisible();await expect(page.locator('.practice-conditions')).toContainText('12');
+ await expect(page.locator('#conditions')).toBeHidden();await expect(page.locator('#play')).toBeHidden();
+ await page.locator('#practice-start').click();await state('briefing');await expect(page.locator('#practice-briefing')).toBeVisible();await expect(page.locator('.practice-conditions')).toContainText('12');
  await launch();await expect(page.locator('#play')).not.toContainText('Set sail');await screenshot('running-he');
  // Reopening the task pauses the SAME attempt; Escape leaves it paused.
  await page.locator('#training-goals').click();await state('training-paused');
@@ -45,7 +45,7 @@ try{
  const finished=await records();assert.equal(finished.records['sail-04'].lastPracticeResult.status,'passed');assert.equal(finished.records['sail-04'].lastPracticeResult.score,100);assert.equal(finished.records['sail-04'].practice,true);
  assert.equal(finished.records['sail-04'].passedAt,null,'preview cannot bypass course prerequisites');
  await page.locator('#close-modal').click();await expect(page.locator('.scene-title')).toBeVisible();
- await page.locator('#play').click();await state('briefing');await page.keyboard.press('Escape');
+ await page.locator('#practice-start').click();await state('briefing');await page.keyboard.press('Escape');
  // Decision training also has a briefing, then an interactive scenario, never the reader.
  await selectLesson(0);await prepare();await page.locator('#practice-launch').click();await state('scenario-running');await expect(page.locator('#decision-training')).toBeVisible();await expect(page.locator('#lesson-reader')).toBeHidden();
  await page.locator('#training-close').click();await state('review');await page.locator('#training-finish').click();
@@ -60,11 +60,11 @@ try{
   assert.equal(await page.locator('#practice-briefing').evaluate(node=>getComputedStyle(node,'::backdrop').backdropFilter),'none');
   await page.keyboard.press('Escape');
   await page.locator('.text-size-control summary').click();await page.locator('#sail-text-size-range').fill('200');await page.locator('.text-size-control summary').click();
-  await page.setViewportSize({width:390,height:844});await page.locator('#play').click();
+  await page.setViewportSize({width:390,height:844});await page.locator('#mobile-lesson-toggle').click();await page.locator('#practice-start').click();
   const geometry=await page.locator('#practice-briefing').evaluate(node=>{const box=node.getBoundingClientRect(),launch=node.querySelector('#practice-launch').getBoundingClientRect();return {overflow:document.documentElement.scrollWidth>innerWidth+2,within:box.left>=0&&box.right<=innerWidth+1&&box.bottom<=innerHeight,launchVisible:launch.top>=0&&launch.bottom<=innerHeight,height:box.height};});
   assert.equal(geometry.overflow,false,`${lang} horizontal overflow`);assert.equal(geometry.within,true,`${lang} dialog fits`);assert.equal(geometry.launchVisible,true,`${lang} start action visible`);assert.ok(geometry.height<=844*.71,`${lang} keeps view above dialog`);
   await screenshot(`briefing-${lang}-mobile-200`);await launch();await page.locator('#play').click();await state('training-paused');await expect(page.locator('.scene-title')).toBeHidden();
-  await page.locator('#practice-end').scrollIntoViewIfNeeded();await end();
+  await page.locator('#mobile-lesson-toggle').click();await page.locator('#practice-end').scrollIntoViewIfNeeded();await end();
   console.log(`${lang}: separate practice entry and 200% mobile briefing passed.`);
  }
  assert.deepEqual(errors,[]);await writeFile('artifacts/activity/results.json',JSON.stringify({passed:true,errors,languages:Object.keys(practiceFlowUI),states:['ready','study','briefing','scenario-running','training-running','training-paused','review','free-paused','free-running']},null,2));

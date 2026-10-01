@@ -15,7 +15,7 @@ const bodyFocus=()=>page.evaluate(()=>{document.activeElement?.blur();document.b
 const helm=()=>page.locator('#rudder').inputValue();
 try{
  await page.goto(url,{waitUntil:'domcontentloaded',timeout:120000});
- await expect(page.locator('#activity-status')).toHaveAttribute('data-state','ready');
+ await expect(page.locator('body')).toHaveAttribute('data-activity','ready');
  const dock=page.locator('.control-dock');
  await expect(dock).toHaveAttribute('aria-disabled','true');
  assert.equal(await dock.evaluate(node=>node.inert),true);
@@ -61,17 +61,17 @@ try{
  await page.locator('#reader-close').click();
  // Space in lesson mode prepares the task; it cannot start unassessed sailing.
  await bodyFocus();await page.keyboard.press('Space');
- await expect(page.locator('#activity-status')).toHaveAttribute('data-state','briefing');
+ await expect(page.locator('body')).toHaveAttribute('data-activity','briefing');
  await expect(dock).toHaveAttribute('aria-disabled','true');
  await expect(page.locator('#practice-launch')).toBeVisible();
  const briefingHelm=await helm();await page.keyboard.press('c');await page.keyboard.press('ArrowRight');await frames();
  assert.equal(await helm(),briefingHelm,'Briefing owns keyboard input');
- await page.keyboard.press('Escape');await expect(page.locator('#activity-status')).toHaveAttribute('data-state','briefing');
+ await page.keyboard.press('Escape');await expect(page.locator('body')).toHaveAttribute('data-activity','briefing');
  // Space on a focused button should activate it once; the sailing shortcut must not also toggle.
  await page.locator('button[data-mode="explore"]').click();await page.locator('#play').focus();await page.keyboard.press('Space');
- await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-running');
+ await expect(page.locator('body')).toHaveAttribute('data-activity','free-running');
  await expect(dock).toHaveAttribute('aria-disabled','false');
- await page.keyboard.press('Space');await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-paused');
+ await page.keyboard.press('Space');await expect(page.locator('body')).toHaveAttribute('data-activity','free-paused');
  await expect(dock).toHaveAttribute('aria-disabled','false');
  assert.deepEqual(errors,[]);
  await writeFile('artifacts/keyboard/results.json',JSON.stringify({passed:true,checkedAt:new Date().toISOString(),checks:['browser shortcuts','modifier cancellation','held-key focus transfer','native slider keys','toolbar-focused helm','chart shortcut','modal isolation','reader isolation','lesson Space prepares without scoring','briefing keyboard isolation','native button Space'],errors},null,2));

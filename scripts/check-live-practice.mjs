@@ -6,7 +6,7 @@ await mkdir('artifacts/live-practice',{recursive:true});
 const browser=await chromium.launch({headless:true,args:['--use-angle=swiftshader','--enable-webgl']});
 const page=await browser.newPage({viewport:{width:1440,height:1100}});page.setDefaultTimeout(60000);
 const errors=[];page.on('pageerror',e=>{errors.push(e.message);console.error(e.message);});
-const activity=id=>expect(page.locator('#activity-status')).toHaveAttribute('data-state',id);
+const activity=id=>expect(page.locator('body')).toHaveAttribute('data-activity',id);
 const visualTime=()=>page.locator('#scene').evaluate(e=>Number(e.dataset.visualTime));
 const heading=()=>page.locator('#heading').evaluate(e=>Number(e.textContent));
 const rows=id=>page.locator(`[data-requirement="${id}"]`);
@@ -137,11 +137,11 @@ try{
  await page.locator('[data-camera="helm"]').click();await page.locator('#play').click();await activity('training-running');
  let previousHeading=await heading(),previousTime=await visualTime(),metSeen=false;
  const deadline=Date.now()+240000;
- while(await page.locator('#activity-status').getAttribute('data-state')==='training-running'&&Date.now()<deadline){
+ while(await page.locator('body').getAttribute('data-activity')==='training-running'&&Date.now()<deadline){
   const currentHeading=await heading(),currentTime=await visualTime(),dt=currentTime-previousTime;
   const yaw=dt>.02?((currentHeading-previousHeading+540)%360-180)/dt:0;
   const error=((47.5-currentHeading+540)%360)-180;
-  try{await page.locator('#rudder').fill(String(Math.round(Math.max(-20,Math.min(20,error*1.4-yaw*2.2)))),{timeout:1500});}catch(error){if(await page.locator('#activity-status').getAttribute('data-state')==='review')break;throw error;}
+  try{await page.locator('#rudder').fill(String(Math.round(Math.max(-20,Math.min(20,error*1.4-yaw*2.2)))),{timeout:1500});}catch(error){if(await page.locator('body').getAttribute('data-activity')==='review')break;throw error;}
   previousHeading=currentHeading;previousTime=currentTime;
   if(await page.evaluate(()=>document.querySelector('[data-requirement="true-wind-angle"]')?.dataset.met==='true'))metSeen=true;
   await page.waitForTimeout(130);
