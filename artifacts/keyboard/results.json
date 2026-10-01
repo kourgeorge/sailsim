@@ -1,6 +1,6 @@
 {
   "passed": true,
-  "checkedAt": "2026-10-01T07:49:35.694Z",
+  "checkedAt": "2026-10-01T10:26:26.456Z",
   "checks": [
     "browser shortcuts",
     "modifier cancellation",
@@ -10,6 +10,8 @@
     "chart shortcut",
     "modal isolation",
     "reader isolation",
+    "lesson Space prepares without scoring",
+    "briefing keyboard isolation",
     "native button Space"
   ],
   "errors": []

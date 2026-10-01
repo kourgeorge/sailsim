@@ -42,12 +42,19 @@ try{
  await page.locator('#lesson-briefing').click();await expect(page.locator('#lesson-reader')).toBeVisible();
  await page.keyboard.press('c');await page.keyboard.press('m');await expect(page.locator('#modal')).not.toBeVisible();
  await expect(page.locator('#rudder')).toHaveValue(beforeModal);await page.locator('#reader-close').click();
+ // Space in lesson mode prepares the task; it cannot start unassessed sailing.
+ await bodyFocus();await page.keyboard.press('Space');
+ await expect(page.locator('#activity-status')).toHaveAttribute('data-state','briefing');
+ await expect(page.locator('#practice-launch')).toBeVisible();
+ const briefingHelm=await helm();await page.keyboard.press('c');await page.keyboard.press('ArrowRight');await frames();
+ assert.equal(await helm(),briefingHelm,'Briefing owns keyboard input');
+ await page.keyboard.press('Escape');await expect(page.locator('#activity-status')).toHaveAttribute('data-state','briefing');
  // Space on a focused button should activate it once; the sailing shortcut must not also toggle.
  await page.locator('[data-mode="explore"]').click();await page.locator('#play').focus();await page.keyboard.press('Space');
  await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-running');
  await page.keyboard.press('Space');await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-paused');
  assert.deepEqual(errors,[]);
- await writeFile('artifacts/keyboard/results.json',JSON.stringify({passed:true,checkedAt:new Date().toISOString(),checks:['browser shortcuts','modifier cancellation','held-key focus transfer','native slider keys','toolbar-focused helm','chart shortcut','modal isolation','reader isolation','native button Space'],errors},null,2));
+ await writeFile('artifacts/keyboard/results.json',JSON.stringify({passed:true,checkedAt:new Date().toISOString(),checks:['browser shortcuts','modifier cancellation','held-key focus transfer','native slider keys','toolbar-focused helm','chart shortcut','modal isolation','reader isolation','lesson Space prepares without scoring','briefing keyboard isolation','native button Space'],errors},null,2));
  console.log('Keyboard control isolation checks passed.');
 }catch(error){await page.screenshot({path:'artifacts/keyboard/failure.png',fullPage:true}).catch(()=>{});throw error;}
 finally{await browser.close();}

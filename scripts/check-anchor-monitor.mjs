@@ -14,7 +14,7 @@ async function openAnchor(){
  if(await page.locator('#systems-drawer').isHidden())await page.locator('#systems-toggle').click();
  const section=page.locator('details:has(> #anchor-monitor)');if(!await section.evaluate(node=>node.open))await section.locator(':scope > summary').click();
 }
-const selectLesson=async index=>{const learn=page.locator('button[data-mode="learn"]');if(!await learn.evaluate(node=>node.classList.contains('active')))await learn.click();await page.locator('#course-library').click();await page.locator(`[data-library-lesson="${index}"]`).click();await page.locator('#practice-start').click();};
+const selectLesson=async index=>{const learn=page.locator('button[data-mode="learn"]');if(!await learn.evaluate(node=>node.classList.contains('active')))await learn.click();await page.locator('#course-library').click();await page.locator(`[data-library-lesson="${index}"]`).click();await page.locator('#practice-start').click();await page.locator('#practice-launch').click();};
 async function paidBetween(min,max,timeout=120000){await page.waitForFunction(({min,max})=>{const value=parseFloat(document.querySelector('[data-anchor-metric="rode"]').textContent);return value>min&&value<max;},{min,max},{timeout});}
 async function geometrySnapshot(){return page.locator('#anchor-monitor').evaluate(root=>({paid:root.querySelector('[data-anchor-metric="rode"]').textContent,scope:root.querySelector('[data-anchor-metric="scope"]').textContent,path:root.querySelector('[data-rode]')?.getAttribute('d'),point:root.querySelector('[data-anchor-icon]')?.getAttribute('transform')}));}
 const trainingSog=process.argv.includes('--training-sog');

@@ -1,5 +1,6 @@
 import './style.css';
 import {createActivityStatus} from './activity/ui.js';
+import {activityState} from './activity/state.js';
 import {initializeTextSize,mountTextSize} from './accessibility/text-size.js';
 import {createManeuverLab} from './learning/maneuver-ui.js';
 import {lessons,modules} from './learning/curriculum.js';
@@ -56,10 +57,25 @@ function setMode(value){learning?.closeReader();learning?.closeTraining();if(val
    $('#objective-check').textContent='○';$('#next-lesson').hidden=true;
  }
 }
-function syncControls(){refreshDerived(state); $('#rudder').value=state.rudder;$('#trim').value=state.trim;$('#rudder-value').textContent=Math.abs(state.rudder)<.5?'Centered':`${Math.abs(state.rudder).toFixed(0)}° ${state.rudder<0?'port':'starboard'}`;$('#trim-value').textContent=`${state.trim.toFixed(0)}°`;$('#sails span').textContent=state.sails?'Lower sails':'Raise sails';$('#reef').classList.toggle('on',state.reef);$('#reef span').textContent=state.reef?`Reef ${state.reefLevel}`:'Reef';$('#anchor span').textContent=t(anchorControlAction(state).label);$('#anchor').classList.toggle('on',state.anchor);$('#engine-throttle').value=state.throttle;$('#engine-throttle-value').textContent=Math.abs(state.throttle)<.01?'Neutral':`${state.throttle<0?'Astern':'Ahead'} ${Math.round(Math.abs(state.throttle)*100)}%`;$('#play').innerHTML=paused?`▶ <span>${mode==='maneuver'?'Resume drill':'Set sail'}</span>`:'Ⅱ <span>Pause</span>';}
+function activityContext(){return {reading:learning?.reading,decisionOpen:learning?.training,decisionActive:learning?.decisionActive,practiceActive:learning?.practiceActive,practicePrepared:learning?.prepared,briefingOpen:learning?.briefingOpen,practiceStatus:learning?.practiceStatus,paused:paused||$('#modal').open,mode,maneuverActive:lab?.active};}
+function syncPlayback(){
+ const activity=activityState(activityContext()),button=$('#play'),action=activity.action||'Show briefing';
+ if(button.dataset.action!==action){button.dataset.action=action;button.replaceChildren(document.createTextNode(activity.command==='pause'?'Ⅱ ':'▶ '));const span=document.createElement('span');span.textContent=t(action);button.append(span);button.setAttribute('aria-label',t(action));}
+ const footer=mode==='learn'?t(activity.label):state.grounded?t('Aground · Reset to recover'):t(paused?'Simulation paused':'Simulation running');
+ if($('#sim-status').textContent!==footer)$('#sim-status').textContent=footer;
+ if(button.dataset.state!==activity.id){button.dataset.state=activity.id;learning?.updateStatus();}
+}
+function togglePlayback(){
+ const activity=activityState(activityContext());
+ if(activity.command==='start'&&mode==='learn')learning.resumeOrStart();
+ else if(activity.command==='pause')paused=true;
+ else if(activity.command==='resume')paused=false;
+ syncControls();
+}
+function syncControls(){refreshDerived(state); $('#rudder').value=state.rudder;$('#trim').value=state.trim;$('#rudder-value').textContent=Math.abs(state.rudder)<.5?'Centered':`${Math.abs(state.rudder).toFixed(0)}° ${state.rudder<0?'port':'starboard'}`;$('#trim-value').textContent=`${state.trim.toFixed(0)}°`;$('#sails span').textContent=state.sails?'Lower sails':'Raise sails';$('#reef').classList.toggle('on',state.reef);$('#reef span').textContent=state.reef?`Reef ${state.reefLevel}`:'Reef';$('#anchor span').textContent=t(anchorControlAction(state).label);$('#anchor').classList.toggle('on',state.anchor);$('#engine-throttle').value=state.throttle;$('#engine-throttle-value').textContent=Math.abs(state.throttle)<.01?'Neutral':`${state.throttle<0?'Astern':'Ahead'} ${Math.round(Math.abs(state.throttle)*100)}%`;syncPlayback();}
 $('#rudder').oninput=e=>{applyControlPatch(state,{rudder:Number(e.target.value)});syncControls();};$('#trim').oninput=e=>{applyControlPatch(state,{mainSheet:Number(e.target.value)});syncControls();};
 $('#engine-throttle').oninput=e=>{applyControlPatch(state,{throttle:Number(e.target.value)});syncControls();};$('#engine-neutral').onclick=()=>{applyControlPatch(state,{throttle:0});syncControls();};
-$('#center-helm').onclick=()=>{applyControlPatch(state,{rudder:0});syncControls();};$('#play').onclick=()=>{paused=!paused;syncControls();};
+$('#center-helm').onclick=()=>{applyControlPatch(state,{rudder:0});syncControls();};$('#play').onclick=togglePlayback;
 $('#sails').onclick=()=>{applyControlPatch(state,{sails:state.sails>0?0:1});syncControls();toast(state.sails?'Sails raised. Find the wind.':'Sails lowered. Your boat will coast to a stop.');};
 $('#reef').onclick=()=>{applyControlPatch(state,{reefLevel:state.reefLevel?0:1});syncControls();};$('#anchor').onclick=()=>{const action=anchorControlAction(state);if(action.needsTarget){toggleSystems(true);$('#vessel-controls [data-system-section=anchor]').open=true;toast(t('Choose a positive rode target.'));return;}applyControlPatch(state,action.patch);syncControls();toast(t(paused&&state.anchorWinchRunning?'Resume simulation to operate the windlass.':state.anchorWinchRunning?(state.anchorRode>state.anchorPaidRode?'Lowering anchor':'Retrieving anchor'):'Windlass stopped'));};
 $('#next-lesson').onclick=()=>learning.select(Math.min(lesson+1,lessons.length-1));document.querySelectorAll('[data-mode]').forEach(b=>b.onclick=()=>{if(b.dataset.mode==='challenge')lab.library();else if(b.dataset.mode==='learn'&&mode==='learn')learning.libraryModal();else setMode(b.dataset.mode);});
@@ -90,49 +106,49 @@ window.addEventListener('keydown',e=>{
  // existing held helm command when focus or a modifier takes over.
  const widget=e.target.closest?.('input,select,textarea,summary,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="slider"],[role="spinbutton"],[role="combobox"],[role="listbox"],[role="menu"],[role="tablist"]');
  const nativeSpace=e.key===' '&&e.target.closest?.('button,a[href],[role="button"]');
- if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||learning?.reading||learning?.training||$('#modal').open||widget||nativeSpace){keys.clear();return;}
+ if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||learning?.reading||learning?.training||learning?.briefingOpen||$('#modal').open||widget||nativeSpace){keys.clear();return;}
  if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();keys.add(e.key);return;}
  if(e.repeat)return;
- if(e.key===' '){e.preventDefault();paused=!paused;syncControls();}
+ if(e.key===' '){e.preventDefault();togglePlayback();}
  if(e.key.toLowerCase()==='c'){applyControlPatch(state,{rudder:0});syncControls();}
  if(e.key.toLowerCase()==='m')openChart();
 });
-for(const event of ['sail-reader-open','sail-training-open','focusin','blur'])window.addEventListener(event,()=>keys.clear());
+for(const event of ['sail-reader-open','sail-training-open','sail-practice-briefing-open','focusin','blur'])window.addEventListener(event,()=>keys.clear());
 window.addEventListener('keyup',e=>keys.delete(e.key));
 const compass=h=>['N','NE','E','SE','S','SW','W','NW'][Math.round(h/45)%8];
 let last=performance.now(), uiTick=0, wasGrounded=false,lastCollisionSequence=0;
 document.addEventListener('visibilitychange',()=>{last=performance.now();keys.clear();if(document.hidden){paused=true;syncControls();}});
 function frame(now){const dt=Math.min((now-last)/1000,.25);last=now;
  if(document.hidden){requestAnimationFrame(frame);return;}
- if(!learning.reading&&!learning.training&&!$('#modal').open){if(keys.has('ArrowLeft'))state.rudder=clamp(state.rudder-dt*25,-35,35);if(keys.has('ArrowRight'))state.rudder=clamp(state.rudder+dt*25,-35,35);if(keys.has('ArrowUp'))applyControlPatch(state,{mainSheet:clamp(state.trim-dt*22,0,90)});if(keys.has('ArrowDown'))applyControlPatch(state,{mainSheet:clamp(state.trim+dt*22,0,90)});if(keys.size)syncControls();}
+ if(!learning.reading&&!learning.training&&!learning.briefingOpen&&!$('#modal').open){if(keys.has('ArrowLeft'))state.rudder=clamp(state.rudder-dt*25,-35,35);if(keys.has('ArrowRight'))state.rudder=clamp(state.rudder+dt*25,-35,35);if(keys.has('ArrowUp'))applyControlPatch(state,{mainSheet:clamp(state.trim-dt*22,0,90)});if(keys.has('ArrowDown'))applyControlPatch(state,{mainSheet:clamp(state.trim+dt*22,0,90)});if(keys.size)syncControls();}
  if(learning.training&&!document.hidden&&!$('#modal').open)learning.tickDecision(dt);
- if(!paused&&!learning.reading&&!learning.training&&!$('#modal').open){step(state,dt);if((state.collisionCount||0)>lastCollisionSequence&&state.collision){toast(t('Contact detected · {speed} kn closing speed').replace('{speed}',(state.collision.closingSpeed/(1852/3600)).toFixed(1)));}lastCollisionSequence=state.collisionCount||0;
+ if(!paused&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!$('#modal').open){step(state,dt);if((state.collisionCount||0)>lastCollisionSequence&&state.collision){toast(t('Contact detected · {speed} kn closing speed').replace('{speed}',(state.collision.closingSpeed/(1852/3600)).toFixed(1)));}lastCollisionSequence=state.collisionCount||0;
   learning.tick(dt);lab?.tick(dt);
   if(mode==='challenge'&&!challengeDone){challengeTime+=dt;const buoys=getLocation(state.locationId).buoys,target=buoys[challengeIndex];if(Math.hypot(state.x-target.x,state.z-target.z)<35){challengeIndex++;if(challengeIndex===buoys.length){challengeDone=true;$('#objective-text').textContent=`Course complete in ${Math.floor(challengeTime/60)}m ${Math.floor(challengeTime%60)}s`;toast('Three marks rounded. Course complete!');}else{$('#objective-text').textContent=`Next mark: buoy ${challengeIndex+1} of 3`;toast(`Buoy ${challengeIndex} reached. On to the next mark.`);}}}
  }
  if(state.grounded&&!wasGrounded)toast('You’ve reached shallow water. Use Reset boat to return to the practice grounds.');wasGrounded=state.grounded;
  // A modal already pauses physics; keep its background still to free GPU time for reading.
- if(!learning.reading&&!learning.training&&!$('#modal').open)scene?.render(state,now/1000);uiTick+=dt;
- if(uiTick>.12){uiTick=0;$('#anchor span').textContent=t(anchorControlAction(state).label);vesselControls?.update();const twa=angleDifference(state.windDirection,state.heading);$('#speed').textContent=state.speed.toFixed(1);$('#heading').textContent=String(Math.round(state.heading)%360).padStart(3,'0');$('#heading-caption').textContent=compass(state.heading);$('#speed-caption').textContent=state.anchor?state.anchorStatus:state.speed<-.1?'Moving astern':Math.abs(state.throttle)>.01?'Under engine':state.speed<.5?'Waiting for the breeze':pointOfSail(twa);$('#point-of-sail').textContent=pointOfSail(twa);$('#wind-arrow').style.transform=`rotate(${state.windDirection}deg)`;$('.dial-boat').style.transform=`rotate(${state.heading}deg)`;$('.no-go').style.transform=`rotate(${state.windDirection}deg)`;$('#wind-value').textContent=state.windSpeed.toFixed(1);$('#weather-wind').textContent=`${state.windSpeed} kn ${compass(state.windDirection)}`;$('#ideal-trim').textContent=`Suggested: ${Math.round(state.suggestedMainSheet)}°`;$('#depth b').textContent=state.depth.toFixed(1)+' m';$('#sim-status').textContent=state.grounded?'Aground · Reset to recover':paused?'Ready when you are':state.anchor?state.anchorStatus:state.speed<-.1?'Making sternway':Math.abs(state.throttle)>.01?'Engine engaged':'Underway · Your first adventure';drawChart($('#mini-chart'));if($('#modal').open)drawChart($('#large-chart'));}
- activityStatus?.update();requestAnimationFrame(frame);
+ if(!learning.reading&&!learning.training&&!learning.briefingOpen&&!$('#modal').open)scene?.render(state,now/1000);uiTick+=dt;
+ if(uiTick>.12){uiTick=0;$('#anchor span').textContent=t(anchorControlAction(state).label);vesselControls?.update();const twa=angleDifference(state.windDirection,state.heading);$('#speed').textContent=state.speed.toFixed(1);$('#heading').textContent=String(Math.round(state.heading)%360).padStart(3,'0');$('#heading-caption').textContent=compass(state.heading);$('#speed-caption').textContent=state.anchor?state.anchorStatus:state.speed<-.1?'Moving astern':Math.abs(state.throttle)>.01?'Under engine':state.speed<.5?'Waiting for the breeze':pointOfSail(twa);$('#point-of-sail').textContent=pointOfSail(twa);$('#wind-arrow').style.transform=`rotate(${state.windDirection}deg)`;$('.dial-boat').style.transform=`rotate(${state.heading}deg)`;$('.no-go').style.transform=`rotate(${state.windDirection}deg)`;$('#wind-value').textContent=state.windSpeed.toFixed(1);$('#weather-wind').textContent=`${state.windSpeed} kn ${compass(state.windDirection)}`;$('#ideal-trim').textContent=`Suggested: ${Math.round(state.suggestedMainSheet)}°`;$('#depth b').textContent=state.depth.toFixed(1)+' m';drawChart($('#mini-chart'));if($('#modal').open)drawChart($('#large-chart'));}
+ syncPlayback();activityStatus?.update();requestAnimationFrame(frame);
 }
 learningTools=createLearningTools({openModal,onLesson:id=>{learning.select(lessons.findIndex(l=>l.id===id));learning.briefing();}});
-learning=createLearning({onTrainingEnd:()=>{paused=true;syncControls();},openFigure:l=>learningTools.figure(l),openGuide:l=>learningTools.forLesson(l),openManeuvers:()=>lab.library(),getState:()=>state,getMode:()=>mode,openModal,toast,onSelect:index=>{lesson=index;setMode('learn');},resetScenario:setup=>{
+learning=createLearning({getPaused:()=>paused||$('#modal').open||learning?.briefingOpen,onPause:()=>{paused=true;syncControls();},onResume:()=>{paused=false;syncControls();},onTrainingEnd:()=>{paused=true;syncControls();},openFigure:l=>learningTools.figure(l),openGuide:l=>learningTools.forLesson(l),openManeuvers:()=>lab.library(),getState:()=>state,getMode:()=>mode,openModal,toast,onSelect:index=>{lesson=index;setMode('learn');},resetScenario:setup=>{
  ensureScene('haven');
  state=createPracticeState(setup);
- lastCollisionSequence=0;paused=false;syncControls();updateLocation();
+ lastCollisionSequence=0;paused=true;syncControls();updateLocation();scene?.render(state,performance.now()/1000);
 }});
 lab=createManeuverLab({getState:()=>state,onStart:newState=>{setMode('maneuver');state=newState;lastCollisionSequence=0;ensureScene(state.locationId);updateLocation();paused=false;syncControls();toggleSystems(false);},onStop:()=>{paused=true;syncControls();},onControl:patch=>{applyControlPatch(state,patch);syncControls();},openModal,setCues:cues=>scene?.setTrainingCues(cues),onBuoyCourse:()=>setMode('challenge'),toast});
-vesselControls=mountControls($('#vessel-controls'),{getState:()=>state,getPaused:()=>paused||document.hidden||learning.reading||learning.training||$('#modal').open,onChange:patch=>{applyControlPatch(state,patch);syncControls();},onAction:(type,value)=>learning.event(type,value)});
+vesselControls=mountControls($('#vessel-controls'),{getState:()=>state,getPaused:()=>paused||document.hidden||learning.reading||learning.training||learning.briefingOpen||$('#modal').open,onChange:patch=>{applyControlPatch(state,patch);syncControls();},onAction:(type,value)=>learning.event(type,value)});
 function toggleSystems(open){$('#systems-drawer').hidden=!open;$('#systems-toggle').setAttribute('aria-expanded',String(open));if(open){$('#vessel-controls>.vessel-panel').open=true;vesselControls.update();}}
 learningTools.mount();
 $('#systems-toggle').onclick=()=>toggleSystems($('#systems-drawer').hidden);
 $('#systems-close').onclick=()=>{toggleSystems(false);$('#systems-toggle').focus();};
 window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#modal').open)toggleSystems(false);});
-activityStatus=createActivityStatus({getContext:()=>({reading:learning.reading,decisionOpen:learning.training,decisionActive:learning.decisionActive,practiceActive:learning.practiceActive,practiceStatus:learning.practiceStatus,paused:paused||$('#modal').open,mode,maneuverActive:lab?.active}),onStart:()=>{learning.resumeOrStart();if(learning.practiceActive){paused=false;syncControls();}},onPause:()=>{paused=true;syncControls();},onResume:()=>{paused=false;syncControls();}});
+activityStatus=createActivityStatus({getContext:activityContext,onStart:()=>learning.resumeOrStart(),onPause:()=>{paused=true;syncControls();},onResume:()=>{paused=false;syncControls();}});
 lesson=learning.selected;updateLesson();syncControls();updateLocation();
 $('#language-select').onchange=async e=>{const select=e.target;select.disabled=true;try{await changeLanguage(select.value,lessons,modules);lab?.cancel();learning.cancel('Changing language restarts the current practice. Completed lessons and quiz results are preserved.');}catch{select.value=getLanguage();select.disabled=false;toast(t('Language could not be loaded. Please try again.'));}};
 mountTextSize($('#text-size-control'));observeTranslations(document.body);if(localeLoadError)toast('Language could not be loaded. Please try again.');
-activityStatus?.update();requestAnimationFrame(frame);
+syncPlayback();activityStatus?.update();requestAnimationFrame(frame);
 }
 startApp().catch(error=>{console.error(error);document.querySelector('#app').innerHTML=`<main style="padding:40px"><h1>${t('SAIL could not start')}</h1><p>${t('Please reload the page.')}</p></main>`;});

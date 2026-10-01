@@ -53,7 +53,7 @@ The development server must be running on port 5187 for browser checks. Software
 
 The physics contract and its limits are in `PHYSICS.md`; the teaching and assessment contract is in `CURRICULUM.md`. Changes to physics or controls must be checked against actual training scenarios, not only isolated equations.
 
-Run browser suites sequentially on machines using software WebGL. Keep the source unchanged while testing the development server: Vite hot reload can restart a practice or invalidate a page operation. Dialogs pause physics while open; closing one restores the prior sailing state; hiding the browser tab pauses sailing and requires explicit resume.
+Run browser suites sequentially on machines using software WebGL. Keep the source unchanged while testing the development server: Vite hot reload can restart a practice or invalidate a page operation. Utility dialogs pause physics while open and restore the prior state when closed. Practice briefings and the lesson reader leave boat handling paused on dismissal; starting or resuming is explicit; hiding the browser tab pauses sailing and requires explicit resume.
 
 Useful historical checkpoints:
 
@@ -84,3 +84,9 @@ The final timed training browser run passed both anchoring lessons at 100/100 th
 The live practice card now hides its generic introductory copy during an active attempt, making room for ground-speed and rode feedback without enlarging the panel. The focused `--training-layout` browser check passed English and Arabic at default desktop size and 200% mobile text, with screenshots in `artifacts/anchoring/training-layout-*`. The production build passed after this CSS adjustment.
 
 The final general browser regression passed after all source changes: training and persistence, independent vessel controls, timed anchor handling, header Pause/Resume with the systems drawer open, cameras, mobile layout and reference archive. No uncaught browser or shader errors were recorded. Current evidence is in `artifacts/browser-check.json` and adjacent screenshots.
+
+## Practice launch contract
+
+`Start training` prepares the authored exercise and opens `#practice-briefing` over the simulator. Preparation must not create an attempt, run a timer or award evidence. `#practice-launch` begins scoring. Study material is a separate full-page reader; its practice buttons use the same preparation path. Reopened task briefings pause and preserve an active attempt. End simulation saves an interrupted result without awarding completion. The large lesson number/title is a cover and stays hidden while physical practice is active or paused.
+
+`check-activity-status.mjs` covers the Hebrew beam-reach report, authored setup after changing preview weather, dismissal/resume, study return, explicit end, actual instrument checkpoints scoring 50 then 100, prerequisite preview behavior, decision scenarios, free sailing, and all six languages at 200% on mobile. Other browser helpers explicitly click Start simulation after preparing a new attempt.

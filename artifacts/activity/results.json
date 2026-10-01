@@ -1,9 +1,18 @@
 {
   "passed": true,
   "errors": [],
+  "languages": [
+    "en",
+    "es",
+    "fr",
+    "ru",
+    "he",
+    "ar"
+  ],
   "states": [
     "ready",
     "study",
+    "briefing",
     "scenario-running",
     "training-running",
     "training-paused",

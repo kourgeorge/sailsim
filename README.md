@@ -82,6 +82,6 @@ Refresh with `npm run scrape`, then `python3 scripts/build_archive_index.py`. Th
 
 Training scores, critical failures, saved debriefs and progress migration are documented in [PRACTICE_SCORING.md](docs/PRACTICE_SCORING.md). Scenarios assess their stated modeled tasks; course completion is not an on-water qualification.
 
-The compact header status control distinguishes study, a simulation that has not started, assessed boat handling, pauses, free practice and finished attempts. Reading freezes training and preserves the current task.
+Start training opens a short **practice briefing over the prepared boat**. Its **Start simulation** button begins assessment; reading the illustrated lesson is optional. The lesson cover disappears during live practice. A compact status, current goal, completed-goal count, live score, and pause/resume/end controls stay available. Reopening the briefing or reading pauses the same attempt until explicit resume. End simulation saves the completed evidence and shows a debrief. The main play button follows the same lifecycle and cannot bypass assessment in lesson mode.
 
 Boat and object contacts now use shared finite hulls and rigid-body impulses. Free vessels move and turn when struck; moored vessels and buoys respond within their restraints, while piers and rocks remain fixed. See [COLLISION_PHYSICS.md](docs/COLLISION_PHYSICS.md) for units, validation and model limits.

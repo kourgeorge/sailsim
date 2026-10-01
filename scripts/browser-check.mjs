@@ -35,7 +35,7 @@ try {
  await page.locator('#course-library').click();
  assert.equal(await page.locator('[data-library-lesson]').count(),42);
  await page.locator('[data-library-lesson="3"]').click();
- await page.locator('#practice-start').click();
+ await page.locator('#practice-start').click();await page.locator('#practice-launch').click();
  await expect(page.locator('#lesson-reader')).toBeHidden();
  await page.locator('button[data-camera="deck"]').click();
  await expect(page.locator('#objective-text')).toContainText('chart',{timeout:60000});
@@ -53,7 +53,7 @@ try {
  await page.waitForFunction(()=>Number(document.querySelector('#speed').textContent)>.05,{timeout:60000});
  // Simulate the browser visibility signal: background time must not sail or earn practice credit.
  await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
- await expect(page.locator('#play')).toContainText('Set sail');
+ await expect(page.locator('#play')).toContainText('Resume simulation');
  await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
  await page.locator('#play').click();
  await page.locator('#systems-toggle').click();
