@@ -1144,7 +1144,7 @@
       "concepts": [
         "Docking combines wind, current, propeller effects, boat momentum, and crew coordination. Prepare fenders and lines, assign roles, choose an approach, and keep an escape route.",
         "Approach at the lowest speed that preserves the control you need. Never use a person’s body to stop the boat or put hands or feet between the yacht and dock.",
-        "Boat systems includes ahead and reverse thrust, and the model estimates current and prop walk. Spring-line forces and dock contact are not modeled. Docking is taught here as planning and decision-making; touching the visual dock is not an assessed docking skill."
+        "Boat systems includes ahead and reverse thrust, and the model estimates current. Prop walk, spring-line forces, and dock contact are not modeled. Docking is taught here as planning and decision-making; touching the visual dock is not an assessed docking skill."
       ],
       "observe": [
         "Describe your approach, crew jobs, and go-around plan before moving.",

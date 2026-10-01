@@ -1,0 +1,29 @@
+{
+  "startupMs": 14789,
+  "cameras": {
+    "chase": {
+      "quality": "compatibility",
+      "fps": "1.8",
+      "frames": "8",
+      "drawCalls": "110",
+      "triangles": "335230",
+      "camera": "chase"
+    },
+    "helm": {
+      "quality": "compatibility",
+      "fps": "2.0",
+      "frames": "22",
+      "drawCalls": "106",
+      "triangles": "522004",
+      "camera": "helm"
+    },
+    "deck": {
+      "quality": "compatibility",
+      "fps": "1.8",
+      "frames": "36",
+      "drawCalls": "89",
+      "triangles": "333044",
+      "camera": "deck"
+    }
+  }
+}

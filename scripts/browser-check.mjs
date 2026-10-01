@@ -42,6 +42,11 @@ try {
  await page.keyboard.up('ArrowRight');await page.keyboard.press('c');
  await expect(page.locator('#rudder')).toHaveValue('0');
  await page.waitForFunction(()=>Number(document.querySelector('#speed').textContent)>.05,{timeout:60000});
+ // Simulate the browser visibility signal: background time must not sail or earn practice credit.
+ await page.evaluate(()=>{Object.defineProperty(document,'hidden',{configurable:true,value:true});document.dispatchEvent(new Event('visibilitychange'));});
+ await expect(page.locator('#play')).toContainText('Set sail');
+ await page.evaluate(()=>{delete document.hidden;document.dispatchEvent(new Event('visibilitychange'));});
+ await page.locator('#play').click();
  await page.locator('#systems-toggle').click();
  await page.locator('#vessel-mainHoist').fill('0.5');await page.locator('#vessel-jibHoist').fill('0');
  await page.locator('#sails').click();
@@ -79,6 +84,6 @@ try {
  await page.goto(new URL('/reference/esail/index.html',url).href,{waitUntil:'domcontentloaded'});await page.locator('#search').fill('reefing');assert.ok(await page.locator('#results article').count()>0);await page.locator('#images').click();await page.locator('#search').fill('');assert.equal(await page.locator('#results .image').count(),234);
  assert.deepEqual(errors,[],'No uncaught browser errors');
  assert.equal(consoleErrors.filter(s=>/Shader Error|VALIDATE_STATUS|Error creating WebGL|THREE.WebGLProgram/.test(s)).length,0,'No shader or WebGL errors');
- await writeFile('artifacts/browser-check.json',JSON.stringify({passed:true,errors,consoleErrors,checkedAt:new Date().toISOString(),features:['lesson feedback','mastery','36-lesson library','ordered practice','persistence','keyboard helm','independent sails','reef levels','traveler','vang','outhaul','engine neutral/astern','anchor rode','current','cameras','mobile','archive']},null,2));
+ await writeFile('artifacts/browser-check.json',JSON.stringify({passed:true,errors,consoleErrors,checkedAt:new Date().toISOString(),features:['lesson feedback','mastery','36-lesson library','ordered practice','persistence','keyboard helm','tab visibility pause','independent sails','reef levels','traveler','vang','outhaul','engine neutral/astern','anchor rode','current','cameras','mobile','archive']},null,2));
  console.log('Full browser checks passed: training, controls, cameras, mobile, and archive.');
 }finally{await browser.close();}

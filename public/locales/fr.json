@@ -1,0 +1,1461 @@
+{
+  "modules": {
+    "aboard": {
+      "title": "Avant le départ",
+      "outcome": "Employez le vocabulaire du bateau, identifiez le matériel essentiel et préparez un briefing de sécurité pour l’équipage."
+    },
+    "wind": {
+      "title": "Votre première navigation",
+      "outcome": "Lisez le vent, hissez les voiles, prenez de l’erre et tenez un cap stable."
+    },
+    "trim": {
+      "title": "Exploitez le vent",
+      "outcome": "Reconnaissez les allures et reliez l’angle des voiles à la vitesse et au cap."
+    },
+    "maneuvers": {
+      "title": "Changez de direction",
+      "outcome": "Lofez, abattez, virez de bord, empannez et sortez de la zone non navigable face au vent."
+    },
+    "conditions": {
+      "title": "Gardez le contrôle",
+      "outcome": "Distinguez vent réel et apparent, réduisez la voilure et prenez des décisions météo prudentes."
+    },
+    "navigation": {
+      "title": "Trouvez votre route",
+      "outcome": "Interprétez une carte d’entraînement, suivez un relèvement, surveillez la profondeur et effectuez un court parcours."
+    },
+    "seamanship": {
+      "title": "Partagez le plan d’eau",
+      "outcome": "Assurez la veille et raisonnez face aux situations courantes de trafic et de météo."
+    },
+    "harbor": {
+      "title": "Arrivez et repartez",
+      "outcome": "Préparez accostages et mouillages, répétez l’arrêt et préparez le départ."
+    },
+    "readiness": {
+      "title": "Réagissez et faites le bilan",
+      "outcome": "Expliquez les priorités d’urgence et réalisez un exercice complet de navigation simulée."
+    }
+  },
+  "lessons": {
+    "sail-01": {
+      "title": "La sécurité avant la vitesse",
+      "concepts": [
+        "Un bon départ commence par l’équipage, la météo et le bateau, pas par la commande des gaz. Portez un gilet de sauvetage bien ajusté, repérez le matériel d’urgence et convenez de la façon d’appeler les secours et de récupérer une personne à l’eau.",
+        "Expliquez à tous les dangers de la bôme, les risques de chute, les prises sûres et la nécessité de garder les mains loin des cordages sous tension et des winchs. Vérifiez la météo, les restrictions locales, les communications, le carburant ou la batterie et l’aptitude du bateau à naviguer.",
+        "Choisissez des conditions adaptées à l’équipier le moins expérimenté et prévoyez comment interrompre la sortie. Ce cours développe la compréhension et certaines compétences simulées ; le terminer ne qualifie pas pour commander un vrai voilier."
+      ],
+      "observe": [
+        "Avant le départ, indiquez où s’asseoir, comment se déplacer et qui assurera la veille.",
+        "Repérez la bôme et imaginez son passage au-dessus du cockpit."
+      ],
+      "mistake": "Partir parce que le temps semble agréable sans consulter les prévisions ni informer l’équipage.",
+      "quiz": [
+        {
+          "prompt": "Un nouvel équipier est à bord. Que faut-il faire avant le départ ?",
+          "options": [
+            "Montrer la vitesse maximale",
+            "Ajuster les gilets et expliquer les dangers, le matériel d’urgence et les rôles",
+            "Partir d’abord et expliquer les commandes en route"
+          ],
+          "explanation": "Préparez l’équipage et le bateau avant d’appareiller ; découvrir après le départ qu’un équipement de sécurité manque, c’est trop tard."
+        },
+        {
+          "prompt": "Que démontre la réussite de ce cours sur simulateur ?",
+          "options": [
+            "L’autorisation de louer n’importe quel voilier",
+            "La compréhension et certaines compétences dans une simulation simplifiée",
+            "L’aptitude à naviguer seul par tous les temps"
+          ],
+          "explanation": "Un enseignement et une évaluation sur l’eau restent nécessaires. Le simulateur omet de nombreuses contraintes physiques et environnementales."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-02": {
+      "title": "Connaissez votre voilier",
+      "concepts": [
+        "La proue est l’avant ; la poupe est l’arrière. En regardant vers l’avant, bâbord est à gauche et tribord à droite. Ces noms restent attachés au bateau lorsque vous vous retournez.",
+        "La grand-voile se trouve derrière le mât et la voile d’avant devant. La bôme soutient la bordure de la grand-voile. La quille contribue à la stabilité et s’oppose au déplacement latéral ; le safran gouverne lorsque de l’eau s’écoule sur lui.",
+        "Utilisez Poursuite pour voir tout le bateau, Poste de barre pour la vue de navigation et Cockpit pour examiner la roue, les winchs et les écrans."
+      ],
+      "observe": [
+        "Passez en vue Cockpit et repérez la roue, la descente et les winchs d’écoute.",
+        "Passez en vue Poursuite et identifiez l’étrave, le mât, la bôme et les deux voiles."
+      ],
+      "mistake": "Nommer un côté bâbord ou tribord selon la direction dans laquelle on regarde.",
+      "quiz": [
+        {
+          "prompt": "Vous regardez vers la poupe. De quel côté est bâbord ?",
+          "options": [
+            "À votre gauche à cet instant",
+            "À votre droite à cet instant",
+            "Du côté d’où vient le vent"
+          ],
+          "explanation": "Bâbord est la gauche du bateau lorsqu’on regarde vers l’avant ; c’est donc à votre droite lorsque vous regardez vers l’arrière."
+        },
+        {
+          "prompt": "Quel élément a besoin d’un écoulement d’eau pour gouverner efficacement ?",
+          "options": [
+            "L’ancre",
+            "Le mât",
+            "Le safran"
+          ],
+          "explanation": "Le safran modifie la direction de l’écoulement. À faible vitesse, son efficacité diminue."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-03": {
+      "title": "Cordages, winchs et efforts",
+      "concepts": [
+        "Une drisse hisse une voile. Une écoute règle son angle. Un ris réduit la surface de voile exposée. Un taquet ou un bloqueur retient un cordage ; un winch aide à maîtriser l’effort.",
+        "Sur ce voilier, les écoutes colorées rejoignent les winchs du cockpit vers l’arrière. Examinez les tours sur les winchs et les bloqueurs en vue Cockpit. Le panneau Systèmes du bateau commande séparément les deux drisses et écoutes, ainsi que le chariot, le hale-bas, la bordure, les ris, le moteur et la ligne de mouillage. Les curseurs représentent des réglages, pas la manipulation physique des cordages.",
+        "Les commandes de hissage de la grand-voile et de la voile d’avant déterminent la surface exposée. Les deux écoutes règlent séparément leurs angles. Le chariot déplace le point de tire de l’écoute de bôme ; la tension du hale-bas règle la torsion simulée, tandis que la bordure aplatit le bas de la voile. Modifiez une commande à la fois et comparez la réponse.",
+        "Le niveau de ris réduit la surface de grand-voile. La commande moteur sélectionne arrière, point mort ou avant ; revenez au point mort pour les évaluations sous voiles. La ligne de mouillage détermine la longueur filée et influe sur le cercle d’évitage disponible et la tenue simulée.",
+        "Gardez les doigts, les vêtements amples et les cheveux loin des cordages sous tension. Apprenez avec un moniteur à charger un winch, manœuvrer les cordages, faire des nœuds et choquer progressivement ; une souris ne permet pas d’apprendre à sentir un cordage chargé."
+      ],
+      "observe": [
+        "Suivez une écoute colorée du pont jusqu’à son winch.",
+        "Comparez le rôle de hissage de la drisse au rôle de réglage de l’écoute."
+      ],
+      "mistake": "Traiter une écoute très chargée comme un cordage sans tension, ou confondre écoute et drisse.",
+      "quiz": [
+        {
+          "prompt": "Vous voulez régler l’angle de la grand-voile. Quel cordage remplit ce rôle ?",
+          "options": [
+            "L’écoute de grand-voile",
+            "La drisse de grand-voile",
+            "La ligne de mouillage"
+          ],
+          "explanation": "L’écoute de grand-voile règle l’angle de la bôme et de la voile ; la drisse hisse la voile."
+        },
+        {
+          "prompt": "Le modèle visuel du winch peut-il évaluer la manipulation sûre d’un cordage chargé ?",
+          "options": [
+            "Oui, entièrement",
+            "Seulement au zoom maximal",
+            "Non ; la manipulation physique des cordages exige une pratique encadrée"
+          ],
+          "explanation": "Le matériel représenté aide à se repérer, mais ne simule ni le placement des mains, ni le frottement, ni les efforts dans les cordages."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-04": {
+      "title": "Lisez les instruments",
+      "concepts": [
+        "Le cap est la direction de l’étrave, mesurée dans le sens horaire depuis le nord : 000° nord, 090° est, 180° sud, 270° ouest. La vitesse est affichée en nœuds ; un nœud correspond à un mille marin par heure.",
+        "L’indicateur de vent montre d’où vient le vent. Le cadran à bord est référencé à l’étrave, tandis que le compas superposé est référencé au nord. La profondeur est l’estimation de hauteur d’eau du simulateur, pas le pied de pilote sous la quille.",
+        "En navigation réelle, la route et la vitesse fond peuvent différer du cap et de la vitesse surface à cause du courant et de la dérive. La simulation estime ces deux effets ; comparez les indications dans Systèmes du bateau."
+      ],
+      "observe": [
+        "Ouvrez Poste de barre ou Cockpit et comparez le traceur de cartes et l’afficheur de vitesse aux indications superposées.",
+        "Ouvrez la carte et repérez le symbole du bateau et la flèche du nord."
+      ],
+      "mistake": "Lire la profondeur comme une marge garantie sous la quille, ou considérer le cap comme une route fond garantie.",
+      "quiz": [
+        {
+          "prompt": "Quel cap indique l’est ?",
+          "options": [
+            "000°",
+            "090°",
+            "270°"
+          ],
+          "explanation": "Les angles sont mesurés dans le sens horaire depuis le nord ; l’est correspond à 090°."
+        },
+        {
+          "prompt": "À 6 nœuds, quelle distance parcourriez-vous en 30 minutes sans courant ?",
+          "options": [
+            "6 milles marins",
+            "12 milles marins",
+            "3 milles marins"
+          ],
+          "explanation": "Distance = vitesse × temps. Six milles marins par heure pendant une demi-heure donnent trois milles marins."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Examinez les instruments du cockpit"
+          },
+          {
+            "label": "Ouvrez la carte de navigation"
+          }
+        ],
+        "debrief": "Vous savez maintenant repérer les écrans. Consultez régulièrement les instruments tout en assurant la veille extérieure."
+      }
+    },
+    "sail-05": {
+      "title": "D’où vient le vent ?",
+      "concepts": [
+        "Un vent de nord-ouest vient du nord-ouest et souffle vers le sud-est. Le côté au vent est vers sa provenance ; le côté sous le vent est à l’opposé.",
+        "Ici, le vent réel est le mouvement de l’air par rapport au sol fixe ; le vent apparent est relatif au voilier en mouvement. Certains instruments réfèrent le vent réel à l’eau : vérifiez leur convention. Notre modèle empirique des forces de voile utilise le vent apparent ; ce n’est pas une prédiction aérodynamique validée.",
+        "La zone non navigable face au vent est le secteur où les voiles ne peuvent plus propulser utilement le bateau. Sa limite varie selon le bateau et les conditions ; le simulateur retient 38° de chaque côté."
+      ],
+      "observe": [
+        "Avec un vent venant du 315°, comparez les caps 315°, 045° et 135° sur le compas.",
+        "Le cap 045° place le vent approximativement par le travers."
+      ],
+      "mistake": "Interpréter la flèche comme la destination du vent plutôt que sa provenance.",
+      "quiz": [
+        {
+          "prompt": "D’où vient un vent du 315° ?",
+          "options": [
+            "Du sud-est",
+            "Du nord-ouest",
+            "Du nord-est"
+          ],
+          "explanation": "315° correspond au nord-ouest. La direction du vent est traditionnellement nommée selon sa provenance."
+        },
+        {
+          "prompt": "Pourquoi un voilier ne peut-il pas avancer utilement en pointant directement face au vent ?",
+          "options": [
+            "Le compas cesse de fonctionner",
+            "La quille devient trop lourde",
+            "Les voiles ne peuvent pas produire une propulsion efficace dans cette direction"
+          ],
+          "explanation": "Il faut naviguer hors de la zone non navigable et virer de bord pour progresser au vent."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-06": {
+      "title": "Hissez les voiles",
+      "concepts": [
+        "En pratique, préparez drisses et écoutes, vérifiez qu’aucun cordage n’est engagé et disposez d’espace avant de hisser. On hisse généralement la grand-voile face au vent, écoute choquée, pour éviter qu’elle se remplisse sans prévenir.",
+        "Le raccourci Hisser les voiles agit sur les deux ; Systèmes du bateau propose des commandes séparées pour la grand-voile et la voile d’avant. Elles n’évaluent pas l’enchaînement réel de la balancine, des bloqueurs, des coulisseaux ou de la manipulation du bout d’enrouleur.",
+        "Une fois les voiles établies, abattez suffisamment pour qu’elles portent. Une voile hissée ne garantit pas à elle seule la vitesse."
+      ],
+      "observe": [
+        "Commencez l’exercice face au vent, voiles affalées.",
+        "Hissez les voiles ; vous prendrez un cap navigable dans les exercices suivants."
+      ],
+      "mistake": "Supposer que des voiles hissées propulsent toujours le bateau, ou hisser sans vérifier les cordages et la zone de la bôme.",
+      "quiz": [
+        {
+          "prompt": "Que faut-il vérifier avant de hisser une vraie grand-voile ?",
+          "options": [
+            "Seulement la couleur de la carte",
+            "Des cordages dégagés, de l’espace, l’équipage et une voile déchargée",
+            "Si le bateau est à sa vitesse maximale"
+          ],
+          "explanation": "La préparation évite les blocages et les mises en charge inattendues."
+        },
+        {
+          "prompt": "La commande Hisser les voiles enseigne-t-elle toute la procédure réelle de hissage ?",
+          "options": [
+            "Non ; c’est une commande groupée simplifiée",
+            "Oui ; aucune autre étape n’existe",
+            "Seulement lorsque le vent dépasse 20 nœuds"
+          ],
+          "explanation": "Il faut encore pratiquer sous supervision avec les drisses, bloqueurs, coulisseaux et équipements du bateau."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Hissez les voiles"
+          }
+        ],
+        "debrief": "Vous avez établi les voiles dans le modèle. L’exercice suivant commence au travers, où elles peuvent produire une propulsion."
+      }
+    },
+    "sail-07": {
+      "title": "Sentez le bateau accélérer",
+      "concepts": [
+        "Au travers, le vent arrive à peu près perpendiculairement au voilier. C’est une bonne allure pour débuter : les voiles propulsent sans se rapprocher de la zone non navigable face au vent.",
+        "Le voilier accélère progressivement. Regardez la vitesse augmenter avant d’appliquer beaucoup de barre : le gouvernail gagne en efficacité avec l’écoulement d’eau sur le safran.",
+        "Commencez par de petits réglages. Centrer la barre arrête le virage ; cela ne ramène pas automatiquement au cap précédent."
+      ],
+      "observe": [
+        "Commencez au 045° avec un vent de nord-ouest, voiles établies et ancre relevée.",
+        "Sélectionnez Naviguer et observez la vitesse augmenter."
+      ],
+      "mistake": "Mettre toute la barre à l’arrêt en espérant que le bateau pivote instantanément.",
+      "quiz": [
+        {
+          "prompt": "Quand ce gouvernail gagne-t-il en efficacité ?",
+          "options": [
+            "Lorsque l’écoulement d’eau et la vitesse augmentent",
+            "Lorsque l’ancre est abaissée",
+            "Seulement lorsque les voiles sont affalées"
+          ],
+          "explanation": "Un voilier a normalement besoin d’un écoulement sur le safran pour répondre."
+        },
+        {
+          "prompt": "Que se passe-t-il après avoir centré la barre ?",
+          "options": [
+            "Le bateau revient automatiquement au nord",
+            "Le virage diminue et le bateau tend à conserver son nouveau cap",
+            "Le bateau s’arrête instantanément"
+          ],
+          "explanation": "La barre commande le virage, pas un cap de compas sélectionné."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Dépassez 3 nœuds"
+          }
+        ],
+        "debrief": "La force des voiles a accéléré le bateau ; le gouvernail est devenu efficace avec la vitesse."
+      }
+    },
+    "sail-08": {
+      "title": "Tenez un cap stable",
+      "concepts": [
+        "Tenir un cap suit un cycle : choisissez un repère lointain, vérifiez le compas, corrigez légèrement, puis centrez la barre avant de dépasser le cap.",
+        "Assurez la veille au-delà des instruments. Un cap tenu avec précision peut tout de même mener au danger.",
+        "Tenez le 045° à 5° près pendant dix secondes consécutives, à plus de 2 nœuds. Le compteur repart de zéro si vous sortez de la tolérance."
+      ],
+      "observe": [
+        "Donnez de brèves corrections à bâbord ou tribord, puis sélectionnez Centrer.",
+        "Laissez le cap se stabiliser au lieu de garder la barre engagée."
+      ],
+      "mistake": "Maintenir trop longtemps une grande correction et osciller de part et d’autre du cap visé.",
+      "quiz": [
+        {
+          "prompt": "Vous approchez du cap souhaité. Qu’est-ce qui aide généralement à ne pas le dépasser ?",
+          "options": [
+            "Centrer la barre assez tôt",
+            "Mettre la barre au maximum",
+            "Abaisser l’ancre"
+          ],
+          "explanation": "Le bateau réagit progressivement au virage ; réduire la correction assez tôt l’aide à se stabiliser."
+        },
+        {
+          "prompt": "Quelle routine de barre est complète ?",
+          "options": [
+            "Regarder uniquement le compas",
+            "Détourner le regard jusqu’à ce que le bateau dérive",
+            "Veiller, vérifier le cap, corriger légèrement et réévaluer"
+          ],
+          "explanation": "La tenue de cap et la veille doivent être assurées ensemble."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Tenez 045° ±5°, à plus de 2 nœuds, pendant 10 secondes",
+            "hint": "Bâbord fait diminuer le cap de 060° vers 045°. Centrez avant d’atteindre la cible."
+          }
+        ],
+        "debrief": "Un cap stable exige de petites corrections et de l’anticipation, pas de grands mouvements de barre continus."
+      }
+    },
+    "sail-09": {
+      "title": "Trouvez le travers",
+      "concepts": [
+        "L’allure décrit le cap par rapport au vent, pas par rapport au nord. Au travers, le vent arrive à environ 90° de l’étrave.",
+        "Le bateau peut être au travers sous l’une ou l’autre amure. Avec un vent venant du 315°, les caps proches de 045° et 225° correspondent au travers.",
+        "Gouvernez jusqu’à obtenir un angle de vent réel entre 80° et 105° et conservez une vitesse utile."
+      ],
+      "observe": [
+        "Comparez le repère d’étrave à la direction du vent.",
+        "Remarquez que deux caps de compas différents peuvent donner la même allure."
+      ],
+      "mistake": "Mémoriser un cap de compas comme une allure alors que le vent peut changer de direction.",
+      "quiz": [
+        {
+          "prompt": "Qu’est-ce qui définit le travers ?",
+          "options": [
+            "Un cap à l’est",
+            "Le vent à environ 90° de l’étrave",
+            "Les voiles entièrement affalées"
+          ],
+          "explanation": "Les allures sont définies par rapport au vent."
+        },
+        {
+          "prompt": "Si le vent tourne, un cap inchangé peut-il donner une autre allure ?",
+          "options": [
+            "Oui",
+            "Non",
+            "Seulement au mouillage"
+          ],
+          "explanation": "Une rotation du vent modifie l’angle entre l’étrave et le vent."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Tenez le travers à plus de 2 nœuds pendant 8 secondes"
+          }
+        ],
+        "debrief": "Vous avez choisi un cap selon sa relation au vent, et pas seulement selon le compas."
+      }
+    },
+    "sail-10": {
+      "title": "Naviguez au près serré",
+      "concepts": [
+        "Le près serré consiste à naviguer près de la limite de remontée au vent, avec les voiles relativement proches de l’axe. Ne lofez pas au point de les faire faseyer et de perdre votre vitesse.",
+        "Dans ce modèle simplifié, un angle de vent réel de 45°–58° convient à l’exercice de près. Sur un vrai voilier, il faut évaluer le vent apparent, la forme des voiles, les penons, l’état de la mer et la dérive.",
+        "En lofant, bordez progressivement. Vérifiez que la vitesse reste suffisante plutôt que de rechercher l’angle au vent le plus petit possible."
+      ],
+      "observe": [
+        "Partez d’une allure de travers et rapprochez le cap du vent.",
+        "Bordez l’écoute à mesure que l’angle au vent diminue."
+      ],
+      "mistake": "Pincer le vent : pointer trop près du vent et perdre la vitesse nécessaire au bateau et au gouvernail.",
+      "quiz": [
+        {
+          "prompt": "Que signifie pincer le vent ?",
+          "options": [
+            "Naviguer trop près du vent et perdre une propulsion utile",
+            "Naviguer avec trop de chaîne d’ancre",
+            "Tourner en s’éloignant du vent"
+          ],
+          "explanation": "Un cap un peu plus abattu peut améliorer la progression au vent en préservant la vitesse."
+        },
+        {
+          "prompt": "Par rapport au travers, une grand-voile au près est généralement…",
+          "options": [
+            "Plus choquée",
+            "Entièrement affalée",
+            "Bordée plus près de l’axe"
+          ],
+          "explanation": "Plus on se rapproche du vent, plus on ramène normalement la voile vers l’axe."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Tenez 45°–58° du vent à plus de 2 nœuds"
+          }
+        ],
+        "debrief": "Vous avez équilibré cap au vent et vitesse. Le simulateur estime la dérive, mais n’évalue pas la lecture de penons réels."
+      }
+    },
+    "sail-11": {
+      "title": "Abattez jusqu’au grand largue",
+      "concepts": [
+        "Abattre, c’est éloigner l’étrave du vent. L’angle au vent augmente et il faut généralement choquer les voiles.",
+        "Au grand largue, le vent vient de l’arrière du travers. En approchant du vent arrière, surveillez le risque d’empannage involontaire lorsque le vent passe derrière la poupe.",
+        "Trouvez un angle de 120°–150°, choquez l’écoute de grand-voile et gardez la barre sous contrôle."
+      ],
+      "observe": [
+        "Augmentez l’angle au vent, puis choquez l’écoute.",
+        "Gardez une marge par rapport au vent arrière pendant l’apprentissage."
+      ],
+      "mistake": "Laisser l’écoute de grand-voile trop bordée après avoir abattu, ou perdre de vue le côté vers lequel la bôme va passer.",
+      "quiz": [
+        {
+          "prompt": "Que devient l’angle au vent lorsque vous abattez ?",
+          "options": [
+            "Il devient toujours nul",
+            "Il augmente",
+            "Il devient un cap de compas"
+          ],
+          "explanation": "L’étrave s’éloigne de la provenance du vent."
+        },
+        {
+          "prompt": "Quelle manœuvre devient un risque près du vent arrière ?",
+          "options": [
+            "Un empannage involontaire",
+            "Un virement de bord automatique",
+            "Un mouillage instantané"
+          ],
+          "explanation": "Un petit changement de cap ou de vent peut faire passer le vent derrière la poupe et déplacer la bôme."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Tenez le grand largue, à 120°–150° du vent"
+          }
+        ],
+        "debrief": "Vous avez augmenté l’angle au vent en évitant un passage involontaire du vent derrière la poupe."
+      }
+    },
+    "sail-12": {
+      "title": "Réglez en observant la réponse",
+      "concepts": [
+        "Régler la voile, c’est l’adapter à l’écoulement d’air. Une écoute de grand-voile trop bordée peut faire décrocher la voile ; trop choquée, elle peut la laisser faseyer. Le réglage réel dépend des penons, de la forme et des sensations.",
+        "Ici, l’angle d’écoute conseillé est une aide pédagogique calculée à partir de l’angle de vent apparent. Appliquez-le, puis observez la vitesse. C’est un repère propre au modèle, pas une formule universelle de réglage.",
+        "L’évaluation exige un angle à moins de 6° de la cible du modèle et une vitesse supérieure à 2 nœuds pendant dix secondes."
+      ],
+      "observe": [
+        "Gardez la barre centrée et ne modifiez que l’écoute.",
+        "Attendez la réponse de la vitesse au lieu d’effectuer de grands changements incessants."
+      ],
+      "mistake": "Modifier le cap et l’écoute simultanément, sans pouvoir savoir quel réglage a amélioré le comportement.",
+      "quiz": [
+        {
+          "prompt": "Quelle méthode aide à comparer utilement les réglages ?",
+          "options": [
+            "Modifier rapidement toutes les commandes",
+            "Tenir un cap stable et ne changer qu’un élément à la fois",
+            "Mouiller pendant le réglage"
+          ],
+          "explanation": "Un cap stable permet de mieux observer l’effet des changements d’écoute."
+        },
+        {
+          "prompt": "L’angle conseillé est-il une règle valable pour tous les vrais voiliers ?",
+          "options": [
+            "Oui",
+            "Seulement la nuit",
+            "Non ; il appartient à ce modèle simplifié"
+          ],
+          "explanation": "Le réglage réel nécessite l’observation de la voile, du bateau et des conditions du moment."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Conservez un réglage efficace et de la vitesse pendant 10 secondes"
+          }
+        ],
+        "debrief": "Vous avez effectué un réglage contrôlé et laissé le temps à la vitesse de réagir."
+      }
+    },
+    "sail-13": {
+      "title": "Lofez et abattez",
+      "concepts": [
+        "Lofer consiste à tourner vers la provenance du vent ; abattre consiste à s’en éloigner. Bâbord et tribord nomment le sens du virage par rapport au bateau, pas le fait de lofer ou d’abattre.",
+        "Sous une amure, tourner à bâbord peut faire lofer ; sous l’autre, cela peut faire abattre. Raisonnez toujours à partir de la direction actuelle du vent.",
+        "Naviguez d’abord à 50° du vent, puis à 110°. Stabilisez chaque cap avant le changement suivant."
+      ],
+      "observe": [
+        "Observez si l’angle au vent augmente ou diminue avec chaque action sur la barre.",
+        "Centrez la barre à chaque cible et adaptez les voiles à la nouvelle allure."
+      ],
+      "mistake": "Supposer que « tourner à gauche » signifie toujours « lofer ».",
+      "quiz": [
+        {
+          "prompt": "Tourner à bâbord rapproche-t-il toujours du vent ?",
+          "options": [
+            "Oui",
+            "Non ; cela dépend de l’amure et de la direction du vent",
+            "Seulement au-dessus de 5 nœuds"
+          ],
+          "explanation": "La même action sur la barre modifie différemment la relation au vent sous des amures opposées."
+        },
+        {
+          "prompt": "Que doit-on faire après un changement de cap important ?",
+          "options": [
+            "Réévaluer le réglage des voiles et la veille",
+            "Ignorer les voiles",
+            "Toujours mouiller l’ancre"
+          ],
+          "explanation": "Le nouveau cap modifie l’écoulement d’air et la situation autour du bateau."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Stabilisez-vous à 45°–55° du vent"
+          },
+          {
+            "label": "Abattez et stabilisez-vous à 105°–115°"
+          }
+        ],
+        "debrief": "Vous avez modifié votre relation au vent dans les deux sens en stabilisant le bateau entre les virages."
+      }
+    },
+    "sail-14": {
+      "title": "Effectuez un virement contrôlé",
+      "concepts": [
+        "Virer de bord fait passer l’étrave face au vent et change le côté qui reçoit le vent. Vérifiez le trafic et l’espace disponible, préparez l’équipage et les écoutes, puis engagez le virage avec assez de vitesse.",
+        "Attendez-vous à une brève perte de propulsion dans la zone non navigable. Poursuivez franchement le virage, puis centrez la barre sur le nouveau près et réglez les voiles.",
+        "Le simulateur fait passer les voiles automatiquement. Cet exercice évalue le passage de l’étrave et la reprise du contrôle, pas la manipulation réelle de l’écoute de foc ni les annonces à l’équipage."
+      ],
+      "observe": [
+        "Commencez avec le vent à tribord, puis tournez à tribord en passant par le 315°.",
+        "Sortez de la zone non navigable, centrez la barre et reprenez de la vitesse."
+      ],
+      "mistake": "Arrêter le virage dans la zone non navigable, ou appeler virement de bord un passage du vent derrière la poupe.",
+      "quiz": [
+        {
+          "prompt": "Quelle partie du voilier passe face au vent lors d’un virement ?",
+          "options": [
+            "La poupe",
+            "L’ancre",
+            "L’étrave"
+          ],
+          "explanation": "Un virement fait passer l’étrave par la provenance du vent ; un empannage fait passer la poupe."
+        },
+        {
+          "prompt": "Que faut-il avant de tourner ?",
+          "options": [
+            "De la veille, de l’espace, de la préparation et assez de vitesse",
+            "Une ancre déjà mouillée",
+            "Tout l’équipage debout sous la bôme"
+          ],
+          "explanation": "La préparation et l’erre aident le bateau à traverser la zone non navigable."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Faites passer l’étrave face au vent et retrouvez plus de 2 nœuds",
+            "hint": "Tournez à tribord par le 315°, continuez jusqu’à environ 005°, puis centrez. Réglez les voiles pour le nouveau cap."
+          }
+        ],
+        "debrief": "L’évaluation a enregistré un passage de l’étrave, une nouvelle amure et la reprise de vitesse. Le changement d’écoute reste une compétence à pratiquer sur l’eau."
+      }
+    },
+    "sail-15": {
+      "title": "Préparez votre empannage",
+      "concepts": [
+        "Un empannage fait passer la poupe dans la direction du vent. La bôme peut traverser violemment le cockpit : vérifiez la zone, prévenez l’équipage et maîtrisez l’écoute de grand-voile selon la procédure de votre moniteur.",
+        "Approchez volontairement au grand largue et effectuez un petit passage contrôlé du vent derrière la poupe. Évitez un grand mouvement de bôme incontrôlé ou un virage inutile jusqu’au travers de l’autre côté.",
+        "La bôme est animée, mais les forces d’impact et les blessures de l’équipage ne sont pas simulées. L’évaluation reconnaît un passage par la poupe et une nouvelle allure stable au grand largue."
+      ],
+      "observe": [
+        "Commencez au 160° avec un vent venant du 315°. Tournez à bâbord vers le 135° et franchissez-le.",
+        "Stabilisez-vous près du 110° en gardant le vent nettement en arrière du travers."
+      ],
+      "mistake": "Traiter l’empannage comme un virage brusque sans annonce, écoute de grand-voile totalement libre.",
+      "quiz": [
+        {
+          "prompt": "Quel est le principal danger de l’empannage pour l’équipage ?",
+          "options": [
+            "Une inversion du compas",
+            "La bôme et l’écoute de grand-voile traversant le cockpit",
+            "L’ancre qui devient plus lourde"
+          ],
+          "explanation": "Maîtrisez la bôme et gardez les personnes hors de son passage."
+        },
+        {
+          "prompt": "Qu’est-ce qui distingue l’empannage du virement ?",
+          "options": [
+            "La poupe passe dans la direction du vent",
+            "Le bateau doit utiliser un moteur",
+            "Les voiles sont toujours affalées"
+          ],
+          "explanation": "Lors d’un empannage, le vent passe derrière la poupe ; lors d’un virement, devant l’étrave."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Faites passer le vent derrière la poupe et stabilisez la nouvelle amure",
+            "hint": "Tournez à bâbord par le 135° et stabilisez-vous près du 110°. Centrez la barre."
+          }
+        ],
+        "debrief": "Vous avez effectué le bon passage par la poupe. La maîtrise réelle de l’écoute de grand-voile doit s’apprendre sous supervision."
+      }
+    },
+    "sail-16": {
+      "title": "Retrouvez la propulsion",
+      "concepts": [
+        "Être bout au vent signifie être arrêté ou presque, face au vent. Les voiles faseyent et le gouvernail perd son efficacité à mesure que la vitesse baisse.",
+        "Évitez cette situation en gardant de l’erre pendant le virement et en ne pinçant pas le vent. Cet exercice commence avec une erre résiduelle en avant : abattez rapidement et réglez pour retrouver de la propulsion.",
+        "Un vrai voilier complètement arrêté peut nécessiter une voile à contre, l’aide du moteur ou une méthode propre au bateau. Les voiles à contre ne sont pas modélisées. Le moteur est disponible en navigation libre, mais cet exercice exige le point mort ; recommencez si toute efficacité de barre est perdue."
+      ],
+      "observe": [
+        "Utilisez l’erre restante pour vous éloigner du 315°.",
+        "N’attendez pas que la vitesse soit nulle pour corriger."
+      ],
+      "mistake": "Attendre du safran qu’il fasse tourner un voilier totalement immobile sans écoulement d’eau.",
+      "quiz": [
+        {
+          "prompt": "Pourquoi agir avant de perdre toute vitesse ?",
+          "options": [
+            "L’écoulement d’eau restant permet encore de gouverner",
+            "La carte va disparaître",
+            "Les voiles deviennent trop courtes"
+          ],
+          "explanation": "Utilisez l’efficacité restante du gouvernail pour sortir de la zone non navigable."
+        },
+        {
+          "prompt": "Cet exercice enseigne-t-il toutes les méthodes de reprise d’un vrai voilier complètement arrêté ?",
+          "options": [
+            "Oui",
+            "Non ; il évalue la reprise sous voiles avec une erre résiduelle",
+            "Seulement tribord amures"
+          ],
+          "explanation": "L’exercice traite la reprise avec de l’erre ; la méthode réelle dépend du bateau et de la situation."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Sortez de la zone non navigable et retrouvez plus de 2 nœuds",
+            "hint": "Tournez à tribord vers le 010° ou au-delà avant que l’erre restante disparaisse."
+          }
+        ],
+        "debrief": "Vous avez utilisé l’erre résiduelle. Repartir depuis l’arrêt est une autre compétence pratique."
+      }
+    },
+    "sail-17": {
+      "title": "Vent réel et vent apparent",
+      "concepts": [
+        "Un voilier en mouvement reçoit le vent apparent : le mouvement de l’air par rapport au bateau. Même par temps calme, avancer produit un écoulement d’air venant de l’avant.",
+        "Lorsque la vitesse du bateau augmente, le vent apparent vient généralement davantage de l’avant que le vent réel. Aux allures portantes, avancer dans le même sens que le vent peut réduire sa vitesse apparente.",
+        "Comparez le vent réel du cadran au vent apparent dans Systèmes du bateau. Les forces de voile et les angles d’écoute conseillés utilisent le vent apparent ; ce modèle empirique ne remplace pas l’observation des penons et de la forme des voiles."
+      ],
+      "observe": [
+        "Imaginez rouler à vélo dans un air immobile : vous sentez du vent de face.",
+        "Comparez l’affichage du vent apparent lorsque la vitesse augmente à cap constant."
+      ],
+      "mistake": "Supposer que vent réel et apparent ont la même direction et la même vitesse quand le bateau se déplace.",
+      "quiz": [
+        {
+          "prompt": "Quel vent une voile en mouvement reçoit-elle réellement ?",
+          "options": [
+            "Uniquement le vent de la prévision météo",
+            "Le vent apparent",
+            "Un vent fixe de compas"
+          ],
+          "explanation": "Les voiles interagissent avec l’écoulement d’air relatif au voilier en mouvement."
+        },
+        {
+          "prompt": "Qu’utilise ce prototype pour calculer les forces de voile ?",
+          "options": [
+            "Un modèle empirique utilisant le vent apparent",
+            "Une simulation aérodynamique complète validée",
+            "Un écoulement mesuré en tête de mât"
+          ],
+          "explanation": "Le vent apparent reflète le mouvement du bateau. Le modèle empirique omet encore de nombreux détails aérodynamiques réels."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-18": {
+      "title": "Prenez un ris avant d’y être contraint",
+      "concepts": [
+        "Prendre un ris réduit la surface de voile pour améliorer le contrôle quand le vent augmente. La décision doit tenir compte des prévisions, des rafales, de l’état de la mer, de l’équipage et du comportement du bateau, pas d’une règle universelle de vitesse du vent.",
+        "Une gîte excessive, une barre lourde et un contrôle difficile justifient de réévaluer tôt la voilure. Attendre peut rendre le travail plus difficile lorsque les conditions se dégradent.",
+        "La commande Ris réduit la hauteur de grand-voile et la propulsion simulée. Elle n’enseigne pas la manipulation des bosses de ris, de l’œillet d’amure ou de la drisse."
+      ],
+      "observe": [
+        "Observez la gîte et la vitesse dans les 22 nœuds de vent de l’exercice.",
+        "Sélectionnez Ris, gardez une allure de travers ou de largue et comparez la réponse."
+      ],
+      "mistake": "Attendre que l’équipage soit débordé, ou appliquer un seuil de vent fixe sans considérer le bateau.",
+      "quiz": [
+        {
+          "prompt": "Quelle est une bonne raison de prendre un ris tôt ?",
+          "options": [
+            "Une difficulté croissante à contrôler le voilier",
+            "Vouloir la plus grande gîte possible",
+            "Tous les voiliers prennent toujours un ris exactement à 20 nœuds"
+          ],
+          "explanation": "La prise de ris est une décision de contrôle fondée sur le bateau, l’équipage et les conditions."
+        },
+        {
+          "prompt": "Quelle compétence réelle le bouton Ris n’évalue-t-il pas ?",
+          "options": [
+            "Reconnaître la réduction de surface de voile",
+            "Lire la vitesse du bateau",
+            "Manœuvrer les drisses et bosses de ris sous tension"
+          ],
+          "explanation": "La commande unique représente plusieurs tâches physiques importantes de manière simplifiée."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Prenez un ris et conservez de la gouverne pendant 10 secondes"
+          }
+        ],
+        "debrief": "Vous avez réduit la voilure en gardant le contrôle. La prise de ris réelle exige une procédure connue et répétée par l’équipage."
+      }
+    },
+    "sail-19": {
+      "title": "Réduisez volontairement la puissance",
+      "concepts": [
+        "Réduire la propulsion ralentit le bateau, mais l’erre demeure. Gardez de l’espace et ne traitez pas un voilier comme une voiture munie de freins immédiats.",
+        "Vous pouvez décharger une partie de la propulsion en choquant l’écoute de grand-voile. Affaler supprime la puissance simulée des voiles ; le bateau continue sur son erre et perd de la gouverne en ralentissant.",
+        "Dans cet exercice, réduisez la puissance, affalez et attendez de passer sous 1 nœud. L’ancre ne remplace pas une réduction de vitesse planifiée."
+      ],
+      "observe": [
+        "Comparez la vitesse avant et après l’affalage.",
+        "Observez le délai et la diminution d’efficacité du safran."
+      ],
+      "mistake": "Mouiller l’ancre à vitesse élevée comme méthode habituelle d’arrêt.",
+      "quiz": [
+        {
+          "prompt": "Que reste-t-il après avoir affalé les voiles ?",
+          "options": [
+            "L’erre",
+            "Toute la force propulsive des voiles",
+            "Une gouverne garantie à vitesse nulle"
+          ],
+          "explanation": "Le bateau continue de se déplacer jusqu’à ce que la résistance réduise sa vitesse."
+        },
+        {
+          "prompt": "Pourquoi garder de l’espace pour ralentir ?",
+          "options": [
+            "Un voilier repart toujours instantanément en arrière",
+            "Il faut anticiper la distance d’arrêt et la perte de gouverne",
+            "Le compas devient peu fiable à faible vitesse"
+          ],
+          "explanation": "Planifiez la réduction de vitesse assez tôt pour rester maître du bateau."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Affalez les voiles"
+          },
+          {
+            "label": "Ralentissez sur l’erre sous 1 nœud sans mouiller"
+          }
+        ],
+        "debrief": "Vous avez laissé l’erre diminuer au lieu d’attendre un arrêt immédiat."
+      }
+    },
+    "sail-20": {
+      "title": "Fixez une limite météo",
+      "concepts": [
+        "Consultez une prévision marine couvrant toute la sortie et une marge au-delà. Considérez le vent moyen, les rafales, les changements de direction, l’état de la mer, la visibilité, la température, les marées et les effets locaux.",
+        "Le vent contre le courant peut rendre les vagues plus raides. Un vent de terre peut compliquer le retour ; une côte exposée sous le vent peut laisser peu d’espace pour gérer une avarie.",
+        "Décidez avant le départ des conditions de départ ou de renoncement et des solutions de repli. La simulation permet de régler un vent constant, mais ne représente ni fronts de rafales, ni dangers de déferlantes, ni prévisions, ni courants de marée variables ; le courant réglable est une approximation constante."
+      ],
+      "observe": [
+        "Avec un équipage débutant, décidez quel changement vous ferait raccourcir ou annuler la sortie.",
+        "Nommez un abri de repli et une heure limite de retour."
+      ],
+      "mistake": "Considérer un vent moyen faible comme la preuve que toute la sortie sera sûre.",
+      "quiz": [
+        {
+          "prompt": "Le vent moyen est gérable, mais de fortes rafales et une visibilité dégradée sont prévues. Que convient-il de faire ?",
+          "options": [
+            "Ignorer les rafales",
+            "Partir puisque seule la vitesse moyenne compte",
+            "Réévaluer la sortie selon les capacités de l’équipage et les solutions sûres"
+          ],
+          "explanation": "C’est l’ensemble de la prévision et son évolution qui comptent, pas un seul chiffre."
+        },
+        {
+          "prompt": "Cette simulation peut-elle évaluer la conduite dans les déferlantes ou par vent contre marée ?",
+          "options": [
+            "Non",
+            "Oui, avec l’afficheur de vitesse",
+            "Seulement avec un ris"
+          ],
+          "explanation": "Ces dynamiques environnementales ne sont pas implémentées et nécessitent un enseignement distinct."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-21": {
+      "title": "Lisez une carte d’entraînement",
+      "concepts": [
+        "Une carte est un outil de préparation, pas une image à suivre aveuglément. Vérifiez l’échelle, l’orientation, les profondeurs, les dangers, les marques, la source et l’actualité de la carte.",
+        "Notre carte fictive montre les îles, votre voilier et des bouées ambrées. Ces marques sont des cibles d’exercice, pas une représentation complète du balisage AISM/IALA.",
+        "Avant une vraie traversée, apprenez les symboles, le zéro hydrographique, le balisage local, les hauteurs de marée et le pied de pilote. Rien de cela ne doit être déduit de cette carte simplifiée."
+      ],
+      "observe": [
+        "Ouvrez la carte. Repérez le nord, votre position et la prochaine marque.",
+        "Identifiez les terres à éviter le long de la route prévue."
+      ],
+      "mistake": "Supposer qu’un écran affichant votre position est une carte marine complète et à jour.",
+      "quiz": [
+        {
+          "prompt": "Que représentent les trois bouées ambrées de l’application ?",
+          "options": [
+            "L’ensemble du système international de balisage",
+            "Les cibles du parcours d’entraînement",
+            "Des marques garantissant des eaux sûres sur une vraie carte"
+          ],
+          "explanation": "Elles servent à s’exercer à naviguer, pas à enseigner toutes les marques réelles."
+        },
+        {
+          "prompt": "Que doit comprendre la vérification d’une vraie carte ?",
+          "options": [
+            "Seulement la luminosité de l’écran",
+            "Seulement le nom de la destination",
+            "L’échelle, la source, l’actualité, les profondeurs, les dangers et les conventions locales"
+          ],
+          "explanation": "Les cartes nécessitent interprétation et contexte pour contribuer à une navigation sûre."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-22": {
+      "title": "Gouvernez vers un point de route",
+      "concepts": [
+        "Un relèvement est la direction entre votre position et une cible. Avant de le suivre, déterminez si la route directe est sûre et praticable à la voile.",
+        "Un relèvement direct peut mener dans la zone non navigable face au vent ou traverser une terre. Dans ce cas, préparez une autre route plutôt que de forcer l’étrave vers la cible.",
+        "L’exercice commence au sud de la bouée 1. Utilisez la carte, gouvernez vers la marque et passez à moins de 35 mètres en maîtrisant la vitesse."
+      ],
+      "observe": [
+        "Ouvrez la carte avant de changer de cap.",
+        "Visez la bouée 1, puis vérifiez régulièrement votre progression et la profondeur."
+      ],
+      "mistake": "Se focaliser sur la cible et ignorer la terre, le trafic ou l’angle au vent.",
+      "quiz": [
+        {
+          "prompt": "Votre point de route est directement au vent. Que faut-il faire ?",
+          "options": [
+            "Préparer une route navigable en tirant des bords",
+            "Garder indéfiniment l’étrave dans la zone non navigable",
+            "Augmenter la lecture du compas jusqu’à ce que le vent change"
+          ],
+          "explanation": "Plusieurs bords peuvent être nécessaires pour progresser vers une destination au vent."
+        },
+        {
+          "prompt": "Le relèvement direct constitue-t-il toujours un cap sûr ?",
+          "options": [
+            "Oui",
+            "Seulement si le point de route est visible",
+            "Non ; vérifiez dangers, profondeur, vent et trafic"
+          ],
+          "explanation": "Un relèvement décrit une direction, pas sa sécurité."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Ouvrez la carte pour préparer l’approche"
+          },
+          {
+            "label": "Atteignez la bouée 1 avec au moins 3 m de profondeur"
+          }
+        ],
+        "debrief": "Vous avez relié la position cartographique au monde simulé et surveillé une véritable approche dans la simulation."
+      }
+    },
+    "sail-23": {
+      "title": "Estimez distance et durée",
+      "concepts": [
+        "Pour une première estimation, la distance est la vitesse multipliée par le temps. À 4 nœuds, un trajet de 3 milles marins prend 45 minutes si la vitesse reste constante et qu’il n’y a pas de courant.",
+        "La navigation à l’estime actualise une position antérieure à l’aide du cap, de la vitesse et du temps. Les estimations réelles tiennent aussi compte du courant, de la dérive et de l’incertitude ; un point obtenu par observations permet de les vérifier.",
+        "Notez les hypothèses et actualisez l’estimation lorsque les conditions changent. Ne confondez pas un nombre d’apparence précise avec une prévision exacte."
+      ],
+      "observe": [
+        "Calculez la durée pour 3 milles marins à 4 nœuds avant de regarder la réponse.",
+        "Décrivez une raison pour laquelle l’heure réelle d’arrivée pourrait différer."
+      ],
+      "mistake": "Mélanger minutes et heures, ou ignorer le courant et les changements de vitesse.",
+      "quiz": [
+        {
+          "prompt": "À 4 nœuds, combien dure un trajet de 3 milles marins sans courant ?",
+          "options": [
+            "30 minutes",
+            "45 minutes",
+            "75 minutes"
+          ],
+          "explanation": "3 ÷ 4 heures = 0,75 heure = 45 minutes."
+        },
+        {
+          "prompt": "Qu’est-ce qui vérifie une position estimée ?",
+          "options": [
+            "Supposer que le loch ne peut pas se tromper",
+            "Arrondir le nombre plus précisément",
+            "Une observation indépendante de position ou un point"
+          ],
+          "explanation": "Une estime doit être vérifiée et intégrer une marge d’incertitude."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-24": {
+      "title": "Effectuez une courte traversée",
+      "concepts": [
+        "Découpez la route en étapes gérables avec des cibles, des dangers et un plan pour le prochain virage bien définis. Assurez la veille avant de changer de cap à une marque.",
+        "L’exercice va du sud de la bouée 1 à la bouée 1, puis à la bouée 2. Le vent permet de suivre directement les deux étapes, mais vous devez tout de même tourner et régler à nouveau les voiles.",
+        "Conservez au moins 3 mètres de profondeur simulée. Un échouement invalide la tentative et impose de recommencer ; passer les marques ne suffit pas."
+      ],
+      "observe": [
+        "Étudiez les deux étapes avant de partir.",
+        "À la bouée 1, regardez vers la bouée 2 et préparez le changement de cap."
+      ],
+      "mistake": "Atteindre un point de route sans prévoir ce qui se passera juste après.",
+      "quiz": [
+        {
+          "prompt": "Quand faut-il considérer l’étape suivante ?",
+          "options": [
+            "Seulement après avoir laissé la carte derrière soi",
+            "Avant d’arriver au point de changement de cap",
+            "Jamais ; le bateau suit automatiquement les marques"
+          ],
+          "explanation": "L’anticipation laisse du temps pour la veille, la préparation de l’équipage et les changements de cap sûrs."
+        },
+        {
+          "prompt": "Vous avez passé les marques mais vous êtes échoué. La traversée est-elle réussie ?",
+          "options": [
+            "Non ; éviter les dangers fait partie de l’exercice",
+            "Oui ; seules les marques comptent",
+            "Oui, si la vitesse était élevée"
+          ],
+          "explanation": "Un parcours terminé n’est pas sûr si les marges essentielles ont été perdues."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Passez à moins de 35 m de la bouée 1"
+          },
+          {
+            "label": "Passez à moins de 35 m de la bouée 2"
+          }
+        ],
+        "debrief": "Vous avez préparé et parcouru deux étapes reliées. Marées, trafic et pilotage réel demandent une formation complémentaire."
+      }
+    },
+    "sail-25": {
+      "title": "Assurez une veille efficace",
+      "concepts": [
+        "Une bonne veille utilise la vue, l’ouïe et les moyens appropriés disponibles. Balayez l’avant, l’arrière et les deux côtés ; voiles et structures peuvent cacher d’autres bateaux.",
+        "Un navire dont le relèvement reste presque constant alors que la distance diminue signale un risque d’abordage. Réévaluez tôt plutôt que d’attendre une certitude à courte distance.",
+        "Les aides électroniques complètent la veille ; elles ne la remplacent pas. Ce monde contient des voiliers amarrés immobiles et n’évalue pas la détection réaliste du trafic."
+      ],
+      "observe": [
+        "Utilisez la caméra pour examiner le côté masqué par la voile d’avant.",
+        "Expliquez comment vous partageriez la veille avec un vrai équipage."
+      ],
+      "mistake": "Regarder seulement devant ou seulement le traceur de cartes.",
+      "quiz": [
+        {
+          "prompt": "Un navire proche garde un relèvement presque constant alors que la distance diminue. Qu’est-ce que cela peut indiquer ?",
+          "options": [
+            "Aucun risque puisqu’il ne change pas de direction dans la fenêtre",
+            "Un risque possible d’abordage",
+            "La garantie qu’il passera derrière"
+          ],
+          "explanation": "Relèvement constant et distance décroissante constituent un avertissement classique ; agissez tôt en considérant l’ensemble de la situation."
+        },
+        {
+          "prompt": "Un traceur de cartes peut-il remplacer la vue et l’ouïe ?",
+          "options": [
+            "Oui",
+            "Seulement de jour",
+            "Non"
+          ],
+          "explanation": "Utilisez tous les moyens appropriés disponibles et maintenez une veille extérieure."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-26": {
+      "title": "Raisonnez face aux rencontres",
+      "concepts": [
+        "Dans les cas simples de croisement entre deux voiliers : sous des amures différentes, le voilier bâbord amures s’écarte généralement du voilier tribord amures ; sous la même amure, celui au vent s’écarte généralement de celui sous le vent.",
+        "Le navire rattrapant s’écarte. Les responsabilités entre navires, les chenaux étroits, les dispositifs de circulation, la visibilité réduite et les règles locales peuvent modifier l’analyse. Ne résumez pas les règles à « la voile gagne toujours ».",
+        "Le navire qui doit maintenir cap et vitesse conserve des responsabilités et doit agir si nécessaire pour éviter l’abordage. Apprenez l’ensemble des règles anticollision applicables et les exigences locales avant de naviguer."
+      ],
+      "observe": [
+        "Identifiez le côté au vent de chaque bateau avant de déterminer son amure.",
+        "Énoncez les hypothèses avant d’appliquer une règle simplifiée de croisement."
+      ],
+      "mistake": "Considérer l’obligation de maintenir cap et vitesse comme une autorisation d’ignorer un risque d’abordage croissant.",
+      "quiz": [
+        {
+          "prompt": "Dans une rencontre simple entre deux voiliers sous des amures différentes, lequel s’écarte normalement ?",
+          "options": [
+            "Le voilier tribord amures",
+            "Le plus grand des deux",
+            "Le voilier bâbord amures"
+          ],
+          "explanation": "Selon la règle de base, le voilier bâbord amures s’écarte du voilier tribord amures, sous réserve de la situation complète et des autres règles applicables."
+        },
+        {
+          "prompt": "Le navire qui maintient cap et vitesse n’a-t-il plus aucune responsabilité ?",
+          "options": [
+            "Non ; il doit continuer à surveiller et agir selon les besoins pour éviter l’abordage",
+            "Oui ; il peut fermer les yeux",
+            "Oui ; l’autre navire assume toute la responsabilité"
+          ],
+          "explanation": "Éviter l’abordage est une obligation continue. Les règles complètes précisent les actions et responsabilités du navire qui maintient cap et vitesse."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-27": {
+      "title": "Feux, marques et signaux",
+      "concepts": [
+        "Les feux de navigation et marques de jour indiquent le type et l’activité d’un navire, pas seulement sa direction. Les feux de côté rouge et vert aident à identifier l’aspect présenté.",
+        "Dans le contexte international des signaux de manœuvre, un son bref signifie une modification du cap à tribord, deux à bâbord et trois la marche arrière de la propulsion. Les signaux de visibilité réduite constituent un autre système ; les règles locales ou fluviales peuvent différer.",
+        "Cette introduction ne couvre pas tout le programme de reconnaissance. Avant de naviguer de nuit ou par visibilité réduite, étudiez et pratiquez l’ensemble des règles applicables aux feux, marques et signaux sonores."
+      ],
+      "observe": [
+        "Identifiez le feu rouge de bâbord et le feu vert de tribord du voilier.",
+        "Distinguez un signal de manœuvre d’un signal employé par visibilité réduite."
+      ],
+      "mistake": "Supposer qu’un signal mémorisé s’applique dans toutes les juridictions et situations.",
+      "quiz": [
+        {
+          "prompt": "De quel côté se trouve normalement le feu rouge ?",
+          "options": [
+            "Tribord",
+            "Bâbord",
+            "Des deux côtés"
+          ],
+          "explanation": "Le feu de bâbord est rouge ; celui de tribord est vert."
+        },
+        {
+          "prompt": "Dans le contexte international de manœuvre indiqué, deux sons brefs signifient…",
+          "options": [
+            "Je viens sur bâbord",
+            "Je viens sur tribord",
+            "Tout le répertoire des signaux de brume"
+          ],
+          "explanation": "Deux sons brefs indiquent un changement de cap à bâbord dans ce contexte ; ne généralisez pas sans vérifier les règles applicables."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-28": {
+      "title": "Décidez de votre traversée",
+      "concepts": [
+        "Un plan de traversée prend en compte l’équipage, la météo, la route, les dangers, les contraintes de marée, le jour disponible, les abris, les communications et une heure limite de demi-tour.",
+        "Le sens marin consiste aussi à modifier ou abandonner un plan lorsque ses hypothèses ne tiennent plus. Ne laissez pas une promesse d’arrivée l’emporter sur les marges de sécurité.",
+        "Situation : équipage débutant, jour déclinant, vent annoncé en hausse et destination exposée. Un abri de repli est disponible à proximité."
+      ],
+      "observe": [
+        "Nommez les facteurs qui rendent la destination initiale moins adaptée.",
+        "Choisissez une solution prudente et expliquez-la à l’équipage."
+      ],
+      "mistake": "Continuer parce que la destination avait été promise avant le changement de conditions.",
+      "quiz": [
+        {
+          "prompt": "Dans cette situation, quelle décision est la plus raisonnable ?",
+          "options": [
+            "Continuer pour respecter l’horaire",
+            "Demander à l’équipier le moins expérimenté de décider seul",
+            "Réévaluer et privilégier l’abri de repli ou un retour anticipé"
+          ],
+          "explanation": "Une exposition croissante et des marges réduites justifient un changement de plan prudent."
+        },
+        {
+          "prompt": "Qu’est-ce qui rend un plan de renoncement utile ?",
+          "options": [
+            "Des points de décision clairs et des solutions viables",
+            "Repousser toute décision à la dernière minute",
+            "Promettre de ne jamais changer de cap"
+          ],
+          "explanation": "Des déclencheurs précis et des solutions de repli évitent les décisions précipitées sous pression."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-29": {
+      "title": "Préparez votre accostage",
+      "concepts": [
+        "Accoster combine vent, courant, effets de l’hélice, erre et coordination de l’équipage. Préparez pare-battages et amarres, répartissez les rôles, choisissez l’approche et gardez une issue de repli.",
+        "Approchez à la vitesse la plus faible permettant le contrôle nécessaire. N’utilisez jamais le corps d’une personne pour arrêter le bateau et ne placez ni mains ni pieds entre le bateau et le quai.",
+        "Systèmes du bateau comprend la poussée avant et arrière, et le modèle estime le courant. L’effet transversal de l’hélice, les efforts des gardes d’amarrage et le contact avec le quai ne sont pas modélisés. L’accostage est enseigné ici comme préparation et prise de décision ; toucher le quai représenté ne constitue pas une compétence d’accostage évaluée."
+      ],
+      "observe": [
+        "Décrivez l’approche, les tâches de l’équipage et le plan de nouvelle présentation avant de bouger.",
+        "Expliquez pourquoi vent et courant modifient une approche sûre."
+      ],
+      "mistake": "Compter sur l’équipage pour sauter à terre ou arrêter physiquement le voilier.",
+      "quiz": [
+        {
+          "prompt": "Si l’approche devient instable, quelle option doit avoir été prévue ?",
+          "options": [
+            "Demander à quelqu’un de repousser le quai avec un pied",
+            "Interrompre et refaire une approche contrôlée si c’est sûr",
+            "Accélérer pour en finir"
+          ],
+          "explanation": "Le plan de repli fait partie de la préparation ; évitez de piéger bateau et équipage dans une manœuvre irrécupérable."
+        },
+        {
+          "prompt": "Arriver à côté du ponton représenté prouve-t-il ici la maîtrise de l’accostage ?",
+          "options": [
+            "Non ; le contact, les gardes et les tâches de l’équipage ne sont pas évalués",
+            "Oui, si le bateau semble aligné",
+            "Oui, à n’importe quelle vitesse"
+          ],
+          "explanation": "Un résultat visuel sans les dynamiques correspondantes n’est pas une évaluation valable de la compétence."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-30": {
+      "title": "Choisissez un mouillage",
+      "concepts": [
+        "Choisissez un abri, un fond de bonne tenue, une profondeur suffisante sur toute la marée et de l’espace pour éviter sans atteindre les dangers ou les bateaux voisins.",
+        "Le rapport de mouillage compare la longueur filée à la distance verticale entre le davier et le fond. Le rapport nécessaire dépend de la ligne, de l’ancre, des conditions, du bateau et des recommandations ; aucun rapport ne garantit à lui seul la tenue.",
+        "Exemple uniquement arithmétique : avec 5 m d’eau et un davier à 1 m au-dessus, un rapport supposé de 5:1 donne 30 m de ligne. Ce calcul n’est pas une prescription de mouillage. Ajoutez les variations de marée et évaluez l’espace d’évitage."
+      ],
+      "observe": [
+        "Dessinez le cercle d’évitage prévu et les dangers proches.",
+        "Incluez la hauteur du davier dans la distance verticale de l’exemple."
+      ],
+      "mistake": "Multiplier seulement la profondeur cartographique, ou supposer qu’une ancre tient dès qu’elle touche le fond.",
+      "quiz": [
+        {
+          "prompt": "Avec les hypothèses de l’exemple, quelle longueur correspond à 5:1 ?",
+          "options": [
+            "25 m",
+            "30 m",
+            "5 m"
+          ],
+          "explanation": "La distance verticale vaut 5 + 1 = 6 m. Cinq fois 6 m donnent 30 m, avant les autres considérations réelles."
+        },
+        {
+          "prompt": "Que doit considérer un plan de mouillage en plus de la profondeur ?",
+          "options": [
+            "Seulement la distance jusqu’à un café",
+            "Seulement la couleur de l’ancre",
+            "L’abri, la tenue du fond, la marée, l’espace d’évitage et les dangers"
+          ],
+          "explanation": "La profondeur seule ne suffit pas à établir qu’un mouillage est adapté ou sûr."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-31": {
+      "title": "Ralentissez, puis mouillez",
+      "concepts": [
+        "Une vraie approche de mouillage est lente et contrôlée. L’équipage descend l’ancre et file la ligne volontairement, puis vérifie que l’ancre a croché et continue de surveiller la position.",
+        "Le modèle estime la longueur de ligne, le rayon d’évitage et la chasse due à un rapport insuffisant. Il ne valide pas l’accrochage sur un fond particulier et ne représente pas toute la caténaire. Cet exercice évalue le ralentissement et l’ordre des actions.",
+        "Affalez, ralentissez sur l’erre sous 0.8 nœud avec l’ancre relevée, puis mouillez. L’erre peut mettre quelques minutes à diminuer : filer la ligne n’est pas un frein instantané. Mouiller trop tôt invalide la tentative, car cela contourne l’exercice de contrôle de vitesse."
+      ],
+      "observe": [
+        "Réduisez la puissance des voiles bien avant le point d’arrêt prévu.",
+        "Attendez que la vitesse baisse avant d’utiliser la commande d’ancre."
+      ],
+      "mistake": "Mouiller à vitesse élevée au lieu de terminer une approche contrôlée.",
+      "quiz": [
+        {
+          "prompt": "Quel est le bon ordre pour cet exercice ?",
+          "options": [
+            "Mouiller à pleine vitesse, puis affaler",
+            "Affaler, ralentir ancre relevée, puis mouiller",
+            "Ignorer l’afficheur de vitesse"
+          ],
+          "explanation": "L’exercice vérifie l’anticipation et l’ordre des actions, pas la capacité de tenue de l’ancre."
+        },
+        {
+          "prompt": "L’arrêt du bateau démontre-t-il qu’une vraie ancre est correctement accrochée ?",
+          "options": [
+            "Oui",
+            "Seulement après 5 secondes",
+            "Non ; la tenue simulée ne prouve pas l’accrochage réel"
+          ],
+          "explanation": "Le mouillage réel exige des vérifications de tenue et une surveillance continue."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Affalez et ralentissez sous 0.8 nœud, ancre relevée"
+          },
+          {
+            "label": "Mouillez et stabilisez-vous sous 0.2 nœud"
+          }
+        ],
+        "debrief": "Vous avez pratiqué un arrêt contrôlé et le bon enchaînement simplifié. L’accrochage réel de l’ancre n’est pas évalué."
+      }
+    },
+    "sail-32": {
+      "title": "Préparez le départ",
+      "concepts": [
+        "Avant de partir, vérifiez à nouveau les alentours, la route prévue, les conditions et la préparation de l’équipage. Assurez-vous que cordages et matériel sont rangés et que chacun connaît la suite.",
+        "Pour ce départ simplifié, levez l’ancre, hissez les voiles et prenez une allure stable de travers ou de largue. Le scénario est déjà dégagé de toute terre, amarre et autre embarcation.",
+        "Dans un vrai port, lever l’ancre et hisser se préparent selon l’abri, l’espace, le trafic, le vent, le moteur disponible et le bateau. La configuration pratique du simulateur n’est pas une procédure universelle de départ."
+      ],
+      "observe": [
+        "Confirmez le vent et le cap prévu avant de libérer le bateau.",
+        "Rétablissez la propulsion à voile, retrouvez de la gouverne et partez sous contrôle."
+      ],
+      "mistake": "Libérer le bateau avant d’avoir un plan clair et assez d’espace.",
+      "quiz": [
+        {
+          "prompt": "Que faut-il avant de libérer le bateau ?",
+          "options": [
+            "Un briefing de l’équipage, de la veille et un plan clair",
+            "Un essai de vitesse maximale",
+            "Ne regarder la route qu’une fois parti"
+          ],
+          "explanation": "La préparation doit précéder le moment où le bateau devient libre de se déplacer."
+        },
+        {
+          "prompt": "Ce départ sous voiles en eau libre convient-il à tous les vrais mouillages ?",
+          "options": [
+            "Oui",
+            "Non ; adaptez le plan au bateau, à l’espace et aux conditions",
+            "Seulement avec un traceur de cartes"
+          ],
+          "explanation": "L’exercice omet de nombreuses contraintes des mouillages et ports réels."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Levez l’ancre"
+          },
+          {
+            "label": "Hissez les voiles"
+          },
+          {
+            "label": "Conservez une allure de travers ou de largue à plus de 2.5 nœuds"
+          }
+        ],
+        "debrief": "Vous avez rétabli volontairement le mouvement et assuré le contrôle dans une zone d’exercice préparée."
+      }
+    },
+    "sail-33": {
+      "title": "Priorités pour une personne à la mer",
+      "concepts": [
+        "Donnez l’alerte, gardez un contact visuel continu, pointez vers la personne et lancez les moyens de flottabilité et de repérage appropriés. Répartissez les rôles et demandez de l’aide selon la situation.",
+        "Une récupération réussie implique de revenir sûrement auprès de la victime, de s’arrêter au bon endroit, d’éviter les blessures par hélice et de la remonter à bord. La manœuvre précise dépend du bateau, de la voilure, des conditions et de la formation.",
+        "Il n’y a ici ni dynamique de personne à la mer ni modèle de récupération. Cette leçon vérifie uniquement les priorités. Pratiquez une manœuvre et un système adaptés au bateau avec un moniteur, en utilisant un objet d’entraînement plutôt qu’en mettant une personne en danger."
+      ],
+      "observe": [
+        "Désignez une personne chargée de pointer sans jamais perdre la victime de vue.",
+        "Expliquez pourquoi revenir à côté n’est qu’une partie de la récupération."
+      ],
+      "mistake": "Tout le monde regarde les commandes tandis que personne ne garde la victime en vue.",
+      "quiz": [
+        {
+          "prompt": "Quelle est une priorité immédiate après l’alerte ?",
+          "options": [
+            "Tout le monde change l’échelle de la carte",
+            "Garder le contact visuel et lancer les aides de flottabilité et de repérage appropriées",
+            "Attendre de voir si la personne revient à la nage"
+          ],
+          "explanation": "Repérer et soutenir la victime est urgent pendant que l’équipage organise la récupération et les secours."
+        },
+        {
+          "prompt": "Atteindre la victime termine-t-il la tâche ?",
+          "options": [
+            "Oui",
+            "Seulement de jour",
+            "Non ; l’arrêt sûr, la remontée à bord et les soins comptent aussi"
+          ],
+          "explanation": "La récupération comprend les gestes physiques difficiles et les soins à la victime, pas seulement la navigation."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-34": {
+      "title": "Détresse et action urgente",
+      "concepts": [
+        "La détresse correspond à un danger grave et imminent exigeant une assistance immédiate. Connaissez les équipements de communication, les procédures locales et la façon de donner identité, position, nature de l’urgence et aide demandée.",
+        "Face à un danger immédiat pour la vie, utilisez les moyens de détresse appropriés, comme l’alerte ASN/DSC et un appel MAYDAY sur le canal VHF 16 lorsqu’ils sont applicables et disponibles. Apprenez l’équipement avant le départ et n’émettez jamais de véritable alerte pour vous entraîner.",
+        "Après un échouement, une voie d’eau ou un incendie, protégez les personnes, évaluez la situation, appelez à l’aide si nécessaire et suivez les procédures propres au bateau. Mettre aveuglément de la puissance après un échouement peut aggraver les dégâts."
+      ],
+      "observe": [
+        "Répétez les informations que vous donneriez sans émettre.",
+        "Repérez la position simulée et expliquez ce dont un vrai service de secours a besoin."
+      ],
+      "mistake": "Raconter longuement les faits en oubliant position, identité ou nature de l’aide nécessaire.",
+      "quiz": [
+        {
+          "prompt": "Quelles informations sont centrales dans un message de détresse ?",
+          "options": [
+            "Seulement la couleur du voilier",
+            "Identité, position, danger et aide nécessaire",
+            "Un itinéraire complet de vacances"
+          ],
+          "explanation": "Des informations essentielles claires permettent aux secours de localiser le bateau et de prioriser la réponse."
+        },
+        {
+          "prompt": "Comment faut-il s’entraîner à un message radio d’urgence ?",
+          "options": [
+            "Émettre un vrai appel de détresse pour le réalisme",
+            "Déclencher l’alerte ASN/DSC sans prévenir",
+            "Répéter sans émettre ou dans un cadre de formation autorisé"
+          ],
+          "explanation": "Les fausses alertes peuvent détourner des moyens de secours réels."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    },
+    "sail-35": {
+      "title": "Votre première traversée évaluée",
+      "concepts": [
+        "Combinez les compétences sans précipitation : tenez un cap stable, réglez efficacement, changez d’amure en passant l’étrave face au vent, reprenez le contrôle et ralentissez jusqu’à un arrêt prévu.",
+        "Le simulateur donne des cibles mesurables, mais ne gouverne pas automatiquement. Chaque étape doit être accomplie dans l’ordre. Un échouement ou l’utilisation de l’ancre avant l’étape finale d’arrêt invalide la tentative.",
+        "La réussite démontre les tâches simulées sélectionnées, par vent constant et en eau libre. Elle ne prouve pas la compétence réelle en navigation, accostage, récupération d’urgence ou commandement."
+      ],
+      "observe": [
+        "Revoyez la séquence avant de sélectionner Commencer la pratique.",
+        "Utilisez la liste et maintenez la veille tout en surveillant les instruments."
+      ],
+      "mistake": "Considérer les compétences isolées comme indépendantes de la veille, de l’espace de manœuvre et de l’étape suivante.",
+      "quiz": [
+        {
+          "prompt": "Quel résultat constitue une traversée simulée réussie ?",
+          "options": [
+            "La vitesse élevée seule",
+            "Accomplir les étapes dans l’ordre en conservant les marges de sécurité",
+            "Toucher chaque commande une fois"
+          ],
+          "explanation": "L’évaluation combine exécution contrôlée, enchaînement et maintien des marges."
+        },
+        {
+          "prompt": "Si une tâche est invalidée, quelle est la bonne réaction ?",
+          "options": [
+            "Recommencer, comprendre la cause et pratiquer à nouveau",
+            "Ignorer l’avertissement et déclarer la réussite",
+            "Changer la météo jusqu’à ce que le résultat soit accepté"
+          ],
+          "explanation": "Comprendre la cause fait partie de l’apprentissage ; une tentative invalide n’est pas réussie."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Tenez 045° ±5° à plus de 2 nœuds"
+          },
+          {
+            "label": "Conservez un réglage efficace"
+          },
+          {
+            "label": "Virez de bord et retrouvez de la vitesse",
+            "hint": "Depuis le 045°, tournez à bâbord par le 315° et stabilisez-vous près du 265°."
+          },
+          {
+            "label": "Affalez et ralentissez sous 0.8 nœud"
+          },
+          {
+            "label": "Mouillez et stabilisez-vous sous 0.2 nœud"
+          }
+        ],
+        "debrief": "Vous avez enchaîné barre, réglage, virement et arrêt. Revoyez les conseils utilisés et recommencez avec moins d’aide."
+      }
+    },
+    "sail-36": {
+      "title": "De la simulation à la mer",
+      "concepts": [
+        "Revoyez la différence entre expliquer une tâche, la réaliser dans ce modèle et l’effectuer sur un vrai voilier. Votre suivi distingue les vérifications théoriques de la pratique simulée et conserve l’utilisation des conseils.",
+        "L’étape suivante est la formation encadrée sur l’eau : préparation et contrôle du matériel ; nœuds et manœuvre des cordages ; hissage, réglage, prise de ris, virements et empannages avec équipage ; conduite au moteur et accostage ; vrai mouillage ; veille et navigation ; récupération d’une personne à la mer.",
+        "Choisissez un moniteur et des conditions adaptés à votre expérience. Apportez votre suivi, expliquez les limites du simulateur et demandez une évaluation pratique individuelle. Terminer ce cours est une étape d’apprentissage, pas un permis ni une certification de sécurité."
+      ],
+      "observe": [
+        "Consultez votre suivi et identifiez les exercices ayant nécessité des conseils ou plusieurs tentatives.",
+        "Notez trois compétences réelles qui nécessitent encore une pratique encadrée."
+      ],
+      "mistake": "Prendre une marque de réussite comme preuve de pouvoir maîtriser tous les bateaux et toutes les conditions réelles.",
+      "quiz": [
+        {
+          "prompt": "Que doit suivre la réussite du cours ?",
+          "options": [
+            "Une formation encadrée sur l’eau et une évaluation pratique",
+            "Une navigation immédiate en solitaire dans des conditions inconnues",
+            "Supposer que l’accostage et le secours sont déjà maîtrisés"
+          ],
+          "explanation": "Le cours aide à se préparer ; il ne remplace pas l’expérience et l’enseignement réels."
+        },
+        {
+          "prompt": "Quelles compétences importantes ce simulateur n’évalue-t-il toujours pas ?",
+          "options": [
+            "Lire le cap simulé",
+            "Manœuvrer des cordages chargés, accoster au moteur et récupérer une victime",
+            "Changer de caméra"
+          ],
+          "explanation": "Ces compétences nécessitent des forces, du matériel, de la coordination et des conditions que cette version ne modélise pas."
+        }
+      ],
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+    }
+  }
+}

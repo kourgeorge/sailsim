@@ -1,0 +1,35 @@
+{
+  "results": [
+    {
+      "code": "en",
+      "passed": true,
+      "dir": "ltr"
+    },
+    {
+      "code": "es",
+      "passed": true,
+      "dir": "ltr"
+    },
+    {
+      "code": "ar",
+      "passed": true,
+      "dir": "rtl"
+    },
+    {
+      "code": "he",
+      "passed": true,
+      "dir": "rtl"
+    },
+    {
+      "code": "ru",
+      "passed": true,
+      "dir": "ltr"
+    },
+    {
+      "code": "fr",
+      "passed": true,
+      "dir": "ltr"
+    }
+  ],
+  "errors": []
+}

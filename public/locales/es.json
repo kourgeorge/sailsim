@@ -1,0 +1,1461 @@
+{
+  "modules": {
+    "aboard": {
+      "title": "Antes de zarpar",
+      "outcome": "Usa la terminología del barco, identifica el equipo esencial y prepara una explicación de seguridad para la tripulación."
+    },
+    "wind": {
+      "title": "Tu primera navegación",
+      "outcome": "Interpreta el viento, iza las velas, ponte en marcha y mantén un rumbo estable."
+    },
+    "trim": {
+      "title": "Aprovecha el viento",
+      "outcome": "Reconoce los rumbos respecto al viento y relaciona el ángulo de las velas con la velocidad y el rumbo."
+    },
+    "maneuvers": {
+      "title": "Cambia de dirección",
+      "outcome": "Orza, arriba, vira por avante, traslucha y sal de la zona muerta."
+    },
+    "conditions": {
+      "title": "Mantén el control",
+      "outcome": "Distingue el viento real del aparente, reduce vela y decide con prudencia según el tiempo."
+    },
+    "navigation": {
+      "title": "Encuentra tu ruta",
+      "outcome": "Interpreta una carta de prácticas, gobierna hacia una demora, vigila la profundidad y recorre una ruta corta."
+    },
+    "seamanship": {
+      "title": "Comparte el agua",
+      "outcome": "Mantén la vigilancia y razona situaciones básicas de tráfico y meteorología."
+    },
+    "harbor": {
+      "title": "Llega y sal",
+      "outcome": "Planifica atraques y fondeos, practica la parada y prepara la salida."
+    },
+    "readiness": {
+      "title": "Responde y repasa",
+      "outcome": "Explica las prioridades de emergencia y demuestra una navegación simulada completa."
+    }
+  },
+  "lessons": {
+    "sail-01": {
+      "title": "La seguridad antes que la velocidad",
+      "concepts": [
+        "Una buena salida empieza por la tripulación, el tiempo y el barco, no por el acelerador. Ponte un chaleco salvavidas bien ajustado, identifica el equipo de emergencia y acuerda cómo pedir ayuda y recuperar a una persona del agua.",
+        "Explica a todos el peligro de la botavara, los tropiezos, los asideros seguros y la necesidad de alejar las manos de cabos en tensión y winches. Comprueba la previsión, las restricciones locales, las comunicaciones, el combustible o la batería y el estado de navegabilidad del barco.",
+        "Elige condiciones adecuadas para el tripulante menos experimentado y acuerda un plan para interrumpir la salida. Este curso desarrolla conocimientos y determinadas habilidades simuladas; completarlo no habilita para patronear un velero real."
+      ],
+      "observe": [
+        "Antes de zarpar, indica dónde sentarse, cómo moverse y quién mantendrá la vigilancia.",
+        "Localiza la botavara e imagina su recorrido sobre la bañera."
+      ],
+      "mistake": "Salir porque hace buen tiempo sin consultar la previsión ni informar a la tripulación.",
+      "quiz": [
+        {
+          "prompt": "Hay un tripulante nuevo a bordo. ¿Qué debe hacerse antes de zarpar?",
+          "options": [
+            "Demostrar la velocidad máxima",
+            "Ajustar los chalecos y explicar los peligros, el equipo de emergencia y las funciones",
+            "Salir primero y explicar los controles durante la navegación"
+          ],
+          "explanation": "Prepara a la tripulación y el barco antes de salir; descubrir después que falta un elemento de seguridad es demasiado tarde."
+        },
+        {
+          "prompt": "¿Qué demuestra superar este curso del simulador?",
+          "options": [
+            "Permiso para alquilar cualquier velero",
+            "Comprensión y determinadas habilidades en una simulación simplificada",
+            "Preparación para navegar solo con cualquier tiempo"
+          ],
+          "explanation": "Siguen siendo necesarias la enseñanza y la evaluación en el agua. El simulador omite muchas exigencias físicas y ambientales."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-02": {
+      "title": "Conoce tu velero",
+      "concepts": [
+        "Proa es la parte delantera y popa la trasera. Mirando hacia proa, babor es la izquierda y estribor la derecha. Estos nombres pertenecen al barco y no cambian cuando te giras.",
+        "La vela mayor está detrás del mástil y la vela de proa delante. La botavara sostiene el pujamen de la mayor. La quilla aporta estabilidad y se opone al desplazamiento lateral; el timón gobierna cuando circula agua sobre él.",
+        "Usa Seguimiento para ver todo el barco, Puesto de gobierno para la vista de navegación y Bañera para observar la rueda, los winches y las pantallas."
+      ],
+      "observe": [
+        "Cambia a Bañera y localiza la rueda, el tambucho y los winches de escota.",
+        "Cambia a Seguimiento e identifica la proa, el mástil, la botavara y las dos velas."
+      ],
+      "mistake": "Llamar babor o estribor a un costado según la dirección en la que estés mirando.",
+      "quiz": [
+        {
+          "prompt": "Estás mirando hacia popa. ¿Dónde queda babor?",
+          "options": [
+            "A tu izquierda en ese momento",
+            "A tu derecha en ese momento",
+            "En el costado del que venga el viento"
+          ],
+          "explanation": "Babor es la izquierda del barco mirando hacia proa; por eso queda a tu derecha cuando miras hacia popa."
+        },
+        {
+          "prompt": "¿Qué necesita flujo de agua para gobernar eficazmente?",
+          "options": [
+            "El ancla",
+            "El mástil",
+            "El timón"
+          ],
+          "explanation": "El timón modifica la dirección del flujo de agua. A poca velocidad, su capacidad de gobierno disminuye."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-03": {
+      "title": "Cabos, winches y cargas",
+      "concepts": [
+        "Una driza iza una vela. Una escota ajusta su ángulo. Un rizo reduce la superficie de vela expuesta. Una cornamusa o mordaza sujeta un cabo; un winch ayuda a manejar la carga.",
+        "En este velero, las escotas de colores van hacia popa hasta los winches de la bañera. Observa las vueltas y las mordazas en la vista Bañera. El panel Sistemas del barco controla las dos drizas y escotas de forma independiente, además del carro, la contra, el tensor del pujamen, los rizos, el motor y la línea de fondeo. Los deslizadores representan ajustes, no el manejo físico de los cabos.",
+        "Los controles de izado de mayor y proa determinan la cantidad de vela expuesta. Las dos escotas modifican sus ángulos por separado. El carro desplaza el punto de tiro de la escota de la botavara; la tensión de la contra regula la torsión simulada y el tensor del pujamen aplana la parte baja de la vela. Cambia un control cada vez y compara la respuesta.",
+        "El nivel de rizo reduce la superficie de la mayor. El mando del motor selecciona atrás, punto muerto o avante; vuelve a punto muerto para las evaluaciones a vela. La línea de fondeo determina la longitud largada y afecta al círculo de borneo y al agarre simulados.",
+        "Mantén dedos, ropa suelta y pelo lejos de cabos en tensión. Aprende con un instructor a cargar un winch, manejar cabos, hacer nudos y largar con control; un ratón no enseña a sentir la carga de un cabo."
+      ],
+      "observe": [
+        "Sigue una escota de color desde la cubierta hasta su winch.",
+        "Compara la función de izado de la driza con la función de ajuste de la escota."
+      ],
+      "mistake": "Tratar una escota muy cargada como un cabo sin tensión o confundir la escota con la driza.",
+      "quiz": [
+        {
+          "prompt": "Quieres ajustar el ángulo de la mayor. ¿Qué cabo lo hace?",
+          "options": [
+            "Escota de mayor",
+            "Driza de mayor",
+            "Línea de fondeo"
+          ],
+          "explanation": "La escota de mayor controla el ángulo de la botavara y de la vela; la driza iza la vela."
+        },
+        {
+          "prompt": "¿Puede el modelo visual del winch evaluar el manejo seguro de un cabo cargado?",
+          "options": [
+            "Sí, por completo",
+            "Solo con el zoom al máximo",
+            "No; el manejo físico de cabos exige práctica supervisada"
+          ],
+          "explanation": "El equipo representado permite orientarse, pero no simula la posición de las manos, la fricción ni las cargas en los cabos."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-04": {
+      "title": "Lee los instrumentos",
+      "concepts": [
+        "El rumbo indica hacia dónde apunta la proa, medido en sentido horario desde el norte: 000° norte, 090° este, 180° sur y 270° oeste. La velocidad se muestra en nudos; un nudo equivale a una milla náutica por hora.",
+        "El indicador de viento muestra de dónde viene. El dial de viento a bordo está referido a la proa, mientras que la brújula superpuesta está referida al norte. La profundidad es la estimación del agua que hace el simulador, no el resguardo bajo la quilla.",
+        "En navegación real, el rumbo y la velocidad sobre el fondo pueden diferir del rumbo de proa y de la velocidad respecto al agua debido a la corriente y al abatimiento. Esta simulación estima ambos efectos; compara las lecturas en Sistemas del barco."
+      ],
+      "observe": [
+        "Abre Puesto de gobierno o Bañera y compara el trazador de cartas y el velocímetro con los indicadores superpuestos.",
+        "Abre la carta y encuentra el símbolo del barco y la flecha del norte."
+      ],
+      "mistake": "Interpretar la profundidad como resguardo garantizado o el rumbo como trayectoria asegurada sobre el fondo.",
+      "quiz": [
+        {
+          "prompt": "¿Qué rumbo señala al este?",
+          "options": [
+            "000°",
+            "090°",
+            "270°"
+          ],
+          "explanation": "Los rumbos se miden en sentido horario desde el norte; el este corresponde a 090°."
+        },
+        {
+          "prompt": "A 6 nudos, ¿qué distancia recorrerías en 30 minutos sin corriente?",
+          "options": [
+            "6 millas náuticas",
+            "12 millas náuticas",
+            "3 millas náuticas"
+          ],
+          "explanation": "Distancia = velocidad × tiempo. Seis millas náuticas por hora durante media hora son tres millas náuticas."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Observa los instrumentos de la bañera"
+          },
+          {
+            "label": "Abre la carta de navegación"
+          }
+        ],
+        "debrief": "Ya sabes localizar las pantallas. Comprueba los instrumentos con regularidad sin dejar de vigilar el exterior."
+      }
+    },
+    "sail-05": {
+      "title": "De dónde viene el viento",
+      "concepts": [
+        "Un viento del noroeste viene del noroeste y sopla hacia el sureste. Barlovento es hacia el origen del viento; sotavento, en sentido contrario.",
+        "Aquí el viento real es el movimiento del aire respecto al terreno fijo; el viento aparente es el relativo al velero en movimiento. Algunos instrumentos refieren el viento real al agua, así que comprueba su convención. El modelo empírico de fuerzas de vela usa el viento aparente; no es una predicción aerodinámica validada.",
+        "La zona muerta es el sector demasiado próximo al viento para que las velas impulsen el barco. Su límite varía según el barco y las condiciones; este simulador usa 38° a cada lado."
+      ],
+      "observe": [
+        "Con viento de 315°, compara en la brújula los rumbos 315°, 045° y 135°.",
+        "El rumbo 045° sitúa el viento aproximadamente de través."
+      ],
+      "mistake": "Interpretar la flecha como el lugar hacia el que va el viento en vez de su procedencia.",
+      "quiz": [
+        {
+          "prompt": "¿De dónde viene un viento de 315°?",
+          "options": [
+            "Sureste",
+            "Noroeste",
+            "Noreste"
+          ],
+          "explanation": "315° corresponde al noroeste. La dirección del viento se nombra convencionalmente por su procedencia."
+        },
+        {
+          "prompt": "¿Por qué un velero no puede avanzar de forma útil apuntando directamente al viento?",
+          "options": [
+            "La brújula deja de funcionar",
+            "La quilla pesa demasiado",
+            "Las velas no pueden generar una fuerza propulsora eficaz en esa dirección"
+          ],
+          "explanation": "Debes navegar fuera de la zona muerta y virar por avante para progresar contra el viento."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-06": {
+      "title": "Iza las velas",
+      "concepts": [
+        "En la práctica, prepara drizas y escotas, comprueba que los cabos estén libres y dispón de espacio de maniobra antes de izar. La mayor suele izarse con el barco aproado al viento y la escota largada para que no se llene inesperadamente.",
+        "El acceso rápido Izar velas mueve ambas; Sistemas del barco ofrece controles separados para mayor y proa. Estos controles no evalúan la secuencia real del amantillo, las mordazas, los patines ni el manejo del cabo del enrollador.",
+        "Una vez izadas, arriba lo suficiente para que las velas porten. Una vela izada no garantiza por sí sola velocidad."
+      ],
+      "observe": [
+        "Comienza el ejercicio aproado al viento y con las velas arriadas.",
+        "Iza las velas; en ejercicios posteriores girarás hacia un rumbo navegable."
+      ],
+      "mistake": "Suponer que las velas izadas siempre impulsan el barco o izar sin comprobar los cabos y la zona de la botavara.",
+      "quiz": [
+        {
+          "prompt": "Antes de izar una mayor real, ¿qué debes comprobar?",
+          "options": [
+            "Solo el color de la carta",
+            "Cabos libres, espacio de maniobra, tripulación y vela sin carga",
+            "Si el barco está a máxima velocidad"
+          ],
+          "explanation": "Prepararse evita atascos y cargas inesperadas en la vela."
+        },
+        {
+          "prompt": "¿El control Izar velas enseña todo el procedimiento real de izado?",
+          "options": [
+            "No; es un control combinado simplificado",
+            "Sí; no hay más pasos",
+            "Solo cuando el viento supera 20 nudos"
+          ],
+          "explanation": "Aún necesitas práctica supervisada con drizas, mordazas, patines y el equipo del barco."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Iza las velas"
+          }
+        ],
+        "debrief": "Has izado las velas en el modelo. El siguiente ejercicio comienza de través, donde pueden generar propulsión."
+      }
+    },
+    "sail-07": {
+      "title": "Siente cómo acelera el barco",
+      "concepts": [
+        "Al través, el viento llega aproximadamente perpendicular al barco. Es un buen punto de partida porque las velas pueden impulsar sin acercarse a la zona muerta.",
+        "El velero acelera gradualmente. Observa cómo aumenta la velocidad antes de aplicar mucho timón: el gobierno mejora al aumentar el flujo de agua sobre él.",
+        "Empieza con pequeños ajustes. Centrar el timón detiene el giro; no recupera automáticamente el rumbo anterior."
+      ],
+      "observe": [
+        "Comienza al 045° con viento del noroeste, velas izadas y ancla levada.",
+        "Selecciona Navegar y observa cómo aumenta la velocidad."
+      ],
+      "mistake": "Aplicar todo el timón estando parado y esperar que el barco gire sobre sí mismo al instante.",
+      "quiz": [
+        {
+          "prompt": "¿Cuándo aumenta la capacidad de gobierno de este timón?",
+          "options": [
+            "Al aumentar el flujo de agua y la velocidad del barco",
+            "Al bajar el ancla",
+            "Solo cuando se arrían las velas"
+          ],
+          "explanation": "Normalmente, un velero necesita flujo de agua sobre el timón para responder."
+        },
+        {
+          "prompt": "¿Qué ocurre al centrar el timón?",
+          "options": [
+            "El barco vuelve automáticamente al norte",
+            "El giro disminuye y el barco tiende a mantener el nuevo rumbo",
+            "El barco se detiene al instante"
+          ],
+          "explanation": "El timón controla el giro, no un rumbo de brújula seleccionado."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Supera los 3 nudos"
+          }
+        ],
+        "debrief": "La fuerza de las velas aceleró el barco; el timón se volvió eficaz al aumentar la velocidad."
+      }
+    },
+    "sail-08": {
+      "title": "Mantén un rumbo estable",
+      "concepts": [
+        "Gobernar un rumbo es un ciclo: elige una referencia lejana, comprueba la brújula, corrige ligeramente y centra el timón antes de pasarte.",
+        "Vigila más allá de los instrumentos. Un rumbo mantenido con precisión también puede conducir al peligro.",
+        "Mantén 045° con una tolerancia de 5° durante diez segundos seguidos, por encima de 2 nudos. El contador se reinicia si sales de la tolerancia."
+      ],
+      "observe": [
+        "Aplica breves correcciones a babor o estribor y después selecciona Centrar.",
+        "Observa cómo se estabiliza el rumbo en vez de mantener el timón metido."
+      ],
+      "mistake": "Mantener una corrección grande demasiado tiempo y oscilar a ambos lados del rumbo deseado.",
+      "quiz": [
+        {
+          "prompt": "Te acercas al rumbo deseado. ¿Qué suele ayudar a no pasarte?",
+          "options": [
+            "Centrar el timón con antelación",
+            "Aumentar el timón al máximo",
+            "Bajar el ancla"
+          ],
+          "explanation": "El barco tiene una respuesta de giro; reducir pronto la corrección ayuda a estabilizarlo."
+        },
+        {
+          "prompt": "¿Qué secuencia de gobierno está completa?",
+          "options": [
+            "Mirar solo la brújula",
+            "Dejar de mirar hasta que el barco derive",
+            "Vigilar, comprobar el rumbo, corregir ligeramente y volver a evaluar"
+          ],
+          "explanation": "El gobierno y la vigilancia deben hacerse a la vez."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Mantén 045° ±5°, a más de 2 nudos, durante 10 segundos",
+            "hint": "Babor reduce el rumbo de 060° hacia 045°. Centra antes de alcanzar el objetivo."
+          }
+        ],
+        "debrief": "Mantener un rumbo exige pequeñas correcciones y anticipación, no grandes movimientos continuos del timón."
+      }
+    },
+    "sail-09": {
+      "title": "Encuentra el través",
+      "concepts": [
+        "El rumbo respecto al viento describe la orientación del barco frente al viento, no frente al norte. Al través, el viento entra aproximadamente a 90° de la proa.",
+        "Se puede navegar al través en ambas amuras. Con viento de 315°, los rumbos próximos a 045° y 225° son de través.",
+        "Gobierna hasta que el ángulo de viento real esté entre 80° y 105° y mantén una velocidad útil."
+      ],
+      "observe": [
+        "Compara la marca de proa con la dirección del viento.",
+        "Observa que dos rumbos de brújula diferentes pueden corresponder al mismo rumbo respecto al viento."
+      ],
+      "mistake": "Memorizar un rumbo de brújula como si siempre correspondiera a una misma orientación respecto al viento.",
+      "quiz": [
+        {
+          "prompt": "¿Qué define navegar al través?",
+          "options": [
+            "Rumbo este",
+            "Viento aproximadamente a 90° de la proa",
+            "Velas completamente arriadas"
+          ],
+          "explanation": "Los rumbos de vela se definen respecto al viento."
+        },
+        {
+          "prompt": "Si el viento rola, ¿puede cambiar el rumbo respecto al viento aunque el rumbo de brújula sea el mismo?",
+          "options": [
+            "Sí",
+            "No",
+            "Solo fondeado"
+          ],
+          "explanation": "Una rolada cambia el ángulo entre la proa y el viento."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Mantén el través a más de 2 nudos durante 8 segundos"
+          }
+        ],
+        "debrief": "Has elegido un rumbo por su relación con el viento, no solo por la brújula."
+      }
+    },
+    "sail-10": {
+      "title": "Navega de ceñida",
+      "concepts": [
+        "Ceñir es navegar cerca del límite contra el viento, con las velas relativamente próximas a crujía. No orces tanto que flameen y se pierda la velocidad.",
+        "En este modelo simplificado, un ángulo de viento real de 45°–58° sirve para practicar la ceñida. En un velero real hay que valorar el viento aparente, la forma de las velas, los catavientos, el estado de la mar y el abatimiento.",
+        "Al orzar, caza gradualmente. Comprueba que mantienes una buena velocidad en vez de perseguir el menor ángulo posible al viento."
+      ],
+      "observe": [
+        "Empieza de través y gobierna más cerca del viento.",
+        "Caza la escota a medida que disminuye el ángulo al viento."
+      ],
+      "mistake": "Orzar demasiado: apuntar tan cerca del viento que se pierde la velocidad necesaria para que funcionen el barco y el timón.",
+      "quiz": [
+        {
+          "prompt": "¿Qué significa orzar en exceso?",
+          "options": [
+            "Navegar demasiado cerca del viento y perder propulsión útil",
+            "Navegar con demasiada cadena de ancla",
+            "Girar alejándose del viento"
+          ],
+          "explanation": "Un rumbo algo más abierto puede mejorar el avance contra el viento porque conserva la velocidad."
+        },
+        {
+          "prompt": "En comparación con el través, la mayor en ceñida suele ir…",
+          "options": [
+            "Más abierta",
+            "Completamente arriada",
+            "Más cazada hacia crujía"
+          ],
+          "explanation": "Al acercarse al viento, normalmente hay que cerrar el ángulo de la vela."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Mantén 45°–58° respecto al viento a más de 2 nudos"
+          }
+        ],
+        "debrief": "Has equilibrado el ángulo al viento con la velocidad. El simulador estima el abatimiento, pero no evalúa la lectura de catavientos reales."
+      }
+    },
+    "sail-11": {
+      "title": "Arriba hasta un largo",
+      "concepts": [
+        "Arribar es alejar la proa del viento. El ángulo al viento aumenta y, normalmente, hay que largar las velas.",
+        "Al largo, el viento entra por detrás del través. Al acercarte a popa redonda, vigila la posibilidad de una trasluchada involuntaria cuando el viento cruce la popa.",
+        "Busca un ángulo de 120°–150°, larga la escota de mayor y mantén el gobierno controlado."
+      ],
+      "observe": [
+        "Aumenta el ángulo al viento y después larga la escota.",
+        "Mientras aprendes, deja margen respecto a la popa redonda."
+      ],
+      "mistake": "Dejar la mayor demasiado cazada después de arribar o perder de vista hacia qué lado se moverá la botavara.",
+      "quiz": [
+        {
+          "prompt": "¿Qué ocurre con el ángulo al viento al arribar?",
+          "options": [
+            "Siempre se vuelve cero",
+            "Aumenta",
+            "Se convierte en un rumbo de brújula"
+          ],
+          "explanation": "La proa se aleja de la procedencia del viento."
+        },
+        {
+          "prompt": "¿Qué maniobra debes vigilar cerca de popa redonda?",
+          "options": [
+            "Una trasluchada involuntaria",
+            "Una virada por avante automática",
+            "Un fondeo instantáneo"
+          ],
+          "explanation": "Un pequeño cambio de rumbo o viento puede llevar el viento al otro lado de la popa y mover la botavara."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Mantén un largo, a 120°–150° del viento"
+          }
+        ],
+        "debrief": "Has aumentado el ángulo al viento evitando que este cruce la popa accidentalmente."
+      }
+    },
+    "sail-12": {
+      "title": "Ajusta las velas observando la respuesta",
+      "concepts": [
+        "Ajustar una vela consiste en adaptarla al flujo de aire. Una mayor demasiado cazada puede entrar en pérdida; demasiado largada puede flamear. El ajuste real depende de los catavientos, la forma de la vela y las sensaciones.",
+        "Aquí, el ángulo sugerido de la escota de mayor es una ayuda didáctica calculada a partir del viento aparente. Aplícalo y observa la velocidad. Es una guía propia del modelo, no una fórmula universal de ajuste.",
+        "La evaluación exige mantener la escota a menos de 6° del objetivo del modelo y superar 2 nudos durante diez segundos."
+      ],
+      "observe": [
+        "Deja el timón centrado y modifica solo la escota.",
+        "Espera la respuesta de la velocidad en vez de hacer grandes cambios continuamente."
+      ],
+      "mistake": "Cambiar rumbo y escota a la vez, de modo que no puedas saber qué ajuste mejoró el comportamiento.",
+      "quiz": [
+        {
+          "prompt": "Para comparar ajustes de manera útil, ¿qué técnica ayuda?",
+          "options": [
+            "Cambiar todos los controles rápidamente",
+            "Mantener un rumbo estable y cambiar una sola cosa cada vez",
+            "Fondear mientras se ajustan las velas"
+          ],
+          "explanation": "Un rumbo estable permite observar mejor el efecto de los cambios de escota."
+        },
+        {
+          "prompt": "¿El ángulo sugerido es una regla válida para todos los veleros reales?",
+          "options": [
+            "Sí",
+            "Solo de noche",
+            "No; pertenece a este modelo simplificado"
+          ],
+          "explanation": "El ajuste real exige observar la vela, el barco y las condiciones concretas."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Mantén un ajuste eficaz y velocidad durante 10 segundos"
+          }
+        ],
+        "debrief": "Has realizado un ajuste controlado y dejado tiempo para que responda la velocidad."
+      }
+    },
+    "sail-13": {
+      "title": "Orza y arriba",
+      "concepts": [
+        "Orzar es girar hacia la procedencia del viento; arribar es alejarse de ella. Babor y estribor indican la dirección del giro respecto al barco, no si estás orzando.",
+        "En una amura, girar a babor puede ser orzar; en la contraria, puede ser arribar. Razona siempre a partir de la dirección actual del viento.",
+        "Navega primero a 50° del viento y después a 110°. Estabiliza cada rumbo antes del siguiente cambio."
+      ],
+      "observe": [
+        "Observa si el ángulo al viento aumenta o disminuye con cada acción del timón.",
+        "Centra el timón en cada objetivo y adapta las velas al nuevo rumbo respecto al viento."
+      ],
+      "mistake": "Suponer que «girar a la izquierda» siempre significa «orzar».",
+      "quiz": [
+        {
+          "prompt": "¿Girar a babor siempre acerca la proa al viento?",
+          "options": [
+            "Sí",
+            "No; depende de la amura y de la dirección del viento",
+            "Solo por encima de 5 nudos"
+          ],
+          "explanation": "El mismo giro cambia la relación con el viento de manera distinta en amuras opuestas."
+        },
+        {
+          "prompt": "¿Qué debe seguir a un cambio importante de rumbo?",
+          "options": [
+            "Revisar el ajuste de velas y la vigilancia",
+            "Ignorar las velas",
+            "Fondear siempre"
+          ],
+          "explanation": "El nuevo rumbo cambia el flujo de aire y la situación alrededor del barco."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Estabilízate a 45°–55° del viento"
+          },
+          {
+            "label": "Arriba y estabilízate a 105°–115°"
+          }
+        ],
+        "debrief": "Has cambiado tu relación con el viento en ambos sentidos y estabilizado el barco entre los giros."
+      }
+    },
+    "sail-14": {
+      "title": "Haz una virada por avante controlada",
+      "concepts": [
+        "Virar por avante lleva la proa a través del viento y cambia de amura. Prepara a la tripulación y las escotas, comprueba que hay espacio y tráfico despejado y empieza con velocidad suficiente.",
+        "Es normal perder propulsión brevemente al atravesar la zona muerta. Mantén el giro decidido y luego centra el timón en la nueva ceñida y ajusta las velas.",
+        "El simulador cambia las velas de lado automáticamente. Este ejercicio evalúa el cruce por proa y la recuperación del control, no el manejo real de la escota de proa ni las voces de la tripulación."
+      ],
+      "observe": [
+        "Empieza con el viento por estribor y gira a estribor pasando por 315°.",
+        "Continúa más allá de la zona muerta, centra el timón y recupera velocidad."
+      ],
+      "mistake": "Detener el giro dentro de la zona muerta o llamar virada por avante a un cruce del viento por popa.",
+      "quiz": [
+        {
+          "prompt": "¿Qué parte del barco cruza el viento en una virada por avante?",
+          "options": [
+            "La popa",
+            "El ancla",
+            "La proa"
+          ],
+          "explanation": "La virada por avante lleva la proa a través de la procedencia del viento; la trasluchada lleva la popa."
+        },
+        {
+          "prompt": "¿Qué necesitas antes de girar?",
+          "options": [
+            "Vigilancia, espacio de maniobra, preparación y velocidad suficiente",
+            "El ancla ya fondeada",
+            "Toda la tripulación de pie bajo la botavara"
+          ],
+          "explanation": "La preparación y la arrancada ayudan a atravesar la zona muerta."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Haz pasar la proa por el viento y recupera más de 2 nudos",
+            "hint": "Gira a estribor pasando por 315°, continúa hasta aproximadamente 005° y centra. Ajusta las velas para el nuevo rumbo."
+          }
+        ],
+        "debrief": "La evaluación registró el cruce por proa, el cambio de amura y la recuperación de velocidad. El cambio de escotas debe practicarse en el agua."
+      }
+    },
+    "sail-15": {
+      "title": "Haz una trasluchada planificada",
+      "concepts": [
+        "Una trasluchada lleva la popa a través del viento. La botavara puede cruzar la bañera con fuerza: comprueba la zona, avisa a la tripulación y controla la escota de mayor según el procedimiento de tu instructor.",
+        "Aproxímate de forma deliberada al largo y haz un pequeño cruce controlado por popa. Evita que la botavara cruce sin control o girar innecesariamente hasta el través en la otra amura.",
+        "La botavara está animada, pero no simula fuerzas de impacto ni lesiones. La evaluación reconoce un cruce por popa y un nuevo largo estable."
+      ],
+      "observe": [
+        "Empieza al 160° con viento de 315°. Gira a babor hacia 135° y continúa cruzándolo.",
+        "Estabilízate cerca de 110° y mantén el viento bien por detrás del través."
+      ],
+      "mistake": "Tratar la trasluchada como un giro brusco sin aviso y con la escota de mayor totalmente suelta.",
+      "quiz": [
+        {
+          "prompt": "¿Cuál es el principal peligro de una trasluchada para la tripulación?",
+          "options": [
+            "Una inversión de la brújula",
+            "La botavara y la escota de mayor cruzando la bañera",
+            "Que el ancla pese más"
+          ],
+          "explanation": "Controla la botavara y mantén a las personas fuera de su recorrido."
+        },
+        {
+          "prompt": "¿Qué distingue una trasluchada de una virada por avante?",
+          "options": [
+            "La popa pasa por el viento",
+            "El barco debe usar el motor",
+            "Las velas siempre están arriadas"
+          ],
+          "explanation": "En la trasluchada, el viento cruza la popa; en la virada por avante, la proa."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Cruza el viento con la popa y estabilízate en la nueva amura",
+            "hint": "Gira a babor pasando por 135° y estabilízate cerca de 110°. Centra el timón."
+          }
+        ],
+        "debrief": "Has realizado el cruce correcto por popa. El control real de la mayor debe aprenderse con supervisión."
+      }
+    },
+    "sail-16": {
+      "title": "Recupérate de la pérdida de propulsión",
+      "concepts": [
+        "Quedar aproado al viento significa estar parado o casi parado apuntando hacia él. Las velas flamean y el timón pierde eficacia al disminuir la velocidad.",
+        "Evita esa situación conservando arrancada en la virada y sin orzar demasiado. Este ejercicio comienza con movimiento residual hacia delante: arriba enseguida y ajusta las velas para recuperar la propulsión.",
+        "Un velero real completamente parado puede necesitar una vela acuartelada, ayuda del motor u otro método específico. El acuartelamiento no está modelado. El motor está disponible en navegación libre, pero este ejercicio de arrancada residual exige punto muerto; reinicia si pierdes todo el gobierno."
+      ],
+      "observe": [
+        "Usa la arrancada restante para alejarte del rumbo 315°.",
+        "No esperes a que la velocidad llegue a cero antes de corregir."
+      ],
+      "mistake": "Esperar que el timón haga girar un velero totalmente parado sin flujo de agua.",
+      "quiz": [
+        {
+          "prompt": "¿Por qué debes actuar antes de perder toda la velocidad?",
+          "options": [
+            "El flujo de agua restante conserva capacidad de gobierno",
+            "La carta desaparecerá",
+            "Las velas se volverán demasiado cortas"
+          ],
+          "explanation": "Usa el gobierno restante para salir de la zona muerta."
+        },
+        {
+          "prompt": "¿Este ejercicio enseña todos los métodos para recuperar un velero real completamente parado?",
+          "options": [
+            "Sí",
+            "No; evalúa la recuperación a vela con arrancada residual",
+            "Solo amurado a estribor"
+          ],
+          "explanation": "El ejercicio trata la recuperación con arrancada; la recuperación real depende del barco y la situación."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Sal de la zona muerta y recupera más de 2 nudos",
+            "hint": "Gira a estribor hacia 010° o más antes de perder la arrancada restante."
+          }
+        ],
+        "debrief": "Has aprovechado la arrancada residual. Recuperar un barco parado es otra habilidad práctica."
+      }
+    },
+    "sail-17": {
+      "title": "Viento real y aparente",
+      "concepts": [
+        "Un velero en movimiento recibe viento aparente: el movimiento del aire respecto al barco. Incluso en calma, avanzar produce un flujo de aire desde proa.",
+        "Al aumentar la velocidad del barco, el viento aparente suele adelantarse respecto al real. Navegando a favor del viento, avanzar en su mismo sentido puede reducir la velocidad aparente.",
+        "Compara el viento real del dial con el aparente en Sistemas del barco. Las fuerzas de vela y los ángulos de escota sugeridos usan el viento aparente; este modelo empírico no sustituye observar catavientos y forma de las velas."
+      ],
+      "observe": [
+        "Imagina ir en bicicleta con aire en calma: notas viento de frente.",
+        "Compara el indicador de viento aparente al aumentar la velocidad con rumbo estable."
+      ],
+      "mistake": "Suponer que el viento real y el aparente tienen idénticas dirección y velocidad mientras el barco se mueve.",
+      "quiz": [
+        {
+          "prompt": "¿Qué viento recibe realmente una vela en movimiento?",
+          "options": [
+            "Solo el viento de la previsión",
+            "Viento aparente",
+            "Un viento fijo de brújula"
+          ],
+          "explanation": "Las velas interactúan con el flujo de aire relativo al velero en movimiento."
+        },
+        {
+          "prompt": "¿Qué usa este prototipo para calcular la fuerza de las velas?",
+          "options": [
+            "Un modelo empírico que utiliza viento aparente",
+            "Una simulación aerodinámica completa validada",
+            "Flujo de aire medido en la perilla del mástil"
+          ],
+          "explanation": "El viento aparente refleja el movimiento del barco. El modelo empírico de fuerzas sigue omitiendo muchos detalles aerodinámicos reales."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-18": {
+      "title": "Toma rizos antes de necesitarlos",
+      "concepts": [
+        "Tomar rizos reduce la superficie vélica para mejorar el control cuando aumenta el viento. La decisión debe considerar previsión, rachas, estado de la mar, capacidad de la tripulación y comportamiento del barco, no una regla universal de velocidad del viento.",
+        "La escora excesiva, el timón duro y la dificultad para controlar el barco justifican revisar pronto la superficie vélica. Esperar puede complicar el trabajo cuando empeoran las condiciones.",
+        "El control Rizo reduce la altura de la mayor y la propulsión simulada. No enseña los procedimientos de cabos de rizo, ollao de amura ni drizas."
+      ],
+      "observe": [
+        "Observa la escora y la velocidad con la brisa de 22 nudos del ejercicio.",
+        "Selecciona Rizo, mantén un rumbo abierto al viento y compara la respuesta."
+      ],
+      "mistake": "Esperar hasta que la tripulación esté sobrecargada o usar un umbral fijo de viento sin considerar el barco.",
+      "quiz": [
+        {
+          "prompt": "¿Cuál es una buena razón para tomar rizos pronto?",
+          "options": [
+            "Cada vez cuesta más mantener el control del velero",
+            "Querer la máxima escora posible",
+            "Todos los veleros toman rizos exactamente a 20 nudos"
+          ],
+          "explanation": "Tomar rizos es una decisión de control basada en el barco, la tripulación y las condiciones."
+        },
+        {
+          "prompt": "¿Qué habilidad real no evalúa el botón Rizo?",
+          "options": [
+            "Reconocer la reducción de superficie vélica",
+            "Leer la velocidad del barco",
+            "Manejar drizas y cabos de rizo bajo carga"
+          ],
+          "explanation": "Un único control representa de forma simplificada varias tareas físicas importantes."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Toma un rizo y mantén capacidad de gobierno durante 10 segundos"
+          }
+        ],
+        "debrief": "Has reducido superficie vélica conservando el control. Tomar rizos de verdad exige un procedimiento practicado por la tripulación."
+      }
+    },
+    "sail-19": {
+      "title": "Reduce la potencia deliberadamente",
+      "concepts": [
+        "Reducir la fuerza propulsora frena el barco, pero queda arrancada. Deja espacio de maniobra y no trates un velero como un coche con frenos inmediatos.",
+        "Puedes descargar parte de la propulsión largando la escota de mayor. Arriar las velas elimina su potencia simulada; el barco sigue por inercia y pierde capacidad de gobierno al ralentizarse.",
+        "En este ejercicio, reduce la potencia vélica, arría y espera a estar por debajo de 1 nudo. El ancla no sustituye una reducción de velocidad planificada."
+      ],
+      "observe": [
+        "Compara la velocidad antes y después de arriar.",
+        "Observa la demora y la pérdida de eficacia del timón."
+      ],
+      "mistake": "Fondear a velocidad como forma habitual de detenerse.",
+      "quiz": [
+        {
+          "prompt": "¿Qué permanece después de arriar las velas?",
+          "options": [
+            "La arrancada",
+            "Toda la fuerza propulsora de las velas",
+            "Gobierno garantizado a velocidad cero"
+          ],
+          "explanation": "El barco sigue moviéndose hasta que la resistencia reduce su velocidad."
+        },
+        {
+          "prompt": "¿Por qué dejar espacio al reducir velocidad?",
+          "options": [
+            "Un velero siempre invierte la marcha al instante",
+            "Hay que anticipar la distancia de parada y la pérdida de gobierno",
+            "La brújula deja de ser fiable a poca velocidad"
+          ],
+          "explanation": "Planifica la reducción con suficiente antelación para conservar el control."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Arría las velas"
+          },
+          {
+            "label": "Pierde arrancada hasta menos de 1 nudo sin fondear"
+          }
+        ],
+        "debrief": "Has dejado disminuir la arrancada en vez de esperar una parada inmediata."
+      }
+    },
+    "sail-20": {
+      "title": "Establece un límite meteorológico",
+      "concepts": [
+        "Consulta la previsión marítima para toda la salida y un margen posterior. Considera viento medio, rachas, cambios de dirección, estado de la mar, visibilidad, temperatura, mareas y efectos locales.",
+        "El viento contra corriente puede hacer más empinadas las olas. Un viento de tierra puede dificultar el regreso; una costa expuesta a sotavento puede dejar poco espacio para recuperarse de una avería.",
+        "Decide antes de salir si se puede zarpar y qué alternativas de escape hay. La simulación permite viento constante ajustable, pero no frentes de racha, peligros de olas rompientes, previsiones ni corrientes de marea variables; la corriente ajustable es una aproximación constante."
+      ],
+      "observe": [
+        "Con tripulación principiante, decide qué cambio te haría acortar o cancelar la salida.",
+        "Nombra una alternativa abrigada y una hora límite de regreso."
+      ],
+      "mistake": "Tomar un viento medio flojo como prueba de que toda la salida será segura.",
+      "quiz": [
+        {
+          "prompt": "El viento medio es manejable, pero se prevén rachas fuertes y peor visibilidad. ¿Qué conviene hacer?",
+          "options": [
+            "Ignorar las rachas",
+            "Salir porque solo importa la velocidad media",
+            "Reevaluar la salida según la capacidad de la tripulación y las alternativas seguras"
+          ],
+          "explanation": "Importan toda la previsión y su evolución, no una sola cifra."
+        },
+        {
+          "prompt": "¿Puede esta simulación evaluar el manejo con mar rompiente o viento contra marea?",
+          "options": [
+            "No",
+            "Sí, usando el velocímetro",
+            "Solo con rizos"
+          ],
+          "explanation": "Esas dinámicas ambientales no están implementadas y requieren formación específica."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-21": {
+      "title": "Lee una carta de prácticas",
+      "concepts": [
+        "Una carta es una herramienta de planificación, no una imagen que seguir a ciegas. Comprueba escala, orientación, profundidades, peligros, marcas, procedencia y actualidad.",
+        "La carta ficticia muestra islas, tu velero y boyas ámbar del recorrido. Esas marcas son objetivos de entrenamiento, no una representación completa del sistema de balizamiento IALA.",
+        "Antes de una travesía real, aprende símbolos cartográficos, cero hidrográfico, balizamiento local, alturas de marea y resguardo bajo la quilla. Nada de ello debe deducirse de este mapa simplificado."
+      ],
+      "observe": [
+        "Abre la carta. Localiza el norte, tu posición y la siguiente marca.",
+        "Identifica la tierra de la que debes mantenerte apartado en la ruta prevista."
+      ],
+      "mistake": "Suponer que una pantalla con tu posición es una carta náutica completa y actualizada.",
+      "quiz": [
+        {
+          "prompt": "¿Qué representan las tres boyas ámbar de esta aplicación?",
+          "options": [
+            "El sistema internacional completo de balizamiento",
+            "Objetivos del recorrido de prácticas",
+            "Marcas de aguas seguras garantizadas en una carta real"
+          ],
+          "explanation": "Sirven para practicar navegación, no para enseñar todas las marcas reales."
+        },
+        {
+          "prompt": "¿Qué debe incluir la revisión de una carta real?",
+          "options": [
+            "Solo el brillo de la pantalla",
+            "Solo el nombre del destino",
+            "Escala, procedencia, actualidad, profundidades, peligros y convenciones locales"
+          ],
+          "explanation": "Las cartas necesitan interpretación y contexto para apoyar una navegación segura."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-22": {
+      "title": "Gobierna hacia un punto de paso",
+      "concepts": [
+        "Una demora es la dirección desde tu posición hasta un objetivo. Antes de seguirla, decide si la derrota directa es segura y navegable a vela.",
+        "Una demora directa puede apuntar a la zona muerta o cruzar tierra. En esos casos, planifica otra ruta en vez de forzar la proa hacia el objetivo.",
+        "El ejercicio empieza al sur de la boya 1. Usa la carta, gobierna hacia la marca y pasa a menos de 35 metros manteniendo la velocidad controlada."
+      ],
+      "observe": [
+        "Abre la carta antes de cambiar de rumbo.",
+        "Apunta hacia la boya 1 y comprueba con regularidad el avance y la profundidad."
+      ],
+      "mistake": "Obsesionarse con el objetivo e ignorar tierra, tráfico o ángulo al viento.",
+      "quiz": [
+        {
+          "prompt": "Tu punto de paso está directamente a barlovento. ¿Qué necesitas?",
+          "options": [
+            "Planificar una ruta navegable mediante viradas por avante",
+            "Mantener indefinidamente la proa en la zona muerta",
+            "Aumentar la lectura de la brújula hasta que cambie el viento"
+          ],
+          "explanation": "Puede que necesites varios tramos para avanzar hacia un destino a barlovento."
+        },
+        {
+          "prompt": "¿La demora directa siempre corresponde a un rumbo seguro?",
+          "options": [
+            "Sí",
+            "Solo si el punto de paso es visible",
+            "No; comprueba peligros, profundidad, viento y tráfico"
+          ],
+          "explanation": "Una demora describe una dirección, no su seguridad."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Abre la carta para planificar la aproximación"
+          },
+          {
+            "label": "Llega a la boya 1 con al menos 3 m de profundidad"
+          }
+        ],
+        "debrief": "Has relacionado la posición en la carta con el entorno y vigilado una aproximación real dentro de la simulación."
+      }
+    },
+    "sail-23": {
+      "title": "Estima distancia y tiempo",
+      "concepts": [
+        "Como primera estimación, distancia es velocidad multiplicada por tiempo. A 4 nudos, un tramo de 3 millas náuticas tarda 45 minutos si la velocidad es constante y no hay corriente.",
+        "La navegación por estima actualiza una posición anterior usando rumbo, velocidad y tiempo. La estimación real también considera corriente, abatimiento e incertidumbre; una posición obtenida por observaciones permite comprobarla.",
+        "Anota las suposiciones y actualiza la estimación cuando cambien las condiciones. No confundas una cifra de aspecto preciso con una predicción exacta."
+      ],
+      "observe": [
+        "Calcula el tiempo para 3 millas náuticas a 4 nudos antes de consultar la respuesta.",
+        "Explica una razón por la que la hora real de llegada podría ser diferente."
+      ],
+      "mistake": "Mezclar minutos y horas o ignorar la corriente y los cambios de velocidad.",
+      "quiz": [
+        {
+          "prompt": "A 4 nudos, ¿cuánto tarda un tramo de 3 millas náuticas sin corriente?",
+          "options": [
+            "30 minutos",
+            "45 minutos",
+            "75 minutos"
+          ],
+          "explanation": "3 ÷ 4 horas = 0,75 horas = 45 minutos."
+        },
+        {
+          "prompt": "¿Qué permite comprobar una posición estimada?",
+          "options": [
+            "Suponer que la corredera no puede equivocarse",
+            "Redondear la cifra con más precisión",
+            "Una observación independiente de la posición o una situación obtenida por observaciones"
+          ],
+          "explanation": "Una estima necesita comprobación y un margen de incertidumbre."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-24": {
+      "title": "Haz una travesía corta",
+      "concepts": [
+        "Divide la ruta en tramos manejables con objetivos, peligros y un plan para el siguiente giro bien definidos. Mantén la vigilancia antes de cambiar de rumbo en una marca.",
+        "Este ejercicio va desde el sur de la boya 1 hasta la boya 1 y después a la boya 2. El viento permite navegar directamente ambos tramos, pero aún debes girar y reajustar las velas.",
+        "Mantén al menos 3 metros de profundidad simulada. Varar invalida el intento y exige reiniciar; pasar las marcas no basta."
+      ],
+      "observe": [
+        "Estudia ambos tramos antes de salir.",
+        "En la boya 1, mira hacia la boya 2 y prepara el cambio de rumbo."
+      ],
+      "mistake": "Llegar a un punto de paso sin planificar lo que ocurrirá inmediatamente después.",
+      "quiz": [
+        {
+          "prompt": "¿Cuándo debes considerar el siguiente tramo?",
+          "options": [
+            "Solo después de dejar atrás la carta",
+            "Antes de llegar al punto de giro",
+            "Nunca; el barco sigue las marcas automáticamente"
+          ],
+          "explanation": "Anticiparse deja tiempo para vigilar, preparar a la tripulación y cambiar de rumbo con seguridad."
+        },
+        {
+          "prompt": "Has pasado las marcas pero has varado. ¿La travesía fue satisfactoria?",
+          "options": [
+            "No; evitar los peligros forma parte de la tarea",
+            "Sí; solo importan las marcas",
+            "Sí, si la velocidad era alta"
+          ],
+          "explanation": "Una ruta completada no es segura si se han perdido los márgenes esenciales."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Pasa a menos de 35 m de la boya 1"
+          },
+          {
+            "label": "Pasa a menos de 35 m de la boya 2"
+          }
+        ],
+        "debrief": "Has planificado y navegado dos tramos conectados. Las mareas, el tráfico y el practicaje real requieren formación adicional."
+      }
+    },
+    "sail-25": {
+      "title": "Mantén una vigilancia eficaz",
+      "concepts": [
+        "Una vigilancia adecuada usa vista, oído y todos los medios apropiados disponibles. Observa a proa, a popa y a ambos costados; las velas y las estructuras pueden ocultar otras embarcaciones.",
+        "Un barco que permanece con demora casi constante mientras se acerca advierte de riesgo de abordaje. Reevalúa pronto en vez de esperar a estar seguro a corta distancia.",
+        "Las ayudas electrónicas apoyan la vigilancia, no la sustituyen. Este entorno contiene veleros amarrados estáticos y no evalúa la detección realista del tráfico."
+      ],
+      "observe": [
+        "Usa la cámara para observar el costado oculto por la vela de proa.",
+        "Explica cómo repartirías la vigilancia con una tripulación real."
+      ],
+      "mistake": "Mirar solo hacia delante o solo al trazador de cartas.",
+      "quiz": [
+        {
+          "prompt": "Un barco cercano mantiene una demora casi constante mientras disminuye la distancia. ¿Qué podría indicar?",
+          "options": [
+            "No hay riesgo porque no cambia de dirección en la ventana",
+            "Posible riesgo de abordaje",
+            "Garantía de que pasará por popa"
+          ],
+          "explanation": "Demora constante y distancia decreciente son una advertencia clásica; actúa pronto considerando toda la situación."
+        },
+        {
+          "prompt": "¿Puede un trazador de cartas sustituir la vista y el oído?",
+          "options": [
+            "Sí",
+            "Solo de día",
+            "No"
+          ],
+          "explanation": "Usa todos los medios apropiados disponibles y mantén vigilancia exterior."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-26": {
+      "title": "Razona los encuentros",
+      "concepts": [
+        "En los casos básicos de cruce entre dos veleros: con amuras distintas, el amurado a babor normalmente se mantiene apartado del amurado a estribor; con la misma amura, el de barlovento suele mantenerse apartado del de sotavento.",
+        "El barco que alcanza se mantiene apartado. Las responsabilidades entre buques, los canales estrechos, los dispositivos de tráfico, la visibilidad reducida y las normas locales pueden cambiar el análisis. No reduzcas las reglas a «la vela siempre tiene prioridad».",
+        "El barco que debe mantener rumbo y velocidad sigue teniendo responsabilidades y debe actuar cuando sea necesario para evitar un abordaje. Aprende el reglamento completo aplicable y las exigencias locales antes de navegar."
+      ],
+      "observe": [
+        "Identifica el costado de barlovento de cada barco antes de determinar su amura.",
+        "Expón las condiciones asumidas antes de aplicar una regla de cruce simplificada."
+      ],
+      "mistake": "Interpretar la obligación de mantener rumbo y velocidad como permiso para ignorar un riesgo de abordaje creciente.",
+      "quiz": [
+        {
+          "prompt": "En un encuentro básico entre dos veleros con amuras diferentes, ¿cuál suele mantenerse apartado?",
+          "options": [
+            "El amurado a estribor",
+            "El que sea más grande",
+            "El amurado a babor"
+          ],
+          "explanation": "Según la regla básica de veleros, el amurado a babor se aparta del amurado a estribor, considerando toda la situación y las demás reglas aplicables."
+        },
+        {
+          "prompt": "¿El barco que debe mantener rumbo y velocidad queda libre de toda responsabilidad?",
+          "options": [
+            "No; debe seguir vigilando y actuar según sea necesario para evitar el abordaje",
+            "Sí; puede cerrar los ojos",
+            "Sí; el otro barco asume toda la responsabilidad"
+          ],
+          "explanation": "Evitar abordajes es una obligación continua. Las reglas completas especifican las acciones y responsabilidades del barco que mantiene rumbo y velocidad."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-27": {
+      "title": "Luces, marcas y señales",
+      "concepts": [
+        "Las luces de navegación y las marcas diurnas comunican el tipo y la actividad del buque, no solo su dirección. Las luces laterales roja y verde ayudan a identificar qué parte observas.",
+        "En el contexto internacional de señales de maniobra, una pitada corta significa cambiar a estribor; dos, a babor; tres, dar propulsión atrás. Las señales de visibilidad reducida son otro sistema; las normas locales o de aguas interiores pueden diferir.",
+        "Esta introducción no cubre todo el programa de reconocimiento. Antes de navegar de noche o con visibilidad reducida, estudia y practica todas las reglas aplicables de luces, marcas y señales acústicas."
+      ],
+      "observe": [
+        "Identifica la luz roja de babor y la verde de estribor del velero.",
+        "Distingue una señal de maniobra de una utilizada con visibilidad reducida."
+      ],
+      "mistake": "Suponer que una señal memorizada se aplica en cualquier jurisdicción y situación.",
+      "quiz": [
+        {
+          "prompt": "¿Qué costado lleva normalmente la luz roja?",
+          "options": [
+            "Estribor",
+            "Babor",
+            "Ambos costados"
+          ],
+          "explanation": "La luz de babor es roja; la de estribor es verde."
+        },
+        {
+          "prompt": "En el contexto internacional de señales de maniobra indicado, dos pitadas cortas significan…",
+          "options": [
+            "Caer a babor",
+            "Caer a estribor",
+            "Todo el repertorio de señales de niebla"
+          ],
+          "explanation": "Dos pitadas cortas significan cambiar de rumbo a babor en ese contexto; no generalices sin comprobar las reglas aplicables."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-28": {
+      "title": "Decide sobre la travesía",
+      "concepts": [
+        "Un plan de travesía incluye tripulación, previsión, ruta, peligros, limitaciones de marea, luz diurna, refugios, comunicaciones y una hora límite para regresar.",
+        "La buena práctica marinera incluye cambiar o abandonar el plan cuando dejan de cumplirse sus supuestos. No permitas que una promesa de llegada pese más que los márgenes de seguridad.",
+        "Situación: llevas tripulación principiante, queda poca luz, se prevé más viento y el destino está expuesto. Hay una alternativa abrigada cerca."
+      ],
+      "observe": [
+        "Enumera los factores que hacen menos adecuado el destino original.",
+        "Elige una alternativa prudente y explica a la tripulación por qué."
+      ],
+      "mistake": "Continuar porque se prometió el destino antes de que cambiaran las condiciones.",
+      "quiz": [
+        {
+          "prompt": "En la situación descrita, ¿qué decisión es más sensata?",
+          "options": [
+            "Continuar para cumplir el horario",
+            "Pedir al tripulante menos experimentado que decida solo",
+            "Reevaluar y preferir la alternativa abrigada o un regreso temprano"
+          ],
+          "explanation": "La mayor exposición y los márgenes decrecientes justifican cambiar el plan con prudencia."
+        },
+        {
+          "prompt": "¿Qué hace útil un plan para interrumpir la salida?",
+          "options": [
+            "Puntos de decisión claros y alternativas viables",
+            "Dejar todas las decisiones para el último momento",
+            "Prometer no cambiar nunca de rumbo"
+          ],
+          "explanation": "Unos desencadenantes y alternativas concretos evitan decisiones precipitadas bajo presión."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-29": {
+      "title": "Planifica la aproximación al atraque",
+      "concepts": [
+        "Atracar combina viento, corriente, efectos de la hélice, arrancada y coordinación de la tripulación. Prepara defensas y cabos, asigna funciones, elige una aproximación y conserva una vía de escape.",
+        "Aproxímate a la menor velocidad que permita el control necesario. Nunca uses el cuerpo de una persona para frenar el barco ni pongas manos o pies entre el velero y el muelle.",
+        "Sistemas del barco incluye empuje avante y atrás, y el modelo estima la corriente. No modela el efecto lateral de la hélice, las fuerzas de los esprines ni el contacto con el muelle. Aquí el atraque se enseña como planificación y toma de decisiones; tocar el muelle visual no demuestra una habilidad de atraque evaluada."
+      ],
+      "observe": [
+        "Describe la aproximación, las tareas de la tripulación y el plan para repetirla antes de moverte.",
+        "Explica por qué viento y corriente cambian una aproximación segura."
+      ],
+      "mistake": "Confiar en que la tripulación salte a tierra o detenga físicamente el velero.",
+      "quiz": [
+        {
+          "prompt": "Si la aproximación se vuelve inestable, ¿qué opción debería estar prevista?",
+          "options": [
+            "Pedir a alguien que separe el barco con un pie",
+            "Abortar y hacer una nueva aproximación controlada si es seguro",
+            "Aumentar la velocidad para terminar cuanto antes"
+          ],
+          "explanation": "El plan de escape forma parte de la preparación; evita atrapar al barco o a la tripulación en una maniobra irrecuperable."
+        },
+        {
+          "prompt": "¿Llegar junto al pantalán representado demuestra aquí competencia de atraque?",
+          "options": [
+            "No; no se evalúan el contacto, los esprines ni las tareas de la tripulación",
+            "Sí, si el barco parece alineado",
+            "Sí, a cualquier velocidad"
+          ],
+          "explanation": "Un resultado visual sin las dinámicas correspondientes no es una evaluación válida de la habilidad."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-30": {
+      "title": "Elige un fondeadero",
+      "concepts": [
+        "Busca abrigo, fondo con buen agarre, profundidad suficiente durante toda la marea y espacio de borneo sin alcanzar peligros ni otros barcos.",
+        "La relación de fondeo compara la longitud largada con la distancia vertical desde la roldana de proa hasta el fondo. La necesaria depende de la línea, el ancla, las condiciones, el barco y las indicaciones; ninguna relación garantiza por sí sola el agarre.",
+        "Ejemplo solo aritmético: con 5 m de agua y una roldana a 1 m sobre ella, una relación supuesta de 5:1 da 30 m de línea. El cálculo no prescribe cuánto largar. Añade los cambios de marea y evalúa el espacio de borneo."
+      ],
+      "observe": [
+        "Dibuja el círculo de borneo esperado y los peligros cercanos.",
+        "Incluye la altura de la roldana en la distancia vertical del ejemplo."
+      ],
+      "mistake": "Multiplicar solo la profundidad cartografiada o suponer que el ancla siempre agarra al tocar fondo.",
+      "quiz": [
+        {
+          "prompt": "Con los supuestos del ejemplo, ¿cuánta línea corresponde a 5:1?",
+          "options": [
+            "25 m",
+            "30 m",
+            "5 m"
+          ],
+          "explanation": "La distancia vertical es 5 + 1 = 6 m. Cinco veces 6 m son 30 m, antes de considerar los demás factores reales."
+        },
+        {
+          "prompt": "Además de la profundidad, ¿qué debe considerar el plan de fondeo?",
+          "options": [
+            "Solo la distancia a una cafetería",
+            "Solo el color del ancla",
+            "Abrigo, tipo de fondo, marea, espacio de borneo y peligros"
+          ],
+          "explanation": "La profundidad por sí sola no determina si un fondeadero es adecuado o seguro."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-31": {
+      "title": "Reduce velocidad y después fondea",
+      "concepts": [
+        "Una aproximación real al fondeo es lenta y controlada. La tripulación baja el ancla y larga la línea deliberadamente; después comprueba que el ancla ha agarrado y continúa vigilando la posición.",
+        "El modelo estima longitud de línea, radio de borneo y garreo por relación de fondeo insuficiente. No valida el agarre en un fondo concreto ni representa toda la catenaria. Este ejercicio evalúa la reducción de velocidad y el orden de las acciones.",
+        "Arría las velas, pierde arrancada hasta menos de 0.8 nudos con el ancla arriba y después fondea. La arrancada puede tardar unos minutos en desaparecer: largar línea no es un freno instantáneo. Fondear antes invalida el intento porque evita el ejercicio de control de velocidad."
+      ],
+      "observe": [
+        "Reduce la potencia vélica mucho antes del punto de parada previsto.",
+        "Espera a que baje la velocidad antes de usar el control del ancla."
+      ],
+      "mistake": "Fondear a velocidad en vez de completar una aproximación controlada.",
+      "quiz": [
+        {
+          "prompt": "¿Cuál es la secuencia correcta en este ejercicio?",
+          "options": [
+            "Fondear a máxima velocidad y después arriar",
+            "Arriar, reducir velocidad con el ancla arriba y después fondear",
+            "Ignorar el velocímetro"
+          ],
+          "explanation": "El ejercicio comprueba anticipación y secuencia, no la capacidad de agarre del ancla."
+        },
+        {
+          "prompt": "¿Quedarse parado demuestra que un ancla real está bien afirmada?",
+          "options": [
+            "Sí",
+            "Solo después de 5 segundos",
+            "No; el agarre simulado no prueba el agarre real"
+          ],
+          "explanation": "El fondeo real exige comprobar el agarre y mantener la vigilancia."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Arría y reduce a menos de 0.8 nudos, con el ancla arriba"
+          },
+          {
+            "label": "Fondea y estabilízate por debajo de 0.2 nudos"
+          }
+        ],
+        "debrief": "Has practicado una parada controlada y la secuencia simplificada correcta. No se evalúa el agarre real del ancla."
+      }
+    },
+    "sail-32": {
+      "title": "Prepárate para salir",
+      "concepts": [
+        "Antes de zarpar, revisa de nuevo el entorno, la ruta prevista, las condiciones y la preparación de la tripulación. Asegura cabos y equipo y comprueba que todos saben qué ocurrirá después.",
+        "En esta salida simplificada, leva ancla, iza velas y establece un rumbo estable abierto al viento. El escenario ya está libre de tierra, cabos y otras embarcaciones.",
+        "En un puerto real, los planes de levar e izar dependen del abrigo, el espacio, el tráfico, el viento, la disponibilidad del motor y el barco. La preparación cómoda del simulador no es un procedimiento universal de salida."
+      ],
+      "observe": [
+        "Confirma el viento y el rumbo deseado antes de liberar el barco.",
+        "Recupera la potencia vélica, gana gobierno y sal de forma controlada."
+      ],
+      "mistake": "Liberar el barco antes de tener un plan claro y espacio suficiente.",
+      "quiz": [
+        {
+          "prompt": "¿Qué debe hacerse antes de liberar el barco?",
+          "options": [
+            "Informar a la tripulación, vigilar y tener un plan claro",
+            "Una prueba de velocidad máxima",
+            "Mirar la ruta solo después de salir"
+          ],
+          "explanation": "La preparación debe preceder al momento en que el barco queda libre para moverse."
+        },
+        {
+          "prompt": "¿Esta salida a vela en aguas abiertas sirve para cualquier fondeadero real?",
+          "options": [
+            "Sí",
+            "No; planifica según el barco, el espacio y las condiciones concretas",
+            "Solo si hay un trazador de cartas"
+          ],
+          "explanation": "El ejercicio omite muchas limitaciones de fondeaderos y puertos reales."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Leva ancla"
+          },
+          {
+            "label": "Iza las velas"
+          },
+          {
+            "label": "Mantén un rumbo abierto al viento a más de 2.5 nudos"
+          }
+        ],
+        "debrief": "Has recuperado el movimiento deliberadamente y establecido el control en una zona de prácticas preparada."
+      }
+    },
+    "sail-33": {
+      "title": "Prioridades ante una persona al agua",
+      "concepts": [
+        "Da la alarma, mantén contacto visual continuo, señala a la persona y lanza los medios de flotación y señalización adecuados. Asigna funciones y pide ayuda según la situación.",
+        "Una recuperación satisfactoria incluye volver con seguridad junto a la persona, detenerse en una posición adecuada, evitar lesiones por la hélice y subirla a bordo. La maniobra exacta depende del barco, el aparejo, las condiciones y la formación.",
+        "Aquí no hay un modelo de dinámica ni recuperación de persona al agua. La lección comprueba solo prioridades. Practica la maniobra y el sistema de recuperación propios del barco con un instructor, usando un objeto de entrenamiento en vez de poner a alguien en peligro."
+      ],
+      "observe": [
+        "Asigna a una persona para señalar continuamente al náufrago sin perderlo de vista.",
+        "Explica por qué volver a su lado es solo una parte de la recuperación."
+      ],
+      "mistake": "Que todos miren los controles mientras nadie mantiene a la persona a la vista.",
+      "quiz": [
+        {
+          "prompt": "¿Cuál es una prioridad inmediata tras dar la alarma?",
+          "options": [
+            "Que todos cambien la escala de la carta",
+            "Mantener contacto visual y lanzar medios adecuados de flotación y señalización",
+            "Esperar a ver si la persona vuelve nadando"
+          ],
+          "explanation": "Localizar y sostener a la persona es urgente mientras la tripulación organiza la recuperación y la ayuda."
+        },
+        {
+          "prompt": "¿Llegar hasta la persona completa la tarea?",
+          "options": [
+            "Sí",
+            "Solo de día",
+            "No; también importan parar con seguridad, subirla a bordo y atenderla después"
+          ],
+          "explanation": "La recuperación incluye los difíciles pasos físicos y la atención a la persona, no solo navegar hasta ella."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-34": {
+      "title": "Socorro y actuación urgente",
+      "concepts": [
+        "El socorro corresponde a un peligro grave e inminente que exige ayuda inmediata. Conoce los equipos de comunicación del barco, los procedimientos locales y cómo dar identidad, posición, naturaleza de la emergencia y ayuda necesaria.",
+        "Ante un peligro inmediato para la vida, usa los medios de socorro apropiados, como la alerta DSC y una llamada MAYDAY por el canal 16 de VHF donde corresponda y estén disponibles. Aprende el equipo antes de salir y nunca emitas una alerta real para practicar.",
+        "Tras una varada, entrada de agua o incendio, protege a las personas, evalúa la situación, pide ayuda cuando sea necesario y sigue los procedimientos de emergencia del barco. Aplicar potencia a ciegas tras una varada puede agravar los daños."
+      ],
+      "observe": [
+        "Ensaya la información que proporcionarías sin transmitir.",
+        "Localiza la posición simulada y explica qué necesita un servicio real de rescate."
+      ],
+      "mistake": "Contar una historia larga omitiendo posición, identidad o el tipo de ayuda necesario.",
+      "quiz": [
+        {
+          "prompt": "¿Qué información es esencial en un mensaje de socorro?",
+          "options": [
+            "Solo el color del velero",
+            "Identidad, posición, peligro y ayuda necesaria",
+            "Un itinerario completo de vacaciones"
+          ],
+          "explanation": "La información esencial y clara ayuda a localizar el barco y priorizar la respuesta."
+        },
+        {
+          "prompt": "¿Cómo debes practicar un mensaje de emergencia por radio?",
+          "options": [
+            "Emitir una llamada real de socorro para darle realismo",
+            "Activar la alerta DSC sin avisar",
+            "Ensayar sin transmitir o en un entorno de formación autorizado"
+          ],
+          "explanation": "Las falsas alertas pueden desviar recursos de emergencias reales."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    },
+    "sail-35": {
+      "title": "Tu primera travesía evaluada",
+      "concepts": [
+        "Combina las habilidades sin prisas: establece un rumbo estable, ajusta bien las velas, cambia de amura pasando la proa por el viento, recupera el control y reduce velocidad hasta una parada planificada.",
+        "El simulador proporciona objetivos medibles, pero no gobierno automático. Debes completar cada etapa en orden. Varar o usar el ancla antes de la etapa final de parada invalida el intento.",
+        "Superarlo demuestra las tareas simuladas seleccionadas con viento constante y aguas abiertas. No demuestra competencia real de navegación, atraque, recuperación de emergencia ni patrón."
+      ],
+      "observe": [
+        "Repasa la secuencia antes de seleccionar Comenzar práctica.",
+        "Usa la lista y mantén la vigilancia mientras compruebas los instrumentos."
+      ],
+      "mistake": "Tratar habilidades aisladas como si fueran independientes de la vigilancia, el espacio de maniobra y el siguiente paso.",
+      "quiz": [
+        {
+          "prompt": "¿Qué resultado cuenta como una travesía simulada satisfactoria?",
+          "options": [
+            "Solo alcanzar mucha velocidad",
+            "Completar las etapas en orden manteniendo los márgenes de seguridad",
+            "Tocar todos los controles una vez"
+          ],
+          "explanation": "La evaluación combina ejecución controlada, secuencia y mantenimiento de márgenes."
+        },
+        {
+          "prompt": "Si una tarea se invalida, ¿cuál es la respuesta correcta?",
+          "options": [
+            "Reiniciar, comprender la causa y volver a practicar",
+            "Ignorar el aviso y darla por superada",
+            "Cambiar el tiempo hasta que se acepte el resultado"
+          ],
+          "explanation": "Revisar la causa forma parte del aprendizaje; los intentos inválidos no se aprueban."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "practice": {
+        "steps": [
+          {
+            "label": "Mantén 045° ±5° a más de 2 nudos"
+          },
+          {
+            "label": "Mantén un ajuste eficaz"
+          },
+          {
+            "label": "Vira por avante y recupera velocidad",
+            "hint": "Desde 045°, gira a babor pasando por 315° y estabilízate cerca de 265°."
+          },
+          {
+            "label": "Arría y reduce a menos de 0.8 nudos"
+          },
+          {
+            "label": "Fondea y estabilízate por debajo de 0.2 nudos"
+          }
+        ],
+        "debrief": "Has enlazado gobierno, ajuste, virada y parada. Revisa las pistas utilizadas y repite con menos ayuda."
+      }
+    },
+    "sail-36": {
+      "title": "De la simulación al mar",
+      "concepts": [
+        "Repasa la diferencia entre explicar una tarea, realizarla en el modelo y hacerla en un velero real. Tu registro separa las pruebas teóricas de la práctica simulada y anota el uso de pistas.",
+        "El siguiente paso es la formación supervisada en el agua: preparación y revisión del equipo; nudos y manejo de cabos; izado, ajuste, rizos, viradas y trasluchadas con tripulación; maniobra a motor y atraque; fondeo real; vigilancia y navegación; y recuperación de persona al agua.",
+        "Elige un instructor y condiciones adecuados a tu experiencia. Lleva tu registro, explica las limitaciones del simulador y pide una evaluación práctica individual. Completar el curso es un hito de aprendizaje, no una licencia ni un certificado de seguridad."
+      ],
+      "observe": [
+        "Revisa tu registro e identifica ejercicios en los que usaste pistas o repetiste intentos.",
+        "Anota tres habilidades reales que aún necesitan práctica supervisada."
+      ],
+      "mistake": "Tomar una insignia de finalización como prueba de poder manejar con seguridad cualquier barco y condición reales.",
+      "quiz": [
+        {
+          "prompt": "¿Qué debe seguir a la finalización satisfactoria?",
+          "options": [
+            "Formación supervisada en el agua y evaluación práctica",
+            "Navegar inmediatamente solo en condiciones desconocidas",
+            "Suponer que ya dominas el atraque y el rescate"
+          ],
+          "explanation": "El curso ayuda a prepararse; no sustituye la experiencia ni la enseñanza reales."
+        },
+        {
+          "prompt": "¿Qué habilidades importantes siguen sin evaluarse en este simulador?",
+          "options": [
+            "Leer el rumbo simulado",
+            "Manejar cabos bajo carga, atracar a motor y recuperar a una persona",
+            "Cambiar de cámara"
+          ],
+          "explanation": "Esas habilidades requieren fuerzas, equipo, coordinación y condiciones que esta versión no modela."
+        }
+      ],
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+    }
+  }
+}

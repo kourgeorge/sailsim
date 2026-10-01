@@ -220,7 +220,7 @@ lesson('seamanship','Make a passage decision',[
 lesson('harbor','Plan a docking approach',[
  'Docking combines wind, current, propeller effects, boat momentum, and crew coordination. Prepare fenders and lines, assign roles, choose an approach, and keep an escape route.',
  'Approach at the lowest speed that preserves the control you need. Never use a person’s body to stop the boat or put hands or feet between the yacht and dock.',
- 'Boat systems includes ahead and reverse thrust, and the model estimates current and prop walk. Spring-line forces and dock contact are not modeled. Docking is taught here as planning and decision-making; touching the visual dock is not an assessed docking skill.'
+ 'Boat systems includes ahead and reverse thrust, and the model estimates current. Prop walk, spring-line forces, and dock contact are not modeled. Docking is taught here as planning and decision-making; touching the visual dock is not an assessed docking skill.'
 ],['Describe your approach, crew jobs, and go-around plan before moving.','Explain why wind and current change a safe approach.'], 'Relying on crew to jump ashore or physically catch the yacht.',[
  q('If the approach becomes unstable, what should the preplanned option be?',['Ask someone to fend off with a foot','Abort and make a controlled new approach if safe','Add speed to get it over with'],1,'An escape plan is part of preparation; avoid trapping the boat or crew in an unrecoverable maneuver.'),
  q('Can arriving beside the rendered pontoon prove docking competence here?',['No; dock contact, spring lines, and crew tasks are not assessed','Yes, if the boat looks aligned','Yes, at any speed'],0,'A visual result without the relevant dynamics is not a valid skill assessment.')]);

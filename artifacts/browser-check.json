@@ -1,0 +1,26 @@
+{
+  "passed": true,
+  "errors": [],
+  "consoleErrors": [],
+  "checkedAt": "2026-10-01T00:18:13.453Z",
+  "features": [
+    "lesson feedback",
+    "mastery",
+    "36-lesson library",
+    "ordered practice",
+    "persistence",
+    "keyboard helm",
+    "tab visibility pause",
+    "independent sails",
+    "reef levels",
+    "traveler",
+    "vang",
+    "outhaul",
+    "engine neutral/astern",
+    "anchor rode",
+    "current",
+    "cameras",
+    "mobile",
+    "archive"
+  ]
+}
