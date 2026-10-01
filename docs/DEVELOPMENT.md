@@ -33,6 +33,12 @@ For a committed change that should be undone while preserving history, inspect i
 
 ## Validation
 
+The focused deployment checks are `npm test`, `npm run build`, `npm run format:check`, and `npm run test:browser`. The Playwright suite starts and stops its own production preview on port 5198. To verify a Pages build locally, run `npm run build -- --base /sailsim/`, then `SAIL_TEST_BASE_PATH=/sailsim/ npm run test:browser`.
+
+Course persistence now lives in `src/learning/progress-store.js`. It serializes read/merge/write transactions across tabs with Web Locks where available, merges counter deltas and stable report IDs, and receives storage updates without changing the active lesson or attempt. Language navigation waits for pending saves. Maneuver replay restoration accepts the same finite, nonnegative timeline as recording; sample and history counts remain bounded.
+
+`src/activity/controller.js` owns playback and overlay gates. Decision scenarios use their own navigation and hide the unrelated playback button. `src/scene.js` draws paused scenes only after invalidation or while the camera is settling; controls, camera input, resizing, text sizing and context restoration invalidate the view. `render()` remains an explicit forced draw for scene harnesses, while the application loop calls `renderIfNeeded()`.
+
 ```sh
 npm test
 npm run build

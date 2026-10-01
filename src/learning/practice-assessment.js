@@ -139,6 +139,7 @@ export function practiceAssessment(attempt, lesson) {
   const passed = attempt.status === 'passed' && complete === objectives.length && objectives.length > 0 && !attempt.criticalFailure && rawScore >= PRACTICE_SCORE_RULES.passScore;
   const status = attempt.status === 'active' ? 'active' : passed ? 'passed' : 'failed';
   return {
+    ...(typeof attempt.id==='string'?{id:attempt.id}:{}),
     version: 1, windlassAssessmentVersion: attempt.windlassAssessmentVersion===WINDLASS_ASSESSMENT_VERSION?WINDLASS_ASSESSMENT_VERSION:null,
     lessonId: lesson.id, status, score: status === 'failed' ? Math.min(PRACTICE_SCORE_RULES.failedScoreCap, rawScore) : rawScore,
     maxScore: 100, completionScore: round(completionScore), penalties,
@@ -188,7 +189,7 @@ export function restorePracticeAssessment(value, lesson) {
   const criticalFailure = value.criticalFailure && typeof value.criticalFailure.code === 'string' && typeof value.criticalFailure.message === 'string' ? { code: value.criticalFailure.code.slice(0, 60), message: value.criticalFailure.message.slice(0, 240) } : null;
   if (criticalFailure?.code === 'collision') criticalFailure.collision = collisionEvidence(value.criticalFailure.collision);
   if (value.status === 'passed' && criticalFailure) return null;
-  const report=practiceAssessment({ lessonId: lesson.id,windlassAssessmentVersion, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
+  const report=practiceAssessment({ id:typeof value.id==='string'&&value.id.length<=160?value.id:undefined,lessonId: lesson.id,windlassAssessmentVersion, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
   if(!windlassAssessmentVersion&&rubric.some(objective=>objective.kind==='anchor'))report.debrief.summary=typeof value.debrief?.summary==='string'?value.debrief.summary.slice(0,1000):null;
   return report;
 }

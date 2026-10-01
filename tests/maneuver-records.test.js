@@ -2,6 +2,17 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {initialState} from '../src/physics.js';
 import {createManeuverRecord,captureManeuver,finishManeuverRecord,restoreManeuverRecords,addManeuverRecord,sampleAtTime} from '../src/learning/maneuver-records.js';
+test('a long recorded run survives reload with its full timeline and bounded samples',()=>{
+ const state=initialState(),record=createManeuverRecord('engine-stop',state);
+ for(let time=.25;time<=7201;time+=.25)captureManeuver(record,state,time);
+ finishManeuverRecord(record,{elapsed:7201,status:'failed',message:'Ended',metrics:{},events:[]},state);
+ assert.ok(record.samples.length<=3001);
+ const restored=restoreManeuverRecords(JSON.stringify([record]),['engine-stop']);
+ assert.equal(restored.length,1);
+ assert.equal(restored[0].samples[0].t,0);
+ assert.equal(restored[0].samples.at(-1).t,7201);
+ assert.equal(sampleAtTime(restored[0].samples,7201).sample.t,7201);
+});
 test('recording follows simulation time and replay never changes live state',()=>{const s=initialState(),r=createManeuverRecord('engine-stop',s);captureManeuver(r,s,.1);assert.equal(r.samples.length,1);s.x=1;captureManeuver(r,s,.2);s.x=2;captureManeuver(r,s,.4);const before=structuredClone(s);assert.equal(sampleAtTime(r.samples,.3).sample.x,1);assert.deepEqual(s,before);captureManeuver(r,s,.3,true);assert.equal(r.samples.length,3);});
 test('saved replay restoration rejects malformed and active attempts while bounding history',()=>{const s=initialState(),r=createManeuverRecord('engine-stop',s);finishManeuverRecord(r,{elapsed:.4,status:'passed',message:'Complete',metrics:{distance:2},events:[{type:'checkpoint',time:.4,index:0}]},s);assert.equal(restoreManeuverRecords(JSON.stringify([r]),['engine-stop']).length,1);assert.equal(restoreManeuverRecords([r],['other']).length,0);for(const patch of [{status:'active'},{samples:[{...r.samples[0],t:NaN}]},{samples:[r.samples[0],r.samples[0]]},{events:[{time:'bad'}]}])assert.equal(restoreManeuverRecords([{...r,...patch}],['engine-stop']).length,0);let history=[];for(let i=0;i<10;i++)history=addManeuverRecord(history,r);assert.equal(history.length,6);});
 test('precision gate evidence survives restoration with validated numeric fields',()=>{const s=initialState(),r=createManeuverRecord('precision-approach',s),gate={speed:1.2,crossTrack:2,time:80};finishManeuverRecord(r,{elapsed:100,status:'passed',message:'Complete',metrics:{gateCrossing:gate},events:[]},s);assert.deepEqual(restoreManeuverRecords([r],['precision-approach'])[0].metrics.gateCrossing,gate);r.metrics.gateCrossing.speed='invalid';assert.equal(restoreManeuverRecords([r],['precision-approach'])[0].metrics.gateCrossing,undefined);});

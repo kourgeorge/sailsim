@@ -52,7 +52,7 @@ export function crossingKind(previous,current){
 export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
- const attempt={lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:windRelativeHeading(state),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
+ const attempt={id:globalThis.crypto?.randomUUID?.()??`${lesson.id}-${Date.now()}-${Math.random().toString(36).slice(2)}`,lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:windRelativeHeading(state),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
  if(state.contactActive===true){attempt.objectives[0].evidence=practiceEvidence(state,attempt);invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));}
  return attempt;
 }

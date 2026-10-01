@@ -66,7 +66,7 @@ export async function initializeLocalization(lessons,modules){
  if(pack.course)applyCourseLocale(pack.course,lessons,modules);
  return code;
 }
-export async function changeLanguage(code,lessons,modules){await loadLanguage(code,lessons,modules);try{localStorage.setItem('sail-language',code);}catch{}const next=new URL(location.href);next.searchParams.set('lang',code);location.assign(next.href);}
+export async function changeLanguage(code,lessons,modules,beforeNavigate=()=>{}){await loadLanguage(code,lessons,modules);await beforeNavigate();try{localStorage.setItem('sail-language',code);}catch{}const next=new URL(location.href);next.searchParams.set('lang',code);location.assign(next.href);}
 export function observeTranslations(root=document.body){
  if(language==='en')return {disconnect(){}};
  const ignore=node=>node.parentElement?.closest('script,style,code,pre,#language-select,[data-no-translate]');

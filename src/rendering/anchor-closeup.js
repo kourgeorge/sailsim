@@ -7,7 +7,7 @@ const phases={pending:'Awaiting deployment',suspended:'Anchor suspended',slack:'
 
 // Render the real anchor and live rode buffers in a small cutaway. The main
 // camera and water stay untouched. Cutaway lighting keeps the metal readable.
-export function createAnchorCloseup(container,renderer,yacht,environment){
+export function createAnchorCloseup(container,renderer,yacht,environment,{onResize=()=>{}}={}){
  const rig=yacht.getObjectByName('anchor-rig');
  const deployed=rig.getObjectByName('deployed-anchor'),stowed=rig.getObjectByName('stowed-anchor'),sourceRode=rig.getObjectByName('deployed-anchor-rode');
  const scene=new THREE.Scene();scene.background=new THREE.Color('#235461');scene.environment=environment;
@@ -35,6 +35,7 @@ export function createAnchorCloseup(container,renderer,yacht,environment){
  const footer=document.createElement('div');footer.className='anchor-closeup-footer';
  const label=document.createElement('span'),value=document.createElement('bdi');label.textContent=t('Rode paid out');value.dir='ltr';footer.append(label,value);
  root.append(caption,window,footer);container.append(root);
+ const observer=new ResizeObserver(onResize);observer.observe(window);
  return {
   render(state){
    const snapshot=anchorSnapshot(state);root.hidden=!snapshot.deployed;
@@ -70,6 +71,7 @@ export function createAnchorCloseup(container,renderer,yacht,environment){
    return true;
   },
   dispose(){
+   observer.disconnect();
    // Anchor and rode geometry remain owned by the main yacht.
    anchorMaterial.dispose();rodeMaterial.dispose();floor.geometry.dispose();floor.material.dispose();grid.geometry.dispose();grid.material.dispose();scene.clear();root.remove();
   },

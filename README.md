@@ -18,6 +18,8 @@ Open **http://localhost:5187**. The development server reserves port 5187.
 ```sh
 npm test                                  # Physics, assessment, content and state tests
 npm run build                             # Refresh reference library; build dist/
+npm run test:browser                      # Production-build regressions; starts/stops its own preview server
+npm run format:check                      # Check formatting of the refactored application modules
 npm run preview                           # Serve the production build
 node scripts/browser-check.mjs            # Core browser checks
 node scripts/mobile-check.mjs             # Full-screen mobile scene, overlay sheets and touch controls
@@ -40,6 +42,8 @@ node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feed
 ```
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
+
+`npm run test:browser` uses the production build and owns port 5198. It covers multi-tab progress, language changes, desktop/mobile training, and real WebGL pause/resume rendering. UI state tests use the supported WebGL fallback; the rendering test uses Chromium's software GPU. Failures retain screenshots and traces in `test-results/`. GitHub Pages deployment runs this suite before uploading the site.
 
 ## Sailing school
 
@@ -77,6 +81,9 @@ Translations still need nautical instructor/native-speaker review; hardware-GPU 
 | Location | Purpose |
 |---|---|
 | `src/physics.js` | State, forces and integration |
+| `src/activity/controller.js`, `src/app-shell.js` | Playback/overlay rules and application shell |
+| `src/learning/progress-store.js`, `src/learning/training-report.js` | Cross-tab course persistence and debrief rendering |
+| `src/navigation/chart.js` | Shared chart drawing |
 | `src/scene.js`, `src/rendering/`, `src/locations.js` | Yacht, environment, cameras and maps |
 | `src/learning/` | Curriculum, reader, figures, guides, assessment and maneuvering lab |
 | `src/accessibility/`, `src/i18n/`, `public/locales/` | Text sizing, language runtime and translated content |

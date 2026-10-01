@@ -1,172 +1,723 @@
+import { createChartRenderer } from './navigation/chart.js';
 import './style.css';
-import {createActivityStatus} from './activity/ui.js';
-import {activityState} from './activity/state.js';
-import {initializeTextSize,mountTextSize} from './accessibility/text-size.js';
-import {createManeuverLab} from './learning/maneuver-ui.js';
-import {lessons,modules} from './learning/curriculum.js';
-import {LANGUAGES,initializeLocalization,changeLanguage,getLanguage,observeTranslations,translate as t} from './i18n/runtime.js';
+import { createActivityStatus } from './activity/ui.js';
+import { createActivityController } from './activity/controller.js';
+import { mountAppShell } from './app-shell.js';
+import { initializeTextSize, mountTextSize } from './accessibility/text-size.js';
+import { createManeuverLab } from './learning/maneuver-ui.js';
+import { lessons, modules } from './learning/curriculum.js';
+import {
+  initializeLocalization,
+  changeLanguage,
+  getLanguage,
+  observeTranslations,
+  translate as t,
+} from './i18n/runtime.js';
 import './i18n/locale.css';
-import {createLearning} from './learning/ui.js';
+import { createLearning } from './learning/ui.js';
 import { createScene } from './scene.js';
-import {getLocation} from './locations.js';
-import {createLearningTools} from './learning/tools-ui.js';
-import {openLocations} from './learning/location-ui.js';
-import {mountControls,applyControlPatch} from './controls.js';
+import { getLocation } from './locations.js';
+import { createLearningTools } from './learning/tools-ui.js';
+import { openLocations } from './learning/location-ui.js';
+import { mountControls, applyControlPatch } from './controls.js';
 import './systems.css';
-import {shoreScale} from './rendering/geography.js';
-import {createHelmDashboard} from './rendering/helm-dashboard.js';
-import {mountCockpitControls} from './cockpit/controls.js';
-import {anchorSnapshot} from './anchor.js';
-import {HOLD_KEYS,PRESS_KEYS,applyHeldKeys,decorateControls,shortcutsTable,badge as keyBadge} from './cockpit/keyboard.js';
-import {anchorControlAction} from './anchoring/control-action.js';
-import {createPracticeState} from './learning/scenario-state.js';
-import {drawAnchorChart} from './anchoring/diagram.js';
-import { initialState, step, refreshDerived, angleDifference, pointOfSail, clamp } from './physics.js';
+import { createHelmDashboard } from './rendering/helm-dashboard.js';
+import { mountCockpitControls } from './cockpit/controls.js';
+import {
+  HOLD_KEYS,
+  PRESS_KEYS,
+  applyHeldKeys,
+  decorateControls,
+  shortcutsTable,
+  badge as keyBadge,
+} from './cockpit/keyboard.js';
+import { anchorControlAction } from './anchoring/control-action.js';
+import { createPracticeState } from './learning/scenario-state.js';
+import { initialState, step, refreshDerived, pointOfSail } from './physics.js';
 import './mobile.css';
-import {mountMobileLayout} from './mobile.js';
+import { mountMobileLayout } from './mobile.js';
 
-async function startApp(){
-initializeTextSize();
-let localeLoadError=false;try{await initializeLocalization(lessons,modules);}catch(error){console.warn('Language pack unavailable',error.message);localeLoadError=true;}
-const icons={sail:'<path d="M12 3v16H3L12 3Zm3 4 6 12h-6V7ZM3 22h18"/>',compass:'<circle cx="12" cy="12" r="9"/><path d="m16 8-2 6-6 2 2-6 6-2Z"/>',book:'<path d="M12 5v16M3 4c4-1 6 0 9 2 3-2 5-3 9-2v15c-4-1-6 0-9 2-3-2-5-3-9-2V4Z"/>',flag:'<path d="M5 22V3c5-4 9 4 14 0v10c-5 4-9-4-14 0"/>',chart:'<path d="m3 5 6-2 6 2 6-2v16l-6 2-6-2-6 2V5Zm6-2v16m6-14v16"/>',wind:'<path d="M3 8h13a3 3 0 1 0-3-3M3 12h16a3 3 0 1 1-3 3M3 16h6a3 3 0 1 1-3 3"/>',anchor:'<circle cx="12" cy="4" r="2"/><path d="M12 6v15M8 9h8M3 14v3l3-1m15-2v3l-3-1M3 17c4 6 14 6 18 0"/>',settings:'<path d="M4 6h16M4 12h16M4 18h16"/><circle cx="8" cy="6" r="2"/><circle cx="16" cy="12" r="2"/><circle cx="10" cy="18" r="2"/>',arrow:'<path d="m9 5 7 7-7 7"/>',check:'<path d="m5 12 4 4L19 6"/>',sun:'<circle cx="12" cy="12" r="4"/><path d="M12 1v3m0 16v3M1 12h3m16 0h3M4 4l2 2m12 12 2 2M4 20l2-2M18 6l2-2"/>',help:'<circle cx="12" cy="12" r="9"/><path d="M9 9a3 3 0 1 1 4 3c-1 0-1 1-1 2m0 3v.1"/>',reset:'<path d="M3 10a9 9 0 1 1 1 8M3 4v6h6"/>',eye:'<path d="M2 12s4-7 10-7 10 7 10 7-4 7-10 7S2 12 2 12Z"/><circle cx="12" cy="12" r="3"/>'};
-const icon=(name)=>`<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">${icons[name]||icons.sail}</svg>`;
-let sceneTime=0;
-let lesson=0, state=initialState(), paused=true, mode='learn', camera='chase', challengeIndex=0, challengeDone=false, challengeTime=0;
-let learning, vesselControls, lab, learningTools,activityStatus,helmDashboard,cockpitControls;
-document.querySelector('#app').innerHTML=`
-<header class="topbar"><a class="brand" href="${import.meta.env.BASE_URL}" aria-label="Sail home">${icon('sail')}<span>SAIL<span class="brand-dot">.</span></span></a><div class="brand-caption">A LITTLE CLOSER TO THE SEA</div><nav aria-label="Main navigation"><button class="nav-item active" data-mode="learn">Learn to sail</button><button class="nav-item" data-mode="explore">Free sailing</button><button class="nav-item" data-mode="challenge">Challenges</button></nav><div class="language-switch"><label for="language-select">Language</label><select id="language-select" aria-label="Language" title="Changing language restarts the current practice. Completed lessons and quiz results are preserved.">${LANGUAGES.map(l=>`<option value="${l.code}" lang="${l.code}" ${getLanguage()===l.code?'selected':''}>${l.name}</option>`).join('')}</select></div><div id="text-size-control"></div><button id="help" class="icon-button" aria-label="Help">${icon('help')}</button><span class="preview-badge">EARLY ACCESS <i></i></span></header>
-<main class="workspace"><aside class="sidebar"><div class="sidebar-heading"><div class="eyebrow">THE SAILING SCHOOL</div><h1>Your sea legs<br>start here.</h1><p>A little curiosity. A little practice.<br>A whole new point of view.</p></div><div class="course-progress"><div><span>Your sailing curriculum</span><span id="progress-label" dir="ltr">0 / ${lessons.length}</span></div><div class="progress-track"><div id="progress-fill"></div></div></div><div id="lessons" class="lesson-list"></div><div class="sidebar-bottom"><span class="small-icon">${icon('compass')}</span><div><strong>Learn at your own pace</strong><p>There’s no rush on the water.</p></div></div><button id="reference" class="reference-link">Learning library <span>↗</span></button></aside>
-<section class="simulator" data-mode="${mode}" aria-label="Sailing simulator"><div id="scene"></div><div class="scene-vignette"></div><div class="scene-tools"><div class="scene-conditions"><button id="location-select" class="location location-button" aria-label="Change location"><div class="live-dot"></div><div><strong id="location-title">Haven Islands</strong><span><span style="display:inline">Change location</span> ▾</span></div></button><div class="weather">${icon('sun')}<span>Clear skies</span><span class="weather-divider"></span>${icon('wind')}<strong id="weather-wind">12 kn NW</strong></div></div>
-<div class="view-controls"><div class="camera-views" role="group" aria-label="Camera view"><button class="selected" data-camera="chase" aria-pressed="true">${icon('eye')}<span>Chase</span></button><button data-camera="helm" aria-pressed="false">Helm</button><button data-camera="deck" aria-pressed="false">Cockpit</button></div><button id="chart-toggle" aria-label="Open navigation chart">${icon('chart')}<span>CHART</span></button><button id="systems-toggle" aria-expanded="false" aria-controls="systems-drawer">Systems</button></div>
-</div>
-<div class="scene-title"><span>LESSON <span id="lesson-number">01</span> / ${lessons.length}</span><h2 id="scene-heading">Meet your boat.</h2><p id="scene-subheading">Take the helm. Find your rhythm.</p></div>
-<aside id="systems-drawer" class="systems-drawer" aria-label="Vessel systems" hidden><button id="systems-close" aria-label="Close vessel systems">×</button><div id="vessel-controls"></div></aside><div class="right-instruments"><div class="wind-card"><div class="instrument-label">Wind over water</div><div class="wind-dial"><span class="dial-n">N</span><span class="dial-e">E</span><span class="dial-s">S</span><span class="dial-w">W</span><div class="no-go"></div><svg id="wind-arrow" viewBox="0 0 100 100"><path d="M50 14v60M43 25l7-12 7 12" fill="none" stroke="#e9b87c" stroke-width="2"/></svg><svg class="dial-boat" viewBox="0 0 40 60"><path d="M20 3C8 17 8 42 11 53h18c3-11 3-36-9-50Z" fill="#edf5ed"/><path d="M20 12v33" stroke="#31505a"/></svg></div><div class="wind-value"><strong id="wind-value">12.0</strong><span>knots</span></div><div id="point-of-sail" class="point-of-sail">Beam reach</div></div><button id="chart-preview" class="chart-card" aria-label="Open navigation chart"><div><span>CHART</span>${icon('chart')}</div><canvas id="mini-chart" width="240" height="170"></canvas><span class="chart-footer"><span id="chart-location-title">Haven Islands</span><span>↗</span></span></button></div>
-<div class="lesson-card"><div class="lesson-card-icon">${icon('compass')}</div><div class="lesson-copy"><div class="eyebrow" id="card-eyebrow">LET’S GET UNDERWAY</div><h3 id="card-title">Make yourself at home.</h3><p id="card-body"></p><div class="objective"><span id="objective-check">○</span><span id="objective-text"></span></div></div><button id="next-lesson" class="next-button" aria-label="Next lesson">${icon('arrow')}</button></div>
-<div class="scene-footer"><span><i></i> <span id="sim-status">Ready when you are</span></span><span>Drag to look around <b>·</b> Scroll to zoom</span></div>
-<div class="control-dock"><div class="speed-display"><span class="instrument-label">BOAT SPEED</span><div><strong id="speed">0.0</strong><span>kn</span></div><span id="speed-caption">Ready to get underway</span></div><div class="heading-display"><span class="instrument-label">HEADING</span><div><strong id="heading">035</strong><span>°</span></div><span id="heading-caption">NE</span></div><div class="helm-control"><div class="control-title"><label for="rudder">HELM</label><span id="rudder-value">Centered</span></div><div class="helm-range"><span>P</span><input id="rudder" type="range" min="-35" max="35" value="0" aria-label="Helm angle"><span>S</span></div><div class="control-hint"><kbd>←</kbd><kbd>→</kbd><span>steer</span><button id="center-helm">Center</button></div></div><div class="sail-control"><div class="control-title"><label for="trim">MAINSHEET</label><span id="trim-value">45%</span></div><input id="trim" type="range" min="0" max="90" value="45" aria-label="Mainsheet trim"><div class="control-hint"><span>In</span><span id="ideal-trim">Suggested: 28%</span><span>Out</span></div></div><div class="engine-control"><div class="control-title"><label for="engine-throttle">Engine control</label><span id="engine-throttle-value">Neutral</span></div><input id="engine-throttle" type="range" min="-1" max="1" step="0.05" value="0" aria-label="Engine throttle"><div class="control-hint"><span>Astern</span><button id="engine-neutral" class="engine-neutral">Neutral</button><span>Ahead</span></div></div><div class="sail-actions"><button id="sails">${icon('sail')}<span>Lower sails</span></button><button id="reef">${icon('wind')}<span>Reef</span></button></div><div class="play-actions"><button id="play" class="primary-button">▶ <span>Set sail</span></button><button id="conditions" title="Conditions">${icon('settings')}<span>Conditions</span></button><button id="reset" aria-label="Reset boat" title="Reset boat">${icon('reset')}</button><button id="anchor">${icon('anchor')}<span>Drop anchor</span></button></div></div>
-</section></main><dialog id="modal"><div id="modal-content"></div><button id="close-modal" class="modal-close" aria-label="Close dialog">×</button></dialog><div id="toast" role="status"></div>`;
-const $=s=>document.querySelector(s);
-let scene;
-try{scene=createScene($('#scene'));}catch(error){$('#scene').innerHTML='<div class="webgl-fallback"><h2>A browser with WebGL is needed for the 3D view.</h2><p>You can still use the chart, controls, and lessons.</p></div>';console.error(error);}
+async function startApp() {
+  initializeTextSize();
+  let localeLoadError = false;
+  try {
+    await initializeLocalization(lessons, modules);
+  } catch (error) {
+    console.warn('Language pack unavailable', error.message);
+    localeLoadError = true;
+  }
+  let sceneTime = 0;
+  let lesson = 0,
+    state = initialState(),
+    mode = 'learn',
+    camera = 'chase',
+    challengeIndex = 0,
+    challengeDone = false,
+    challengeTime = 0;
+  let learning, vesselControls, lab, learningTools, activityStatus, helmDashboard, cockpitControls;
+  mountAppShell({ lessonCount: lessons.length, mode });
+  const $ = (s) => document.querySelector(s);
+  let scene;
+  try {
+    scene = createScene($('#scene'));
+  } catch (error) {
+    $('#scene').innerHTML =
+      '<div class="webgl-fallback"><h2>A browser with WebGL is needed for the 3D view.</h2><p>You can still use the chart, controls, and lessons.</p></div>';
+    console.error(error);
+  }
 
-function toast(message){$('#toast').textContent=message;$('#toast').classList.add('show');clearTimeout(toast.timer);toast.timer=setTimeout(()=>$('#toast').classList.remove('show'),4200);}
-function renderLessons(){learning?.refresh();}
-function updateLesson(){const l=lessons[lesson];
- $('#lesson-number').textContent=String(lesson+1).padStart(2,'0');$('#scene-heading').textContent=l.title;$('#scene-subheading').textContent=l.sub;
- learning?.refresh();
+  function toast(message) {
+    $('#toast').textContent = message;
+    $('#toast').classList.add('show');
+    clearTimeout(toast.timer);
+    toast.timer = setTimeout(() => $('#toast').classList.remove('show'), 4200);
+  }
+  function renderLessons() {
+    learning?.refresh();
+  }
+  function updateLesson() {
+    const l = lessons[lesson];
+    $('#lesson-number').textContent = String(lesson + 1).padStart(2, '0');
+    $('#scene-heading').textContent = l.title;
+    $('#scene-subheading').textContent = l.sub;
+    learning?.refresh();
+  }
+  function setMode(value) {
+    learning?.closeReader();
+    learning?.closeTraining();
+    if (value !== 'maneuver') lab?.leave();
+    if (value !== mode)
+      learning?.cancel('Mode changed. Return to the lesson and restart practice.');
+    mode = value;
+    $('.simulator').dataset.mode = mode;
+    document
+      .querySelectorAll('button[data-mode]')
+      .forEach((b) =>
+        b.classList.toggle(
+          'active',
+          b.dataset.mode === mode || (mode === 'maneuver' && b.dataset.mode === 'challenge'),
+        ),
+      );
+    $('.scene-title>span').style.visibility = mode === 'learn' ? 'visible' : 'hidden';
+    if (mode === 'learn') updateLesson();
+    else if (mode === 'maneuver') {
+      renderLessons();
+    } else {
+      renderLessons();
+      $('#scene-heading').textContent =
+        mode === 'explore' ? 'Follow your curiosity.' : 'Find your next mark.';
+      $('#scene-subheading').textContent =
+        mode === 'explore'
+          ? 'No route. No rush. Just the sea.'
+          : 'Three buoys. One beautiful passage.';
+      $('#card-eyebrow').textContent = mode === 'explore' ? 'FREE SAILING' : 'THE BUOY COURSE';
+      $('#card-title').textContent =
+        mode === 'explore' ? 'The islands are yours.' : 'Round the three amber buoys.';
+      $('#card-body').textContent =
+        mode === 'explore'
+          ? 'Explore the coastline, experiment with sail trim, or change the breeze in Conditions. Open your chart to plan a passage.'
+          : 'Sail within 35 metres of each buoy in order. Use your chart to locate the next mark and keep clear of shallow water.';
+      $('#objective-text').textContent =
+        mode === 'explore'
+          ? 'Try the helm camera for a view from aboard.'
+          : `Next mark: buoy ${challengeIndex + 1} of 3`;
+      $('#objective-check').textContent = '○';
+      $('#next-lesson').hidden = true;
+    }
+  }
+  function overlayOpen() {
+    return $('#modal').open || Boolean(document.querySelector('.mobile-sheet[open]'));
+  }
+  const playback = createActivityController({
+    getContext: () => ({
+      reading: learning?.reading,
+      decisionOpen: learning?.training,
+      decisionActive: learning?.decisionActive,
+      practiceActive: learning?.practiceActive,
+      practicePrepared: learning?.prepared,
+      briefingOpen: learning?.briefingOpen,
+      practiceStatus: learning?.practiceStatus,
+      overlayOpen: overlayOpen(),
+      hidden: document.hidden,
+      mode,
+      maneuverActive: lab?.active,
+    }),
+    onStart: () => learning.resumeOrStart(),
+  });
+  const activityContext = playback.context;
+  const cockpitEnabled = () => playback.controlsEnabled;
+  function syncPlayback() {
+    cockpitControls?.syncAvailability();
+    const activity = playback.state,
+      button = $('#play'),
+      action = activity.action;
+    button.hidden = !activity.command;
+    button.disabled = !activity.command;
+    if (activity.command && button.dataset.action !== action) {
+      button.dataset.action = action;
+      button.replaceChildren(document.createTextNode(activity.command === 'pause' ? 'Ⅱ ' : '▶ '));
+      const span = document.createElement('span');
+      span.textContent = t(action);
+      button.append(span, keyBadge('Space'));
+      button.setAttribute('aria-label', t(action));
+    }
+    const footer =
+      mode === 'learn'
+        ? t(activity.label)
+        : state.grounded
+          ? t('Aground · Reset to recover')
+          : t(playback.paused ? 'Simulation paused' : 'Simulation running');
+    if ($('#sim-status').textContent !== footer) $('#sim-status').textContent = footer;
+    if (button.dataset.state !== activity.id) {
+      button.dataset.state = activity.id;
+      learning?.updateStatus();
+    }
+    activityStatus?.update();
+  }
+  function togglePlayback() {
+    playback.toggle();
+    syncControls();
+  }
+  function syncControls() {
+    refreshDerived(state);
+    scene?.invalidate();
+    cockpitControls?.update();
+    helmDashboard?.update();
+    $('#rudder').value = state.rudder;
+    $('#trim').value = state.trim;
+    $('#rudder-value').textContent =
+      Math.abs(state.rudder) < 0.5
+        ? 'Centered'
+        : `${Math.abs(state.rudder).toFixed(0)}° ${state.rudder < 0 ? 'port' : 'starboard'}`;
+    $('#trim-value').textContent = `${state.trim.toFixed(0)}°`;
+    $('#sails span').textContent = state.sails ? 'Lower sails' : 'Raise sails';
+    $('#reef').classList.toggle('on', state.reef);
+    $('#reef span').textContent = state.reef ? `Reef ${state.reefLevel}` : 'Reef';
+    $('#anchor span').textContent = t(anchorControlAction(state).label);
+    $('#anchor').classList.toggle('on', state.anchor);
+    $('#engine-throttle').value = state.throttle;
+    $('#engine-throttle-value').textContent =
+      Math.abs(state.throttle) < 0.01
+        ? 'Neutral'
+        : `${state.throttle < 0 ? 'Astern' : 'Ahead'} ${Math.round(Math.abs(state.throttle) * 100)}%`;
+    syncPlayback();
+  }
+  $('#rudder').oninput = (e) => {
+    applyControlPatch(state, { rudder: Number(e.target.value) });
+    syncControls();
+  };
+  $('#trim').oninput = (e) => {
+    applyControlPatch(state, { mainSheet: Number(e.target.value) });
+    syncControls();
+  };
+  $('#engine-throttle').oninput = (e) => {
+    applyControlPatch(state, { throttle: Number(e.target.value) });
+    syncControls();
+  };
+  $('#engine-neutral').onclick = () => {
+    applyControlPatch(state, { throttle: 0 });
+    syncControls();
+  };
+  $('#center-helm').onclick = () => {
+    applyControlPatch(state, { rudder: 0 });
+    syncControls();
+  };
+  $('#play').onclick = togglePlayback;
+  $('#sails').onclick = () => {
+    applyControlPatch(state, { sails: state.sails > 0 ? 0 : 1 });
+    syncControls();
+    toast(
+      state.sails
+        ? 'Sails raised. Find the wind.'
+        : 'Sails lowered. Your boat will coast to a stop.',
+    );
+  };
+  $('#reef').onclick = () => {
+    applyControlPatch(state, { reefLevel: (state.reefLevel + 1) % 3 });
+    syncControls();
+  };
+  $('#anchor').onclick = () => {
+    const action = anchorControlAction(state);
+    if (action.needsTarget) {
+      $('#cockpit-anchor-rode').focus();
+      $('#cockpit-anchor-rode').select();
+      toast(t('Choose a positive rode target.'));
+      return;
+    }
+    applyControlPatch(state, action.patch);
+    syncControls();
+    toast(
+      t(
+        playback.paused && state.anchorWinchRunning
+          ? 'Resume simulation to operate the windlass.'
+          : state.anchorWinchRunning
+            ? state.anchorRode > state.anchorPaidRode
+              ? 'Lowering anchor'
+              : 'Retrieving anchor'
+            : 'Windlass stopped',
+      ),
+    );
+  };
+  $('#next-lesson').onclick = () => learning.select(Math.min(lesson + 1, lessons.length - 1));
+  document.querySelectorAll('button[data-mode]').forEach(
+    (b) =>
+      (b.onclick = () => {
+        if (b.dataset.mode === 'challenge') lab.library();
+        else if (b.dataset.mode === 'learn' && mode === 'learn') learning.libraryModal();
+        else setMode(b.dataset.mode);
+      }),
+  );
+  function setCamera(value, { record = true } = {}) {
+    camera = value;
+    if (record) learning?.event('camera', camera);
+    scene?.setView(camera);
+    $('.simulator').dataset.view = camera;
+    document.querySelectorAll('button[data-camera]').forEach((btn) => {
+      btn.classList.toggle('selected', btn.dataset.camera === camera);
+      btn.setAttribute('aria-pressed', String(btn.dataset.camera === camera));
+    });
+  }
+  document
+    .querySelectorAll('button[data-camera]')
+    .forEach((b) => (b.onclick = () => setCamera(b.dataset.camera)));
+  $('#reset').onclick = () => {
+    lab?.cancel();
+    learning?.cancel('Boat reset. Restart the assessed practice to record a new attempt.');
+    state = initialState(state.locationId);
+    lastCollisionSequence = 0;
+    playback.pause();
+    challengeIndex = 0;
+    challengeDone = false;
+    challengeTime = 0;
+    setMode(mode === 'maneuver' ? 'explore' : mode);
+    syncControls();
+    toast('Boat returned to the practice grounds. Your lesson progress is saved.');
+  };
+  function openModal(content) {
+    $('#modal-content').innerHTML = content;
+    if (!$('#modal').open) $('#modal').showModal();
+    $('#modal').scrollTop = 0;
+    keys?.clear();
+  }
+  $('#close-modal').onclick = () => $('#modal').close();
+  $('#modal').addEventListener('click', (e) => {
+    if (e.target === $('#modal')) $('#modal').close();
+  });
+  $('#help').onclick = () =>
+    openModal(
+      `<div class="eyebrow">WELCOME ABOARD</div><h2>A few things before you sail.</h2><p>Use the helm to steer and the mainsheet to adjust your sail. Select Cockpit to inspect the winches, ropes, and live instruments, or Helm to sail from behind the wheel. The wind comes from the direction shown on the instrument. Your yacht loses power when pointed within 38° of the wind.</p>${shortcutsTable()}<p class="help-hint keyboard-help">Drag to look around · Scroll to zoom</p><p class="help-hint touch-help">Drag to look around. Use the on-screen sliders and buttons to control the boat.</p><p>Lessons save automatically in this browser. Open Course to browse lessons or resume your study.</p><div class="modal-note">An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.</div>`,
+    );
+  $('#conditions').onclick = () => {
+    if (learning.active || lab?.active) {
+      toast(
+        'Weather is fixed during assessed practice. Finish or reset the attempt before changing conditions.',
+      );
+      return;
+    }
+    openModal(
+      `<div class="eyebrow">MAKE IT YOUR OWN</div><h2>A change in the weather.</h2><p>A steady breeze is a good place to start.</p><label class="setting-label" for="wind-speed">Wind speed over ground <strong id="wind-speed-value">${state.windSpeed} kn</strong></label><input id="wind-speed" type="range" min="3" max="30" value="${state.windSpeed}"><label class="setting-label" for="wind-direction">Wind over ground from <strong id="wind-direction-value">${state.windDirection}°</strong></label><input id="wind-direction" type="range" min="0" max="359" value="${state.windDirection}"><label class="setting-label" for="current-speed">Current speed <strong id="current-speed-value">${state.currentSpeed.toFixed(1)} kn</strong></label><input id="current-speed" type="range" min="0" max="4" step="0.1" value="${state.currentSpeed}"><label class="setting-label" for="current-direction">Current flowing toward <strong id="current-direction-value">${state.currentDirection}°</strong></label><input id="current-direction" type="range" min="0" max="359" value="${state.currentDirection}"><p class="modal-note">Weather wind is relative to the ground. The onboard display shows wind relative to moving water. Apparent wind is the air felt aboard. Wind names its source; current names where it flows. Conditions are fixed during assessed practice.</p>`,
+    );
+    $('#wind-speed').oninput = (e) => {
+      state.windSpeed = +e.target.value;
+      $('#wind-speed-value').textContent = state.windSpeed + ' kn';
+      syncControls();
+    };
+    $('#wind-direction').oninput = (e) => {
+      state.windDirection = +e.target.value;
+      $('#wind-direction-value').textContent = state.windDirection + '°';
+      syncControls();
+    };
+    $('#current-speed').oninput = (e) => {
+      state.currentSpeed = +e.target.value;
+      $('#current-speed-value').textContent = state.currentSpeed.toFixed(1) + ' kn';
+      syncControls();
+    };
+    $('#current-direction').oninput = (e) => {
+      state.currentDirection = +e.target.value;
+      $('#current-direction-value').textContent = state.currentDirection + '°';
+      syncControls();
+    };
+  };
+  $('#reference').onclick = () => learningTools.library();
+  function updateLocation() {
+    const location = getLocation(state.locationId);
+    $('#location-title').textContent = t(location.title);
+    $('#chart-location-title').textContent = t(location.title);
+  }
+  function ensureScene(locationId) {
+    const location = getLocation(locationId);
+    if (scene?.locationId !== location.id) {
+      scene?.dispose();
+      scene = null;
+      try {
+        scene = createScene($('#scene'), { locationId: location.id });
+        scene.setView(camera);
+      } catch (error) {
+        console.error(error);
+        $('#scene').textContent = t('A browser with WebGL is needed for the 3D view.');
+      }
+    }
+  }
+  $('#location-select').onclick = () =>
+    openLocations({
+      openModal,
+      isActive: learning.active || lab?.active,
+      onSelect: (id) => {
+        lab?.leave();
+        learning.cancel('Location changed. Restart practice when you return.');
+        state = initialState(id);
+        lastCollisionSequence = 0;
+        ensureScene(id);
+        playback.pause();
+        challengeIndex = 0;
+        challengeDone = false;
+        challengeTime = 0;
+        setMode('explore');
+        syncControls();
+        updateLocation();
+      },
+    });
+  const drawChart = createChartRenderer({
+    getState: () => state,
+    getTraining: () => (mode === 'maneuver' ? lab?.chart : null),
+    getChallengeIndex: () => challengeIndex,
+  });
+  function openChart() {
+    learning?.event('event', 'chart');
+    openModal(
+      `<div class="eyebrow">NAVIGATION</div><h2>${t(getLocation(state.locationId).title)}</h2><p>Your position updates live. Amber marks indicate the buoy course.</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
+    );
+    drawChart($('#large-chart'));
+  }
+  $('#chart-toggle').onclick = openChart;
+  const dashboardMount = document.createElement('div');
+  dashboardMount.id = 'helm-dashboard-mount';
+  $('.control-dock').append(dashboardMount);
+  helmDashboard = createHelmDashboard({
+    container: dashboardMount,
+    getState: () => state,
+    openModal,
+    onChart: openChart,
+  });
+  cockpitControls = mountCockpitControls({
+    container: $('.control-dock'),
+    getState: () => state,
+    getEnabled: cockpitEnabled,
+    onChange: (patch) => {
+      applyControlPatch(state, patch);
+      syncControls();
+    },
+  });
+  const keys = new Set();
+  const pressButton = (selector) => {
+    const button = $(selector);
+    if (button && !button.disabled && button.offsetParent) button.click();
+  };
+  const keyActions = {
+    play: togglePlayback,
+    center: () => {
+      applyControlPatch(state, { rudder: 0 });
+      syncControls();
+    },
+    neutral: () => {
+      applyControlPatch(state, { throttle: 0 });
+      syncControls();
+    },
+    sails: () => pressButton('#sails'),
+    reef: () => pressButton('#reef'),
+    anchor: () => pressButton('#anchor'),
+    chart: openChart,
+    keys: () => $('#help').click(),
+  };
+  decorateControls();
+  $('#help').setAttribute('aria-keyshortcuts', 'K');
+  window.addEventListener('keydown', (e) => {
+    // Browser shortcuts, text entry and native widgets own their keys. Clear an
+    // existing held helm command when focus or a modifier takes over.
+    const widget = e.target.closest?.(
+      'input,select,textarea,summary,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="slider"],[role="spinbutton"],[role="combobox"],[role="listbox"],[role="menu"],[role="tablist"]',
+    );
+    const nativeSpace = e.key === ' ' && e.target.closest?.('button,a[href],[role="button"]');
+    if (
+      e.defaultPrevented ||
+      e.isComposing ||
+      e.ctrlKey ||
+      e.metaKey ||
+      e.altKey ||
+      e.shiftKey ||
+      learning?.reading ||
+      learning?.training ||
+      learning?.briefingOpen ||
+      overlayOpen() ||
+      widget ||
+      nativeSpace
+    ) {
+      keys.clear();
+      return;
+    }
+    if (
+      !cockpitEnabled() &&
+      (HOLD_KEYS[e.code] ||
+        ['center', 'neutral', 'sails', 'reef', 'anchor'].includes(PRESS_KEYS[e.code]))
+    ) {
+      keys.clear();
+      return;
+    }
+    if (HOLD_KEYS[e.code]) {
+      e.preventDefault();
+      keys.add(e.code);
+      return;
+    }
+    if (e.repeat) return;
+    const action = PRESS_KEYS[e.code];
+    if (action) {
+      e.preventDefault();
+      keyActions[action]();
+    }
+  });
+  for (const event of [
+    'sail-reader-open',
+    'sail-training-open',
+    'sail-practice-briefing-open',
+    'focusin',
+    'blur',
+  ])
+    window.addEventListener(event, () => keys.clear());
+  window.addEventListener('keyup', (e) => keys.delete(e.code));
+  const compass = (h) => ['N', 'NE', 'E', 'SE', 'S', 'SW', 'W', 'NW'][Math.round(h / 45) % 8];
+  let last = performance.now(),
+    uiTick = 0,
+    wasGrounded = false,
+    lastCollisionSequence = 0;
+  document.addEventListener('visibilitychange', () => {
+    last = performance.now();
+    keys.clear();
+    if (document.hidden) {
+      playback.pause();
+      syncControls();
+    }
+  });
+  function frame(now) {
+    const dt = Math.min((now - last) / 1000, 0.25);
+    last = now;
+    if (document.hidden) {
+      requestAnimationFrame(frame);
+      return;
+    }
+    if (!cockpitEnabled()) keys.clear();
+    if (cockpitEnabled() && playback.canRender) {
+      if (applyHeldKeys(state, keys, dt, applyControlPatch)) syncControls();
+    }
+    if (playback.canTickDecision) learning.tickDecision(dt);
+    if (playback.canSimulate) {
+      sceneTime += dt;
+      step(state, dt);
+      if ((state.collisionCount || 0) > lastCollisionSequence && state.collision) {
+        toast(
+          t('Contact detected · {speed} kn closing speed').replace(
+            '{speed}',
+            (state.collision.closingSpeed / (1852 / 3600)).toFixed(1),
+          ),
+        );
+      }
+      lastCollisionSequence = state.collisionCount || 0;
+      learning.tick(dt);
+      lab?.tick(dt);
+      if (mode === 'challenge' && !challengeDone) {
+        challengeTime += dt;
+        const buoys = getLocation(state.locationId).buoys,
+          target = buoys[challengeIndex];
+        if (Math.hypot(state.x - target.x, state.z - target.z) < 35) {
+          challengeIndex++;
+          if (challengeIndex === buoys.length) {
+            challengeDone = true;
+            $('#objective-text').textContent =
+              `Course complete in ${Math.floor(challengeTime / 60)}m ${Math.floor(challengeTime % 60)}s`;
+            toast('Three marks rounded. Course complete!');
+          } else {
+            $('#objective-text').textContent = `Next mark: buoy ${challengeIndex + 1} of 3`;
+            toast(`Buoy ${challengeIndex} reached. On to the next mark.`);
+          }
+        }
+      }
+    }
+    if (state.grounded && !wasGrounded)
+      toast('You’ve reached shallow water. Use Reset boat to return to the practice grounds.');
+    wasGrounded = state.grounded;
+    // A modal already pauses physics; keep its background still to free GPU time for reading.
+    if (playback.canRender) scene?.renderIfNeeded(state, sceneTime);
+    uiTick += dt;
+    if (uiTick > 0.12) {
+      uiTick = 0;
+      $('#anchor span').textContent = t(anchorControlAction(state).label);
+      vesselControls?.update();
+      cockpitControls?.update();
+      helmDashboard?.update();
+      const twa = state.waterWindAngle,
+        point = twa === null ? t('Calm over water') : pointOfSail(twa);
+      $('#speed').textContent = state.speed.toFixed(1);
+      $('#heading').textContent = String(Math.round(state.heading) % 360).padStart(3, '0');
+      $('#heading-caption').textContent = compass(state.heading);
+      $('#speed-caption').textContent = state.anchor
+        ? state.anchorStatus
+        : state.speed < -0.1
+          ? 'Moving astern'
+          : Math.abs(state.throttle) > 0.01
+            ? 'Under engine'
+            : state.speed < 0.5
+              ? 'Waiting for the breeze'
+              : point;
+      $('#point-of-sail').textContent = point;
+      $('#wind-arrow').style.display = twa === null ? 'none' : '';
+      $('.no-go').style.display = twa === null ? 'none' : '';
+      $('#wind-arrow').style.transform = `rotate(${state.waterWindDirection ?? 0}deg)`;
+      $('.dial-boat').style.transform = `rotate(${state.heading}deg)`;
+      $('.no-go').style.transform = `rotate(${state.waterWindDirection ?? 0}deg)`;
+      $('#wind-value').textContent = state.waterWindSpeed.toFixed(1);
+      $('#weather-wind').textContent = `${state.windSpeed} kn ${compass(state.windDirection)}`;
+      $('#ideal-trim').textContent = `Suggested: ${Math.round(state.suggestedMainSheet)}°`;
+      $('#scene').dataset.visualTime = sceneTime.toFixed(5);
+      drawChart($('#mini-chart'));
+      if ($('#modal').open) drawChart($('#large-chart'));
+    }
+    syncPlayback();
+    requestAnimationFrame(frame);
+  }
+  learningTools = createLearningTools({
+    openModal,
+    onLesson: (id) => {
+      learning.select(lessons.findIndex((l) => l.id === id));
+      learning.briefing();
+    },
+  });
+  learning = createLearning({
+    getPaused: () => playback.paused || overlayOpen() || learning?.briefingOpen,
+    onPause: () => {
+      playback.pause();
+      syncControls();
+    },
+    onResume: () => {
+      playback.resume();
+      syncControls();
+    },
+    onTrainingStart: () => setCamera('helm', { record: false }),
+    onTrainingEnd: () => {
+      playback.pause();
+      syncControls();
+    },
+    openFigure: (l) => learningTools.figure(l),
+    openGuide: (l) => learningTools.forLesson(l),
+    openManeuvers: () => lab.library(),
+    getState: () => state,
+    getMode: () => mode,
+    openModal,
+    toast,
+    onSelect: (index) => {
+      lesson = index;
+      setMode('learn');
+    },
+    resetScenario: (setup) => {
+      ensureScene('haven');
+      state = createPracticeState(setup);
+      lastCollisionSequence = 0;
+      playback.pause();
+      syncControls();
+      updateLocation();
+      scene?.render(state, sceneTime);
+    },
+  });
+  lab = createManeuverLab({
+    getState: () => state,
+    onStart: (newState) => {
+      setMode('maneuver');
+      state = newState;
+      lastCollisionSequence = 0;
+      ensureScene(state.locationId);
+      updateLocation();
+      playback.resume();
+      syncControls();
+      toggleSystems(false);
+    },
+    onStop: () => {
+      playback.pause();
+      syncControls();
+    },
+    onControl: (patch) => {
+      applyControlPatch(state, patch);
+      syncControls();
+    },
+    openModal,
+    setCues: (cues) => scene?.setTrainingCues(cues),
+    onBuoyCourse: () => setMode('challenge'),
+    toast,
+  });
+  vesselControls = mountControls($('#vessel-controls'), {
+    getState: () => state,
+    getPaused: () =>
+      playback.paused ||
+      document.hidden ||
+      learning.reading ||
+      learning.training ||
+      learning.briefingOpen ||
+      overlayOpen(),
+    onChange: (patch) => {
+      applyControlPatch(state, patch);
+      syncControls();
+    },
+    onAction: (type, value) => learning.event(type, value),
+  });
+  function toggleSystems(open) {
+    $('#systems-drawer').hidden = !open;
+    $('#systems-toggle').setAttribute('aria-expanded', String(open));
+    if (open) {
+      $('#vessel-controls>.vessel-panel').open = true;
+      vesselControls.update();
+    }
+  }
+  learningTools.mount();
+  $('#systems-toggle').onclick = () => toggleSystems($('#systems-drawer').hidden);
+  $('#systems-close').onclick = () => {
+    toggleSystems(false);
+    $('#systems-toggle').focus();
+  };
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && !overlayOpen()) toggleSystems(false);
+  });
+  activityStatus = createActivityStatus({
+    getContext: activityContext,
+    controls: [$('#play'), $('#conditions'), $('#reset')],
+  });
+  $('.play-actions')?.remove();
+  lesson = learning.selected;
+  updateLesson();
+  syncControls();
+  updateLocation();
+  $('#language-select').onchange = async (e) => {
+    const select = e.target;
+    select.disabled = true;
+    try {
+      await changeLanguage(select.value, lessons, modules, async () => {
+        lab?.cancel();
+        learning.cancel(
+          'Changing language restarts the current practice. Completed lessons and quiz results are preserved.',
+        );
+        await learning.flush();
+      });
+    } catch {
+      select.value = getLanguage();
+      select.disabled = false;
+      toast(t('Language could not be loaded. Please try again.'));
+    }
+  };
+  mountMobileLayout();
+  mountTextSize($('#text-size-control'));
+  observeTranslations(document.body);
+  if (localeLoadError) toast('Language could not be loaded. Please try again.');
+  syncPlayback();
+  requestAnimationFrame(frame);
 }
-function setMode(value){learning?.closeReader();learning?.closeTraining();if(value!=='maneuver')lab?.leave();if(value!==mode)learning?.cancel('Mode changed. Return to the lesson and restart practice.');mode=value;$('.simulator').dataset.mode=mode;document.querySelectorAll('button[data-mode]').forEach(b=>b.classList.toggle('active',b.dataset.mode===mode||(mode==='maneuver'&&b.dataset.mode==='challenge')));$('.scene-title>span').style.visibility=mode==='learn'?'visible':'hidden';
- if(mode==='learn')updateLesson();else if(mode==='maneuver'){renderLessons();}else{
-   renderLessons();$('#scene-heading').textContent=mode==='explore'?'Follow your curiosity.':'Find your next mark.';$('#scene-subheading').textContent=mode==='explore'?'No route. No rush. Just the sea.':'Three buoys. One beautiful passage.';
-   $('#card-eyebrow').textContent=mode==='explore'?'FREE SAILING':'THE BUOY COURSE';$('#card-title').textContent=mode==='explore'?'The islands are yours.':'Round the three amber buoys.';
-   $('#card-body').textContent=mode==='explore'?'Explore the coastline, experiment with sail trim, or change the breeze in Conditions. Open your chart to plan a passage.':'Sail within 35 metres of each buoy in order. Use your chart to locate the next mark and keep clear of shallow water.';
-   $('#objective-text').textContent=mode==='explore'?'Try the helm camera for a view from aboard.':`Next mark: buoy ${challengeIndex+1} of 3`;
-   $('#objective-check').textContent='○';$('#next-lesson').hidden=true;
- }
-}
-function overlayOpen(){return $('#modal').open||Boolean(document.querySelector('.mobile-sheet[open]'));}
-function activityContext(){return {reading:learning?.reading,decisionOpen:learning?.training,decisionActive:learning?.decisionActive,practiceActive:learning?.practiceActive,practicePrepared:learning?.prepared,briefingOpen:learning?.briefingOpen,practiceStatus:learning?.practiceStatus,paused:paused||overlayOpen(),mode,maneuverActive:lab?.active};}
-function cockpitEnabled(){return ['free-running','free-paused','training-running','training-paused'].includes(activityState(activityContext()).id);}
-function syncPlayback(){
- cockpitControls?.syncAvailability();
- const activity=activityState(activityContext()),button=$('#play'),action=activity.action||'Show briefing';
- if(button.dataset.action!==action){button.dataset.action=action;button.replaceChildren(document.createTextNode(activity.command==='pause'?'Ⅱ ':'▶ '));const span=document.createElement('span');span.textContent=t(action);button.append(span,keyBadge('Space'));button.setAttribute('aria-label',t(action));}
- const footer=mode==='learn'?t(activity.label):state.grounded?t('Aground · Reset to recover'):t(paused?'Simulation paused':'Simulation running');
- if($('#sim-status').textContent!==footer)$('#sim-status').textContent=footer;
- if(button.dataset.state!==activity.id){button.dataset.state=activity.id;learning?.updateStatus();}
- activityStatus?.update();
-}
-function togglePlayback(){
- const activity=activityState(activityContext());
- if(activity.command==='start'&&mode==='learn')learning.resumeOrStart();
- else if(activity.command==='pause')paused=true;
- else if(activity.command==='resume')paused=false;
- syncControls();
-}
-function syncControls(){refreshDerived(state);cockpitControls?.update();helmDashboard?.update(); $('#rudder').value=state.rudder;$('#trim').value=state.trim;$('#rudder-value').textContent=Math.abs(state.rudder)<.5?'Centered':`${Math.abs(state.rudder).toFixed(0)}° ${state.rudder<0?'port':'starboard'}`;$('#trim-value').textContent=`${state.trim.toFixed(0)}°`;$('#sails span').textContent=state.sails?'Lower sails':'Raise sails';$('#reef').classList.toggle('on',state.reef);$('#reef span').textContent=state.reef?`Reef ${state.reefLevel}`:'Reef';$('#anchor span').textContent=t(anchorControlAction(state).label);$('#anchor').classList.toggle('on',state.anchor);$('#engine-throttle').value=state.throttle;$('#engine-throttle-value').textContent=Math.abs(state.throttle)<.01?'Neutral':`${state.throttle<0?'Astern':'Ahead'} ${Math.round(Math.abs(state.throttle)*100)}%`;syncPlayback();}
-$('#rudder').oninput=e=>{applyControlPatch(state,{rudder:Number(e.target.value)});syncControls();};$('#trim').oninput=e=>{applyControlPatch(state,{mainSheet:Number(e.target.value)});syncControls();};
-$('#engine-throttle').oninput=e=>{applyControlPatch(state,{throttle:Number(e.target.value)});syncControls();};$('#engine-neutral').onclick=()=>{applyControlPatch(state,{throttle:0});syncControls();};
-$('#center-helm').onclick=()=>{applyControlPatch(state,{rudder:0});syncControls();};$('#play').onclick=togglePlayback;
-$('#sails').onclick=()=>{applyControlPatch(state,{sails:state.sails>0?0:1});syncControls();toast(state.sails?'Sails raised. Find the wind.':'Sails lowered. Your boat will coast to a stop.');};
-$('#reef').onclick=()=>{applyControlPatch(state,{reefLevel:(state.reefLevel+1)%3});syncControls();};$('#anchor').onclick=()=>{const action=anchorControlAction(state);if(action.needsTarget){$('#cockpit-anchor-rode').focus();$('#cockpit-anchor-rode').select();toast(t('Choose a positive rode target.'));return;}applyControlPatch(state,action.patch);syncControls();toast(t(paused&&state.anchorWinchRunning?'Resume simulation to operate the windlass.':state.anchorWinchRunning?(state.anchorRode>state.anchorPaidRode?'Lowering anchor':'Retrieving anchor'):'Windlass stopped'));};
-$('#next-lesson').onclick=()=>learning.select(Math.min(lesson+1,lessons.length-1));document.querySelectorAll('button[data-mode]').forEach(b=>b.onclick=()=>{if(b.dataset.mode==='challenge')lab.library();else if(b.dataset.mode==='learn'&&mode==='learn')learning.libraryModal();else setMode(b.dataset.mode);});
-function setCamera(value,{record=true}={}){camera=value;if(record)learning?.event('camera',camera);scene?.setView(camera);$('.simulator').dataset.view=camera;document.querySelectorAll('button[data-camera]').forEach(btn=>{btn.classList.toggle('selected',btn.dataset.camera===camera);btn.setAttribute('aria-pressed',String(btn.dataset.camera===camera));});}
-document.querySelectorAll('button[data-camera]').forEach(b=>b.onclick=()=>setCamera(b.dataset.camera));
-$('#reset').onclick=()=>{lab?.cancel();learning?.cancel('Boat reset. Restart the assessed practice to record a new attempt.');state=initialState(state.locationId);lastCollisionSequence=0;paused=true;challengeIndex=0;challengeDone=false;challengeTime=0;setMode(mode==='maneuver'?'explore':mode);syncControls();toast('Boat returned to the practice grounds. Your lesson progress is saved.');};
-function openModal(content){$('#modal-content').innerHTML=content;if(!$('#modal').open)$('#modal').showModal();$('#modal').scrollTop=0;keys?.clear();}
-$('#close-modal').onclick=()=>$('#modal').close();$('#modal').addEventListener('click',e=>{if(e.target===$('#modal'))$('#modal').close();});
-$('#help').onclick=()=>openModal(`<div class="eyebrow">WELCOME ABOARD</div><h2>A few things before you sail.</h2><p>Use the helm to steer and the mainsheet to adjust your sail. Select Cockpit to inspect the winches, ropes, and live instruments, or Helm to sail from behind the wheel. The wind comes from the direction shown on the instrument. Your yacht loses power when pointed within 38° of the wind.</p>${shortcutsTable()}<p class="help-hint keyboard-help">Drag to look around · Scroll to zoom</p><p class="help-hint touch-help">Drag to look around. Use the on-screen sliders and buttons to control the boat.</p><p>Lessons save automatically in this browser. Open Course to browse lessons or resume your study.</p><div class="modal-note">An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.</div>`);
-$('#conditions').onclick=()=>{if(learning.active||lab?.active){toast('Weather is fixed during assessed practice. Finish or reset the attempt before changing conditions.');return;}openModal(`<div class="eyebrow">MAKE IT YOUR OWN</div><h2>A change in the weather.</h2><p>A steady breeze is a good place to start.</p><label class="setting-label" for="wind-speed">Wind speed over ground <strong id="wind-speed-value">${state.windSpeed} kn</strong></label><input id="wind-speed" type="range" min="3" max="30" value="${state.windSpeed}"><label class="setting-label" for="wind-direction">Wind over ground from <strong id="wind-direction-value">${state.windDirection}°</strong></label><input id="wind-direction" type="range" min="0" max="359" value="${state.windDirection}"><label class="setting-label" for="current-speed">Current speed <strong id="current-speed-value">${state.currentSpeed.toFixed(1)} kn</strong></label><input id="current-speed" type="range" min="0" max="4" step="0.1" value="${state.currentSpeed}"><label class="setting-label" for="current-direction">Current flowing toward <strong id="current-direction-value">${state.currentDirection}°</strong></label><input id="current-direction" type="range" min="0" max="359" value="${state.currentDirection}"><p class="modal-note">Weather wind is relative to the ground. The onboard display shows wind relative to moving water. Apparent wind is the air felt aboard. Wind names its source; current names where it flows. Conditions are fixed during assessed practice.</p>`);$('#wind-speed').oninput=e=>{state.windSpeed=+e.target.value;$('#wind-speed-value').textContent=state.windSpeed+' kn';syncControls();};$('#wind-direction').oninput=e=>{state.windDirection=+e.target.value;$('#wind-direction-value').textContent=state.windDirection+'°';syncControls();};$('#current-speed').oninput=e=>{state.currentSpeed=+e.target.value;$('#current-speed-value').textContent=state.currentSpeed.toFixed(1)+' kn';syncControls();};$('#current-direction').oninput=e=>{state.currentDirection=+e.target.value;$('#current-direction-value').textContent=state.currentDirection+'°';syncControls();};};
-$('#reference').onclick=()=>learningTools.library();
-function updateLocation(){const location=getLocation(state.locationId);$('#location-title').textContent=t(location.title);$('#chart-location-title').textContent=t(location.title);}
-function ensureScene(locationId){const location=getLocation(locationId);if(scene?.locationId!==location.id){scene?.dispose();scene=null;try{scene=createScene($('#scene'),{locationId:location.id});scene.setView(camera);}catch(error){console.error(error);$('#scene').textContent=t('A browser with WebGL is needed for the 3D view.');}}}
-$('#location-select').onclick=()=>openLocations({openModal,isActive:learning.active||lab?.active,onSelect:id=>{lab?.leave();learning.cancel('Location changed. Restart practice when you return.');state=initialState(id);lastCollisionSequence=0;ensureScene(id);paused=true;challengeIndex=0;challengeDone=false;challengeTime=0;setMode('explore');syncControls();updateLocation();}});
-function drawChart(canvas){if(!canvas)return;const ctx=canvas.getContext('2d'),w=canvas.width,h=canvas.height;ctx.clearRect(0,0,w,h);ctx.fillStyle='#173d47';ctx.fillRect(0,0,w,h);const location=getLocation(state.locationId),islands=location.islands,buoys=location.buoys.map((b,i)=>state.worldBodies?.find(body=>body.id===`${location.id}:buoy:${i}`)||b),training=mode==='maneuver'?lab?.chart:null,scale=w/(training?Math.max(training.span,Math.abs(state.x-training.center.x)*2.4,Math.abs(state.z-training.center.z)*2.4*w/h):location.chart.span),map=(x,z)=>[w*.5+(x-(training?.center.x??location.chart.centerX))*scale,h*.5+(z-(training?.center.z??location.chart.centerZ))*scale];
- ctx.strokeStyle='#ffffff0b';ctx.lineWidth=1;for(let x=0;x<w;x+=w/8){ctx.beginPath();ctx.moveTo(x,0);ctx.lineTo(x,h);ctx.stroke();}for(let y=0;y<h;y+=w/8){ctx.beginPath();ctx.moveTo(0,y);ctx.lineTo(w,y);ctx.stroke();}
- for(const i of islands){const [x,y]=map(i.x,i.z);ctx.fillStyle='#577669';ctx.strokeStyle='#8eaa8a';ctx.beginPath();for(let j=0;j<=90;j++){const a=j/90*Math.PI*2,ratio=shoreScale(a),px=x+Math.cos(a)*i.rx*scale*ratio,py=y+Math.sin(a)*i.rz*scale*ratio;j?ctx.lineTo(px,py):ctx.moveTo(px,py);}ctx.closePath();ctx.fill();ctx.stroke();if(w>300){ctx.save();ctx.strokeStyle='#9ac4c255';ctx.setLineDash([4,5]);ctx.beginPath();for(let j=0;j<=90;j++){const a=j/90*Math.PI*2,r=shoreScale(a)*(1+3/location.shoreDepthScale),px=x+Math.cos(a)*i.rx*scale*r,py=y+Math.sin(a)*i.rz*scale*r;j?ctx.lineTo(px,py):ctx.moveTo(px,py);}ctx.stroke();ctx.restore();}if(w>300){ctx.fillStyle='#c5d4c2';ctx.font='13px sans-serif';ctx.textAlign='center';ctx.fillText(i.name,x,y+5);}}
- buoys.forEach((b,i)=>{const [x,y]=map(b.x,b.z);ctx.fillStyle=i===challengeIndex?'#f4c87b':'#b48d4f';ctx.beginPath();ctx.arc(x,y,w>300?6:3,0,Math.PI*2);ctx.fill();if(w>300){ctx.fillText(String(i+1),x+14,y+5);}});
- for(const body of state.worldBodies||[]){if(body.visual?.type==='yacht'){const [bx,by]=map(body.x,body.z);ctx.save();ctx.translate(bx,by);ctx.rotate(body.heading*Math.PI/180);ctx.strokeStyle=body.kind==='free'?'#bde6df':'#98b8c3';ctx.fillStyle='#244951';ctx.lineWidth=1.3;ctx.beginPath();ctx.moveTo(0,-6);ctx.lineTo(3.5,4);ctx.lineTo(-3.5,4);ctx.closePath();ctx.fill();ctx.stroke();ctx.restore();}else if(body.visual?.type==='pier'){const [bx,by]=map(body.x,body.z);ctx.save();ctx.translate(bx,by);ctx.rotate(body.heading*Math.PI/180);ctx.fillStyle='#beaa7d';ctx.fillRect(-body.shape.beam*scale/2,-body.shape.length*scale/2,Math.max(1,body.shape.beam*scale),Math.max(1,body.shape.length*scale));ctx.restore();}}
- if(training){const {gate,target,corridor}=training.cues;ctx.save();ctx.strokeStyle='#efc27d';ctx.lineWidth=2;if(gate){const [gx,gy]=map(gate.x,gate.z);ctx.beginPath();ctx.moveTo(gx-gate.width*scale/2,gy);ctx.lineTo(gx+gate.width*scale/2,gy);ctx.stroke();}if(target){const [tx,ty]=map(target.x,target.z);ctx.strokeStyle='#93c5ae';ctx.beginPath();ctx.arc(tx,ty,target.radius*scale,0,Math.PI*2);ctx.stroke();}if(corridor){ctx.strokeStyle='#93c5ae';for(const sign of [-1,1]){const a=map(corridor.x+sign*corridor.width/2,corridor.z-corridor.length/2),b=map(corridor.x+sign*corridor.width/2,corridor.z+corridor.length/2);ctx.beginPath();ctx.moveTo(...a);ctx.lineTo(...b);ctx.stroke();}}ctx.restore();}
- drawAnchorChart(ctx,map,scale,anchorSnapshot(state));
- const [x,y]=map(state.x,state.z);canvas.dataset.vesselVisible=String(x>=0&&x<=w&&y>=0&&y<=h);ctx.save();ctx.translate(x,y);ctx.rotate(state.heading*Math.PI/180);ctx.fillStyle='#f4f2da';ctx.beginPath();ctx.moveTo(0,-8);ctx.lineTo(5,6);ctx.lineTo(0,3);ctx.lineTo(-5,6);ctx.closePath();ctx.fill();ctx.restore();ctx.fillStyle='#a7c4c5';ctx.font=`${w>300?13:10}px sans-serif`;ctx.textAlign='left';ctx.fillText('N ↑',12,21);const barMetres=training?25:250,barLength=barMetres*scale;ctx.strokeStyle='#a7c4c5';ctx.beginPath();ctx.moveTo(12,h-28);ctx.lineTo(12+barLength,h-28);ctx.moveTo(12,h-32);ctx.lineTo(12,h-24);ctx.moveTo(12+barLength,h-32);ctx.lineTo(12+barLength,h-24);ctx.stroke();ctx.fillText(`${barMetres} m`,12,h-8);if(w>300){ctx.fillStyle='#a7c4c5';ctx.textAlign='right';ctx.fillText(t('Dashed: 3 m contour'),w-16,h-12);}
-}
-function openChart(){learning?.event('event','chart');openModal(`<div class="eyebrow">NAVIGATION</div><h2>${t(getLocation(state.locationId).title)}</h2><p>Your position updates live. Amber marks indicate the buoy course.</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`);drawChart($('#large-chart'));}
-$('#chart-toggle').onclick=openChart;
-const dashboardMount=document.createElement('div');dashboardMount.id='helm-dashboard-mount';$('.control-dock').append(dashboardMount);
-helmDashboard=createHelmDashboard({container:dashboardMount,getState:()=>state,openModal,onChart:openChart});
-cockpitControls=mountCockpitControls({container:$('.control-dock'),getState:()=>state,getEnabled:cockpitEnabled,onChange:patch=>{applyControlPatch(state,patch);syncControls();}});
-const keys=new Set();
-const pressButton=selector=>{const button=$(selector);if(button&&!button.disabled&&button.offsetParent)button.click();};
-const keyActions={play:togglePlayback,center:()=>{applyControlPatch(state,{rudder:0});syncControls();},neutral:()=>{applyControlPatch(state,{throttle:0});syncControls();},sails:()=>pressButton('#sails'),reef:()=>pressButton('#reef'),anchor:()=>pressButton('#anchor'),chart:openChart,keys:()=>$('#help').click()};
-decorateControls();$('#help').setAttribute('aria-keyshortcuts','K');
-window.addEventListener('keydown',e=>{
- // Browser shortcuts, text entry and native widgets own their keys. Clear an
- // existing held helm command when focus or a modifier takes over.
- const widget=e.target.closest?.('input,select,textarea,summary,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="slider"],[role="spinbutton"],[role="combobox"],[role="listbox"],[role="menu"],[role="tablist"]');
- const nativeSpace=e.key===' '&&e.target.closest?.('button,a[href],[role="button"]');
- if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||learning?.reading||learning?.training||learning?.briefingOpen||overlayOpen()||widget||nativeSpace){keys.clear();return;}
- if(!cockpitEnabled()&&(HOLD_KEYS[e.code]||['center','neutral','sails','reef','anchor'].includes(PRESS_KEYS[e.code]))){keys.clear();return;}
- if(HOLD_KEYS[e.code]){e.preventDefault();keys.add(e.code);return;}
- if(e.repeat)return;
- const action=PRESS_KEYS[e.code];if(action){e.preventDefault();keyActions[action]();}
+startApp().catch((error) => {
+  console.error(error);
+  document.querySelector('#app').innerHTML =
+    `<main style="padding:40px"><h1>${t('SAIL could not start')}</h1><p>${t('Please reload the page.')}</p></main>`;
 });
-for(const event of ['sail-reader-open','sail-training-open','sail-practice-briefing-open','focusin','blur'])window.addEventListener(event,()=>keys.clear());
-window.addEventListener('keyup',e=>keys.delete(e.code));
-const compass=h=>['N','NE','E','SE','S','SW','W','NW'][Math.round(h/45)%8];
-let last=performance.now(), uiTick=0, wasGrounded=false,lastCollisionSequence=0;
-document.addEventListener('visibilitychange',()=>{last=performance.now();keys.clear();if(document.hidden){paused=true;syncControls();}});
-function frame(now){const dt=Math.min((now-last)/1000,.25);last=now;
- if(document.hidden){requestAnimationFrame(frame);return;}
- if(!cockpitEnabled())keys.clear();
- if(cockpitEnabled()&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!overlayOpen()){if(applyHeldKeys(state,keys,dt,applyControlPatch))syncControls();}
- if(learning.training&&!document.hidden&&!overlayOpen())learning.tickDecision(dt);
- if(!paused&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!overlayOpen()){sceneTime+=dt;step(state,dt);if((state.collisionCount||0)>lastCollisionSequence&&state.collision){toast(t('Contact detected · {speed} kn closing speed').replace('{speed}',(state.collision.closingSpeed/(1852/3600)).toFixed(1)));}lastCollisionSequence=state.collisionCount||0;
-  learning.tick(dt);lab?.tick(dt);
-  if(mode==='challenge'&&!challengeDone){challengeTime+=dt;const buoys=getLocation(state.locationId).buoys,target=buoys[challengeIndex];if(Math.hypot(state.x-target.x,state.z-target.z)<35){challengeIndex++;if(challengeIndex===buoys.length){challengeDone=true;$('#objective-text').textContent=`Course complete in ${Math.floor(challengeTime/60)}m ${Math.floor(challengeTime%60)}s`;toast('Three marks rounded. Course complete!');}else{$('#objective-text').textContent=`Next mark: buoy ${challengeIndex+1} of 3`;toast(`Buoy ${challengeIndex} reached. On to the next mark.`);}}}
- }
- if(state.grounded&&!wasGrounded)toast('You’ve reached shallow water. Use Reset boat to return to the practice grounds.');wasGrounded=state.grounded;
- // A modal already pauses physics; keep its background still to free GPU time for reading.
- if(!learning.reading&&!learning.training&&!learning.briefingOpen&&!overlayOpen())scene?.render(state,sceneTime);uiTick+=dt;
- if(uiTick>.12){uiTick=0;$('#anchor span').textContent=t(anchorControlAction(state).label);vesselControls?.update();cockpitControls?.update();helmDashboard?.update();const twa=state.waterWindAngle,point=twa===null?t('Calm over water'):pointOfSail(twa);$('#speed').textContent=state.speed.toFixed(1);$('#heading').textContent=String(Math.round(state.heading)%360).padStart(3,'0');$('#heading-caption').textContent=compass(state.heading);$('#speed-caption').textContent=state.anchor?state.anchorStatus:state.speed<-.1?'Moving astern':Math.abs(state.throttle)>.01?'Under engine':state.speed<.5?'Waiting for the breeze':point;$('#point-of-sail').textContent=point;$('#wind-arrow').style.display=twa===null?'none':'';$('.no-go').style.display=twa===null?'none':'';$('#wind-arrow').style.transform=`rotate(${state.waterWindDirection??0}deg)`;$('.dial-boat').style.transform=`rotate(${state.heading}deg)`;$('.no-go').style.transform=`rotate(${state.waterWindDirection??0}deg)`;$('#wind-value').textContent=state.waterWindSpeed.toFixed(1);$('#weather-wind').textContent=`${state.windSpeed} kn ${compass(state.windDirection)}`;$('#ideal-trim').textContent=`Suggested: ${Math.round(state.suggestedMainSheet)}°`;$('#scene').dataset.visualTime=sceneTime.toFixed(5);drawChart($('#mini-chart'));if($('#modal').open)drawChart($('#large-chart'));}
- syncPlayback();activityStatus?.update();requestAnimationFrame(frame);
-}
-learningTools=createLearningTools({openModal,onLesson:id=>{learning.select(lessons.findIndex(l=>l.id===id));learning.briefing();}});
-learning=createLearning({getPaused:()=>paused||overlayOpen()||learning?.briefingOpen,onPause:()=>{paused=true;syncControls();},onResume:()=>{paused=false;syncControls();},onTrainingStart:()=>setCamera('helm',{record:false}),onTrainingEnd:()=>{paused=true;syncControls();},openFigure:l=>learningTools.figure(l),openGuide:l=>learningTools.forLesson(l),openManeuvers:()=>lab.library(),getState:()=>state,getMode:()=>mode,openModal,toast,onSelect:index=>{lesson=index;setMode('learn');},resetScenario:setup=>{
- ensureScene('haven');
- state=createPracticeState(setup);
- lastCollisionSequence=0;paused=true;syncControls();updateLocation();scene?.render(state,sceneTime);
-}});
-lab=createManeuverLab({getState:()=>state,onStart:newState=>{setMode('maneuver');state=newState;lastCollisionSequence=0;ensureScene(state.locationId);updateLocation();paused=false;syncControls();toggleSystems(false);},onStop:()=>{paused=true;syncControls();},onControl:patch=>{applyControlPatch(state,patch);syncControls();},openModal,setCues:cues=>scene?.setTrainingCues(cues),onBuoyCourse:()=>setMode('challenge'),toast});
-vesselControls=mountControls($('#vessel-controls'),{getState:()=>state,getPaused:()=>paused||document.hidden||learning.reading||learning.training||learning.briefingOpen||overlayOpen(),onChange:patch=>{applyControlPatch(state,patch);syncControls();},onAction:(type,value)=>learning.event(type,value)});
-function toggleSystems(open){$('#systems-drawer').hidden=!open;$('#systems-toggle').setAttribute('aria-expanded',String(open));if(open){$('#vessel-controls>.vessel-panel').open=true;vesselControls.update();}}
-learningTools.mount();
-$('#systems-toggle').onclick=()=>toggleSystems($('#systems-drawer').hidden);
-$('#systems-close').onclick=()=>{toggleSystems(false);$('#systems-toggle').focus();};
-window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlayOpen())toggleSystems(false);});
-activityStatus=createActivityStatus({getContext:activityContext,controls:[$('#play'),$('#conditions'),$('#reset')]});$('.play-actions')?.remove();
-lesson=learning.selected;updateLesson();syncControls();updateLocation();
-$('#language-select').onchange=async e=>{const select=e.target;select.disabled=true;try{await changeLanguage(select.value,lessons,modules);lab?.cancel();learning.cancel('Changing language restarts the current practice. Completed lessons and quiz results are preserved.');}catch{select.value=getLanguage();select.disabled=false;toast(t('Language could not be loaded. Please try again.'));}};
-mountMobileLayout();mountTextSize($('#text-size-control'));observeTranslations(document.body);if(localeLoadError)toast('Language could not be loaded. Please try again.');
-syncPlayback();activityStatus?.update();requestAnimationFrame(frame);
-}
-startApp().catch(error=>{console.error(error);document.querySelector('#app').innerHTML=`<main style="padding:40px"><h1>${t('SAIL could not start')}</h1><p>${t('Please reload the page.')}</p></main>`;});
