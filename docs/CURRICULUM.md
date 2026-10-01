@@ -1,10 +1,10 @@
 # Sailing school curriculum
 
-The course contains 36 authored lessons, 72 explained knowledge questions, and 19 measured practical exercises across nine modules. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
+The course contains 42 authored lessons and 84 explained knowledge questions across ten modules. Every lesson has assessed training: 19 live boat-handling exercises and 23 interactive seamanship scenarios with 69 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–42. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
 
 ## Learning sequence
 
-Each lesson follows **brief → observe → practice where modeled → check understanding → debrief → transfer aboard**. A typical theory lesson takes six minutes and a practice lesson ten minutes; these are planning estimates, not enforced time requirements.
+Each lesson has **training goals → performed tasks → judged evidence → debrief**, accompanied by illustrated study and knowledge checks. **Start training** launches its physical exercise or decision workspace directly. **Study material** opens the separate paged reader and can pause/resume an existing attempt. Reading and page navigation award no training credit. Estimated durations are planning guidance, not enforced time requirements.
 
 | Module | Lessons | Intended outcome |
 | --- | --- | --- |
@@ -17,23 +17,25 @@ Each lesson follows **brief → observe → practice where modeled → check und
 | 7. Share the water | Keep an effective lookout; Reason through encounters; Lights, marks, and signals; Make a passage decision | Recognize collision risk, explain basic encounter priorities, identify information gaps, revise a passage plan. |
 | 8. Arrive and depart | Plan a docking approach; Choose an anchorage; Stop, then anchor; Prepare to leave | Prepare an approach and escape, reason about scope/swing, stop in sequence, depart a prepared open anchorage. |
 | 9. Respond and review | Person overboard priorities; Distress and urgent action; Your assessed first passage; From simulation to the sea | Explain emergency priorities, combine modeled skills, identify remaining supervised practice. |
+| 10. Coastal decisions | Plan the route and the escape; Tidal depth and clearance; Current vectors and passage time; Weather: go, wait or divert; Collision risk and limited visibility; Night pilotage and cross-checks | Produce bounded route plans, clearance calculations, course-to-steer solutions, revised weather decisions, collision-risk assessments and pilotage checks using stated fictional data. |
 
 ## Assessment contract
 
-- Every lesson is browsable. Mastery is sequential: a lesson needs its predecessor, a correct knowledge check, and successful simulated practice if prescribed.
+- Every lesson is browsable. Mastery is sequential: a lesson needs its predecessor, a correct knowledge check, and a pass in its prescribed physical or decision assessment.
 - Knowledge answers have immediate explanations. Both must be correct; an incorrect response records a revision and never awards credit. Learners may retry.
 - Practical attempts start explicitly and reset the boat and prescribed steady weather. Free sailing cannot silently complete a lesson.
 - Checkpoints are ordered. Observation events from an earlier stage cannot be banked for a later stage.
 - Timed checks require continuous performance. Leaving tolerance resets that checkpoint's timer. Pauses, dialogs, and suspended browser time earn no credit.
 - Mainsail trim requires an exposed mainsail with drawing airflow; reefing requires the reefed main to remain hoisted. Coasting with a lowered main cannot satisfy either exercise. Anchor checks require rode long enough to reach the bottom, but do not establish safe real-world scope or seabed holding.
 - Tacking requires a bow crossing of the wind plus settled speed on the opposite tack. Gybing requires a stern crossing. A sign change alone is insufficient to distinguish these maneuvers.
-- Grounding, non-neutral throttle during a sail exercise, changing the specified wind/current, deploying the anchor before its stage, boat reset, or switching modes invalidates an active attempt.
+- Grounding, vessel/object contact, non-neutral throttle during a sail exercise, changing the specified wind/current, deploying the anchor before its stage, boat reset, or switching modes invalidates an active physical attempt. An ongoing contact at the start is also a failure; old incidents cannot fail a new, clear attempt.
 - Successful practical evidence remains available while studying its quiz. Repeating a mastered exercise does not erase earlier credit.
 - The final passage combines heading, trim, tack, coasting, and anchoring in order. Passing means those modeled tasks were demonstrated in the prescribed environment.
+- Decision scenarios require inspecting the stated reports and submitting a plan, sequence, chart route, calculation or control decision. Stages award 34/33/33 points; incorrect committed decisions deduct 5 points, and authored critical choices end the attempt. Missing inputs do not carry a penalty. All stages, at least 80/100 and no critical failure are required. See [the scoring contract](PRACTICE_SCORING.md) for numerical tolerances and physical scoring.
 
 ## Feedback and records
 
-The live card reports the current checkpoint and continuous timer. Optional coaching uses the current boat state and exercise stage. The course record saves quiz evidence, practical evidence, attempts, hint requests, revised answers, the selected lesson, and the last result in browser local storage. Records can be exported as JSON. Progress restores after refresh; in-progress physical attempts restart because browser closure cannot preserve trustworthy continuity. The former six-lesson click badges are not migrated into assessed mastery.
+The live card reports the current physical checkpoint, continuous timer and score; the decision workspace shows required reports, task products and stage scores. Optional coaching uses the current state and exercise stage. The course record saves knowledge evidence, separate physical/decision passes, attempts, hints, revised answers, the selected lesson and the latest five reports per training format in browser local storage. Reports retain completed goals, deductions, submitted actions and contact evidence where applicable. Records can be exported as JSON. Completed evidence restores after refresh; active attempts do not resume across page reload. The former six-lesson click badges are not migrated into assessed mastery.
 
 Local progress is a learner convenience, not tamper-proof examination evidence. Storage restoration validates known lesson identifiers and field types; there is no server identity or external certification.
 
@@ -54,7 +56,7 @@ These independent organizations publish real-world training and regulatory mater
 
 ## Next curriculum development gates
 
-Before extending practical credit to another domain, implement the relevant forces, observations, and failure conditions, then establish attainable scenarios and tests. Important future domains are engine-only maneuvering with measured stopping distances, real dock contact and spring-line handling, collision-risk scenarios with moving traffic, changing tides and navigational fixes, validated heaving-to/backing-sail behavior, and person-overboard tracking plus recovery. More questions alone cannot make those domains practically assessed.
+Three additional engine maneuvering drills already measure controlled stopping, astern steering and a precision approach, with track replay and separate history. Hull/object contact is modeled, but contact response does not establish docking competence. Remaining domains include fenders and spring-line handling, collision avoidance with navigational traffic behavior, time-dependent tides and independent fixes, validated heaving-to/backing-sail behavior, and person-overboard tracking plus recovery. Before extending practical credit, implement the relevant forces, observations and failure conditions, then establish attainable scenarios and tests. More questions alone cannot make those domains practically assessed.
 
 Automated coverage currently verifies authored curriculum structure, sequential prerequisites, knowledge-only versus practical evidence, persistence validation, continuous holds, ordered events, tack/gybe discrimination, and invalidation paths. Browser checks are needed for dialog navigation, responsive layout, camera/chart events, and scenario controls after UI changes.
 

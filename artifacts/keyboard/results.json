@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "checkedAt": "2026-10-01T07:49:35.694Z",
+  "checks": [
+    "browser shortcuts",
+    "modifier cancellation",
+    "held-key focus transfer",
+    "native slider keys",
+    "toolbar-focused helm",
+    "chart shortcut",
+    "modal isolation",
+    "reader isolation",
+    "native button Space"
+  ],
+  "errors": []
+}

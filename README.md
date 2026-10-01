@@ -22,6 +22,9 @@ node scripts/check-training-scenarios.mjs  # All 19 assessed sailing practices
 node scripts/check-decision-training.mjs --locales  # Scenarios, direct launch, scoring and six languages
 node scripts/check-activity-status.mjs  # Explicit study/ready/running/paused states
 node scripts/check-collision-visuals.mjs  # Real contacts and both-body visual response
+node scripts/check-keyboard-controls.mjs # Browser shortcuts, focus and sailing-key isolation
+node scripts/check-decision-training.mjs --assessment-fixes # North bearings and restored reports
+node scripts/check-rig-visuals.mjs        # Traveler, masthead wind pointer, reef/hoist and boom timing
 ```
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
@@ -49,7 +52,7 @@ The searchable learning library contains **25 verified official-source records**
 - A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 19 course practices.
 - Free sailing, a three-buoy route, live chart and wind/current controls. Touch controls and keyboard shortcuts: arrows to steer/trim, Space to pause, C to center the helm, M for the chart.
 
-The physics is **not calibrated against a real yacht or sea trials**. Visual waves do not apply hull forces. Prop walk, loaded line handling, spring lines, dock/vessel collision, changing tides, detailed backed sails and physical casualty recovery are not modeled. Engine drills assess open-water model control, not docking competence. Anchor exercises assess modeled sequence and settling, not real seabed holding. All maps are fictional. Course completion is a study record, not certification or permission to skipper.
+The physics is **not calibrated against a real yacht or sea trials**. Visual waves do not apply hull forces. Prop walk, loaded line handling, spring lines, collision damage, changing tides, detailed backed sails and physical casualty recovery are not modeled. Hull contact moves and rotates movable vessels and buoys, while fixed docks and rocks remain stationary. Engine drills assess open-water model control, not docking competence. Anchor exercises assess modeled sequence and settling, not real seabed holding. All maps are fictional. Course completion is a study record, not certification or permission to skipper.
 
 Translations still need nautical instructor/native-speaker review; hardware-GPU performance needs independent measurement. The app supports preparation for supervised on-water instruction.
 

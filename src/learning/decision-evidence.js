@@ -1,6 +1,9 @@
 const plainObject = value => value !== null && typeof value === 'object' && !Array.isArray(value);
 const boundedNumber = (value, max = 1e7) => typeof value === 'number' && Number.isFinite(value) && value >= 0 && value <= max;
 const text = (value, length = 400) => typeof value === 'string' ? value.slice(0, length) : null;
+// Legacy or incomplete reports can omit an observation map. Consumers still
+// need an object so a missing answer can render as "Not completed" safely.
+export const decisionEvidenceValues = row => plainObject(row?.evidence) ? row.evidence : {};
 
 // Reports contain small JSON observations, not executable data or arbitrary stored objects.
 function observation(value, depth = 0) {
@@ -37,7 +40,7 @@ export function restoreDecisionResult(value, lesson) {
     completedPoints += points;
     objectives.push({ id, index, label: text(row.label, 240) ?? id, status: row.status,
       points, maxPoints, completedAt: row.completedAt ?? null, attempts: row.attempts ?? 0,
-      evidence: observation(row.evidence ?? null), inspected: Array.isArray(row.inspected) ? row.inspected.filter(item => typeof item === 'string').slice(0, 30).map(item => item.slice(0, 80)) : [] });
+      evidence: observation(decisionEvidenceValues(row)), inspected: Array.isArray(row.inspected) ? row.inspected.filter(item => typeof item === 'string').slice(0, 30).map(item => item.slice(0, 80)) : [] });
   }
   if (value.penalties !== undefined && (!Array.isArray(value.penalties) || value.penalties.length > 1)) return null;
   let mistakes = 0;

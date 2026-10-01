@@ -79,7 +79,21 @@ function drawChart(canvas){if(!canvas)return;const ctx=canvas.getContext('2d'),w
 }
 function openChart(){learning?.event('event','chart');openModal(`<div class="eyebrow">NAVIGATION</div><h2>${t(getLocation(state.locationId).title)}</h2><p>Your position updates live. Amber marks indicate the buoy course.</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>Dashed: 3 m contour</span></div>`);drawChart($('#large-chart'));}
 $('#chart-toggle').onclick=openChart;
-const keys=new Set();window.addEventListener('keydown',e=>{if(learning?.reading||learning?.training||$('#modal').open||['INPUT','SELECT','TEXTAREA','SUMMARY'].includes(e.target.tagName)||(e.target.tagName==='BUTTON'&&e.key===' '))return;if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown',' '].includes(e.key))e.preventDefault();keys.add(e.key);if(e.repeat)return;if(e.key===' '){paused=!paused;syncControls();}if(e.key.toLowerCase()==='c'){applyControlPatch(state,{rudder:0});syncControls();}if(e.key.toLowerCase()==='m')openChart();});window.addEventListener('sail-reader-open',()=>keys.clear());window.addEventListener('sail-training-open',()=>keys.clear());window.addEventListener('keyup',e=>keys.delete(e.key));window.addEventListener('blur',()=>keys.clear());
+const keys=new Set();
+window.addEventListener('keydown',e=>{
+ // Browser shortcuts, text entry and native widgets own their keys. Clear an
+ // existing held helm command when focus or a modifier takes over.
+ const widget=e.target.closest?.('input,select,textarea,summary,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="slider"],[role="spinbutton"],[role="combobox"],[role="listbox"],[role="menu"],[role="tablist"]');
+ const nativeSpace=e.key===' '&&e.target.closest?.('button,a[href],[role="button"]');
+ if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||learning?.reading||learning?.training||$('#modal').open||widget||nativeSpace){keys.clear();return;}
+ if(['ArrowLeft','ArrowRight','ArrowUp','ArrowDown'].includes(e.key)){e.preventDefault();keys.add(e.key);return;}
+ if(e.repeat)return;
+ if(e.key===' '){e.preventDefault();paused=!paused;syncControls();}
+ if(e.key.toLowerCase()==='c'){applyControlPatch(state,{rudder:0});syncControls();}
+ if(e.key.toLowerCase()==='m')openChart();
+});
+for(const event of ['sail-reader-open','sail-training-open','focusin','blur'])window.addEventListener(event,()=>keys.clear());
+window.addEventListener('keyup',e=>keys.delete(e.key));
 const compass=h=>['N','NE','E','SE','S','SW','W','NW'][Math.round(h/45)%8];
 let last=performance.now(), uiTick=0, wasGrounded=false,lastCollisionSequence=0;
 document.addEventListener('visibilitychange',()=>{last=performance.now();keys.clear();if(document.hidden){paused=true;syncControls();}});

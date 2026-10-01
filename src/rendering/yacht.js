@@ -1,10 +1,12 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,labelTexture,batchStaticMeshes } from './materials.js';
-import { angleDifference,clamp } from '../physics.js';
+import { angleDifference,clamp,VESSEL } from '../physics.js';
 import { shoreScale } from './geography.js';
 import { translate } from '../i18n/runtime.js';
 import { getLocation } from '../locations.js';
+import { rigVisualState, smoothBoomAngle } from './rig-state.js';
+import { createKeelGeometry } from './keel-geometry.js';
 
 function widthAt(z){
  const sections=[[-6.6,.015],[-6,.55],[-4.7,1.25],[-3,1.75],[-1,2.02],[1,2.06],[3,1.95],[5.25,1.62]];
@@ -133,7 +135,7 @@ export function createYacht(mat,{detailed=true}={}){
  // Boot stripe follows the curved topsides along both sides.
  for(const side of [-1,1]){const points=[];for(let z=-6.55;z<=5.25;z+=.12)points.push([side*widthAt(z)*.985,.48,z]);rope(boat,mat.navy,points,.048,100);const rail=[];for(let z=-6.3;z<=5.25;z+=.25)rail.push([side*widthAt(z),1.105,z]);rope(boat,mat.teak,rail,.032,70);}
  // Keel and rudder extend below the waterline.
- box(boat,mat.navy,0,-1.6,-.2,.2,1.65,1.7,.15);const rudder=box(boat,mat.navy,0,-.8,4.3,.11,1.5,.75,.05);
+ mesh(boat,createKeelGeometry(VESSEL.draft),mat.navy);const rudder=box(boat,mat.navy,0,-.8,4.3,.11,1.5,.75,.05);
  // Sculpted coachroof and side windows.
  box(boat,mat.gelcoat,0,1.24,-1.25,2.85,.62,4.8,.23);box(boat,mat.grip,0,1.59,-1.5,2.32,.16,3.6,.08);
  for(const side of [-1,1]){for(let i=0;i<4;i++){const pane=box(boat,mat.glass,side*1.42,1.31,-2.95+i*.84,.035,.26,.64,.05);pane.rotation.z=side*-.1;}bar(boat,mat.teak,[side*.98,1.78,-2.75],[side*.98,1.78,-.38],.032);for(const z of [-2.7,-.45])bar(boat,mat.steel,[side*.98,1.65,z],[side*.98,1.78,z],.022);}
@@ -188,11 +190,11 @@ export function createYacht(mat,{detailed=true}={}){
  for(const y of [7.3,12]){bar(boat,mat.aluminum,[-1.6,y,-1.95],[1.6,y,-1.95],.037);}
  for(const side of [-1,1]){rope(boat,mat.steel,[[side*1.87,1.22,-1.4],[side*1.6,7.3,-1.95],[side*1.6,12,-1.95],[0,17.5,-1.95]],.009,36);bar(boat,mat.steel,[side*1.87,1.22,-1.4],[side*1.85,1.68,-1.42],.027);bar(boat,mat.steel,[0,17.4,-1.95],[side*1.42,1.9,5.1],.008);}
  bar(boat,mat.steel,[0,17.5,-1.95],[0,1.25,-6.5],.012);cylinder(boat,mat.aluminum,0,1.28,-6.33,.115,.115,.22);
- const boomGroup=new THREE.Group();boomGroup.position.set(0,2.85,-1.95);boat.add(boomGroup);bar(boomGroup,mat.aluminum,[0,0,0],[0,0,5.35],.085,12);
+ const boomGroup=new THREE.Group();boomGroup.name='mainsail-boom';boomGroup.position.set(0,2.85,-1.95);boat.add(boomGroup);bar(boomGroup,mat.aluminum,[0,0,0],[0,0,5.35],.085,12);
  const mainGroup=new THREE.Group();mainGroup.position.y=.15;boomGroup.add(mainGroup);const mainsail=makeSail(mainGroup,mat,{height:14.35,foot:5.2});
  const jibGroup=new THREE.Group();jibGroup.position.set(0,1.8,-1.95);boat.add(jibGroup);const jib=makeSail(jibGroup,mat,{height:15.2,foot:5.4,jib:true});
  const furled=box(boomGroup,mat.cloth,0,.13,2.5,.23,.19,4.9,.08);furled.visible=false;
- const traveler=box(boat,mat.aluminum,0,1.92,.9,2.5,.065,.065);const travelerCar=box(boat,mat.rubber,0,1.97,.9,.19,.14,.12);
+ const traveler=box(boat,mat.aluminum,0,1.92,.9,2.5,.065,.065);const travelerCar=box(boat,mat.rubber,0,1.97,.9,.19,.14,.12);travelerCar.name='traveler-car';
  const sheet=bar(boat,mat.ivory,[0,2,1],[0,2.8,2.8],.023);
  // Working pedestal and wheel. Displays face aft toward the helmsman.
  box(boat,mat.gelcoat,0,1.12,3.95,.40,1.34,.44,.12);
@@ -207,21 +209,30 @@ export function createYacht(mat,{detailed=true}={}){
  const throttleLever=new THREE.Group();throttleLever.position.set(.25,1.44,4.03);boat.add(throttleLever);bar(throttleLever,mat.steel,[0,0,0],[.15,.36,0],.02);mesh(throttleLever,new THREE.SphereGeometry(.06,12,8),mat.rubber,.15,.36,0);
  // Red/green navigation lights and masthead fitting.
  for(const side of [-1,1]){const lampMat=new THREE.MeshStandardMaterial({color:side<0?'#ab3e32':'#218873',emissive:side<0?'#d13113':'#14a67c',emissiveIntensity:.35});mesh(boat,new THREE.SphereGeometry(.052,12,8),lampMat,side*.5,1.88,-6.05);}
- bar(boat,mat.steel,[0,17.6,-1.95],[0,18,-1.95],.015);const vane=box(boat,mat.red,0,17.86,-2.11,.26,.008,.09);bar(boat,mat.steel,[0,17.95,-1.95],[0,17.95,-2.37],.008);
+ bar(boat,mat.steel,[0,17.6,-1.95],[0,18,-1.95],.015);
+ const windVane=new THREE.Group();windVane.name='masthead-wind-vane';windVane.position.set(0,17.95,-1.95);boat.add(windVane);
+ // Rotate pointer and tail together around the masthead bearing. The pointer
+ // faces the apparent wind source; the broader red tail trails downwind.
+ bar(windVane,mat.steel,[0,0,.3],[0,0,-.43],.008);
+ box(windVane,mat.red,0,0,.19,.24,.008,.18);
+ const vaneArrow=mesh(windVane,new THREE.ConeGeometry(.055,.14,4),mat.red,0,0,-.46);vaneArrow.rotation.x=-Math.PI/2;
  const bow=[];for(let i=0;i<2;i++){bow.push(mesh(boat,new THREE.PlaneGeometry(.7,2),new THREE.MeshBasicMaterial({color:'#d5f3ef',transparent:true,opacity:.15,depthWrite:false}),i?1:-1,.025,-4.5));bow[i].rotation.x=-Math.PI/2;}
- batchStaticMeshes(boat,mergeGeometries,[rudder,vane,sheet,travelerCar,...bow]);
+ batchStaticMeshes(boat,mergeGeometries,[rudder,sheet,travelerCar,...bow]);
+ let previousRigTime=null;
  return {group:boat,update(state,time){
   const windAngle=state.apparentWindAngle??angleDifference(state.windDirection,state.heading),sign=Math.sign(windAngle)||1;
-  boomGroup.rotation.y=THREE.MathUtils.lerp(boomGroup.rotation.y,-sign*clamp((state.mainSheet??state.trim)+(state.traveler??0),0,90)*Math.PI/180,.12);
+  const rig=rigVisualState(state),rigElapsed=previousRigTime===null?0:time-previousRigTime;
+  boomGroup.rotation.y=previousRigTime===null?rig.boomAngle:smoothBoomAngle(boomGroup.rotation.y,rig.boomAngle,rigElapsed);
+  if(Number.isFinite(time))previousRigTime=time;
   const mainHoist=state.mainHoist??Number(Boolean(state.sails)),jibHoist=state.jibHoist??Number(Boolean(state.sails));
   mainGroup.scale.y=mainHoist*[1,.72,.48][state.reefLevel??Number(Boolean(state.reef))];mainGroup.visible=mainHoist>.01;furled.visible=mainHoist<.99;
   jibGroup.visible=jibHoist>.01;
   const mainLuff=state.mainFlow==='Luffing'?1:state.mainFlow==='Stalled'?.45:.08;
   mainsail.update(time,mainLuff,{side:-sign,outhaul:state.outhaul??.5,vang:state.vang??.5});
   jib.update(time,state.jibFlow==='Luffing'?1:.08,{angle:-sign*(state.jibSheet??40)*Math.PI/180,side:-sign,outhaul:.5,vang:.7,deploy:jibHoist});
-  travelerCar.position.x=(state.traveler??0)/20;
+  travelerCar.position.x=rig.travelerX;
   throttleLever.rotation.x=-(state.throttle??0)*.7;
-  wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;vane.rotation.y=-(state.apparentWindAngle??angleDifference(state.windDirection,state.heading))*Math.PI/180;
+  wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;windVane.rotation.y=rig.windVaneAngle;
   const tip=new THREE.Vector3(0,0,4.6).applyAxisAngle(new THREE.Vector3(0,1,0),boomGroup.rotation.y).add(boomGroup.position),base=new THREE.Vector3(travelerCar.position.x,1.99,.9),delta=tip.clone().sub(base);
   sheet.position.copy(tip).add(base).multiplyScalar(.5);sheet.scale.y=delta.length()/Math.hypot(.8,1.8);sheet.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),delta.normalize());
   instruments.forEach(i=>i.update(state,time));bow.forEach(m=>{m.visible=state.speed>1;m.material.opacity=clamp(state.speed*.03,0,.22);});

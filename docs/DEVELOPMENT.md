@@ -39,6 +39,9 @@ npm run build
 node scripts/browser-check.mjs
 node scripts/check-locales.mjs
 node scripts/check-training-scenarios.mjs
+node scripts/check-keyboard-controls.mjs
+node scripts/check-decision-training.mjs --assessment-fixes
+node scripts/check-rig-visuals.mjs
 ```
 
 The development server must be running on port 5187 for browser checks. Software-rendered browser tests are intentionally allowed longer startup and frame times than hardware-accelerated interactive browsers. A passing numerical test is evidence about the implementation, not validation against a real yacht or safety certification.
@@ -55,4 +58,6 @@ Useful historical checkpoints:
 
 The subsequent multilingual interface checkpoint includes all six course packs, RTL layouts, browser verification scripts, and screenshots. Use `git log --oneline` for its exact commit ID.
 
-Verified on 2026-10-01: 53 automated tests passed, all 19 practical scenarios passed through the production physics engine, the production bundle built, the full controls/training/mobile/archive browser check passed, and all six locale browser checks passed with no uncaught page errors. Browser results are recorded in `artifacts/browser-check.json` and `artifacts/locales/results.json`. These runs used software WebGL; hardware GPU performance and independent instructor/native-language review remain unverified.
+Verified on 2026-10-01 after the instrument/rig/assessment audit: **188 automated tests passed**, including all 19 physical scenarios through the production physics engine, and the production bundle built. The full controls/training/mobile/archive browser check passed. Targeted browser regressions verified keyboard focus/modifier isolation, north-bearing scoring at 360° and 359.5°, restored debriefs with missing action evidence, six sail/reef configurations, mirrored traveler/vane transforms and the actual yacht update at 10/60 Hz. Evidence is in `artifacts/browser-check.json`, `artifacts/keyboard/results.json`, `artifacts/training/assessment-fixes-result.json` and `artifacts/rig-visual-diagnostics.json`, with adjacent screenshots.
+
+The earlier six-language desktop/mobile and 200% text checks remain in `artifacts/locales/`, `artifacts/training/` and `artifacts/maneuvers/`; this audit changed no display translations or layout. The current unit suite revalidates all translated scenario grading metadata. These browser runs use software WebGL; hardware GPU performance, real-yacht calibration and independent instructor/native-language review remain unverified. Consult `ROADMAP.md` for the remaining capability gaps rather than treating green regression checks as completion of the overall simulator goal.

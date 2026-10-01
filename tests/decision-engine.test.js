@@ -8,3 +8,20 @@ test('a critical choice cannot be repaired inside the same run or hidden by scor
 test('five revisions leave a completed task set below the passing threshold',()=>{const a=beginDecision(fixture);inspectDecision(a,fixture,'crew');setDecisionValue(a,fixture,'plan',['fit']);for(let i=0;i<5;i++)submitDecision(a,fixture);setDecisionValue(a,fixture,'plan',['brief','fit']);submitDecision(a,fixture);setDecisionValue(a,fixture,'depth',1.7);submitDecision(a,fixture);assert.equal(a.status,'failed');assert.equal(decisionReport(a,fixture).score,75);});
 test('route judge checks complete segments, including a hazard between clear endpoints',()=>{assert.equal(routeClear([{x:-4,y:0},{x:4,y:0}],[{x:0,y:0,rx:1,ry:2}]),false);assert.equal(routeClear([{x:-4,y:0},{x:-4,y:4},{x:4,y:4},{x:4,y:0}],[{x:0,y:0,rx:1,ry:2}]),true);assert.equal(routeClear([{x:-4,y:2},{x:4,y:2}],[{x:0,y:0,rx:1,ry:2}]),false);});
 test('ending early records failure and no unperformed objective evidence',()=>{const a=beginDecision(fixture);endDecision(a);const r=decisionReport(a,fixture);assert.equal(r.status,'failed');assert.equal(r.score,0);assert.equal(r.objectives[0].status,'missed');assert.deepEqual(r.objectives[1].evidence,{});});
+
+test('bearing tolerance crosses north in both directions and preserves the entered evidence',()=>{
+ for(const [expected,value,kind] of [[0,360,'complete'],[0,359.5,'complete'],[0,359,'complete'],[0,358.99,'revision'],[359.5,0,'complete'],[359.5,1,'revision']]){
+  const scenario={...fixture,stages:[{...fixture.stages[1],fields:[{id:'bearing',type:'number',comparison:'bearing',expected,tolerance:1,min:0,max:360}]}]};
+  const a=beginDecision(scenario);setDecisionValue(a,scenario,'bearing',String(value));assert.equal(submitDecision(a,scenario).kind,kind,`${expected} vs ${value}`);
+  assert.equal(a.mistakes,kind==='revision'?1:0);
+  if(kind==='complete'){assert.equal(a.status,'passed');assert.equal(decisionReport(a,scenario).score,100);assert.equal(decisionReport(a,scenario).objectives[0].evidence.bearing,String(value));}
+ }
+});
+
+test('bearing bounds reject multiple turns without penalty and ordinary degree quantities stay linear',()=>{
+ const field={id:'bearing',type:'number',comparison:'bearing',expected:0,tolerance:1,min:0,max:360};
+ const scenario={...fixture,stages:[{...fixture.stages[1],fields:[field]}]};
+ for(const value of [-.5,360.5,720]){const a=beginDecision(scenario);setDecisionValue(a,scenario,'bearing',value);assert.equal(submitDecision(a,scenario).kind,'incomplete');assert.equal(a.mistakes,0);}
+ const linear={...scenario,stages:[{...scenario.stages[0],fields:[{id:'angle',type:'number',unit:'°',expected:0,tolerance:1}]}]};
+ const a=beginDecision(linear);setDecisionValue(a,linear,'angle',360);assert.equal(submitDecision(a,linear).kind,'revision');
+});

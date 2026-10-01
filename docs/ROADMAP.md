@@ -45,13 +45,15 @@ Develop traffic cases from verified International and applicable inland/local ru
 
 Keep current power drills focused on open-water control. Build believable contact, fenders, line constraints, propeller effects and crew roles before adding assessed berthing or spring-line maneuvers. Include failed approaches with viable abort options, not only ideal arrivals.
 
-For anchoring, distinguish approach control, deployment, setting and monitoring. Improve rode/holding behavior against stated conditions before assessing more than sequence and settling.
+For anchoring, distinguish approach control, deployment, setting and monitoring. The current bow anchor and chain remain visually stowed even when the modeled anchor is deployed; connect their rendered positions to the actual captured anchor and rode before teaching deployment through the 3D view. Improve rode/holding behavior against stated conditions before assessing more than sequence and settling.
 
 Add crew briefing, equipment checks, lookout assignments and emergency decisions first. Person-overboard training needs detection, continuous observation, flotation/marking, casualty drift, approach, propeller hazards and a credible recovery/lifting process. Physical line handling, first aid and casualty recovery still require onboard or hands-on instruction even after better simulation.
 
 ### 5. Improve visual detail and performance together
 
 Prioritize details that communicate sailing state: sail shape and airflow cues, reef configuration, loaded versus eased lines, boom movement, instrument readability, wake and motion. Keep decorative geometry from obscuring controls or compromising small-screen performance.
+
+The rig-state audit now checks tack-normalized traveler direction, a complete rotating masthead wind pointer, elapsed-time boom response and keel geometry matching the 1.8 m modeled draft. These verify consistency with simulator state, not real sail shape or hydrodynamic calibration.
 
 Measure representative integrated/discrete GPUs and mobile devices. Track frame time, memory and input latency; introduce quality settings or level-of-detail changes based on measured bottlenecks. Software-WebGL browser checks establish functional behavior, not normal hardware performance.
 

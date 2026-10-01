@@ -15,6 +15,15 @@ test('apparent wind uses vector subtraction and bearings FROM',()=>{
   s.windDirection=90;near(apparentWind(s).speed,Math.sqrt(125));near(apparentWind(s).angle,63.43494882292201);
 });
 test('apparent wind accounts for current and leeway in ground velocity',()=>{const s=ocean({heading:0,windDirection:0,windSpeed:10,currentSpeed:2,currentDirection:0});near(apparentWind(s).speed,12);s.currentSpeed=0;s.leeway=3*KNOT;near(apparentWind(s).speed,Math.sqrt(109));});
+test('grounded wind instruments use the stationary observer despite current and stale water velocity',()=>{
+ for(const [heading,windDirection,currentDirection] of [[0,0,0],[275,35,90],[90,270,180]]){
+  const s=ocean({grounded:true,heading,windDirection,windSpeed:12,currentDirection,currentSpeed:5,speed:3,leeway:2});
+  const before={x:s.x,z:s.z,heading:s.heading,elapsed:s.elapsed,speed:s.speed,leeway:s.leeway};
+  near(apparentWind(s).speed,12);near(apparentWind(s).direction,windDirection);
+  refreshDerived(s);near(s.apparentWindSpeed,12);near(s.apparentWindAngle,angleDifference(windDirection,heading));near(s.speedOverGround,0);
+  assert.deepEqual({x:s.x,z:s.z,heading:s.heading,elapsed:s.elapsed,speed:s.speed,leeway:s.leeway},before);
+ }
+});
 test('engine accelerates ahead and astern; neutral preserves momentum and drag dissipates it',()=>{const ahead=run(ocean({sails:0,throttle:.7}),30),astern=run(ocean({sails:0,throttle:-.7}),30);assert.ok(ahead.speed>2);assert.ok(astern.speed< -2);const old=ahead.speed;ahead.throttle=0;step(ahead,.02);assert.ok(ahead.speed>0&&ahead.speed<old);run(ahead,100);assert.ok(ahead.speed<old*.2);});
 test('rudder response reverses astern and yaw decays after centering',()=>{const ahead=ocean({sails:0,speed:3,rudder:20}),astern=ocean({sails:0,speed:-3,rudder:20});run(ahead,3);run(astern,3);assert.ok(ahead.heading>35);assert.ok(astern.heading<35);ahead.rudder=0;const yaw=ahead.yawRate;run(ahead,6);assert.ok(Math.abs(ahead.yawRate)<Math.abs(yaw)*.05);});
 test('main and jib can drive independently; reefing reduces main area and heel',()=>{const both=run(ocean(),40),main=run(ocean({jibHoist:0}),40),jib=run(ocean({mainHoist:0}),40),reef=run(ocean({reefLevel:2}),40);assert.ok(main.speed>1&&jib.speed>1);assert.ok(main.speed<both.speed&&jib.speed<both.speed);assert.ok(reef.speed<both.speed);assert.ok(Math.abs(reef.heel)<Math.abs(both.heel));});
@@ -44,6 +53,22 @@ test('grounding contact survives later substeps and remains latched until reset'
   assert.equal(s.grounded,true);assert.equal(s.x,position.x);assert.equal(s.z,position.z);assert.equal(s.heading,position.heading);assert.equal(s.depth,position.depth);
  }
  assert.equal(initialState().grounded,false);
+});
+test('actual grounding updates apparent wind immediately and on subsequent simulation ticks',()=>{
+ const island=islands[0],x=island.x+island.rx*shoreScale(0)*(1+VESSEL.draft/24+1e-6);
+ for(const dt of [.02,.1,.25]){
+  const s=ocean({x,z:island.z,heading:270,speed:5,sails:0,currentDirection:270,currentSpeed:2,windDirection:270,windSpeed:12});
+  refreshDerived(s);near(s.apparentWindSpeed,19);
+  step(s,dt);
+  assert.equal(s.grounded,true);near(s.apparentWindSpeed,12);near(s.apparentWindAngle,0);near(s.speedOverGround,0);
+  near(s._playerBody.vx,0);near(s._playerBody.vz,0);
+  const position={x:s.x,z:s.z,heading:s.heading,depth:s.depth};
+  Object.assign(s,{windSpeed:18,windDirection:45,currentSpeed:5,currentDirection:0});
+  step(s,.02); // No paused refresh: the grounded integration path must update instruments itself.
+  near(s.apparentWindSpeed,18);near(s.apparentWindAngle,135);near(s.speedOverGround,0);
+  run(s,1,.1);near(s.apparentWindSpeed,18);near(s.apparentWindAngle,135);
+  assert.deepEqual({x:s.x,z:s.z,heading:s.heading,depth:s.depth},position);
+ }
 });
 test('paused rode edits recompute status for an already deployed anchor',()=>{
  const s=ocean({anchor:true,anchorRode:10});step(s,.02);assert.equal(s.anchorStatus,'Rode too short');assert.ok(s._anchor);

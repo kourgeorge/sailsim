@@ -31,12 +31,17 @@ export function depthAt(x,z,locationId = DEFAULT_LOCATION_ID) {
   for(const island of location.islands)depth=Math.min(depth,(islandRatio(x,z,island)-1)*location.shoreDepthScale);
   return clamp(depth,0,location.maxDepth);
 }
+// A grounded hull is stationary relative to land even while current flows past it.
+function groundVelocity(s) {
+  if(s.grounded)return {x:0,z:0};
+  const h=s.heading*RAD,c=(s.currentDirection||0)*RAD;
+  const u=s.speed*KNOT, v=s.leeway||0;
+  return {x:Math.sin(h)*u+Math.cos(h)*v+Math.sin(c)*(s.currentSpeed||0)*KNOT,
+    z:-Math.cos(h)*u+Math.sin(h)*v-Math.cos(c)*(s.currentSpeed||0)*KNOT};
+}
 // Bearings describe where wind comes FROM; velocity vectors describe motion TO.
 export function apparentWind(s) {
-  const h=s.heading*RAD, w=s.windDirection*RAD, c=(s.currentDirection||0)*RAD;
-  const u=s.speed*KNOT, v=s.leeway||0;
-  const vx=Math.sin(h)*u+Math.cos(h)*v+Math.sin(c)*(s.currentSpeed||0)*KNOT;
-  const vz=-Math.cos(h)*u+Math.sin(h)*v-Math.cos(c)*(s.currentSpeed||0)*KNOT;
+  const w=s.windDirection*RAD,{x:vx,z:vz}=groundVelocity(s);
   const ax=-Math.sin(w)*s.windSpeed*KNOT-vx, az=Math.cos(w)*s.windSpeed*KNOT-vz;
   const direction=wrap(Math.atan2(-ax,az)/RAD);
   return {speed:Math.hypot(ax,az)/KNOT,angle:angleDifference(direction,s.heading),direction};
@@ -94,10 +99,8 @@ export function refreshDerived(s) {
   reconcile(s);
   sailTelemetry(s,sailDynamics(s));
   if(!s.grounded)s.depth=depthAt(s.x,s.z,s.locationId);
-  const h=s.heading*RAD,c=(s.currentDirection||0)*RAD,u=s.speed*KNOT,v=s.leeway||0;
-  const vx=Math.sin(h)*u+Math.cos(h)*v+Math.sin(c)*(s.currentSpeed||0)*KNOT;
-  const vz=-Math.cos(h)*u+Math.sin(h)*v-Math.cos(c)*(s.currentSpeed||0)*KNOT;
-  s.speedOverGround=s.grounded?0:Math.hypot(vx,vz)/KNOT;
+  const {x:vx,z:vz}=groundVelocity(s);
+  s.speedOverGround=Math.hypot(vx,vz)/KNOT;
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;
@@ -119,7 +122,7 @@ export function refreshDerived(s) {
 function integrate(s,dt) {
   // A keel contact remains a grounding until the boat is reset. Later substeps
   // must not erase the contact by checking the last safe (unadvanced) position.
-  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;s.elapsed+=dt;return;}
+  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;sailTelemetry(s,sailDynamics(s));s.elapsed+=dt;return;}
   const {aw,main,jib,reefArea}=sailDynamics(s);
   const u=s.speed*KNOT, hullSpeed=1.34*Math.sqrt(VESSEL.waterline/0.3048)*KNOT;
   const drag=58*u+38*u*Math.abs(u)+Math.sign(u)*180*(Math.abs(u)/hullSpeed)**6;
@@ -169,16 +172,15 @@ function integrate(s,dt) {
   else{s.speed=0;s.leeway=0;s.yawRate=0;vx=0;vz=0;}
   s.speedOverGround=Math.hypot(vx,vz)/KNOT;
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
-  sailTelemetry(s,{aw,main,jib});
+  sailTelemetry(s,s.grounded?sailDynamics(s):{aw,main,jib});
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
   s.turnRate=s.yawRate;s.elapsed+=dt;
 }
 function playerRigidBody(s){
   const body=s._playerBody??(s._playerBody=createRigidBody({id:'player',kind:'free',mass:VESSEL.mass,shape:PLAYER_HULL,restitution:.06,friction:.3}));
-  const h=s.heading*RAD,c=(s.currentDirection||0)*RAD,u=s.speed*KNOT;
+  const velocity=groundVelocity(s);
   body.kind=s.grounded?'fixed':'free';body.x=s.x;body.z=s.z;body.heading=s.heading;body.yawRate=s.yawRate;
-  body.vx=s.grounded?0:Math.sin(h)*u+Math.cos(h)*s.leeway+Math.sin(c)*(s.currentSpeed||0)*KNOT;
-  body.vz=s.grounded?0:-Math.cos(h)*u+Math.sin(h)*s.leeway-Math.cos(c)*(s.currentSpeed||0)*KNOT;
+  body.vx=velocity.x;body.vz=velocity.z;
   return body;
 }
 function integrateContacts(s,dt){

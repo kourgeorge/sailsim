@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import { lessons } from '../src/learning/curriculum.js';
 import { restoreProgress, recordFor, masteredIds, checkKnowledge, recordDecisionResult } from '../src/learning/engine.js';
+import { decisionEvidenceValues } from '../src/learning/decision-evidence.js';
 
 function scenarioLesson(t, index = 0) {
   const lesson = lessons[index], oldId = lesson.decisionScenarioId, oldObjectives = lesson.decisionObjectiveIds;
@@ -107,4 +108,20 @@ test('decision observation payloads and strings are bounded and copied, never ex
   assert.equal(saved.objectives[0].inspected[0].length, 80);
   report.objectives[0].evidence.choice = 'changed';
   assert.equal(saved.objectives[0].evidence.choice, 'safe');
+});
+
+test('accepted legacy reports expose a safe empty action map when root evidence is absent or malformed', t => {
+  const lesson = scenarioLesson(t);
+  for (const evidence of [undefined, null, [], ['action'], false, 12, 'old summary']) {
+    const report = reportFor(lesson);
+    report.objectives[0].evidence = evidence;
+    const restored = recordDecisionResult(restoreProgress(null), lesson, report);
+    assert.ok(restored);
+    assert.deepEqual(restored.objectives[0].evidence, {});
+    assert.deepEqual(decisionEvidenceValues(report.objectives[0]), {});
+    assert.equal(Object.hasOwn(decisionEvidenceValues(report.objectives[0]), 'choice'), false);
+  }
+  const row = { evidence: { choice: 'safe' } };
+  assert.deepEqual(decisionEvidenceValues(row), { choice: 'safe' });
+  assert.deepEqual(decisionEvidenceValues(), {});
 });

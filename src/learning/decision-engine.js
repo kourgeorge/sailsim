@@ -22,7 +22,12 @@ export function routeClear(points,hazards=[]){
  }}return true;
 }
 function correct(field,value,stage){
- if(field.type==='number')return Math.abs(Number(value)-field.expected)<=(field.tolerance??.05)+1e-9;
+ if(field.type==='number'){
+  const difference=Number(value)-field.expected;
+  // Bearings wrap at north; ordinary numerical quantities retain linear tolerances.
+  const error=field.comparison==='bearing'?Math.abs(((difference%360)+540)%360-180):Math.abs(difference);
+  return error<=(field.tolerance??.05)+1e-9;
+ }
  if(field.type==='select')return value===field.expected;
  if(field.type==='checks')return value.length===field.expected.length&&field.expected.every(v=>value.includes(v));
  if(field.type==='route'){

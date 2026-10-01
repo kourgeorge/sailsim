@@ -1,0 +1,148 @@
+{
+  "results": [
+    {
+      "fixture": {
+        "id": "starboard",
+        "angle": 60,
+        "mainHoist": 1,
+        "jibHoist": 1,
+        "reefLevel": 0
+      },
+      "boom": -0.8726646259971648,
+      "car": -1,
+      "vane": -1.0471975511965976,
+      "mainVisible": true,
+      "mainScale": 1,
+      "jibVisible": true,
+      "jibFoot": 5.400000171891,
+      "pointer": {
+        "x": 0.8660254037844384,
+        "z": -0.5000000000000003
+      },
+      "vaneParts": 3,
+      "attached": true
+    },
+    {
+      "fixture": {
+        "id": "port",
+        "angle": -60,
+        "mainHoist": 1,
+        "jibHoist": 1,
+        "reefLevel": 0
+      },
+      "boom": 0.8726646259971648,
+      "car": 1,
+      "vane": 1.0471975511965976,
+      "mainVisible": true,
+      "mainScale": 1,
+      "jibVisible": true,
+      "jibFoot": 5.400000171891,
+      "pointer": {
+        "x": -0.8660254037844384,
+        "z": -0.5000000000000003
+      },
+      "vaneParts": 3,
+      "attached": true
+    },
+    {
+      "fixture": {
+        "id": "reef-one",
+        "angle": 60,
+        "mainHoist": 1,
+        "jibHoist": 1,
+        "reefLevel": 1
+      },
+      "boom": -0.8726646259971648,
+      "car": -1,
+      "vane": -1.0471975511965976,
+      "mainVisible": true,
+      "mainScale": 0.72,
+      "jibVisible": true,
+      "jibFoot": 5.400000171891,
+      "pointer": {
+        "x": 0.8660254037844384,
+        "z": -0.5000000000000003
+      },
+      "vaneParts": 3,
+      "attached": true
+    },
+    {
+      "fixture": {
+        "id": "reef-two-partial",
+        "angle": -60,
+        "mainHoist": 0.5,
+        "jibHoist": 0.5,
+        "reefLevel": 2
+      },
+      "boom": 0.8726646259971648,
+      "car": 1,
+      "vane": 1.0471975511965976,
+      "mainVisible": true,
+      "mainScale": 0.24,
+      "jibVisible": true,
+      "jibFoot": 2.700000222924925,
+      "pointer": {
+        "x": -0.8660254037844384,
+        "z": -0.5000000000000003
+      },
+      "vaneParts": 3,
+      "attached": true
+    },
+    {
+      "fixture": {
+        "id": "main-down",
+        "angle": 60,
+        "mainHoist": 0,
+        "jibHoist": 1,
+        "reefLevel": 0
+      },
+      "boom": -0.8726646259971648,
+      "car": -1,
+      "vane": -1.0471975511965976,
+      "mainVisible": false,
+      "mainScale": 0,
+      "jibVisible": true,
+      "jibFoot": 5.400000171891,
+      "pointer": {
+        "x": 0.8660254037844384,
+        "z": -0.5000000000000003
+      },
+      "vaneParts": 3,
+      "attached": true
+    },
+    {
+      "fixture": {
+        "id": "both-down",
+        "angle": -60,
+        "mainHoist": 0,
+        "jibHoist": 0,
+        "reefLevel": 0
+      },
+      "boom": 0.8726646259971648,
+      "car": 1,
+      "vane": 1.0471975511965976,
+      "mainVisible": false,
+      "mainScale": 0,
+      "jibVisible": false,
+      "jibFoot": 7.678653519832283e-19,
+      "pointer": {
+        "x": -0.8660254037844384,
+        "z": -0.5000000000000003
+      },
+      "vaneParts": 3,
+      "attached": true
+    }
+  ],
+  "timing": {
+    "10": {
+      "angle": -0.8722574260612898,
+      "repeated": -0.8722574260612898,
+      "attached": true
+    },
+    "60": {
+      "angle": -0.8722574260612895,
+      "repeated": -0.8722574260612895,
+      "attached": true
+    }
+  }
+}

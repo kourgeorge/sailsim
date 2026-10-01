@@ -11,6 +11,8 @@ The simulator integrates a deterministic, empirical small cruising-yacht model. 
 - Positive rudder means a starboard helm command. It increases compass heading going ahead and decreases heading going astern. This is the wheel/helm command, not a statement about tiller displacement.
 - Apparent wind angle is relative to the bow, positive from starboard, negative from port. Zero is ahead, ±180° astern.
 
+A grounded hull has zero ground velocity, including when current flows past it. Apparent wind therefore equals the ground-referenced true wind in speed and bearing, with its angle measured relative to the bow. Instruments refresh on the grounding step, later simulation ticks and paused condition edits; current must not create fictitious observer motion. The same ground-velocity calculation supplies the collision adapter and derived instruments.
+
 ## Integrated model
 
 The vessel has a nominal 5,600 kg mass, 9.5 m waterline, 1.8 m draft, 30 m² mainsail, and 22 m² headsail. These are design assumptions, not measurements of eSail's vessel.
