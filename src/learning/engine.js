@@ -1,4 +1,7 @@
 import { lessons } from './curriculum.js';
+import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment } from './practice-assessment.js';
+import { restoreDecisionResult } from './decision-evidence.js';
+export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
 export const STORAGE_KEY='sail-training-v1';
 const angle=(a,b)=>((a-b+540)%360)-180;
@@ -11,18 +14,32 @@ export function restoreProgress(raw){
  if(lessons.some(l=>l.id===value.selected))result.selected=value.selected;
  for(const l of lessons){const r=value.records[l.id];if(!r||typeof r!=='object')continue;
   const practice=r.practice===true&&count(r.attempts)>0;
-  result.records[l.id]={practice,knowledge:r.knowledge===true,attempts:count(r.attempts),hints:count(r.hints),wrongAnswers:count(r.wrongAnswers),lastResult:typeof r.lastResult==='string'?r.lastResult.slice(0,240):'',passedAt:typeof r.passedAt==='string'&&Number.isFinite(Date.parse(r.passedAt))?r.passedAt:null};
+  const practiceResults=Array.isArray(r.practiceResults)?r.practiceResults.slice(-5).map(value=>restorePracticeAssessment(value,l)).filter(Boolean):[];
+  const lastPracticeResult=restorePracticeAssessment(r.lastPracticeResult,l)??practiceResults.at(-1)??null;
+  const decisionResults=Array.isArray(r.decisionResults)?r.decisionResults.slice(-5).map(value=>restoreDecisionResult(value,l)).filter(Boolean):[];
+  const lastDecisionResult=restoreDecisionResult(r.lastDecisionResult,l)??decisionResults.at(-1)??null;
+  const decisionAttempts=count(r.decisionAttempts),decision=Boolean(l.decisionScenarioId)&&r.decision===true&&decisionAttempts>0;
+  result.records[l.id]={practice,knowledge:r.knowledge===true,attempts:count(r.attempts),hints:count(r.hints),wrongAnswers:count(r.wrongAnswers),lastResult:typeof r.lastResult==='string'?r.lastResult.slice(0,240):'',passedAt:typeof r.passedAt==='string'&&Number.isFinite(Date.parse(r.passedAt))?r.passedAt:null,lastPracticeResult,practiceResults,decision,decisionAttempts,lastDecisionResult,decisionResults};
  }
  return result;
 }
-export function recordFor(progress,id){return progress.records[id]??(progress.records[id]={practice:false,knowledge:false,attempts:0,hints:0,wrongAnswers:0,lastResult:'',passedAt:null});}
-export function masteredIds(progress){const ids=new Set();for(const l of lessons){const r=progress.records[l.id];if(r?.knowledge&&(!l.practice||r.practice)&&(!l.prerequisite||ids.has(l.prerequisite)))ids.add(l.id);}return ids;}
+export function recordFor(progress,id){return progress.records[id]??(progress.records[id]={practice:false,knowledge:false,attempts:0,hints:0,wrongAnswers:0,lastResult:'',passedAt:null,lastPracticeResult:null,practiceResults:[],decision:false,decisionAttempts:0,lastDecisionResult:null,decisionResults:[]});}
+const evidenceComplete=(record,lesson)=>record?.knowledge&&(!lesson.practice||record.practice)&&(!lesson.decisionScenarioId||record.decision===true);
+export function masteredIds(progress){const ids=new Set();for(const l of lessons){const r=progress.records[l.id];if(evidenceComplete(r,l)&&(!l.prerequisite||ids.has(l.prerequisite)))ids.add(l.id);}return ids;}
 export function lessonReady(progress,lesson){return !lesson.prerequisite||masteredIds(progress).has(lesson.prerequisite);}
 export function checkKnowledge(progress,lesson,answers,{countWrongAnswers=true}={}){
  if(!Array.isArray(answers)||answers.length!==lesson.quiz.length||answers.some((a,i)=>!Number.isInteger(a)||a<0||a>=lesson.quiz[i].options.length))return {complete:false,correct:false,results:[]};
  const results=lesson.quiz.map((q,i)=>answers[i]===q.correct),r=recordFor(progress,lesson.id);if(countWrongAnswers)r.wrongAnswers+=results.filter(v=>!v).length;
- if(results.every(Boolean)){r.knowledge=true;if((!lesson.practice||r.practice)&&lessonReady(progress,lesson))r.passedAt=new Date().toISOString();}
+ if(results.every(Boolean)){r.knowledge=true;if(evidenceComplete(r,lesson)&&lessonReady(progress,lesson))r.passedAt=new Date().toISOString();}
  return {complete:true,correct:results.every(Boolean),results};
+}
+/** Decision reports add a separate evidence requirement; quizzes cannot substitute for it. */
+export function recordDecisionResult(progress,lesson,value){
+ const report=restoreDecisionResult(value,lesson);if(!report)return null;
+ const r=recordFor(progress,lesson.id);if(r.lastDecisionResult?.id===report.id||r.decisionResults?.some(item=>item.id===report.id))return r.decisionResults?.find(item=>item.id===report.id)??r.lastDecisionResult;
+ r.decisionAttempts=Math.min(100000,count(r.decisionAttempts)+1);r.hints=Math.min(100000,count(r.hints)+report.hints);r.lastDecisionResult=report;r.decisionResults=[...(r.decisionResults??[]),report].slice(-5);
+ if(report.status==='passed'){r.decision=true;if(evidenceComplete(r,lesson)&&lessonReady(progress,lesson))r.passedAt=new Date().toISOString();}
+ return report;
 }
 /** Sign change near 0 is a bow crossing; a wrap at +/-180 is a stern crossing. */
 export function crossingKind(previous,current){
@@ -32,9 +49,10 @@ export function crossingKind(previous,current){
 export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
- return {lessonId:lesson.id,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0};
+ return {lessonId:lesson.id,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null};
 }
-export function invalidateAttempt(attempt,progress,reason){if(!attempt||attempt.status!=='active')return;attempt.status='invalid';attempt.message=reason;recordFor(progress,attempt.lessonId).lastResult=reason;}
+function savePracticeResult(attempt,lesson,progress){const report=practiceAssessment(attempt,lesson);if(!report||report.status==='active')return;const r=recordFor(progress,attempt.lessonId);r.lastPracticeResult=report;r.practiceResults=[...(r.practiceResults??[]),report].slice(-5);}
+export function invalidateAttempt(attempt,progress,reason,code='interrupted'){if(!attempt||attempt.status!=='active')return;attempt.status='invalid';attempt.message=reason;if(code!=='interrupted')attempt.criticalFailure={code,message:reason};recordFor(progress,attempt.lessonId).lastResult=reason;const lesson=lessons.find(l=>l.id===attempt.lessonId);if(lesson)savePracticeResult(attempt,lesson,progress);}
 export function recordEvent(attempt,type,value){if(attempt?.status==='active')attempt.events.add(`${type}:${value}`);}
 export function useHint(attempt,progress){if(attempt?.status==='active'){attempt.hints++;recordFor(progress,attempt.lessonId).hints++;}}
 function satisfied(check,state,attempt){
@@ -60,20 +78,24 @@ function satisfied(check,state,attempt){
 export function advanceAttempt(attempt,lesson,state,dt,progress){
  if(!attempt||attempt.status!=='active')return attempt;
  if(!Number.isFinite(dt)||dt<=0||dt>.25)return attempt; // No wall-clock credit after sleeping or tab suspension.
- if(state.grounded){invalidateAttempt(attempt,progress,'Grounding ended this attempt. Review the chart and restart with sea room.');return attempt;}
- if(Object.entries(attempt.weather).some(([key,value])=>Math.abs((state[key]??0)-value)>.001)){invalidateAttempt(attempt,progress,'Conditions changed. Restart to assess in the prescribed weather.');return attempt;}
+ if(attempt.objectives?.[attempt.index])attempt.objectives[attempt.index].evidence=practiceEvidence(state,attempt);
+ if(state.grounded){invalidateAttempt(attempt,progress,'Grounding ended this attempt. Review the chart and restart with sea room.','grounding');return attempt;}
+ if(Object.entries(attempt.weather).some(([key,value])=>Math.abs((state[key]??0)-value)>.001)){invalidateAttempt(attempt,progress,'Conditions changed. Restart to assess in the prescribed weather.','conditions-changed');return attempt;}
  const current=lesson.practice.steps[attempt.index];
  const departure=lesson.practice.setup.anchor===true&&attempt.index===0;
- if(state.anchor&&current.kind!=='anchor'&&!departure){invalidateAttempt(attempt,progress,'Anchor deployed before the stopping stage. Slow under control and restart.');return attempt;}
- if((state.throttle??0)!==0){invalidateAttempt(attempt,progress,'This sailing exercise requires the engine in neutral. Restart under sail.');return attempt;}
+ if(state.anchor&&current.kind!=='anchor'&&!departure){invalidateAttempt(attempt,progress,'Anchor deployed before the stopping stage. Slow under control and restart.','early-anchor');return attempt;}
+ if((state.throttle??0)!==0){invalidateAttempt(attempt,progress,'This sailing exercise requires the engine in neutral. Restart under sail.','engine-engaged');return attempt;}
  const relative=angle(state.heading,state.windDirection),crossing=crossingKind(attempt.previousAngle,relative);
  if(crossing&&['tack','gybe'].includes(current.kind)){attempt.maneuver=crossing;attempt.maneuverSide=Math.sign(relative);}
  if(Math.abs(relative)>.05)attempt.previousAngle=relative;
  attempt.elapsed+=dt;
- attempt.held=satisfied(current,state,attempt)?attempt.held+dt:0;
+ const conditionMet=satisfied(current,state,attempt);
+ observePracticeObjective(attempt,state,conditionMet,dt);
+ attempt.held=conditionMet?attempt.held+dt:0;
  if(attempt.held>=Math.max(.001,current.duration)){
+  completePracticeObjective(attempt);
   attempt.completed.push({index:attempt.index,time:attempt.elapsed});attempt.index++;attempt.held=0;attempt.events.clear();attempt.maneuver=null;attempt.maneuverSide=0;
-  if(attempt.index===lesson.practice.steps.length){attempt.status='passed';const r=recordFor(progress,lesson.id);r.practice=true;r.lastResult=`Practice passed in ${Math.round(attempt.elapsed)} seconds; ${attempt.hints} hints this attempt.`;if(r.knowledge&&lessonReady(progress,lesson))r.passedAt=new Date().toISOString();}
+  if(attempt.index===lesson.practice.steps.length){attempt.status='passed';const r=recordFor(progress,lesson.id);if(practiceAssessment(attempt,lesson)?.status==='passed'){r.practice=true;r.lastResult=`Practice passed in ${Math.round(attempt.elapsed)} seconds; ${attempt.hints} hints this attempt.`;if(r.knowledge&&lessonReady(progress,lesson))r.passedAt=new Date().toISOString();}else{attempt.status='invalid';attempt.message='All rubric objectives and the passing score are required.';r.lastResult=attempt.message;}savePracticeResult(attempt,lesson,progress);}
  }
  return attempt;
 }

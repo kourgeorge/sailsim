@@ -1,4 +1,5 @@
 import {advancedModule,advancedLessons} from './advanced-course.js';
+import {decisionScenarios} from './decision-scenarios.js';
 // Original instructional content. Practical assessments only use simulated capabilities.
 export const modules=[
  {id:'aboard',title:'Before you leave',outcome:'Use boat terminology, identify essential equipment, and prepare a safe crew briefing.'},
@@ -276,4 +277,5 @@ lesson('readiness','From simulation to the sea',[
  q('Which important skills remain unassessed by this simulator?',['Reading the modeled heading','Loaded line handling, engine docking, and casualty recovery','Changing the camera'],1,'Those skills require forces, equipment, coordination, and conditions that this version does not model.')]);
 modules.push(advancedModule);
 lessons.push(...advancedLessons);
+for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 export {lessons};

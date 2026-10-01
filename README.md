@@ -19,19 +19,20 @@ node scripts/browser-check.mjs            # Core browser checks
 node scripts/check-locales.mjs            # Six-language desktop/mobile checks
 node scripts/check-new-features.mjs        # Text sizing, engine drills and replay
 node scripts/check-training-scenarios.mjs  # All 19 assessed sailing practices
+node scripts/check-decision-training.mjs --locales  # Scenarios, direct launch, scoring and six languages
 ```
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
 
 ## Sailing school
 
-**42 lessons, 10 modules, 84 explained questions and 19 assessed sailing practices.** All lessons remain open for study; saved evidence supports sequential mastery.
+**42 lessons, 10 modules, 84 explained questions, 19 assessed sailing practices and 23 interactive seamanship scenarios (69 stages).** Start training launches the task directly; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
 
 | Level | Lessons | Focus |
 |---|---|---|
 | Basic | 01–16 | Crew safety, wind, helm, trim and fundamental maneuvers |
 | Intermediate | 17–36 | Sail power, navigation, harbor planning and emergency decisions |
-| Advanced | 37–42 | Coastal planning, tidal clearance, current/time, weather, collision risk and night pilotage; **theory only** |
+| Advanced | 37–42 | Coastal planning, tidal clearance, current/time, weather, collision risk and night pilotage; interactive decision and numerical scenarios |
 
 The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **125%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
 
@@ -68,3 +69,5 @@ See [curriculum](docs/CURRICULUM.md), [physics](docs/PHYSICS.md), [localization]
 `reference/esail/index.html` browses the collected **69 public sitemap pages and 234 images**. `all-text.md`, `pages/`, `images/` and `manifest.json` retain source text, files and provenance. Two unavailable images are recorded as HTTP 404 failures. Scope is sitemap-listed public pages and their same-host image references, not every unlinked asset, embedded service or video.
 
 Refresh with `npm run scrape`, then `python3 scripts/build_archive_index.py`. The scraper caches successful files. Source ownership remains with the original rights holders; archived HTML and images are reference material, while the app uses original branding, lesson prose and generated 3D geometry.
+
+Training scores, critical failures, saved debriefs and progress migration are documented in [PRACTICE_SCORING.md](docs/PRACTICE_SCORING.md). Scenarios assess their stated modeled tasks; course completion is not an on-water qualification.

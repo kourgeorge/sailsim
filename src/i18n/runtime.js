@@ -4,6 +4,11 @@ import englishUI from './en-ui.json';
 import englishManeuvers from './en-maneuvers.json';
 import {extraUI} from './supplemental.js';
 import {learningUI} from './learning-tools.js';
+import {trainingUI} from './training.js';
+import {validateScenarioLocale,localizeScenario} from '../learning/scenario-localization.js';
+const scenarioLoaders=import.meta.glob('./scenarios-*.js',{import:'default'});
+let scenarioPack=null;
+export const translatedScenario=scenario=>localizeScenario(scenario,scenarioPack);
 export const LANGUAGES=[{code:'en',name:'English',dir:'ltr'},{code:'es',name:'Español',dir:'ltr'},{code:'ar',name:'العربية',dir:'rtl'},{code:'he',name:'עברית',dir:'rtl'},{code:'ru',name:'Русский',dir:'ltr'},{code:'fr',name:'Français',dir:'ltr'}];
 const loaders=import.meta.glob(['./*-ui.json','!./en-ui.json'],{import:'default'});
 const maneuverLoaders=import.meta.glob(['./*-maneuvers.json','!./en-maneuvers.json'],{import:'default'});
@@ -46,10 +51,11 @@ async function loadLanguage(code,lessons,modules){
  if(!response.ok)throw new Error('Language pack unavailable');const course=await response.json();validateCourseLocale(course,lessons,modules);
  for(const key of Object.keys(englishUI)){if(typeof ui[key]!=='string'||!ui[key].trim())throw new Error('Missing interface translation: '+key);const required=[...key.matchAll(/\{\w+\}/g)].map(m=>m[0]).sort();const present=[...ui[key].matchAll(/\{\w+\}/g)].map(m=>m[0]).sort();if(required.join('|')!==present.join('|'))throw new Error('Invalid translation placeholders: '+key);}
  const maneuverLoader=maneuverLoaders[`./${code}-maneuvers.json`];if(!maneuverLoader)throw new Error('Maneuvering translations unavailable');const maneuvers=await maneuverLoader();for(const key of Object.keys(englishManeuvers)){if(typeof maneuvers[key]!=='string'||!maneuvers[key].trim())throw new Error('Missing maneuvering translation: '+key);}
- return {ui,course,maneuvers};
+ const scenarioLoader=scenarioLoaders[`./scenarios-${code}.js`];if(!scenarioLoader)throw new Error('Scenario translations unavailable');const scenarios=await scenarioLoader();validateScenarioLocale(scenarios);
+ return {ui,course,maneuvers,scenarios};
 }
 export async function initializeLocalization(lessons,modules){
- const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code]};patterns=compilePatterns(dictionary);cache.clear();
+ const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;scenarioPack=pack.scenarios||null;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code],...trainingUI[code]};patterns=compilePatterns(dictionary);cache.clear();
  document.documentElement.lang=code;document.documentElement.dir=LANGUAGES.find(l=>l.code===code).dir;
  if(pack.course)applyCourseLocale(pack.course,lessons,modules);
  return code;

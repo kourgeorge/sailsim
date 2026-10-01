@@ -1,5 +1,6 @@
 // Parallel labels: English, Spanish, Arabic, Hebrew, Russian, French.
 const rows=[
+ ['Study material','Material de estudio','المادة الدراسية','חומר לימוד','Учебный материал','Supports de cours'],
  ['Lessons save automatically in this browser. Open Course to browse lessons or resume your study.','Las lecciones se guardan automáticamente en este navegador. Abre Curso para explorar las lecciones o continuar estudiando.','تُحفظ الدروس تلقائيًا في هذا المتصفح. افتح الدورة لتصفح الدروس أو متابعة الدراسة.','השיעורים נשמרים אוטומטית בדפדפן. פתחו את הקורס כדי לעיין בשיעורים או להמשיך ללמוד.','Уроки сохраняются в этом браузере автоматически. Откройте курс для выбора уроков или продолжения учёбы.','Les leçons sont enregistrées automatiquement dans ce navigateur. Ouvrez le cours pour parcourir les leçons ou reprendre votre étude.'],
 
 ['Enlarge diagram','Ampliar esquema','تكبير الرسم','הגדלת התרשים','Увеличить схему','Agrandir le schéma'],

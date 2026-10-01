@@ -28,20 +28,20 @@ try {
  await page.locator('input[name="q1"][value="1"]').check();
  await page.locator('#knowledge-form button[type="submit"]').click();
  await expect(page.locator('#quiz-result')).toContainText('passed');
- assert.equal(await page.locator('#progress-label').textContent(),'1 / 42');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 42','Knowledge alone must not award new scenario evidence');
  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')).records['sail-01'].wrongAnswers),1);
  await page.locator('#reader-close').click();
  await page.waitForFunction(()=>Number(document.querySelector('#scene').dataset.triangles)>10000,{timeout:60000});
  await page.locator('#course-library').click();
  assert.equal(await page.locator('[data-library-lesson]').count(),42);
  await page.locator('[data-library-lesson="3"]').click();
- await page.locator('[data-reader-section="practice"]').click();
- await page.locator('#begin-assessment').click();
+ await page.locator('#practice-start').click();
+ await expect(page.locator('#lesson-reader')).toBeHidden();
  await page.locator('button[data-camera="deck"]').click();
  await expect(page.locator('#objective-text')).toContainText('chart',{timeout:60000});
  await page.locator('#chart-toggle').click();await expect(page.locator('#large-chart')).toBeVisible();await page.locator('#close-modal').click();
- await expect(page.locator('#objective-text')).toContainText('Practice passed',{timeout:60000});
- assert.equal(await page.locator('#progress-label').textContent(),'1 / 42','Practice preview alone does not award mastery');
+ await expect(page.locator('.practice-debrief')).toContainText('Training passed',{timeout:60000});await page.locator('#close-modal').click();
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 42','Practice preview alone does not award mastery');
  // Reset, real controls, and keyboard operation after a focused button.
  await page.locator('[data-mode="explore"]').click();
  await page.locator('button[data-camera="chase"]').click();
@@ -81,7 +81,7 @@ try {
  await page.locator('button[data-camera="chase"]').click();
  // Saved knowledge/practice restore without claiming interrupted practice continuity.
  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('#scene')?.dataset.drawCalls,{timeout:120000});
- assert.equal(await page.locator('#progress-label').textContent(),'1 / 42');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 42');
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')));assert.equal(saved.records['sail-04'].practice,true);
  // Mobile access to the course, detailed systems, and normal controls.
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(2200);
