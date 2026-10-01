@@ -25,6 +25,7 @@ Each lesson follows **brief → observe → practice where modeled → check und
 - Practical attempts start explicitly and reset the boat and prescribed steady weather. Free sailing cannot silently complete a lesson.
 - Checkpoints are ordered. Observation events from an earlier stage cannot be banked for a later stage.
 - Timed checks require continuous performance. Leaving tolerance resets that checkpoint's timer. Pauses, dialogs, and suspended browser time earn no credit.
+- Mainsail trim requires an exposed mainsail with drawing airflow; reefing requires the reefed main to remain hoisted. Coasting with a lowered main cannot satisfy either exercise. Anchor checks require rode long enough to reach the bottom, but do not establish safe real-world scope or seabed holding.
 - Tacking requires a bow crossing of the wind plus settled speed on the opposite tack. Gybing requires a stern crossing. A sign change alone is insufficient to distinguish these maneuvers.
 - Grounding, non-neutral throttle during a sail exercise, changing the specified wind/current, deploying the anchor before its stage, boat reset, or switching modes invalidates an active attempt.
 - Successful practical evidence remains available while studying its quiz. Repeating a mastered exercise does not erase earlier credit.

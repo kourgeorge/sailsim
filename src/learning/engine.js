@@ -47,12 +47,12 @@ function satisfied(check,state,attempt){
  case 'speedAbove':return speed>check.value&&!state.anchor&&sails>.1&&(state.throttle??0)===0;
  case 'heading':return Math.abs(angle(state.heading,check.value))<=5&&speed>2;
  case 'windAngle':return twa>=check.value[0]&&twa<=check.value[1]&&speed>2;
- case 'trim':return Math.abs((state.mainSheet??state.trim)-(state.suggestedMainSheet??Math.max(5,Math.min(88,(twa-35)/1.6))))<=check.value&&speed>2;
+ case 'trim':return (state.mainHoist??state.sails)>.95&&state.mainFlow==='Drawing'&&Math.abs((state.mainSheet??state.trim)-(state.suggestedMainSheet??Math.max(5,Math.min(88,(twa-35)/1.6))))<=check.value&&speed>2;
  case 'tack':case 'gybe':return attempt.maneuver===check.kind&&Math.sign(angle(state.heading,state.windDirection))===attempt.maneuverSide&&speed>2&&(check.kind==='tack'?twa>=40&&twa<=100:twa>=105&&twa<=175);
  case 'recover':return twa>=40&&twa<=100&&speed>2;
- case 'reef':return (state.reefLevel>0||state.reef)&&speed>1;
+ case 'reef':return (state.reefLevel>0||state.reef)&&(state.mainHoist??state.sails)>.95&&speed>1;
  case 'coast':return sails<.01&&!state.anchor&&speed<check.value;
- case 'anchor':return check.value?state.anchor&&speed<.2&&sails<.01&&!state.anchorDragging:!state.anchor;
+ case 'anchor':return check.value?state.anchor&&state.anchorScope>=1&&speed<.2&&sails<.01&&!state.anchorDragging:!state.anchor;
  case 'waypoint':return Math.hypot(state.x-check.value.x,state.z-check.value.z)<=check.value.radius&&state.depth>=3;
  default:return false;
  }
@@ -83,6 +83,7 @@ export function coachingTip(lesson,attempt,state){
  if(state.grounded)return 'You are aground. Restart the exercise and check the chart for a clear route.';
  if(current.kind==='camera')return 'Select Cockpit in the camera controls, then inspect the instruments.';
  if(current.kind==='event')return 'Select the chart card or press M to inspect your position.';
+ if(['trim','reef'].includes(current.kind)&&(state.mainHoist??state.sails)<.95)return 'Hoist both sails using the sail controls.';
  if(current.hint)return current.hint;
  if(current.kind==='coast')return 'Lower both sails, keep the engine neutral and the anchor up. Allow momentum to decay.';
  if(current.kind==='anchor')return current.value?'With sails lowered and the boat slow, drop the anchor. Check rode and wait for the boat to settle.':'Weigh the anchor before setting the sails.';

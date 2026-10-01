@@ -92,7 +92,7 @@ function sailTelemetry(s,{aw,main,jib}) {
 export function refreshDerived(s) {
   reconcile(s);
   sailTelemetry(s,sailDynamics(s));
-  s.depth=depthAt(s.x,s.z);
+  if(!s.grounded)s.depth=depthAt(s.x,s.z);
   const h=s.heading*RAD,c=(s.currentDirection||0)*RAD,u=s.speed*KNOT,v=s.leeway||0;
   const vx=Math.sin(h)*u+Math.cos(h)*v+Math.sin(c)*(s.currentSpeed||0)*KNOT;
   const vz=-Math.cos(h)*u+Math.sin(h)*v-Math.cos(c)*(s.currentSpeed||0)*KNOT;
@@ -103,12 +103,22 @@ export function refreshDerived(s) {
   if(s.anchor){
     const vertical=(s._anchor?.depth??s.depth)+VESSEL.bowHeight;
     s.anchorScope=s.anchorRode/vertical;
-    if(s.anchorRode<vertical)s.anchorStatus='Rode too short';
-    else if(!s._anchor)s.anchorStatus=s.anchorScope<3?'Short scope · poor holding':'Deployed · settling';
+    if(s.anchorRode<vertical){s.anchorStatus='Rode too short';s.anchorDragging=false;s.anchorTension=0;}
+    else {
+      const radius=Math.sqrt(Math.max(0,s.anchorRode*s.anchorRode-vertical*vertical));
+      const distance=s._anchor?Math.hypot(s.x-s._anchor.x,s.z-s._anchor.z):0;
+      const taut=Boolean(s._anchor)&&distance>=radius-.2;
+      s.anchorDragging=Boolean(s.anchorDragging)&&s.anchorScope<3&&taut;
+      s.anchorStatus=s.anchorDragging?'Dragging · add scope':s.anchorScope<3?'Short scope · poor holding':taut?'Holding':'Deployed · settling';
+      if(!taut)s.anchorTension=0;
+    }
   }else{s.anchorStatus='Stowed';s.anchorScope=0;s.anchorTension=0;s.anchorDragging=false;}
   return s;
 }
 function integrate(s,dt) {
+  // A keel contact remains a grounding until the boat is reset. Later substeps
+  // must not erase the contact by checking the last safe (unadvanced) position.
+  if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;s.elapsed+=dt;return;}
   const {aw,main,jib,reefArea}=sailDynamics(s);
   const u=s.speed*KNOT, hullSpeed=1.34*Math.sqrt(VESSEL.waterline/0.3048)*KNOT;
   const drag=58*u+38*u*Math.abs(u)+Math.sign(u)*180*(Math.abs(u)/hullSpeed)**6;
