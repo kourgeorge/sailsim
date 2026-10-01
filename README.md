@@ -20,7 +20,7 @@ npm test                                  # Physics, assessment, content and sta
 npm run build                             # Refresh reference library; build dist/
 npm run preview                           # Serve the production build
 node scripts/browser-check.mjs            # Core browser checks
-node scripts/mobile-check.mjs             # Folding controls, lesson selection and responsive layouts
+node scripts/mobile-check.mjs             # Full-screen mobile scene, overlay sheets and touch controls
 node scripts/check-locales.mjs            # Six-language desktop/mobile checks
 node scripts/check-new-features.mjs        # Text sizing, engine drills and replay
 node scripts/check-training-scenarios.mjs  # All 19 assessed sailing practices
@@ -59,7 +59,7 @@ The searchable learning library contains **26 verified official-source records**
 - Weather settings describe wind over ground. Instruments and points of sail use wind over water (weather air velocity minus current); apparent wind describes the airflow aboard. The model's no-go and sail-shape rules now preserve force consistency under uniform changes of reference frame. These numerical checks do not calibrate the empirical sail coefficients to a real yacht.
 - Independent main/headsail hoists and sheets, two reefs, traveler, vang, outhaul, engine ahead/neutral/astern, anchor and rode length.
 - Compact cockpit control groups expose steering, both sheets, engine/neutral, independent hoists, reef selection and anchor target/payout directly below the scene. Systems keeps the finer rig adjustments. Early acceleration practice starts with sails lowered; navigation starts require steering before credit, with untouched-start regressions across all 19 physical lessons.
-- On mobile, a numbered lesson strip shows the current selection and opens any lesson; All lessons opens the full course. Boat controls fold into a bottom bar and open over the sea, with separate Helm, Sails, Anchor and Instruments tabs. The current practice goal stays visible, with progress and further actions under Practice details.
+- On mobile, the sea fills the viewport. Floating Menu and Lesson buttons open navigation/settings and the numbered lesson picker without reserving screen space. The active goal appears as a compact overlay; its lesson sheet contains progress and practice actions. Play/pause and folding Boat controls float at the bottom. Speed, heading and depth overlays are optional via Show instruments. Menu and lesson sheets pause the simulation while open and preserve its previous playback state when dismissed.
 - Timed powered windlass with separate rode target and actual paid length, stop/resume controls, and recovery that waits for unloaded rode. Bow-based 3D anchor/rode, a six-language illustrated monitor and the chart share physical geometry. Assessments require actual payout or full stowage; stopping includes current and sideways drift.
 - Apparent-wind vectors, empirical sail forces, inertia, drag, speed-dependent steering and astern reversal, leeway, steady current, heel, grounding and a simplified anchor constraint.
 - A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 19 course practices.

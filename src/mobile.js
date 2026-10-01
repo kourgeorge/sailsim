@@ -158,9 +158,150 @@ export function mountMobileLayout() {
     const current = list.querySelector('[aria-current]');
     if (current && currentLesson !== current.dataset.mobileLesson) {
       currentLesson = current.dataset.mobileLesson;
-      requestAnimationFrame(() => current.scrollIntoView({block: 'nearest', inline: 'center'}));
+      if (document.querySelector('#mobile-lessons')?.open) requestAnimationFrame(() => current.scrollIntoView({block: 'nearest', inline: 'center'}));
     }
   };
   new MutationObserver(syncLessons).observe(document.querySelector('#lessons'), {childList: true});
   syncLessons();
+
+  // The canvas owns the mobile viewport. Navigation and lessons live in sheets,
+  // retaining the original nodes so desktop layouts and all handlers still work.
+  const toolbar = document.createElement('div');
+  toolbar.className = 'mobile-scene-toolbar';
+  const menuButton = document.createElement('button');
+  menuButton.id = 'mobile-menu-toggle';
+  menuButton.type = 'button';
+  menuButton.setAttribute('aria-label', t('Menu'));
+  menuButton.innerHTML = '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M4 6h16M4 12h16M4 18h16"/></svg>';
+  const lessonButton = document.createElement('button');
+  lessonButton.id = 'mobile-lesson-toggle';
+  lessonButton.type = 'button';
+  toolbar.append(menuButton, lessonButton);
+  simulator.append(toolbar);
+  const sheet = (id, title, trigger) => {
+    const dialog = document.createElement('dialog');
+    dialog.id = id;
+    dialog.className = 'mobile-sheet';
+    const header = document.createElement('div');
+    header.className = 'mobile-sheet-heading';
+    const heading = document.createElement('h2');
+    heading.id = `${id}-title`;
+    heading.textContent = t(title);
+    const close = document.createElement('button');
+    close.type = 'button';
+    close.className = 'mobile-sheet-close';
+    close.textContent = '×';
+    close.setAttribute('aria-label', t('Close dialog'));
+    header.append(heading, close);
+    dialog.append(header);
+    dialog.setAttribute('aria-labelledby', heading.id);
+    trigger.setAttribute('aria-controls', id);
+    trigger.setAttribute('aria-haspopup', 'dialog');
+    trigger.setAttribute('aria-expanded', 'false');
+    const show = () => {
+      toggle.setAttribute('aria-expanded', 'false');
+      drawer.classList.remove('is-open');
+      for (const other of document.querySelectorAll('.mobile-sheet[open]')) other.close();
+      const details = dialog.querySelector('.mobile-practice-details');
+      if (details) details.open = true;
+      dialog.showModal();
+      trigger.setAttribute('aria-expanded', 'true');
+      close.focus();
+      dialog.querySelector('.mobile-lesson[aria-current]')?.scrollIntoView({block: 'nearest', inline: 'center'});
+    };
+    trigger.addEventListener('click', show);
+    close.addEventListener('click', () => dialog.close());
+    dialog.addEventListener('close', () => { trigger.setAttribute('aria-expanded', 'false'); if (mobile.matches && !document.querySelector('dialog[open]')) trigger.focus(); });
+    dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
+    document.body.append(dialog);
+    return dialog;
+  };
+  const menu = sheet('mobile-menu', 'Menu', menuButton);
+  const lessonSheet = sheet('mobile-lessons', 'Lessons', lessonButton);
+  const lessonContent = document.createElement('div');
+  lessonContent.id = 'mobile-lesson-content';
+  lessonSheet.append(lessonContent);
+  const menuTools = document.createElement('div');
+  menuTools.className = 'mobile-menu-tools';
+  const menuActions = document.createElement('div');
+  menuActions.className = 'mobile-menu-actions';
+  menuTools.append(menuActions);
+  menu.append(menuTools);
+  const hud = document.createElement('div');
+  hud.className = 'mobile-indicators';
+  hud.dataset.noTranslate = 'true';
+  for (const [label, key] of [['BOAT SPEED', 'speed'], ['HEADING', 'heading'], ['DEPTH', 'depth']]) {
+    const reading = document.createElement('div');
+    const name = document.createElement('small');
+    name.textContent = t(label);
+    const value = document.createElement('bdi');
+    value.dir = 'ltr';
+    value.dataset.dashboardValue = key;
+    reading.append(name, value);
+    hud.append(reading);
+  }
+  simulator.append(hud);
+  const indicators = document.createElement('button');
+  indicators.id = 'mobile-indicators-toggle';
+  indicators.type = 'button';
+  indicators.textContent = t('Show instruments');
+  indicators.setAttribute('aria-pressed', 'false');
+  indicators.addEventListener('click', () => {
+    const show = indicators.getAttribute('aria-pressed') !== 'true';
+    indicators.setAttribute('aria-pressed', String(show));
+    simulator.classList.toggle('show-mobile-indicators', show);
+  });
+  menuTools.append(indicators);
+  const moves = [];
+  for (const [selector, target] of [['.topbar', menu], ['.view-controls', menuTools], ['.location', menuTools], ['.weather', menuTools], ['#conditions', menuActions], ['#reset', menuActions], ['.mobile-course', lessonContent], ['.maneuver-live', lessonContent]]) {
+    const node = document.querySelector(selector);
+    if (!node) continue;
+    const placeholder = document.createComment(`desktop ${selector}`);
+    node.before(placeholder);
+    moves.push({node, placeholder, target});
+  }
+  menu.addEventListener('click', event => {
+    if (event.target.closest('button[data-mode], #help, #chart-toggle, #systems-toggle, #conditions, #reset, #location-select')) menu.close();
+  }, true);
+  camera.addEventListener('change', () => menu.close());
+  lessonSheet.addEventListener('click', event => {
+    if (event.target.closest('#practice-start, #practice-end, #lesson-briefing, #course-library, #training-goals, #practice-debrief, #lab-instructions, #lab-end')) lessonSheet.close();
+  }, true);
+  // Bubble after the button's own handler: Resume must read the sheet's paused
+  // state before it disappears. A microtask in capture can run before the button.
+  lessonSheet.addEventListener('click', event => {
+    if (event.target.closest('#practice-toggle')) lessonSheet.close();
+  });
+  document.querySelector('#systems-close').addEventListener('click', () => { if (mobile.matches) menuButton.focus(); });
+  const syncOverlayLabels = () => {
+    const mode = simulator.dataset.mode || 'learn';
+    lessonSheet.dataset.mobileMode = mode;
+    lessonButton.hidden = !['learn', 'maneuver'].includes(mode);
+    const active = ['training-running', 'training-paused'].includes(document.body.dataset.activity);
+    const current = document.querySelector('#lessons [aria-current]');
+    const number = String(Number(current?.dataset.courseLesson || 0) + 1).padStart(2, '0');
+    const label = mode === 'maneuver' ? t('Current goal') : active ? document.querySelector('#objective-text').textContent : t('Lesson {number}').replace('{number}', number);
+    if (lessonButton.textContent !== label) lessonButton.textContent = label;
+    lessonButton.setAttribute('aria-label', active || mode === 'maneuver' ? t('Current goal') : t('Choose a lesson'));
+    lessonButton.title = label;
+  };
+  const arrangeOverlays = () => {
+    for (const {node, placeholder, target} of moves) {
+      if (mobile.matches) target.append(node);
+      else placeholder.after(node);
+    }
+    const card = document.querySelector('.lesson-card');
+    if (mobile.matches) lessonContent.append(card);
+    else {
+      menu.close(); lessonSheet.close();
+      if (card.parentElement === lessonContent) simulator.insertBefore(card, simulator.querySelector('.scene-footer'));
+    }
+    syncOverlayLabels();
+  };
+  mobile.addEventListener('change', arrangeOverlays);
+  new MutationObserver(syncOverlayLabels).observe(simulator, {attributes: true, attributeFilter: ['data-mode']});
+  new MutationObserver(syncOverlayLabels).observe(document.body, {attributes: true, attributeFilter: ['data-activity']});
+  new MutationObserver(syncOverlayLabels).observe(document.querySelector('#lessons'), {childList: true});
+  new MutationObserver(syncOverlayLabels).observe(document.querySelector('#objective-text'), {childList: true, characterData: true, subtree: true});
+  arrangeOverlays();
 }

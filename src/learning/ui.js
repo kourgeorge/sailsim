@@ -28,7 +28,8 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
  function placeCard(){
   const card=$('.lesson-card'),sidebar=getMode()==='learn'&&attempt?.status==='active'&&window.matchMedia('(min-width: 901px)').matches;
   card.classList.toggle('mission-sidebar',sidebar);
-  const parent=sidebar?$('.sidebar'):$('.simulator');if(card.parentElement!==parent){if(sidebar)parent.prepend(card);else parent.insertBefore(card,$('.scene-footer'));}
+  const mobileContent=window.matchMedia('(max-width: 900px)').matches?$('#mobile-lesson-content'):null;
+  const parent=sidebar?$('.sidebar'):mobileContent||$('.simulator');if(card.parentElement!==parent){if(sidebar)parent.prepend(card);else if(mobileContent)parent.append(card);else parent.insertBefore(card,$('.scene-footer'));}
  }
  window.addEventListener('resize',placeCard);
  function renderCard(){

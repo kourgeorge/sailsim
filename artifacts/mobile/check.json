@@ -2,30 +2,32 @@
   "passed": true,
   "results": [
     {
-      "name": "phone-lessons",
+      "name": "phone-clear",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 260,
+        "y": 0,
         "width": 390,
-        "height": 345.5,
-        "top": 260,
-        "right": 390,
-        "bottom": 605.5,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
-        "y": 605.5,
-        "width": 390,
-        "height": 238.5,
-        "top": 605.5,
+        "height": 844,
+        "top": 0,
         "right": 390,
         "bottom": 844,
         "left": 0
       },
       "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
         "x": 0,
         "y": 0,
         "width": 0,
@@ -34,6 +36,33 @@
         "right": 0,
         "bottom": 0,
         "left": 0
+      }
+    },
+    {
+      "name": "phone-lessons",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -49,18 +78,30 @@
     {
       "name": "phone-folded",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 115,
+        "y": 0,
         "width": 390,
-        "height": 612,
-        "top": 115,
+        "height": 844,
+        "top": 0,
         "right": 390,
-        "bottom": 727,
+        "bottom": 844,
         "left": 0
       },
-      "lesson": {
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
         "x": 0,
         "y": 0,
         "width": 0,
@@ -69,16 +110,70 @@
         "right": 0,
         "bottom": 0,
         "left": 0
-      },
-      "console": {
+      }
+    },
+    {
+      "name": "phone-menu",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
         "x": 0,
-        "y": 727,
+        "y": 0,
         "width": 390,
-        "height": 117,
-        "top": 727,
+        "height": 844,
+        "top": 0,
         "right": 390,
         "bottom": 844,
         "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "name": "phone-indicators",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -94,18 +189,67 @@
     {
       "name": "phone-controls",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 115,
+        "y": 0,
         "width": 390,
-        "height": 612,
-        "top": 115,
+        "height": 844,
+        "top": 0,
         "right": 390,
-        "bottom": 727,
+        "bottom": 844,
         "left": 0
       },
-      "lesson": {
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
+        "x": 13,
+        "y": 533,
+        "width": 364,
+        "height": 238,
+        "top": 533,
+        "right": 377,
+        "bottom": 771,
+        "left": 13
+      }
+    },
+    {
+      "name": "phone-practice",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
         "x": 0,
         "y": 0,
         "width": 0,
@@ -114,61 +258,33 @@
         "right": 0,
         "bottom": 0,
         "left": 0
-      },
-      "console": {
-        "x": 0,
-        "y": 727,
-        "width": 390,
-        "height": 117,
-        "top": 727,
-        "right": 390,
-        "bottom": 844,
-        "left": 0
-      },
-      "dock": {
-        "x": 1,
-        "y": 489,
-        "width": 388,
-        "height": 238,
-        "top": 489,
-        "right": 389,
-        "bottom": 727,
-        "left": 1
       }
     },
     {
-      "name": "phone-practice",
+      "name": "phone-practice-details",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 160,
+        "y": 0,
         "width": 390,
-        "height": 421.5,
-        "top": 160,
-        "right": 390,
-        "bottom": 581.5,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
-        "y": 581.5,
-        "width": 390,
-        "height": 145.5,
-        "top": 581.5,
-        "right": 390,
-        "bottom": 727,
-        "left": 0
-      },
-      "console": {
-        "x": 0,
-        "y": 727,
-        "width": 390,
-        "height": 117,
-        "top": 727,
+        "height": 844,
+        "top": 0,
         "right": 390,
         "bottom": 844,
         "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -184,36 +300,28 @@
     {
       "name": "small-phone",
       "width": 320,
+      "height": 568,
       "scrollWidth": 320,
+      "scrollHeight": 568,
       "scene": {
         "x": 0,
-        "y": 260,
+        "y": 0,
         "width": 320,
-        "height": 240,
-        "top": 260,
+        "height": 568,
+        "top": 0,
         "right": 320,
-        "bottom": 500,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
-        "y": 500,
-        "width": 320,
-        "height": 219.75,
-        "top": 500,
-        "right": 320,
-        "bottom": 719.75,
+        "bottom": 568,
         "left": 0
       },
       "console": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0,
-        "top": 0,
-        "right": 0,
-        "bottom": 0,
-        "left": 0
+        "x": 12,
+        "y": 506,
+        "width": 296,
+        "height": 50,
+        "top": 506,
+        "right": 308,
+        "bottom": 556,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -229,36 +337,28 @@
     {
       "name": "landscape",
       "width": 844,
+      "height": 390,
       "scrollWidth": 844,
+      "scrollHeight": 390,
       "scene": {
         "x": 0,
-        "y": 61,
-        "width": 524,
-        "height": 433,
-        "top": 61,
-        "right": 524,
-        "bottom": 494,
-        "left": 0
-      },
-      "lesson": {
-        "x": 524,
-        "y": 196,
-        "width": 320,
-        "height": 220,
-        "top": 196,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
         "right": 844,
-        "bottom": 416,
-        "left": 524
+        "bottom": 390,
+        "left": 0
       },
       "console": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0,
-        "top": 0,
-        "right": 0,
-        "bottom": 0,
-        "left": 0
+        "x": 12,
+        "y": 328,
+        "width": 820,
+        "height": 50,
+        "top": 328,
+        "right": 832,
+        "bottom": 378,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -274,28 +374,30 @@
     {
       "name": "tablet",
       "width": 768,
+      "height": 1024,
       "scrollWidth": 768,
+      "scrollHeight": 1024,
       "scene": {
         "x": 0,
-        "y": 260,
+        "y": 0,
         "width": 768,
-        "height": 544.25,
-        "top": 260,
-        "right": 768,
-        "bottom": 804.25,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
-        "y": 804.25,
-        "width": 768,
-        "height": 219.75,
-        "top": 804.25,
+        "height": 1024,
+        "top": 0,
         "right": 768,
         "bottom": 1024,
         "left": 0
       },
       "console": {
+        "x": 12,
+        "y": 962,
+        "width": 744,
+        "height": 50,
+        "top": 962,
+        "right": 756,
+        "bottom": 1012,
+        "left": 12
+      },
+      "dock": {
         "x": 0,
         "y": 0,
         "width": 0,
@@ -304,6 +406,33 @@
         "right": 0,
         "bottom": 0,
         "left": 0
+      }
+    },
+    {
+      "name": "large-text-menu",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -319,28 +448,30 @@
     {
       "name": "large-text",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 417.34375,
+        "y": 0,
         "width": 390,
-        "height": 240,
-        "top": 417.34375,
+        "height": 844,
+        "top": 0,
         "right": 390,
-        "bottom": 657.34375,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
-        "y": 657.34375,
-        "width": 390,
-        "height": 349,
-        "top": 657.34375,
-        "right": 390,
-        "bottom": 1006.34375,
+        "bottom": 844,
         "left": 0
       },
       "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
         "x": 0,
         "y": 0,
         "width": 0,
@@ -349,6 +480,33 @@
         "right": 0,
         "bottom": 0,
         "left": 0
+      }
+    },
+    {
+      "name": "large-text-lessons",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -364,36 +522,28 @@
     {
       "name": "hebrew-large-text",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 352.0625,
+        "y": 0,
         "width": 390,
-        "height": 240,
-        "top": 352.0625,
+        "height": 844,
+        "top": 0,
         "right": 390,
-        "bottom": 592.0625,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
-        "y": 592.0625,
-        "width": 390,
-        "height": 343,
-        "top": 592.0625,
-        "right": 390,
-        "bottom": 935.0625,
+        "bottom": 844,
         "left": 0
       },
       "console": {
-        "x": 0,
-        "y": 0,
-        "width": 0,
-        "height": 0,
-        "top": 0,
-        "right": 0,
-        "bottom": 0,
-        "left": 0
+        "x": 12,
+        "y": 782,
+        "width": 366,
+        "height": 50,
+        "top": 782,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
         "x": 0,
@@ -409,46 +559,38 @@
     {
       "name": "hebrew-controls-large-text",
       "width": 390,
+      "height": 844,
       "scrollWidth": 390,
+      "scrollHeight": 844,
       "scene": {
         "x": 0,
-        "y": 116.6875,
-        "width": 390,
-        "height": 606,
-        "top": 116.6875,
-        "right": 390,
-        "bottom": 722.6875,
-        "left": 0
-      },
-      "lesson": {
-        "x": 0,
         "y": 0,
-        "width": 0,
-        "height": 0,
+        "width": 390,
+        "height": 844,
         "top": 0,
-        "right": 0,
-        "bottom": 0,
+        "right": 390,
+        "bottom": 844,
         "left": 0
       },
       "console": {
-        "x": 0,
-        "y": 722.6875,
-        "width": 390,
-        "height": 121,
-        "top": 722.6875,
-        "right": 390,
-        "bottom": 843.6875,
-        "left": 0
+        "x": 12,
+        "y": 778,
+        "width": 366,
+        "height": 54,
+        "top": 778,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
       },
       "dock": {
-        "x": 1,
-        "y": 382.6875,
-        "width": 388,
-        "height": 340,
-        "top": 382.6875,
-        "right": 389,
-        "bottom": 722.6875,
-        "left": 1
+        "x": 13,
+        "y": 387,
+        "width": 364,
+        "height": 380,
+        "top": 387,
+        "right": 377,
+        "bottom": 767,
+        "left": 13
       }
     }
   ],

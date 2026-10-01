@@ -63,7 +63,8 @@ function setMode(value){learning?.closeReader();learning?.closeTraining();if(val
    $('#objective-check').textContent='○';$('#next-lesson').hidden=true;
  }
 }
-function activityContext(){return {reading:learning?.reading,decisionOpen:learning?.training,decisionActive:learning?.decisionActive,practiceActive:learning?.practiceActive,practicePrepared:learning?.prepared,briefingOpen:learning?.briefingOpen,practiceStatus:learning?.practiceStatus,paused:paused||$('#modal').open,mode,maneuverActive:lab?.active};}
+function overlayOpen(){return $('#modal').open||Boolean(document.querySelector('.mobile-sheet[open]'));}
+function activityContext(){return {reading:learning?.reading,decisionOpen:learning?.training,decisionActive:learning?.decisionActive,practiceActive:learning?.practiceActive,practicePrepared:learning?.prepared,briefingOpen:learning?.briefingOpen,practiceStatus:learning?.practiceStatus,paused:paused||overlayOpen(),mode,maneuverActive:lab?.active};}
 function cockpitEnabled(){return ['free-running','free-paused','training-running','training-paused'].includes(activityState(activityContext()).id);}
 function syncPlayback(){
  cockpitControls?.syncAvailability();
@@ -122,7 +123,7 @@ window.addEventListener('keydown',e=>{
  // existing held helm command when focus or a modifier takes over.
  const widget=e.target.closest?.('input,select,textarea,summary,[contenteditable]:not([contenteditable="false"]),[role="textbox"],[role="slider"],[role="spinbutton"],[role="combobox"],[role="listbox"],[role="menu"],[role="tablist"]');
  const nativeSpace=e.key===' '&&e.target.closest?.('button,a[href],[role="button"]');
- if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||learning?.reading||learning?.training||learning?.briefingOpen||$('#modal').open||widget||nativeSpace){keys.clear();return;}
+ if(e.defaultPrevented||e.isComposing||e.ctrlKey||e.metaKey||e.altKey||e.shiftKey||learning?.reading||learning?.training||learning?.briefingOpen||overlayOpen()||widget||nativeSpace){keys.clear();return;}
  if(!cockpitEnabled()&&(HOLD_KEYS[e.code]||['center','neutral','sails','reef','anchor'].includes(PRESS_KEYS[e.code]))){keys.clear();return;}
  if(HOLD_KEYS[e.code]){e.preventDefault();keys.add(e.code);return;}
  if(e.repeat)return;
@@ -136,31 +137,31 @@ document.addEventListener('visibilitychange',()=>{last=performance.now();keys.cl
 function frame(now){const dt=Math.min((now-last)/1000,.25);last=now;
  if(document.hidden){requestAnimationFrame(frame);return;}
  if(!cockpitEnabled())keys.clear();
- if(cockpitEnabled()&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!$('#modal').open){if(applyHeldKeys(state,keys,dt,applyControlPatch))syncControls();}
- if(learning.training&&!document.hidden&&!$('#modal').open)learning.tickDecision(dt);
- if(!paused&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!$('#modal').open){sceneTime+=dt;step(state,dt);if((state.collisionCount||0)>lastCollisionSequence&&state.collision){toast(t('Contact detected · {speed} kn closing speed').replace('{speed}',(state.collision.closingSpeed/(1852/3600)).toFixed(1)));}lastCollisionSequence=state.collisionCount||0;
+ if(cockpitEnabled()&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!overlayOpen()){if(applyHeldKeys(state,keys,dt,applyControlPatch))syncControls();}
+ if(learning.training&&!document.hidden&&!overlayOpen())learning.tickDecision(dt);
+ if(!paused&&!learning.reading&&!learning.training&&!learning.briefingOpen&&!overlayOpen()){sceneTime+=dt;step(state,dt);if((state.collisionCount||0)>lastCollisionSequence&&state.collision){toast(t('Contact detected · {speed} kn closing speed').replace('{speed}',(state.collision.closingSpeed/(1852/3600)).toFixed(1)));}lastCollisionSequence=state.collisionCount||0;
   learning.tick(dt);lab?.tick(dt);
   if(mode==='challenge'&&!challengeDone){challengeTime+=dt;const buoys=getLocation(state.locationId).buoys,target=buoys[challengeIndex];if(Math.hypot(state.x-target.x,state.z-target.z)<35){challengeIndex++;if(challengeIndex===buoys.length){challengeDone=true;$('#objective-text').textContent=`Course complete in ${Math.floor(challengeTime/60)}m ${Math.floor(challengeTime%60)}s`;toast('Three marks rounded. Course complete!');}else{$('#objective-text').textContent=`Next mark: buoy ${challengeIndex+1} of 3`;toast(`Buoy ${challengeIndex} reached. On to the next mark.`);}}}
  }
  if(state.grounded&&!wasGrounded)toast('You’ve reached shallow water. Use Reset boat to return to the practice grounds.');wasGrounded=state.grounded;
  // A modal already pauses physics; keep its background still to free GPU time for reading.
- if(!learning.reading&&!learning.training&&!learning.briefingOpen&&!$('#modal').open)scene?.render(state,sceneTime);uiTick+=dt;
+ if(!learning.reading&&!learning.training&&!learning.briefingOpen&&!overlayOpen())scene?.render(state,sceneTime);uiTick+=dt;
  if(uiTick>.12){uiTick=0;$('#anchor span').textContent=t(anchorControlAction(state).label);vesselControls?.update();cockpitControls?.update();helmDashboard?.update();const twa=state.waterWindAngle,point=twa===null?t('Calm over water'):pointOfSail(twa);$('#speed').textContent=state.speed.toFixed(1);$('#heading').textContent=String(Math.round(state.heading)%360).padStart(3,'0');$('#heading-caption').textContent=compass(state.heading);$('#speed-caption').textContent=state.anchor?state.anchorStatus:state.speed<-.1?'Moving astern':Math.abs(state.throttle)>.01?'Under engine':state.speed<.5?'Waiting for the breeze':point;$('#point-of-sail').textContent=point;$('#wind-arrow').style.display=twa===null?'none':'';$('.no-go').style.display=twa===null?'none':'';$('#wind-arrow').style.transform=`rotate(${state.waterWindDirection??0}deg)`;$('.dial-boat').style.transform=`rotate(${state.heading}deg)`;$('.no-go').style.transform=`rotate(${state.waterWindDirection??0}deg)`;$('#wind-value').textContent=state.waterWindSpeed.toFixed(1);$('#weather-wind').textContent=`${state.windSpeed} kn ${compass(state.windDirection)}`;$('#ideal-trim').textContent=`Suggested: ${Math.round(state.suggestedMainSheet)}°`;$('#scene').dataset.visualTime=sceneTime.toFixed(5);drawChart($('#mini-chart'));if($('#modal').open)drawChart($('#large-chart'));}
  syncPlayback();activityStatus?.update();requestAnimationFrame(frame);
 }
 learningTools=createLearningTools({openModal,onLesson:id=>{learning.select(lessons.findIndex(l=>l.id===id));learning.briefing();}});
-learning=createLearning({getPaused:()=>paused||$('#modal').open||learning?.briefingOpen,onPause:()=>{paused=true;syncControls();},onResume:()=>{paused=false;syncControls();},onTrainingStart:()=>setCamera('helm',{record:false}),onTrainingEnd:()=>{paused=true;syncControls();},openFigure:l=>learningTools.figure(l),openGuide:l=>learningTools.forLesson(l),openManeuvers:()=>lab.library(),getState:()=>state,getMode:()=>mode,openModal,toast,onSelect:index=>{lesson=index;setMode('learn');},resetScenario:setup=>{
+learning=createLearning({getPaused:()=>paused||overlayOpen()||learning?.briefingOpen,onPause:()=>{paused=true;syncControls();},onResume:()=>{paused=false;syncControls();},onTrainingStart:()=>setCamera('helm',{record:false}),onTrainingEnd:()=>{paused=true;syncControls();},openFigure:l=>learningTools.figure(l),openGuide:l=>learningTools.forLesson(l),openManeuvers:()=>lab.library(),getState:()=>state,getMode:()=>mode,openModal,toast,onSelect:index=>{lesson=index;setMode('learn');},resetScenario:setup=>{
  ensureScene('haven');
  state=createPracticeState(setup);
  lastCollisionSequence=0;paused=true;syncControls();updateLocation();scene?.render(state,sceneTime);
 }});
 lab=createManeuverLab({getState:()=>state,onStart:newState=>{setMode('maneuver');state=newState;lastCollisionSequence=0;ensureScene(state.locationId);updateLocation();paused=false;syncControls();toggleSystems(false);},onStop:()=>{paused=true;syncControls();},onControl:patch=>{applyControlPatch(state,patch);syncControls();},openModal,setCues:cues=>scene?.setTrainingCues(cues),onBuoyCourse:()=>setMode('challenge'),toast});
-vesselControls=mountControls($('#vessel-controls'),{getState:()=>state,getPaused:()=>paused||document.hidden||learning.reading||learning.training||learning.briefingOpen||$('#modal').open,onChange:patch=>{applyControlPatch(state,patch);syncControls();},onAction:(type,value)=>learning.event(type,value)});
+vesselControls=mountControls($('#vessel-controls'),{getState:()=>state,getPaused:()=>paused||document.hidden||learning.reading||learning.training||learning.briefingOpen||overlayOpen(),onChange:patch=>{applyControlPatch(state,patch);syncControls();},onAction:(type,value)=>learning.event(type,value)});
 function toggleSystems(open){$('#systems-drawer').hidden=!open;$('#systems-toggle').setAttribute('aria-expanded',String(open));if(open){$('#vessel-controls>.vessel-panel').open=true;vesselControls.update();}}
 learningTools.mount();
 $('#systems-toggle').onclick=()=>toggleSystems($('#systems-drawer').hidden);
 $('#systems-close').onclick=()=>{toggleSystems(false);$('#systems-toggle').focus();};
-window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#modal').open)toggleSystems(false);});
+window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!overlayOpen())toggleSystems(false);});
 activityStatus=createActivityStatus({getContext:activityContext,controls:[$('#play'),$('#conditions'),$('#reset')]});$('.play-actions')?.remove();
 lesson=learning.selected;updateLesson();syncControls();updateLocation();
 $('#language-select').onchange=async e=>{const select=e.target;select.disabled=true;try{await changeLanguage(select.value,lessons,modules);lab?.cancel();learning.cancel('Changing language restarts the current practice. Completed lessons and quiz results are preserved.');}catch{select.value=getLanguage();select.disabled=false;toast(t('Language could not be loaded. Please try again.'));}};
