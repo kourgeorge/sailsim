@@ -1,5 +1,11 @@
 // Small runtime compositions and accessibility labels; course content is in locale JSON.
 const entries={
+ 'Boat controls':['Boat controls','Controles del barco','عناصر التحكم بالقارب','בקרי הסירה','Управление яхтой','Commandes du bateau'],
+ 'Choose a lesson':['Choose a lesson','Elige una lección','اختر درسًا','בחירת שיעור','Выберите урок','Choisir une leçon'],
+ 'All lessons':['All lessons','Todas las lecciones','جميع الدروس','כל השיעורים','Все уроки','Toutes les leçons'],
+ 'Sails':['Sails','Velas','الأشرعة','מפרשים','Паруса','Voiles'],
+ 'Anchor':['Anchor','Ancla','المرساة','עוגן','Якорь','Ancre'],
+ 'Practice details':['Practice details','Detalles de la práctica','تفاصيل التدريب','פרטי התרגול','Подробности практики','Détails de l’exercice'],
  'MIN':['MIN','MIN','دقيقة','דק׳','МИН','MIN'],
  'SAILING PRACTICE · {minutes} MIN':['SAILING PRACTICE · {minutes} MIN','PRÁCTICA · {minutes} MIN','تدريب إبحار · {minutes} دقيقة','תרגול הפלגה · {minutes} דק׳','ПРАКТИКА · {minutes} МИН','PRATIQUE · {minutes} MIN'],
  'KNOWLEDGE · {minutes} MIN':['KNOWLEDGE · {minutes} MIN','TEORÍA · {minutes} MIN','معرفة · {minutes} دقيقة','ידע · {minutes} דק׳','ТЕОРИЯ · {minutes} МИН','THÉORIE · {minutes} MIN'],

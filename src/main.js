@@ -23,6 +23,7 @@ import {createPracticeState} from './learning/scenario-state.js';
 import {drawAnchorChart} from './anchoring/diagram.js';
 import { initialState, step, refreshDerived, angleDifference, pointOfSail, clamp } from './physics.js';
 import './mobile.css';
+import {mountMobileLayout} from './mobile.js';
 
 async function startApp(){
 initializeTextSize();
@@ -163,7 +164,7 @@ window.addEventListener('keydown',e=>{if(e.key==='Escape'&&!$('#modal').open)tog
 activityStatus=createActivityStatus({getContext:activityContext,controls:[$('#play'),$('#conditions'),$('#reset')]});$('.play-actions')?.remove();
 lesson=learning.selected;updateLesson();syncControls();updateLocation();
 $('#language-select').onchange=async e=>{const select=e.target;select.disabled=true;try{await changeLanguage(select.value,lessons,modules);lab?.cancel();learning.cancel('Changing language restarts the current practice. Completed lessons and quiz results are preserved.');}catch{select.value=getLanguage();select.disabled=false;toast(t('Language could not be loaded. Please try again.'));}};
-mountTextSize($('#text-size-control'));observeTranslations(document.body);if(localeLoadError)toast('Language could not be loaded. Please try again.');
+mountMobileLayout();mountTextSize($('#text-size-control'));observeTranslations(document.body);if(localeLoadError)toast('Language could not be loaded. Please try again.');
 syncPlayback();activityStatus?.update();requestAnimationFrame(frame);
 }
 startApp().catch(error=>{console.error(error);document.querySelector('#app').innerHTML=`<main style="padding:40px"><h1>${t('SAIL could not start')}</h1><p>${t('Please reload the page.')}</p></main>`;});

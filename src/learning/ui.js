@@ -32,6 +32,7 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
  }
  window.addEventListener('resize',placeCard);
  function renderCard(){
+  const detailsOpen=$('.mobile-practice-details')?.open||false;
   const l=current(),r=recordFor(progress,l.id),mastered=completed().has(l.id),active=attempt?.status==='active';
   $('#card-eyebrow').textContent=`${modules.find(m=>m.id===l.module).title.toUpperCase()} · ${l.minutes} MIN`;
   $('#card-title').textContent=active?'Current goal':mastered?'Lesson mastered in simulation':l.title;
@@ -41,6 +42,11 @@ export function createLearning({getState,resetScenario,openModal,toast,onSelect,
   let panel=$('#training-actions');if(!panel){panel=document.createElement('div');panel.id='training-actions';$('.lesson-copy').append(panel);}panel.hidden=getMode()!=='learn';
   const scored=attempt?practiceAssessment(attempt,l):null,previous=scored?.status!=='active'?scored:null;
   panel.innerHTML=`${active?'<div class="practice-session-label" id="practice-session-label" role="status"></div>':''}<div class="training-actions">${active?'<button id="practice-toggle" class="training-button primary"></button><button id="practice-end" class="training-button end-practice">End simulation</button>':'<button id="practice-start" class="training-button primary">▶ Start training</button>'}<button id="lesson-briefing" class="training-button">Study material</button><button id="course-library" class="training-button">Course</button></div><div class="training-status-line"><span>${active?`<span id="practice-goal-count" data-no-translate>${esc(t('Goals completed'))}: <bdi dir="ltr" id="practice-goal-count-value"></bdi></span>`:l.practice?'Live boat handling':'Interactive seamanship'}</span>${active?`<strong id="practice-live-score" class="practice-score" data-no-translate>${esc(t('Live score'))}: <bdi id="practice-score-value" dir="ltr"></bdi></strong>`:''}</div>${active?`${practiceRequirementsMarkup()}<div class="checkpoint-progress"><div id="checkpoint-fill"></div></div><div class="checkpoint-meta"><span id="checkpoint-status"></span><button id="practice-hint">Show hint</button></div><div id="practice-ground-speed" class="checkpoint-meta practice-ground-speed" data-no-translate hidden><span>${esc(t('Ground speed'))}: <bdi id="practice-ground-speed-value" dir="ltr">—</bdi></span><span id="practice-ground-speed-limit">${esc(t('Speed limit'))}: <bdi id="practice-ground-speed-threshold" dir="ltr"></bdi></span></div><div id="practice-anchor-rode" class="checkpoint-meta practice-anchor-rode" data-no-translate hidden><span>${esc(t('Rode paid out'))}: <bdi id="practice-anchor-rode-value" dir="ltr">—</bdi></span><span id="practice-anchor-operation-goal"></span></div><p id="practice-tip" hidden></p>`:''}<div class="training-actions"><button id="training-goals" class="training-button">${active?'Show briefing':'Training goals'}</button>${!active&&(previous||r.lastPracticeResult||r.lastDecisionResult)?'<button id="practice-debrief" class="training-button">View debrief</button>':''}</div>`;
+  if(active){
+   const details=document.createElement('details');details.className='mobile-practice-details';details.open=detailsOpen||window.matchMedia('(min-width: 901px)').matches;
+   const summary=document.createElement('summary');summary.textContent=t('Practice details');
+   details.append(summary,...panel.childNodes);panel.append(details);
+  }
   $('#lesson-briefing').onclick=briefing;$('#course-library').onclick=libraryModal;if($('#practice-start'))$('#practice-start').onclick=start;
   if($('#practice-toggle'))$('#practice-toggle').onclick=()=>{getPaused()?onResume():onPause();tickPanel();};
   if($('#practice-end'))$('#practice-end').onclick=endPractice;$('#training-goals').onclick=goalsModal;

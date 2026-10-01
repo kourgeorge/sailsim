@@ -1,122 +1,180 @@
-/* Keep the scene, lesson and console in separate rows on small screens.
-   The console scrolls independently, so operating the boat keeps the sea in view. */
+/* Mobile layers reuse the desktop controls and lesson selection handlers. */
+.mobile-camera, .mobile-control-tabs, .mobile-controls-toggle, .mobile-course { display: none; }
+.mobile-control-panel, .mobile-controls-drawer { display: contents; }
+.mobile-practice-details { display: contents; }
+.mobile-practice-details > summary { display: none; }
+
 @media (max-width: 900px) {
   html[data-text-size] .topbar {
-    height: auto;
-    min-height: 0;
-    padding: max(6px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) 6px max(12px, env(safe-area-inset-left));
-    flex-wrap: wrap;
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) auto auto 44px;
-    gap: 4px;
+    height: auto; min-height: 0; padding: max(8px, env(safe-area-inset-top)) 16px 8px;
+    display: grid; grid-template-columns: minmax(0, 1fr) auto auto 44px; gap: 6px;
   }
-  html[data-text-size] .topbar .brand { font-size: 25px; gap: 4px; letter-spacing: 1px; }
+  html[data-text-size] .topbar .brand { font-size: 25px; gap: 5px; letter-spacing: 1px; }
   html[data-text-size] .topbar .brand > svg { width: 22px; height: 22px; }
-  html[data-text-size] .language-switch { margin-inline-start: auto; }
-  html[data-text-size] .language-switch select { max-width: 105px; }
-  html[data-text-size] .topbar nav { grid-column: 1 / -1; order: 5; width: 100%; margin: 0; gap: 4px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); }
-  html[data-text-size] .nav-item { min-width: 0; min-height: 44px; padding: 6px 3px; }
+  html[data-text-size] .language-switch { margin: 0; }
+  html[data-text-size] .language-switch select { max-width: 105px; min-height: 44px; }
+  html[data-text-size] .topbar nav {
+    grid-column: 1 / -1; order: 5; width: 100%; margin: 4px 0 0;
+    display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px;
+  }
+  html[data-text-size] .nav-item { min-width: 0; min-height: 44px; padding: 8px 4px; border-radius: 7px; font-size: calc(11px * var(--text-scale, 1)); }
+  .nav-item.active { background: #ffffff0d; }
+  .nav-item.active::after { display: none; }
   html[data-text-size] .topbar .icon-button { margin: 0; min-width: 44px; min-height: 44px; justify-content: center; }
-  html[data-text-size] .language-switch select,
   html[data-text-size] .text-size-control > summary { min-height: 44px; }
   .text-size-current { display: none; }
   .text-size-popover { position: fixed; inset-inline: 12px; inset-block-start: calc(var(--topbar-height) + 8px); width: auto; max-height: calc(100dvh - var(--topbar-height) - 24px); }
   html[data-text-size] .workspace { display: block; height: auto; min-height: 0; }
   .sidebar { display: none; }
   html[data-text-size] .simulator {
-    display: grid;
-    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-    grid-template-rows: auto auto minmax(120px, 1fr) auto auto;
-    height: calc(100dvh - var(--topbar-height));
-    min-height: 640px;
-    overflow: visible;
-    background: #102b36;
+    display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto minmax(240px, 1fr) auto auto;
+    height: auto; min-height: calc(100dvh - var(--topbar-height));
+    overflow: clip; background: #102b36;
   }
-  html[data-text-size] #scene,
-  html[data-text-size] .scene-vignette { position: relative; inset: auto; grid-area: 1 / 1 / 4 / -1; min-height: 0; }
-  /* Renderer dimensions must not become the grid's intrinsic minimum on rotation. */
+  html[data-text-size] #scene, html[data-text-size] .scene-vignette {
+    position: relative; inset: auto; grid-area: 2 / 1 / 3 / -1; min-height: 0;
+  }
   #scene canvas { position: absolute; inset: 0; }
   .scene-vignette { pointer-events: none; }
   html[data-text-size] .location {
-    position: relative; inset: auto; grid-area: 1 / 1; z-index: 1;
-    min-width: 0; margin: 8px 0 0 12px; padding: 8px; min-height: 44px;
-    text-align: start; overflow-wrap: anywhere;
+    position: relative; inset: auto; grid-area: 2 / 1; z-index: 1; align-self: start;
+    min-width: 0; margin: 12px 0 0 16px; padding: 10px; min-height: 44px;
+    text-align: start; overflow-wrap: anywhere; width: fit-content;
   }
   html[data-text-size] .location span { display: none; }
-  html[data-text-size] .weather { position: relative; inset: auto; grid-area: 1 / 2; z-index: 1; margin: 8px 12px 0 0; max-width: none; gap: 5px; }
+  html[data-text-size] .weather {
+    position: relative; inset: auto; grid-area: 2 / 2; z-index: 1; align-self: start;
+    margin: 12px 16px 0 0; max-width: none; min-height: 44px; gap: 6px;
+  }
   .weather > svg:first-child, .weather > span, .weather-divider { display: none; }
   html[data-text-size] .view-controls {
-    position: relative; inset: auto; grid-area: 2 / 1 / 3 / -1;
-    margin: 8px 12px; max-width: none; min-width: 0; min-height: 54px;
-    flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start;
-    scrollbar-width: thin; gap: 2px;
+    position: relative; inset: auto; grid-area: 2 / 1 / 3 / -1; align-self: end; justify-self: center;
+    margin: 12px 16px; max-width: calc(100% - 32px); min-width: 0; min-height: 48px;
+    flex-direction: row; flex-wrap: nowrap; gap: 6px; padding: 4px;
+    background: #102f3de8; border-radius: 10px;
   }
-  html[data-text-size] .view-controls button { flex: 1 0 auto; min-height: 44px; min-width: 44px; padding: 8px 6px; }
-  /* The lesson card and instrument strip already provide these same readings. */
+  html[data-text-size] .view-controls > [data-camera] { display: none; }
+  html[data-text-size] .view-controls button { min-width: 44px; min-height: 44px; padding: 8px 12px; flex: 0 1 auto; }
+  .mobile-camera { display: block; width: 110px; min-width: 0; min-height: 44px; padding: 8px; font: inherit; font-size: max(16px, calc(12px * var(--text-scale, 1))); color: #f4e0b7; background: #264653; border: 0; border-radius: 6px; }
   .simulator .scene-title, .simulator .right-instruments, .simulator .scene-footer { display: none; }
-  html[data-text-size] .simulator .lesson-card {
-    position: relative; inset: auto; grid-area: 4 / 1 / 5 / -1;
-    width: auto; max-width: none; margin: 0; border-radius: 0;
-    min-height: 150px; max-height: 160px !important; padding: 12px 16px !important;
-    overflow: auto; overscroll-behavior: contain;
+
+  /* The course is a visible list, with a full course view one tap away. */
+  .mobile-course { display: block; grid-area: 1 / 1 / 2 / -1; min-width: 0; background: #173540; padding: 8px 0 14px; border-bottom: 1px solid #ffffff1a; }
+  .mobile-course-heading { display: flex; justify-content: space-between; align-items: center; gap: 12px; padding-inline: 16px; }
+  .mobile-course-heading strong { font-size: calc(12px * var(--text-scale, 1)); font-weight: 600; }
+  .mobile-course-heading button { min-height: 44px; padding: 8px 0 8px 8px; font-size: calc(11px * var(--text-scale, 1)); color: #ecc78e; text-decoration: underline; text-underline-offset: 4px; }
+  .mobile-lesson-list { display: flex; gap: 8px; overflow-x: auto; overscroll-behavior-inline: contain; padding: 2px 16px 6px; scroll-padding-inline: 16px; scrollbar-width: thin; scrollbar-color: #66828b transparent; }
+  .mobile-lesson { flex: 0 0 200px; display: flex; align-items: center; gap: 10px; padding: 12px; min-height: 70px; text-align: start; border: 1px solid #ffffff26; border-radius: 9px; color: #c4d5d8; font-size: calc(12px * var(--text-scale, 1)); line-height: 1.4; }
+  .mobile-lesson[aria-current] { background: #f1eadc; border-color: #f1eadc; color: #1d414b; }
+  .mobile-lesson .lesson-index { flex-shrink: 0; font-size: calc(11px * var(--text-scale, 1)); color: inherit; border-color: currentColor; }
+  .simulator:is([data-mode=explore], [data-mode=maneuver], [data-mode=challenge]) .mobile-course { display: none; }
+  body:is([data-activity=training-running], [data-activity=training-paused]) .mobile-lesson-list { display: none; }
+  body:is([data-activity=training-running], [data-activity=training-paused]) .mobile-course { padding-block: 0; }
+
+  /* One clear start action. Further instructions belong in the briefing. */
+  html[data-text-size] .simulator .lesson-card,
+  html[data-text-size] .simulator .lesson-card:has(#practice-requirements) {
+    position: relative; inset: auto; grid-area: 3 / 1 / 4 / -1;
+    width: auto; max-width: none; margin: 0; border: 0; border-radius: 0;
+    min-height: 0; max-height: none !important; padding: 24px 20px !important;
+    overflow: visible; background: #f3f0e7; transform: none; opacity: 1; pointer-events: auto;
   }
-  .simulator .lesson-card .training-button, .simulator .lesson-card .next-button { min-height: 44px; }
-  .simulator .lesson-card .next-button { min-width: 44px; }
-  .simulator .lesson-card .eyebrow { display: none; }
-  .simulator .lesson-card #card-body { display: none !important; }
-  .simulator .lesson-card h3 { margin-top: 0; }
-  body[data-activity=ready] .simulator .lesson-card .objective { display: none; }
-  .simulation-console { position: relative; inset: auto; grid-area: 5 / 1 / 6 / -1; min-width: 0; padding-bottom: env(safe-area-inset-bottom); }
-  .simulation-console .activity-status { padding: 6px 12px; }
+  .simulator .lesson-copy { max-width: none; width: 100%; }
+  .simulator .lesson-card .eyebrow { display: block; font-size: calc(10px * var(--text-scale, 1)); letter-spacing: .8px; line-height: 1.5; color: #5c726d; }
+  html[data-text-size] .simulator .lesson-copy > #card-title { display: block; font-size: calc(20px * var(--text-scale, 1)); line-height: 1.25; margin: 8px 0 16px; letter-spacing: -.5px; }
+  .simulator .lesson-card #card-body, .simulator .lesson-card #next-lesson { display: none !important; }
+  .simulator .lesson-card:not(:has(#practice-end)) .objective { display: none; }
+  .simulator .lesson-card:not(:has(#practice-end)) .training-status-line,
+  .simulator .lesson-card:not(:has(#practice-end)) #training-goals { display: none; }
+  .simulator .lesson-card .training-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+  .simulator .lesson-card .training-actions:has(#practice-start) { display: grid; grid-template-columns: 1fr 1fr; }
+  .simulator .lesson-card #practice-start { grid-column: 1 / -1; min-height: 50px; font-size: calc(13px * var(--text-scale, 1)); }
+  .simulator .lesson-card .training-button { min-height: 44px; padding: 10px 12px; border-radius: 7px; font-size: calc(12px * var(--text-scale, 1)); }
+  .simulator:is([data-mode=explore], [data-mode=maneuver], [data-mode=challenge]) .lesson-card { display: none; }
+  html[data-text-size] .simulator .lesson-card:has(#practice-end) { padding: 14px 20px !important; }
+  html[data-text-size] .simulator .lesson-card:has(#practice-end) #card-title { font-size: calc(12px * var(--text-scale, 1)); margin: 0 0 5px; color: #56716b; }
+  .simulator .lesson-card:has(#practice-end) .objective { margin-top: 0; font-size: calc(13px * var(--text-scale, 1)); }
+  .mobile-practice-details { display: block; }
+  .mobile-practice-details > summary { display: flex; align-items: center; justify-content: space-between; min-height: 44px; padding-block: 8px; cursor: pointer; color: #315e60; font-size: calc(12px * var(--text-scale, 1)); font-weight: 600; list-style: none; }
+  .mobile-practice-details > summary::-webkit-details-marker { display: none; }
+  .mobile-practice-details > summary::after { content: '+'; font-size: 22px; }
+  .mobile-practice-details[open] > summary::after { content: '−'; }
+
+  /* The console stays small. Opening the drawer overlays the sea, never resizes it. */
+  .simulation-console { position: relative; inset: auto; grid-area: 4 / 1 / 5 / -1; min-width: 0; padding-bottom: env(safe-area-inset-bottom); }
+  .simulation-console:has(.control-dock[aria-disabled=true]) { display: none; }
+  .simulation-console .activity-status { padding: 10px 16px; gap: 8px; }
   .simulation-console .activity-copy > span { display: none; }
+  .simulation-console .activity-info { display: none; }
+  .simulation-console .activity-controls { flex: 1; }
   .activity-controls > button { min-height: 44px; }
+  .simulation-console .activity-status #play { flex: 1; }
+  .mobile-controls-toggle { display: flex; width: 100%; align-items: center; justify-content: space-between; gap: 12px; min-height: 52px; padding: 12px 20px; border-top: 1px solid #ffffff20; color: #e9dec5; font-size: calc(13px * var(--text-scale, 1)); font-weight: 600; background: #1b3d49; }
+  .mobile-controls-toggle::after { content: '⌃'; font-size: 24px; line-height: 1; }
+  .mobile-controls-toggle[aria-expanded=true]::after { content: '⌄'; }
+  .mobile-controls-drawer { display: none; position: absolute; bottom: 100%; inset-inline: 0; border: 1px solid #63818a; border-bottom: 0; border-radius: 16px 16px 0 0; background: #102e3b; box-shadow: 0 -12px 40px #00151d66; overflow: hidden; }
+  .mobile-controls-drawer.is-open { display: flex; flex-direction: column; }
+  .mobile-control-tabs { display: flex; align-items: stretch; padding: 10px 12px 0; gap: 4px; border-bottom: 1px solid #ffffff20; flex-shrink: 0; overflow-x: auto; }
+  .mobile-control-tabs button { flex: 1 0 auto; min-height: 48px; padding: 10px 8px; color: #afc5cc; font-size: calc(12px * var(--text-scale, 1)); border-bottom: 3px solid transparent; }
+  .mobile-control-tabs button[aria-selected=true] { color: #f3d59f; border-bottom-color: #ecc78e; background: #ffffff08; border-radius: 6px 6px 0 0; }
   html[data-text-size] .simulator .simulation-console .control-dock {
-    max-height: clamp(180px, 28dvh, 270px); overflow-y: auto;
+    max-height: min(42dvh, 340px); min-height: 0; overflow-y: auto;
     overscroll-behavior: contain; scrollbar-width: thin; scrollbar-color: #718c94 #102b36;
-    padding: 10px 12px 16px; touch-action: pan-y;
+    padding: 18px 20px; touch-action: pan-y; border: 0;
   }
-  .simulator .control-dock.cockpit-controls .cockpit-control-groups { row-gap: 14px; }
-  .simulator .control-dock.cockpit-controls .control-title { flex-wrap: wrap; }
-  .simulator .control-dock.cockpit-controls .control-title label { white-space: normal; overflow: visible; }
-  .simulator .control-dock.cockpit-controls .control-hint { flex-wrap: wrap; }
+  .simulator .control-dock.cockpit-controls .cockpit-control-groups { display: block; }
+  .mobile-control-panel { display: flex; flex-direction: column; gap: 20px; }
+  .simulator .control-dock.cockpit-controls .cockpit-control-group { padding: 0; border: 0; gap: 12px; }
+  .simulator .control-dock.cockpit-controls .cockpit-control-group + .cockpit-control-group { padding-top: 16px; border-top: 1px solid #ffffff20; }
+  .simulator .control-dock.cockpit-controls .control-title { flex-wrap: wrap; margin-bottom: 6px; }
+  .simulator .control-dock.cockpit-controls .control-title label,
+  .simulator .control-dock.cockpit-controls .control-title > span,
+  .simulator .control-dock.cockpit-controls .control-title output,
+  .simulator .control-dock.cockpit-controls .cockpit-rode-label,
+  .simulator .control-dock.cockpit-controls .cockpit-hoist { font-size: calc(13px * var(--text-scale, 1)); white-space: normal; overflow: visible; line-height: 1.4; }
+  .simulator .control-dock.cockpit-controls .control-hint { flex-wrap: wrap; font-size: calc(12px * var(--text-scale, 1)); }
   .simulator .control-dock.cockpit-controls input[type=range] { height: 44px; min-height: 44px; }
   .simulator .control-dock.cockpit-controls button,
   .simulator .control-dock.cockpit-controls select,
   .simulator .control-dock.cockpit-controls input[type=number],
   .simulator .control-dock .dashboard-actions button { min-height: 44px; }
-  .simulator .control-dock.cockpit-controls .topic-help { min-width: 32px; }
+  .simulator .control-dock.cockpit-controls .topic-help { min-width: 44px; }
   .simulator .control-dock.cockpit-controls select,
-  .simulator .control-dock.cockpit-controls input[type=number] { font-size: max(16px, calc(11px * var(--text-scale, 1))); }
+  .simulator .control-dock.cockpit-controls input[type=number] { font-size: max(16px, calc(12px * var(--text-scale, 1))); padding: 6px 10px; width: 90px; }
   .simulator .control-dock.cockpit-controls .sail-actions button,
-  .simulator .control-dock.cockpit-controls #anchor { white-space: normal; }
-  .simulator .control-dock .dashboard-reading { grid-template-columns: 1fr; grid-template-areas: 'label' 'value' 'detail'; }
+  .simulator .control-dock.cockpit-controls #anchor { white-space: normal; font-size: calc(12px * var(--text-scale, 1)); padding: 10px 14px; border: 1px solid #62818a; }
+  .simulator .control-dock .helm-dashboard { border: 0; padding: 0; flex-direction: column; align-items: stretch; gap: 16px; }
+  .simulator .control-dock .dashboard-readings { display: grid; grid-template-columns: 1fr 1fr; gap: 20px 16px; }
+  .simulator .control-dock .dashboard-reading { grid-template-columns: 1fr; grid-template-areas: 'label' 'value' 'detail'; gap: 5px; }
   .simulator .control-dock .dashboard-reading dt { white-space: normal; overflow: visible; }
+  .simulator .control-dock .dashboard-reading dd { font-size: calc(20px * var(--text-scale, 1)); }
+  .simulator .control-dock .dashboard-actions { flex-direction: row; justify-content: space-between; }
   .simulator .key-badge, .simulator .control-hint kbd { display: none !important; }
-  html[data-text-size] .systems-drawer {
-    position: fixed; inset: calc(var(--topbar-height) + 8px) 12px auto;
-    width: auto; max-height: calc(100dvh - var(--topbar-height) - 20px - env(safe-area-inset-bottom));
-    overflow: auto; overscroll-behavior: contain; z-index: 50;
-  }
+  html[data-text-size] .systems-drawer { position: fixed; inset: calc(var(--topbar-height) + 8px) 12px auto; width: auto; max-height: calc(100dvh - var(--topbar-height) - 20px - env(safe-area-inset-bottom)); overflow: auto; overscroll-behavior: contain; z-index: 50; }
   html[data-text-size] .systems-drawer .vessel-tabs { max-height: none; }
   html[data-text-size] #systems-close { position: sticky; display: block; margin-inline-start: auto; top: 0; width: 44px; height: 44px; margin-bottom: -44px; background: #163643; }
   html[data-text-size] #toast { bottom: max(12px, env(safe-area-inset-bottom)); width: calc(100% - 24px); max-width: 480px; }
   html[data-text-size] dialog { width: calc(100vw - 20px); max-height: calc(100dvh - 24px); padding: 48px 18px 24px; overflow: hidden; }
   #modal-content { max-height: calc(100dvh - 98px); overflow: auto; overscroll-behavior: contain; }
   html[data-text-size] .modal-close { min-width: 44px; min-height: 44px; }
-  html[dir=rtl] .location { margin-inline: 12px 0; }
-  html[dir=rtl] .weather { margin-inline: 0 12px; }
+  html[dir=rtl] .location { margin-inline: 16px 0; }
+  html[dir=rtl] .weather { margin-inline: 0 16px; }
 }
 
-/* A short, wide screen has room for controls alongside the scene. */
-@media (min-width: 651px) and (max-width: 900px) and (max-height: 600px) {
+@media (max-width: 900px) and (max-height: 600px) and (orientation: landscape) {
   html[data-text-size] .topbar { display: flex; flex-wrap: nowrap; }
-  html[data-text-size] .topbar nav { order: 0; width: auto; flex: 1; }
-  html[data-text-size] .simulator { grid-template-columns: minmax(0, 1fr) 320px; grid-template-rows: auto auto minmax(80px, 1fr) auto; min-height: 320px; }
+  html[data-text-size] .topbar nav { order: 0; width: auto; flex: 1; margin: 0; }
+  .mobile-course { padding-bottom: 6px; }
+  .mobile-lesson { min-height: 52px; }
+  html[data-text-size] .simulator { grid-template-columns: minmax(0, 1fr) 320px; grid-template-rows: auto minmax(220px, 1fr) auto; }
   html[data-text-size] #scene, html[data-text-size] .scene-vignette { grid-area: 1 / 1 / 4 / 2; }
-  html[data-text-size] .location { grid-area: 1 / 1; margin-inline-end: 110px; }
+  html[data-text-size] .location { grid-area: 1 / 1; margin-inline-end: 120px; }
   html[data-text-size] .weather { grid-area: 1 / 1; justify-self: end; }
-  html[data-text-size] .view-controls { grid-area: 2 / 1; }
-  html[data-text-size] .simulator .lesson-card { grid-area: 4 / 1; min-height: 110px; max-height: 110px !important; }
-  .simulation-console { grid-area: 1 / 2 / 5 / 3; display: flex; flex-direction: column; min-height: 0; }
-  html[data-text-size] .simulator .simulation-console .control-dock { flex: 1; min-height: 0; max-height: none; }
+  html[data-text-size] .view-controls { grid-area: 3 / 1; }
+  .mobile-course { grid-area: 1 / 2; }
+  html[data-text-size] .simulator .lesson-card { grid-area: 2 / 2; }
+  .simulation-console { grid-area: 3 / 2; }
+  .mobile-controls-drawer { max-height: calc(100dvh - 110px); }
+  html[data-text-size] .simulator .simulation-console .control-dock { max-height: calc(100dvh - 200px); }
 }
