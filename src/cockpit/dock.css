@@ -1,0 +1,75 @@
+/* Compact cockpit dock: six short columns over one slim instrument strip,
+   so the sea keeps most of the screen. Loaded after controls.css. */
+.simulator .control-dock.cockpit-controls{gap:4px;padding:6px 14px 5px;background:linear-gradient(#0e2a35f2,#0c2430);border-top:1px solid #ffffff14}
+.simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:.95fr 1fr .95fr 1.2fr 1.05fr .95fr;gap:0;align-items:stretch}
+.simulator .control-dock.cockpit-controls .cockpit-control-group{gap:3px;padding-inline:10px;border-inline-start-color:#ffffff12;justify-content:flex-start}
+.simulator .control-dock.cockpit-controls .control-title{align-items:center;gap:5px;margin:0;min-height:18px;flex-wrap:nowrap}
+.simulator .control-dock.cockpit-controls .control-title label,.simulator .control-dock.cockpit-controls .cockpit-rode-label{font-size:calc(11px * var(--text-scale,1));font-weight:600;letter-spacing:0;text-transform:lowercase;display:inline-block;color:#a9c3c4;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;min-width:0}
+.simulator .control-dock.cockpit-controls .control-title>span:not(.key-badge),.simulator .control-dock.cockpit-controls .control-title output{margin-inline-start:auto;font-size:calc(11px * var(--text-scale,1));font-weight:600;white-space:nowrap}
+.simulator .control-dock.cockpit-controls input[type=range]{height:16px;min-height:16px}
+.simulator .control-dock.cockpit-controls .helm-range{gap:4px}
+.simulator .control-dock.cockpit-controls .helm-range>span{font-size:calc(11px * var(--text-scale,1));font-weight:500;color:#7f9ea2}
+.simulator .control-dock.cockpit-controls .control-hint{min-height:16px;gap:2px 4px;font-size:calc(11px * var(--text-scale,1));font-weight:500;color:#7f9ea2;flex-wrap:nowrap;justify-content:space-between}
+.simulator .control-dock.cockpit-controls .control-hint button{min-height:18px;padding:1px 5px;border:0;border-radius:4px;color:#cfe0dc;display:inline-flex;align-items:center;gap:4px}
+.simulator .control-dock.cockpit-controls .helm-control .control-hint>kbd,.simulator .control-dock.cockpit-controls .helm-control .control-hint>span{display:none}
+.simulator .control-dock.cockpit-controls .helm-control .control-hint{justify-content:flex-end}
+.simulator .control-dock.cockpit-controls .topic-help{min-width:16px;min-height:16px;width:16px;height:16px;padding:0;font-size:calc(11px * var(--text-scale,1));font-weight:500;border:0;background:transparent;color:#9fbcbc}
+.simulator .control-dock.cockpit-controls .cockpit-hoist{font-size:calc(11px * var(--text-scale,1));font-weight:500;min-height:20px;color:#a9c3c4}
+.simulator .control-dock.cockpit-controls select,.simulator .control-dock.cockpit-controls input[type=number]{min-height:20px;padding:0 3px;border-color:#ffffff26;background:#ffffff0a;border-radius:4px}
+.simulator .control-dock.cockpit-controls select{width:4.9em;font-size:calc(11px * var(--text-scale,1));font-weight:500}
+.simulator .control-dock.cockpit-controls .sail-actions{gap:3px 4px;flex-wrap:wrap}
+.simulator .control-dock.cockpit-controls .sail-actions button,.simulator .control-dock.cockpit-controls #anchor{min-height:20px;padding:1px 6px;gap:4px;font-size:calc(11px * var(--text-scale,1));font-weight:500;border:0;white-space:nowrap}
+.simulator .control-dock.cockpit-controls .sail-actions button:hover,.simulator .control-dock.cockpit-controls #anchor:hover,.simulator .control-dock.cockpit-controls .control-hint button:hover{background:#ffffff0d}
+.simulator .control-dock.cockpit-controls .sail-actions svg,.simulator .control-dock.cockpit-controls #anchor svg{width:12px;height:12px}
+.simulator .control-dock.cockpit-controls .cockpit-rode-target{display:flex;align-items:center;justify-content:space-between;gap:6px;min-height:18px}
+.simulator .control-dock.cockpit-controls .cockpit-rode-input{gap:3px;font-size:calc(11px * var(--text-scale,1));font-weight:500;color:#7f9ea2}
+.simulator .control-dock.cockpit-controls .cockpit-rode-input input{width:48px;text-align:end;font-size:calc(11px * var(--text-scale,1));font-weight:500}
+.simulator .control-dock.cockpit-controls .cockpit-rode-paid{font-size:calc(11px * var(--text-scale,1));font-weight:500;color:#7f9ea2;min-height:16px;align-items:center}
+.simulator .control-dock.cockpit-controls #anchor{justify-content:center}
+.simulator[data-mode=maneuver] .cockpit-group-headsail{display:none!important}
+.simulator .control-dock.cockpit-controls .control-title label::first-letter,.simulator .control-dock.cockpit-controls .cockpit-rode-label::first-letter{text-transform:uppercase}
+/* Instrument strip */
+.control-dock:has(#helm-dashboard){row-gap:4px;padding-block:6px 5px}
+.simulator .control-dock .helm-dashboard{padding-top:4px;border-top-color:#ffffff12;gap:6px}
+.simulator .control-dock .dashboard-readings{gap:4px 10px}
+.simulator .control-dock .dashboard-reading{padding-inline-start:8px;border-inline-start-color:#ffffff14;display:grid;grid-template-columns:auto 1fr;grid-template-areas:"label label" "value detail";align-items:baseline;column-gap:6px}
+.simulator .control-dock .dashboard-reading dt{grid-area:label;font-size:calc(11px * var(--text-scale,1));font-weight:500;letter-spacing:.06em;text-transform:uppercase;color:#7f9ea2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.simulator .control-dock .dashboard-reading dd{grid-area:value;margin:0;font-size:calc(15px * var(--text-scale,1));line-height:1.2}
+.simulator .control-dock .dashboard-detail{grid-area:detail;font-size:calc(11px * var(--text-scale,1));font-weight:500;min-height:0;line-height:1.2}
+.simulator .control-dock .dashboard-actions button{min-height:20px;font-size:calc(11px * var(--text-scale,1));font-weight:500}
+.simulator .control-dock .dashboard-actions #dashboard-enlarge{font-size:15px}
+/* Key labels */
+.key-badge{display:inline-flex;gap:2px;flex-shrink:0;direction:ltr}
+.key-badge kbd,.shortcut-table kbd{display:inline-grid;place-items:center;min-width:1.5em;height:1.5em;padding:0 .3em;font:600 calc(10px * var(--text-scale,1))/1 ui-monospace,SFMono-Regular,Menlo,monospace;color:#cfe0dc;background:#ffffff0f;border:1px solid #ffffff2e;border-bottom-width:2px;border-radius:3px;text-transform:none;letter-spacing:0}
+button .key-badge kbd{opacity:.75}
+.simulator .control-dock.cockpit-controls .key-badge kbd{border:0;background:transparent;box-shadow:none;padding:0 .15em;min-width:1.1em;font-weight:500;color:#91abae}
+.simulator .control-dock.cockpit-controls[aria-disabled=true]{filter:grayscale(1);background:#243035}
+.simulator .control-dock.cockpit-controls[aria-disabled=true]>*{opacity:.48}
+.shortcut-table{width:100%;border-collapse:collapse;margin:8px 0 14px}
+.shortcut-table td{padding:6px 4px;border-bottom:1px solid #ffffff14;vertical-align:middle}
+.shortcut-table td:first-child{width:38%;white-space:nowrap;direction:ltr;text-align:start}
+.shortcut-table kbd{min-width:22px;height:22px;font-size:12px;padding:0 6px}
+@media(hover:none){.key-badge{display:none}}
+/* Narrow docks fall back to three, then two, columns. */
+@container(max-width:900px){.simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}.simulator .control-dock.cockpit-controls .cockpit-control-group:nth-child(4){border-inline-start:0;padding-inline-start:0}}
+@container(max-width:560px){.simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.simulator .control-dock.cockpit-controls .cockpit-control-group:nth-child(4){border-inline-start:1px solid #ffffff12;padding-inline-start:10px}.simulator .control-dock.cockpit-controls .cockpit-control-group:nth-child(odd){border-inline-start:0;padding-inline-start:0}.simulator .control-dock.cockpit-controls .cockpit-group-anchor{grid-column:auto;display:flex}}
+html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}
+@media(pointer:coarse){.simulator .control-dock.cockpit-controls input[type=range]{height:28px}.simulator .control-dock.cockpit-controls button,.simulator .control-dock.cockpit-controls select,.simulator .control-dock.cockpit-controls input[type=number]{min-height:30px}}
+.simulator .scene-footer #sim-status{display:none}
+.simulator .scene-footer>span:first-child:has(#sim-status){visibility:hidden}
+@container(max-width:560px){.simulator .control-dock.cockpit-controls .cockpit-rode-target{flex-wrap:wrap}.simulator .control-dock.cockpit-controls #anchor,.simulator .control-dock.cockpit-controls .sail-actions button{white-space:normal;min-width:0;max-width:100%}}
+/* A direction word and its key stay together on one line. */
+.simulator .control-dock.cockpit-controls .control-hint>span,.simulator .control-dock.cockpit-controls .helm-range>span{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.simulator .control-dock.cockpit-controls .key-range{display:flex;align-items:center;gap:4px;direction:ltr}
+/* Sliders always run left to right, so their end words follow the same order in every language. */
+.simulator .control-dock.cockpit-controls .control-hint,.simulator .control-dock.cockpit-controls .helm-range{direction:ltr}
+/* Keep enlarged text readable on phones instead of squeezing it into columns. */
+@media(max-width:600px){
+ html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:1fr;row-gap:12px}
+ html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control-group{padding:10px 0 0;border-inline-start:0}
+ html[data-large-text] .simulator .control-dock.cockpit-controls .control-title{flex-wrap:wrap}
+ html[data-large-text] .simulator .control-dock.cockpit-controls .control-title label,html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-rode-label{white-space:normal;overflow:visible}
+ html[data-large-text] .simulator .control-dock.cockpit-controls .control-hint{flex-wrap:wrap}
+ html[data-large-text] .simulator .control-dock .dashboard-readings{grid-template-columns:1fr;gap:12px}
+ html[data-large-text] .simulator .control-dock .dashboard-reading dt{white-space:normal;overflow:visible}
+}

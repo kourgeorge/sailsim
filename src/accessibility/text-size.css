@@ -19,11 +19,14 @@ html[data-text-size]{font-size:calc(16px * var(--text-scale,1))}
 .text-size-popover p{margin:14px 0 0;color:#aac0c5;font-size:calc(11px * var(--text-scale,1));line-height:1.6}
 
 /* Let labels gain rows instead of shrinking their fonts or clipping them. */
-html[data-text-size] .topbar{height:auto;min-height:86px;flex-wrap:wrap;gap:12px 20px;padding-block:14px}
-html[data-text-size] .topbar nav{align-self:auto;flex-wrap:wrap;min-height:44px;height:auto;gap:8px 22px}
-html[data-text-size] .nav-item{min-height:44px;line-height:1.35;padding-block:8px;white-space:normal}
-html[data-text-size] .language-switch select{font-family:inherit;min-height:44px;max-width:170px}
-html[data-text-size] .workspace{height:calc(100dvh - var(--topbar-height,86px) - var(--bottom-bar-height,44px));min-height:calc(var(--control-dock-height,151px) + 540px)}
+html[data-text-size] .topbar{height:auto;min-height:60px;flex-wrap:wrap;gap:6px 20px;padding:6px 24px}
+html[data-text-size] .topbar .brand{font-size:calc(25px * var(--text-scale,1));gap:8px;letter-spacing:2px}
+html[data-text-size] .topbar .brand>svg{width:28px;height:28px}
+html[data-text-size] .topbar nav{align-self:stretch;flex-wrap:wrap;min-height:36px;height:auto;gap:4px 22px}
+html[data-text-size] .nav-item{min-height:36px;line-height:1.35;padding-block:6px;white-space:normal}
+html[data-text-size] .language-switch select{font-family:inherit;min-height:36px;max-width:170px}
+html[data-text-size] .text-size-control>summary{min-height:36px;padding:5px 8px}
+html[data-text-size] .workspace{height:calc(100dvh - var(--topbar-height,86px));min-height:calc(var(--control-dock-height,151px) + 540px)}
 html[data-text-size] .sidebar{min-width:0}
 html[data-text-size] .sidebar-heading h1,html[data-text-size] .scene-title h2{overflow-wrap:anywhere}
 html[data-text-size] .lesson-row>span:nth-child(2),html[data-text-size] .course-module summary span{min-width:0;overflow-wrap:anywhere}
@@ -45,8 +48,6 @@ html[data-text-size] .sail-actions button,html[data-text-size] .play-actions>but
 html[data-text-size] .primary-button{min-width:0;width:100%;min-height:44px;white-space:normal;line-height:1.4}
 html[data-text-size] .heading-display{padding-inline-end:12px}
 html[data-text-size] .speed-display>span:last-child{max-width:none}
-html[data-text-size] .bottom-bar{height:auto;min-height:44px;padding-block:10px;gap:10px 20px;flex-wrap:wrap;line-height:1.5}
-html[data-text-size] .bottom-bar>div{flex-wrap:wrap;gap:10px 18px}
 html[data-text-size] dialog{max-height:calc(100dvh - 32px);overflow:auto;overscroll-behavior:contain}
 html[data-text-size] .knowledge-question{min-width:0}
 html[data-text-size] .knowledge-question legend{max-width:100%;overflow-wrap:anywhere}
@@ -70,13 +71,16 @@ html[data-large-text] .vessel-live{display:none}
 @media(min-width:1101px){html[data-text-size] .workspace{grid-template-columns:calc(220px + 45px * var(--text-scale,1)) minmax(0,1fr)}}
 @media(max-width:1100px){html[data-text-size] .topbar{gap:9px 13px}html[data-text-size] .topbar nav{gap:6px 16px}html[data-text-size] .language-switch label{display:none}html[data-large-text] .help-grid{grid-template-columns:1fr}}
 @media(max-width:650px){
- html[data-text-size] .topbar{min-height:76px;padding:10px 13px;gap:8px 10px}
+ html[data-text-size] .topbar{min-height:60px;padding:6px 13px;gap:4px 8px}
+ html[data-text-size] .topbar .brand{font-size:calc(21px * var(--text-scale,1));gap:4px;letter-spacing:1px}
+ html[data-text-size] .topbar .brand>svg{width:22px;height:22px}
+ html[data-text-size] .topbar .icon-button{margin-inline-start:0}
  html[data-text-size] .topbar nav{width:100%;order:5;margin:0;justify-content:center;gap:4px 16px}
  html[data-text-size] .brand{letter-spacing:1px}
  html[data-text-size] .language-switch{margin-inline-start:auto}
  html[data-text-size] .language-switch select{max-width:130px}
  html[data-text-size] .workspace{height:auto;min-height:0}
- html[data-text-size] .simulator{height:calc(100dvh - var(--topbar-height,110px) - var(--bottom-bar-height,44px));min-height:calc(var(--control-dock-height,270px) + 540px)}
+ html[data-text-size] .simulator{height:calc(100dvh - var(--topbar-height,110px));min-height:calc(var(--control-dock-height,270px) + 540px)}
  html[data-text-size] .control-dock{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px;padding:18px 16px}
  html[data-text-size] .lesson-card{bottom:calc(var(--control-dock-height,270px) + 53px);max-height:230px!important}
  html[data-text-size] .lesson-card .eyebrow{letter-spacing:.6px}
@@ -88,11 +92,11 @@ html[data-large-text] .vessel-live{display:none}
  html[data-text-size] .scene-footer{inset-inline:17px}
  html[data-text-size] .systems-drawer .vessel-tabs{max-height:50dvh}
  html[data-text-size] .systems-drawer .vessel-fields{grid-template-columns:1fr}
- html[data-text-size] .bottom-bar>span{max-width:none}
  html[data-text-size] #toast{bottom:20px;max-height:45dvh;overflow:auto}
  html[data-text-size] dialog{padding:30px 18px;width:calc(100vw - 20px)}
  html[data-text-size] .modal-close{min-width:40px;min-height:40px}
  .text-size-popover{position:fixed;inset-block-start:calc(var(--topbar-height,110px) + 8px);inset-inline:12px;width:auto;max-height:calc(100dvh - var(--topbar-height,110px) - 24px)}
 }
+@media(pointer:coarse){html[data-text-size] .nav-item,html[data-text-size] .language-switch select,html[data-text-size] .text-size-control>summary,html[data-text-size] .topbar .icon-button{min-height:44px}}
 html[data-text-size] dialog h2,html[data-text-size] dialog p,html[data-text-size] dialog li,html[data-text-size] dialog .eyebrow{overflow-wrap:anywhere;hyphens:auto}
 html[data-text-size] #modal-content>article>.eyebrow{padding-inline-end:44px}

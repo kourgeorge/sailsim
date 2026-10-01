@@ -1,13 +1,9 @@
 {
   "passed": true,
-  "scenarios": 1,
+  "assessmentFixesOnly": false,
+  "scenarios": 23,
   "languages": [
-    "en",
-    "es",
-    "fr",
-    "ru",
-    "he",
-    "ar"
+    "en"
   ],
   "errors": []
 }

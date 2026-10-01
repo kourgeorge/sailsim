@@ -1,0 +1,82 @@
+{
+  "version": 1,
+  "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+  "purpose": "Original numerical performance reference research; kept separate from the public seamanship library. No claim of yacht or simulator validation.",
+  "datasetPath": "reference/sailing/performance/orc-2026-rated-cruisers.json",
+  "sources": [
+    {
+      "id": "orc-2026-melody-ns",
+      "publisher": "Offshore Racing Congress / Norges Seilforbund",
+      "title": "Melody: Non Spin/HSF Club Certificate 2026, 03440004PTC",
+      "url": "https://data.orc.org/public/WPub.dll/CC/255602",
+      "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "2659b56f49a56ba88d1c3f82741e6d9caed06887e550a5bda61d27240a91af60",
+      "retrievalBytes": 434876,
+      "contentType": "text/html",
+      "notePath": "reference/sailing/performance/orc-rated-cruisers.md"
+    },
+    {
+      "id": "orc-2026-twist-ns",
+      "publisher": "Offshore Racing Congress / Norges Seilforbund",
+      "title": "Twist: Non Spin/HSF Club Certificate 2026, 03440004HRC",
+      "url": "https://data.orc.org/public/WPub.dll/CC/247346",
+      "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "2562122e1f098965e799e1ec3a97489af9028fc5e60be545fd29245f79688f0a",
+      "retrievalBytes": 454196,
+      "contentType": "text/html",
+      "notePath": "reference/sailing/performance/orc-rated-cruisers.md"
+    },
+    {
+      "id": "orc-nor-2026-ns-rms",
+      "publisher": "Offshore Racing Congress",
+      "title": "ORC Norway non-spinnaker rating data (JSON)",
+      "url": "https://data.orc.org/public/WPub.dll?action=DownRMS&CountryId=NOR&Family=NS&ext=json",
+      "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "fc3eaa3f64d702b5ae07bf9ab241c89dd593d3d91d3ee89d1e2ed4bdb3e90429",
+      "retrievalBytes": 5610124,
+      "notePath": "reference/sailing/performance/orc-rated-cruisers.md"
+    },
+    {
+      "id": "orc-vpp-2022-scoring",
+      "publisher": "Offshore Racing Congress",
+      "title": "ORC VPP Documentation 2022, section 8.1, page 78",
+      "url": "https://orc.org/uploads/files/Rules-Regulations/ORC-VPP-Documentation-2022.pdf",
+      "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "f9e198b47c3424a97c2cdd82b5933c56ec3b8e90f9ccddbe85bf7bb479664562",
+      "retrievalBytes": 41660239,
+      "notePath": "reference/sailing/performance/orc-rated-cruisers.md"
+    },
+    {
+      "id": "orc-speed-guide-2020",
+      "publisher": "Offshore Racing Congress",
+      "title": "ORC Speed Guide Explanation 2020, sections 1–4 and Appendix A",
+      "url": "https://orc.org/uploads/files/Rules-Regulations/Speed-Guide-Explanation-2020.pdf",
+      "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "a5c89b3281f533933dd3fce35e008e5e1704db718e334a1a027a990ab17880a1",
+      "retrievalBytes": 1885705,
+      "notePath": "reference/sailing/performance/orc-rated-cruisers.md"
+    },
+    {
+      "id": "orc-rms-reference",
+      "publisher": "Offshore Racing Congress",
+      "title": "ORC Rating Files: purpose and publication",
+      "url": "https://orc.org/race-managment/rms-files",
+      "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+      "httpStatus": 200,
+      "contentVerified": true,
+      "retrievalSha256": "d6943f39b0b61cb1990eeafc8ca8dfa68529cdf2fe73ae500a62320a653fd1cd",
+      "retrievalBytes": 56993,
+      "notePath": "reference/sailing/performance/orc-rated-cruisers.md"
+    }
+  ]
+}

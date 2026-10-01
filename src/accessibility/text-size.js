@@ -79,7 +79,7 @@ export function mountTextSize(container) {
     }
   });
   for (const [selector, property] of [
-    ['.topbar', '--topbar-height'], ['.bottom-bar', '--bottom-bar-height'], ['.control-dock', '--control-dock-height'],
+    ['.topbar', '--topbar-height'], ['.simulation-console', '--control-dock-height'],
   ]) {
     const element = document.querySelector(selector);
     if (element) { measured.set(element, property); observer.observe(element); }

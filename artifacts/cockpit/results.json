@@ -31,7 +31,7 @@
         "רוח מדומה",
         "הגה",
         "מצערת המנוע",
-        "רוח אמיתית"
+        "רוח ביחס למים"
       ],
       "drawn": [
         "מפה ימית",
@@ -58,13 +58,227 @@
         "kn",
         "← 58°",
         "הגה",
-        "← 12°",
+        "← 11°",
         "מצערת המנוע",
         "▲ 25%",
-        "רוח אמיתית",
-        "12.0 kn",
-        "315°"
-      ]
+        "רוח ביחס למים",
+        "10.9 kn",
+        "318°"
+      ],
+      "bounds": [
+        {
+          "text": "מפה ימית",
+          "left": 253.765625,
+          "right": 394,
+          "y": 42,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "N ↑",
+          "left": 478,
+          "right": 528.572265625,
+          "y": 42,
+          "font": "600 28px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "1",
+          "left": 318.7,
+          "right": 333.14921875,
+          "y": 297.8,
+          "font": "600 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "2",
+          "left": 353.2,
+          "right": 367.64921875,
+          "y": 263.3,
+          "font": "600 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "3",
+          "left": 337.1,
+          "right": 351.54921875,
+          "y": 221.9,
+          "font": "600 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "500 m",
+          "left": 40,
+          "right": 115.25634765625,
+          "y": 491,
+          "font": "600 25px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "מהירות הסירה",
+          "left": 621.6533203125,
+          "right": 852,
+          "y": 89,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "4.27",
+          "left": 592,
+          "right": 731.67578125,
+          "y": 157,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "kn",
+          "left": 592,
+          "right": 624.5107421875,
+          "y": 187,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "כיוון החרטום",
+          "left": 955.111328125,
+          "right": 1162,
+          "y": 89,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "035°",
+          "left": 902,
+          "right": 1041.67578125,
+          "y": 157,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "SOG",
+          "left": 776.4296875,
+          "right": 852,
+          "y": 243,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "4.72",
+          "left": 592,
+          "right": 731.67578125,
+          "y": 311,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "kn",
+          "left": 592,
+          "right": 624.5107421875,
+          "y": 341,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "COG",
+          "left": 1084.5537109375,
+          "right": 1162,
+          "y": 243,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "049°",
+          "left": 902,
+          "right": 1041.67578125,
+          "y": 311,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "עומק",
+          "left": 772.11328125,
+          "right": 852,
+          "y": 397,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "35.0",
+          "left": 592,
+          "right": 731.67578125,
+          "y": 465,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "m",
+          "left": 592,
+          "right": 608.25537109375,
+          "y": 495,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "רוח מדומה",
+          "left": 1014.265625,
+          "right": 1172,
+          "y": 397,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "12.6",
+          "left": 902,
+          "right": 1041.67578125,
+          "y": 465,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "kn",
+          "left": 1116,
+          "right": 1148.5107421875,
+          "y": 465,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "← 58°",
+          "left": 902,
+          "right": 1016.3896484375,
+          "y": 518,
+          "font": "600 38px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "הגה",
+          "left": 231.5,
+          "right": 294,
+          "y": 595,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "← 11°",
+          "left": 24,
+          "right": 180.533203125,
+          "y": 683,
+          "font": "600 52px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "מצערת המנוע",
+          "left": 474.515625,
+          "right": 675,
+          "y": 607,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "▲ 25%",
+          "left": 340,
+          "right": 496.533203125,
+          "y": 683,
+          "font": "600 52px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "רוח ביחס למים",
+          "left": 966.958984375,
+          "right": 1174,
+          "y": 600,
+          "font": "600 30px sans-serif"
+        },
+        {
+          "text": "10.9 kn",
+          "left": 914,
+          "right": 1078.35986328125,
+          "y": 650,
+          "font": "600 39px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "318°",
+          "left": 914,
+          "right": 995.87890625,
+          "y": 700,
+          "font": "600 34px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        }
+      ],
+      "width": 2400,
+      "height": 1440
     },
     {
       "language": "ar",
@@ -77,7 +291,7 @@
         "الرياح الظاهرية",
         "الدفة",
         "ذراع المحرك",
-        "الرياح الحقيقية"
+        "الرياح بالنسبة إلى الماء"
       ],
       "drawn": [
         "الخريطة البحرية",
@@ -104,13 +318,235 @@
         "kn",
         "← 58°",
         "الدفة",
-        "← 12°",
+        "← 10°",
         "ذراع المحرك",
         "▲ 25%",
-        "الرياح الحقيقية",
-        "12.0 kn",
-        "315°"
-      ]
+        "الرياح بالنسبة إلى",
+        "الماء",
+        "10.9 kn",
+        "318°"
+      ],
+      "bounds": [
+        {
+          "text": "الخريطة البحرية",
+          "left": 181.8400115966797,
+          "right": 394,
+          "y": 42,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "N ↑",
+          "left": 478,
+          "right": 528.572265625,
+          "y": 42,
+          "font": "600 28px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "1",
+          "left": 318.7,
+          "right": 333.14921875,
+          "y": 297.8,
+          "font": "600 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "2",
+          "left": 353.2,
+          "right": 367.64921875,
+          "y": 263.3,
+          "font": "600 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "3",
+          "left": 337.1,
+          "right": 351.54921875,
+          "y": 221.9,
+          "font": "600 24px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "500 m",
+          "left": 40,
+          "right": 115.25634765625,
+          "y": 491,
+          "font": "600 25px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "سرعة القارب",
+          "left": 686.3259582519531,
+          "right": 852,
+          "y": 89,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "4.27",
+          "left": 592,
+          "right": 731.67578125,
+          "y": 157,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "kn",
+          "left": 592,
+          "right": 624.5107421875,
+          "y": 187,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "اتجاه المقدمة",
+          "left": 990.2545166015625,
+          "right": 1162,
+          "y": 89,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "035°",
+          "left": 902,
+          "right": 1041.67578125,
+          "y": 157,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "SOG",
+          "left": 776.4296875,
+          "right": 852,
+          "y": 243,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "4.72",
+          "left": 592,
+          "right": 731.67578125,
+          "y": 311,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "kn",
+          "left": 592,
+          "right": 624.5107421875,
+          "y": 341,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "COG",
+          "left": 1084.5537109375,
+          "right": 1162,
+          "y": 243,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "049°",
+          "left": 902,
+          "right": 1041.67578125,
+          "y": 311,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "العمق",
+          "left": 771.8879089355469,
+          "right": 852,
+          "y": 397,
+          "font": "600 34px sans-serif"
+        },
+        {
+          "text": "35.0",
+          "left": 592,
+          "right": 731.67578125,
+          "y": 465,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "m",
+          "left": 592,
+          "right": 608.25537109375,
+          "y": 495,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "الرياح الظاهرية",
+          "left": 972.0787200927734,
+          "right": 1172,
+          "y": 397,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "12.6",
+          "left": 902,
+          "right": 1041.67578125,
+          "y": 465,
+          "font": "600 58px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "kn",
+          "left": 1116,
+          "right": 1148.5107421875,
+          "y": 465,
+          "font": "600 27px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "← 58°",
+          "left": 902,
+          "right": 1016.3896484375,
+          "y": 518,
+          "font": "600 38px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "الدفة",
+          "left": 233.68899536132812,
+          "right": 294,
+          "y": 595,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "← 10°",
+          "left": 24,
+          "right": 180.533203125,
+          "y": 683,
+          "font": "600 52px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "ذراع المحرك",
+          "left": 534.2468566894531,
+          "right": 675,
+          "y": 607,
+          "font": "600 32px sans-serif"
+        },
+        {
+          "text": "▲ 25%",
+          "left": 340,
+          "right": 496.533203125,
+          "y": 683,
+          "font": "600 52px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "الرياح بالنسبة إلى",
+          "left": 947.3437957763672,
+          "right": 1174,
+          "y": 568,
+          "font": "600 30px sans-serif"
+        },
+        {
+          "text": "الماء",
+          "left": 1129.0000305175781,
+          "right": 1174,
+          "y": 600,
+          "font": "600 30px sans-serif"
+        },
+        {
+          "text": "10.9 kn",
+          "left": 914,
+          "right": 1078.35986328125,
+          "y": 650,
+          "font": "600 39px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        },
+        {
+          "text": "318°",
+          "left": 914,
+          "right": 995.87890625,
+          "y": 700,
+          "font": "600 34px ui-monospace, SFMono-Regular, Menlo, Consolas, monospace"
+        }
+      ],
+      "width": 2400,
+      "height": 1440
     }
   ],
   "paused": {

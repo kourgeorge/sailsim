@@ -1,6 +1,5 @@
-import {practiceConditions} from './practice-conditions.js';
+import {practiceConditions,practiceHeadingTarget} from './practice-conditions.js';
 import {translate as t} from '../i18n/runtime.js';
-import {angleDifference} from '../physics.js';
 import './practice-requirements.css';
 const esc=value=>String(value).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const valueText=value=>typeof value==='boolean'?(value?'✓':'○'):typeof value==='number'?(Number.isFinite(value)?value.toFixed(1):'—'):t(value);
@@ -14,9 +13,8 @@ export function updatePracticeRequirements(root,check,state,attempt,paused){
  const status=paused?'Simulation paused. Resume to continue the hold.':allMet?'All conditions met. Keep steady.':'Adjust the unmet conditions to start the timer.';
  const notice=root.querySelector('.requirement-notice');if(notice.textContent!==t(status))notice.textContent=t(status);
  const guidance=root.querySelector('.requirement-guidance');let text='';
- if(check.kind==='windAngle'&&!rows.find(row=>row.id==='true-wind-angle')?.met){
-  const relative=angleDifference(state.heading,state.windDirection),middle=(check.value[0]+check.value[1])/2;
-  const target=(state.windDirection+(relative<0?-middle:middle)+360)%360;
+ const target=practiceHeadingTarget(check,state);
+ if(target!==null&&!rows.find(row=>row.id==='true-wind-angle')?.met){
   text=t('Turn gently toward {heading}°, then center the helm.').replace('{heading}',String(Math.round(target)).padStart(3,'0'));
  }
  if(guidance.textContent!==text)guidance.textContent=text;guidance.hidden=!text;root.dataset.holding=String(!paused&&allMet);

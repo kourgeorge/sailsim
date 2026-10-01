@@ -19,12 +19,14 @@ export function pointOfSail(angle) {
 }
 export function initialState(locationId = DEFAULT_LOCATION_ID) {
   const location=getLocation(locationId);
+  const waterWind=windOverWater({...location.conditions,heading:location.start.heading});
   return {locationId:location.id,...location.start,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
     mainHoist:1,jibHoist:1,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
     anchor:false,anchorRode:180,anchorPaidRode:0,anchorWinchRunning:false,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
     ...location.conditions,heel:0,leeway:0,yawRate:0,
     distance:0,elapsed:0,depth:depthAt(location.start.x,location.start.z,location.id),grounded:false,speedOverGround:0,courseOverGround:location.start.heading,
-    apparentWindSpeed:location.conditions.windSpeed,apparentWindAngle:angleDifference(location.conditions.windDirection,location.start.heading),suggestedMainSheet:45,suggestedJibSheet:40,
+    waterWindSpeed:waterWind.speed,waterWindDirection:waterWind.direction,waterWindAngle:waterWind.angle,
+    apparentWindSpeed:waterWind.speed,apparentWindAngle:waterWind.angle??0,suggestedMainSheet:45,suggestedJibSheet:40,
     mainEfficiency:0,jibEfficiency:0,mainFlow:'Ready',jibFlow:'Ready',vmg:0,turnRate:0,
     worldBodies:createWorldBodies(location.id),collision:null,collisionCount:0,collisionEvents:[],contactActive:false,_contactEpisodes:{}};
 }
@@ -42,6 +44,18 @@ export function apparentWind(s) {
   const ax=-Math.sin(w)*s.windSpeed*KNOT-vx, az=Math.cos(w)*s.windSpeed*KNOT-vz;
   const direction=wrap(Math.atan2(-ax,az)/RAD);
   return {speed:Math.hypot(ax,az)/KNOT,angle:angleDifference(direction,s.heading),direction};
+}
+// Air relative to the moving water, independent of the yacht's own motion.
+// Weather is air relative to ground; current is water relative to ground.
+// A vanishing vector has no bearing: never turn calm into a north wind.
+export function windOverWater(s) {
+  const w=s.windDirection*RAD,c=(s.currentDirection||0)*RAD;
+  const x=(-Math.sin(w)*s.windSpeed-Math.sin(c)*(s.currentSpeed||0))*KNOT;
+  const z=(Math.cos(w)*s.windSpeed+Math.cos(c)*(s.currentSpeed||0))*KNOT;
+  const magnitude=Math.hypot(x,z);
+  if(magnitude<=1e-9)return {speed:0,direction:null,angle:null};
+  const direction=wrap(Math.atan2(-x,z)/RAD);
+  return {speed:magnitude/KNOT,direction,angle:angleDifference(direction,s.heading)};
 }
 function reconcile(s) {
   const old=s._controls;
@@ -79,16 +93,17 @@ function sailForce(angle,sheet,area,pressure,noGo,shape=1) {
     flow:area===0?'Lowered':noGo<.1||c.alpha<5?'Luffing':c.alpha>40&&Math.abs(angle)<120?'Stalled':'Drawing'};
 }
 function sailDynamics(s) {
-  const aw=apparentWind(s), a=Math.abs(aw.angle), twa=Math.abs(angleDifference(s.windDirection,s.heading));
-  const noGo=clamp((twa-38)/9,0,1), pressure=.5*VESSEL.airDensity*(aw.speed*KNOT)**2;
+  const aw=apparentWind(s),water=windOverWater(s),a=Math.abs(aw.angle);
+  const noGo=water.angle===null?0:clamp((Math.abs(water.angle)-38)/9,0,1), pressure=.5*VESSEL.airDensity*(aw.speed*KNOT)**2;
   const reefArea=[1,.72,.48][s.reefLevel];
-  const shape=1-.18*Math.abs(s.outhaul-clamp(s.windSpeed/25,0,1))-.12*Math.abs(s.vang-clamp(a/140,.2,.85));
+  const shape=1-.18*Math.abs(s.outhaul-clamp(water.speed/25,0,1))-.12*Math.abs(s.vang-clamp(a/140,.2,.85));
   const main=sailForce(aw.angle,clamp(s.mainSheet+s.traveler,0,90),VESSEL.mainArea*s.mainHoist*reefArea,pressure,noGo,shape);
   const jib=sailForce(aw.angle,s.jibSheet,VESSEL.jibArea*s.jibHoist,pressure,noGo);
-  return {aw,main,jib,reefArea};
+  return {aw,water,main,jib,reefArea};
 }
-function sailTelemetry(s,{aw,main,jib}) {
+function sailTelemetry(s,{aw,water,main,jib}) {
   s.apparentWindSpeed=aw.speed;s.apparentWindAngle=aw.angle;
+  s.waterWindSpeed=water.speed;s.waterWindDirection=water.direction;s.waterWindAngle=water.angle;
   s.suggestedMainSheet=clamp(suggestedSheet(aw.angle)-s.traveler,0,90);s.suggestedJibSheet=suggestedSheet(aw.angle);
   s.mainEfficiency=main.efficiency;s.jibEfficiency=jib.efficiency;s.mainFlow=main.flow;s.jibFlow=jib.flow;
 }
@@ -115,7 +130,7 @@ function integrate(s,dt) {
   // A keel contact remains a grounding until the boat is reset. Later substeps
   // must not erase the contact by checking the last safe (unadvanced) position.
   if(s.grounded){s.speed=0;s.leeway=0;s.yawRate=0;s.turnRate=0;s.speedOverGround=0;s.vmg=0;sailTelemetry(s,sailDynamics(s));updateAirborneAnchor(s,dt);anchorTelemetry(s);s.elapsed+=dt;return;}
-  const {aw,main,jib,reefArea}=sailDynamics(s);
+  const {aw,water,main,jib,reefArea}=sailDynamics(s);
   const u=s.speed*KNOT, hullSpeed=1.34*Math.sqrt(VESSEL.waterline/0.3048)*KNOT;
   const drag=58*u+38*u*Math.abs(u)+Math.sign(u)*180*(Math.abs(u)/hullSpeed)**6;
   const rudderDrag=16*u*Math.abs(u)*Math.sin(s.rudder*RAD)**2;
@@ -163,7 +178,7 @@ function integrate(s,dt) {
   else{s.speed=0;s.leeway=0;s.yawRate=0;vx=0;vz=0;}
   s.speedOverGround=Math.hypot(vx,vz)/KNOT;
   if(s.speedOverGround>.01)s.courseOverGround=wrap(Math.atan2(vx,-vz)/RAD);
-  sailTelemetry(s,s.grounded?sailDynamics(s):{aw,main,jib});
+  sailTelemetry(s,s.grounded?sailDynamics(s):{aw,water,main,jib});
   updateAirborneAnchor(s,dt);
   anchorTelemetry(s);
   s.vmg=s.speedOverGround*Math.cos(angleDifference(s.courseOverGround,s.windDirection)*RAD);
@@ -218,5 +233,6 @@ export function step(s,dt) {
   // Bounded substeps preserve acceleration and turning when render frame rate varies.
   let remaining=Math.min(dt,2);
   while(remaining>1e-9){const chunk=Math.min(collisionStepLimit([playerRigidBody(s),...s.worldBodies]),remaining);integrate(s,chunk);integrateContacts(s,chunk);remaining-=chunk;}
-  return s;
+  // Report the final pose/velocities, not airflow from before the last substep.
+  return refreshDerived(s);
 }

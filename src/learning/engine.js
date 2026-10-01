@@ -1,11 +1,13 @@
 import { lessons } from './curriculum.js';
 import { beginPracticeAssessment, observePracticeObjective, completePracticeObjective, practiceAssessment, practiceEvidence, restorePracticeAssessment, COLLISION_FAILURE_MESSAGE, playerCollisionCount, hasPlayerCollision, collisionEvidence, WINDLASS_ASSESSMENT_VERSION } from './practice-assessment.js';
 import {practiceConditions} from './practice-conditions.js';
+import {windOverWater} from '../physics.js';
 import { restoreDecisionResult } from './decision-evidence.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
 export const STORAGE_KEY='sail-training-v1';
 const angle=(a,b)=>((a-b+540)%360)-180;
+const windRelativeHeading=state=>{const wind=windOverWater(state);return wind.direction===null?null:angle(state.heading,wind.direction);};
 const count=v=>Number.isSafeInteger(v)&&v>=0?Math.min(v,100000):0;
 const blank=()=>({version:1,selected:lessons[0].id,records:{}});
 /** Accept only known lesson ids and typed evidence. Old six-click progress cannot become credit. */
@@ -50,7 +52,7 @@ export function crossingKind(previous,current){
 export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
- const attempt={lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:angle(state.heading,state.windDirection),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
+ const attempt={lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:windRelativeHeading(state),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
  if(state.contactActive===true){attempt.objectives[0].evidence=practiceEvidence(state,attempt);invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));}
  return attempt;
 }
@@ -72,7 +74,8 @@ export function advanceAttempt(attempt,lesson,state,dt,progress){
  const departure=lesson.practice.setup.anchor===true&&attempt.index===0;
  if(state.anchor&&current.kind!=='anchor'&&!departure){invalidateAttempt(attempt,progress,'Anchor deployed before the stopping stage. Slow under control and restart.','early-anchor');return attempt;}
  if((state.throttle??0)!==0){invalidateAttempt(attempt,progress,'This sailing exercise requires the engine in neutral. Restart under sail.','engine-engaged');return attempt;}
- const relative=angle(state.heading,state.windDirection),crossing=crossingKind(attempt.previousAngle,relative);
+ const relative=windRelativeHeading(state),crossing=crossingKind(attempt.previousAngle,relative);
+ if(relative===null){attempt.previousAngle=null;attempt.maneuver=null;attempt.maneuverSide=0;}
  if(crossing&&['tack','gybe'].includes(current.kind)){attempt.maneuver=crossing;attempt.maneuverSide=Math.sign(relative);}
  if(Math.abs(relative)>.05)attempt.previousAngle=relative;
  attempt.elapsed+=dt;
@@ -98,7 +101,7 @@ export function coachingTip(lesson,attempt,state){
  if(current.kind==='anchor')return current.value?'With sails lowered and the boat slow, drop the anchor. Check rode and wait for the boat to settle.':'Weigh the anchor before setting the sails.';
  if(current.kind==='sails')return current.value?'Hoist both sails using the sail controls.':'Lower both mainsail and headsail.';
  if(current.kind==='reef')return 'Select at least one reef and maintain more than 1 knot of speed.';
- if(Math.abs(angle(state.heading,state.windDirection))<38)return 'The bow is in the no-go zone. Bear away while you still have steerage.';
+ if(windOverWater(state).angle!==null&&Math.abs(windOverWater(state).angle)<38)return 'The bow is in the no-go zone. Bear away while you still have steerage.';
  if(Math.abs(state.speed)<2)return 'Let speed build on a reach. Check the sails, anchor, and both sheet settings.';
  if(current.kind==='heading')return `Steer ${String(current.value).padStart(3,'0')}°. Use small corrections and center before overshooting.`;
  if(current.kind==='trim')return 'Use the suggested mainsheet angle, then wait for the speed response.';

@@ -1,4 +1,5 @@
 import {anchorSnapshot} from '../anchor.js';
+import {windOverWater} from '../physics.js';
 import {practiceGroundSpeed,practiceStopThreshold,practiceWindlassComplete} from './practice-assessment.js';
 
 // The judge and live feedback consume identical rows. Round only in presentation.
@@ -8,11 +9,19 @@ const display=value=>value===undefined||value===null||typeof value==='number'&&!
 const row=(id,label,actual,target,unit,met)=>({id,label,actual:display(actual),target:display(target),unit,met:Boolean(met)});
 const flag=(id,label,met)=>row(id,label,Boolean(met),true,'',met);
 
+/** Compass guidance shares the physical wind frame; calm has no target bearing. */
+export function practiceHeadingTarget(check,state){
+ if(check?.kind!=='windAngle')return null;
+ const wind=windOverWater(state);if(wind.direction===null)return null;
+ const relative=angle(state.heading,wind.direction),middle=(check.value[0]+check.value[1])/2;
+ return (wind.direction+(relative<0?-middle:middle)+360)%360;
+}
+
 export function practiceConditions(check,state,attempt){
- const twa=Math.abs(angle(state.heading,state.windDirection)),speed=Math.abs(state.speed);
+ const wind=windOverWater(state),twa=wind.angle===null?null:Math.abs(wind.angle),speed=Math.abs(state.speed);
  const sails=state.mainHoist!==undefined?(state.mainHoist+state.jibHoist)/2:state.sails;
  const speedRow=(limit=2)=>row('boat-speed','Boat speed',speed,`> ${limit}`,'kn',speed>limit);
- const windRow=(min,max)=>row('true-wind-angle','True wind angle',twa,`${min}–${max}`,'°',twa>=min&&twa<=max);
+ const windRow=(min,max)=>row('true-wind-angle','Wind angle over water',twa,`${min}–${max}`,'°',twa!==null&&twa>=min&&twa<=max);
  const anchorUp=()=>flag('anchor-up','Anchor raised',!state.anchor);
  const lowered=()=>row('sail-hoist','Sail hoist (main + jib average)',sails*100,'< 1','%',sails<.01);
  const mainRaised=()=>row('main-hoist','Mainsail hoist',(state.mainHoist??state.sails)*100,'> 95','%',(state.mainHoist??state.sails)>.95);
@@ -28,7 +37,7 @@ export function practiceConditions(check,state,attempt){
    const difference=Math.abs((state.mainSheet??state.trim)-(state.suggestedMainSheet??Math.max(5,Math.min(88,(twa-35)/1.6))));
    return [mainRaised(),flag('main-drawing','Mainsail drawing',state.mainFlow==='Drawing'),row('trim-error','Difference from suggested trim',difference,`≤ ${check.value}`,'°',difference<=check.value),speedRow()];
   }
-  case 'tack':case 'gybe':return [flag('crossing',check.kind==='tack'?'Bow crossed the wind':'Stern crossed the wind',attempt.maneuver===check.kind),flag('new-tack','Remain on the new tack',Math.sign(angle(state.heading,state.windDirection))===attempt.maneuverSide),speedRow(),check.kind==='tack'?windRow(40,100):windRow(105,175)];
+  case 'tack':case 'gybe':return [flag('crossing',check.kind==='tack'?'Bow crossed the wind':'Stern crossed the wind',wind.angle!==null&&attempt.maneuver===check.kind),flag('new-tack','Remain on the new tack',wind.direction!==null&&Math.sign(angle(state.heading,wind.direction))===attempt.maneuverSide),speedRow(),check.kind==='tack'?windRow(40,100):windRow(105,175)];
   case 'recover':return [windRow(40,100),speedRow()];
   case 'reef':return [flag('reef','Reef set',state.reefLevel>0||state.reef),mainRaised(),speedRow(1)];
   case 'coast':return [lowered(),anchorUp(),groundRow()];

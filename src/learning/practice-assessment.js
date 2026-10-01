@@ -1,6 +1,6 @@
 // Scores describe the quality of demonstrated objectives. They never decide pass/fail.
 // Every objective uses the existing engine predicate, including its continuous hold.
-import { groundVelocity, KNOT } from '../physics.js';
+import { groundVelocity, KNOT, windOverWater } from '../physics.js';
 import { anchorSnapshot } from '../anchor.js';
 const finite = value => Number.isFinite(value) ? Math.max(-1e7, Math.min(value, 1e7)) : null;
 const bounded = (value, max = 1e7) => Number.isFinite(value) && value >= 0 ? Math.min(value, max) : 0;
@@ -75,8 +75,13 @@ export function practiceRubric(lesson) {
 export function practiceEvidence(state, attempt) {
   const observed = attempt?.events ?? state.observedEvents;
   const crossing = attempt?.maneuver ?? state.crossing;
+  // Recompute from raw weather, including on report restoration. Historical
+  // records with missing weather retain unknown values rather than invented wind.
+  const completeWind=['heading','windSpeed','windDirection'].every(key=>Number.isFinite(state[key]))&&['currentSpeed','currentDirection'].every(key=>state[key]===undefined||Number.isFinite(state[key]));
+  const water=completeWind?windOverWater(state):{speed:null,direction:null,angle:null};
   return {
     ...Object.fromEntries(telemetryKeys.map(key => [key, finite(state[key])])),
+    waterWindSpeed:finite(water.speed),waterWindDirection:finite(water.direction),waterWindAngle:finite(water.angle),
     speedOverGround: finite(practiceGroundSpeed(state)),
     anchor: state.anchor === true, grounded: state.grounded === true,
     anchorWinchRunning: typeof state.anchorWinchRunning==='boolean'?state.anchorWinchRunning:null,

@@ -7,6 +7,8 @@ import {learningUI} from './learning-tools.js';
 import {trainingUI} from './training.js';
 import {anchoringUI} from './anchoring.js';
 import {practiceFeedbackUI} from './practice-feedback.js';
+import {windReferenceUI} from './wind-reference.js';
+import {decisionGuidanceUI} from './decision-guidance.js';
 import {practiceFlowUI} from './practice-flow.js';
 import {windlassUI} from './windlass.js';
 import {validateScenarioLocale,localizeScenario} from '../learning/scenario-localization.js';
@@ -59,7 +61,7 @@ async function loadLanguage(code,lessons,modules){
  return {ui,course,maneuvers,scenarios};
 }
 export async function initializeLocalization(lessons,modules){
- const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;scenarioPack=pack.scenarios||null;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code],...trainingUI[code],...anchoringUI[code],...windlassUI[code],...practiceFlowUI[code],...practiceFeedbackUI[code]};patterns=compilePatterns(dictionary);cache.clear();
+ const code=preferredLanguage();const pack=await loadLanguage(code,lessons,modules);language=code;scenarioPack=pack.scenarios||null;dictionary={...pack.ui,...(extraUI[code]||{}),...pack.maneuvers,...learningUI[code],...trainingUI[code],...anchoringUI[code],...windlassUI[code],...practiceFlowUI[code],...practiceFeedbackUI[code],...windReferenceUI[code],...decisionGuidanceUI[code]};patterns=compilePatterns(dictionary);cache.clear();
  document.documentElement.lang=code;document.documentElement.dir=LANGUAGES.find(l=>l.code===code).dir;
  if(pack.course)applyCourseLocale(pack.course,lessons,modules);
  return code;

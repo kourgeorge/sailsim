@@ -188,7 +188,7 @@ export function renderScenarioScene(vm={}) {
   if(trueSpeed>0)art+=arrow(`M${x-22} ${y}L${x-22+air.x*scale} ${y+air.y*scale}`,C.teal,4);
   if(speed>0)art+=arrow(`M${x+8} ${y}L${x+8+velocity.x*scale} ${y+velocity.y*scale}`,C.blue,4);
   if(Math.hypot(relative.x,relative.y)>0)art+=arrow(`M${x+33} ${y}L${x+33+relative.x*scale} ${y+relative.y*scale}`,C.amber,4,'6 4');
-  art+=card(514,64,232,87,t('trueWind'),`${number(trueSpeed)} kn`)+card(514,171,232,87,t('waterSpeed'),`${number(speed)} kn`)+card(514,278,232,87,t('prediction'),v.apparentSpeed===undefined||v.apparentSpeed===''?'—':`${number(v.apparentSpeed)} kn`);
+  art+=card(514,64,232,87,t('trueWind'),`${number(trueSpeed)} kn`)+card(514,171,232,87,t('waterSpeed'),`${number(speed)} kn`)+card(514,278,232,87,t('prediction'),v.apparentSpeed===undefined||v.apparentSpeed===''||!Number.isFinite(Number(v.apparentSpeed))||Number(v.apparentSpeed)<0?'—':`${number(v.apparentSpeed)} kn`);
   art+=text(165,403,t('trueWind'),{size:16,color:C.teal,max:25})+text(364,403,t('apparent'),{size:16,color:C.amber,max:25});
  } else if(vm.family==='navigation') {
   const isWind=/wind/.test(variant)||s.windFrom!==undefined,heading=finite(valueOf(vm,'heading',v.revisedHeading??s.heading??0)),speed=Math.max(0,finite(valueOf(vm,'waterSpeed',s.waterSpeed??s.boatSpeed??5)));

@@ -150,12 +150,12 @@
       "title": "Lee los instrumentos",
       "concepts": [
         "El rumbo indica hacia dónde apunta la proa, medido en sentido horario desde el norte: 000° norte, 090° este, 180° sur y 270° oeste. La velocidad se muestra en nudos; un nudo equivale a una milla náutica por hora.",
-        "El indicador de viento muestra de dónde viene. El dial de viento a bordo está referido a la proa, mientras que la brújula superpuesta está referida al norte. La profundidad es la estimación del agua que hace el simulador, no el resguardo bajo la quilla.",
-        "En navegación real, el rumbo y la velocidad sobre el fondo pueden diferir del rumbo de proa y de la velocidad respecto al agua debido a la corriente y al abatimiento. Esta simulación estima ambos efectos; compara las lecturas en Sistemas del barco."
+        "La pantalla multifunción detrás de la rueda y el panel bajo los controles muestran las mismas lecturas en tiempo real. El viento respecto al agua indica de dónde viene el viento relativo al agua en movimiento; su ángulo se mide desde la proa. La profundidad estima la altura de agua, no el margen bajo la quilla.",
+        "La corriente y el abatimiento pueden hacer que el rumbo sobre el fondo difiera del rumbo de proa y que la velocidad sobre el fondo difiera de la velocidad respecto al agua. Compara estas lecturas en el panel de instrumentos. Puedes ampliar la pantalla para leerla mejor."
       ],
       "observe": [
-        "Abre Puesto de gobierno o Bañera y compara el trazador de cartas y el velocímetro con los indicadores superpuestos.",
-        "Abre la carta y encuentra el símbolo del barco y la flecha del norte."
+        "Abre Timón o Bañera y compara la pantalla multifunción detrás de la rueda con el panel bajo los controles.",
+        "Selecciona Carta y localiza el símbolo del velero y la flecha del norte."
       ],
       "mistake": "Interpretar la profundidad como resguardo garantizado o el rumbo como trayectoria asegurada sobre el fondo.",
       "quiz": [
@@ -195,11 +195,11 @@
       "title": "De dónde viene el viento",
       "concepts": [
         "Un viento del noroeste viene del noroeste y sopla hacia el sureste. Barlovento es hacia el origen del viento; sotavento, en sentido contrario.",
-        "Aquí el viento real es el movimiento del aire respecto al terreno fijo; el viento aparente es el relativo al velero en movimiento. Algunos instrumentos refieren el viento real al agua, así que comprueba su convención. El modelo empírico de fuerzas de vela usa el viento aparente; no es una predicción aerodinámica validada.",
-        "La zona muerta es el sector demasiado próximo al viento para que las velas impulsen el barco. Su límite varía según el barco y las condiciones; este simulador usa 38° a cada lado."
+        "Los ajustes meteorológicos describen el viento respecto al suelo fijo. Resta el vector de corriente para obtener el viento respecto al agua en movimiento: aquí es la referencia para los rumbos respecto al viento. El viento aparente es el flujo de aire relativo al velero en movimiento. Comprueba siempre qué referencia usa el instrumento para «viento real».",
+        "La zona muerta es el sector demasiado próximo al viento para que las velas impulsen el barco. Su límite depende del barco y las condiciones; este simulador usa 38° a cada lado del viento respecto al agua. En calma respecto al agua, su dirección y su ángulo no están definidos."
       ],
       "observe": [
-        "Con viento de 315°, compara en la brújula los rumbos 315°, 045° y 135°.",
+        "Sin corriente y con viento de 315°, compara los rumbos 315°, 045° y 135° en el compás.",
         "El rumbo 045° sitúa el viento aproximadamente de través."
       ],
       "mistake": "Interpretar la flecha como el lugar hacia el que va el viento en vez de su procedencia.",
@@ -275,8 +275,8 @@
         "Empieza con pequeños ajustes. Centrar el timón detiene el giro; no recupera automáticamente el rumbo anterior."
       ],
       "observe": [
-        "Comienza al 045° con viento del noroeste, velas izadas y ancla levada.",
-        "Selecciona Navegar y observa cómo aumenta la velocidad."
+        "Comienza a 045° con viento del noroeste, las velas arriadas y el ancla izada.",
+        "Iza ambas velas y observa cómo aumenta la velocidad. Mantén el timón centrado mientras el velero gana gobierno."
       ],
       "mistake": "Aplicar todo el timón estando parado y esperar que el barco gire sobre sí mismo al instante.",
       "quiz": [
@@ -303,7 +303,7 @@
       "practice": {
         "steps": [
           {
-            "label": "Supera los 3 nudos"
+            "label": "Iza las velas y supera los 3 nudos"
           }
         ],
         "debrief": "La fuerza de las velas aceleró el barco; el timón se volvió eficaz al aumentar la velocidad."
@@ -355,12 +355,12 @@
     "sail-09": {
       "title": "Encuentra el través",
       "concepts": [
-        "El rumbo respecto al viento describe la orientación del barco frente al viento, no frente al norte. Al través, el viento entra aproximadamente a 90° de la proa.",
-        "Se puede navegar al través en ambas amuras. Con viento de 315°, los rumbos próximos a 045° y 225° son de través.",
-        "Gobierna hasta que el ángulo de viento real esté entre 80° y 105° y mantén una velocidad útil."
+        "El rumbo respecto al viento describe la orientación de la proa frente al viento respecto al agua, no frente al norte. Navegando al través, ese viento llega a unos 90° de la proa.",
+        "El barco puede navegar al través con cualquiera de las dos amuras. Sin corriente y con viento de 315°, los rumbos cercanos a 045° y 225° son de través.",
+        "Gobierna hasta que el ángulo del viento respecto al agua esté entre 80° y 105° y mantén una velocidad útil. El viento aparente orienta el trimado de las velas."
       ],
       "observe": [
-        "Compara la marca de proa con la dirección del viento.",
+        "Compara la marca de proa con la dirección del viento respecto al agua en la pantalla de a bordo.",
         "Observa que dos rumbos de brújula diferentes pueden corresponder al mismo rumbo respecto al viento."
       ],
       "mistake": "Memorizar un rumbo de brújula como si siempre correspondiera a una misma orientación respecto al viento.",
@@ -398,7 +398,7 @@
       "title": "Navega de ceñida",
       "concepts": [
         "Ceñir es navegar cerca del límite contra el viento, con las velas relativamente próximas a crujía. No orces tanto que flameen y se pierda la velocidad.",
-        "En este modelo simplificado, un ángulo de viento real de 45°–58° sirve para practicar la ceñida. En un velero real hay que valorar el viento aparente, la forma de las velas, los catavientos, el estado de la mar y el abatimiento.",
+        "En este modelo simplificado, un ángulo del viento respecto al agua de 45°–58° sirve para practicar la ceñida. En un velero real hay que valorar el viento aparente, la forma de las velas, los catavientos, el estado de la mar y el abatimiento.",
         "Al orzar, caza gradualmente. Comprueba que mantienes una buena velocidad en vez de perseguir el menor ángulo posible al viento."
       ],
       "observe": [
@@ -697,9 +697,9 @@
     "sail-17": {
       "title": "Viento real y aparente",
       "concepts": [
-        "Un velero en movimiento recibe viento aparente: el movimiento del aire respecto al barco. Incluso en calma, avanzar produce un flujo de aire desde proa.",
-        "Al aumentar la velocidad del barco, el viento aparente suele adelantarse respecto al real. Navegando a favor del viento, avanzar en su mismo sentido puede reducir la velocidad aparente.",
-        "Compara el viento real del dial con el aparente en Sistemas del barco. Las fuerzas de vela y los ángulos de escota sugeridos usan el viento aparente; este modelo empírico no sustituye observar catavientos y forma de las velas."
+        "El viento aparente es el flujo de aire relativo al velero. El viento meteorológico se refiere al suelo fijo; el viento respecto al agua se obtiene restando la corriente de esa velocidad del aire. «Viento real» puede tomar como referencia el suelo o el agua: comprueba la convención del instrumento.",
+        "Al aumentar la velocidad respecto al agua en un través estable, el viento aparente suele adelantarse respecto al viento relativo al agua. A favor del viento, moverse con el flujo de aire puede reducir la velocidad aparente. Cuando hay calma respecto al agua, su dirección no está definida, pero un velero que se mueve por el agua puede seguir sintiendo un flujo aparente.",
+        "Compara Viento respecto al agua con Viento aparente en la pantalla multifunción o el panel de instrumentos. Los rumbos respecto al viento, la zona muerta y la respuesta modelada del pujamen usan el viento respecto al agua. La presión de las velas, los coeficientes y los ángulos de escota sugeridos usan el viento aparente. Este modelo empírico no sustituye observar catavientos y forma de las velas."
       ],
       "observe": [
         "Imagina ir en bicicleta con aire en calma: notas viento de frente.",

@@ -274,5 +274,12 @@
   "pages archived": "صفحات مؤرشفة",
   "images collected": "صور جُمعت",
   "Independent prototype. Not affiliated with eSail. Source assets remain attributed to their respective owners.": "نموذج تجريبي مستقل. غير تابع لـ eSail. تبقى المواد المصدرية منسوبة إلى مالكيها.",
-  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "بيئة تعلم تجريبية بفيزياء مبسطة. ليست بديلًا عن التدريب على الماء."
+  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "بيئة تعلم تجريبية بفيزياء مبسطة. ليست بديلًا عن التدريب على الماء.",
+  "Mainsheet in / out": "حبل الشراع الرئيسي: شدّ / إرخاء",
+  "Headsail sheet in / out": "حبل الشراع الأمامي: شدّ / إرخاء",
+  "Engine ahead / astern": "المحرك للأمام / للخلف",
+  "Raise or lower sails": "رفع الأشرعة أو إنزالها",
+  "Anchor: let go or weigh": "المرساة: إلقاء أو رفع",
+  "Open this help": "فتح هذه المساعدة",
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "اضغط مع الاستمرار على مفتاح لمواصلة تحريك أداة التحكم. تتوقف المفاتيح أثناء الكتابة في حقل أو قراءة درس."
 }

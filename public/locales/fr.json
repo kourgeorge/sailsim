@@ -150,12 +150,12 @@
       "title": "Lisez les instruments",
       "concepts": [
         "Le cap est la direction de l’étrave, mesurée dans le sens horaire depuis le nord : 000° nord, 090° est, 180° sud, 270° ouest. La vitesse est affichée en nœuds ; un nœud correspond à un mille marin par heure.",
-        "L’indicateur de vent montre d’où vient le vent. Le cadran à bord est référencé à l’étrave, tandis que le compas superposé est référencé au nord. La profondeur est l’estimation de hauteur d’eau du simulateur, pas le pied de pilote sous la quille.",
-        "En navigation réelle, la route et la vitesse fond peuvent différer du cap et de la vitesse surface à cause du courant et de la dérive. La simulation estime ces deux effets ; comparez les indications dans Systèmes du bateau."
+        "L’écran multifonction derrière la roue et le tableau de bord sous les commandes affichent les mêmes mesures en direct. Le vent relatif à l’eau indique la provenance du vent par rapport à l’eau en mouvement ; son angle est mesuré depuis l’étrave. La profondeur estime la hauteur d’eau, pas la marge sous la quille.",
+        "Le courant et la dérive peuvent faire différer la route fond du cap, et la vitesse fond de la vitesse surface. Comparez ces mesures sur le tableau de bord. Vous pouvez agrandir l’affichage pour faciliter la lecture."
       ],
       "observe": [
-        "Ouvrez Poste de barre ou Cockpit et comparez le traceur de cartes et l’afficheur de vitesse aux indications superposées.",
-        "Ouvrez la carte et repérez le symbole du bateau et la flèche du nord."
+        "Ouvrez Barre ou Cockpit et comparez l’écran multifonction derrière la roue au tableau de bord sous les commandes.",
+        "Sélectionnez Carte et repérez le symbole du voilier et la flèche du nord."
       ],
       "mistake": "Lire la profondeur comme une marge garantie sous la quille, ou considérer le cap comme une route fond garantie.",
       "quiz": [
@@ -195,11 +195,11 @@
       "title": "D’où vient le vent ?",
       "concepts": [
         "Un vent de nord-ouest vient du nord-ouest et souffle vers le sud-est. Le côté au vent est vers sa provenance ; le côté sous le vent est à l’opposé.",
-        "Ici, le vent réel est le mouvement de l’air par rapport au sol fixe ; le vent apparent est relatif au voilier en mouvement. Certains instruments réfèrent le vent réel à l’eau : vérifiez leur convention. Notre modèle empirique des forces de voile utilise le vent apparent ; ce n’est pas une prédiction aérodynamique validée.",
-        "La zone non navigable face au vent est le secteur où les voiles ne peuvent plus propulser utilement le bateau. Sa limite varie selon le bateau et les conditions ; le simulateur retient 38° de chaque côté."
+        "Les réglages météo décrivent le vent par rapport au sol fixe. Soustrayez le vecteur courant pour obtenir le vent relatif à l’eau en mouvement : c’est ici la référence des allures. Le vent apparent est l’écoulement d’air relatif au voilier en mouvement. Vérifiez toujours la référence utilisée par un instrument pour le « vent réel ».",
+        "La zone interdite est le secteur trop proche du vent pour que les voiles propulsent le bateau. Sa limite dépend du bateau et des conditions ; ce simulateur utilise 38° de chaque côté du vent relatif à l’eau. En cas de calme relatif à l’eau, sa direction et son angle sont indéfinis."
       ],
       "observe": [
-        "Avec un vent venant du 315°, comparez les caps 315°, 045° et 135° sur le compas.",
+        "Sans courant et avec un vent venant du 315°, comparez les caps 315°, 045° et 135° au compas.",
         "Le cap 045° place le vent approximativement par le travers."
       ],
       "mistake": "Interpréter la flèche comme la destination du vent plutôt que sa provenance.",
@@ -275,8 +275,8 @@
         "Commencez par de petits réglages. Centrer la barre arrête le virage ; cela ne ramène pas automatiquement au cap précédent."
       ],
       "observe": [
-        "Commencez au 045° avec un vent de nord-ouest, voiles établies et ancre relevée.",
-        "Sélectionnez Naviguer et observez la vitesse augmenter."
+        "Commencez au 045° avec un vent de nord-ouest, les voiles affalées et l’ancre relevée.",
+        "Hissez les deux voiles, puis observez la vitesse augmenter. Gardez la barre au centre pendant que le voilier acquiert de la vitesse et devient manœuvrant."
       ],
       "mistake": "Mettre toute la barre à l’arrêt en espérant que le bateau pivote instantanément.",
       "quiz": [
@@ -303,7 +303,7 @@
       "practice": {
         "steps": [
           {
-            "label": "Dépassez 3 nœuds"
+            "label": "Hissez les voiles et dépassez 3 nœuds"
           }
         ],
         "debrief": "La force des voiles a accéléré le bateau ; le gouvernail est devenu efficace avec la vitesse."
@@ -355,12 +355,12 @@
     "sail-09": {
       "title": "Trouvez le travers",
       "concepts": [
-        "L’allure décrit le cap par rapport au vent, pas par rapport au nord. Au travers, le vent arrive à environ 90° de l’étrave.",
-        "Le bateau peut être au travers sous l’une ou l’autre amure. Avec un vent venant du 315°, les caps proches de 045° et 225° correspondent au travers.",
-        "Gouvernez jusqu’à obtenir un angle de vent réel entre 80° et 105° et conservez une vitesse utile."
+        "L’allure décrit le cap par rapport au vent relatif à l’eau, et non au nord. Au travers, ce vent arrive à environ 90° de l’étrave.",
+        "Le bateau peut être au travers sur les deux amures. Sans courant et avec un vent venant du 315°, les caps proches de 045° et 225° sont des allures de travers.",
+        "Barrez jusqu’à obtenir un angle au vent relatif à l’eau compris entre 80° et 105° et conservez une vitesse utile. Le vent apparent guide le réglage des voiles."
       ],
       "observe": [
-        "Comparez le repère d’étrave à la direction du vent.",
+        "Comparez le repère d’étrave à la direction du vent relatif à l’eau sur l’écran de bord.",
         "Remarquez que deux caps de compas différents peuvent donner la même allure."
       ],
       "mistake": "Mémoriser un cap de compas comme une allure alors que le vent peut changer de direction.",
@@ -398,7 +398,7 @@
       "title": "Naviguez au près serré",
       "concepts": [
         "Le près serré consiste à naviguer près de la limite de remontée au vent, avec les voiles relativement proches de l’axe. Ne lofez pas au point de les faire faseyer et de perdre votre vitesse.",
-        "Dans ce modèle simplifié, un angle de vent réel de 45°–58° convient à l’exercice de près. Sur un vrai voilier, il faut évaluer le vent apparent, la forme des voiles, les penons, l’état de la mer et la dérive.",
+        "Dans ce modèle simplifié, un angle au vent relatif à l’eau de 45°–58° constitue un exercice utile de près. Sur un vrai voilier, il faut évaluer le vent apparent, la forme des voiles, les penons, l’état de la mer et la dérive.",
         "En lofant, bordez progressivement. Vérifiez que la vitesse reste suffisante plutôt que de rechercher l’angle au vent le plus petit possible."
       ],
       "observe": [
@@ -697,9 +697,9 @@
     "sail-17": {
       "title": "Vent réel et vent apparent",
       "concepts": [
-        "Un voilier en mouvement reçoit le vent apparent : le mouvement de l’air par rapport au bateau. Même par temps calme, avancer produit un écoulement d’air venant de l’avant.",
-        "Lorsque la vitesse du bateau augmente, le vent apparent vient généralement davantage de l’avant que le vent réel. Aux allures portantes, avancer dans le même sens que le vent peut réduire sa vitesse apparente.",
-        "Comparez le vent réel du cadran au vent apparent dans Systèmes du bateau. Les forces de voile et les angles d’écoute conseillés utilisent le vent apparent ; ce modèle empirique ne remplace pas l’observation des penons et de la forme des voiles."
+        "Le vent apparent est l’écoulement d’air relatif au voilier. Le vent météo est référencé au sol fixe ; le vent relatif à l’eau s’obtient en soustrayant le courant de cette vitesse de l’air. Le « vent réel » peut être référencé au sol ou à l’eau : vérifiez la convention de l’instrument.",
+        "Quand la vitesse surface augmente sur un travers stable, le vent apparent vient généralement davantage de l’avant que le vent relatif à l’eau. Au portant, se déplacer dans le sens du flux d’air peut réduire la vitesse apparente. Si le vent relatif à l’eau est nul, sa direction est indéfinie, mais un voilier avançant dans l’eau peut toujours ressentir un flux apparent.",
+        "Comparez Vent relatif à l’eau et Vent apparent sur l’écran multifonction de bord ou le tableau de bord. Les allures, la zone interdite et la réponse modélisée de la bordure utilisent le vent relatif à l’eau. La pression des voiles, les coefficients et les angles d’écoute conseillés utilisent le vent apparent. Ce modèle empirique ne remplace pas l’observation des penons et de la forme des voiles."
       ],
       "observe": [
         "Imaginez rouler à vélo dans un air immobile : vous sentez du vent de face.",

@@ -274,5 +274,12 @@
   "pages archived": "עמודים בארכיון",
   "images collected": "תמונות שנאספו",
   "Independent prototype. Not affiliated with eSail. Source assets remain attributed to their respective owners.": "אב־טיפוס עצמאי. אינו קשור ל־eSail. חומרי המקור נשארים מיוחסים לבעליהם.",
-  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "סביבת לימוד ניסיונית עם פיזיקה מפושטת. אינה תחליף להדרכה על המים."
+  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "סביבת לימוד ניסיונית עם פיזיקה מפושטת. אינה תחליף להדרכה על המים.",
+  "Mainsheet in / out": "מיתר ראשי: מתיחה / שחרור",
+  "Headsail sheet in / out": "מיתר המפרש הקדמי: מתיחה / שחרור",
+  "Engine ahead / astern": "מנוע קדימה / אחורה",
+  "Raise or lower sails": "הרמה או הורדה של המפרשים",
+  "Anchor: let go or weigh": "עוגן: הורדה או הרמה",
+  "Open this help": "פתיחת העזרה הזו",
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "החזיקו מקש כדי להמשיך להזיז בקר. המקשים אינם פעילים בזמן הקלדה בשדה או קריאת שיעור."
 }

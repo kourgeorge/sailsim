@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "initialHeight": 55,
+  "dockHeight": 193,
+  "pixelRatio": 1,
+  "cameras": [
+    "helm",
+    "chase",
+    "deck",
+    "aerial",
+    "instruments"
+  ],
+  "languages": [
+    "he",
+    "ar"
+  ],
+  "mobileTextSize": 200,
+  "currentWindReadings": true,
+  "calmUndefined": true,
+  "visibleCockpitControls": true,
+  "independentSheetsAndHoists": true,
+  "twoReefs": true,
+  "poweredAnchor": true,
+  "errors": []
+}

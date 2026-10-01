@@ -274,5 +274,12 @@
   "pages archived": "páginas archivadas",
   "images collected": "imágenes recopiladas",
   "Independent prototype. Not affiliated with eSail. Source assets remain attributed to their respective owners.": "Prototipo independiente, sin afiliación con eSail. Los recursos originales siguen atribuidos a sus respectivos propietarios.",
-  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "Un entorno de aprendizaje experimental con física simplificada. No sustituye la enseñanza en el agua."
+  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "Un entorno de aprendizaje experimental con física simplificada. No sustituye la enseñanza en el agua.",
+  "Mainsheet in / out": "Escota de mayor: cazar / amollar",
+  "Headsail sheet in / out": "Escota de proa: cazar / amollar",
+  "Engine ahead / astern": "Motor avante / atrás",
+  "Raise or lower sails": "Izar o arriar velas",
+  "Anchor: let go or weigh": "Ancla: fondear o levar",
+  "Open this help": "Abrir esta ayuda",
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Mantén pulsada una tecla para seguir moviendo un control. Las teclas se desactivan mientras escribes en un campo o lees una lección."
 }

@@ -44,7 +44,8 @@ node scripts/check-decision-training.mjs --assessment-fixes
 node scripts/check-rig-visuals.mjs
 node scripts/check-activity-status.mjs
 node scripts/check-live-practice.mjs # Real UI beam reach, shared targets, paused pixel stability and automatic finish
-node scripts/check-live-practice.mjs --layout # Desktop mission rail, mobile 200%, instruments, end/reset and chart assessment
+node scripts/check-live-practice.mjs --layout # Desktop mission rail, mobile 200%, Helm/Cockpit views, end/reset and chart assessment
+node scripts/check-live-practice.mjs --dashboard # Compact sharp-text readouts in every camera, RTL, 200%, enlarged view and water wind
 node scripts/check-cockpit-visuals.mjs # Dry cockpit, one display, RTL and frozen scene
 node scripts/check-anchor-visuals.mjs
 node scripts/check-anchor-monitor.mjs

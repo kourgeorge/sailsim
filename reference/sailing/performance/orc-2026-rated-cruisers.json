@@ -1,0 +1,608 @@
+{
+  "schemaVersion": 1,
+  "retrievedAt": "2026-10-01T10:10:56.818688+00:00",
+  "quantity": "ORC certificate rated boat velocities, with rating allowances; not raw VPP polars or measured sea-trial data",
+  "angleReference": "True wind angle in degrees; beat/run arrays are VMG and their optimal sailing angles, not boat speed at zero/180 degrees",
+  "windReference": "True wind speed in knots. ORC Speed Guide explains wind referenced to 10 m above water; compare the simulator with zero current to avoid its ground/water convention difference. The explanatory guide is dated 2020, certificates are 2026.",
+  "sourcePrecision": {
+    "ratedSpeedKnots": 0.01,
+    "allowanceSecondsPerNauticalMile": 0.1,
+    "angleDeg": 0.1
+  },
+  "crossCheck": "Every reaching cell agrees with 3600 / matched RMS time allowance to within 0.006 knots. Preserve certificate rounding; do not infer extra precision.",
+  "limitations": [
+    "Rating allowances are included; no attempt has been made to reverse age/dynamic/stability-related adjustments.",
+    "The certificate and RMS LOA fields differ for both boats and are preserved separately. IMS length is not asserted to be waterline length.",
+    "VPP sail flattening, reefing and crew placement may be optimized; no per-point sail-reduction values are provided here.",
+    "This is a descriptive benchmark for representative configurations, not validation of the simulator or instructions for a real vessel.",
+    "Club certificates and VPP predictions are not sea trials. No navigation, maneuver timing, acceleration, rudder, heel, leeway, loaded line or anchoring calibration follows from these speed tables."
+  ],
+  "boats": [
+    {
+      "id": "orc-2026-melody-ns",
+      "name": "Melody",
+      "class": "Bavaria 38 Cr 02-0",
+      "referenceNumber": "03440004PTC",
+      "certificateUrl": "https://data.orc.org/public/WPub.dll/CC/255602",
+      "sailNumber": "NOR 12494",
+      "certificateType": "Non Spin/HSF Club",
+      "certificateFamily": "NS",
+      "vppVersion": "2026 1.00",
+      "issueDate": "2026-05-14T10:01:51.345Z",
+      "validUntil": "2027-03-31",
+      "configuration": {
+        "certificateLengthOverallM": 11.83,
+        "rmsLengthOverallM": 11.99,
+        "imsLengthM": 10.676,
+        "waterlineLengthM": null,
+        "maximumBeamM": 3.898,
+        "draftM": 1.714,
+        "measurementDisplacementKg": 7551,
+        "sailingDisplacementKg": 8562,
+        "maximumCrewWeightKg": 736,
+        "measuredMainAreaM2": 38.49,
+        "ratedMainAreaM2": 39.33,
+        "measuredAndRatedLuffedHeadsailAreaM2": 35.86,
+        "spinnakerCount": 0,
+        "flyingHeadsailCount": 0,
+        "spinnakerPoleAboard": false,
+        "dynamicAllowancePercent": 0.36,
+        "ageAllowancePercent": 0.65
+      },
+      "trueWindSpeedsKnots": [
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.0,
+        14.0,
+        16.0,
+        20.0,
+        24.0
+      ],
+      "reaching": [
+        {
+          "trueWindAngleDeg": 52,
+          "ratedSpeedKnots": [
+            3.46,
+            4.92,
+            5.93,
+            6.63,
+            7.07,
+            7.34,
+            7.48,
+            7.56,
+            7.54
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1040.5,
+            731.6,
+            606.8,
+            542.9,
+            508.9,
+            490.6,
+            481.5,
+            476.2,
+            477.6
+          ]
+        },
+        {
+          "trueWindAngleDeg": 60,
+          "ratedSpeedKnots": [
+            3.8,
+            5.28,
+            6.27,
+            6.92,
+            7.31,
+            7.56,
+            7.72,
+            7.83,
+            7.85
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            946.7,
+            681.5,
+            574,
+            520.2,
+            492.3,
+            476.2,
+            466.6,
+            459.6,
+            458.3
+          ]
+        },
+        {
+          "trueWindAngleDeg": 75,
+          "ratedSpeedKnots": [
+            4.06,
+            5.52,
+            6.51,
+            7.14,
+            7.52,
+            7.78,
+            7.98,
+            8.26,
+            8.38
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            887,
+            652.3,
+            553,
+            504.4,
+            478.9,
+            462.9,
+            451.1,
+            435.8,
+            429.6
+          ]
+        },
+        {
+          "trueWindAngleDeg": 90,
+          "ratedSpeedKnots": [
+            3.95,
+            5.42,
+            6.45,
+            7.14,
+            7.55,
+            7.84,
+            8.09,
+            8.53,
+            8.87
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            911.6,
+            663.8,
+            558,
+            504.4,
+            476.7,
+            459,
+            445.1,
+            421.9,
+            405.8
+          ]
+        },
+        {
+          "trueWindAngleDeg": 110,
+          "ratedSpeedKnots": [
+            3.34,
+            4.81,
+            5.94,
+            6.81,
+            7.4,
+            7.78,
+            8.09,
+            8.7,
+            9.32
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1078.7,
+            749,
+            606.1,
+            528.4,
+            486.8,
+            463,
+            445.1,
+            413.7,
+            386.1
+          ]
+        },
+        {
+          "trueWindAngleDeg": 120,
+          "ratedSpeedKnots": [
+            3.09,
+            4.54,
+            5.68,
+            6.58,
+            7.23,
+            7.65,
+            7.98,
+            8.61,
+            9.29
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1166.3,
+            793.6,
+            634.3,
+            547.5,
+            498.2,
+            470.5,
+            451.2,
+            418.2,
+            387.6
+          ]
+        },
+        {
+          "trueWindAngleDeg": 135,
+          "ratedSpeedKnots": [
+            2.64,
+            3.96,
+            5.09,
+            6.02,
+            6.77,
+            7.33,
+            7.71,
+            8.31,
+            8.94
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1363.4,
+            908,
+            707,
+            598.5,
+            531.4,
+            491.4,
+            467.2,
+            433.2,
+            402.5
+          ]
+        },
+        {
+          "trueWindAngleDeg": 150,
+          "ratedSpeedKnots": [
+            2.22,
+            3.36,
+            4.39,
+            5.23,
+            5.99,
+            6.65,
+            7.16,
+            7.84,
+            8.42
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1623.4,
+            1071.2,
+            820.5,
+            688.3,
+            600.7,
+            541.5,
+            502.7,
+            458.9,
+            427.4
+          ]
+        }
+      ],
+      "beat": {
+        "anglesDeg": [
+          48.7,
+          46.1,
+          44.2,
+          43.0,
+          41.7,
+          40.8,
+          40.6,
+          40.8,
+          42.2
+        ],
+        "ratedVmgKnots": [
+          2.15,
+          3.13,
+          3.85,
+          4.4,
+          4.8,
+          5.04,
+          5.13,
+          5.16,
+          5.05
+        ]
+      },
+      "run": {
+        "anglesDeg": [
+          143.0,
+          144.4,
+          145.4,
+          170.3,
+          172.1,
+          173.0,
+          174.8,
+          177.3,
+          177.5
+        ],
+        "ratedVmgKnots": [
+          1.92,
+          2.91,
+          3.8,
+          4.64,
+          5.43,
+          6.13,
+          6.75,
+          7.62,
+          8.2
+        ]
+      }
+    },
+    {
+      "id": "orc-2026-twist-ns",
+      "name": "Twist",
+      "class": "Bavaria 34 Cruiser",
+      "referenceNumber": "03440004HRC",
+      "certificateUrl": "https://data.orc.org/public/WPub.dll/CC/247346",
+      "sailNumber": "NOR 15463",
+      "certificateType": "Non Spin/HSF Club",
+      "certificateFamily": "NS",
+      "vppVersion": "2026 1.00",
+      "issueDate": "2026-03-16T12:48:54.816Z",
+      "validUntil": "2027-03-31",
+      "configuration": {
+        "certificateLengthOverallM": 10.45,
+        "rmsLengthOverallM": 10.403,
+        "imsLengthM": 9.405,
+        "waterlineLengthM": null,
+        "maximumBeamM": 3.514,
+        "draftM": 1.847,
+        "measurementDisplacementKg": 5589,
+        "sailingDisplacementKg": 6415,
+        "maximumCrewWeightKg": 614,
+        "measuredMainAreaM2": 28.93,
+        "ratedMainAreaM2": 29.41,
+        "measuredAndRatedLuffedHeadsailAreaM2": 26.71,
+        "spinnakerCount": 0,
+        "flyingHeadsailCount": 0,
+        "spinnakerPoleAboard": true,
+        "dynamicAllowancePercent": 0.36,
+        "ageAllowancePercent": 0.618
+      },
+      "trueWindSpeedsKnots": [
+        4.0,
+        6.0,
+        8.0,
+        10.0,
+        12.0,
+        14.0,
+        16.0,
+        20.0,
+        24.0
+      ],
+      "reaching": [
+        {
+          "trueWindAngleDeg": 52,
+          "ratedSpeedKnots": [
+            3.3,
+            4.72,
+            5.7,
+            6.36,
+            6.75,
+            6.99,
+            7.14,
+            7.26,
+            7.27
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1090,
+            762.3,
+            631.2,
+            565.8,
+            533.4,
+            514.8,
+            504,
+            495.8,
+            495.1
+          ]
+        },
+        {
+          "trueWindAngleDeg": 60,
+          "ratedSpeedKnots": [
+            3.58,
+            5.02,
+            6.0,
+            6.59,
+            6.92,
+            7.14,
+            7.29,
+            7.46,
+            7.5
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1005.6,
+            717.7,
+            600,
+            546.4,
+            520.4,
+            504.3,
+            493.6,
+            482.6,
+            480.1
+          ]
+        },
+        {
+          "trueWindAngleDeg": 75,
+          "ratedSpeedKnots": [
+            3.78,
+            5.2,
+            6.2,
+            6.76,
+            7.07,
+            7.28,
+            7.47,
+            7.76,
+            7.93
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            953.6,
+            691.8,
+            581,
+            532.9,
+            509.5,
+            494.2,
+            482,
+            463.7,
+            453.8
+          ]
+        },
+        {
+          "trueWindAngleDeg": 90,
+          "ratedSpeedKnots": [
+            3.66,
+            5.1,
+            6.11,
+            6.75,
+            7.09,
+            7.33,
+            7.53,
+            7.93,
+            8.29
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            984.3,
+            706,
+            588.7,
+            533.4,
+            507.8,
+            491.4,
+            478.1,
+            454.1,
+            434.1
+          ]
+        },
+        {
+          "trueWindAngleDeg": 110,
+          "ratedSpeedKnots": [
+            3.09,
+            4.52,
+            5.62,
+            6.47,
+            6.96,
+            7.27,
+            7.53,
+            8.05,
+            8.63
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1165.2,
+            795.8,
+            640,
+            556.7,
+            517,
+            494.9,
+            478.2,
+            447,
+            416.9
+          ]
+        },
+        {
+          "trueWindAngleDeg": 120,
+          "ratedSpeedKnots": [
+            2.88,
+            4.27,
+            5.37,
+            6.25,
+            6.83,
+            7.17,
+            7.44,
+            7.96,
+            8.57
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1251.5,
+            844.1,
+            670.5,
+            575.9,
+            527.4,
+            501.8,
+            483.9,
+            452.2,
+            420
+          ]
+        },
+        {
+          "trueWindAngleDeg": 135,
+          "ratedSpeedKnots": [
+            2.47,
+            3.73,
+            4.82,
+            5.72,
+            6.44,
+            6.91,
+            7.22,
+            7.72,
+            8.29
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1455.3,
+            964.3,
+            746.5,
+            629.6,
+            558.7,
+            520.7,
+            498.5,
+            466.1,
+            434.5
+          ]
+        },
+        {
+          "trueWindAngleDeg": 150,
+          "ratedSpeedKnots": [
+            2.09,
+            3.19,
+            4.21,
+            5.1,
+            5.88,
+            6.51,
+            6.94,
+            7.47,
+            7.97
+          ],
+          "timeAllowanceSecondsPerNauticalMile": [
+            1719.5,
+            1130.2,
+            855.3,
+            705.4,
+            612.7,
+            552.9,
+            519,
+            481.7,
+            451.6
+          ]
+        }
+      ],
+      "beat": {
+        "anglesDeg": [
+          47.4,
+          45.3,
+          43.3,
+          42.0,
+          40.4,
+          38.5,
+          37.8,
+          37.7,
+          38.7
+        ],
+        "ratedVmgKnots": [
+          2.08,
+          3.04,
+          3.75,
+          4.28,
+          4.69,
+          5.0,
+          5.16,
+          5.24,
+          5.18
+        ]
+      },
+      "run": {
+        "anglesDeg": [
+          146.5,
+          148.0,
+          152.3,
+          158.6,
+          166.7,
+          174.8,
+          176.6,
+          178.9,
+          178.9
+        ],
+        "ratedVmgKnots": [
+          1.81,
+          2.76,
+          3.65,
+          4.47,
+          5.2,
+          5.88,
+          6.47,
+          7.19,
+          7.66
+        ]
+      }
+    }
+  ]
+}

@@ -150,12 +150,12 @@
       "title": "Read the instruments",
       "concepts": [
         "Heading is the direction the bow points, measured clockwise from north: 000° north, 090° east, 180° south, 270° west. Speed is shown in knots; one knot is one nautical mile per hour.",
-        "The wind display identifies the direction the wind comes from. The on-deck wind dial is relative to the bow, while the HUD compass is north-referenced. Depth is the simulator’s water-depth estimate, not clearance below the keel.",
-        "In real navigation, course over ground and speed over ground can differ from heading and speed through water because of current and leeway. This simulation estimates both effects; compare heading and water speed with course and speed over ground in Boat systems."
+        "The multifunction display behind the wheel and the dashboard below the controls show the same live readings. Wind over water names where the wind comes from relative to moving water; its angle is measured from the bow. Depth estimates water depth, not clearance below the keel.",
+        "Current and leeway can make course over ground differ from heading, and speed over ground differ from speed through water. Compare these readings on the dashboard. You can enlarge the display for easier reading."
       ],
       "observe": [
-        "Open Helm or Cockpit and compare the chartplotter and speed display with the HUD.",
-        "Open the chart and find the yacht symbol and north arrow."
+        "Open Helm or Cockpit and compare the multifunction display behind the wheel with the dashboard below the controls.",
+        "Select Chart and find the yacht symbol and north arrow."
       ],
       "mistake": "Reading depth as guaranteed clearance or treating heading as a guaranteed ground track.",
       "quiz": [
@@ -195,11 +195,11 @@
       "title": "Where the wind comes from",
       "concepts": [
         "A northwesterly wind comes from the northwest and blows toward the southeast. Windward is toward the source of the wind; leeward is away from it.",
-        "Here true wind is air motion relative to fixed ground. Apparent wind is relative to the moving yacht; some real instruments use a water reference for true wind, so check their convention. Your motion changes the wind experienced aboard: apparent wind. Our empirical sail-force model uses apparent wind; it is not a validated aerodynamic prediction.",
-        "The no-go zone is the sector too close to the wind for the sails to drive the boat. Its limit varies with boat and conditions; this simulator uses 38° on either side."
+        "Weather settings describe wind relative to fixed ground. Subtract the current vector to obtain wind relative to moving water: the reference for points of sail here. Apparent wind is airflow relative to the moving yacht. Always check which reference an instrument uses for “true wind.”",
+        "The no-go zone is the sector too close to the wind for the sails to drive the boat. Its limit varies with boat and conditions; this simulator uses 38° on either side of wind over water. In calm relative to water, its direction and angle are undefined."
       ],
       "observe": [
-        "With wind from 315°, compare headings 315°, 045°, and 135° on the compass.",
+        "With no current and wind from 315°, compare headings 315°, 045°, and 135° on the compass.",
         "The 045° heading puts the wind approximately across the side."
       ],
       "mistake": "Interpreting the arrow as where the wind is going rather than where it comes from.",
@@ -275,8 +275,8 @@
         "Start with small adjustments. Centering the helm stops the turn; it does not automatically restore your previous heading."
       ],
       "observe": [
-        "Begin on 045° with a northwesterly wind, sails set, and anchor up.",
-        "Select Set sail and watch speed increase."
+        "Begin on 045° with a northwesterly wind, sails lowered, and anchor up.",
+        "Raise both sails, then watch speed increase. Keep the helm centered while the yacht builds steerage."
       ],
       "mistake": "Applying full helm while stationary and expecting the yacht to pivot instantly.",
       "quiz": [
@@ -303,7 +303,7 @@
       "practice": {
         "steps": [
           {
-            "label": "Build speed above 3 knots"
+            "label": "Raise sails and build speed above 3 knots"
           }
         ],
         "debrief": "The sail force accelerated the boat; the rudder became useful as speed built."
@@ -355,12 +355,12 @@
     "sail-09": {
       "title": "Find a beam reach",
       "concepts": [
-        "Point of sail describes your heading relative to the wind, not relative to north. On a beam reach the wind is about 90° off the bow.",
-        "The boat can be on a beam reach on either tack. With wind from 315°, headings near 045° and 225° are beam reaches.",
-        "Steer until the true wind angle is between 80° and 105° and maintain useful speed."
+        "Point of sail describes your heading relative to wind over water, not relative to north. On a beam reach that wind is about 90° off the bow.",
+        "The boat can be on a beam reach on either tack. With no current and wind from 315°, headings near 045° and 225° are beam reaches.",
+        "Steer until the wind angle over water is between 80° and 105° and maintain useful speed. Apparent wind guides sail trim."
       ],
       "observe": [
-        "Compare the bow marker with the wind direction.",
+        "Compare the bow marker with the direction of wind over water on the onboard display.",
         "Notice that two different compass headings can give the same point of sail."
       ],
       "mistake": "Memorizing a compass heading as a point of sail when the wind direction may change.",
@@ -398,7 +398,7 @@
       "title": "Sail close hauled",
       "concepts": [
         "Close hauled means sailing near the upwind limit with the sails relatively close to the centerline. Do not point so high that the sails luff and speed disappears.",
-        "In this simplified model, a true wind angle of 45°–58° is a useful close-hauled exercise. Real yachts need assessment of apparent wind, sail shape, telltales, sea state, and leeway.",
+        "In this simplified model, a wind angle over water of 45°–58° is a useful close-hauled exercise. Real yachts need assessment of apparent wind, sail shape, telltales, sea state, and leeway.",
         "As you head up, trim in gradually. Watch whether speed remains healthy instead of chasing the smallest possible wind angle."
       ],
       "observe": [
@@ -697,9 +697,9 @@
     "sail-17": {
       "title": "True and apparent wind",
       "concepts": [
-        "A moving yacht experiences apparent wind: the air motion relative to the boat. Even on a calm day, moving forward produces airflow from ahead.",
-        "As boat speed increases, apparent wind generally shifts forward relative to the true wind. Downwind, motion in the same direction as the wind can reduce the apparent wind speed.",
-        "Compare true wind on the wind dial with apparent wind in Boat systems. Sail force and suggested sheet angles use apparent wind; this empirical model is not a substitute for reading telltales and sail shape."
+        "Apparent wind is airflow relative to the yacht. Weather wind is relative to fixed ground; wind over water subtracts current from that air velocity. “True wind” may use either ground or water as its reference, so check the instrument convention.",
+        "As speed through water increases on a steady reach, apparent wind generally shifts forward relative to wind over water. Downwind, motion with the airflow can reduce apparent wind speed. When wind over water is calm, its direction is undefined, but a yacht moving through the water can still experience apparent airflow.",
+        "Compare Wind over water with Apparent wind on the onboard multifunction display or dashboard. Points of sail, the no-go sector, and modeled outhaul response use wind over water. Sail pressure, coefficients, and suggested sheet angles use apparent wind. This empirical model does not replace reading telltales and sail shape."
       ],
       "observe": [
         "Imagine riding a bicycle in still air: you feel wind from ahead.",

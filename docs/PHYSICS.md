@@ -5,7 +5,7 @@ The simulator integrates a deterministic, empirical small cruising-yacht model. 
 ## Coordinates and units
 
 - World `x` is east, `z` is south; position, distance, depth, and anchor rode are metres.
-- Heading and bearings are degrees clockwise from north. `windDirection` is where the wind comes **from**. The wind velocity is relative to fixed ground, not moving water; `currentDirection` is where water travels **to**. Real marine instruments may use a water-referenced true-wind convention, so the reference frame matters.
+- Heading and bearings are degrees clockwise from north. `windDirection` is where weather wind comes **from**, relative to fixed ground; `currentDirection` is where water travels **to**. `windOverWater(state)` subtracts current velocity from ground-relative air velocity, publishing `waterWindSpeed`, `waterWindDirection` and bow-relative `waterWindAngle`. The onboard display and dashboard label this explicitly as **wind over water**. Ground wind remains the weather input; apparent wind is air relative to the yacht.
 - `speed` is signed forward speed through water, in knots (astern is negative). `speedOverGround` is the magnitude of the full ground velocity, in knots. Course over ground accounts for current and sideways motion.
 - One knot is exactly 1,852 / 3,600 metres per second. `leeway` is signed starboard sideways velocity in metres per second, not an angle. `yawRate` is degrees per second.
 - Positive rudder means a starboard helm command. It increases compass heading going ahead and decreases heading going astern. This is the wheel/helm command, not a statement about tiller displacement.
@@ -13,12 +13,14 @@ The simulator integrates a deterministic, empirical small cruising-yacht model. 
 
 A grounded hull has zero ground velocity, including when current flows past it. Apparent wind therefore equals the ground-referenced true wind in speed and bearing, with its angle measured relative to the bow. Instruments refresh on the grounding step, later simulation ticks and paused condition edits; current must not create fictitious observer motion. The same ground-velocity calculation supplies the collision adapter and derived instruments.
 
+Water-relative air velocity is independent of hull speed, leeway or grounding. In east/south world coordinates it is `(-sin(w)·windSpeed − sin(c)·currentSpeed, cos(w)·windSpeed + cos(c)·currentSpeed)`, with both speeds converted from knots to m/s. A vector no larger than 1e−9 m/s is treated as calm: speed is zero and direction/angle are `null`. Calm cannot satisfy wind-angle tasks or create a tack/gybe crossing. The stored `vmg` remains ground speed projected toward the **ground-relative** wind bearing; it is not water-relative polar VMG.
+
 ## Integrated model
 
 The vessel has a nominal 5,600 kg mass, 9.5 m waterline, 1.8 m draft, 30 m² mainsail, and 22 m² headsail. These are design assumptions, not measurements of eSail's vessel.
 
 1. Compute boat velocity from forward speed, lateral speed, heading, and current. Subtract it from the true air velocity to obtain apparent wind. This includes the distinction between speed through water and speed over ground.
-2. Compute separate main and headsail lift/drag forces using `0.5 × air density × apparent wind speed² × exposed area × coefficient`. Lift is projected forward and sideways relative to the apparent-wind angle. Sail coefficients are deliberately smooth, empirical functions of sail incidence; they are not wind-tunnel data. The sail-drive gate decreases from 47° to zero at 38° true wind angle. Negative aerodynamic forward drive is clipped to zero, so detailed backed sails and aerodynamic braking are not represented.
+2. Compute separate main and headsail lift/drag forces using `0.5 × air density × apparent wind speed² × exposed area × coefficient`. Lift is projected forward and sideways relative to the apparent-wind angle. Sail coefficients are empirical functions of sail incidence; they are not wind-tunnel data. The sail-drive gate decreases from 47° to zero at 38° **water-relative** wind angle. The empirical outhaul target also uses water-relative wind speed, while the vang target and suggested sheets use apparent wind. Adding the same uniform velocity to air and water must leave hull-relative dynamics unchanged; using ground wind in either gate or shape adjustment violated that invariant. Negative aerodynamic forward drive is clipped to zero, so detailed backed sails and aerodynamic braking are not represented.
 3. Apply linear and quadratic hull drag plus progressively increasing wave resistance around the conventional waterline-based hull-speed estimate. Hull speed is a resistance scale, not a hard speed cap. Forward and reverse engine thrust add force; neutral removes thrust but preserves momentum.
 4. Integrate surge and lateral acceleration. Lateral keel damping increases with forward speed. Heel approaches a limited equilibrium based on sail sideforce and reefing; this is a teaching response, not a hydrostatic stability calculation.
 5. Rudder command produces a speed-dependent target yaw rate, with a 1.6-second rotational response. Signed speed reverses helm response astern. Forward engine propwash supplies a small amount of authority at rest. Rudder drag penalizes large angles. Prop walk, stern kick, weather helm, keel lift variation, and individual rudder hydrodynamics are not modeled.
@@ -38,7 +40,7 @@ The vessel has a nominal 5,600 kg mass, 9.5 m waterline, 1.8 m draft, 30 m² mai
 | `reefLevel` | 0, 1, 2 | Main area factors 1, .72, .48 and reduced heel response |
 | `traveler` | −20…20° | Relative adjustment to main angle; positive eases, negative brings in, normalized for either tack |
 | `vang` | 0…1 | Modest efficiency adjustment representing twist control; target increases with apparent wind angle |
-| `outhaul` | 0…1 | Modest efficiency adjustment representing sail flattening; target increases with wind speed |
+| `outhaul` | 0…1 | Modest efficiency adjustment representing sail flattening; target increases with wind speed over water |
 | `throttle` | −1…1 | Reverse, neutral, ahead; reverse thrust is lower than ahead |
 | `anchor` command | boolean | Start deployment (`true`) or request powered recovery to zero (`false`) |
 | `anchorRode` | 0…250 m | Selected target rode; does not directly change physical paid length |
@@ -89,5 +91,7 @@ Regression tests cover compass-transformed fairlead coordinates, pending/suspend
 The references establish the general relationships. All tuning constants, sail-coefficient curves, resistance coefficients, reef response, propwash, anchor holding threshold, and geometry are project assumptions.
 
 ## Validation
+
+`node --test tests/wind-reference.test.js tests/practice-wind-reference.test.js` checks analytic current subtraction, independent no-go and sail-shape regressions, translated open-water trajectories with steering, calm vectors, grounded observers, final-step telemetry, current-aware grading and retained weather locks. The invariance tests exclude fixed shores, anchors and contacts, which supply an additional physical reference.
 
 `node --test tests/physics.test.js` verifies acceleration and trim response; main/jib independence; reef effects; apparent-wind vectors with current and leeway; ahead/astern thrust; inertia and drag; rudder reversal and rotational decay; 10 ms versus 100 ms frame convergence; current-induced ground track; anchor rode reach, bounded swing, and short-scope dragging; grounding; invalid elapsed time; finite high-wind integration; and alias consistency. These are deterministic numerical and behavioral checks. On-water calibration and independent instructor review remain necessary before claims of training fidelity.

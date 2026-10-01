@@ -274,5 +274,12 @@
   "pages archived": "pages archivées",
   "images collected": "images recueillies",
   "Independent prototype. Not affiliated with eSail. Source assets remain attributed to their respective owners.": "Prototype indépendant, sans affiliation à eSail. Les ressources d’origine restent attribuées à leurs propriétaires respectifs.",
-  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "Un espace d’apprentissage expérimental à la physique simplifiée. Il ne remplace pas l’enseignement sur l’eau."
+  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "Un espace d’apprentissage expérimental à la physique simplifiée. Il ne remplace pas l’enseignement sur l’eau.",
+  "Mainsheet in / out": "Écoute de GV : border / choquer",
+  "Headsail sheet in / out": "Écoute de foc : border / choquer",
+  "Engine ahead / astern": "Moteur en avant / en arrière",
+  "Raise or lower sails": "Hisser ou affaler les voiles",
+  "Anchor: let go or weigh": "Ancre : mouiller ou relever",
+  "Open this help": "Ouvrir cette aide",
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Maintenez une touche pour continuer à déplacer une commande. Les touches sont inactives pendant la saisie dans un champ ou la lecture d’une leçon."
 }

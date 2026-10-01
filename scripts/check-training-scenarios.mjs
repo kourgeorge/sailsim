@@ -31,6 +31,7 @@ export function runScenario(lesson,{maxSeconds=1200,dt=.1}={}){
   case 'camera':recordEvent(attempt,'camera',check.value);break;
   case 'event':recordEvent(attempt,'event',check.value);break;
   case 'sails':hoist(state,check.value);break;
+  case 'speedAbove':hoist(state,1);break;
   case 'reef':state.reef=true;state.reefLevel=1;break;
   case 'coast':hoist(state,0);break;
   case 'anchor':if(check.value){if(!state.anchor)applyControlPatch(state,{anchor:true});hoist(state,0);}else if(state.anchor&&state.anchorRode!==0)applyControlPatch(state,{anchor:false});break;

@@ -1,0 +1,27 @@
+#helm-dashboard-mount{grid-column:1/-1;min-width:0}
+.control-dock:has(#helm-dashboard){row-gap:10px;padding-block:12px}
+.helm-dashboard{display:flex;align-items:center;gap:8px;border-top:1px solid #ffffff26;padding-top:6px;color:#edf5ef;text-align:start}
+html[dir=rtl] .helm-dashboard{direction:rtl}
+.dashboard-actions{display:flex;flex-direction:column;gap:2px;flex-shrink:0}
+.dashboard-actions button{min-height:28px;padding:3px 5px;font-size:calc(11px * var(--text-scale,1));font-weight:500;color:#e8cb96;border-radius:4px}
+.dashboard-actions button:hover{background:#ffffff0c}
+.dashboard-actions #dashboard-enlarge{font-size:20px}
+.dashboard-readings{display:grid;grid-template-columns:repeat(6,minmax(0,1fr));gap:8px 12px;margin:0;flex:1;min-width:0}
+.dashboard-reading{min-width:0;border-inline-start:1px solid #41666d;padding-inline-start:8px}
+.dashboard-reading dt{font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.3;color:#b9cfce;overflow-wrap:anywhere}
+.dashboard-reading dd{font-size:calc(17px * var(--text-scale,1));font-weight:600;line-height:1.3;margin:3px 0 0;color:#f3fbf1;font-variant-numeric:tabular-nums;letter-spacing:0}
+.dashboard-reading bdi{display:inline-block;white-space:nowrap}
+.dashboard-detail{display:flex;flex-wrap:wrap;align-items:baseline;gap:2px 5px;font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.4;color:#adc7ca;min-height:1.4em}
+.dashboard-expanded{color:#eaf2ed;text-align:start}
+.dashboard-expanded .dashboard-readings{grid-template-columns:repeat(2,minmax(0,1fr));gap:24px;padding-block:10px 26px}
+.dashboard-expanded .dashboard-reading dt{font-size:calc(14px * var(--text-scale,1))}
+.dashboard-expanded .dashboard-reading dd{font-size:calc(30px * var(--text-scale,1))}
+.dashboard-expanded .dashboard-detail{font-size:calc(13px * var(--text-scale,1))}
+.dashboard-expanded-actions{display:flex;gap:12px;flex-wrap:wrap}
+@media(max-width:1100px){.helm-dashboard .dashboard-readings{grid-template-columns:repeat(3,minmax(0,1fr))}}
+html[data-large-text] .helm-dashboard .dashboard-readings{grid-template-columns:repeat(3,minmax(0,1fr))}
+@media(max-width:650px){
+ .helm-dashboard .dashboard-readings,html[data-large-text] .helm-dashboard .dashboard-readings{grid-template-columns:repeat(2,minmax(0,1fr));gap:16px 12px}
+ .dashboard-actions button{min-height:36px}
+ .dashboard-expanded .dashboard-readings{grid-template-columns:1fr}
+}

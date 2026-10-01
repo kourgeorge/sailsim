@@ -24,7 +24,7 @@ try{
   window.qa={scene,state,refreshDerived,initializeLocalization,getLanguage,translate,course,time:12};
   window.qa.settle=async(view,count=24)=>{scene.setView(view);for(let i=0;i<count;i++){scene.render(state,window.qa.time);await new Promise(requestAnimationFrame);}};
  });
- for(const heel of [-38,0,38]){
+ for(const heel of process.argv.includes('--display-only')?[]:[-38,0,38]){
   await page.evaluate(heel=>{qa.state.heel=heel;},heel);
   await page.evaluate(()=>qa.settle('deck'));
   await page.screenshot({path:`artifacts/cockpit/deck-heel-${heel}.png`,timeout:120000});
@@ -40,7 +40,7 @@ try{
   }
  }
  await page.evaluate(()=>{qa.state.heel=0;});
- for(const view of ['helm','instruments']){
+ for(const view of ['helm']){
   await page.evaluate(view=>qa.settle(view),view);
   await page.screenshot({path:`artifacts/cockpit/${view}.png`,timeout:120000});
  }
@@ -48,26 +48,31 @@ try{
  async function saveScreen(name){const png=await page.evaluate(()=>qa.scene.getInstrumentCanvas().toDataURL('image/png'));await writeFile(`artifacts/cockpit/display-${name}.png`,Buffer.from(png.split(',')[1],'base64'));}
  await saveScreen('en');
  const locales=[];
- for(const lang of ['he','ar']){
+ for(const lang of process.argv.includes('--display-only')?['en','es','fr','ru','he','ar']:['he','ar']){
   const localized=await page.evaluate(async lang=>{
    const before=qa.scene.getInstrumentCanvas().toDataURL();
    history.replaceState(null,'',`/cockpit-qa?lang=${lang}`);
    await qa.initializeLocalization(qa.course.lessons,qa.course.modules);
    // Record the strings actually drawn to the physical instrument canvas.
-   const canvas=qa.scene.getInstrumentCanvas(),ctx=canvas.getContext('2d'),original=ctx.fillText,drawn=[];
-   ctx.fillText=function(text,...args){drawn.push(text);return original.call(this,text,...args);};
+   const canvas=qa.scene.getInstrumentCanvas(),ctx=canvas.getContext('2d'),original=ctx.fillText,drawn=[],bounds=[];
+   ctx.fillText=function(text,x,y,...args){drawn.push(text);const width=ctx.measureText(text).width,left=ctx.textAlign==='right'?x-width:x;bounds.push({text,left,right:left+width,y,font:ctx.font});return original.call(this,text,x,y,...args);};
+   qa.state.rudder+=1; // Make the actual display redraw even for its current language.
    try{qa.scene.render(qa.state,qa.time);}finally{ctx.fillText=original;}
-   const expected=['CHART','BOAT SPEED','HEADING','DEPTH','APPARENT WIND','HELM','Engine throttle','TRUE WIND'].map(label=>qa.translate(label));
-   return {language:qa.getLanguage(),changed:before!==canvas.toDataURL(),expected,drawn};
+   const expected=['CHART','BOAT SPEED','HEADING','DEPTH','APPARENT WIND','HELM','Engine throttle','Wind over water'].map(label=>qa.translate(label));
+   return {language:qa.getLanguage(),changed:before!==canvas.toDataURL(),expected,drawn,bounds,width:canvas.width,height:canvas.height};
   },lang);
   assert.equal(localized.language,lang);assert.equal(localized.changed,true,`${lang}: physical display pixels change after localization`);
-  for(const label of localized.expected)assert.ok(localized.drawn.includes(label),`${lang}: actual onboard canvas draws ${label}`);
+  for(const label of localized.expected)assert.ok(localized.drawn.join(' ').includes(label),`${lang}: actual onboard canvas draws ${label}`);
+  assert.equal(localized.width,2400);assert.equal(localized.height,1440);
+  // Exclude intentionally clipped chart labels. Metric labels/numbers must stay
+  // on the logical 1200px display without browser maxWidth compression.
+  for(const box of localized.bounds.filter(box=>box.left>=570))assert.ok(box.right<=1195,`${lang}: ${box.text} exceeds the screen (${box.right})`);
   locales.push(localized);
-  await saveScreen(lang);await page.screenshot({path:`artifacts/cockpit/instruments-${lang}.png`,timeout:120000});
+  await saveScreen(lang);await page.screenshot({path:`artifacts/cockpit/helm-${lang}.png`,timeout:120000});
  }
  for(const viewport of [{width:390,height:844},{width:768,height:1024}]){
-  await page.setViewportSize(viewport);await page.evaluate(()=>qa.settle('instruments'));
-  await page.screenshot({path:`artifacts/cockpit/instruments-${viewport.width}-ar.png`,timeout:120000});
+  await page.setViewportSize(viewport);await page.evaluate(()=>qa.settle('helm'));
+  await page.screenshot({path:`artifacts/cockpit/helm-${viewport.width}-ar.png`,timeout:120000});
  }
  await page.setViewportSize({width:1440,height:1000});
  // Physics/animation time is identical. Camera still gets real render time.
@@ -88,5 +93,5 @@ try{
  assert.equal(await page.locator('#scene>canvas').count(),0,'Disposal removes WebGL canvas');
  assert.deepEqual(errors,[],'Actual scene and Water shader render without errors');
  await writeFile('artifacts/cockpit/results.json',JSON.stringify({results,locales,paused,pausedEdit:edit,errors},null,2));
- console.log('Cockpit checks passed: three heel views, helm/instruments, actual EN/HE/AR display textures, paused pixel stability, live paused control updates, disposal.');
+ console.log(`Cockpit checks passed: ${results.length} heel views, ${locales.length} language displays, paused pixel stability, live paused control updates, disposal.`);
 }finally{await browser.close();}

@@ -324,40 +324,40 @@ const copy = {
   },
   "wind": {
     "en": {
-      "title": "True and apparent wind",
-      "body": "Here true wind is ground-referenced. Apparent wind is the airflow relative to the moving yacht. It drives the model's sail forces and suggested sheet angles.",
-      "tryIt": "Accelerate on a steady reach and watch the apparent wind move forward.",
-      "pitfall": "Real instruments may use a water reference for true wind."
+      "title": "Wind over ground, over water, and apparent wind",
+      "body": "Weather settings describe wind relative to fixed ground. Subtracting the current vector gives wind relative to moving water; use this for points of sail. Apparent wind is airflow relative to the yacht and guides sail trim. The model uses water-relative wind for its no-go sector and outhaul response, and apparent wind for sail pressure and coefficients.",
+      "tryIt": "In Free sailing, pause and change the current in Conditions. The weather wind stays fixed while Wind over water on the onboard multifunction display changes. Then sail a steady reach and watch apparent wind move forward as speed increases.",
+      "pitfall": "“True wind” needs a stated reference frame. In calm relative to water, water-wind direction and angle are undefined; wind-angle goals cannot be assessed. Apparent airflow may still exist if the yacht moves through that water."
     },
     "es": {
-      "title": "Viento real y aparente",
-      "body": "Aquí el viento real se refiere al suelo. El aparente es el aire respecto al yate en movimiento. Determina las fuerzas de las velas y las escotas sugeridas del modelo.",
-      "tryIt": "Acelera en un través estable y observa cómo el viento aparente se adelanta.",
-      "pitfall": "Los instrumentos reales pueden referir el viento real al agua."
+      "title": "Viento respecto al suelo, al agua y viento aparente",
+      "body": "Las condiciones meteorológicas describen el viento respecto al suelo fijo. Al restar el vector de corriente se obtiene el viento respecto al agua en movimiento; úsalo para los rumbos relativos al viento. El viento aparente es el aire respecto al yate y guía el ajuste de las velas. El modelo usa el viento respecto al agua para la zona no navegable y la respuesta del pujamen, y el aparente para la presión y los coeficientes de las velas.",
+      "tryIt": "En navegación libre, pausa y cambia la corriente en Condiciones. El viento meteorológico permanece fijo mientras cambia Viento respecto al agua en la pantalla multifunción de a bordo. Después navega en un través estable y observa cómo el viento aparente se adelanta al aumentar la velocidad.",
+      "pitfall": "El «viento real» necesita un marco de referencia explícito. En calma respecto al agua, su dirección y ángulo no están definidos y no se pueden evaluar objetivos de ángulo del viento. Puede seguir habiendo viento aparente si el yate se mueve por esa agua."
     },
     "fr": {
-      "title": "Vent réel et apparent",
-      "body": "Ici, le vent réel est référencé au sol. Le vent apparent est l’air relatif au voilier en mouvement. Il détermine les forces véliques et les angles d’écoute suggérés du modèle.",
-      "tryIt": "Accélérez au travers sur un cap stable et observez le vent apparent venir de l’avant.",
-      "pitfall": "Les instruments réels peuvent référencer le vent réel à l’eau."
+      "title": "Vent par rapport au sol, à l’eau et vent apparent",
+      "body": "Les réglages météo décrivent le vent par rapport au sol fixe. Soustraire le vecteur courant donne le vent relatif à l’eau en mouvement ; utilisez-le pour les allures. Le vent apparent est l’air relatif au voilier et guide le réglage des voiles. Le modèle utilise le vent relatif à l’eau pour son secteur non navigable et la réponse de la bordure, et le vent apparent pour la pression et les coefficients véliques.",
+      "tryIt": "En navigation libre, mettez en pause et modifiez le courant dans Conditions. Le vent météo reste fixe tandis que Vent relatif à l’eau change sur l’écran multifonction de bord. Naviguez ensuite au travers sur un cap stable et observez le vent apparent venir de l’avant quand la vitesse augmente.",
+      "pitfall": "Le « vent réel » nécessite un référentiel explicite. Par calme relatif à l’eau, sa direction et son angle sont indéfinis ; les objectifs d’angle au vent ne peuvent pas être évalués. Un vent apparent peut subsister si le voilier se déplace dans cette eau."
     },
     "ru": {
-      "title": "Истинный и вымпельный ветер",
-      "body": "Здесь истинный ветер задан относительно грунта. Вымпельный ветер — поток воздуха относительно движущейся яхты. Он определяет силы на парусах и рекомендуемые углы шкотов в модели.",
-      "tryIt": "Разгонитесь на устойчивом галфвинде и наблюдайте, как вымпельный ветер заходит к носу.",
-      "pitfall": "Реальные приборы могут определять истинный ветер относительно воды."
-    },
-    "ar": {
-      "title": "الرياح الحقيقية والظاهرية",
-      "body": "تُقاس الرياح الحقيقية هنا بالنسبة إلى الأرض. والرياح الظاهرية هي حركة الهواء بالنسبة إلى اليخت المتحرك. وهي التي تحدد قوى الأشرعة وزوايا الشد المقترحة في النموذج.",
-      "tryIt": "تسارع مع رياح جانبية ثابتة وراقب اقتراب اتجاه الرياح الظاهرية من المقدمة.",
-      "pitfall": "قد تستخدم الأجهزة الحقيقية الماء مرجعاً لحساب الرياح الحقيقية."
+      "title": "Ветер относительно грунта, воды и вымпельный ветер",
+      "body": "Погодные настройки задают ветер относительно неподвижного грунта. Вычитание вектора течения даёт ветер относительно движущейся воды; используйте его для определения курса относительно ветра. Вымпельный ветер — поток воздуха относительно яхты, по которому настраивают паруса. Модель использует ветер относительно воды для запретного сектора и реакции оттяжки шкотового угла, а вымпельный ветер — для давления и коэффициентов парусов.",
+      "tryIt": "В свободном плавании включите паузу и измените течение в разделе условий. Погодный ветер останется прежним, а показания ветра относительно воды на бортовом многофункциональном дисплее изменятся. Затем идите устойчивым галфвиндом и наблюдайте, как при разгоне вымпельный ветер заходит к носу.",
+      "pitfall": "Для «истинного ветра» нужно указывать систему отсчёта. При штиле относительно воды его направление и угол не определены, поэтому цели по углу к ветру нельзя оценить. Вымпельный ветер может сохраняться, если яхта движется в этой воде."
     },
     "he": {
-      "title": "רוח אמיתית ורוח מדומה",
-      "body": "כאן הרוח האמיתית מוגדרת ביחס לקרקע. הרוח המדומה היא זרימת האוויר ביחס ליאכטה הנעה. היא קובעת במודל את כוחות המפרשים ואת זוויות המיתרים המוצעות.",
-      "tryIt": "האיצו ברוח צד קבועה וצפו בכיוון הרוח המדומה נע קדימה.",
-      "pitfall": "מכשירים אמיתיים עשויים להשתמש במים כייחוס לחישוב רוח אמיתית."
+      "title": "רוח ביחס לקרקע, ביחס למים ורוח מדומה",
+      "body": "הגדרות מזג האוויר מתארות רוח ביחס לקרקע קבועה. חיסור וקטור הזרם נותן את הרוח ביחס למים הנעים; השתמשו בה לקביעת זווית ההפלגה לרוח. הרוח המדומה היא זרימת האוויר ביחס ליאכטה, ולפיה מכוונים את המפרשים. המודל משתמש ברוח ביחס למים לתחום שאין בו הנעה ולתגובת מותח השפה התחתונה, וברוח המדומה ללחץ ולמקדמי המפרשים.",
+      "tryIt": "בשיט חופשי, השהו את הסימולציה ושנו את הזרם בהגדרות התנאים. רוח מזג האוויר תישאר קבועה, ואילו הרוח ביחס למים תשתנה בצג הרב־תכליתי בסירה. לאחר מכן הפליגו ברוח צד יציבה וצפו ברוח המדומה נעה קדימה ככל שהמהירות עולה.",
+      "pitfall": "למונח ״רוח אמיתית״ צריך לציין מערכת ייחוס. כשאין רוח ביחס למים, כיוונה וזוויתה אינם מוגדרים ולא ניתן להעריך יעדים של זווית לרוח. עדיין תיתכן רוח מדומה אם היאכטה נעה דרך אותם מים."
+    },
+    "ar": {
+      "title": "الرياح بالنسبة إلى الأرض والماء والرياح الظاهرية",
+      "body": "تصف إعدادات الطقس الرياح بالنسبة إلى الأرض الثابتة. يعطي طرح متجه التيار الرياح بالنسبة إلى الماء المتحرك؛ استخدمها لتحديد اتجاه الإبحار بالنسبة إلى الرياح. الرياح الظاهرية هي تدفق الهواء بالنسبة إلى اليخت وتوجّه ضبط الأشرعة. يستخدم النموذج الرياح بالنسبة إلى الماء لمنطقة عدم الإبحار واستجابة شدّ أسفل الشراع، والرياح الظاهرية لضغط الأشرعة ومعاملاتها.",
+      "tryIt": "في الإبحار الحر، أوقف المحاكاة مؤقتًا وغيّر التيار في إعدادات الظروف. تبقى رياح الطقس ثابتة بينما تتغير الرياح بالنسبة إلى الماء على الشاشة متعددة الوظائف في القارب. ثم أبحر بثبات والريح من الجانب وراقب تقدم الرياح الظاهرية نحو المقدمة مع زيادة السرعة.",
+      "pitfall": "يحتاج مصطلح «الرياح الحقيقية» إلى مرجع محدد. عند سكون الرياح بالنسبة إلى الماء، لا يكون اتجاهها أو زاويتها محددًا ولا يمكن تقييم أهداف زاوية الرياح. قد يبقى تدفق هواء ظاهري إذا تحرك اليخت عبر ذلك الماء."
     }
   },
   "helm": {

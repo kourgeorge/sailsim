@@ -75,12 +75,12 @@ try {
  await expect(page.locator('#anchor span')).toHaveText('Stop windlass');await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-operation','lowering');
  await page.waitForFunction(()=>parseFloat(document.querySelector('[data-anchor-metric="rode"]').textContent)>.5,null,{timeout:120000});
  await page.locator('[data-command="anchor-stop"]').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-operation','stopped');
- await page.locator('#activity-action').click();await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-paused');const paid=await page.locator('[data-anchor-metric="rode"]').textContent(),path=await page.locator('[data-rode]').getAttribute('d');
+ await page.locator('#play').click();await expect(page.locator('#activity-status')).toHaveAttribute('data-state','free-paused');const paid=await page.locator('[data-anchor-metric="rode"]').textContent(),path=await page.locator('[data-rode]').getAttribute('d');
  await page.locator('#vessel-anchorRode').fill('10');await expect(page.locator('[data-anchor-metric="target"]')).toHaveText('10.0 m');
  assert.equal(await page.locator('[data-anchor-metric="rode"]').textContent(),paid);assert.equal(await page.locator('[data-rode]').getAttribute('d'),path,'Paused target does not redeploy anchor geometry');
  await page.locator('[data-command="anchor-retrieve"]').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-operation','paused');
  assert.equal(await page.locator('[data-anchor-metric="rode"]').textContent(),paid,'A paused retrieval request does not stow instantly');
- await page.locator('#activity-action').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-phase','stowed',{timeout:180000});
+ await page.locator('#play').click();await expect(page.locator('#anchor-monitor')).toHaveAttribute('data-anchor-phase','stowed',{timeout:180000});
  await expect(page.locator('[data-anchor-metric="rode"]')).toHaveText('0.0 m');await page.locator('#systems-close').click();
  await page.locator('#conditions').click();await page.locator('#wind-speed').fill('20');await page.locator('#current-speed').fill('1.5');await page.locator('#current-direction').fill('90');await page.locator('#close-modal').click();
  await expect(page.locator('#weather-wind')).toContainText('20 kn');

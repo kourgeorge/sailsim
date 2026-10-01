@@ -274,5 +274,12 @@
   "pages archived": "страниц в архиве",
   "images collected": "собранных изображений",
   "Independent prototype. Not affiliated with eSail. Source assets remain attributed to their respective owners.": "Независимый прототип. Не связан с eSail. Права на исходные материалы принадлежат их владельцам с сохранением указания авторства.",
-  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "Экспериментальная учебная среда с упрощённой физикой. Не заменяет обучение на воде."
+  "An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.": "Экспериментальная учебная среда с упрощённой физикой. Не заменяет обучение на воде.",
+  "Mainsheet in / out": "Гика-шкот: выбрать / потравить",
+  "Headsail sheet in / out": "Стаксель-шкот: выбрать / потравить",
+  "Engine ahead / astern": "Двигатель вперёд / назад",
+  "Raise or lower sails": "Поднять или убрать паруса",
+  "Anchor: let go or weigh": "Якорь: отдать или выбрать",
+  "Open this help": "Открыть эту справку",
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Удерживайте клавишу, чтобы продолжать двигать орган управления. Клавиши не действуют, пока вы вводите текст или читаете урок."
 }
