@@ -67,6 +67,22 @@ The searchable learning library contains **26 verified official-source records**
 
 ## Simulator
 
+**Challenges → Race the fleet** offers three races against Skye, Amber and Coral:
+Harbor Sprint (a short triangular course), Windward Duel (tacking and downwind
+sailing), and Channel Chase (a passage with cross-current). Choose Relaxed, Club
+or Expert difficulty, read the fixed starting conditions, then start the
+five-second countdown. Sail through the numbered rings in order; the final ring
+is the finish. Colored bot yachts and chart markers, live position, course
+progress and finish results share the same race state. Personal best times are
+saved separately for each course and difficulty. Pausing freezes the whole fleet.
+
+Rivals steer and trim using the same yacht physics as the player; difficulty
+changes their trim and steering rather than adding a speed boost. Engines are
+disabled and all boats share fixed wind/current conditions. These are informal
+checkpoint races, without formal racing-rule adjudication. Each race has a
+15-minute limit. The original engine drills and solo buoy course remain available
+from **Engine drills & buoy course** in Challenges.
+
 - Detailed yacht with a live multifunction screen behind the wheel: chart, speed through water/over ground, heading/course, depth, wind, helm and throttle. Larger translated labels and a higher-resolution texture improve the onboard screen; a compact strip below the controls repeats the readings as sharp, scalable text in every camera view. The ↗ control opens enlarged readings. Practice starts at the helm; the dashboard’s ↗ control enlarges the instrument readings. Pausing freezes water, cloud and vessel animation while camera movement remains available. The cockpit sole is continuous and the ocean is excluded from the hull interior.
 - Three fictional maps: **Haven Islands**, **Shelter Bay** and **Windward Strait**. Chart, cockpit plotter, coastlines and depth model share location data.
 - Weather settings describe wind over ground. Instruments and points of sail use wind over water (weather air velocity minus current); apparent wind describes the airflow aboard. The model's no-go and sail-shape rules now preserve force consistency under uniform changes of reference frame. These numerical checks do not calibrate the empirical sail coefficients to a real yacht.

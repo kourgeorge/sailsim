@@ -37,6 +37,7 @@ import { initialState, step, refreshDerived, pointOfSail } from './physics.js';
 import './mobile.css';
 import { mountMobileLayout } from './mobile.js';
 import { mountSailingAudio } from './audio/ui.js';
+import { createRaceUI } from './racing/ui.js';
 
 async function startApp() {
   initializeTextSize();
@@ -56,7 +57,14 @@ async function startApp() {
     challengeIndex = 0,
     challengeDone = false,
     challengeTime = 0;
-  let learning, vesselControls, lab, learningTools, helmDashboard, cockpitControls, sailingAudio;
+  let learning,
+    vesselControls,
+    lab,
+    racing,
+    learningTools,
+    helmDashboard,
+    cockpitControls,
+    sailingAudio;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
   let scene;
@@ -85,6 +93,7 @@ async function startApp() {
     learning?.refresh();
   }
   function setMode(value) {
+    if (value !== 'race') racing?.leave();
     if (value !== mode) freeSailingStarted = false;
     learning?.closeReader();
     learning?.closeTraining();
@@ -98,12 +107,13 @@ async function startApp() {
       .forEach((b) =>
         b.classList.toggle(
           'active',
-          b.dataset.mode === mode || (mode === 'maneuver' && b.dataset.mode === 'challenge'),
+          b.dataset.mode === mode ||
+            (['maneuver', 'race'].includes(mode) && b.dataset.mode === 'challenge'),
         ),
       );
     $('.scene-title>span').style.visibility = mode === 'learn' ? 'visible' : 'hidden';
     if (mode === 'learn') updateLesson();
-    else if (mode === 'maneuver') {
+    else if (mode === 'maneuver' || mode === 'race') {
       renderLessons();
     } else {
       renderLessons();
@@ -159,10 +169,11 @@ async function startApp() {
     const activity = playback.state,
       button = $('#play'),
       action = activity.action;
-    const playbackAvailable = ['pause', 'resume'].includes(activity.command);
+    const playbackAvailable =
+      ['pause', 'resume'].includes(activity.command) && !(mode === 'race' && !racing?.active);
     button.hidden = !playbackAvailable;
     button.disabled = !playbackAvailable;
-    $('#conditions').hidden = mode === 'learn' || Boolean(lab?.active);
+    $('#conditions').hidden = mode === 'learn' || mode === 'race' || Boolean(lab?.active);
     $('#reset').hidden = mode === 'learn';
     if (activity.command && button.dataset.action !== action) {
       button.dataset.action = action;
@@ -187,11 +198,13 @@ async function startApp() {
     }
   }
   function togglePlayback() {
+    if (mode === 'race' && !racing?.active) return;
     playback.toggle();
     sailingAudio?.sync(true);
     syncControls();
   }
   function syncControls() {
+    if (mode === 'race') state.throttle = 0;
     refreshDerived(state);
     scene?.invalidate();
     cockpitControls?.update();
@@ -275,7 +288,7 @@ async function startApp() {
   document.querySelectorAll('button[data-mode]').forEach(
     (b) =>
       (b.onclick = () => {
-        if (b.dataset.mode === 'challenge') lab.library();
+        if (b.dataset.mode === 'challenge') racing.library();
         else if (b.dataset.mode === 'learn' && mode === 'learn') learning.libraryModal();
         else setMode(b.dataset.mode);
       }),
@@ -294,6 +307,10 @@ async function startApp() {
     .querySelectorAll('button[data-camera]')
     .forEach((b) => (b.onclick = () => setCamera(b.dataset.camera)));
   $('#reset').onclick = () => {
+    if (mode === 'race') {
+      racing.briefing(racing.current.course.id);
+      return;
+    }
     freeSailingStarted = false;
     lab?.cancel();
     learning?.cancel('Boat reset. Restart the assessed practice to record a new attempt.');
@@ -322,7 +339,7 @@ async function startApp() {
       `<div class="eyebrow">WELCOME ABOARD</div><h2>A few things before you sail.</h2><p>Use the helm to steer and the mainsheet to adjust your sail. Select Cockpit to inspect the winches, ropes, and live instruments, or Helm to sail from behind the wheel. The wind comes from the direction shown on the instrument. Your yacht loses power when pointed within 38° of the wind.</p>${shortcutsTable()}<p class="help-hint keyboard-help">Drag to look around · Scroll to zoom</p><p class="help-hint touch-help">Drag to look around. Use the on-screen sliders and buttons to control the boat.</p><p>Lessons save automatically in this browser. Open Course to browse lessons or resume your study.</p><div class="modal-note">An experimental learning playground with simplified physics. It is not a substitute for on-water instruction.</div>`,
     );
   $('#conditions').onclick = () => {
-    if (learning.active || lab?.active) {
+    if (learning.active || lab?.active || mode === 'race') {
       toast(
         'Weather is fixed during assessed practice. Finish or reset the attempt before changing conditions.',
       );
@@ -395,11 +412,13 @@ async function startApp() {
     getState: () => state,
     getTraining: () => (mode === 'maneuver' ? lab?.chart : null),
     getChallengeIndex: () => challengeIndex,
+    getRace: () => (mode === 'race' ? racing?.current : null),
   });
   function openChart() {
     learning?.event('event', 'chart');
+    const race = mode === 'race' ? racing.current : null;
     openModal(
-      `<div class="eyebrow">NAVIGATION</div><h2>${t(getLocation(state.locationId).title)}</h2><p>Your position updates live. Amber marks indicate the buoy course.</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
+      `<div class="eyebrow">NAVIGATION</div><h2>${t(race ? race.course.name : getLocation(state.locationId).title)}</h2><p>${race ? t('Sail through the numbered rings in order.') : 'Your position updates live. Amber marks indicate the buoy course.'}</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
     );
     drawChart($('#large-chart'));
   }
@@ -525,7 +544,8 @@ async function startApp() {
     if (playback.canTickDecision) learning.tickDecision(dt);
     if (playback.canSimulate) {
       sceneTime += dt;
-      step(state, dt);
+      if (mode === 'race') racing?.tick(dt);
+      else step(state, dt);
       if ((state.collisionCount || 0) > lastCollisionSequence && state.collision) {
         toast(
           t('Contact detected · {speed} kn closing speed').replace(
@@ -664,6 +684,32 @@ async function startApp() {
     setCues: (cues) => scene?.setTrainingCues(cues),
     onBuoyCourse: () => setMode('challenge'),
     toast,
+  });
+  racing = createRaceUI({
+    container: $('.simulator'),
+    openModal,
+    onStart: (newState) => {
+      setMode('race');
+      state = newState;
+      lastCollisionSequence = 0;
+      ensureScene(state.locationId);
+      updateLocation();
+      playback.resume();
+      syncControls();
+      toggleSystems(false);
+      setCamera('chase', { record: false });
+    },
+    onStop: () => {
+      playback.pause();
+      syncControls();
+    },
+    onLeave: () => {
+      playback.pause();
+      setMode('explore');
+      syncControls();
+    },
+    onVisuals: (race) => scene?.setRace(race),
+    onDrills: () => lab.library(),
   });
   vesselControls = mountControls($('#vessel-controls'), {
     getState: () => state,

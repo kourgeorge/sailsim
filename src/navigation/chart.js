@@ -4,23 +4,50 @@ import { drawAnchorChart } from '../anchoring/diagram.js';
 import { anchorSnapshot } from '../anchor.js';
 import { translate as t } from '../i18n/runtime.js';
 
-export function createChartRenderer({ getState, getTraining, getChallengeIndex }) {
+export function createChartRenderer({
+  getState,
+  getTraining,
+  getChallengeIndex,
+  getRace = () => null,
+}) {
   return function drawChart(canvas) {
     if (!canvas) return;
     const state = getState(),
-      training = getTraining(),
-      challengeIndex = getChallengeIndex();
+      race = getRace();
+    let training = getTraining();
+    const challengeIndex = race ? race.racers[0].mark : getChallengeIndex();
     const ctx = canvas.getContext('2d'),
       w = canvas.width,
       h = canvas.height;
+    if (race) {
+      const points = [
+        race.course.start,
+        ...race.course.marks,
+        ...race.racers.map((item) => item.state),
+      ];
+      const xs = points.map((p) => p.x),
+        zs = points.map((p) => p.z);
+      const minX = Math.min(...xs),
+        maxX = Math.max(...xs),
+        minZ = Math.min(...zs),
+        maxZ = Math.max(...zs);
+      training = {
+        center: { x: (minX + maxX) / 2, z: (minZ + maxZ) / 2 },
+        span: Math.max(400, (maxX - minX) * 1.4, ((maxZ - minZ) * 1.4 * w) / h),
+        cues: {},
+      };
+    }
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = '#173d47';
     ctx.fillRect(0, 0, w, h);
     const location = getLocation(state.locationId),
       islands = location.islands,
-      buoys = location.buoys.map(
-        (b, i) => state.worldBodies?.find((body) => body.id === `${location.id}:buoy:${i}`) || b,
-      ),
+      buoys = race
+        ? race.course.marks
+        : location.buoys.map(
+            (b, i) =>
+              state.worldBodies?.find((body) => body.id === `${location.id}:buoy:${i}`) || b,
+          ),
       scale =
         w /
         (training
@@ -83,6 +110,36 @@ export function createChartRenderer({ getState, getTraining, getChallengeIndex }
         ctx.font = '13px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText(i.name, x, y + 5);
+      }
+    }
+    if (race) {
+      ctx.strokeStyle = '#ecd09477';
+      ctx.lineWidth = 1.5;
+      ctx.setLineDash([5, 4]);
+      ctx.beginPath();
+      [race.course.start, ...buoys].forEach((point, i) =>
+        i ? ctx.lineTo(...map(point.x, point.z)) : ctx.moveTo(...map(point.x, point.z)),
+      );
+      ctx.stroke();
+      ctx.setLineDash([]);
+      for (const rival of race.racers.slice(1)) {
+        const [x, y] = map(rival.state.x, rival.state.z);
+        ctx.save();
+        ctx.translate(x, y);
+        ctx.rotate((rival.state.heading * Math.PI) / 180);
+        ctx.fillStyle = rival.color;
+        ctx.beginPath();
+        ctx.moveTo(0, -7);
+        ctx.lineTo(4, 5);
+        ctx.lineTo(-4, 5);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+        if (w > 300) {
+          ctx.fillStyle = rival.color;
+          ctx.font = '12px sans-serif';
+          ctx.fillText(rival.name, x + 10, y);
+        }
       }
     }
     buoys.forEach((b, i) => {
@@ -178,7 +235,7 @@ export function createChartRenderer({ getState, getTraining, getChallengeIndex }
     ctx.font = `${w > 300 ? 13 : 10}px sans-serif`;
     ctx.textAlign = 'left';
     ctx.fillText('N ↑', 12, 21);
-    const barMetres = training ? 25 : 250,
+    const barMetres = race ? 100 : training ? 25 : 250,
       barLength = barMetres * scale;
     ctx.strokeStyle = '#a7c4c5';
     ctx.beginPath();

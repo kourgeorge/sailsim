@@ -8,6 +8,7 @@ import { getWorldBodyDefinitions, localToWorld } from './world/bodies.js';
 import { syncBodyTransform, impactMotion } from './rendering/body-motion.js';
 import { disposeSceneResources } from './rendering/dispose.js';
 import { createAnchorCloseup } from './rendering/anchor-closeup.js';
+import { createRaceVisuals } from './racing/visuals.js';
 
 export function createScene(container, { locationId = 'haven' } = {}) {
   let dirty = true,
@@ -62,6 +63,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     onResize: invalidate,
   });
   const trainingCues = createTrainingCues(scene);
+  const raceVisuals = createRaceVisuals(scene, materials);
   // Keep one transform root per physical hull; cloned fittings share GPU buffers.
   const vesselDefinitions = getWorldBodyDefinitions(location.id).filter(
     (body) => body.visual.type === 'yacht',
@@ -207,6 +209,8 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     yacht.update(state, time);
     environment.excludeHullWater(yacht.group);
     environment.update(state, time);
+    raceVisuals.update(time);
+    container.dataset.raceBoats = String(raceVisuals.count);
     const worldBodies = new Map((state.worldBodies || []).map((body) => [body.id, body]));
     vessels.forEach(({ group, definition, tethers }, i) => {
       const body = worldBodies.get(definition.id) || definition;
@@ -317,6 +321,11 @@ export function createScene(container, { locationId = 'haven' } = {}) {
       else lastFrameTime = null;
     },
     getInstrumentCanvas: () => yacht.instrumentCanvas,
+    setRace(race) {
+      if (disposed) return;
+      raceVisuals.set(race);
+      invalidate();
+    },
     setTrainingCues(cues) {
       if (disposed) return;
       trainingCues.set(cues);

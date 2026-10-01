@@ -1,0 +1,39 @@
+.race-courses{display:grid;gap:12px;margin:24px 0}
+.race-courses>button{display:flex;align-items:center;gap:16px;padding:20px;border:1px solid #ffffff2b;border-radius:10px;text-align:start;background:linear-gradient(125deg,#23576666,#132d3900)}
+.race-courses>button:hover{border-color:var(--gold);background:#ffffff0b}
+.race-course-number{font-size:25px;color:var(--gold);font-variant-numeric:tabular-nums}
+.race-courses strong,.race-courses small{display:block}
+.race-courses strong{font-size:calc(17px * var(--text-scale,1));margin-bottom:8px}
+.race-courses small{font-size:calc(12px * var(--text-scale,1));line-height:1.6;color:#adc4c9}
+.race-setup{display:flex;gap:14px;flex-wrap:wrap;margin:22px 0;padding:16px;background:#ffffff08;border-radius:8px}
+.race-setup>span{flex:1;display:flex;flex-direction:column;gap:8px;font-size:calc(12px * var(--text-scale,1));min-width:100px}
+.race-setup b,.race-setup bdi{color:#f2d8a3}
+.race-difficulty{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.race-difficulty select{font:inherit;padding:10px 15px;color:inherit;background:#173b46;border:1px solid #ffffff44;border-radius:6px}
+#race-hud{position:absolute;inset-block-start:114px;inset-inline-start:22px;z-index:5;width:225px;padding:13px 15px;border:1px solid #ffffff30;border-radius:10px;background:#102e3bef;color:#e9f1e9;box-shadow:0 5px 25px #06253133;font-size:calc(12px * var(--text-scale,1))}
+#race-hud[hidden]{display:none}
+#race-hud{max-height:45%;overflow:auto}
+.simulator[data-mode=race] .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(5,minmax(0,1fr))}
+.race-hud-top{display:flex;align-items:center;gap:12px}
+.race-hud-top strong{color:#f4d59c;flex:1}
+#race-menu{min-width:32px;min-height:32px;font-size:20px}
+#race-hud p{margin:6px 0 12px;color:#b3cccd;line-height:1.5}
+#race-standings,.race-result-list{list-style:none;padding:0;margin:0;display:grid;gap:8px;counter-reset:race-place}
+#race-standings li,.race-result-list li{display:flex;align-items:center;gap:9px;counter-increment:race-place}
+#race-standings li:before,.race-result-list li:before{content:counter(race-place);width:1em;color:#92b0b7}
+#race-standings i,.race-result-list i{width:7px;height:7px;border-radius:50%;flex-shrink:0}
+#race-standings li>span,.race-result-list li>span{flex:1}
+#race-standings small{font-size:inherit;color:#b9cac9;font-variant-numeric:tabular-nums}
+.race-you{font-weight:700;color:#fff1ce}
+#race-countdown{margin-top:12px;padding:9px;text-align:center;border-radius:6px;background:#eac68e;color:#173943;font-weight:700}
+.race-result-score{display:flex;align-items:center;justify-content:space-between;gap:20px;margin:24px 0;color:#f3d6a0}
+.race-result-score strong{font-size:calc(40px * var(--text-scale,1))}
+.race-result-score small{font-size:calc(20px * var(--text-scale,1))}
+.race-result-score time{font-size:calc(30px * var(--text-scale,1))}
+.race-result-list{gap:14px;font-size:calc(14px * var(--text-scale,1));border-block:1px solid #ffffff25;padding:18px 0}
+.race-best{color:#a7e4ce!important}
+.simulator[data-mode=race] .scene-title,.simulator[data-mode=race] .lesson-card,.simulator[data-mode=race] .cockpit-group-engine{display:none!important}
+.simulator[data-mode=race] .vessel-tabs>details:has(#vessel-throttle){display:none}
+.workspace:has(.simulator[data-mode=race]){grid-template-columns:1fr}
+.workspace:has(.simulator[data-mode=race])>.sidebar{display:none}
+@media(max-width:900px){#race-hud{inset-block-start:65px;inset-inline-start:12px;width:min(210px,calc(100% - 24px));padding:9px 12px;font-size:calc(11px * var(--text-scale,1))}#race-standings{gap:5px}.race-hud-top{gap:6px}#race-hud p{margin-bottom:8px}.race-courses>button{padding:14px;gap:12px}.race-result-score{flex-wrap:wrap}}
