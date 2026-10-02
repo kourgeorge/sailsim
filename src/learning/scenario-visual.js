@@ -1,3 +1,4 @@
+import {renderColregsFigure} from './colregs-figures.js';
 // Visual decision workbench. The caller owns assessment, persistence and task forms.
 // Fixtures and submitted values are rendered as evidence/plans, never graded here.
 const LANGS=['en','es','fr','ru','he','ar'];
@@ -56,6 +57,7 @@ function normalizedScene(vm){return {scene:vm.scene??{},values:vm.values??{},lan
 
 /** Pure SVG renderer also used by static visual QA. Scene fixtures contain no keys. */
 export function renderScenarioScene(vm={}) {
+ if(vm.family==='colregs')return {svg:renderColregsFigure({id:vm.scenarioId?.replace('decision-','')},vm.lang,vm.scene),waypoints:[]};
  const {scene:s,values:v,lang}=normalizedScene(vm),rtl=['he','ar'].includes(lang),id=`scenario-scene-${++serial}`,markers=new Map();
  const t=key=>translated(key,lang);
  const text=(x,y,value,{size=18,color=C.ink,weight=600,max=28,maxLines=Infinity,anchor='middle'}={})=>{const wrapped=lines(value,max),shown=wrapped.slice(0,maxLines);if(wrapped.length>maxLines)shown[shown.length-1]+='…';return `<text x="${x}" y="${y}" text-anchor="${anchor}" font-size="${size}" fill="${color}" font-weight="${weight}" direction="${rtl?'rtl':'ltr'}" unicode-bidi="plaintext">${shown.map((l,i)=>`<tspan x="${x}" dy="${i?size*1.2:0}">${escape(l)}</tspan>`).join('')}</text>`;};

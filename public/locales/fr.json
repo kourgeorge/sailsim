@@ -43,6 +43,10 @@
     "marina": {
       "title": "Manœuvres pratiques au port",
       "outcome": "Entrez au port, accostez dans une place et repartez au moteur et à la barre."
+    },
+    "colregs": {
+      "title": "Céder le passage et éviter les abordages",
+      "outcome": "Identifier la rencontre et les obligations, agir tôt et surveiller jusqu’à être définitivement paré et clair."
     }
   },
   "lessons": {
@@ -1824,6 +1828,221 @@
         ],
         "debrief": "Vous avez reculé, stoppé hors de la place et quitté le port en marche avant."
       }
+    },
+    "sail-46": {
+      "title": "Rencontres à voile : amure, au vent et rattrapage",
+      "concepts": [
+        "Vérifiez d’abord la visibilité mutuelle, le risque d’abordage et l’existence d’un rattrapage, d’un chenal étroit ou d’un statut particulier. Ces exemples appliquent les règles internationales, en vue, en eau libre et sans statut particulier. Les deux navires restent tenus de veiller et d’éviter l’abordage.",
+        "Bâbord et tribord se définissent en regardant vers l’avant. Le vent reçu à bâbord signifie bâbord amures ; à tribord, tribord amures. Selon la Règle 12, le côté au vent est opposé à celui où se trouve la grand-voile. Observez celle-ci, pas seulement le foc ou la position du navire à l’écran.",
+        "En cas de risque avec des amures différentes, le voilier bâbord amures s’écarte. Avec les mêmes amures, celui au vent s’écarte de celui sous le vent. Si vous êtes bâbord amures et voyez au vent un voilier dont l’amure est incertaine, écartez-vous. Cela ne donne pas priorité à tout voilier aperçu sur votre droite.",
+        "Vérifiez le rattrapage avant les amures. Vous rattrapez en arrivant de plus de 22,5° sur l’arrière du travers de l’autre navire, dans le secteur de 135° autour de sa poupe. De nuit, vous y verriez son feu de poupe sans ses feux de côté. Tout rattrapant s’écarte, même un voilier rattrapant un navire à moteur.",
+        "En cas de doute sur un rattrapage, considérez que vous rattrapez. L’obligation demeure jusqu’à être définitivement paré et clair. Arriver au travers ou changer de relèvement relatif ne transforme pas un rattrapage établi en croisement."
+      ],
+      "observe": [
+        "Identifiez les amures par la grand-voile avant d’attribuer les rôles.",
+        "Tracez le secteur de rattrapage autour de l’autre navire, pas du vôtre."
+      ],
+      "mistake": "Appliquer les amures avant de vérifier le rattrapage.",
+      "quiz": [
+        {
+          "prompt": "Vous êtes bâbord amures ; l’amure du voilier au vent est incertaine. Que faire?",
+          "options": [
+            "Vous écarter",
+            "Supposer qu’il doit s’écarter",
+            "Attendre d’être à son travers"
+          ],
+          "explanation": "La Règle 12(a)(iii) impose au navire bâbord amures de s’écarter dans ce cas précis."
+        },
+        {
+          "prompt": "Votre voilier rattrape un navire à moteur. Quand votre obligation cesse-t-elle?",
+          "options": [
+            "Dès que vous êtes au travers",
+            "Quand vous êtes définitivement paré et clair",
+            "Dès que vos voiles portent"
+          ],
+          "explanation": "La Règle 13 prime sur la comparaison voile-moteur et s’applique pendant tout le rattrapage."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+    },
+    "sail-47": {
+      "title": "Au moteur : routes opposées, croisement et rencontres mixtes",
+      "concepts": [
+        "Au sens de la Règle 3, un voilier navigue à la voile sans utiliser sa machine propulsive. Un yacht propulsé au moteur est un navire à propulsion mécanique même voiles hissées. Un moteur utilisé seulement pour charger les batteries ne suffit pas à établir cette propulsion. Identifiez la propulsion réelle.",
+        "Entre deux navires à moteur en vue qui se croisent avec risque, celui qui voit l’autre sur tribord s’écarte et, si possible, évite de passer sur son avant. L’autre maintient initialement cap et vitesse selon la Règle 17. Changez de point de vue : le navire à tribord de A peut voir A sur bâbord.",
+        "Deux navires à moteur sur des routes opposées ou presque opposées avec risque viennent tous deux sur tribord pour passer bâbord sur bâbord. En cas de doute sur cette situation, considérez qu’elle existe. Cette règle ne s’applique pas automatiquement à deux voiliers.",
+        "Dans une rencontre ordinaire en vue, un navire à moteur faisant route s’écarte d’un voilier. Vérifiez d’abord les exceptions des Règles 9, 10 et 13 et les statuts particuliers. Un voilier rattrapant un bateau à moteur s’écarte toujours ; un yacht propulsé au moteur ne revendique pas le statut de voilier. La taille seule ne décide pas."
+      ],
+      "observe": [
+        "Décrivez le même croisement depuis A puis B avant de décider qui agit.",
+        "Vérifiez si le moteur propulse réellement le yacht."
+      ],
+      "mistake": "Prendre des voiles hissées pour un statut de voilier pendant la propulsion au moteur.",
+      "quiz": [
+        {
+          "prompt": "Le moteur propulse le yacht, grand-voile hissée. Quel est son statut?",
+          "options": [
+            "Navire à voile",
+            "Navire à moteur",
+            "Le statut le plus favorable"
+          ],
+          "explanation": "La machine assure la propulsion : la Règle 3 définit donc un navire à moteur."
+        },
+        {
+          "prompt": "Deux navires à moteur se rencontrent de face avec risque. Qui change de cap?",
+          "options": [
+            "Seulement le plus petit",
+            "Les deux sur bâbord",
+            "Les deux sur tribord"
+          ],
+          "explanation": "La Règle 14 exige une venue sur tribord des deux navires pour passer bâbord sur bâbord."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+    },
+    "sail-48": {
+      "title": "S’écarter ou maintenir : agir quand le risque évolue",
+      "concepts": [
+        "Veillez par la vue, l’ouïe et tous les moyens appropriés. Adaptez la vitesse à la visibilité, au trafic et à la manœuvrabilité. Un rapprochement à relèvement presque constant indique un risque ; un relèvement changeant ne l’exclut pas toujours, notamment près d’un grand navire ou d’un remorquage. Dans le doute, retenez le risque.",
+        "Le navire qui s’écarte agit tôt et franchement pour passer largement à distance. Rendez les changements de cap ou vitesse perceptibles si possible ; évitez les petites modifications successives. Vérifiez l’espace et le trafic. Ralentissez, stoppez ou battez en arrière si nécessaire pour éviter l’abordage ou gagner du temps, puis surveillez jusqu’à être paré et clair.",
+        "La Règle 17 comporte trois phases. Initialement, le navire privilégié maintient cap et vitesse. Il peut agir seul dès qu’il devient évident que l’autre n’agit pas convenablement. Quand les navires sont si proches que l’action du seul navire non privilégié ne suffit plus, il doit prendre la meilleure mesure pour éviter l’abordage. Évaluez les options avant ce dernier stade.",
+        "Lors d’un croisement entre navires à moteur, celui qui maintient et agit selon 17(a)(ii) ne doit pas, si possible, venir sur bâbord pour un navire situé sur son bâbord. Cette restriction n’impose pas de tourner toujours à droite en urgence. Le navire non privilégié reste tenu de s’écarter même si l’autre agit.",
+        "Il n’existe ni distance universelle de passage ni point fixe de manœuvre de dernière seconde. Réévaluez la situation. La Règle 2 maintient la responsabilité de la pratique maritime et des circonstances particulières ; une dérogation n’est justifiée que si nécessaire pour éviter un danger immédiat. Le statut privilégié ne donne aucun droit inconditionnel à l’abordage."
+      ],
+      "observe": [
+        "Expliquez le passage de « peut agir » à « doit agir ».",
+        "Après la manœuvre, contrôlez relèvement, distance et trafic environnant."
+      ],
+      "mistake": "Maintenir cap et vitesse lorsque l’autre ne peut plus éviter seul l’abordage.",
+      "quiz": [
+        {
+          "prompt": "L’autre n’agit manifestement pas convenablement. Le navire privilégié peut-il agir avant que l’autre ne puisse plus éviter seul l’abordage?",
+          "options": [
+            "Oui, selon la Règle 17(a)(ii)",
+            "Non, il doit toujours attendre",
+            "Seulement avec un accord radio"
+          ],
+          "explanation": "La possibilité d’agir précède l’obligation finale. Continuez à apprécier toute la situation."
+        },
+        {
+          "prompt": "Vous avez changé de cap pour éviter l’abordage. Que reste-t-il à faire?",
+          "options": [
+            "Cesser d’observer l’autre",
+            "Contrôler jusqu’à être paré et clair",
+            "Supposer que le virage a supprimé tout risque"
+          ],
+          "explanation": "La Règle 8 impose de vérifier l’effet et d’obtenir un passage sûr sans créer une autre situation rapprochée."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+    },
+    "sail-49": {
+      "title": "Navires particuliers, chenaux étroits et voies de circulation",
+      "concepts": [
+        "Identifiez le statut réel, pas l’apparence ou la taille. « Non maître de sa manœuvre » implique des circonstances exceptionnelles empêchant de manœuvrer selon les règles. « Capacité de manœuvre restreinte » résulte du travail, tel le dragage. La pêche doit utiliser des engins limitant la manœuvre ; une simple ligne traînante sans restriction ne suffit pas. Vérifiez feux, marques et situation.",
+        "Sous réserve des Règles 9, 10 et 13, un voilier ordinaire faisant route s’écarte des navires non maîtres de leur manœuvre, à capacité restreinte et en pêche. Un navire à moteur ordinaire s’écarte aussi des voiliers. Selon 18(d), les navires autres que les deux premières catégories évitent, si possible, de gêner un navire handicapé par son tirant d’eau montrant les signaux requis. Celui-ci reste particulièrement prudent.",
+        "Dans un chenal étroit, serrez la limite extérieure à tribord autant que possible et sans danger. Un voilier ou navire de moins de 20 m ne gêne pas celui qui ne peut naviguer en sécurité que dans le chenal. Ne traversez pas si cela le gêne. Les pêcheurs ne gênent pas les autres navires du chenal. Anticipez les coudes et évitez d’y mouiller si possible.",
+        "Dans un dispositif adopté par l’OMI, suivez le sens du trafic ; entrez ou sortez latéralement sous un petit angle. Évitez de traverser si possible ; sinon, prenez un cap aussi perpendiculaire que possible au trafic. Il s’agit du cap, pas de la route fond corrigée du courant. Les voiliers et moins de 20 m ne gênent pas les navires à moteur suivant la voie. Évitez les zones de séparation sauf autorisation des règles.",
+        "« Ne pas gêner » exige une action précoce pour laisser assez d’espace avant l’apparition d’un risque. Cette obligation subsiste ensuite et les deux navires restent soumis aux règles anticollision. Une voie ne confère pas de priorité inconditionnelle. Consultez aussi les instructions portuaires, cartes et avis locaux."
+      ],
+      "observe": [
+        "Distinguez une restriction liée au travail de la simple taille.",
+        "En traversant une voie, comparez cap et route fond."
+      ],
+      "mistake": "Invoquer la priorité à voile pour couper la route d’un navire limité au chenal.",
+      "quiz": [
+        {
+          "prompt": "Votre voilier gênerait un navire limité à ce chenal. Que faire?",
+          "options": [
+            "Traverser parce que vous êtes à voile",
+            "Agir tôt pour ne pas gêner son passage",
+            "Attendre une demande radio"
+          ],
+          "explanation": "La Règle 9 impose au voilier de ne pas gêner ce navire, sans attendre d’appel radio."
+        },
+        {
+          "prompt": "En traversant obligatoirement une voie, que faut-il orienter presque perpendiculairement au trafic?",
+          "options": [
+            "Le cap",
+            "La route fond, quel que soit le cap",
+            "La bôme"
+          ],
+          "explanation": "La Règle 10(c) précise le cap ; le courant peut modifier la route fond."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+    },
+    "sail-50": {
+      "title": "Lire les feux, marques et signaux sonores",
+      "concepts": [
+        "Le feu rouge est à bâbord, le vert à tribord ; chacun couvre 112,5°, de l’avant à 22,5° sur l’arrière du travers. Le feu blanc de poupe couvre 135° à l’arrière ; le feu de tête de mât, 225° vers l’avant. Identifiez l’ensemble et l’aspect. Un blanc isolé peut être un feu de poupe, de mouillage ou autre : il ne prouve ni le type ni l’absence de risque.",
+        "Un voilier montre normalement feux de côté et de poupe ; les combinaisons et exceptions des petits navires dépendent de leur longueur. Un navire à moteur ajoute normalement les feux de tête de mât requis. Un yacht à voile aussi propulsé au moteur montre de jour un cône noir pointe en bas. Au mouillage, les feux blancs visibles sur tout l’horizon et une boule noire de jour sont requis sous réserve des exceptions. Étudiez les configurations complètes avant de naviguer de nuit.",
+        "Signaux verticaux utiles : non maître de sa manœuvre, deux rouges visibles sur tout l’horizon ou deux boules noires ; capacité restreinte, rouge-blanc-rouge ou boule-bicône-boule ; pêche hors chalutage, rouge sur blanc ; chalutage, vert sur blanc. La marque de pêche est deux cônes pointes jointes. Un navire handicapé par son tirant d’eau peut montrer trois rouges ou un cylindre. D’autres feux peuvent être requis. Remorquage, pilotage, dragage et échouement ont des configurations supplémentaires : consultez les règles complètes.",
+        "Selon la Règle internationale 34, un navire à moteur faisant route et manœuvrant en vue émet un son bref pour venir sur tribord, deux sur bâbord, trois pour battre en arrière. Trois sons ne signifient pas forcément qu’il recule déjà. En cas de doute sur les intentions ou l’action suffisante de navires approchant en vue, émettez au moins cinq sons brefs rapides. À un coude masqué, un prolongé ; un navire approchant à portée répond par un prolongé.",
+        "Les signaux de brume sont différents. Toutes les deux minutes au plus : un navire à moteur ayant de l’erre émet un prolongé ; faisant route sans erre, deux prolongés espacés d’environ deux secondes ; un voilier, un prolongé puis deux brefs. Ce dernier signal est partagé avec plusieurs catégories particulières et n’identifie donc pas un voilier à lui seul. Un bref dure environ une seconde ; un prolongé, quatre à six. La Règle 35 précise les autres cas et exceptions ; les signaux intérieurs peuvent différer."
+      ],
+      "observe": [
+        "Nommez toute la configuration observée avant d’en déduire un statut.",
+        "Distinguez signaux de manœuvre en vue et signaux de brume."
+      ],
+      "mistake": "Identifier par une seule couleur ou prendre un signal de brume pour un virage.",
+      "quiz": [
+        {
+          "prompt": "En vue selon la Règle internationale 34, trois sons brefs signifient…",
+          "options": [
+            "Je bats en arrière",
+            "Je recule déjà",
+            "Je revendique la priorité"
+          ],
+          "explanation": "Le signal décrit la propulsion, pas un déplacement assuré sur l’eau."
+        },
+        {
+          "prompt": "Dans la brume, vous entendez un prolongé et deux brefs. Que conclure?",
+          "options": [
+            "C’est certainement un voilier",
+            "Il vient sur bâbord",
+            "Plusieurs catégories l’utilisent ; l’identité reste incertaine"
+          ],
+          "explanation": "La Règle 35 partage ce signal entre voiliers et catégories particulières. Continuez l’évaluation du risque."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+    },
+    "sail-51": {
+      "title": "Visibilité réduite et plan complet de rencontre",
+      "concepts": [
+        "Choisissez le cadre avant d’attribuer les rôles. La Règle internationale 19 concerne les navires qui ne sont pas en vue dans une zone de visibilité réduite ou à proximité. N’attribuez pas à un contact invisible les rôles ordinaires voile-moteur ou croisement. Si les navires sont visuellement en vue, appliquez les règles correspondantes en tenant compte de la visibilité et des devoirs généraux.",
+        "Adoptez une vitesse de sécurité adaptée. Un navire à moteur tient ses machines prêtes à manœuvrer immédiatement. Veillez, utilisez correctement signaux et équipements et évitez les conclusions sur de maigres données radar. L’AIS et une conversation radio ne remplacent pas la veille, ne donnent pas une image complète et n’annulent pas les règles.",
+        "Pour un contact détecté au radar seul, évaluez le rapprochement excessif ou le risque et agissez à temps. En changeant de cap, évitez autant que possible une venue sur bâbord pour un navire sur l’avant du travers, sauf celui que vous rattrapez, ainsi qu’une venue vers un navire au travers ou sur l’arrière. Aucun virage n’est universel : vérifiez contacts, espace et vitesse.",
+        "Sauf absence de risque établie, entendre un signal de brume apparemment sur l’avant du travers, ou ne pouvoir éviter un rapprochement excessif avec un navire dans ce secteur, impose de réduire à la vitesse minimale permettant de tenir le cap. Cassez toute erre si nécessaire et naviguez avec extrême prudence jusqu’à disparition du danger. N’attendez pas de voir le navire à vitesse de croisière.",
+        "Suivez la même séquence : observer et évaluer le risque ; établir visibilité, propulsion, statut et contraintes locales ; vérifier le rattrapage avant les rôles ordinaires ; agir à temps sans créer un autre danger ; vérifier jusqu’à être paré et clair. Réévaluez si les conditions changent. Ces leçons enseignent le raisonnement international essentiel, pas tout le programme des feux, le droit local ou une qualification pour naviguer seul."
+      ],
+      "observe": [
+        "Précisez si le contact est en vue ou détecté seulement aux instruments.",
+        "Réévaluez après chaque observation : un plan seul ne supprime pas le risque."
+      ],
+      "mistake": "Attribuer une priorité automatique à la voile face à un contact invisible dans la brume.",
+      "quiz": [
+        {
+          "prompt": "Dans la brume, un navire est détecté au radar sans être vu. Quel cadre s’applique?",
+          "options": [
+            "Priorité automatique voile sur moteur",
+            "Règle 19 et devoirs généraux applicables",
+            "Aucune règle avant de le voir"
+          ],
+          "explanation": "Le cadre de visibilité réduite hors vue s’applique, sans attribuer simplement les rôles ordinaires en vue."
+        },
+        {
+          "prompt": "Un signal de brume paraît sur l’avant du travers, sans absence de risque établie. Que faire?",
+          "options": [
+            "Maintenir la vitesse jusqu’à le voir",
+            "Toujours venir immédiatement sur bâbord",
+            "Réduire au minimum pour tenir le cap ; casser l’erre si nécessaire"
+          ],
+          "explanation": "La Règle 19(e) exige cette réduction et une extrême prudence jusqu’à disparition du danger."
+        }
+      ],
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
     }
   }
 }

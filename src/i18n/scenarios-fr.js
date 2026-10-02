@@ -1,5 +1,7 @@
+import colregs from './colregs-fr.js';
 // Original scenario translations; numeric fixtures and assessment rules remain canonical.
 export default {
+  ...colregs,
   "decision-sail-01": {
     "title": "Préparer Meridian au départ",
     "brief": "Vous préparez le yacht fictif Meridian avec deux nouveaux équipiers. Corrigez le défaut matériel, répartissez les rôles et validez le départ.",

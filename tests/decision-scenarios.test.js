@@ -5,8 +5,8 @@ import {decisionScenarios} from '../src/learning/decision-scenarios.js';
 import {beginDecision,inspectDecision,setDecisionValue,submitDecision,decisionReport,tickDecision} from '../src/learning/decision-engine.js';
 import {restoreProgress,recordDecisionResult,recordFor} from '../src/learning/engine.js';
 const prepare=(attempt,scenario,stage)=>{for(const fact of stage.requiredFacts)inspectDecision(attempt,scenario,fact);for(const field of stage.fields)setDecisionValue(attempt,scenario,field.id,field.expected);};
-test('every lesson has exactly one assessed training format; all23 decision scenarios have distinct staged tasks',()=>{
- assert.equal(decisionScenarios.length,23);assert.equal(new Set(decisionScenarios.map(s=>s.id)).size,23);
+test('every lesson has exactly one assessed training format; all29 decision scenarios have distinct staged tasks',()=>{
+ assert.equal(decisionScenarios.length,29);assert.equal(new Set(decisionScenarios.map(s=>s.id)).size,29);
  for(const lesson of lessons)assert.equal(Number(!!lesson.practice)+Number(!!lesson.decisionScenarioId),1,lesson.id);
  for(const scenario of decisionScenarios){assert.equal(scenario.stages.length,3);assert.equal(new Set(scenario.stages.map(s=>s.id)).size,3);for(const stage of scenario.stages){assert.ok(stage.fields.length);assert.ok(stage.facts.length);assert.ok(stage.goal);for(const id of stage.requiredFacts)assert.ok(stage.facts.some(f=>f.id===id));for(const field of stage.fields){assert.ok(['checks','order','route','number','select'].includes(field.type));if(field.type==='number')assert.ok(Number.isFinite(field.expected));else for(const id of Array.isArray(field.expected)?field.expected:[field.expected])assert.ok(field.options.some(o=>o.id===id),`${scenario.id} ${field.id} ${id}`);}}}
 });

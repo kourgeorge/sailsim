@@ -1,5 +1,7 @@
+import colregs from './colregs-he.js';
 // Original scenario translations; numeric fixtures and assessment rules remain canonical.
 export default {
+  ...colregs,
   "decision-sail-01": {
     "title": "הכנת מרידיאן ליציאה",
     "brief": "הכינו את היאכטה הדמיונית מרידיאן עם שני אנשי צוות חדשים. פתרו ליקוי ציוד, חלקו תפקידים ואשרו תוכנית יציאה.",

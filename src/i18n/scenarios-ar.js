@@ -1,5 +1,7 @@
+import colregs from './colregs-ar.js';
 // Original scenario translations; numeric fixtures and assessment rules remain canonical.
 export default {
+  ...colregs,
   "decision-sail-01": {
     "title": "تجهيز ميريديان للمغادرة",
     "brief": "جهّز اليخت الافتراضي ميريديان مع فردين جديدين في الطاقم. عالج عيب المعدات ووزّع المسؤوليات ثم اعتمد خطة المغادرة.",

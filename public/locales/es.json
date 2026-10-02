@@ -43,6 +43,10 @@
     "marina": {
       "title": "Maniobras prácticas en la marina",
       "outcome": "Entra en la marina, atraca y sal utilizando el motor y el timón."
+    },
+    "colregs": {
+      "title": "Ceder el paso y evitar abordajes",
+      "outcome": "Identifica el encuentro, asigna obligaciones, actúa pronto y comprueba hasta quedar pasado y franco."
     }
   },
   "lessons": {
@@ -1824,6 +1828,221 @@
         ],
         "debrief": "Saliste marcha atrás, te detuviste libre de la plaza y abandonaste la marina avante."
       }
+    },
+    "sail-46": {
+      "title": "Encuentros a vela: amura, barlovento y alcance",
+      "concepts": [
+        "Determina primero si los buques están a la vista, si existe riesgo de abordaje y si hay alcance, canal angosto o condición especial. Estos ejemplos aplican reglas internacionales, a la vista, en aguas abiertas y sin condición especial. Ambos mantienen vigilancia y obligaciones de evitar el abordaje.",
+        "Babor y estribor se definen mirando a proa. Viento por babor significa amura a babor; por estribor, amura a estribor. En la Regla 12, la banda de barlovento es la contraria a la que lleva la vela mayor. Mira la mayor, no solo el foque ni la posición del otro barco en la pantalla.",
+        "Con riesgo y amuras distintas, se aparta el velero amurado a babor. Con la misma amura, se aparta el de barlovento. Si vas amurado a babor y ves un velero a barlovento cuya amura no puedes determinar con certeza, apártate. Esta regla de duda no significa que siempre tenga preferencia el velero que ves a tu derecha.",
+        "Comprueba el alcance antes que las amuras. Alcanzas cuando te aproximas desde más de 22,5° a popa del través del otro buque: el sector de 135° alrededor de su popa. De noche corresponde a ver su luz de alcance y ninguna de costado. Todo buque que alcanza se mantiene apartado, incluso un velero que alcanza a un motor.",
+        "Si dudas de si estás alcanzando, considérate buque que alcanza. La obligación continúa hasta quedar definitivamente pasado y franco. Estar por el través o cambiar la demora relativa no convierte un alcance ya establecido en un cruce."
+      ],
+      "observe": [
+        "Identifica la amura de cada velero por su mayor antes de asignar funciones.",
+        "Dibuja el sector de alcance alrededor del otro buque, no del tuyo."
+      ],
+      "mistake": "Aplicar las amuras antes de comprobar si existe alcance.",
+      "quiz": [
+        {
+          "prompt": "Vas amurado a babor; no sabes la amura del velero a barlovento. ¿Qué debes hacer?",
+          "options": [
+            "Mantenerte apartado",
+            "Suponer que debe apartarse",
+            "Esperar a estar al costado"
+          ],
+          "explanation": "La Regla 12(a)(iii) obliga al buque amurado a babor a apartarse en esta duda concreta."
+        },
+        {
+          "prompt": "Tu velero alcanza a un motor. ¿Cuándo termina tu obligación?",
+          "options": [
+            "En cuanto estás por su través",
+            "Cuando quedas definitivamente pasado y franco",
+            "Cuando se llenan tus velas"
+          ],
+          "explanation": "La Regla 13 prevalece sobre la comparación simple vela-motor y dura todo el alcance."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+    },
+    "sail-47": {
+      "title": "A motor: vuelta encontrada, cruce y encuentros mixtos",
+      "concepts": [
+        "Según la Regla 3, un velero navega a vela sin utilizar su maquinaria propulsora. Un yate propulsado por motor es de propulsión mecánica aunque lleve velas izadas. Un motor usado solo para cargar baterías no establece por sí mismo propulsión mecánica. Identifica la propulsión real.",
+        "Entre dos buques de motor a la vista que cruzan con riesgo, se aparta quien ve al otro por estribor y, si las circunstancias lo permiten, evita cortarle la proa. El otro mantiene inicialmente rumbo y velocidad según la Regla 17. Cambia de perspectiva: quien está a estribor de A puede ver a A por babor.",
+        "Dos buques de motor en rumbos opuestos o casi opuestos con riesgo caen ambos a estribor para pasar babor con babor. Si dudas de si existe vuelta encontrada, considérala existente. Esta regla es para buques de motor; no la apliques automáticamente a dos veleros.",
+        "En un encuentro ordinario a la vista, un motor en navegación se aparta de un velero. Comprueba antes las excepciones de las Reglas 9, 10 y 13 y los estados especiales. Un velero que alcanza a un motor sigue apartándose; un yate propulsado por motor no reclama condición de velero. El tamaño por sí solo no decide."
+      ],
+      "observe": [
+        "Describe el mismo cruce desde A y B antes de decidir quién actúa.",
+        "Comprueba si el motor propulsa realmente el yate."
+      ],
+      "mistake": "Confundir velas izadas con condición de velero mientras propulsa el motor.",
+      "quiz": [
+        {
+          "prompt": "El motor propulsa el yate con la mayor izada. ¿Qué condición tiene?",
+          "options": [
+            "Buque de vela",
+            "Buque de propulsión mecánica",
+            "La condición más favorable"
+          ],
+          "explanation": "La maquinaria proporciona propulsión: la Regla 3 lo define como buque de motor."
+        },
+        {
+          "prompt": "Dos motores se encuentran de vuelta encontrada con riesgo. ¿Quién cambia el rumbo?",
+          "options": [
+            "Solo el menor",
+            "Ambos a babor",
+            "Ambos a estribor"
+          ],
+          "explanation": "La Regla 14 exige que ambos caigan a estribor para pasar babor con babor."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+    },
+    "sail-48": {
+      "title": "Ceder y mantener: actuar mientras evoluciona el riesgo",
+      "concepts": [
+        "Vigila por vista, oído y todos los medios apropiados. Usa velocidad segura según visibilidad, tráfico, maniobrabilidad y condiciones. Una demora casi constante con distancia decreciente indica riesgo; una demora cambiante no siempre lo excluye, sobre todo cerca de buques grandes o remolques. Ante la duda, considera que existe riesgo.",
+        "El buque que cede actúa pronto y de forma decidida para quedar bien apartado. Haz cambios de rumbo o velocidad perceptibles cuando sea posible; evita sucesivos cambios pequeños. Comprueba espacio y tráfico. Reduce, detén o invierte la propulsión si hace falta para evitar el abordaje o evaluar, y vigila hasta quedar pasado y franco.",
+        "La Regla 17 tiene tres fases. Al principio, el buque que mantiene conserva rumbo y velocidad. Puede actuar por su propia maniobra cuando resulte evidente que el otro no actúa adecuadamente. Cuando estén tan cerca que la acción del que cede por sí sola no pueda evitar el abordaje, debe actuar como mejor ayude a evitarlo. Evalúa opciones antes de esa fase final.",
+        "En un cruce entre motores, el buque que mantiene y actúa según la Regla 17(a)(ii), si las circunstancias lo permiten, no debe caer a babor por otro situado a su babor. Es una restricción concreta, no una orden universal de girar a estribor. El buque que cede conserva su obligación aunque el otro actúe.",
+        "No hay una distancia segura universal ni un punto fijo para girar a última hora. Evalúa las circunstancias continuamente. La Regla 2 mantiene la responsabilidad por la buena práctica marinera y circunstancias especiales; apartarse de las reglas solo se justifica si es necesario para evitar peligro inmediato. Mantener no da derecho incondicional a colisionar."
+      ],
+      "observe": [
+        "Explica qué cambia entre «puede actuar» y «debe actuar».",
+        "Tras maniobrar, comprueba demora, distancia y tráfico alrededor."
+      ],
+      "mistake": "Mantener rumbo y velocidad cuando el otro ya no puede evitar el abordaje por sí solo.",
+      "quiz": [
+        {
+          "prompt": "El que cede claramente no actúa bien. ¿Puede actuar el que mantiene antes de que el otro ya no pueda evitar solo el abordaje?",
+          "options": [
+            "Sí, según la Regla 17(a)(ii)",
+            "No, siempre debe esperar",
+            "Solo con permiso por radio"
+          ],
+          "explanation": "La posibilidad de actuar precede al deber final. Sigue evaluando todas las circunstancias."
+        },
+        {
+          "prompt": "Has virado para evitar el abordaje. ¿Qué completa la respuesta?",
+          "options": [
+            "Dejar de observar al otro",
+            "Comprobar hasta quedar pasado y franco",
+            "Suponer que el giro eliminó todo riesgo"
+          ],
+          "explanation": "La Regla 8 exige comprobar el efecto y lograr un paso seguro sin crear otra aproximación peligrosa."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+    },
+    "sail-49": {
+      "title": "Buques especiales, canales angostos y vías de circulación",
+      "concepts": [
+        "Identifica el estado real, no la apariencia o tamaño. «Sin gobierno» significa que circunstancias excepcionales impiden maniobrar según las reglas. «Maniobra restringida» depende del trabajo, como dragado. «Dedicado a la pesca» exige artes que restrinjan la maniobrabilidad; el curricán que no la limita no basta. Confirma luces, marcas y situación.",
+        "Salvo lo dispuesto en las Reglas 9, 10 y 13, un velero ordinario en navegación se aparta de buques sin gobierno, de maniobra restringida y dedicados a la pesca. Un motor ordinario también se aparta de veleros. Según la Regla internacional 18(d), los buques salvo las dos primeras categorías evitarán, si las circunstancias lo permiten, estorbar a uno restringido por su calado con las señales requeridas. Este conserva especial cautela.",
+        "En un canal angosto, navega cerca del límite exterior de estribor cuando sea seguro y practicable. Un velero o buque menor de 20 m no estorbará al que solo puede navegar seguro dentro del canal. No cruces si lo estorbas. Los pesqueros no estorban a otros buques que navegan por el canal. Prevé recodos y evita fondear cuando sea posible.",
+        "En un dispositivo aprobado por la OMI, sigue el sentido de la vía e incorpórate o sal por el costado con un ángulo pequeño. Evita cruzar si es posible; si debes hacerlo, lleva rumbo lo más perpendicular posible al flujo. Es el rumbo de proa, no la trayectoria corregida por corriente. Veleros y menores de 20 m no estorban a motores que siguen la vía. Evita zonas de separación salvo permiso reglamentario.",
+        "«No estorbar» exige actuar pronto para dejar espacio suficiente antes de que aparezca riesgo de abordaje. La obligación continúa si surge riesgo y ambos siguen sujetos a las reglas de prevención. Una vía de circulación no concede preferencia incondicional. Consulta también instrucciones portuarias, cartas y avisos locales."
+      ],
+      "observe": [
+        "Distingue una restricción por trabajo del mero tamaño.",
+        "Al cruzar una vía, compara rumbo de proa y trayectoria sobre el fondo."
+      ],
+      "mistake": "Invocar prioridad de vela para cruzar ante un buque limitado al canal.",
+      "quiz": [
+        {
+          "prompt": "Tu velero estorbaría a un buque que solo navega seguro en este canal. ¿Qué debes hacer?",
+          "options": [
+            "Cruzar porque vas a vela",
+            "Actuar pronto para no estorbar su paso",
+            "Esperar una exigencia por radio"
+          ],
+          "explanation": "La Regla 9 obliga al velero a no estorbar a ese buque, sin esperar llamada por radio."
+        },
+        {
+          "prompt": "Al tener que cruzar una vía, ¿qué debe ser casi perpendicular al tráfico?",
+          "options": [
+            "El rumbo de proa",
+            "La derrota sobre el fondo, sin importar la proa",
+            "La botavara"
+          ],
+          "explanation": "La Regla 10(c) especifica rumbo. La corriente puede cambiar la trayectoria sobre el fondo."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+    },
+    "sail-50": {
+      "title": "Interpretar luces, marcas y señales acústicas",
+      "concepts": [
+        "La luz roja es de babor y la verde de estribor, cada una de 112,5° desde proa hasta 22,5° a popa del través. La luz blanca de alcance cubre 135° a popa y la de tope 225° a proa. Identifica el conjunto y el aspecto observado. Una blanca sola puede ser de alcance, fondeo u otra permitida: no demuestra tipo ni ausencia de riesgo.",
+        "Un velero normalmente muestra luces de costado y alcance; combinaciones y excepciones de pequeños buques dependen de la eslora. Un motor añade normalmente la luz o luces de tope requeridas. Un yate a vela y propulsado también por máquina muestra de día un cono negro con el vértice abajo. Al fondeo se muestran las blancas todo horizonte y bola negra diurna requeridas, con excepciones por eslora y lugar. Estudia los montajes completos antes de navegar de noche.",
+        "Patrones verticales útiles: sin gobierno, dos rojas todo horizonte o dos bolas negras; maniobra restringida, roja-blanca-roja o bola-bicónica-bola; pesca no de arrastre, roja sobre blanca; arrastre, verde sobre blanca. La marca de pesca son dos conos unidos por los vértices. Un buque restringido por calado puede mostrar tres rojas o un cilindro. Son señales de estado; pueden requerirse otras luces de navegación. Remolque, practicaje, dragado y varada tienen más disposiciones: consulta las reglas completas.",
+        "Según la Regla internacional 34, un motor en navegación que maniobra con buques a la vista da una corta al caer a estribor, dos a babor y tres al dar atrás con la máquina. Tres no significa necesariamente que ya tenga arrancada atrás. Ante dudas sobre intenciones o actuación suficiente de buques que se acercan a la vista, da al menos cinco cortas rápidas. En un recodo oculto, una prolongada; el buque que se aproxima y oye responde con otra prolongada.",
+        "Las señales de niebla son otro sistema. A intervalos máximos de dos minutos: motor con arrancada, una prolongada; en navegación parado sin arrancada, dos prolongadas separadas unos dos segundos; velero, una prolongada y dos cortas. Esta última se comparte con categorías especiales y no identifica solo a un velero. Una corta dura aproximadamente un segundo; una prolongada, cuatro a seis. La Regla 35 incluye otros casos y excepciones para pequeños buques; las señales interiores pueden diferir."
+      ],
+      "observe": [
+        "Nombra todo el patrón observado antes de deducir la condición.",
+        "Separa señales de maniobra a la vista y señales de niebla."
+      ],
+      "mistake": "Identificar por un color o interpretar una señal de niebla como un giro.",
+      "quiz": [
+        {
+          "prompt": "A la vista, según la Regla internacional 34, tres cortas significan…",
+          "options": [
+            "Dar atrás con la máquina",
+            "Ya tener arrancada atrás",
+            "Reclamar preferencia"
+          ],
+          "explanation": "La señal describe la propulsión, no un movimiento garantizado por el agua."
+        },
+        {
+          "prompt": "En niebla oyes una prolongada y dos cortas. ¿Qué puedes concluir?",
+          "options": [
+            "Sin duda un velero",
+            "Está cayendo a babor",
+            "Lo usan varias categorías; la identidad sigue incierta"
+          ],
+          "explanation": "La Regla 35 comparte este patrón entre vela y categorías especiales. Sigue evaluando el riesgo."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+    },
+    "sail-51": {
+      "title": "Visibilidad restringida y plan completo de encuentro",
+      "concepts": [
+        "Elige el marco antes de asignar quién cede y quién mantiene. La Regla internacional 19 se aplica a buques que no están a la vista en o cerca de visibilidad restringida. No asignes a un contacto no visto las funciones ordinarias de vela-motor o cruce. Si están visualmente a la vista, usa las reglas correspondientes sin olvidar visibilidad y deberes generales.",
+        "Navega a velocidad segura adaptada a las condiciones. Un motor mantiene máquinas listas para maniobra inmediata. Conserva vigilancia, usa señales y equipos correctamente y no concluyas con escasa información radar. AIS y una conversación por radio no sustituyen vigilancia, no dan una imagen completa ni cancelan las reglas.",
+        "Con un contacto detectado solo por radar, determina si se desarrolla aproximación excesiva o riesgo y actúa con tiempo. Al cambiar rumbo, evita en lo posible caer a babor por un buque a proa del través, salvo el alcanzado; evita también girar hacia uno por el través o a popa de él. No hay un giro universalmente seguro: revisa contactos, espacio y velocidad.",
+        "Salvo que se haya determinado que no hay riesgo, oír una señal de niebla aparentemente a proa del través o no poder evitar aproximación excesiva a un buque allí exige reducir a la mínima velocidad que permita mantener el rumbo. Suprime toda arrancada si es necesario y extrema la precaución hasta pasar el peligro. No mantengas velocidad de crucero esperando verlo.",
+        "Sigue la misma secuencia: observar y evaluar riesgo; establecer visibilidad, propulsión, estado y límites locales; comprobar alcance antes de funciones ordinarias; actuar a tiempo sin crear otro peligro; verificar hasta quedar pasado y franco. Reevalúa al cambiar condiciones. Estas lecciones enseñan el razonamiento internacional esencial, no todo el programa de luces, la ley local ni una titulación para navegar sin supervisión."
+      ],
+      "observe": [
+        "Aclara si el contacto está a la vista o solo en instrumentos.",
+        "Reevalúa tras cada observación; un plan solo no elimina el riesgo."
+      ],
+      "mistake": "Asignar prioridad automática a vela ante un contacto no visible en niebla.",
+      "quiz": [
+        {
+          "prompt": "En niebla detectas un buque por radar sin verlo. ¿Qué marco se aplica?",
+          "options": [
+            "Prioridad automática de vela sobre motor",
+            "Regla 19 y deberes generales aplicables",
+            "Ninguna regla hasta verlo"
+          ],
+          "explanation": "Se aplica el marco de visibilidad restringida sin contacto visual; no se asignan sin más roles ordinarios a la vista."
+        },
+        {
+          "prompt": "Oyes una señal de niebla a proa del través y no se ha descartado riesgo. ¿Qué debes hacer?",
+          "options": [
+            "Mantener velocidad hasta verlo",
+            "Girar siempre de inmediato a babor",
+            "Reducir al mínimo para gobernar; suprimir arrancada si hace falta"
+          ],
+          "explanation": "La Regla 19(e) exige esa respuesta de velocidad y extrema cautela hasta pasar el peligro."
+        }
+      ],
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
     }
   }
 }

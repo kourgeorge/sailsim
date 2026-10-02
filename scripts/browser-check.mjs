@@ -21,19 +21,19 @@ try {
  await page.locator('input[name="q0"][value="0"]').check();
  await page.locator('#knowledge-form button[type="submit"]').click();
  await expect(page.locator('#answer-0')).toContainText('Review');
- assert.equal(await page.locator('#progress-label').textContent(),'0 / 45');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 51');
  await page.locator('input[name="q0"][value="1"]').check();
  await page.locator('#knowledge-form button[type="submit"]').click();
  await page.locator('#reader-next').click();
  await page.locator('input[name="q1"][value="1"]').check();
  await page.locator('#knowledge-form button[type="submit"]').click();
  await expect(page.locator('#quiz-result')).toContainText('passed');
- assert.equal(await page.locator('#progress-label').textContent(),'0 / 45','Knowledge alone must not award new scenario evidence');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 51','Knowledge alone must not award new scenario evidence');
  assert.equal(await page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')).records['sail-01'].wrongAnswers),1);
  await page.locator('#reader-close').click();
  await page.waitForFunction(()=>Number(document.querySelector('#scene').dataset.triangles)>10000,{timeout:60000});
  await page.locator('#course-library').click();
- assert.equal(await page.locator('[data-library-lesson]').count(),45);
+ assert.equal(await page.locator('[data-library-lesson]').count(),51);
  await page.locator('[data-library-lesson="3"]').click();
  const lessonBannerWidth=await page.locator('.lesson-card').evaluate(card=>card.getBoundingClientRect().width);
  await page.locator('#practice-start').click();await page.locator('#practice-launch').click();
@@ -48,7 +48,7 @@ try {
  const completedBanner=await page.locator('.lesson-card').evaluate(card=>({width:card.getBoundingClientRect().width,scrollHeight:card.scrollHeight,clientHeight:card.clientHeight}));
  assert.equal(completedBanner.width,lessonBannerWidth,'Completion preserves the lesson banner width');
  assert.ok(completedBanner.scrollHeight<=completedBanner.clientHeight+1,'Completed lesson banner does not gain a scrollbar');
- assert.equal(await page.locator('#progress-label').textContent(),'0 / 45','Practice preview alone does not award mastery');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 51','Practice preview alone does not award mastery');
  // Reset, real controls, and keyboard operation after a focused button.
  await page.locator('button[data-mode="explore"]').click();
  await page.locator('button[data-camera="chase"]').click();
@@ -97,7 +97,7 @@ try {
  await page.locator('button[data-camera="chase"]').click();
  // Saved knowledge/practice restore without claiming interrupted practice continuity.
  await page.reload({waitUntil:'domcontentloaded'});await page.waitForFunction(()=>document.querySelector('#scene')?.dataset.drawCalls,{timeout:120000});
- assert.equal(await page.locator('#progress-label').textContent(),'0 / 45');
+ assert.equal(await page.locator('#progress-label').textContent(),'0 / 51');
  const saved=await page.evaluate(()=>JSON.parse(localStorage.getItem('sail-training-v1')));assert.equal(saved.records['sail-04'].practice,true);
  // Mobile access to the course, detailed systems, and normal controls.
  await page.setViewportSize({width:390,height:844});await page.waitForTimeout(2200);

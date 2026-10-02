@@ -1,6 +1,7 @@
 // Original, schematic teaching artwork. Geometry is fixed to maritime conventions;
 // language changes labels, never port/starboard or compass directions.
 import {marinaLessons} from './marina-course.js';
+import {isColregsLesson,renderColregsFigure,colregsFigureCaption} from './colregs-figures.js';
 import {getWorldBodyDefinitions} from '../world/bodies.js';
 const LANGS = ['en', 'es', 'fr', 'ru', 'he', 'ar'];
 const WORDS = {
@@ -156,6 +157,7 @@ function splitLabel(value, max=28) {
  * All supplied lesson text is escaped; no external images, scripts, or foreignObject.
  */
 export function renderTeachingFigure(lesson, lang='en') {
+  if(isColregsLesson(lesson)) return renderColregsFigure(lesson,lang);
   const code=String(lang).toLowerCase().split(/[-_]/)[0];
   const locale=LANGS.includes(code)?code:'en', index=LANGS.indexOf(locale);
   const number=/^sail-(\d{2})$/.exec(String(lesson?.id ?? ''))?.[1];
@@ -339,6 +341,7 @@ export function renderTeachingFigure(lesson, lang='en') {
 }
 
 export function getTeachingFigureCaption(lesson,lang='en') {
+  if(isColregsLesson(lesson)) return colregsFigureCaption(lesson,lang);
   const number=/^sail-(\d{2})$/.exec(String(lesson?.id??''))?.[1];
   const topic=TOPICS[Number(number)-1];
   const index=LANGS.indexOf(String(lang).toLowerCase().split(/[-_]/)[0]);

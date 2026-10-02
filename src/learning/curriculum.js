@@ -1,6 +1,7 @@
 import {advancedModule,advancedLessons} from './advanced-course.js';
 import {decisionScenarios} from './decision-scenarios.js';
 import {marinaModule,marinaLessons} from './marina-course.js';
+import {colregsModule,colregsLessons} from './colregs-course.js';
 // Original instructional content. Practical assessments only use simulated capabilities.
 export const modules=[
  {id:'aboard',title:'Before you leave',outcome:'Use boat terminology, identify essential equipment, and prepare a safe crew briefing.'},
@@ -284,5 +285,7 @@ modules.push(advancedModule);
 lessons.push(...advancedLessons);
 modules.push(marinaModule);
 lessons.push(...marinaLessons);
+modules.push(colregsModule);
+lessons.push(...colregsLessons);
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 export {lessons};

@@ -213,7 +213,13 @@ const metadata = [
     "lessonIds": [
       "sail-25",
       "sail-26",
-      "sail-27"
+      "sail-27",
+      "sail-46",
+      "sail-47",
+      "sail-48",
+      "sail-49",
+      "sail-50",
+      "sail-51"
     ]
   },
   {

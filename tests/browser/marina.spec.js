@@ -22,7 +22,7 @@ test.describe('marina lesson flow', () => {
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto('./');
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'ready');
-    await expect(page.locator('#progress-label')).toHaveText('0 / 45');
+    await expect(page.locator('#progress-label')).toHaveText('0 / 51');
     for (const [index, steps] of [
       [42, 3],
       [43, 2],

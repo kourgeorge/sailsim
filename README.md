@@ -53,13 +53,15 @@ Open **Sound** in the scene toolbar (in the mobile menu) to set music and sea vo
 
 ## Sailing school
 
-**45 lessons, 11 modules, 90 explained questions, 22 assessed boat-handling practices and 23 interactive seamanship scenarios (69 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
+**51 lessons, 12 modules, 102 explained questions, 22 assessed boat-handling practices and 29 interactive seamanship scenarios (87 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
 
 | Level | Lessons | Focus |
 |---|---|---|
 | Basic | 01–16 | Crew safety, wind, helm, trim and fundamental maneuvers |
 | Intermediate | 17–36 | Sail power, navigation, harbor planning and emergency decisions |
-| Advanced | 37–45 | Coastal planning, tidal clearance, current/time, weather, collision risk and night pilotage, plus practical marina entry, docking and departure |
+| Advanced | 37–51 | Coastal decisions, practical marina handling, and giving way and avoiding collisions |
+
+Lessons **46–51**, **Give way and avoid collisions** (פינוי דרך ומניעת התנגשויות), cover tack and overtaking, powered and mixed encounters, give-way and stand-on actions, special vessel status, channels and traffic lanes, lights and signals, and restricted visibility. The six illustrated lessons include 18 decision stages and direct references to the International COLREGs. All six languages are supported; existing lesson IDs and progress records stay intact. These are core encounter lessons, not the complete lights syllabus, local navigation law or a sailing qualification.
 
 The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **100%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
 
