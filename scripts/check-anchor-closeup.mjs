@@ -76,7 +76,7 @@ try{
  }
  await page.setViewportSize({width:390,height:844});await expect(closeup).toBeInViewport();
  await page.screenshot({path:'artifacts/anchor-closeup/app-mobile.png'});
- await page.locator('.mobile-controls-toggle').click();await page.locator('#mobile-tab-anchor').click();
+ await page.locator('#mobile-tab-anchor').click();
  await expect.poll(()=>page.evaluate(()=>document.querySelector('.anchor-closeup').getBoundingClientRect().bottom<=document.querySelector('.mobile-controls-drawer').getBoundingClientRect().top-8)).toBe(true);
  const frame=Number(await page.locator('#scene').getAttribute('data-frames'));
  await page.waitForFunction(frame=>Number(document.querySelector('#scene').dataset.frames)>frame+2,frame);

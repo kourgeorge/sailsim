@@ -164,7 +164,11 @@ async function startApp() {
     if (mode === 'explore' && !playback.paused) freeSailingStarted = true;
     const simulator = $('.simulator');
     const sceneCompass = $('#scene-compass');
-    if (sceneCompass) sceneCompass.hidden = !playback.canSimulate;
+    if (sceneCompass) sceneCompass.hidden = !cockpitEnabled() || !playback.canRender;
+    // Opening a dialog temporarily pauses motion without ending playback.
+    const simulationRunning = String(cockpitEnabled() && !playback.paused);
+    if (simulator.dataset.simulationRunning !== simulationRunning)
+      simulator.dataset.simulationRunning = simulationRunning;
     if (simulator.dataset.freeSailingStarted !== String(freeSailingStarted))
       simulator.dataset.freeSailingStarted = String(freeSailingStarted);
     sailingAudio?.sync();

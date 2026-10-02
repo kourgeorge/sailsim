@@ -15,11 +15,24 @@ const lessons=async()=>{await page.locator('#mobile-lesson-toggle').click();awai
 const mode=async value=>{await menu();await page.locator(`button[data-mode="${value}"]`).click();await expect(page.locator('#mobile-menu')).toBeHidden();};
 async function inspect(name, width, height) {
   await page.setViewportSize({width,height});
+  // Media-query listeners relocate the real desktop toolbar into its sheet.
+  // Wait for that DOM move and the resulting ResizeObserver layout to finish.
+  await expect(page.locator('#mobile-menu > .topbar')).toHaveCount(1);
+  await expect.poll(()=>page.locator('#scene').evaluate(node=>node.getBoundingClientRect().top)).toBe(0);
+  await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(height+1);
   await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollWidth),{timeout:10000}).toBeLessThanOrEqual(width+1);
   const overlay=await page.locator('dialog[open]').count();
   if(!overlay){
-    const frames=await page.locator('#scene').getAttribute('data-frames');
-    await page.waitForFunction(before=>Number(document.querySelector('#scene').dataset.frames)>Number(before)+1,frames);
+    await expect(page.locator('#scene')).toHaveAttribute('data-render-pending','false',{timeout:120000});
+    const map=page.locator('.mobile-scene-toolbar #chart-toggle');
+    const running=['free-running','training-running'].includes(await page.locator('body').getAttribute('data-activity'));
+    if(running) {
+      await expect(map).toBeInViewport({ratio:1});
+      assert.ok(await map.evaluate(node=>node.scrollWidth<=node.clientWidth+1),`${name}: map label fits`);
+    } else await expect(map).toBeHidden();
+    for(const button of await page.locator('.mobile-scene-toolbar > button:visible').all()) {
+      await expect(button).toBeInViewport({ratio:1});
+    }
   }
   await expect(page.locator('#toast')).not.toHaveClass(/show/, {timeout:15000});
   await expect(page.locator('#toast')).toHaveCSS('opacity','0');
@@ -31,6 +44,35 @@ async function inspect(name, width, height) {
   assert.equal(layout.scene.top,0,`${name}: no upper panel reserves screen space`);
   assert.ok(layout.scrollHeight<=height+1,`${name}: no page scrolling in the simulator`);
   assert.ok(layout.dock.height<=Math.max(height*.55,380),`${name}: bounded controls`);
+  const lessonButton=page.locator('#mobile-lesson-toggle');
+  const summary=page.locator('#mobile-lesson-summary');
+  const training=['training-running','training-paused'].includes(await page.locator('body').getAttribute('data-activity'));
+  if(!overlay) {
+    if(training || await page.locator('.simulator').getAttribute('data-mode')!=='learn') await expect(summary).toBeHidden();
+    else await expect(summary).toBeVisible();
+  }
+  if(!overlay && await summary.isVisible() && await page.locator('.simulator').getAttribute('data-mode')==='learn') {
+    await expect(lessonButton).toHaveCSS('border-radius','14px');
+    await expect(lessonButton).not.toHaveCSS('background-color','rgba(0, 0, 0, 0)');
+    await expect(lessonButton.locator('.mobile-lesson-title')).toHaveCount(0);
+    const opacity=await summary.evaluate(node=>Number(getComputedStyle(node).backgroundColor.match(/rgba\([^,]+,[^,]+,[^,]+,\s*([\d.]+)\)/)?.[1]));
+    assert.ok(opacity>0 && opacity<1,`${name}: separate description has a translucent background`);
+    const lessonNumber=Number(await page.locator('#lessons [aria-current]').getAttribute('data-course-lesson'))+1;
+    const lessonLabel=await page.locator('html').getAttribute('lang')==='he'?'שיעור':'Lesson';
+    await expect(summary.locator('.mobile-lesson-title')).toHaveText(`${lessonLabel} ${lessonNumber}: ${await page.locator('#scene-heading').textContent()}`);
+    await expect(summary.locator('.mobile-lesson-description')).toHaveText(await page.locator('#scene-subheading').textContent());
+    const summaryBox=await summary.boundingBox();
+    const buttonBox=await lessonButton.boundingBox();
+    assert.ok(summaryBox.y>=buttonBox.y+buttonBox.height,`${name}: description appears below the original lesson button`);
+    const metrics=page.locator('.mobile-indicators');
+    if(await metrics.isVisible()) assert.ok((await metrics.boundingBox()).y>=summaryBox.y+summaryBox.height,`${name}: lesson clears instruments`);
+  }
+  if(!overlay && await page.locator('.mobile-control-tabs').isVisible()) {
+    for(const button of await page.locator('.mobile-control-tabs button:not([hidden])').all()) {
+      await expect(button).toBeInViewport({ratio:1});
+      assert.ok(await button.evaluate(node=>node.scrollWidth<=node.clientWidth+1),`${name}: tab label fits`);
+    }
+  }
   assert.ok(await page.locator('#mobile-menu .nav-item').evaluateAll(nodes=>nodes.every(node=>node.scrollWidth<=node.clientWidth+1)),`${name}: menu labels fit`);
   await page.screenshot({path:`artifacts/mobile/${name}.png`,fullPage:true,timeout:120000});
   results.push({name,...layout});
@@ -42,10 +84,13 @@ try {
   await expect(page.locator('.topbar')).toBeHidden();
   await expect(page.locator('.mobile-course')).toBeHidden();
   await expect(page.locator('.mobile-indicators')).toBeHidden();
+  await expect(page.locator('#scene-compass')).toBeHidden();
+  await expect(page.locator('.mobile-control-tabs')).toBeHidden();
   await expect(page.locator('.lesson-card')).toBeHidden();
+  await expect(page.locator('#chart-toggle')).toBeHidden();
   await inspect('phone-clear',390,844);
   await lessons();
-  await expect(page.locator('.mobile-lesson')).toHaveCount(42);
+  await expect(page.locator('.mobile-lesson')).toHaveCount(await page.locator('#lessons [data-course-lesson]').count());
   await expect(page.locator('.mobile-lesson[aria-current]')).toHaveAttribute('data-mobile-lesson','0');
   await inspect('phone-lessons',390,844);
   await page.locator('[data-mobile-lesson="8"]').click();
@@ -57,29 +102,47 @@ try {
   await expect(page.locator('.course-library')).toBeVisible();
   await page.locator('[data-library-lesson="2"]').click();
   await mode('explore');
+  await expect(page.locator('.mobile-indicators')).toBeVisible();
+  await expect(page.locator('#scene-compass')).toBeVisible();
   await expect(page.locator('#mobile-lesson-toggle')).toBeHidden();
   await expect(page.locator('.control-dock')).toBeHidden();
+  for(const id of ['helm','sails','anchor','instruments']) await expect(page.locator(`#mobile-tab-${id}`)).toBeInViewport();
+  for(const [id,control] of [['sails','#trim'],['anchor','#cockpit-anchor-rode'],['instruments','#helm-dashboard']]) {
+    await page.locator(`#mobile-tab-${id}`).click();
+    await expect(page.locator(control)).toBeVisible();
+    await page.locator(`#mobile-tab-${id}`).click();
+    await expect(page.locator('.control-dock')).toBeHidden();
+  }
   await inspect('phone-folded',390,844);
   await page.locator('#play').click();
+  await expect(page.locator('body')).toHaveAttribute('data-activity','free-running');
+  await page.locator('.mobile-scene-toolbar #chart-toggle').click();
+  await expect(page.locator('#mobile-menu')).toBeHidden();
+  await expect(page.locator('#large-chart')).toHaveAttribute('data-vessel-visible','true');
+  await expect(page.locator('body')).toHaveAttribute('data-activity','free-paused');
+  await inspect('phone-map',390,844);
+  await page.locator('#close-modal').click();
+  await expect(page.locator('#chart-toggle')).toBeFocused();
   await expect(page.locator('body')).toHaveAttribute('data-activity','free-running');
   await menu();
   await expect(page.locator('body')).toHaveAttribute('data-activity','free-paused');
   const pausedTime=await page.locator('#scene').getAttribute('data-visual-time');
   await page.waitForTimeout(400);
   assert.equal(await page.locator('#scene').getAttribute('data-visual-time'),pausedTime,'Menu pauses the simulation');
-  await page.locator('#mobile-indicators-toggle').click();
+  await expect(page.locator('#mobile-indicators-toggle')).toHaveCount(0);
+  await expect(page.locator('#mobile-menu #chart-toggle')).toHaveCount(0);
   await inspect('phone-menu',390,844);
   await closeMenu();
   await expect(page.locator('body')).toHaveAttribute('data-activity','free-running');
   await page.locator('#play').click();
+  await expect(page.locator('#chart-toggle')).toBeHidden();
   await expect(page.locator('.mobile-indicators')).toBeVisible();
+  await expect(page.locator('#scene-compass')).toBeVisible();
   await expect(page.locator('.mobile-indicators [data-dashboard-value="heading"]')).not.toBeEmpty();
   await inspect('phone-indicators',390,844);
-  await menu();await page.locator('#mobile-indicators-toggle').click();await closeMenu();
   const sceneBefore=await page.locator('#scene').boundingBox();
-  await page.locator('#mobile-controls-toggle').click();
-  await expect(page.locator('#mobile-controls-toggle')).toHaveAttribute('aria-expanded','true');
-  await page.keyboard.press('Tab');
+  await page.locator('#mobile-tab-helm').click();
+  await expect(page.locator('#mobile-tab-helm')).toHaveAttribute('aria-selected','true');
   await expect(page.locator('#mobile-tab-helm')).toBeFocused();
   await expect(page.locator('#rudder')).toBeVisible();
   assert.deepEqual(await page.locator('#scene').boundingBox(),sceneBefore,'Controls do not resize the scene');
@@ -107,10 +170,17 @@ try {
   await expect(page.locator('#mobile-tab-helm')).toBeFocused();
   await page.keyboard.press('Escape');
   await expect(page.locator('.control-dock')).toBeHidden();
-  await expect(page.locator('#mobile-controls-toggle')).toBeFocused();
+  await expect(page.locator('#mobile-tab-helm')).toBeFocused();
+  await page.locator('#mobile-tab-anchor').click();
+  await page.locator('#mobile-controls-close').click();
+  await expect(page.locator('#mobile-tab-anchor')).toBeFocused();
+  await expect(page.locator('.control-dock')).toBeHidden();
   await menu();await page.locator('#mobile-camera').selectOption('deck');
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page.locator('.simulator')).toHaveAttribute('data-view','deck');
+  await inspect('phone-cockpit',390,844);
+  await inspect('landscape-cockpit',844,390);
+  await page.setViewportSize({width:390,height:844});
   await menu();await page.locator('#mobile-camera').selectOption('chase');
   await menu();await page.locator('#systems-toggle').click();
   await expect(page.locator('#systems-drawer')).toBeVisible();
@@ -129,8 +199,26 @@ try {
   await page.locator('#reader-close').click();
   await lessons();await page.locator('#practice-start').click();
   await expect(page.locator('#mobile-lessons')).toBeHidden();
+  await expect(page.locator('.mobile-indicators')).toBeHidden();
+  await expect(page.locator('#scene-compass')).toBeHidden();
+  await expect(page.locator('.mobile-control-tabs')).toBeHidden();
+  await expect(page.locator('#chart-toggle')).toBeHidden();
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity','training-running');
+  await expect(page.locator('#mobile-lesson-summary')).toBeHidden();
+  await expect(page.locator('#mobile-lesson-toggle')).toBeVisible();
+  await expect(page.locator('.mobile-indicators')).toBeVisible();
+  await expect(page.locator('#scene-compass')).toBeVisible();
+  await page.locator('.mobile-scene-toolbar #chart-toggle').click();
+  await expect(page.locator('#large-chart')).toHaveAttribute('data-vessel-visible','true');
+  await page.locator('#close-modal').click();
+  await expect(page.locator('body')).toHaveAttribute('data-activity','training-running');
+  for(const id of ['helm','sails','anchor','instruments']) await expect(page.locator(`#mobile-tab-${id}`)).toBeInViewport();
+  await page.locator('#mobile-tab-helm').click();
+  await page.locator('#rudder').fill('8');
+  await expect(page.locator('#rudder-value')).toContainText('8');
+  await page.locator('#center-helm').click();
+  await page.locator('#mobile-controls-close').click();
   await lessons();
   await expect(page.locator('body')).toHaveAttribute('data-activity','training-paused');
   await page.locator('#practice-toggle').click();
@@ -138,24 +226,54 @@ try {
   await expect(page.locator('body')).toHaveAttribute('data-activity','training-running');
   await page.locator('#play').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity','training-paused');
+  await expect(page.locator('.mobile-indicators')).toBeVisible();
+  await expect(page.locator('#scene-compass')).toBeVisible();
+  await expect(page.locator('.simulator')).toHaveAttribute('data-view','helm');
   await expect(page.locator('#mobile-lesson-toggle')).toContainText('beam reach');
   await expect(page.locator('.lesson-card')).toBeHidden();
   await inspect('phone-practice',390,844);
+  await inspect('small-phone-practice',320,568);
+  await inspect('landscape-practice',844,390);
+  await page.setViewportSize({width:390,height:844});
+  await menu();
+  await page.locator('.text-size-control > summary').click();
+  await page.locator('#sail-text-size-range').fill('200');
+  await page.locator('.text-size-control > summary').click();
+  await closeMenu();
+  await inspect('large-text-practice',390,844);
+  await menu();
+  await page.locator('.text-size-control > summary').click();
+  await page.locator('#sail-text-size-range').fill('100');
+  await page.locator('.text-size-control > summary').click();
+  await closeMenu();
   await lessons();
   await expect(page.locator('#practice-requirements')).toBeVisible();
   await inspect('phone-practice-details',390,844);
   await page.setViewportSize({width:1440,height:1000});
   await expect(page.locator('#mobile-lessons')).toBeHidden();
   await expect(page.locator('.topbar')).toBeVisible();
+  await expect(page.locator('.view-controls #chart-toggle')).toBeVisible();
+  await expect(page.locator('#chart-toggle .mobile-chart-label')).toBeHidden();
   await expect(page.locator('.sidebar .lesson-card')).toBeVisible();
   await expect(page.locator('#practice-end')).toBeVisible();
-  for(const id of ['rudder','trim','cockpit-main-hoist','cockpit-anchor-rode','helm-dashboard','conditions','reset'])await expect(page.locator(`#${id}`)).toBeVisible();
+  for(const id of ['rudder','trim','cockpit-main-hoist','cockpit-anchor-rode','helm-dashboard'])await expect(page.locator(`#${id}`)).toBeVisible();
+  await expect(page.locator('#conditions')).toBeHidden();
+  await expect(page.locator('#reset')).toBeHidden();
   await page.screenshot({path:'artifacts/mobile/desktop.png',fullPage:true,timeout:120000});
   await page.locator('#practice-end').click();
   await page.locator('#close-modal').click();
+  await expect(page.locator('#scene-compass')).toBeHidden();
+  await page.locator('button[data-mode="explore"]').click();
+  for(const id of ['conditions','reset'])await expect(page.locator(`#${id}`)).toBeVisible();
   await page.setViewportSize({width:390,height:844});
   await inspect('small-phone',320,568);
+  await page.locator('#mobile-tab-helm').click();
+  await inspect('small-phone-controls',320,568);
+  await page.locator('#mobile-controls-close').click();
   await inspect('landscape',844,390);
+  await page.locator('#mobile-tab-sails').click();
+  await inspect('landscape-controls',844,390);
+  await page.locator('#mobile-controls-close').click();
   await inspect('tablet',768,1024);
   await page.setViewportSize({width:390,height:844});
   await menu();
@@ -165,17 +283,19 @@ try {
   await page.locator('.text-size-control > summary').click();
   await closeMenu();
   await inspect('large-text',390,844);
+  await mode('learn');
   await lessons();await inspect('large-text-lessons',390,844);await page.locator('#mobile-lessons .mobile-sheet-close').click();
   await menu();await page.locator('#language-select').selectOption('he');
   await expect(page.locator('html')).toHaveAttribute('lang','he',{timeout:120000});
   await page.waitForFunction(()=>document.querySelector('#scene')?.dataset.drawCalls, null, {timeout:120000});
   await inspect('hebrew-large-text',390,844);
   await mode('explore');
-  await page.locator('#mobile-controls-toggle').click();
+  for(const id of ['helm','sails','anchor','instruments']) await expect(page.locator(`#mobile-tab-${id}`)).toBeInViewport();
   await page.locator('#mobile-tab-sails').click();
   await inspect('hebrew-controls-large-text',390,844);
   await page.locator('#cockpit-main-hoist').selectOption('1');
   await mode('challenge');
+  await page.locator('#race-engine-drills').click();
   await page.locator('[data-drill="engine-stop"]').click();
   await page.locator('#begin-drill').click();
   await expect(page.locator('.simulator')).toHaveAttribute('data-mode','maneuver');
@@ -187,7 +307,7 @@ try {
   await page.locator('#close-modal').click();
   assert.deepEqual(errors,[]);
   await writeFile('artifacts/mobile/check.json',JSON.stringify({passed:true,results,errors},null,2));
-  console.log('Mobile checks passed: full-viewport scene, optional indicators, menu pause/resume, lesson selection, controls, live practice, desktop, small phone, landscape, tablet, large text and RTL.');
+  console.log('Mobile checks passed: map available only during playback, numbered lesson titles, one-tap tabs, always-visible sailing instruments and compass, cockpit framing, menu pause/resume, lesson selection, controls, live practice, desktop, small phone, landscape, tablet, large text and RTL.');
 } catch(error) {
   await page.screenshot({path:'artifacts/mobile/failure.png',fullPage:true,timeout:120000}).catch(()=>{});
   throw error;

@@ -36,4 +36,16 @@
 .simulator[data-mode=race] .vessel-tabs>details:has(#vessel-throttle){display:none}
 .workspace:has(.simulator[data-mode=race]){grid-template-columns:1fr}
 .workspace:has(.simulator[data-mode=race])>.sidebar{display:none}
-@media(max-width:900px){#race-hud{inset-block-start:65px;inset-inline-start:12px;width:min(210px,calc(100% - 24px));padding:9px 12px;font-size:calc(11px * var(--text-scale,1))}#race-standings{gap:5px}.race-hud-top{gap:6px}#race-hud p{margin-bottom:8px}.race-courses>button{padding:14px;gap:12px}.race-result-score{flex-wrap:wrap}}
+@media(max-width:900px){
+ #race-hud{--race-hud-top:calc(max(12px,env(safe-area-inset-top)) + var(--mobile-toolbar-height,48px) + 12px);inset-block-start:var(--race-hud-top);inset-inline-start:max(12px,env(safe-area-inset-left));width:min(210px,calc(100% - 24px));max-height:min(45%,calc(100dvh - var(--race-hud-top) - var(--control-dock-height,64px) - max(12px,env(safe-area-inset-bottom)) - 24px));padding:9px 12px;font-size:calc(11px * var(--text-scale,1));overscroll-behavior:contain}
+ .simulator:has(.control-dock[aria-disabled=false]) #race-hud{--race-hud-top:calc(max(12px,env(safe-area-inset-top)) + var(--mobile-toolbar-height,48px) + var(--mobile-indicators-height,60px) + 24px);width:min(210px,calc(100% - 160px - 32px * (var(--text-scale,1) - 1)))}
+ #race-standings{gap:5px}
+ .race-hud-top{gap:6px;flex-wrap:wrap}
+ .race-hud-top strong,#race-standings li>span{min-width:0;overflow-wrap:anywhere}
+ .race-hud-top time{white-space:nowrap}
+ #race-hud p{margin-bottom:8px}
+ .race-courses>button{padding:14px;gap:12px}
+ .race-result-score{flex-wrap:wrap}
+ html[data-large-text] #race-standings li{display:grid;grid-template-columns:1em 7px minmax(0,1fr);gap:4px 6px}
+ html[data-large-text] #race-standings small{grid-column:3}
+}

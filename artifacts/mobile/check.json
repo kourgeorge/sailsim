@@ -19,10 +19,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 832,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 0,
+        "top": 832,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -56,10 +56,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 832,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 0,
+        "top": 832,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -93,10 +93,47 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 768,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 64,
+        "top": 768,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "name": "phone-map",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 768,
+        "width": 366,
+        "height": 64,
+        "top": 768,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -130,10 +167,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 768,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 64,
+        "top": 768,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -167,10 +204,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 768,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 64,
+        "top": 768,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -204,23 +241,97 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 768,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 64,
+        "top": 768,
         "right": 378,
         "bottom": 832,
         "left": 12
       },
       "dock": {
         "x": 13,
-        "y": 533,
+        "y": 536.25,
         "width": 364,
-        "height": 238,
-        "top": 533,
+        "height": 220.75,
+        "top": 536.25,
         "right": 377,
-        "bottom": 771,
+        "bottom": 757,
         "left": 13
+      }
+    },
+    {
+      "name": "phone-cockpit",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 768,
+        "width": 366,
+        "height": 64,
+        "top": 768,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "name": "landscape-cockpit",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 314,
+        "width": 820,
+        "height": 64,
+        "top": 314,
+        "right": 832,
+        "bottom": 378,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
       }
     },
     {
@@ -241,10 +352,121 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 768,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 64,
+        "top": 768,
+        "right": 378,
+        "bottom": 832,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "name": "small-phone-practice",
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "right": 320,
+        "bottom": 568,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 492,
+        "width": 296,
+        "height": 64,
+        "top": 492,
+        "right": 308,
+        "bottom": 556,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "name": "landscape-practice",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 314,
+        "width": 820,
+        "height": 64,
+        "top": 314,
+        "right": 832,
+        "bottom": 378,
+        "left": 12
+      },
+      "dock": {
+        "x": 0,
+        "y": 0,
+        "width": 0,
+        "height": 0,
+        "top": 0,
+        "right": 0,
+        "bottom": 0,
+        "left": 0
+      }
+    },
+    {
+      "name": "large-text-practice",
+      "width": 390,
+      "height": 844,
+      "scrollWidth": 390,
+      "scrollHeight": 844,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 390,
+        "height": 844,
+        "top": 0,
+        "right": 390,
+        "bottom": 844,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 688.8125,
+        "width": 366,
+        "height": 143.1875,
+        "top": 688.8125,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -278,10 +500,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 768,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 64,
+        "top": 768,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -315,10 +537,10 @@
       },
       "console": {
         "x": 12,
-        "y": 506,
+        "y": 492,
         "width": 296,
-        "height": 50,
-        "top": 506,
+        "height": 64,
+        "top": 492,
         "right": 308,
         "bottom": 556,
         "left": 12
@@ -332,6 +554,43 @@
         "right": 0,
         "bottom": 0,
         "left": 0
+      }
+    },
+    {
+      "name": "small-phone-controls",
+      "width": 320,
+      "height": 568,
+      "scrollWidth": 320,
+      "scrollHeight": 568,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 320,
+        "height": 568,
+        "top": 0,
+        "right": 320,
+        "bottom": 568,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 492,
+        "width": 296,
+        "height": 64,
+        "top": 492,
+        "right": 308,
+        "bottom": 556,
+        "left": 12
+      },
+      "dock": {
+        "x": 13,
+        "y": 260.25,
+        "width": 294,
+        "height": 220.75,
+        "top": 260.25,
+        "right": 307,
+        "bottom": 481,
+        "left": 13
       }
     },
     {
@@ -352,10 +611,10 @@
       },
       "console": {
         "x": 12,
-        "y": 328,
+        "y": 314,
         "width": 820,
-        "height": 50,
-        "top": 328,
+        "height": 64,
+        "top": 314,
         "right": 832,
         "bottom": 378,
         "left": 12
@@ -369,6 +628,43 @@
         "right": 0,
         "bottom": 0,
         "left": 0
+      }
+    },
+    {
+      "name": "landscape-controls",
+      "width": 844,
+      "height": 390,
+      "scrollWidth": 844,
+      "scrollHeight": 390,
+      "scene": {
+        "x": 0,
+        "y": 0,
+        "width": 844,
+        "height": 390,
+        "top": 0,
+        "right": 844,
+        "bottom": 390,
+        "left": 0
+      },
+      "console": {
+        "x": 12,
+        "y": 314,
+        "width": 820,
+        "height": 64,
+        "top": 314,
+        "right": 832,
+        "bottom": 378,
+        "left": 12
+      },
+      "dock": {
+        "x": 13,
+        "y": 92.40625,
+        "width": 818,
+        "height": 210.59375,
+        "top": 92.40625,
+        "right": 831,
+        "bottom": 303,
+        "left": 13
       }
     },
     {
@@ -389,10 +685,10 @@
       },
       "console": {
         "x": 12,
-        "y": 962,
+        "y": 948,
         "width": 744,
-        "height": 50,
-        "top": 962,
+        "height": 64,
+        "top": 948,
         "right": 756,
         "bottom": 1012,
         "left": 12
@@ -426,10 +722,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 688.8125,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 143.1875,
+        "top": 688.8125,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -463,10 +759,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 688.8125,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 143.1875,
+        "top": 688.8125,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -500,10 +796,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 832,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 0,
+        "top": 832,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -537,10 +833,10 @@
       },
       "console": {
         "x": 12,
-        "y": 782,
+        "y": 832,
         "width": 366,
-        "height": 50,
-        "top": 782,
+        "height": 0,
+        "top": 832,
         "right": 378,
         "bottom": 832,
         "left": 12
@@ -574,22 +870,22 @@
       },
       "console": {
         "x": 12,
-        "y": 778,
+        "y": 688.8125,
         "width": 366,
-        "height": 54,
-        "top": 778,
+        "height": 143.1875,
+        "top": 688.8125,
         "right": 378,
         "bottom": 832,
         "left": 12
       },
       "dock": {
         "x": 13,
-        "y": 387,
+        "y": 297.8125,
         "width": 364,
         "height": 380,
-        "top": 387,
+        "top": 297.8125,
         "right": 377,
-        "bottom": 767,
+        "bottom": 677.8125,
         "left": 13
       }
     }

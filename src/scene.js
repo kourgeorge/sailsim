@@ -125,8 +125,8 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     up = new THREE.Vector3(0, 1, 0);
   const views = {
     chase: { fov: 47 },
-    helm: { fov: 66 },
-    deck: { fov: 60 },
+    helm: { fov: 72 },
+    deck: { fov: 66 },
     aerial: { fov: 47 },
   };
   function resize() {
@@ -246,7 +246,9 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     const heading = (state.heading * Math.PI) / 180,
       framing = Math.max(1, 0.9 / camera.aspect);
     if (view === 'helm') {
-      offset.set(0, 3.12, 5.6);
+      // Look over the pedestal from farther aft so it does not fill the
+      // navigation view, especially on a narrow phone screen.
+      offset.set(0, 3.65, 6.7);
       offset.applyMatrix4(
         yacht.group.matrix.clone().identity().makeRotationFromEuler(yacht.group.rotation),
       );
@@ -256,11 +258,15 @@ export function createScene(container, { locationId = 'haven' } = {}) {
         .applyAxisAngle(up, -heading)
         .add(yacht.group.position);
     } else if (view === 'deck') {
+      // Orbit around the cockpit from outside the hull. Portrait screens need
+      // more distance to retain the deck and surrounding water horizontally.
+      const cockpitFraming = Math.max(1, 0.85 / camera.aspect);
+      target.set(0, 1.5, 1).applyAxisAngle(up, -heading).add(yacht.group.position);
       offset
-        .set(3.8 * Math.cos(orbit) * zoom, 3.2 + elevation * 5, 3.4 + Math.sin(orbit) * 3.2)
+        .set(7 * Math.cos(orbit), 4.5 + elevation * 5, 6 + Math.sin(orbit) * 7)
+        .multiplyScalar(zoom * cockpitFraming)
         .applyAxisAngle(up, -heading);
-      desired.copy(offset).add(yacht.group.position);
-      target.set(0, 1.5, 2.2).applyAxisAngle(up, -heading).add(yacht.group.position);
+      desired.copy(target).add(offset);
     } else if (view === 'aerial') {
       offset
         .set(Math.sin(orbit) * 55 * zoom, (85 + elevation * 40) * zoom, Math.cos(orbit) * 55 * zoom)
@@ -282,8 +288,9 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     const smooth = 1 - Math.exp(-dt * 7);
     camera.position.lerp(desired, smooth);
     camera.lookAt(target);
+    const helmFov = camera.aspect < 1 ? 90 : views.helm.fov;
     const desiredFov =
-      view === 'helm' ? THREE.MathUtils.clamp(views[view].fov * zoom, 25, 85) : views[view].fov;
+      view === 'helm' ? THREE.MathUtils.clamp(helmFov * zoom, 25, 100) : views[view].fov;
     camera.fov = THREE.MathUtils.lerp(camera.fov, desiredFov, smooth);
     camera.updateProjectionMatrix();
     dirty =

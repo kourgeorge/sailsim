@@ -30,30 +30,39 @@ export function mountMobileLayout() {
   drawer.id = 'mobile-controls-drawer';
   drawer.className = 'mobile-controls-drawer';
   dock.before(drawer);
-  drawer.append(tabs, dock);
+  // The tabs stay on screen; each opens its controls directly in one tap.
+  drawer.before(tabs);
+  const drawerHeading = document.createElement('div');
+  drawerHeading.className = 'mobile-controls-heading';
+  const drawerTitle = document.createElement('strong');
+  const closeControls = document.createElement('button');
+  closeControls.type = 'button';
+  closeControls.id = 'mobile-controls-close';
+  closeControls.textContent = '×';
+  closeControls.setAttribute('aria-label', t('Close boat controls'));
+  drawerHeading.append(drawerTitle, closeControls);
+  drawer.append(drawerHeading, dock);
   new ResizeObserver(() => {
     simulator.style.setProperty('--mobile-controls-height', `${Math.ceil(drawer.getBoundingClientRect().height)}px`);
   }).observe(drawer);
-  const toggle = document.createElement('button');
-  toggle.type = 'button';
-  toggle.id = 'mobile-controls-toggle';
-  toggle.className = 'mobile-controls-toggle';
-  toggle.setAttribute('aria-controls', drawer.id);
-  toggle.setAttribute('aria-expanded', 'false');
-  toggle.textContent = t('Boat controls');
-  // Keep the disclosure before its contents in keyboard reading order.
-  drawer.before(toggle);
-  toggle.addEventListener('click', () => {
-    const open = toggle.getAttribute('aria-expanded') !== 'true';
-    toggle.setAttribute('aria-expanded', String(open));
-    drawer.classList.toggle('is-open', open);
-  });
+  let open = false;
+  const dismissControls = (restoreFocus = false) => {
+    open = false;
+    update();
+    if (restoreFocus) panels.find(({id}) => id === selected).button.focus();
+  };
+  closeControls.addEventListener('click', () => dismissControls(true));
   document.addEventListener('keydown', event => {
     if (event.key === 'Escape' && mobile.matches && drawer.classList.contains('is-open') && !document.querySelector('dialog[open]')) {
-      toggle.click();
-      toggle.focus();
+      dismissControls(true);
     }
   });
+  const controlIcons = {
+    helm: '<circle cx="12" cy="12" r="7"/><circle cx="12" cy="12" r="2"/><path d="M12 2v8m0 4v8M2 12h8m4 0h8M5 5l5 5m4 4 5 5M5 19l5-5m4-4 5-5"/>',
+    sails: '<path d="M12 3v15H3L12 3Zm3 4 6 11h-6M3 21h18"/>',
+    anchor: '<circle cx="12" cy="5" r="2"/><path d="M12 7v14M8 10h8M3 14v3c0 2 5 4 9 4s9-2 9-4v-3M3 14l3 3m15-3-3 3"/>',
+    instruments: '<path d="M4 19a10 10 0 1 1 16 0H4ZM12 13l5-5M5 12h1m6-7v1m6 6h1"/><circle cx="12" cy="13" r="1"/>',
+  };
   const panels = [
     ['helm', 'Helm', ['helm', 'engine']],
     ['sails', 'Sails', ['sheets', 'headsail', 'rig']],
@@ -66,24 +75,29 @@ export function mountMobileLayout() {
     const button = document.createElement('button');
     button.type = 'button';
     button.id = `mobile-tab-${id}`;
-    button.textContent = t(label);
+    button.innerHTML = `<svg aria-hidden="true" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">${controlIcons[id]}</svg>`;
+    const name = document.createElement('span');
+    name.textContent = t(label);
+    button.append(name);
     button.setAttribute('role', 'tab');
     button.setAttribute('aria-controls', panel.id);
     tabs.append(button);
     for (const key of keys) panel.append(groups.querySelector(`.cockpit-group-${key}`));
     if (id === 'instruments') panel.append(dock.querySelector('#helm-dashboard-mount'));
     groups.append(panel);
-    return {id, panel, button};
+    return {id, label, panel, button};
   });
   const mobile = window.matchMedia('(max-width: 900px)');
   let selected = 'helm';
   const update = () => {
     const available = id => simulator.dataset.mode !== 'maneuver' || ['helm', 'instruments'].includes(id);
     if (!available(selected)) selected = 'helm';
+    drawer.classList.toggle('is-open', open);
+    drawerTitle.textContent = t(panels.find(({id}) => id === selected).label);
     for (const {id, panel, button} of panels) {
       const active = id === selected;
       button.hidden = !available(id);
-      panel.hidden = mobile.matches && !active;
+      panel.hidden = mobile.matches && (!open || !active);
       panel.classList.toggle('is-active', active);
       if (mobile.matches) {
         panel.setAttribute('role', 'tabpanel');
@@ -92,7 +106,7 @@ export function mountMobileLayout() {
         panel.removeAttribute('role');
         panel.removeAttribute('aria-labelledby');
       }
-      button.setAttribute('aria-selected', String(active));
+      button.setAttribute('aria-selected', String(open && active));
       button.tabIndex = active ? 0 : -1;
     }
     // The dashboard remains its own full-width row on desktop.
@@ -100,7 +114,11 @@ export function mountMobileLayout() {
     (mobile.matches ? panels[3].panel : dock).append(dashboard);
     dock.scrollTop = 0;
   };
-  for (const {id, button} of panels) button.addEventListener('click', () => { selected = id; update(); });
+  for (const {id, button} of panels) button.addEventListener('click', () => {
+    open = selected !== id || !open;
+    selected = id;
+    update();
+  });
   tabs.addEventListener('keydown', event => {
     const visible = panels.filter(({button}) => !button.hidden);
     const index = visible.findIndex(({button}) => button === event.target);
@@ -109,15 +127,21 @@ export function mountMobileLayout() {
     const direction = document.documentElement.dir === 'rtl' ? -1 : 1;
     const next = event.key === 'Home' ? 0 : event.key === 'End' ? visible.length - 1 :
       (index + (event.key === 'ArrowRight' ? direction : -direction) + visible.length) % visible.length;
-    visible[next].button.click();
+    selected = visible[next].id;
+    open = true;
+    update();
     visible[next].button.focus();
   });
   mobile.addEventListener('change', () => {
+    open = false;
     const details = simulator.querySelector('.mobile-practice-details') || document.querySelector('.sidebar .mobile-practice-details');
     if (details) details.open = !mobile.matches;
     update();
   });
   new MutationObserver(update).observe(simulator, {attributes: true, attributeFilter: ['data-mode']});
+  new MutationObserver(() => {
+    if (dock.getAttribute('aria-disabled') === 'true') dismissControls();
+  }).observe(dock, {attributes: true, attributeFilter: ['aria-disabled']});
   update();
 
   // A visible, scrollable lesson list mirrors the course's real selection buttons.
@@ -154,8 +178,7 @@ export function mountMobileLayout() {
       if (original.hasAttribute('aria-current')) button.setAttribute('aria-current', 'step');
       button.addEventListener('click', () => {
         original.click();
-        toggle.setAttribute('aria-expanded', 'false');
-        drawer.classList.remove('is-open');
+        dismissControls();
       });
       return button;
     }));
@@ -172,6 +195,15 @@ export function mountMobileLayout() {
   // retaining the original nodes so desktop layouts and all handlers still work.
   const toolbar = document.createElement('div');
   toolbar.className = 'mobile-scene-toolbar';
+  const chartButton = views.querySelector('#chart-toggle');
+  chartButton.querySelector('span').classList.add('desktop-chart-label');
+  const mapLabel = document.createElement('span');
+  mapLabel.className = 'mobile-chart-label';
+  mapLabel.textContent = t('Map');
+  chartButton.append(mapLabel);
+  chartButton.setAttribute('aria-haspopup', 'dialog');
+  chartButton.setAttribute('aria-controls', 'modal');
+  chartButton.addEventListener('click', () => { if (mobile.matches) dismissControls(); });
   const menuButton = document.createElement('button');
   menuButton.id = 'mobile-menu-toggle';
   menuButton.type = 'button';
@@ -180,7 +212,19 @@ export function mountMobileLayout() {
   const lessonButton = document.createElement('button');
   lessonButton.id = 'mobile-lesson-toggle';
   lessonButton.type = 'button';
-  toolbar.append(menuButton, lessonButton);
+  const lessonButtonLabel = document.createElement('span');
+  lessonButton.append(lessonButtonLabel);
+  const lessonSummary = document.createElement('section');
+  lessonSummary.id = 'mobile-lesson-summary';
+  lessonSummary.className = 'mobile-lesson-summary';
+  const lessonTitle = document.createElement('strong');
+  const lessonDescription = document.createElement('span');
+  lessonTitle.id = 'mobile-lesson-description-title';
+  lessonTitle.className = 'mobile-lesson-title';
+  lessonDescription.className = 'mobile-lesson-description';
+  lessonSummary.setAttribute('aria-labelledby', lessonTitle.id);
+  lessonSummary.append(lessonTitle, lessonDescription);
+  toolbar.append(menuButton, lessonButton, lessonSummary);
   simulator.append(toolbar);
   const sheet = (id, title, trigger) => {
     const dialog = document.createElement('dialog');
@@ -203,8 +247,7 @@ export function mountMobileLayout() {
     trigger.setAttribute('aria-haspopup', 'dialog');
     trigger.setAttribute('aria-expanded', 'false');
     const show = () => {
-      toggle.setAttribute('aria-expanded', 'false');
-      drawer.classList.remove('is-open');
+      dismissControls();
       for (const other of document.querySelectorAll('.mobile-sheet[open]')) other.close();
       const details = dialog.querySelector('.mobile-practice-details');
       if (details) details.open = true;
@@ -245,30 +288,19 @@ export function mountMobileLayout() {
     hud.append(reading);
   }
   simulator.append(hud);
-  const indicators = document.createElement('button');
-  indicators.id = 'mobile-indicators-toggle';
-  indicators.type = 'button';
-  indicators.textContent = t('Show instruments');
-  indicators.setAttribute('aria-pressed', 'false');
-  indicators.addEventListener('click', () => {
-    const show = indicators.getAttribute('aria-pressed') !== 'true';
-    indicators.setAttribute('aria-pressed', String(show));
-    simulator.classList.toggle('show-mobile-indicators', show);
-  });
-  menuTools.append(indicators);
   const moves = [];
   const playback = document.querySelector('#play');
   const playbackPlaceholder = document.createComment('desktop playback');
   playback.before(playbackPlaceholder);
-  for (const [selector, target] of [['.topbar', menu], ['.view-controls', menuTools], ['.location', menuTools], ['.weather', menuTools], ['#conditions', menuActions], ['#reset', menuActions], ['.mobile-course', lessonContent], ['.maneuver-live', lessonContent]]) {
+  for (const [selector, target, before] of [['.topbar', menu], ['.view-controls', menuTools], ['#chart-toggle', toolbar, lessonButton], ['.location', menuTools], ['.weather', menuTools], ['#conditions', menuActions], ['#reset', menuActions], ['.mobile-course', lessonContent], ['.maneuver-live', lessonContent]]) {
     const node = document.querySelector(selector);
     if (!node) continue;
     const placeholder = document.createComment(`desktop ${selector}`);
     node.before(placeholder);
-    moves.push({node, placeholder, target});
+    moves.push({node, placeholder, target, before});
   }
   menu.addEventListener('click', event => {
-    if (event.target.closest('button[data-mode], #help, #chart-toggle, #systems-toggle, #conditions, #reset, #location-select, #sound-settings')) menu.close();
+    if (event.target.closest('button[data-mode], #help, #systems-toggle, #conditions, #reset, #location-select, #sound-settings')) menu.close();
   }, true);
   camera.addEventListener('change', () => menu.close());
   lessonSheet.addEventListener('click', event => {
@@ -282,21 +314,30 @@ export function mountMobileLayout() {
   document.querySelector('#systems-close').addEventListener('click', () => { if (mobile.matches) menuButton.focus(); });
   const syncOverlayLabels = () => {
     const mode = simulator.dataset.mode || 'learn';
+    chartButton.hidden = mobile.matches && simulator.dataset.simulationRunning !== 'true';
     lessonSheet.dataset.mobileMode = mode;
     lessonButton.hidden = !['learn', 'maneuver'].includes(mode);
     const active = ['training-running', 'training-paused'].includes(document.body.dataset.activity);
     const current = document.querySelector('#lessons [aria-current]');
-    const number = String(Number(current?.dataset.courseLesson || 0) + 1).padStart(2, '0');
+    const lessonNumber = Number(current?.dataset.courseLesson || 0) + 1;
+    const number = String(lessonNumber).padStart(2, '0');
+    const heading = mode === 'maneuver' ? t('Current goal') : `${t('Lesson {number}').replace('{number}', lessonNumber)}: ${document.querySelector('#scene-heading').textContent}`;
+    const description = mode === 'maneuver' ? '' : document.querySelector('#scene-subheading').textContent;
     const label = mode === 'maneuver' ? t('Current goal') : active ? document.querySelector('#objective-text').textContent : t('Lesson {number}').replace('{number}', number);
-    if (lessonButton.textContent !== label) lessonButton.textContent = label;
+    if (lessonButtonLabel.textContent !== label) lessonButtonLabel.textContent = label;
+    lessonSummary.hidden = mode !== 'learn' || active;
+    lessonDescription.hidden = !description;
+    for (const [node, value] of [[lessonTitle, heading], [lessonDescription, description]]) {
+      if (node.textContent !== value) node.textContent = value;
+    }
     lessonButton.setAttribute('aria-label', active || mode === 'maneuver' ? t('Current goal') : t('Choose a lesson'));
     lessonButton.title = label;
   };
   const arrangeOverlays = () => {
     if (mobile.matches) document.querySelector('.simulation-console').prepend(playback);
     else playbackPlaceholder.after(playback);
-    for (const {node, placeholder, target} of moves) {
-      if (mobile.matches) target.append(node);
+    for (const {node, placeholder, target, before} of moves) {
+      if (mobile.matches) target.insertBefore(node, before || null);
       else placeholder.after(node);
     }
     const card = document.querySelector('.lesson-card');
@@ -308,9 +349,12 @@ export function mountMobileLayout() {
     syncOverlayLabels();
   };
   mobile.addEventListener('change', arrangeOverlays);
-  new MutationObserver(syncOverlayLabels).observe(simulator, {attributes: true, attributeFilter: ['data-mode']});
+  new MutationObserver(syncOverlayLabels).observe(simulator, {attributes: true, attributeFilter: ['data-mode', 'data-simulation-running']});
   new MutationObserver(syncOverlayLabels).observe(document.body, {attributes: true, attributeFilter: ['data-activity']});
   new MutationObserver(syncOverlayLabels).observe(document.querySelector('#lessons'), {childList: true});
   new MutationObserver(syncOverlayLabels).observe(document.querySelector('#objective-text'), {childList: true, characterData: true, subtree: true});
+  for (const selector of ['#scene-heading', '#scene-subheading']) {
+    new MutationObserver(syncOverlayLabels).observe(document.querySelector(selector), {childList: true, characterData: true, subtree: true});
+  }
   arrangeOverlays();
 }

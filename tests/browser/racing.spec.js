@@ -1,5 +1,37 @@
 import { test, expect } from '@playwright/test';
 
+async function expectClearRaceReadings(page) {
+  for (const selector of ['#race-hud', '.mobile-indicators', '#scene-compass']) {
+    await expect(page.locator(selector)).toBeVisible();
+  }
+  await expect
+    .poll(() =>
+      page.evaluate(() => {
+        const panel = document.querySelector('#race-hud');
+        const standings = panel.getBoundingClientRect();
+        const intersects = (selector) => {
+          const other = document.querySelector(selector).getBoundingClientRect();
+          return (
+            standings.left < other.right &&
+            standings.right > other.left &&
+            standings.top < other.bottom &&
+            standings.bottom > other.top
+          );
+        };
+        return {
+          instruments: intersects('.mobile-indicators'),
+          compass: intersects('#scene-compass'),
+          controls: intersects('.simulation-console'),
+          fits:
+            standings.left >= 0 &&
+            standings.right <= innerWidth &&
+            panel.scrollWidth <= panel.clientWidth + 1,
+        };
+      }),
+    )
+    .toEqual({ instruments: false, compass: false, controls: false, fits: true });
+}
+
 test('races start from Challenges and pause, restart, and leave without leaking into other modes', async ({
   page,
   context,
@@ -84,7 +116,23 @@ test('mobile race briefing and controls fit large Hebrew text', async ({
   await page.locator('#race-start').click();
   await expect(page.locator('#race-hud')).toBeVisible();
   await page.locator('#play').click();
-  await page.locator('#mobile-controls-toggle').click();
+  for (const viewport of [
+    { width: 744, height: 941 },
+    { width: 320, height: 568 },
+    { width: 844, height: 390 },
+    { width: 390, height: 844 },
+  ]) {
+    await page.setViewportSize(viewport);
+    await expectClearRaceReadings(page);
+    await expect(page.locator('#chart-toggle')).toBeHidden();
+  }
+  await page.locator('#play').click();
+  await expect(page.locator('.mobile-scene-toolbar #chart-toggle')).toBeInViewport({ ratio: 1 });
+  await page.locator('.mobile-scene-toolbar #chart-toggle').click();
+  await expect(page.locator('#large-chart')).toHaveAttribute('data-vessel-visible', 'true');
+  await expect(page.locator('#mobile-menu')).toBeHidden();
+  await page.locator('#close-modal').click();
+  await expect(page.locator('#chart-toggle')).toBeFocused();
   await page.locator('#mobile-tab-sails').click();
   await expect(page.locator('#cockpit-jib-sheet')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);
@@ -110,6 +158,13 @@ test('race bots and rings render in the real 3D scene and appear on the chart', 
     timeout: 120000,
   });
   await page.screenshot({ path: testInfo.outputPath('race-fleet.png') });
+  await page.setViewportSize({ width: 744, height: 941 });
+  await expectClearRaceReadings(page);
+  await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
+    timeout: 120000,
+  });
+  await page.screenshot({ path: 'artifacts/mobile/race-instruments.png' });
+  await page.setViewportSize({ width: 1440, height: 1000 });
   await page.locator('#chart-toggle').click();
   await expect(page.locator('#large-chart')).toHaveAttribute('data-vessel-visible', 'true');
   await page.screenshot({ path: testInfo.outputPath('race-chart.png') });
