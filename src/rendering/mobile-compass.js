@@ -116,12 +116,15 @@ export function mountMobileCompass(simulator, mobile) {
     if (!drag) return;
     const { pointerId, moved, x, y } = drag;
     drag = null;
-    suppressClick = moved || cancelled;
+    suppressClick = true;
     compass.classList.remove('is-dragging');
     compass.classList.toggle('is-snapping', moved && !cancelled);
     targets.replaceChildren();
     if (compass.hasPointerCapture(pointerId)) compass.releasePointerCapture(pointerId);
     if (moved && !cancelled) choose(nearest(points, x, y).id);
+    // A snap can move the card before the browser generates its click. Handle
+    // taps at pointer release while capture still identifies the right control.
+    else if (!cancelled) cycle();
     else settle();
   }
 
