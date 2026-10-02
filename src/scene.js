@@ -117,7 +117,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     elevation = 0,
     zoom = 1,
     lastFrameTime = null,
-    dragging = false,
+    dragPointer = null,
     lastX = 0,
     lastY = 0;
   const offset = new THREE.Vector3(),
@@ -142,27 +142,45 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   }
   const observer = new ResizeObserver(resize);
   observer.observe(container);
+  const mobile = window.matchMedia('(max-width: 900px)');
+  const controlsOpen = () =>
+    mobile.matches &&
+    Boolean(
+      document.querySelector('.mobile-controls-drawer.is-open, #systems-drawer:not([hidden])'),
+    );
   const pointerDown = (e) => {
-    dragging = true;
+    if (controlsOpen() || !e.isPrimary || e.button !== 0 || dragPointer !== null) return;
+    dragPointer = e.pointerId;
     lastX = e.clientX;
     lastY = e.clientY;
     renderer.domElement.setPointerCapture(e.pointerId);
   };
   const pointerMove = (e) => {
-    if (!dragging) return;
+    if (e.pointerId !== dragPointer) return;
+    if (controlsOpen()) {
+      pointerUp(e);
+      return;
+    }
     orbit += (e.clientX - lastX) * 0.006;
     elevation = THREE.MathUtils.clamp(elevation + (e.clientY - lastY) * 0.003, -0.3, 0.65);
     lastX = e.clientX;
     lastY = e.clientY;
     invalidate();
   };
-  const pointerUp = () => (dragging = false);
+  const pointerUp = (e) => {
+    if (e.pointerId !== dragPointer) return;
+    dragPointer = null;
+    if (renderer.domElement.hasPointerCapture(e.pointerId))
+      renderer.domElement.releasePointerCapture(e.pointerId);
+  };
   const wheel = (e) => {
+    if (controlsOpen()) return;
     e.preventDefault();
     zoom = THREE.MathUtils.clamp(zoom + e.deltaY * 0.0008, 0.48, 2.2);
     invalidate();
   };
   const resetCamera = () => {
+    if (controlsOpen()) return;
     orbit = 0;
     elevation = 0;
     zoom = 1;
@@ -175,6 +193,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   renderer.domElement.addEventListener('pointermove', pointerMove);
   renderer.domElement.addEventListener('pointerup', pointerUp);
   renderer.domElement.addEventListener('pointercancel', pointerUp);
+  renderer.domElement.addEventListener('lostpointercapture', pointerUp);
   renderer.domElement.addEventListener('wheel', wheel, { passive: false });
   function render(state, time) {
     // Study mode hides the simulator. Never let a zero-sized surface introduce
@@ -356,6 +375,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
         ['pointermove', pointerMove],
         ['pointerup', pointerUp],
         ['pointercancel', pointerUp],
+        ['lostpointercapture', pointerUp],
         ['wheel', wheel],
       ])
         canvas.removeEventListener(event, handler);

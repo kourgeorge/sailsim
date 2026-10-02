@@ -1,4 +1,6 @@
 import {translate as t} from './i18n/runtime.js';
+import {mountMobileCompass} from './rendering/mobile-compass.js';
+import {mountTouchSliders} from './cockpit/touch-sliders.js';
 
 // Reuse the actual cockpit controls: changing layouts must preserve their state
 // and listeners, including disabled controls during study and lesson preparation.
@@ -357,4 +359,6 @@ export function mountMobileLayout() {
     new MutationObserver(syncOverlayLabels).observe(document.querySelector(selector), {childList: true, characterData: true, subtree: true});
   }
   arrangeOverlays();
+  mountMobileCompass(simulator, mobile);
+  mountTouchSliders(mobile);
 }

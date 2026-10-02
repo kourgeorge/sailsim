@@ -133,6 +133,10 @@
   .simulator .control-dock.cockpit-controls .cockpit-hoist { font-size: calc(13px * var(--text-scale, 1)); white-space: normal; overflow: visible; line-height: 1.4; }
   .simulator .control-dock.cockpit-controls .control-hint { flex-wrap: wrap; font-size: calc(12px * var(--text-scale, 1)); }
   .simulator .control-dock.cockpit-controls input[type=range] { height: 44px; min-height: 44px; }
+  /* A slider owns the whole gesture, including diagonal finger movement.
+     The rest of the drawer still scrolls vertically. */
+  .simulator .control-dock.cockpit-controls input[type=range],
+  .systems-drawer input[type=range] { touch-action: none; }
   .simulator .control-dock.cockpit-controls button,
   .simulator .control-dock.cockpit-controls select,
   .simulator .control-dock.cockpit-controls input[type=number],

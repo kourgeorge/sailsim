@@ -6,6 +6,7 @@ const entries={
  'Map':['Map','Mapa','خريطة','מפה','Карта','Carte'],
  'Close boat controls':['Close boat controls','Cerrar controles del barco','إغلاق عناصر التحكم بالقارب','סגירת בקרי הסירה','Закрыть управление яхтой','Fermer les commandes du bateau'],
  'Compass & wind':['Compass & wind','Compás y viento','البوصلة والرياح','מצפן ורוח','Компас и ветер','Compas et vent'],
+ 'Drag or tap to move compass':['Drag or tap to move compass','Arrastra o toca para mover el compás','اسحب أو انقر لتحريك البوصلة','גררו או הקישו כדי להזיז את המצפן','Перетащите или нажмите, чтобы переместить компас','Faites glisser ou touchez pour déplacer le compas'],
  'Help':['Help','Ayuda','مساعدة','עזרה','Помощь','Aide'],
  'Drag to look around. Use the on-screen sliders and buttons to control the boat.':['Drag to look around. Use the on-screen sliders and buttons to control the boat.','Arrastra para mirar alrededor. Usa los deslizadores y botones en pantalla para controlar el barco.','اسحب للنظر حولك. استخدم أشرطة التمرير والأزرار على الشاشة للتحكم بالقارب.','גררו כדי להביט מסביב. השתמשו במחוונים ובכפתורים שעל המסך כדי לשלוט בסירה.','Перетаскивайте для обзора. Управляйте яхтой с помощью ползунков и кнопок на экране.','Faites glisser pour regarder autour. Utilisez les curseurs et les boutons à l’écran pour contrôler le bateau.'],
  'Boat controls':['Boat controls','Controles del barco','عناصر التحكم بالقارب','בקרי הסירה','Управление яхтой','Commandes du bateau'],
