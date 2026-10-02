@@ -1,5 +1,7 @@
 // Original, schematic teaching artwork. Geometry is fixed to maritime conventions;
 // language changes labels, never port/starboard or compass directions.
+import {marinaLessons} from './marina-course.js';
+import {getWorldBodyDefinitions} from '../world/bodies.js';
 const LANGS = ['en', 'es', 'fr', 'ru', 'he', 'ar'];
 const WORDS = {
   schematic: ['Learning diagram · not to scale', 'Esquema didáctico · sin escala', 'Schéma pédagogique · non à l’échelle', 'Учебная схема · не в масштабе', 'תרשים לימודי · לא בקנה מידה', 'رسم تعليمي · ليس بمقياس رسم'],
@@ -133,7 +135,9 @@ const NOTES = {
   crosscheck: ['Two screens using one GPS are not independent. Resolve conflicting observations before entering constrained water.', 'Dos pantallas con un GPS no son independientes. Resuelve las discrepancias antes de entrar en aguas restringidas.', 'Deux écrans partageant un GPS ne sont pas indépendants. Résoudre les écarts avant d’entrer en eau resserrée.', 'Два экрана с одним GPS не независимы. Устраните расхождения до входа в стеснённые воды.', 'שני מסכים המשתמשים באותו GPS אינם עצמאיים. פתרו סתירות לפני כניסה למים מוגבלים.', 'شاشتان تستخدمان GPS واحدًا ليستا مستقلتين. عالج تعارض المشاهدات قبل دخول مياه مقيدة.'],
 };
 
-const TOPICS = ['safety','yacht','controls','track','points','controls','points','helm','points','points','points','controls','points','tack','gybe','points','apparent','controls','stopping','weather','route','route','time','route','lookout','bearing','lights','weather','motor','anchor','anchor','anchor','person','distress','route','transfer','route','tide','track','weather','bearing','crosscheck'];
+WORDS.marina=['Marina practice route','Ruta de práctica en la marina','Parcours pratique au port','Учебный маршрут в марине','מסלול תרגול במרינה','مسار التدريب في المرسى'];
+NOTES.marina=['Follow the numbered targets in order. Keep clear of the dock fingers and other boats. A stopping target requires the correct position, heading, low ground speed, and neutral.','Sigue los objetivos numerados en orden. Evita los pantalanes y otros barcos. Para detenerte debes cumplir posición, rumbo, velocidad sobre el fondo baja y punto muerto.','Suivez les cibles numérotées dans l’ordre. Évitez les pontons et les autres bateaux. Un arrêt exige position, cap, faible vitesse fond et point mort.','Проходите пронумерованные цели по порядку. Не касайтесь причалов и других судов. Для остановки нужны заданные положение, курс, малая скорость относительно грунта и нейтраль.','עברו בין היעדים הממוספרים לפי הסדר. שמרו מרחק מהרציפים ומכלי שיט אחרים. עצירה דורשת מיקום וכיוון מתאימים, מהירות נמוכה ביחס לקרקע והילוך סרק.','اتبع الأهداف المرقمة بالترتيب. ابتعد عن الأرصفة والقوارب الأخرى. يتطلب التوقف موضعًا واتجاهًا صحيحين وسرعة منخفضة فوق القاع ووضع الحياد.'];
+const TOPICS = ['safety','yacht','controls','track','points','controls','points','helm','points','points','points','controls','points','tack','gybe','points','apparent','controls','stopping','weather','route','route','time','route','lookout','bearing','lights','weather','motor','anchor','anchor','anchor','person','distress','route','transfer','route','tide','track','weather','bearing','crosscheck','marina','marina','marina'];
 const C = {ink:'#173a4d',muted:'#416477',sea:'#e1e9dd',line:'#adc2be',blue:'#176aa1',teal:'#087d7b',amber:'#925800',red:'#b53743',green:'#14704c',white:'#fff',land:'#c6d4b5'};
 let figureSerial = 0;
 const escape = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
@@ -235,6 +239,16 @@ export function renderTeachingFigure(lesson, lang='en') {
     art+=arrow(309,127,450,127,C.teal)+arrow(551,177,551,252,C.teal)+arrow(448,303,311,303,C.teal)+arrow(206,252,206,177,C.teal);
     for(const [x,y,key] of nodes) art+=`<rect x="${x-87}" y="${y-34}" width="174" height="77" rx="15" fill="white" stroke="${C.line}" stroke-width="2"/>`+label(x,y,key,{max:18});
     art+=boat(380,218,0,.8);
+  } else if(topic==='marina') {
+    const course=marinaLessons.find(item=>item.id===lesson.id),map=p=>({x:120+(p.x-200)*2.6,y:55+(p.z+75)*1.6});
+    for(const body of getWorldBodyDefinitions('haven').filter(b=>b.visual?.type==='pier')){
+      const p=map(body);art+=`<rect x="${p.x-body.shape.length*2.6/2}" y="${p.y-body.shape.beam*1.6/2}" width="${body.shape.length*2.6}" height="${body.shape.beam*1.6}" fill="#c5b793" stroke="${C.line}"/>`;
+    }
+    const route=[course.practice.setup,...course.practice.steps.map(s=>s.value)];
+    for(let i=1;i<route.length;i++){const a=map(route[i-1]),b=map(route[i]);art+=arrow(a.x,a.y,b.x,b.y,C.teal,3,'5 4');}
+    const start=map(route[0]);art+=boat(start.x,start.y,course.practice.setup.heading,.45);
+    course.practice.steps.forEach((step,i)=>{const p=map(step.value);art+=`<circle cx="${p.x}" cy="${p.y}" r="12" fill="white" stroke="${step.kind==='engineStop'?C.amber:C.teal}" stroke-width="3"/>`+text(p.x,p.y+5,String(i+1),{size:15});});
+    art+=label(690,53,'north',{size:18})+text(380,379,'≤ 2.5 kn',{size:20});
   } else if(topic==='motor') {
     art+=line(380,86,380,337)+boat(215,236,0,1)+boat(545,236,0,1);
     // Both rudders are physically to starboard. Rotation changes only after sternway.

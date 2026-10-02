@@ -23,7 +23,7 @@ export const LOCATIONS = deepFreeze([
     conditions: { windDirection: 315, windSpeed: 12, currentDirection: 90, currentSpeed: 0 },
     maxDepth: 35, shoreDepthScale: 24,
     chart: { centerX: 0, centerZ: -120, span: 1900 },
-    marina: { x: 380, z: 70, heading: 90, berths: 5, spacing: 22 },
+    marina: { x: 380, z: 70, heading: 90, berths: 5, spacing: 22, vacantBerth: 0 },
     lighthouse: { islandIndex: 0, x: -164, z: -338 },
     settlement: { islandIndex: 0, count: 23, startAngle: -.9, angleStep: .082 },
     treeDensity: 390,

@@ -35,6 +35,7 @@ import { anchorControlAction } from './anchoring/control-action.js';
 import { createPracticeState } from './learning/scenario-state.js';
 import { initialState, step, refreshDerived, pointOfSail } from './physics.js';
 import './mobile.css';
+import './rendering/scene-compass.css';
 import { mountMobileLayout } from './mobile.js';
 import { mountSailingAudio } from './audio/ui.js';
 import { createRaceUI } from './racing/ui.js';
@@ -162,6 +163,8 @@ async function startApp() {
   function syncPlayback() {
     if (mode === 'explore' && !playback.paused) freeSailingStarted = true;
     const simulator = $('.simulator');
+    const sceneCompass = $('#scene-compass');
+    if (sceneCompass) sceneCompass.hidden = !playback.canSimulate;
     if (simulator.dataset.freeSailingStarted !== String(freeSailingStarted))
       simulator.dataset.freeSailingStarted = String(freeSailingStarted);
     sailingAudio?.sync();
@@ -410,7 +413,7 @@ async function startApp() {
     });
   const drawChart = createChartRenderer({
     getState: () => state,
-    getTraining: () => (mode === 'maneuver' ? lab?.chart : null),
+    getTraining: () => (mode === 'maneuver' ? lab?.chart : learning?.chart),
     getChallengeIndex: () => challengeIndex,
     getRace: () => (mode === 'race' ? racing?.current : null),
   });
@@ -418,7 +421,7 @@ async function startApp() {
     learning?.event('event', 'chart');
     const race = mode === 'race' ? racing.current : null;
     openModal(
-      `<div class="eyebrow">NAVIGATION</div><h2>${t(race ? race.course.name : getLocation(state.locationId).title)}</h2><p>${race ? t('Sail through the numbered rings in order.') : 'Your position updates live. Amber marks indicate the buoy course.'}</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
+      `<div class="eyebrow">NAVIGATION</div><h2>${t(race ? race.course.name : getLocation(state.locationId).title)}</h2><p>${race ? t('Sail through the numbered rings in order.') : learning?.chart ? t('Follow the numbered targets in order. The highlighted marker is your current goal.') : 'Your position updates live. Amber marks indicate the buoy course.'}</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
     );
     drawChart($('#large-chart'));
   }
@@ -625,6 +628,7 @@ async function startApp() {
     },
   });
   learning = createLearning({
+    setCues: (cues) => scene?.setTrainingCues(cues),
     getPaused: () => playback.paused || overlayOpen() || learning?.briefingOpen,
     onPause: () => {
       playback.pause();
@@ -651,8 +655,8 @@ async function startApp() {
       setMode('learn');
     },
     resetScenario: (setup) => {
-      ensureScene('haven');
       state = createPracticeState(setup);
+      ensureScene(state.locationId);
       lastCollisionSequence = 0;
       playback.pause();
       syncControls();

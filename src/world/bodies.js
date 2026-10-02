@@ -52,6 +52,7 @@ export function getWorldBodyDefinitions(locationId = 'haven') {
     pier('spine',0,0,5,span+14,-1);
     for(let index=0;index<marina.berths;index++) pier(`finger:${index}`,-span/2+index*marina.spacing,12,25,2,index);
     for(let index=0;index<marina.berths-1;index++) {
+      if(index===marina.vacantBerth)continue;
       const scale=.74+(index%2)*.13,point=localToWorld(marina,-span/2+(index+.5)*marina.spacing,13);
       const mass=5600*scale**3,shape=yachtHullShape(scale);
       bodies.push({id:`${prefix}:yacht:moored:${index}`,kind:'moored',...point,

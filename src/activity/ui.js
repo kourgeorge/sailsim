@@ -12,5 +12,9 @@ export function mountSimulationControls() {
     .querySelector('.view-controls')
     .append(document.querySelector('#play'), document.querySelector('#reset'));
   document.querySelector('.scene-conditions').append(document.querySelector('#conditions'));
+  const compass = document.querySelector('.wind-card');
+  compass.id = 'scene-compass';
+  compass.hidden = true;
+  document.querySelector('.scene-tools').append(compass);
   document.querySelector('.play-actions').remove();
 }

@@ -1,5 +1,6 @@
 import {advancedModule,advancedLessons} from './advanced-course.js';
 import {decisionScenarios} from './decision-scenarios.js';
+import {marinaModule,marinaLessons} from './marina-course.js';
 // Original instructional content. Practical assessments only use simulated capabilities.
 export const modules=[
  {id:'aboard',title:'Before you leave',outcome:'Use boat terminology, identify essential equipment, and prepare a safe crew briefing.'},
@@ -281,5 +282,7 @@ lesson('readiness','From simulation to the sea',[
 lessons.find(lesson=>lesson.id==='sail-35').minutes=15;
 modules.push(advancedModule);
 lessons.push(...advancedLessons);
+modules.push(marinaModule);
+lessons.push(...marinaLessons);
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 export {lessons};

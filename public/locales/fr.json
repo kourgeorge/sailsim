@@ -39,6 +39,10 @@
     "coastal-decisions": {
       "title": "Décisions côtières",
       "outcome": "Préparer des traversées côtières prudentes, calculer des marges simples et recouper les informations de navigation."
+    },
+    "marina": {
+      "title": "Manœuvres pratiques au port",
+      "outcome": "Entrez au port, accostez dans une place et repartez au moteur et à la barre."
     }
   },
   "lessons": {
@@ -1667,6 +1671,159 @@
         }
       ],
       "transfer": "Répétez un vrai plan de pilotage de jour avec un moniteur avant une sortie nocturne supervisée. Exercez-vous à identifier les feux et à vérifier la position indépendamment."
+    },
+    "sail-43": {
+      "title": "Entrer au port au moteur",
+      "concepts": [
+        "Commencez à l’extérieur de Haven, les deux voiles affalées. Utilisez la marche avant et de petites corrections de barre pour suivre l’approche balisée. La carte et les repères sur l’eau indiquent la cible actuelle.",
+        "Rejoignez le premier repère au 090°, tournez vers le deuxième au 135°, puis stabilisez-vous au 180° dans le chenal. Restez sous 2,5 nœuds ; chaque repère a ses propres cibles de cap et de vitesse.",
+        "Anticipez l’inertie. Passez au point mort, puis donnez une brève impulsion arrière pour vous arrêter dans le cercle final. Restez au point mort sous 0,15 nœud pendant cinq secondes, sans toucher pontons ni bateaux."
+      ],
+      "observe": [
+        "Utilisez le curseur moteur ou W/S ; N sélectionne le point mort. Recentrez la barre avant de dépasser le cap.",
+        "Suivez le repère actuel sur la carte. Le panneau indique distance, cap et vitesse."
+      ],
+      "mistake": "Entrer trop vite et attendre le cercle d’arrêt pour réduire la puissance.",
+      "transfer": "Cet exercice évalue les manœuvres au moteur dans le modèle. Travaillez l’accostage réel, les effets d’hélice et les amarres avec un moniteur qualifié.",
+      "quiz": [
+        {
+          "prompt": "Que faut-il faire avant d’entrer dans le chenal étroit ?",
+          "options": [
+            "Atteindre la vitesse maximale",
+            "Affaler les voiles et établir une approche contrôlée au moteur",
+            "Mouiller en avançant"
+          ],
+          "explanation": "Préparez le bateau et maîtrisez sa vitesse avant d’entrer en espace restreint."
+        },
+        {
+          "prompt": "Qu’est-ce qui valide l’arrêt final ?",
+          "options": [
+            "Toucher le ponton",
+            "Atteindre le cercle à n’importe quelle vitesse",
+            "Tenir position et cap à faible vitesse au point mort"
+          ],
+          "explanation": "Position, cap, vitesse fond et point mort doivent respecter les cibles pendant cinq secondes continues."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Entrez au 090° à 0,5–2 nœuds",
+            "hint": "Mettez doucement en avant et dirigez-vous vers l’est, vers le repère ambre."
+          },
+          {
+            "label": "Tournez dans le chenal au 135° à 0,3–1,5 nœuds",
+            "hint": "Tournez progressivement à tribord en gardant les pontons à bâbord."
+          },
+          {
+            "label": "Arrêtez-vous dans le chenal au 180°, au point mort, sous 0,15 nœud",
+            "hint": "Tournez au sud, ralentissez tôt et freinez en arrière. Repassez au point mort dans le cercle vert."
+          }
+        ],
+        "debrief": "Vous êtes entré au port, avez tourné dans le chenal et vous êtes arrêté au moteur."
+      }
+    },
+    "sail-44": {
+      "title": "Accoster dans une place au port",
+      "concepts": [
+        "La place nord de Haven est libre pour l’exercice. Vous commencez dans le chenal au 090°, vers l’est, aligné avec l’espace entre les deux pontons nord.",
+        "Approchez le repère ambre à 0,3–1 nœud. Entrez dans la place et arrêtez le centre du bateau à moins de 2 mètres de la cible verte, au 090° ±10°. Gardez les voiles affalées et l’ancre rangée.",
+        "Utilisez de brèves impulsions avant et arrière en passant par le point mort. Finissez au point mort sous 0,15 nœud pendant cinq secondes. Tout contact termine l’essai ; la manipulation des amarres n’est pas évaluée."
+      ],
+      "observe": [
+        "Le cercle vert indique le centre du bateau, pas l’étrave. Gardez une marge devant et sur les côtés.",
+        "Surveillez la vitesse fond et réduisez avant d’atteindre la place."
+      ],
+      "mistake": "Utiliser le ponton pour arrêter le bateau ou laisser le moteur embrayé à la cible.",
+      "transfer": "Cet exercice évalue les manœuvres au moteur dans le modèle. Travaillez l’accostage réel, les effets d’hélice et les amarres avec un moniteur qualifié.",
+      "quiz": [
+        {
+          "prompt": "Où le bateau doit-il s’arrêter ?",
+          "options": [
+            "L’étrave contre le ponton",
+            "N’importe où près du port",
+            "Centré dans la place, aligné et sans obstacle"
+          ],
+          "explanation": "L’exercice vérifie un arrêt maîtrisé et aligné dans la place, sans contact."
+        },
+        {
+          "prompt": "Le bateau est aligné mais avance encore. Que faut-il faire ?",
+          "options": [
+            "Maîtriser l’inertie et finir au point mort",
+            "Accélérer en avant",
+            "Mouiller dans la place"
+          ],
+          "explanation": "L’alignement ne suffit pas. Ralentissez et maintenez tous les critères d’arrêt."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Approchez la place libre au 090° à 0,3–1 nœud",
+            "hint": "Utilisez peu de puissance avant et alignez l’étrave sur la place nord libre."
+          },
+          {
+            "label": "Garez le bateau au 090°, au point mort, sous 0,15 nœud",
+            "hint": "Ralentissez avant le cercle vert. Donnez une brève impulsion arrière, puis passez au point mort. Évitez le ponton devant vous."
+          }
+        ],
+        "debrief": "Vous êtes entré dans la place et avez maintenu un arrêt aligné sans contact."
+      }
+    },
+    "sail-45": {
+      "title": "Quitter la place et sortir du port",
+      "concepts": [
+        "Vous commencez arrêté dans la place nord, étrave vers l’est. Les amarres sont déjà larguées. Gardez les voiles affalées et reculez droit dans le chenal.",
+        "Reculez vers le premier repère au 090° à 0,3–1,2 nœud arrière. L’effet de la barre s’inverse en marche arrière. Arrêtez-vous à la deuxième cible et passez au point mort avant de tourner.",
+        "Une fois dégagé des pontons, mettez en avant et la barre à bâbord pour tourner au nord. Suivez les deux repères au 000° avec une vitesse avant contrôlée. Restez sous 2,5 nœuds et évitez les autres bateaux."
+      ],
+      "observe": [
+        "Regardez derrière avant de reculer. Gardez la barre centrée pendant le recul rectiligne.",
+        "Reculez assez pour disposer d’espace, arrêtez-vous, puis tournez en marche avant."
+      ],
+      "mistake": "Tourner entre les pontons ou accélérer avant de disposer d’espace.",
+      "transfer": "Cet exercice évalue les manœuvres au moteur dans le modèle. Travaillez l’accostage réel, les effets d’hélice et les amarres avec un moniteur qualifié.",
+      "quiz": [
+        {
+          "prompt": "Quand commencer le virage de départ ?",
+          "options": [
+            "Encore dans la place",
+            "Après avoir reculé et stoppé dans le chenal",
+            "Dès la sélection de la marche arrière"
+          ],
+          "explanation": "Dégagez les pontons et maîtrisez le bateau avant de tourner."
+        },
+        {
+          "prompt": "Comment réagit le safran en marche arrière ?",
+          "options": [
+            "Comme en marche avant",
+            "Il ne peut pas diriger",
+            "Son effet de rotation s’inverse"
+          ],
+          "explanation": "Le flux d’eau s’inverse : la même barre fait tourner l’étrave dans le sens opposé."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Reculez au 090° à 0,3–1,2 nœud arrière",
+            "hint": "Mettez doucement en arrière avec la barre centrée. Surveillez l’espace derrière."
+          },
+          {
+            "label": "Stoppez dans le chenal au 090°, au point mort, sous 0,15 nœud",
+            "hint": "Donnez une brève impulsion avant pour arrêter le recul, puis passez au point mort. Gardez de la place pour tourner."
+          },
+          {
+            "label": "Tournez au nord au 000° à 0,4–1,5 nœuds",
+            "hint": "Mettez en avant, barre à bâbord. Recentrez en approchant du nord."
+          },
+          {
+            "label": "Sortez du port au 000° à 0,5–2 nœuds",
+            "hint": "Continuez au nord vers le dernier repère en surveillant le cap et les alentours."
+          }
+        ],
+        "debrief": "Vous avez reculé, stoppé hors de la place et quitté le port en marche avant."
+      }
     }
   }
 }

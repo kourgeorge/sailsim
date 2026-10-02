@@ -10,7 +10,7 @@ const title=svg=>svg.match(/<title[^>]*>([^<]+)<\/title>/)?.[1];
 const description=svg=>svg.match(/<desc[^>]*>([^<]+)<\/desc>/)?.[1];
 
 test('every course lesson has an accessible, localized teaching diagram in all six languages',()=>{
-  assert.equal(course.length,42);
+  assert.equal(course.length,45);
   for(const lesson of course) {
     const english=renderTeachingFigure(lesson,'en');
     for(const lang of languages) {
@@ -63,7 +63,7 @@ test('engine arrows distinguish ahead/astern motion and use native tangent-follo
 });
 
 test('unknown IDs have no misleading fallback image and lesson text cannot inject markup',()=>{
-  for(const lesson of [null,{}, {id:'sail-00'}, {id:'sail-43'}, {id:'<img src=x onerror=alert(1)>'}]) {
+  for(const lesson of [null,{}, {id:'sail-00'}, {id:'sail-46'}, {id:'<img src=x onerror=alert(1)>'}]) {
     assert.equal(renderTeachingFigure(lesson),'');
     assert.equal(getTeachingFigureCaption(lesson),'');
   }

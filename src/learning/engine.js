@@ -3,6 +3,7 @@ import { beginPracticeAssessment, observePracticeObjective, completePracticeObje
 import {practiceConditions} from './practice-conditions.js';
 import {windOverWater} from '../physics.js';
 import { restoreDecisionResult } from './decision-evidence.js';
+import { practiceGroundSpeed } from './practice-assessment.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
 export const STORAGE_KEY='sail-training-v1';
@@ -73,7 +74,12 @@ export function advanceAttempt(attempt,lesson,state,dt,progress){
  const current=lesson.practice.steps[attempt.index];
  const departure=lesson.practice.setup.anchor===true&&attempt.index===0;
  if(state.anchor&&current.kind!=='anchor'&&!departure){invalidateAttempt(attempt,progress,'Anchor deployed before the stopping stage. Slow under control and restart.','early-anchor');return attempt;}
- if((state.throttle??0)!==0){invalidateAttempt(attempt,progress,'This sailing exercise requires the engine in neutral. Restart under sail.','engine-engaged');return attempt;}
+ if(lesson.practice.propulsion==='engine'){
+  if((state.mainHoist??state.sails)>.01||(state.jibHoist??state.sails)>.01){invalidateAttempt(attempt,progress,'Keep both sails lowered during marina practice. Restart the exercise.','sails-raised');return attempt;}
+  if(practiceGroundSpeed(state)>lesson.practice.maxSpeed){invalidateAttempt(attempt,progress,'Marina speed limit exceeded. Slow earlier and restart.','speed-limit');return attempt;}
+  const area=lesson.practice.area;
+  if(area&&Math.hypot(state.x-area.x,state.z-area.z)>area.radius){invalidateAttempt(attempt,progress,'You left the marina practice area. Follow the marked route and restart.','practice-area');return attempt;}
+ }else if((state.throttle??0)!==0){invalidateAttempt(attempt,progress,'This sailing exercise requires the engine in neutral. Restart under sail.','engine-engaged');return attempt;}
  const relative=windRelativeHeading(state),crossing=crossingKind(attempt.previousAngle,relative);
  if(relative===null){attempt.previousAngle=null;attempt.maneuver=null;attempt.maneuverSide=0;}
  if(crossing&&['tack','gybe'].includes(current.kind)){attempt.maneuver=crossing;attempt.maneuverSide=Math.sign(relative);}

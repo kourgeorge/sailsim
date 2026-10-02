@@ -16,12 +16,12 @@ test('every world fixture has a unique stable id and fresh mutable state',()=>{
  }
 });
 
-test('marina collider transforms match visible pier dimensions and previous berth positions',()=>{
+test('marina collider transforms match visible pier dimensions and occupied berth positions',()=>{
  const a=getWorldBodyDefinitions('haven');
  const spine=a.find(b=>b.id==='haven:marina:spine');
  assert.deepEqual([spine.x,spine.z,spine.heading,spine.shape.length,spine.shape.beam],[380,70,90,5,102]);
  const moored=a.filter(b=>b.visual.type==='yacht'&&b.kind==='moored');
- assert.deepEqual(moored.map(b=>[b.x,Math.round(b.z),b.heading]),[[367,37,270],[367,59,270],[367,81,270],[367,103,270]]);
+ assert.deepEqual(moored.map(b=>[b.x,Math.round(b.z),b.heading]),[[367,59,270],[367,81,270],[367,103,270]]);
 });
 
 test('the compass transform used by collision hulls matches THREE group rotation',()=>{

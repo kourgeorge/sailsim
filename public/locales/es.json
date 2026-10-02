@@ -39,6 +39,10 @@
     "coastal-decisions": {
       "title": "Decisiones costeras",
       "outcome": "Planifica travesías costeras prudentes, calcula márgenes sencillos y contrasta la información de navegación."
+    },
+    "marina": {
+      "title": "Maniobras prácticas en la marina",
+      "outcome": "Entra en la marina, atraca y sal utilizando el motor y el timón."
     }
   },
   "lessons": {
@@ -1667,6 +1671,159 @@
         }
       ],
       "transfer": "Ensaya un plan real con instructor de día antes de practicar de noche bajo supervisión. Aprende características luminosas y comprobaciones independientes de posición."
+    },
+    "sail-43": {
+      "title": "Entrar en la marina a motor",
+      "concepts": [
+        "Comienza fuera de Haven con ambas velas bajadas. Usa marcha avante y pequeñas correcciones de timón para seguir la aproximación señalizada. La carta y las marcas en el agua muestran el objetivo actual.",
+        "Llega a la primera marca al 090°, gira hacia la segunda al 135° y estabilízate al 180° en el canal. No superes 2,5 nudos; cada marca tiene sus propios límites de rumbo y velocidad.",
+        "Anticipa la inercia. Pasa por punto muerto y usa un breve impulso de marcha atrás para detenerte en el círculo final. Mantén menos de 0,15 nudos en punto muerto durante cinco segundos sin tocar muelles ni barcos."
+      ],
+      "observe": [
+        "Usa el deslizador del motor o W/S; N selecciona punto muerto. Centra el timón antes de pasarte.",
+        "Sigue la marca actual en la carta. El panel indica distancia, rumbo y velocidad."
+      ],
+      "mistake": "Entrar demasiado rápido y esperar hasta el círculo de parada para reducir potencia.",
+      "transfer": "Este ejercicio evalúa maniobras a motor en el modelo. Practica el atraque real, los efectos de la hélice y las amarras con un instructor cualificado.",
+      "quiz": [
+        {
+          "prompt": "¿Qué debes hacer antes de entrar en el canal estrecho?",
+          "options": [
+            "Alcanzar máxima velocidad",
+            "Bajar las velas y establecer una aproximación controlada a motor",
+            "Echar el ancla en movimiento"
+          ],
+          "explanation": "Prepara el barco y controla la velocidad antes de entrar en aguas confinadas."
+        },
+        {
+          "prompt": "¿Qué completa la parada final?",
+          "options": [
+            "Tocar el muelle",
+            "Llegar al círculo a cualquier velocidad",
+            "Mantener posición y rumbo a baja velocidad en punto muerto"
+          ],
+          "explanation": "Posición, rumbo, velocidad sobre el fondo y punto muerto deben cumplir los objetivos durante cinco segundos continuos."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Entra al 090° a 0,5–2 nudos",
+            "hint": "Aplica avante suavemente y navega al este hacia la marca ámbar."
+          },
+          {
+            "label": "Gira al canal al 135° a 0,3–1,5 nudos",
+            "hint": "Gira gradualmente a estribor, dejando los pantalanes a babor."
+          },
+          {
+            "label": "Detente en el canal al 180°, en punto muerto y por debajo de 0,15 nudos",
+            "hint": "Gira al sur, reduce pronto y frena con marcha atrás. Vuelve a punto muerto dentro del círculo verde."
+          }
+        ],
+        "debrief": "Entraste en la marina, giraste al canal y te detuviste con control del motor."
+      }
+    },
+    "sail-44": {
+      "title": "Atracar en una plaza de la marina",
+      "concepts": [
+        "La plaza norte de Haven está vacía para practicar. Comienzas en el canal mirando al este, al 090°, alineado con el espacio entre los dos pantalanes del norte.",
+        "Acércate a la marca ámbar a 0,3–1 nudo. Entra en la plaza y detén el centro del barco a menos de 2 metros del objetivo verde, al 090° ±10°. Mantén las velas bajadas y el ancla recogida.",
+        "Usa impulsos breves avante y atrás, pasando por punto muerto. Termina por debajo de 0,15 nudos en punto muerto durante cinco segundos. Tocar un muelle o barco termina el intento; las amarras no se evalúan."
+      ],
+      "observe": [
+        "El círculo verde marca el centro del barco, no la proa. Deja espacio delante y a ambos lados.",
+        "Vigila la velocidad sobre el fondo y reduce antes de llegar a la plaza."
+      ],
+      "mistake": "Usar el muelle como freno o dejar una marcha engranada al alcanzar el objetivo.",
+      "transfer": "Este ejercicio evalúa maniobras a motor en el modelo. Practica el atraque real, los efectos de la hélice y las amarras con un instructor cualificado.",
+      "quiz": [
+        {
+          "prompt": "¿Dónde debe detenerse el barco?",
+          "options": [
+            "Con la proa tocando el muelle",
+            "En cualquier lugar cercano",
+            "Centrado en la plaza, alineado y separado de obstáculos"
+          ],
+          "explanation": "Se evalúa una parada controlada y alineada dentro de la plaza, sin contacto."
+        },
+        {
+          "prompt": "El barco está alineado pero sigue moviéndose. ¿Qué falta?",
+          "options": [
+            "Controlar la inercia y terminar en punto muerto",
+            "Aumentar avante",
+            "Echar el ancla en la plaza"
+          ],
+          "explanation": "La alineación no basta. Reduce la velocidad y mantén todos los requisitos de parada."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Aproxímate a la plaza vacía al 090° a 0,3–1 nudo",
+            "hint": "Usa poca potencia avante y mantén la proa alineada con la plaza norte vacía."
+          },
+          {
+            "label": "Aparca en la plaza al 090°, en punto muerto y por debajo de 0,15 nudos",
+            "hint": "Reduce antes del círculo verde. Da un breve impulso atrás y vuelve a punto muerto. No toques el pantalán de proa."
+          }
+        ],
+        "debrief": "Entraste en la plaza y mantuviste una parada alineada sin contacto."
+      }
+    },
+    "sail-45": {
+      "title": "Desatracar y salir de la marina",
+      "concepts": [
+        "Comienzas detenido en la plaza norte con la proa al este. Las amarras ya están soltadas. Mantén las velas bajadas y usa marcha atrás para salir recto al canal.",
+        "Retrocede a la primera marca al 090° a 0,3–1,2 nudos atrás. La respuesta del timón se invierte al retroceder. Detente en el segundo objetivo y selecciona punto muerto antes de girar.",
+        "Una vez libre de los pantalanes, usa avante y timón a babor para girar al norte. Sigue las dos marcas al 000° y establece velocidad avante controlada. No superes 2,5 nudos y evita otros barcos."
+      ],
+      "observe": [
+        "Mira a popa antes de retroceder. Mantén el timón centrado en el tramo recto.",
+        "Retrocede lo suficiente para poder girar, detente y luego gira con avante."
+      ],
+      "mistake": "Girar entre los pantalanes o acelerar antes de disponer de espacio.",
+      "transfer": "Este ejercicio evalúa maniobras a motor en el modelo. Practica el atraque real, los efectos de la hélice y las amarras con un instructor cualificado.",
+      "quiz": [
+        {
+          "prompt": "¿Cuándo debes iniciar el giro de salida?",
+          "options": [
+            "Todavía dentro de la plaza",
+            "Después de retroceder y detenerte en el canal",
+            "Al seleccionar marcha atrás"
+          ],
+          "explanation": "Sal por completo de los pantalanes y recupera el control antes de girar."
+        },
+        {
+          "prompt": "¿Cómo responde el timón al retroceder?",
+          "options": [
+            "Igual que avante",
+            "No puede gobernar",
+            "Su efecto de giro se invierte"
+          ],
+          "explanation": "El flujo de agua se invierte, por lo que la misma posición del timón gira la proa al lado contrario."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Retrocede al 090° a 0,3–1,2 nudos atrás",
+            "hint": "Usa poca marcha atrás con el timón centrado. Vigila detrás del barco."
+          },
+          {
+            "label": "Detente en el canal al 090°, en punto muerto y por debajo de 0,15 nudos",
+            "hint": "Da un breve impulso avante para frenar la arrancada atrás y vuelve a punto muerto. Deja sitio para girar."
+          },
+          {
+            "label": "Gira al norte, al 000°, a 0,4–1,5 nudos",
+            "hint": "Aplica avante y timón a babor. Centra el timón al aproximarte al norte."
+          },
+          {
+            "label": "Sal de la marina al 000° a 0,5–2 nudos",
+            "hint": "Continúa al norte hacia la marca final, comprobando el rumbo y manteniendo vigilancia."
+          }
+        ],
+        "debrief": "Saliste marcha atrás, te detuviste libre de la plaza y abandonaste la marina avante."
+      }
     }
   }
 }

@@ -9,9 +9,9 @@ const headingLesson = lessons.find(lesson => lesson.id === 'sail-08');
 const state = () => Object.assign(initialState(), { heading: 45, windDirection: 315, speed: 3, windSpeed: 12, currentSpeed: 0, currentDirection: 0, throttle: 0, anchor: false, grounded: false });
 const advance = (attempt, lesson, boat, progress, seconds) => { for (let i = 0; i < seconds * 4; i++) advanceAttempt(attempt, lesson, boat, .25, progress); };
 
-test('all 19 physical practices have explicit weighted objectives and required continuous holds', () => {
+test('all 22 physical practices have explicit weighted objectives and required continuous holds', () => {
   const practices = lessons.filter(lesson => lesson.practice);
-  assert.equal(practices.length, 19);
+  assert.equal(practices.length, 22);
   for (const lesson of practices) {
     const rubric = practiceRubric(lesson);
     assert.equal(rubric.length, lesson.practice.steps.length);
@@ -25,7 +25,7 @@ test('all 19 physical practices have explicit weighted objectives and required c
   }
   assert.equal(PRACTICE_SCORE_RULES.passScore, 80);
   assert.equal(PRACTICE_SCORE_RULES.hintsAffectScore, false);
-  assert.deepEqual(PRACTICE_SCORE_RULES.criticalConditions, ['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged', 'collision']);
+  assert.deepEqual(PRACTICE_SCORE_RULES.criticalConditions, ['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged', 'collision', 'sails-raised', 'speed-limit', 'practice-area']);
 });
 
 test('elapsed time and partial dwell cannot earn score or pass, even after long waits', () => {

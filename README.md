@@ -53,13 +53,13 @@ Open **Sound** in the scene toolbar (in the mobile menu) to set music and sea vo
 
 ## Sailing school
 
-**42 lessons, 10 modules, 84 explained questions, 19 assessed sailing practices and 23 interactive seamanship scenarios (69 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
+**45 lessons, 11 modules, 90 explained questions, 22 assessed boat-handling practices and 23 interactive seamanship scenarios (69 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
 
 | Level | Lessons | Focus |
 |---|---|---|
 | Basic | 01–16 | Crew safety, wind, helm, trim and fundamental maneuvers |
 | Intermediate | 17–36 | Sail power, navigation, harbor planning and emergency decisions |
-| Advanced | 37–42 | Coastal planning, tidal clearance, current/time, weather, collision risk and night pilotage; interactive decision and numerical scenarios |
+| Advanced | 37–45 | Coastal planning, tidal clearance, current/time, weather, collision risk and night pilotage, plus practical marina entry, docking and departure |
 
 The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **100%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
 
@@ -91,10 +91,10 @@ from **Engine drills & buoy course** in Challenges.
 - On mobile, the sea fills the viewport. Floating Menu and Lesson buttons open navigation/settings and the numbered lesson picker without reserving screen space. The active goal appears as a compact overlay; its lesson sheet contains progress and practice actions. Play/pause and folding Boat controls float at the bottom. Speed, heading and depth overlays are optional via Show instruments. Menu and lesson sheets pause the simulation while open and preserve its previous playback state when dismissed.
 - Timed powered windlass with separate rode target and actual paid length, stop/resume controls, and recovery that waits for unloaded rode. Bow-based 3D anchor/rode, a six-language illustrated monitor and the chart share physical geometry. Assessments require actual payout or full stowage; stopping includes current and sideways drift.
 - Apparent-wind vectors, empirical sail forces, inertia, drag, speed-dependent steering and astern reversal, leeway, steady current, heel, grounding and a simplified anchor constraint.
-- A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 19 course practices.
+- A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 22 course practices.
 - Free sailing, a three-buoy route, live chart and wind/current controls. Touch controls and keyboard shortcuts, labelled next to each control: ← → steer, ↑ ↓ mainsheet, Q/A headsail sheet, W/S engine ahead/astern, C center the helm, N engine neutral, H raise/lower sails, R reef, L anchor, Space start/pause, M chart, K help. Start/pause, Conditions and Reset sit together in the top bar.
 
-The physics is **not calibrated against a real yacht or sea trials**. Visual waves do not apply hull forces. Prop walk, loaded line handling, spring lines, collision damage, changing tides, detailed backed sails and physical casualty recovery are not modeled. Hull contact moves and rotates movable vessels and buoys, while fixed docks and rocks remain stationary. Engine drills assess open-water model control, not docking competence. Anchor exercises assess modeled sequence and settling, not real seabed holding. All maps are fictional. Course completion is a study record, not certification or permission to skipper.
+The physics is **not calibrated against a real yacht or sea trials**. Visual waves do not apply hull forces. Prop walk, loaded line handling, spring lines, collision damage, changing tides, detailed backed sails and physical casualty recovery are not modeled. Hull contact moves and rotates movable vessels and buoys, while fixed docks and rocks remain stationary. Engine drills assess open-water model control. Lessons 43–45 assess marina entry, berth positioning and departure in the model; they do not assess mooring-line handling or real-world docking competence. Anchor exercises assess modeled sequence and settling, not real seabed holding. All maps are fictional. Course completion is a study record, not certification or permission to skipper.
 
 Translations still need nautical instructor/native-speaker review; hardware-GPU performance needs independent measurement. The app supports preparation for supervised on-water instruction.
 

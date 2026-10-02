@@ -1,0 +1,50 @@
+/* Reuse the live compass below the toolbar, independently of the legacy panel. */
+#scene-compass {
+  display: none;
+  flex: none;
+  align-self: flex-end;
+  box-sizing: border-box;
+  width: min(100%, calc(158px + 32px * (var(--text-scale, 1) - 1)));
+  padding: 14px 12px 12px;
+}
+#scene-compass:not([hidden]) { display: block; }
+#scene-compass .wind-dial {
+  display: block;
+  width: 112px;
+  height: 112px;
+  margin: 12px auto 10px;
+}
+#scene-compass .dial-n, #scene-compass .dial-s {
+  left: 50%;
+  transform: translateX(-50%);
+}
+#scene-compass .dial-e, #scene-compass .dial-w {
+  top: 50%;
+  transform: translateY(-50%);
+}
+#scene-compass #wind-arrow { width: calc(100% - 8px); height: calc(100% - 8px); }
+#scene-compass .dial-boat { left: calc(50% - 8.5px); top: calc(50% - 14px); }
+#scene-compass .wind-value { margin-top: 0; }
+#scene-compass .wind-value strong { font-size: calc(24px * var(--text-scale, 1)); }
+/* The dashboard already carries these readings; enlarged text prioritizes the dial. */
+html[data-large-text] #scene-compass .wind-value,
+html[data-large-text] #scene-compass .point-of-sail { display: none; }
+
+@media (max-width: 900px) {
+  .simulator .scene-tools {
+    position: absolute;
+    inset-block-start: calc(max(12px, env(safe-area-inset-top)) + var(--mobile-toolbar-height, 48px) + 12px);
+    inset-inline-end: max(12px, env(safe-area-inset-right));
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    max-width: calc(100% - 24px);
+    z-index: 5;
+  }
+  #scene-compass { width: calc(134px + 32px * (var(--text-scale, 1) - 1)); padding: 10px; }
+  #scene-compass .wind-dial { width: 96px; height: 96px; margin: 10px auto 0; }
+  #scene-compass .wind-value, #scene-compass .point-of-sail { display: none; }
+  .simulator.show-mobile-indicators .scene-tools {
+    inset-block-start: calc(98px + 24px * (var(--text-scale, 1) - 1) + var(--mobile-indicators-height, 60px));
+  }
+}

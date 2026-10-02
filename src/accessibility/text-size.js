@@ -81,6 +81,7 @@ export function mountTextSize(container) {
   for (const [selector, property] of [
     ['.topbar', '--topbar-height'], ['.simulation-console', '--control-dock-height'],
     ['.scene-title', '--scene-title-height'], ['.lesson-card', '--lesson-card-height'],
+    ['.mobile-scene-toolbar', '--mobile-toolbar-height'], ['.mobile-indicators', '--mobile-indicators-height'],
   ]) {
     const element = document.querySelector(selector);
     if (element) { measured.set(element, property); observer.observe(element); }

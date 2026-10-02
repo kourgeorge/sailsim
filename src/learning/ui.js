@@ -26,6 +26,7 @@ import { createLessonReader } from './reader.js';
 import { practiceRequirementsMarkup, updatePracticeRequirements } from './practice-requirements.js';
 import { createPracticeBriefing } from './practice-briefing.js';
 import { levelFor, COURSE_LEVELS } from './levels.js';
+import { marinaCues } from './marina-course.js';
 const $ = (s) => document.querySelector(s);
 const esc = (s) =>
   String(s).replace(
@@ -47,6 +48,7 @@ export function createLearning({
   onResume = () => {},
   getPaused = () => true,
   onTrainingStart = () => {},
+  setCues = () => {},
 }) {
   let saveErrorShown = false;
   const store = createProgressStore({
@@ -130,6 +132,11 @@ export function createLearning({
       r = recordFor(progress, l.id),
       mastered = completed().has(l.id),
       active = attempt?.status === 'active';
+    setCues(
+      getMode() === 'learn' && (prepared || active)
+        ? marinaCues(l, active ? attempt.index : 0)
+        : null,
+    );
     $('#card-eyebrow').textContent =
       `${modules.find((m) => m.id === l.module).title.toUpperCase()} · ${l.minutes} MIN`;
     $('#card-title').textContent = active
@@ -251,6 +258,7 @@ export function createLearning({
       scenario = decisionScenarios.find((s) => s.lessonId === l.id),
       active = attempt?.status === 'active';
     if (!active && l.practice) resetScenario(l.practice.setup);
+    setCues(marinaCues(l, active ? attempt.index : 0));
     practiceBriefing.open({
       lesson: l,
       lessonNumber: selected + 1,
@@ -437,6 +445,7 @@ export function createLearning({
     };
   }
   function cancel(reason) {
+    setCues(null);
     practiceBriefing.close();
     prepared = false;
     decision.close();
@@ -477,7 +486,7 @@ export function createLearning({
       `${s.duration ? Math.min(100, (attempt.held / s.duration) * 100) : 0}%`;
     const groundRow = $('#practice-ground-speed');
     if (groundRow) {
-      groundRow.hidden = !['coast', 'anchor'].includes(s.kind);
+      groundRow.hidden = !['coast', 'anchor', 'engineStop'].includes(s.kind);
       if (!groundRow.hidden) {
         const speed = practiceGroundSpeed(state),
           limit = practiceStopThreshold(s);
@@ -565,6 +574,17 @@ export function createLearning({
     },
     get practiceActive() {
       return attempt?.status === 'active';
+    },
+    get chart() {
+      const l = current();
+      return getMode() === 'learn' &&
+        l.practice?.chart &&
+        (prepared || attempt?.status === 'active')
+        ? {
+            ...l.practice.chart,
+            cues: marinaCues(l, attempt?.status === 'active' ? attempt.index : 0),
+          }
+        : null;
     },
     get training() {
       return decision.isOpen;

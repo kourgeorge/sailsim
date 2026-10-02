@@ -27,8 +27,8 @@ try{
   await page.locator('input[name="q0"][value="1"]').check();await page.locator('#knowledge-form button').click();await page.locator('#reader-next').click();await page.locator('input[name="q1"][value="1"]').check();await page.locator('#knowledge-form button').click();
   await expect(page.locator('#answer-1')).toContainText(pack.lessons['sail-01'].quiz[1].explanation);
   await page.locator('#reader-close').click();
-  await expect(page.locator('#progress-label')).toHaveText('0 / 42');
-  await page.locator('#course-library').click();assert.equal(await page.locator('[data-library-lesson]').count(),42);assert.equal(await page.locator('.course-library section').count(),10);await page.locator('#close-modal').click();
+  await expect(page.locator('#progress-label')).toHaveText('0 / 45');
+  await page.locator('#course-library').click();assert.equal(await page.locator('[data-library-lesson]').count(),45);assert.equal(await page.locator('.course-library section').count(),11);await page.locator('#close-modal').click();
   await page.setViewportSize({width:390,height:844});await page.waitForTimeout(1200);
   assert.ok(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth),`${code}: no horizontal overflow`);
   assert.equal(await page.locator('#rudder').evaluate(el=>getComputedStyle(el).direction),'ltr',`${code}: physical helm direction not mirrored`);
@@ -37,7 +37,7 @@ try{
   results.push({code,passed:true,dir:await page.locator('html').getAttribute('dir')});
   console.log('Locale passed:',code);
   // Exercise the real switcher: returning to English must keep the same course record.
-  if(code!=='en'){await page.locator('#language-select').selectOption('en');await page.waitForFunction(()=>document.documentElement.lang==='en'&&document.querySelector('#progress-label')?.textContent==='0 / 42',{timeout:120000});}
+  if(code!=='en'){await page.locator('#language-select').selectOption('en');await page.waitForFunction(()=>document.documentElement.lang==='en'&&document.querySelector('#progress-label')?.textContent==='0 / 45',{timeout:120000});}
   // Clear only the browser-test record so each language starts at the same first lesson.
   await page.evaluate(()=>localStorage.removeItem('sail-training-v1'));
   await page.setViewportSize({width:1440,height:1000});

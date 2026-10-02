@@ -24,6 +24,7 @@ const telemetryKeys = ['heading', 'speed', 'leeway', 'depth', 'x', 'z', 'rudder'
 export const WINDLASS_ASSESSMENT_VERSION = 1;
 /** Shared by assessment and feedback so the displayed stop target cannot drift. */
 export function practiceStopThreshold(check) {
+  if(check?.kind==='engineStop')return check.value.maxSpeed;
   if (check?.kind === 'coast' && Number.isFinite(check.value)) return check.value;
   return check?.kind === 'anchor' && check.value === true ? .2 : null;
 }
@@ -58,7 +59,7 @@ export const PRACTICE_SCORE_RULES = Object.freeze({
   passScore: 80, maxScore: 100, failedScoreCap: 79,
   holdLossThresholdSeconds: 1, holdLossPenalty: 2, holdLossPenaltyCap: 20,
   hintsAffectScore: false,
-  criticalConditions: Object.freeze(['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged', 'collision']),
+  criticalConditions: Object.freeze(['grounding', 'conditions-changed', 'early-anchor', 'engine-engaged', 'collision', 'sails-raised', 'speed-limit', 'practice-area']),
 });
 
 export function practiceRubric(lesson) {

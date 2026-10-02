@@ -3,6 +3,7 @@ import { shoreScale } from '../rendering/geography.js';
 import { drawAnchorChart } from '../anchoring/diagram.js';
 import { anchorSnapshot } from '../anchor.js';
 import { translate as t } from '../i18n/runtime.js';
+import { localToWorld } from '../world/bodies.js';
 
 export function createChartRenderer({
   getState,
@@ -187,13 +188,33 @@ export function createChartRenderer({
     if (training) {
       const { gate, target, corridor } = training.cues;
       ctx.save();
+      if (training.cues.route) {
+        ctx.strokeStyle = '#93c5ae88';
+        ctx.lineWidth = 1;
+        ctx.setLineDash([4, 4]);
+        ctx.beginPath();
+        training.cues.route.forEach((point, i) => {
+          const p = map(point.x, point.z);
+          i ? ctx.lineTo(...p) : ctx.moveTo(...p);
+        });
+        ctx.stroke();
+        ctx.setLineDash([]);
+        ctx.fillStyle = '#e0dec2';
+        ctx.font = `${w > 300 ? 14 : 9}px sans-serif`;
+        ctx.textAlign = 'left';
+        for (const point of training.cues.route) {
+          const [x, y] = map(point.x, point.z);
+          ctx.fillText(String(point.number), x + 5, y - 7);
+        }
+      }
       ctx.strokeStyle = '#efc27d';
       ctx.lineWidth = 2;
       if (gate) {
-        const [gx, gy] = map(gate.x, gate.z);
+        const a = localToWorld({ ...gate, heading: gate.heading ?? 0 }, -gate.width / 2, 0),
+          b = localToWorld({ ...gate, heading: gate.heading ?? 0 }, gate.width / 2, 0);
         ctx.beginPath();
-        ctx.moveTo(gx - (gate.width * scale) / 2, gy);
-        ctx.lineTo(gx + (gate.width * scale) / 2, gy);
+        ctx.moveTo(...map(a.x, a.z));
+        ctx.lineTo(...map(b.x, b.z));
         ctx.stroke();
       }
       if (target) {
@@ -206,8 +227,11 @@ export function createChartRenderer({
       if (corridor) {
         ctx.strokeStyle = '#93c5ae';
         for (const sign of [-1, 1]) {
-          const a = map(corridor.x + (sign * corridor.width) / 2, corridor.z - corridor.length / 2),
-            b = map(corridor.x + (sign * corridor.width) / 2, corridor.z + corridor.length / 2);
+          const origin = { ...corridor, heading: corridor.heading ?? 0 },
+            pa = localToWorld(origin, (sign * corridor.width) / 2, -corridor.length / 2),
+            pb = localToWorld(origin, (sign * corridor.width) / 2, corridor.length / 2);
+          const a = map(pa.x, pa.z),
+            b = map(pb.x, pb.z);
           ctx.beginPath();
           ctx.moveTo(...a);
           ctx.lineTo(...b);

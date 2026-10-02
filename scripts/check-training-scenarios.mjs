@@ -11,6 +11,19 @@ export const scenarioState=createPracticeState;
 /** A feedback helm controller, not a perfect trajectory: all motion goes through step(). */
 export function steer(s,heading){s.rudder=clamp(angleDifference(heading,s.heading)*1.8-s.yawRate*5,-35,35);}
 function hoist(s,value){s.mainHoist=s.jibHoist=s.sails=value;}
+// Verification pilot uses only the same throttle/helm controls as the learner.
+// It never moves the boat or completes an objective directly.
+export function steerMarina(state,lesson,index){
+ const check=lesson.practice.steps[index],p=check.value,dx=p.x-state.x,dz=p.z-state.z,distance=Math.hypot(dx,dz);
+ const reversing=check.kind==='engineWaypoint'?p.speed[1]<0:lesson.practice.steps[index-1]?.value.speed?.[1]<0;
+ const sign=reversing?-1:1,bearing=wrap(Math.atan2(dx,-dz)*180/Math.PI+(reversing?180:0));
+ const heading=distance<Math.max(9,p.radius)?p.heading:bearing;
+ state.rudder=clamp((angleDifference(heading,state.heading)*1.8-state.yawRate*5)*sign,-35,35);
+ let desired=check.kind==='engineStop'?sign*Math.min(.8,distance*.09):p.speed.reduce((a,b)=>a+b)/2;
+ if(check.kind==='engineStop'&&distance<p.radius*.7)desired=0;
+ const u=desired*.514444,feed=(58*u+38*u*Math.abs(u))/(desired<0?1050:1650);
+ state.throttle=desired===0&&Math.abs(state.speed)<.08?0:clamp((desired-state.speed)*1.5+feed,-.7,.7);
+}
 export function runScenario(lesson,{maxSeconds=1200,dt=.1}={}){
  const state=scenarioState(lesson.practice.setup),progress=restoreProgress(null),attempt=beginAttempt(lesson,state,progress),checkpoints=[];
  let target=null,previousIndex=-1,minDepth=Infinity,maxSpeed=0,crossings=[];let previousRelative=angleDifference(state.heading,state.windDirection);
@@ -37,7 +50,8 @@ export function runScenario(lesson,{maxSeconds=1200,dt=.1}={}){
   case 'anchor':if(check.value){if(!state.anchor)applyControlPatch(state,{anchor:true});hoist(state,0);}else if(state.anchor&&state.anchorRode!==0)applyControlPatch(state,{anchor:false});break;
   case 'waypoint':target=wrap(Math.atan2(check.value.x-state.x,state.z-check.value.z)*180/Math.PI);break;
   }
-  steer(state,target);step(state,dt);
+  if(lesson.practice.propulsion==='engine')steerMarina(state,lesson,attempt.index);else steer(state,target);
+  step(state,dt);
   minDepth=Math.min(minDepth,state.depth);maxSpeed=Math.max(maxSpeed,state.speed);
   const nowRelative=angleDifference(state.heading,state.windDirection);
   if(Math.sign(previousRelative)!==Math.sign(nowRelative))crossings.push({time:+t.toFixed(1),kind:Math.abs(previousRelative)+Math.abs(nowRelative)<180?'bow':'stern'});
