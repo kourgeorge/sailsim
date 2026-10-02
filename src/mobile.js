@@ -121,6 +121,11 @@ export function mountMobileLayout() {
     selected = id;
     update();
   });
+  // Dismiss on the completed tap so its pointer gesture cannot also orbit the
+  // camera. Tabs retain their own switch/toggle action; controls keep theirs.
+  document.addEventListener('click', event => {
+    if (mobile.matches && open && !drawer.contains(event.target) && !tabs.contains(event.target)) dismissControls();
+  }, true);
   tabs.addEventListener('keydown', event => {
     const visible = panels.filter(({button}) => !button.hidden);
     const index = visible.findIndex(({button}) => button === event.target);

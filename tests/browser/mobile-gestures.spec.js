@@ -185,6 +185,31 @@ test('a diagonal slider drag keeps changing the sail control without scrolling i
   await expect(page.locator('#mobile-controls-drawer')).toHaveClass(/is-open/);
 });
 
+test('tapping outside mobile controls closes the pane while inside controls and tabs remain usable', async ({
+  page,
+}) => {
+  await explore(page);
+  const drawer = page.locator('#mobile-controls-drawer');
+  await page.locator('#mobile-tab-sails').tap();
+  await page.locator('.cockpit-group-sheets .control-title label').tap();
+  await expect(drawer).toBeVisible();
+  await page.locator('#mobile-tab-helm').tap();
+  await expect(page.locator('#rudder')).toBeVisible();
+  await page.locator('#center-helm').tap();
+  await expect(drawer).toBeVisible();
+  await page.touchscreen.tap(160, 290);
+  await expect(drawer).toBeHidden();
+  await expect(page.locator('#mobile-tab-helm')).toHaveAttribute('aria-selected', 'false');
+  await page.locator('#mobile-tab-helm').tap();
+  await expect(drawer).toBeVisible();
+  await page.locator('#mobile-tab-helm').tap();
+  await expect(drawer).toBeHidden();
+  await page.locator('#mobile-tab-sails').tap();
+  await page.locator('#play').tap();
+  await expect(drawer).toBeHidden();
+  await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');
+});
+
 test(
   'open mobile controls take priority over camera gestures in the 3D scene',
   { tag: '@webgl' },
@@ -204,6 +229,9 @@ test(
     const beforePan = await frames();
     await swipe(client, { x: 100, y: 300 }, { x: 210, y: 320 });
     expect(await frames()).toBe(beforePan);
+    // Some touch browsers synthesize a click after this gesture as well.
+    if (!(await page.locator('#mobile-controls-drawer').isVisible()))
+      await page.locator('#mobile-tab-sails').tap();
     const slider = page.locator('#trim');
     await slider.fill('10');
     await settle();
@@ -214,7 +242,8 @@ test(
       { x: box.x + box.width - 12, y: box.y - 40 },
     );
     expect(Number(await slider.inputValue())).toBeGreaterThan(70);
-    await page.locator('#mobile-controls-close').tap();
+    await page.touchscreen.tap(160, 290);
+    await expect(page.locator('#mobile-controls-drawer')).toBeHidden();
     await settle();
     const beforeCompass = await frames();
     const compass = await page.locator('#scene-compass').boundingBox();
