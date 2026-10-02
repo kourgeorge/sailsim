@@ -9,6 +9,7 @@ import { syncBodyTransform, impactMotion } from './rendering/body-motion.js';
 import { disposeSceneResources } from './rendering/dispose.js';
 import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 import { createRaceVisuals } from './racing/visuals.js';
+import { createHelmCamera } from './rendering/helm-camera.js';
 
 export function createScene(container, { locationId = 'haven' } = {}) {
   let dirty = true,
@@ -123,6 +124,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     target = new THREE.Vector3(),
     desired = new THREE.Vector3(),
     up = new THREE.Vector3(0, 1, 0);
+  const helmCamera = createHelmCamera();
   const views = {
     chase: { fov: 47 },
     helm: { fov: 72 },
@@ -244,64 +246,57 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     container.dataset.worldVessels = String(vessels.length);
     container.dataset.worldBodies = String(worldBodies.size);
     const heading = (state.heading * Math.PI) / 180,
-      framing = Math.max(1, 0.9 / camera.aspect);
+      framing = Math.max(1, 0.9 / camera.aspect),
+      smooth = 1 - Math.exp(-dt * 7);
+    let cameraMoving;
     if (view === 'helm') {
-      // Look over the pedestal from farther aft so it does not fill the
-      // navigation view, especially on a narrow phone screen.
-      offset.set(0, 3.65, 6.7);
-      offset.applyMatrix4(
-        yacht.group.matrix.clone().identity().makeRotationFromEuler(yacht.group.rotation),
-      );
-      desired.copy(offset).add(yacht.group.position);
-      target
-        .set(Math.sin(orbit) * 14, 1.7 - elevation * 12, -Math.cos(orbit) * 18)
-        .applyAxisAngle(up, -heading)
-        .add(yacht.group.position);
-    } else if (view === 'deck') {
-      // Orbit around the cockpit from outside the hull. Portrait screens need
-      // more distance to retain the deck and surrounding water horizontally.
-      const cockpitFraming = Math.max(1, 0.85 / camera.aspect);
-      target.set(0, 1.5, 1).applyAxisAngle(up, -heading).add(yacht.group.position);
-      offset
-        .set(7 * Math.cos(orbit), 4.5 + elevation * 5, 6 + Math.sin(orbit) * 7)
-        .multiplyScalar(zoom * cockpitFraming)
-        .applyAxisAngle(up, -heading);
-      desired.copy(target).add(offset);
-    } else if (view === 'aerial') {
-      offset
-        .set(Math.sin(orbit) * 55 * zoom, (85 + elevation * 40) * zoom, Math.cos(orbit) * 55 * zoom)
-        .applyAxisAngle(up, -heading);
-      desired.copy(offset).add(yacht.group.position);
-      target.set(state.x, 0, state.z);
+      cameraMoving = helmCamera.update(camera, yacht.group, { orbit, elevation, smooth });
     } else {
-      const angle = orbit + 0.68;
-      offset
-        .set(
-          Math.sin(angle) * 30 * zoom * framing,
-          (11 + elevation * 20) * zoom * framing,
-          Math.cos(angle) * 30 * zoom * framing,
-        )
-        .applyAxisAngle(up, -heading);
-      desired.copy(offset).add(yacht.group.position);
-      target.set(state.x, 6.8, state.z);
+      if (view === 'deck') {
+        // Orbit around the cockpit from outside the hull. Portrait screens need
+        // more distance to retain the deck and surrounding water horizontally.
+        const cockpitFraming = Math.max(1, 0.85 / camera.aspect);
+        target.set(0, 1.5, 1).applyAxisAngle(up, -heading).add(yacht.group.position);
+        offset
+          .set(7 * Math.cos(orbit), 4.5 + elevation * 5, 6 + Math.sin(orbit) * 7)
+          .multiplyScalar(zoom * cockpitFraming)
+          .applyAxisAngle(up, -heading);
+        desired.copy(target).add(offset);
+      } else if (view === 'aerial') {
+        offset
+          .set(
+            Math.sin(orbit) * 55 * zoom,
+            (85 + elevation * 40) * zoom,
+            Math.cos(orbit) * 55 * zoom,
+          )
+          .applyAxisAngle(up, -heading);
+        desired.copy(offset).add(yacht.group.position);
+        target.set(state.x, 0, state.z);
+      } else {
+        const angle = orbit + 0.68;
+        offset
+          .set(
+            Math.sin(angle) * 30 * zoom * framing,
+            (11 + elevation * 20) * zoom * framing,
+            Math.cos(angle) * 30 * zoom * framing,
+          )
+          .applyAxisAngle(up, -heading);
+        desired.copy(offset).add(yacht.group.position);
+        target.set(state.x, 6.8, state.z);
+      }
+      camera.position.lerp(desired, smooth);
+      cameraMoving = camera.position.distanceToSquared(desired) > 1e-6;
+      if (!cameraMoving) camera.position.copy(desired);
+      camera.lookAt(target);
     }
-    const smooth = 1 - Math.exp(-dt * 7);
-    camera.position.lerp(desired, smooth);
-    camera.lookAt(target);
     const helmFov = camera.aspect < 1 ? 90 : views.helm.fov;
     const desiredFov =
       view === 'helm' ? THREE.MathUtils.clamp(helmFov * zoom, 25, 100) : views[view].fov;
     camera.fov = THREE.MathUtils.lerp(camera.fov, desiredFov, smooth);
+    const zoomMoving = Math.abs(camera.fov - desiredFov) > 0.001;
+    if (!zoomMoving) camera.fov = desiredFov;
     camera.updateProjectionMatrix();
-    dirty =
-      camera.position.distanceToSquared(desired) > 1e-6 ||
-      Math.abs(camera.fov - desiredFov) > 0.001;
-    if (!dirty) {
-      camera.position.copy(desired);
-      camera.fov = desiredFov;
-      camera.lookAt(target);
-      camera.updateProjectionMatrix();
-    }
+    dirty = cameraMoving || zoomMoving;
     renderer.render(scene, camera);
     const sceneCalls = renderer.info.render.calls,
       sceneTriangles = renderer.info.render.triangles;
@@ -341,6 +336,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     },
     setView(v) {
       if (disposed || !views[v]) return;
+      if (view !== v) helmCamera.reset();
       view = v;
       orbit = 0;
       elevation = 0;
