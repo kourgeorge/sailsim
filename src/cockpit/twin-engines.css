@@ -1,23 +1,28 @@
 .twin-engines {
   border: 0;
   border-top: 1px solid #ffffff26;
-  padding: 6px 0 0;
-  margin: 6px 0 0;
+  padding: 4px 0 0;
+  margin: 4px 0 0;
   min-width: 0;
 }
 .twin-engines[hidden] {
   display: none;
 }
 .twin-engines legend {
-  padding: 0 4px;
-  color: #e8cb96;
-  font-size: calc(11px * var(--text-scale, 1));
+  position: absolute;
+  inline-size: 1px;
+  block-size: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
 }
 .twin-engine-pair {
   container: twin-engine-pair / inline-size;
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
-  gap: 10px;
+  gap: 8px;
   font-size: calc(11px * var(--text-scale, 1));
 }
 .twin-engines label {
@@ -64,29 +69,21 @@
   margin: 8px 0 0;
 }
 @media (min-width: 901px) {
-  .helm-dashboard > .twin-engines {
-    flex: 0 0 25%;
-    margin: 0;
-    padding: 0;
-    padding-inline-end: 12px;
-    border: 0;
-    border-inline-end: 1px solid #ffffff12;
+  .twin-engines label {
+    font-size: calc(10px * var(--text-scale, 1));
+    color: #a9c3c4;
   }
-  .helm-dashboard > .twin-engines legend {
-    position: absolute;
-    inline-size: 1px;
-    block-size: 1px;
-    padding: 0;
-    margin: -1px;
-    overflow: hidden;
-    clip-path: inset(50%);
-    white-space: nowrap;
-  }
-  /* Each throttle now shows its own value beside the instruments. */
-  .helm-dashboard:has(> .twin-engines:not([hidden]))
+  .control-dock:has(.twin-engines:not([hidden]))
+    .helm-dashboard
     .dashboard-reading:last-child
     .dashboard-detail {
     display: none;
+  }
+}
+@media (min-width: 901px) and (pointer: fine) {
+  .simulator .control-dock.cockpit-controls .twin-engines input[type='range'] {
+    height: 14px;
+    min-height: 14px;
   }
 }
 .vessel-choice {

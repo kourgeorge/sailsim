@@ -47,6 +47,8 @@ html[dir=rtl] .section-backdrop{transform:scaleX(-1)}
 .section-detail-card{width:min(540px,100%);max-width:100%;padding:24px;border:1px solid #ffffff2b;border-radius:14px;background:#102f3dd9;color:#e8eeea}
 .section-detail-card p{font-size:calc(13px * var(--text-scale,1));line-height:1.7;color:#c2d7d9}
 .section-detail-card>p:first-child{margin-top:0}
+.section-detail-card .vessel-choice{min-width:0;grid-template-columns:minmax(0,1fr)}
+.section-detail-card .vessel-choice select{width:100%;min-width:0}
 .section-detail-card .training-actions{gap:10px;margin-top:16px}
 .section-detail-card .training-button{min-height:44px;font-size:calc(13px * var(--text-scale,1));padding:10px 15px;color:#e8eeea;border-color:#ffffff40;white-space:normal;overflow-wrap:anywhere}
 .section-detail-card .training-button.primary{background:#e7c58e;color:#18343b;border-color:#e7c58e}
