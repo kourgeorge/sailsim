@@ -271,6 +271,10 @@ test('actual instrument checkpoints still complete and save a physical assessmen
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-paused');
   await page.locator('#close-modal').click();
   await expect(page.locator('.practice-debrief')).toContainText('Training passed');
+  await expect(page.locator('.practice-debrief .sailing-track canvas')).toHaveAttribute(
+    'data-track-points',
+    /\d+/,
+  );
   await expect
     .poll(async () => (await record(page)).records?.['sail-04']?.lastPracticeResult?.score)
     .toBe(100);

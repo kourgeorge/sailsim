@@ -87,5 +87,12 @@ const rows={
 'Required reports':['Informes requeridos','Rapports requis','Обязательные сведения','דיווחים נדרשים','التقارير المطلوبة'],
 'Attempt':['Intento','Tentative','Попытка','ניסיון','محاولة'],
 'Best continuous hold':['Mejor mantenimiento continuo','Meilleur maintien continu','Лучшее непрерывное удержание','הרצף הארוך ביותר','أفضل استمرار متواصل'],
+'Your sailing path':['Tu recorrido de navegación','Votre parcours de navigation','Ваш маршрут плавания','מסלול ההפלגה שלך','مسار إبحارك'],
+'Start position':['Posición inicial','Position de départ','Начальная позиция','נקודת התחלה','موضع البداية'],
+'End position':['Posición final','Position finale','Конечная позиция','נקודת סיום','موضع النهاية'],
+'Challenge debrief':['Resumen del desafío','Bilan du défi','Разбор испытания','סיכום האתגר','مراجعة التحدي'],
+'Course complete':['Recorrido completado','Parcours terminé','Маршрут пройден','המסלול הושלם','اكتمل المسار'],
+'Challenge ended':['Desafío terminado','Défi terminé','Испытание завершено','האתגר הסתיים','انتهى التحدي'],
+'Race ended':['Regata terminada','Course terminée','Гонка завершена','המרוץ הסתיים','انتهى السباق'],
 };
 export const trainingUI=Object.fromEntries(languages.map((lang,index)=>[lang,Object.fromEntries(Object.entries(rows).map(([key,values])=>[key,values[index]]))]));

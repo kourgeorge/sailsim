@@ -1,5 +1,6 @@
 import { RACE_COURSES, RACE_DIFFICULTIES, createRace, advanceRace, raceStandings } from './race.js';
 import { translate as t } from '../i18n/runtime.js';
+import { mountSailingTrack } from '../navigation/sailing-track-view.js';
 import './race.css';
 const esc = (value) =>
   String(value).replace(
@@ -167,6 +168,9 @@ export function createRaceUI({
     openModal(
       `<section class="race-results" data-no-translate><div class="eyebrow">${tr('RACE RESULTS')}</div><h2>${tr(completed ? (position === 1 ? 'You won!' : 'Across the finish.') : race.reason)}</h2><p>${tr(race.course.name)} · ${tr(RACE_DIFFICULTIES[race.difficulty].name)}</p><div class="race-result-score">${completed ? `<strong dir="ltr">${position}<small> / 4</small></strong><time dir="ltr">${clock(player.finished)}</time>` : `<strong>${tr('Did not finish')}</strong>`}</div>${improved ? `<p class="race-best">${tr('New personal best')}</p>` : ''}<ol class="race-result-list">${standings.map((item) => `<li><i style="background:${item.color}"></i><span>${tr(item.name)}</span><bdi>${item.finished !== null ? clock(item.finished) : tr('Unfinished')}</bdi></li>`).join('')}</ol><p>${tr('Finish times decide places. Unfinished boats are ordered by course progress.')}</p><div class="training-actions"><button id="race-again" class="training-button primary">${tr('Race again')}</button><button id="race-other" class="training-button">${tr('All races')}</button><button id="race-result-exit" class="training-button">${tr('Free sailing')}</button></div></section>`,
     );
+    const map = document.createElement('div');
+    document.querySelector('.race-result-list').before(map);
+    mountSailingTrack(map, race.track, { marks: race.course.marks });
     document.querySelector('#race-again').onclick = () => {
       selected = race.course.id;
       difficulty = race.difficulty;
@@ -182,6 +186,15 @@ export function createRaceUI({
     library,
     briefing,
     options,
+    end() {
+      if (!race) return;
+      if (race.status !== 'finished') {
+        race.status = 'finished';
+        race.reason = 'Race ended';
+      }
+      update();
+      results();
+    },
     restart: start,
     get current() {
       return race;

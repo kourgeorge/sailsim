@@ -4,6 +4,7 @@ import {practiceConditions} from './practice-conditions.js';
 import {windOverWater} from '../physics.js';
 import { restoreDecisionResult } from './decision-evidence.js';
 import { practiceGroundSpeed } from './practice-assessment.js';
+import { createSailingTrack, captureSailingTrack } from '../navigation/sailing-track.js';
 export { practiceRubric, practiceAssessment, PRACTICE_SCORE_RULES } from './practice-assessment.js';
 
 export const STORAGE_KEY='sail-training-v1';
@@ -54,6 +55,7 @@ export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
  const attempt={id:globalThis.crypto?.randomUUID?.()??`${lesson.id}-${Date.now()}-${Math.random().toString(36).slice(2)}`,lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:windRelativeHeading(state),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
+ attempt.track=createSailingTrack(state);
  if(state.contactActive===true){attempt.objectives[0].evidence=practiceEvidence(state,attempt);invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));}
  return attempt;
 }
@@ -67,6 +69,7 @@ function satisfied(check,state,attempt){
 export function advanceAttempt(attempt,lesson,state,dt,progress){
  if(!attempt||attempt.status!=='active')return attempt;
  if(!Number.isFinite(dt)||dt<=0||dt>.25)return attempt; // No wall-clock credit after sleeping or tab suspension.
+ captureSailingTrack(attempt.track,state,attempt.elapsed+dt);
  if(attempt.objectives?.[attempt.index])attempt.objectives[attempt.index].evidence=practiceEvidence(state,attempt);
  if(hasPlayerCollision(state,attempt.collisionBaseline)){invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));return attempt;}
  if(state.grounded){invalidateAttempt(attempt,progress,'Grounding ended this attempt. Review the chart and restart with sea room.','grounding');return attempt;}

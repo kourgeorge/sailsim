@@ -135,6 +135,8 @@ test.describe('session lifecycle', () => {
     await page.locator('#session-restart').click();
     await expect(page.locator('#objective-text')).toContainText('buoy 1 of 3');
     await page.locator('#session-exit').click();
+    await expect(page.locator('.challenge-debrief .sailing-track canvas')).toBeVisible();
+    await page.locator('#challenge-exit').click();
     await page.locator('button[data-mode=challenge]').click();
     await page.locator('[data-race-course]').first().click();
     await page.locator('#race-start').click();
@@ -142,9 +144,12 @@ test.describe('session lifecycle', () => {
     await page.locator('#session-restart').click();
     await expect(page.locator('#race-clock')).toHaveText('0:00');
     await page.locator('#session-exit').click();
-    await expect(page.locator('#race-hud')).toBeHidden();
-    await expect(page.locator('.race-library')).toBeVisible();
+    await expect(page.locator('.race-results .sailing-track canvas')).toBeVisible();
+    await expect(page.locator('#race-hud')).toHaveAttribute('data-race-status', 'finished');
     await expect(page.locator('body')).toHaveAttribute('data-session', 'outside');
+    await page.locator('#race-result-exit').click();
+    await expect(page.locator('#race-hud')).toBeHidden();
+    await expect(page.locator('.simulator')).toHaveAttribute('data-mode', 'explore');
     expect(errors).toEqual([]);
   });
 

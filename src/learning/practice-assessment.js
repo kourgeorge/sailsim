@@ -2,6 +2,7 @@
 // Every objective uses the existing engine predicate, including its continuous hold.
 import { groundVelocity, KNOT, windOverWater } from '../physics.js';
 import { anchorSnapshot } from '../anchor.js';
+import { sailingTrackSnapshot, restoreSailingTrack } from '../navigation/sailing-track.js';
 const finite = value => Number.isFinite(value) ? Math.max(-1e7, Math.min(value, 1e7)) : null;
 const bounded = (value, max = 1e7) => Number.isFinite(value) && value >= 0 ? Math.min(value, max) : 0;
 const round = value => Math.round(value * 1000) / 1000;
@@ -139,7 +140,9 @@ export function practiceAssessment(attempt, lesson) {
   const rawScore = Math.max(0, Math.round(completionScore - penalties.reduce((sum, penalty) => sum + penalty.points, 0)));
   const passed = attempt.status === 'passed' && complete === objectives.length && objectives.length > 0 && !attempt.criticalFailure && rawScore >= PRACTICE_SCORE_RULES.passScore;
   const status = attempt.status === 'active' ? 'active' : passed ? 'passed' : 'failed';
+  const track = status === 'active' ? null : sailingTrackSnapshot(attempt.track);
   return {
+    ...(track ? { track } : {}),
     ...(typeof attempt.id==='string'?{id:attempt.id}:{}),
     version: 1, windlassAssessmentVersion: attempt.windlassAssessmentVersion===WINDLASS_ASSESSMENT_VERSION?WINDLASS_ASSESSMENT_VERSION:null,
     lessonId: lesson.id, status, score: status === 'failed' ? Math.min(PRACTICE_SCORE_RULES.failedScoreCap, rawScore) : rawScore,
@@ -190,7 +193,7 @@ export function restorePracticeAssessment(value, lesson) {
   const criticalFailure = value.criticalFailure && typeof value.criticalFailure.code === 'string' && typeof value.criticalFailure.message === 'string' ? { code: value.criticalFailure.code.slice(0, 60), message: value.criticalFailure.message.slice(0, 240) } : null;
   if (criticalFailure?.code === 'collision') criticalFailure.collision = collisionEvidence(value.criticalFailure.collision);
   if (value.status === 'passed' && criticalFailure) return null;
-  const report=practiceAssessment({ id:typeof value.id==='string'&&value.id.length<=160?value.id:undefined,lessonId: lesson.id,windlassAssessmentVersion, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
+  const report=practiceAssessment({ id:typeof value.id==='string'&&value.id.length<=160?value.id:undefined,lessonId: lesson.id,windlassAssessmentVersion, status: value.status === 'passed' ? 'passed' : 'invalid', objectives, hints: Math.floor(bounded(value.hints, 100000)), elapsed: bounded(value.elapsed), attemptNumber: Math.floor(bounded(value.attemptNumber, 100000)), criticalFailure, track:restoreSailingTrack(value.track), message: typeof value.debrief?.reason === 'string' ? value.debrief.reason.slice(0, 240) : '' }, lesson);
   if(!windlassAssessmentVersion&&rubric.some(objective=>objective.kind==='anchor'))report.debrief.summary=typeof value.debrief?.summary==='string'?value.debrief.summary.slice(0,1000):null;
   return report;
 }

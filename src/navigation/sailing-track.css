@@ -1,0 +1,36 @@
+.sailing-track {
+  margin: 22px 0;
+  min-width: 0;
+}
+.sailing-track figcaption {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.sailing-track figcaption span {
+  opacity: 0.75;
+}
+.sailing-track canvas {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 20 / 13;
+  border: 1px solid #527579;
+  border-radius: 12px;
+}
+.sailing-track-legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 18px;
+  margin-top: 10px;
+  font-size: calc(12px * var(--text-scale, 1));
+}
+.sailing-track-start,
+.sailing-track-route {
+  color: #74ead5;
+}
+.sailing-track-end {
+  color: #f4c87b;
+}

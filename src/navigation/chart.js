@@ -4,22 +4,26 @@ import { drawAnchorChart } from '../anchoring/diagram.js';
 import { anchorSnapshot } from '../anchor.js';
 import { translate as t } from '../i18n/runtime.js';
 import { localToWorld } from '../world/bodies.js';
+import { sailingTrackFrame } from './sailing-track.js';
 
 export function createChartRenderer({
   getState,
   getTraining,
   getChallengeIndex,
   getRace = () => null,
+  getTrack = () => null,
 }) {
-  return function drawChart(canvas) {
+  return function drawChart(canvas, { pixelRatio = 1 } = {}) {
     if (!canvas) return;
     const state = getState(),
-      race = getRace();
+      race = getRace(),
+      track = getTrack();
     let training = getTraining();
     const challengeIndex = race ? race.racers[0].mark : getChallengeIndex();
     const ctx = canvas.getContext('2d'),
-      w = canvas.width,
-      h = canvas.height;
+      w = canvas.width / pixelRatio,
+      h = canvas.height / pixelRatio;
+    ctx.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
     if (race) {
       const points = [
         race.course.start,
@@ -38,17 +42,20 @@ export function createChartRenderer({
         cues: {},
       };
     }
+    if (track) training = sailingTrackFrame(track.samples, track.marks, w / h);
     ctx.clearRect(0, 0, w, h);
     ctx.fillStyle = '#173d47';
     ctx.fillRect(0, 0, w, h);
     const location = getLocation(state.locationId),
       islands = location.islands,
-      buoys = race
-        ? race.course.marks
-        : location.buoys.map(
-            (b, i) =>
-              state.worldBodies?.find((body) => body.id === `${location.id}:buoy:${i}`) || b,
-          ),
+      buoys = track
+        ? track.marks || []
+        : race
+          ? race.course.marks
+          : location.buoys.map(
+              (b, i) =>
+                state.worldBodies?.find((body) => body.id === `${location.id}:buoy:${i}`) || b,
+            ),
       scale =
         w /
         (training
@@ -240,26 +247,58 @@ export function createChartRenderer({
       }
       ctx.restore();
     }
-    drawAnchorChart(ctx, map, scale, anchorSnapshot(state));
-    const [x, y] = map(state.x, state.z);
-    canvas.dataset.vesselVisible = String(x >= 0 && x <= w && y >= 0 && y <= h);
-    ctx.save();
-    ctx.translate(x, y);
-    ctx.rotate((state.heading * Math.PI) / 180);
-    ctx.fillStyle = '#f4f2da';
-    ctx.beginPath();
-    ctx.moveTo(0, -8);
-    ctx.lineTo(5, 6);
-    ctx.lineTo(0, 3);
-    ctx.lineTo(-5, 6);
-    ctx.closePath();
-    ctx.fill();
-    ctx.restore();
+    if (track) {
+      ctx.save();
+      ctx.strokeStyle = '#74ead5';
+      ctx.lineWidth = 3;
+      ctx.lineJoin = ctx.lineCap = 'round';
+      ctx.beginPath();
+      track.samples.forEach((sample, index) => {
+        const p = map(sample.x, sample.z);
+        index ? ctx.lineTo(...p) : ctx.moveTo(...p);
+      });
+      ctx.stroke();
+      const start = track.samples[0],
+        end = track.samples.at(-1);
+      const [sx, sy] = map(start.x, start.z),
+        [ex, ey] = map(end.x, end.z);
+      ctx.fillStyle = '#173d47';
+      ctx.beginPath();
+      ctx.arc(sx, sy, 6, 0, Math.PI * 2);
+      ctx.fill();
+      ctx.stroke();
+      ctx.fillStyle = '#f4c87b';
+      ctx.fillRect(ex - 4, ey - 4, 8, 8);
+      ctx.restore();
+      canvas.dataset.trackPoints = String(track.samples.length);
+    } else {
+      drawAnchorChart(ctx, map, scale, anchorSnapshot(state));
+      const [x, y] = map(state.x, state.z);
+      canvas.dataset.vesselVisible = String(x >= 0 && x <= w && y >= 0 && y <= h);
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate((state.heading * Math.PI) / 180);
+      ctx.fillStyle = '#f4f2da';
+      ctx.beginPath();
+      ctx.moveTo(0, -8);
+      ctx.lineTo(5, 6);
+      ctx.lineTo(0, 3);
+      ctx.lineTo(-5, 6);
+      ctx.closePath();
+      ctx.fill();
+      ctx.restore();
+    }
     ctx.fillStyle = '#a7c4c5';
     ctx.font = `${w > 300 ? 13 : 10}px sans-serif`;
     ctx.textAlign = 'left';
     ctx.fillText('N ↑', 12, 21);
-    const barMetres = race ? 100 : training ? 25 : 250,
+    const barMetres = track
+        ? Math.max(1, 10 ** Math.floor(Math.log10(w / scale / 5)))
+        : race
+          ? 100
+          : training
+            ? 25
+            : 250,
       barLength = barMetres * scale;
     ctx.strokeStyle = '#a7c4c5';
     ctx.beginPath();

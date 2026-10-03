@@ -1,4 +1,6 @@
 import { createChartRenderer } from './navigation/chart.js';
+import { createSailingTrack, captureSailingTrack } from './navigation/sailing-track.js';
+import { mountSailingTrack } from './navigation/sailing-track-view.js';
 import './style.css';
 import { mountSimulationControls } from './activity/ui.js';
 import { playbackIcon } from './activity/playback-icon.js';
@@ -59,7 +61,8 @@ async function startApp() {
     camera = 'chase',
     challengeIndex = 0,
     challengeDone = false,
-    challengeTime = 0;
+    challengeTime = 0,
+    challengeTrack = null;
   let learning,
     vesselControls,
     lab,
@@ -97,6 +100,12 @@ async function startApp() {
     learning?.refresh();
   }
   function setMode(value) {
+    if (value === 'challenge') {
+      challengeIndex = 0;
+      challengeDone = false;
+      challengeTime = 0;
+      challengeTrack = null;
+    }
     if (value !== 'race') racing?.leave();
     if (value !== mode) freeSailingStarted = false;
     learning?.closeReader();
@@ -353,6 +362,7 @@ async function startApp() {
     challengeIndex = 0;
     challengeDone = false;
     challengeTime = 0;
+    challengeTrack = null;
     setMode(mode === 'maneuver' ? 'explore' : mode);
     syncControls();
     toast('Boat returned to the practice grounds. Your lesson progress is saved.');
@@ -362,6 +372,26 @@ async function startApp() {
     if (!$('#modal').open) $('#modal').showModal();
     $('#modal').scrollTop = 0;
     keys?.clear();
+  }
+  function finishChallenge(completed) {
+    challengeDone = true;
+    freeSailingStarted = false;
+    playback.pause();
+    openModal(
+      `<section class="challenge-debrief"><div class="eyebrow">${t('Challenge debrief')}</div><h2>${t(completed ? 'Course complete' : 'Challenge ended')}</h2><p>${t('Course buoys')}: <bdi>${challengeIndex} / 3</bdi> · <bdi>${Math.floor(challengeTime / 60)}:${String(Math.floor(challengeTime % 60)).padStart(2, '0')}</bdi></p><div id="challenge-track"></div><div class="training-actions"><button id="challenge-again" class="training-button primary">${t('Try again')}</button><button id="challenge-exit" class="training-button">${t('Free sailing')}</button></div></section>`,
+    );
+    mountSailingTrack($('#challenge-track'), challengeTrack || createSailingTrack(state), {
+      marks: getLocation(state.locationId).buoys,
+    });
+    $('#challenge-again').onclick = () => {
+      $('#modal').close();
+      restartSession();
+    };
+    $('#challenge-exit').onclick = () => {
+      $('#modal').close();
+      setMode('explore');
+      syncControls();
+    };
   }
   $('#close-modal').onclick = () => $('#modal').close();
   $('#modal').addEventListener('click', (e) => {
@@ -436,6 +466,7 @@ async function startApp() {
         challengeIndex = 0;
         challengeDone = false;
         challengeTime = 0;
+        challengeTrack = null;
         setMode('explore');
         syncControls();
         updateLocation();
@@ -576,6 +607,8 @@ async function startApp() {
     }
     if (playback.canTickDecision) learning.tickDecision(dt);
     if (playback.canSimulate) {
+      if (mode === 'challenge' && !challengeDone && !challengeTrack)
+        challengeTrack = createSailingTrack(state);
       sceneTime += dt;
       if (mode === 'race') racing?.tick(dt);
       else step(state, dt);
@@ -592,6 +625,7 @@ async function startApp() {
       lab?.tick(dt);
       if (mode === 'challenge' && !challengeDone) {
         challengeTime += dt;
+        captureSailingTrack(challengeTrack, state, challengeTime);
         const buoys = getLocation(state.locationId).buoys,
           target = buoys[challengeIndex];
         if (Math.hypot(state.x - target.x, state.z - target.z) < 35) {
@@ -600,6 +634,7 @@ async function startApp() {
             challengeDone = true;
             $('#objective-text').textContent =
               `Course complete in ${Math.floor(challengeTime / 60)}m ${Math.floor(challengeTime % 60)}s`;
+            finishChallenge(true);
             toast('Three marks rounded. Course complete!');
           } else {
             $('#objective-text').textContent = `Next mark: buoy ${challengeIndex + 1} of 3`;
@@ -775,10 +810,9 @@ async function startApp() {
     playback.pause();
     if (mode === 'learn') learning.endPractice();
     else if (mode === 'maneuver') lab.end();
-    else if (mode === 'race') {
-      setMode('explore');
-      racing.library();
-    } else freeSailingStarted = false;
+    else if (mode === 'race') racing.end();
+    else if (mode === 'challenge') finishChallenge(false);
+    else freeSailingStarted = false;
     syncControls();
   }
   function restartSession() {
@@ -795,6 +829,7 @@ async function startApp() {
       challengeIndex = 0;
       challengeDone = false;
       challengeTime = 0;
+      challengeTrack = null;
       setMode(mode);
       setStartingCamera();
       playback.resume();

@@ -7,6 +7,7 @@ import { getWorldBodyDefinitions, getWorldRockDefinitions } from '../world/bodie
 import { syncBodyTransform } from './body-motion.js';
 import { islandHeight,shoreScale } from './geography.js';
 import { installHullWaterExclusion } from './hull-geometry.js';
+import { createMobileWater } from './mobile-water.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,seededRandom,batchStaticMeshes } from './materials.js';
 
 function normalTexture(){
@@ -47,17 +48,20 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const clouds=cloudDome();clouds.visible=quality.clouds;scene.add(clouds);
  scene.add(new THREE.HemisphereLight('#cde9ff','#53503f',1.25));
  const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
- const water=new Water(new THREE.PlaneGeometry(12000,12000),{textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:'#217887',distortionScale:2.8,fog:true});
+ const waterGeometry=new THREE.PlaneGeometry(12000,12000),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:'#217887'};
+ const water=quality.reflectionSize>0
+  ?new Water(waterGeometry,{...waterOptions,textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,distortionScale:2.8,fog:true})
+  :createMobileWater(waterGeometry,waterOptions);
  water.rotation.x=-Math.PI/2;water.position.y=-.07;water.material.uniforms.size.value=2.3;
  // Replace the overly reflective default with water's physical normal-incidence Fresnel value.
- water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
+ if(water.isWater)water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
  const excludeHullWater=installHullWaterExclusion(water.material);
  scene.add(water);
  // Water keeps its reflection target in a closure and exposes no dispose method.
  // Capture that target through the renderer's public API on its first reflection.
- const reflect=water.onBeforeRender;
+ const reflect=water.onBeforeRender,reflectionTexture=water.material.uniforms.mirrorSampler?.value;
  let reflectionTarget=null,reflectionFrame=0,environmentDisposed=false;
- water.onBeforeRender=function(...args){
+ if(water.isWater)water.onBeforeRender=function(...args){
   if(environmentDisposed || reflectionFrame++%quality.reflectionInterval!==0)return;
   if(reflectionTarget){reflect.apply(this,args);return;}
   const drawingRenderer=args[0],setTarget=drawingRenderer.setRenderTarget;
@@ -150,11 +154,12 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   birdObjects.forEach(({group,wings},i)=>{const a=time*.026+i*.65;group.position.set(location.islands[0].x+Math.cos(a)*130,24+i*2+Math.sin(time*.7+i)*1.3,location.islands[0].z+Math.sin(a)*90);group.rotation.y=-a;wings.forEach((w,j)=>w.rotation.z=Math.sin(time*2.9+i)*.22*(j?1:-1));});
   wake.position.set(state.x-Math.sin(state.heading*Math.PI/180)*26,.01,state.z+Math.cos(state.heading*Math.PI/180)*26);wake.rotation.z=state.heading*Math.PI/180;wake.visible=state.speed>.4;wake.material.opacity=Math.min(.66,state.speed*.1);
  },dispose(){
-  const ownedTextures=new Set([environmentMap.texture,water.material.uniforms.mirrorSampler.value]);
+  const ownedTextures=new Set([environmentMap.texture]);
+  if(reflectionTexture)ownedTextures.add(reflectionTexture);
   if(environmentDisposed)return ownedTextures;
   environmentDisposed=true;water.onBeforeRender=()=>{};
   environmentMap.dispose();
-  if(reflectionTarget)reflectionTarget.dispose();else water.material.uniforms.mirrorSampler.value.dispose();
+  if(reflectionTarget)reflectionTarget.dispose();else reflectionTexture?.dispose();
   reflectionTarget=null;
   return ownedTextures;
  }};

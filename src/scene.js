@@ -10,7 +10,7 @@ import { disposeSceneResources } from './rendering/dispose.js';
 import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 import { createRaceVisuals } from './racing/visuals.js';
 import { createHelmCamera } from './rendering/helm-camera.js';
-import { createRenderQuality } from './rendering/quality.js';
+import { createRenderQuality, isMobileGraphicsDevice } from './rendering/quality.js';
 
 export function createScene(container, { locationId = 'haven' } = {}) {
   let dirty = true,
@@ -34,9 +34,15 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     debug = gl.getExtension('WEBGL_debug_renderer_info');
   const software =
     debug && /swiftshader|llvmpipe|software/i.test(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL));
-  // Include tablets with a connected mouse, even when their primary pointer is fine.
   const quality = createRenderQuality({
-    touch: window.matchMedia('(any-pointer: coarse)').matches || navigator.maxTouchPoints > 1,
+    touch: isMobileGraphicsDevice({
+      userAgent: navigator.userAgent,
+      platform: navigator.platform,
+      maxTouchPoints: navigator.maxTouchPoints,
+      mobile: navigator.userAgentData?.mobile,
+      coarsePointer: window.matchMedia('(pointer: coarse)').matches,
+      finePointer: window.matchMedia('(any-pointer: fine)').matches,
+    }),
     software,
     pixelRatio: devicePixelRatio,
   });
@@ -44,6 +50,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   renderer.setPixelRatio(renderBudget.pixelRatio);
   container.dataset.quality = renderBudget.name;
   container.dataset.pixelRatio = String(renderBudget.pixelRatio);
+  container.dataset.waterReflections = String(renderBudget.reflectionSize > 0);
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
@@ -53,7 +60,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   container.append(renderer.domElement);
   renderer.domElement.setAttribute(
     'aria-label',
-    'Detailed 3D sailing yacht with working cockpit instruments, reflective sea and wooded island harbor',
+    'Detailed 3D sailing yacht with working cockpit instruments, animated sea and wooded island harbor',
   );
   const camera = new THREE.PerspectiveCamera(
     47,

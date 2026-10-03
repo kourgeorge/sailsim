@@ -1,22 +1,78 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { createRenderQuality } from '../src/rendering/quality.js';
+import { createRenderQuality, isMobileGraphicsDevice } from '../src/rendering/quality.js';
 
 function runFrames(quality, durationMs, frameMs) {
   for (let elapsed = 0; elapsed < durationMs; elapsed += frameMs) quality.recordFrame(frameMs);
   return quality.current;
 }
 
-test('phones and tablets start with a smaller graphics budget, without affecting desktop detail', () => {
+test('phones and tablets prioritize resolution over reflections, without affecting desktop detail', () => {
   const mobile = createRenderQuality({ touch: true, pixelRatio: 3 }).current;
   const desktop = createRenderQuality({ pixelRatio: 2 }).current;
   assert.equal(mobile.name, 'balanced');
   assert.equal(desktop.name, 'high');
-  assert.ok(mobile.pixelRatio < desktop.pixelRatio);
-  assert.ok(mobile.reflectionSize < desktop.reflectionSize);
+  assert.equal(mobile.pixelRatio, 1.75);
+  assert.equal(mobile.reflectionSize, 0);
+  assert.equal(mobile.reflectionInterval, 0);
   assert.ok(mobile.shadowSize < desktop.shadowSize);
-  assert.ok(mobile.reflectionInterval > desktop.reflectionInterval);
+  assert.equal(desktop.pixelRatio, 2);
+  assert.equal(desktop.reflectionSize, 512);
+  assert.equal(desktop.reflectionInterval, 1);
   assert.equal(createRenderQuality({ pixelRatio: 1 }).current.pixelRatio, 1);
+  assert.equal(createRenderQuality({ touch: true, pixelRatio: 1 }).current.pixelRatio, 1);
+});
+
+test('desktop keeps native resolution and original reflections through sustained slow frames', () => {
+  const quality = createRenderQuality({ pixelRatio: 3 });
+  const original = quality.current;
+  runFrames(quality, 60000, 100);
+  assert.equal(quality.current, original);
+  assert.equal(original.pixelRatio, 3);
+  assert.equal(original.reflectionSize, 512);
+  assert.equal(original.reflectionInterval, 1);
+  assert.equal(original.shadowSize, 1024);
+  assert.equal(original.clouds, true);
+});
+
+test('touch desktops retain desktop graphics while phones and tablets use mobile graphics', () => {
+  assert.equal(
+    isMobileGraphicsDevice({
+      userAgent: 'Mozilla/5.0 (Windows NT 10.0; Win64; x64)',
+      maxTouchPoints: 10,
+      coarsePointer: true,
+      finePointer: true,
+    }),
+    false,
+  );
+  assert.equal(
+    isMobileGraphicsDevice({
+      userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+      platform: 'MacIntel',
+      maxTouchPoints: 0,
+      finePointer: true,
+    }),
+    false,
+  );
+  assert.equal(
+    isMobileGraphicsDevice({
+      userAgent: 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7)',
+      platform: 'MacIntel',
+      maxTouchPoints: 5,
+      finePointer: true,
+    }),
+    true,
+  );
+  assert.equal(
+    isMobileGraphicsDevice({ userAgent: 'Mozilla/5.0 (iPhone; CPU iPhone OS 18_0)' }),
+    true,
+  );
+  assert.equal(
+    isMobileGraphicsDevice({ userAgent: 'Mozilla/5.0 (Linux; Android 15)', finePointer: true }),
+    true,
+  );
+  assert.equal(isMobileGraphicsDevice({ mobile: true }), true);
+  assert.equal(isMobileGraphicsDevice({ coarsePointer: true }), true);
 });
 
 test('slowdowns well after startup progressively reduce work while keeping a resolution floor', () => {
@@ -27,10 +83,13 @@ test('slowdowns well after startup progressively reduce work while keeping a res
   assert.equal(reduced.name, 'low');
   assert.equal(reduced.shadowSize, 0);
   assert.equal(reduced.clouds, false);
+  assert.equal(reduced.pixelRatio, 1.5);
+  assert.equal(reduced.reflectionSize, 0);
   const minimum = runFrames(quality, 30000, 50);
   assert.equal(minimum.name, 'minimum');
-  assert.ok(minimum.pixelRatio >= 0.8);
-  assert.ok(minimum.reflectionInterval > reduced.reflectionInterval);
+  assert.equal(minimum.pixelRatio, 1.25);
+  assert.equal(minimum.reflectionSize, 0);
+  assert.equal(minimum.reflectionInterval, 0);
 });
 
 test('one hitch does not blur the scene or toggle rendering features', () => {
@@ -84,4 +143,11 @@ test('software rendering keeps its compatibility budget', () => {
   runFrames(quality, 60000, 1000 / 60);
   runFrames(quality, 60000, 100);
   assert.equal(quality.current, original);
+  assert.equal(original.reflectionSize, 256);
+  const mobile = createRenderQuality({ touch: true, software: true, pixelRatio: 3 });
+  assert.equal(mobile.current.name, 'compatibility');
+  assert.equal(mobile.current.reflectionSize, 0);
+  assert.equal(mobile.current.reflectionInterval, 0);
+  runFrames(mobile, 60000, 1000 / 60);
+  assert.equal(mobile.current.reflectionSize, 0);
 });

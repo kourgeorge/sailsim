@@ -33,6 +33,13 @@ const profiles = [
     clouds: false,
   },
 ];
+// Spend the mobile budget on a clearer main view, without a second scene pass.
+const mobileProfiles = profiles.slice(1).map((profile, index) => ({
+  ...profile,
+  pixelRatio: [1.75, 1.5, 1.25][index],
+  reflectionSize: 0,
+  reflectionInterval: 0,
+}));
 const compatibility = {
   name: 'compatibility',
   pixelRatio: 0.7,
@@ -42,19 +49,37 @@ const compatibility = {
   clouds: false,
 };
 
+export function isMobileGraphicsDevice({
+  userAgent = '',
+  platform = '',
+  maxTouchPoints = 0,
+  mobile = false,
+  coarsePointer = false,
+  finePointer = false,
+} = {}) {
+  if (mobile || /Android|iPhone|iPad|iPod/i.test(userAgent)) return true;
+  // iPadOS can identify itself as a Mac, including with a mouse connected.
+  if (platform === 'MacIntel' && maxTouchPoints > 1) return true;
+  // Touchscreens alone must not lower graphics on desktop operating systems.
+  if (/Windows NT|CrOS|Macintosh|X11/i.test(userAgent)) return false;
+  return coarsePointer && !finePointer;
+}
+
 export function createRenderQuality({ touch = false, software = false, pixelRatio = 1 } = {}) {
-  const bestLevel = touch ? 1 : 0;
-  const budgets = profiles.map((profile) => ({
+  const budgets = (touch ? mobileProfiles : [profiles[0]]).map((profile) => ({
     ...profile,
-    pixelRatio: Math.min(pixelRatio, profile.pixelRatio),
+    pixelRatio: touch ? Math.min(pixelRatio, profile.pixelRatio) : pixelRatio,
   }));
-  let level = bestLevel,
+  const fallback = touch
+    ? { ...compatibility, reflectionSize: 0, reflectionInterval: 0 }
+    : compatibility;
+  let level = 0,
     frames = 0,
     slowFrames = 0,
     windowMs = 0,
     fastMs = 0,
     settleMs = 1000;
-  const current = () => (software ? compatibility : budgets[level]);
+  const current = () => (software ? fallback : budgets[level]);
   function resetWindow() {
     frames = 0;
     slowFrames = 0;
@@ -71,7 +96,8 @@ export function createRenderQuality({ touch = false, software = false, pixelRati
     },
     resetTiming,
     recordFrame(durationMs) {
-      if (software) return current();
+      // Hardware desktops retain native resolution and full reflections.
+      if (software || !touch) return current();
       // Background tabs, paused views and initial loading are not GPU samples.
       if (!Number.isFinite(durationMs) || durationMs <= 0 || durationMs > 1000) {
         resetTiming();
@@ -97,7 +123,7 @@ export function createRenderQuality({ touch = false, software = false, pixelRati
       } else if (average < 19) {
         fastMs += windowMs;
         // Recover detail much more slowly than shedding work, to avoid flicker.
-        if (fastMs >= 15000 && level > bestLevel) {
+        if (fastMs >= 15000 && level > 0) {
           level--;
           fastMs = 0;
           settleMs = 1000;

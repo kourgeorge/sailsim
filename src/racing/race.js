@@ -10,6 +10,7 @@ import {
   VESSEL,
 } from '../physics.js';
 import { createRigidBody, PLAYER_HULL, solveContacts } from '../collisions.js';
+import { createSailingTrack, captureSailingTrack } from '../navigation/sailing-track.js';
 
 export const RACE_COURSES = [
   {
@@ -122,6 +123,7 @@ export function createRace(courseId, difficulty = 'club') {
     difficulty,
     racers,
     player: racers[0].state,
+    track: createSailingTrack(racers[0].state),
     countdown: 5,
     elapsed: 0,
     accumulator: 0,
@@ -290,6 +292,7 @@ export function advanceRace(race, dt, { autopilotPlayer = false } = {}) {
         racer.finished = race.elapsed + entry * FIXED_STEP;
     }
     race.elapsed += FIXED_STEP;
+    captureSailingTrack(race.track, race.player, race.elapsed);
     if (race.racers[0].finished !== null || race.player.grounded || race.elapsed >= 900) {
       race.status = 'finished';
       race.reason = race.player.grounded
