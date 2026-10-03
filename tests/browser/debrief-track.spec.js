@@ -80,8 +80,8 @@ test('ending a fleet challenge shows the route and restarting clears the previou
   await page.locator('#session-exit').click();
   await page.locator('#cover-review').click();
   expect(await mapPoints(page)).toBe(1);
-  await page.locator('#race-result-exit').click();
-  await expect(page.locator('.simulator')).toHaveAttribute('data-mode', 'explore');
+  await page.locator('#race-other').click();
+  await expect(page.locator('[data-section-page=challenge]')).toBeVisible();
   expect(errors).toEqual([]);
 });
 

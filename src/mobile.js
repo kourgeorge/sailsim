@@ -234,7 +234,10 @@ export function mountMobileLayout() {
   lessonDescription.className = 'mobile-lesson-description';
   lessonSummary.setAttribute('aria-labelledby', lessonTitle.id);
   lessonSummary.append(lessonTitle, lessonDescription);
-  toolbar.append(menuButton, lessonButton, lessonSummary);
+  toolbar.append(menuButton);
+  const sectionNavigation = document.querySelector('.cover-navigation');
+  if (sectionNavigation) toolbar.append(sectionNavigation);
+  toolbar.append(lessonButton, lessonSummary);
   simulator.append(toolbar);
   const sheet = (id, title, trigger) => {
     const dialog = document.createElement('dialog');

@@ -14,7 +14,7 @@ async function fallback(context) {
 test('five challenges launch, pause, restart and end with a recorded path without disrupting races', async ({
   page,
   context,
-}) => {
+}, testInfo) => {
   await fallback(context);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
@@ -24,8 +24,10 @@ test('five challenges launch, pause, restart and end with a recorded path withou
   await expect(page.locator('[data-race-course]')).toHaveCount(3);
   for (const definition of CHALLENGES) {
     await page.locator(`[data-sailing-challenge="${definition.id}"]`).click();
-    await expect(page.locator('.challenge-briefing h2')).toHaveText(definition.name);
+    await expect(page.locator('#cover-challenge-briefing h2')).toHaveText(definition.name);
     await expect(page.locator('.challenge-rule')).toHaveText(definition.instructions);
+    if (definition.kind === 'treasure')
+      await page.screenshot({ path: testInfo.outputPath('treasure-entry.png') });
     await page.locator('#challenge-start').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
     await expect(page.locator('#challenge-hud')).toHaveAttribute(
@@ -80,8 +82,8 @@ test('five challenges launch, pause, restart and end with a recorded path withou
   await expect(page.locator('#race-hud')).toBeVisible();
   await page.locator('#session-exit').click();
   await page.locator('#cover-review').click();
-  await page.locator('#race-result-exit').click();
-  await expect(page.locator('#cover-start-free')).toBeVisible();
+  await page.locator('#race-other').click();
+  await expect(page.locator('[data-section-page=challenge]')).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -126,6 +128,7 @@ test('all locales fit 200% mobile text, with an accessible live objective and si
     expect(
       await page.locator('#section-cover').evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
     ).toBe(true);
+    await page.locator('#cover-browser-title').click();
     await page.locator('[data-sailing-challenge=anchor-bullseye]').click();
     await page.locator('#challenge-start').click();
     await expect(page.locator('#challenge-hud')).toBeVisible();
@@ -194,7 +197,9 @@ test('rescue marker and challenge cues render, pause and clear from the actual 3
   await page.locator('#close-modal').click();
   await page.locator('#session-exit').click();
   await page.locator('#cover-review').click();
-  await page.locator('#adventure-exit').click();
+  await page.locator('#adventure-library').click();
+  await expect(page.locator('[data-section-page=challenge]')).toBeVisible();
+  await page.locator('[data-mode=explore]').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-rescue-marker', 'false');
   await expect(page.locator('#challenge-hud')).toBeHidden();
   expect(errors).toEqual([]);

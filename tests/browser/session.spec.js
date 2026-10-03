@@ -10,7 +10,7 @@ async function selectLesson(page, index) {
 async function expectSession(page) {
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
   await expect(page.locator('#location-select')).toBeHidden();
-  await expect(page.locator('.scene-title')).toBeHidden();
+  await expect(page.locator('.scene-title:visible')).toHaveCount(0);
   if (page.viewportSize().width <= 900) {
     await expect(page.locator('#mobile-menu-toggle')).toBeInViewport({ ratio: 1 });
     await expect(page.locator('#mobile-menu')).toBeHidden();
@@ -150,9 +150,9 @@ test.describe('session lifecycle', () => {
     await expect(page.locator('.race-results .sailing-track canvas')).toBeVisible();
     await expect(page.locator('#race-hud')).toHaveAttribute('data-race-status', 'finished');
     await expect(page.locator('body')).toHaveAttribute('data-session', 'outside');
-    await page.locator('#race-result-exit').click();
+    await page.locator('#race-other').click();
     await expect(page.locator('#race-hud')).toBeHidden();
-    await expect(page.locator('.simulator')).toHaveAttribute('data-mode', 'explore');
+    await expect(page.locator('[data-section-page=challenge]')).toBeVisible();
     expect(errors).toEqual([]);
   });
 

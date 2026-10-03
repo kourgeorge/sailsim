@@ -1,68 +1,80 @@
-/* Covers are normal section pages. Only an active session exposes the cockpit. */
-body[data-session=outside] .workspace>.sidebar{display:none!important}
-html[data-text-size] body[data-session=outside] .workspace{display:block;min-height:0;height:calc(100dvh - var(--topbar-height,86px))}
-html[data-text-size] body[data-session=outside] .simulator{height:100%;min-height:0;background:#0e303d;overflow:hidden}
+/* The original curriculum-and-detail layout is shared by every section. */
+html[data-text-size] body[data-session=outside] .workspace{display:grid;grid-template-columns:276px minmax(0,1fr);min-height:0;height:calc(100dvh - var(--topbar-height,86px))}
+body[data-session=outside] .workspace>.sidebar{display:flex!important}
+html[data-text-size] body[data-session=outside] .simulator{height:100%;min-height:0;background:#102e3b;overflow:hidden}
 body[data-session=outside] .simulator>:is(.scene-vignette,.scene-tools,.right-instruments,.scene-footer,.simulation-console,.mobile-controls-drawer,.mobile-control-tabs,.mobile-indicators,.lesson-card,.maneuver-live,#race-hud,#challenge-hud,.mobile-course){display:none!important}
 body[data-session=outside] #scene{visibility:hidden}
 body[data-session=outside] #systems-drawer{display:none!important}
-body[data-session=outside] .mobile-scene-toolbar>:not(#mobile-menu-toggle){display:none!important}
+body[data-session=outside] .mobile-scene-toolbar>:not(#mobile-menu-toggle,.cover-navigation){display:none!important}
 body[data-session=outside] #mobile-menu :is(.mobile-menu-tools,.mobile-session-tools){display:none!important}
-.section-cover{position:relative;z-index:3;height:100%;overflow:auto;overscroll-behavior:contain;color:#ebf1e9;background:radial-gradient(ellipse at 92% 0%,#32676d66,transparent 55%),linear-gradient(155deg,#123846,#0a2732);padding:clamp(24px,4vw,64px);font-size:calc(14px * var(--text-scale,1))}
+
+/* Still frames of our yacht renderer keep section browsing light on the GPU. */
+.section-backdrop{display:none;position:absolute;inset:0;z-index:1;pointer-events:none;background-color:#102e3b;background-image:linear-gradient(90deg,#082632ed 0%,#082632c9 30%,#08263255 52%,#0826320d 78%),linear-gradient(0deg,#08263299,transparent 55%),var(--section-image);background-size:cover;background-position:center}
+body[data-session=outside] .section-backdrop{display:block}
+body[data-section=learn]{--section-image:url('/section-backgrounds/learn.webp')}
+body[data-section=explore]{--section-image:url('/section-backgrounds/explore.webp')}
+body[data-section=challenge]{--section-image:url('/section-backgrounds/challenge.webp')}
+html[dir=rtl] .section-backdrop{transform:scaleX(-1)}
+.section-cover{position:relative;z-index:3;height:100%;overflow:auto;overscroll-behavior:contain;color:#ebf1e9;font-size:calc(14px * var(--text-scale,1))}
 .section-cover:focus{outline:none}
-.section-cover[hidden],.section-page[hidden]{display:none!important}
-.section-page{width:100%;max-width:1120px;margin:0 auto;padding-bottom:32px;overflow-wrap:anywhere}
-.cover-heading{max-width:740px;margin-bottom:32px}
-.cover-heading h1,.section-cover .race-library h2{font-family:Georgia,serif;font-weight:400;font-size:clamp(32px,calc(44px * var(--text-scale,1)),72px);line-height:1.15;margin:12px 0 18px;letter-spacing:-.025em}
-.cover-heading p,.section-cover .race-library>p{font-size:calc(15px * var(--text-scale,1));line-height:1.7;color:#bcd2d4;max-width:640px;margin-bottom:22px}
-.section-cover .eyebrow,.cover-subheading{color:#d9bd8b;font-size:calc(11px * var(--text-scale,1));font-weight:650;letter-spacing:.09em}
-.cover-subheading{margin-bottom:14px}
-.section-cover .training-button{min-height:44px;padding:11px 18px;font-size:calc(13px * var(--text-scale,1));white-space:normal;overflow-wrap:anywhere}
-.cover-navigation{display:none}
-html[data-text-size] body[data-session=outside] .section-cover #lesson-cover{height:auto;padding:28px;border:1px solid #ffffff2b;background:#143c478c;border-radius:16px;gap:14px;overflow:visible;display:flex}
-html[data-text-size] body[data-session=outside] .section-cover #lesson-cover .scene-title{max-width:none}
-html[data-text-size] body[data-session=outside] .section-cover #lesson-cover .scene-title h2{font-size:calc(26px * var(--text-scale,1));margin:10px 0}
-html[data-text-size] body[data-session=outside] .section-cover #lesson-cover .lesson-card{background:none;border:0;box-shadow:none;padding:0!important;width:100%;max-width:720px}
-.cover-waters{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.cover-water{position:relative;display:flex;flex-direction:column;min-width:0;border:1px solid #ffffff2b;background:#153d48;border-radius:14px;overflow:hidden;text-align:start;color:inherit;transition:border-color .15s,background .15s}
-.cover-water:hover{background:#1d4b54;border-color:#b8d9ce}
-.cover-water[aria-pressed=true]{border-color:#e4c490;box-shadow:0 0 0 1px #e4c490}
-.cover-water>span{display:grid;gap:10px;padding:18px}
-.cover-water strong{font-size:calc(18px * var(--text-scale,1));font-weight:550}
-.cover-water small{font-size:calc(12px * var(--text-scale,1));line-height:1.6;color:#b9cfd1}
-.cover-water-check{position:absolute;inset:12px 12px auto auto;width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#e4c490;color:#183942;visibility:hidden}
-.cover-water[aria-pressed=true] .cover-water-check{visibility:visible}
-.cover-water-chart{display:block;width:100%;height:175px;background:#102f3d}
-.cover-water-chart polygon{fill:#587e70;stroke:#9eb493;stroke-width:1}
-.cover-chart-grid{fill:none;stroke:#ffffff0c}
-.cover-water-chart text{fill:#b5cfcc;font:12px sans-serif}
-.cover-chart-boat{fill:#ffe4b3;stroke:#ffe4b3}
-.cover-launch{display:flex;align-items:center;justify-content:space-between;gap:24px;padding:24px;margin-top:24px;background:#ffffff08;border:1px solid #ffffff20;border-radius:12px}
-.cover-launch strong{font-size:calc(18px * var(--text-scale,1))}
-.cover-launch p{font-size:calc(12px * var(--text-scale,1));color:#bcd2d4;line-height:1.7;margin:10px 0 0}
-.cover-launch .training-actions{margin:0;flex-shrink:0}
-.cover-review{display:flex;align-items:center;justify-content:space-between;gap:16px;padding:16px 20px;margin-bottom:28px;border:1px solid #b8cfbb44;border-radius:10px;background:#254c493f;color:#c8dfd3}
-.cover-review[hidden]{display:none}
-.section-cover .race-library>h3{margin-top:42px;font-size:calc(25px * var(--text-scale,1));font-weight:450}
-.section-cover .challenge-catalog{grid-template-columns:repeat(2,minmax(0,1fr))}
+.section-cover[hidden],.section-page[hidden],.sidebar>[hidden],.section-sidebar[hidden],[data-sidebar-page][hidden],.mobile-course[hidden],#lesson-cover[hidden],.cover-navigation[hidden],.cover-section-browser[hidden],#cover-course[hidden],.cover-review[hidden]{display:none!important}
+.section-page{height:100%;min-width:0;overflow-wrap:anywhere}
+#cover-current-lesson{display:contents}
+.section-sidebar{display:flex;flex-direction:column;min-height:0;flex:1}
+.section-sidebar .sidebar-heading{padding-bottom:18px}
+.section-group-list{min-height:0}
+.section-group-list .lesson-row{display:flex;align-items:center;text-align:start;border-radius:0;border:0;border-inline-start:2px solid transparent;background:none;box-shadow:none}
+.section-group-list .lesson-row>span:last-child{min-width:0;flex:1}
+.section-group-list .lesson-row :is(strong,small){display:block}
+.section-group-list .lesson-row small{color:#96afb5}
+.section-group-list .lesson-row:hover{background:#ffffff06}
+.section-group-list .lesson-row.active{background:#23424c;border-inline-start-color:#e7c58e}
+.section-group-list .lesson-row.active .lesson-index{background:#e7c58e;color:#18343b;border-color:#e7c58e}
+.section-group-list .lesson-row .lesson-index{font-size:calc(11px * var(--text-scale,1));font-variant-numeric:tabular-nums}
+.section-group-list .course-module summary{white-space:normal}
+.cover-navigation,.cover-section-browser,.cover-mobile-course{display:none}
+
+/* Match the existing lesson cover's title, spacing, card and buttons. */
+.section-detail{height:auto;min-height:100%;display:flex;flex-direction:column;justify-content:safe center;gap:28px;padding:clamp(28px,5vw,80px)}
+#cover-challenge-briefing{display:flex;flex-direction:column;gap:28px}
+.section-detail .scene-title{position:static;display:block;inset:auto;margin:0;padding:0;background:none;max-width:720px;opacity:1;transform:none}
+.section-detail .scene-title h2{font-family:Manrope,sans-serif;font-size:clamp(30px,calc(38px * var(--text-scale,1)),72px);font-weight:500;line-height:1.15;max-width:100%;margin:18px 0;letter-spacing:-1.3px}
+.section-detail .scene-title>span,.section-detail .scene-title>.eyebrow{font-size:calc(11px * var(--text-scale,1));font-weight:650;letter-spacing:1.8px;color:#e7c58e}
+.section-detail .scene-title p{font-size:calc(15px * var(--text-scale,1));line-height:1.6;max-width:560px;color:#c2d7d9}
+.section-detail-card{width:min(540px,100%);max-width:100%;padding:24px;border:1px solid #ffffff2b;border-radius:14px;background:#102f3dd9;color:#e8eeea}
+.section-detail-card p{font-size:calc(13px * var(--text-scale,1));line-height:1.7;color:#c2d7d9}
+.section-detail-card>p:first-child{margin-top:0}
+.section-detail-card .training-actions{gap:10px;margin-top:16px}
+.section-detail-card .training-button{min-height:44px;font-size:calc(13px * var(--text-scale,1));padding:10px 15px;color:#e8eeea;border-color:#ffffff40;white-space:normal;overflow-wrap:anywhere}
+.section-detail-card .training-button.primary{background:#e7c58e;color:#18343b;border-color:#e7c58e}
+.section-detail-card .training-button:hover{background:#264c58;color:#fff5df}
+.section-detail-card .training-button.primary:hover{background:#f5d7a5;color:#18343b}
+.section-detail-card .race-setup{margin-top:0}
+.cover-review{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;width:min(540px,100%);padding:16px;border:1px solid #b8cfbb44;border-radius:10px;background:#153b40eb;color:#d6e8df}
 .section-cover :focus-visible{outline:2px solid #f4d5a0;outline-offset:4px}
+
 @media(max-width:900px){
- html[data-text-size] body[data-session=outside] .workspace{height:100dvh}
- .section-cover{padding:calc(max(12px,env(safe-area-inset-top)) + 68px) 20px max(24px,env(safe-area-inset-bottom))}
- .cover-navigation{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:5px;padding:5px;margin:0 auto 28px;max-width:650px;border:1px solid #ffffff25;border-radius:12px;background:#ffffff05}
- .cover-navigation button{min-height:48px;min-width:0;padding:10px 6px;border-radius:8px;font-size:calc(12px * var(--text-scale,1));line-height:1.4;overflow-wrap:anywhere;color:#bad0d2}
+ html[data-text-size] body[data-session=outside] .workspace{display:block;height:100dvh}
+ body[data-session=outside] .workspace>.sidebar{display:none!important}
+ .section-cover{padding:calc(max(12px,env(safe-area-inset-top)) + var(--mobile-toolbar-height,58px) + 20px) 20px max(24px,env(safe-area-inset-bottom))}
+ body[data-section=learn]{--section-image:url('/section-backgrounds/learn-mobile.webp')}
+ body[data-section=explore]{--section-image:url('/section-backgrounds/explore-mobile.webp')}
+ body[data-section=challenge]{--section-image:url('/section-backgrounds/challenge-mobile.webp')}
+ .section-backdrop{background-image:linear-gradient(180deg,#082632cc,#08263266 40%,#08263288 75%,#082632ee),var(--section-image);background-position:center top}
+ body[data-session=outside] .mobile-scene-toolbar{grid-template-columns:48px minmax(0,1fr);gap:8px}
+ body[data-session=outside] .cover-navigation{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;min-width:0;padding:4px;margin:0;border:1px solid #ffffff30;border-radius:12px;background:#102e3bf2;pointer-events:auto}
+ .cover-navigation button{min-height:44px;min-width:0;padding:8px 4px;border-radius:8px;font-size:calc(12px * var(--text-scale,1));line-height:1.4;overflow-wrap:anywhere;color:#d5e3e3}
  .cover-navigation button[aria-current]{background:#e4c490;color:#173942}
- .cover-heading{margin-bottom:24px}
- .cover-heading h1,.section-cover .race-library h2{font-size:calc(34px * var(--text-scale,1))}
- .cover-waters{grid-template-columns:1fr;gap:14px}
- .cover-water{flex-direction:row;align-items:center}
- .cover-water-chart{width:34%;height:160px;flex-shrink:0;align-self:stretch}
- .cover-water>span{padding:16px;min-width:0}
- .cover-water-check{inset:8px auto auto 8px;width:22px;height:22px;font-size:12px}
- .cover-launch,.cover-review{align-items:stretch;flex-direction:column;padding:20px}
- .cover-launch .training-actions{display:grid;grid-template-columns:1fr 1fr}
- #cover-start-free{grid-column:1/-1}
- html[data-text-size] body[data-session=outside] .section-cover #lesson-cover{padding:20px}
- .section-cover .challenge-catalog{grid-template-columns:1fr}
- html[data-large-text] .cover-water{flex-direction:column;align-items:stretch}
- html[data-large-text] .cover-water-chart{width:100%;height:130px}
+ .cover-section-browser{display:block;border:1px solid #ffffff30;border-radius:8px;background:#102e3bef;margin-bottom:24px}
+ .cover-section-browser>summary{padding:14px;min-height:48px;cursor:pointer;font-size:calc(13px * var(--text-scale,1));color:#e7c58e}
+ .cover-section-browser .sidebar-heading{display:none}
+ .cover-section-browser .lesson-list{overflow:visible}
+ .cover-mobile-course:has(#cover-course:not([hidden])){display:block;margin-bottom:24px}
+ #cover-course{display:block;width:100%;margin:0;padding:14px 18px;min-height:52px;border:1px solid #e7c58e;border-radius:10px;background:#e7c58e;color:#18343b;box-shadow:0 4px 16px #08263233;font-size:calc(15px * var(--text-scale,1));font-weight:650;line-height:1.4;text-align:center;white-space:normal;overflow-wrap:anywhere}
+ #cover-course:hover{background:#f5d7a5;border-color:#f5d7a5;color:#18343b}
+ .section-page{height:auto}
+ html[data-text-size] body[data-session=outside] .section-cover #lesson-cover{height:auto;padding:0;overflow:visible;justify-content:start}
+ .section-detail{min-height:0;padding:0}
+ .section-detail .scene-title h2{font-size:clamp(30px,calc(38px * var(--text-scale,1)),72px)}
+ .section-detail-card{padding:24px}
 }

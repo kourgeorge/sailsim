@@ -398,12 +398,21 @@ async function startApp() {
     $('#modal').scrollTop = 0;
     keys?.clear();
   }
+  function openChallengeBriefing(content) {
+    if (sessionStarted()) {
+      openModal(content);
+      return;
+    }
+    if (sectionForMode(mode) !== 'challenge') navigateSection('challenge');
+    else closeOverlays();
+    sectionCovers.showChallengeBriefing(content);
+  }
   function finishChallenge(completed) {
     challengeDone = true;
     freeSailingStarted = false;
     playback.pause();
     openModal(
-      `<section class="challenge-debrief"><div class="eyebrow">${t('Challenge debrief')}</div><h2>${t(completed ? 'Course complete' : 'Challenge ended')}</h2><p>${t('Course buoys')}: <bdi>${challengeIndex} / 3</bdi> · <bdi>${Math.floor(challengeTime / 60)}:${String(Math.floor(challengeTime % 60)).padStart(2, '0')}</bdi></p><div id="challenge-track"></div><div class="training-actions"><button id="challenge-again" class="training-button primary">${t('Try again')}</button><button id="challenge-exit" class="training-button">${t('Free sailing')}</button></div></section>`,
+      `<section class="challenge-debrief"><div class="eyebrow">${t('Challenge debrief')}</div><h2>${t(completed ? 'Course complete' : 'Challenge ended')}</h2><p>${t('Course buoys')}: <bdi>${challengeIndex} / 3</bdi> · <bdi>${Math.floor(challengeTime / 60)}:${String(Math.floor(challengeTime % 60)).padStart(2, '0')}</bdi></p><div id="challenge-track"></div><div class="training-actions"><button id="challenge-again" class="training-button primary">${t('Try again')}</button><button id="challenge-exit" class="training-button">${t('All challenges')}</button></div></section>`,
     );
     mountSailingTrack($('#challenge-track'), challengeTrack || createSailingTrack(state), {
       marks: getLocation(state.locationId).buoys,
@@ -412,11 +421,7 @@ async function startApp() {
       $('#modal').close();
       restartSession();
     };
-    $('#challenge-exit').onclick = () => {
-      $('#modal').close();
-      setMode('explore');
-      syncControls();
-    };
+    $('#challenge-exit').onclick = () => navigateSection('challenge');
   }
   $('#close-modal').onclick = () => $('#modal').close();
   $('#modal').addEventListener('click', (e) => {
@@ -766,6 +771,7 @@ async function startApp() {
     },
   });
   lab = createManeuverLab({
+    openBriefing: openChallengeBriefing,
     getState: () => state,
     onStart: (newState) => {
       setMode('maneuver');
@@ -804,6 +810,7 @@ async function startApp() {
   racing = createRaceUI({
     container: $('.simulator'),
     openModal,
+    openBriefing: openChallengeBriefing,
     onStart: (newState) => {
       setMode('race');
       state = newState;
@@ -828,6 +835,7 @@ async function startApp() {
   adventures = createChallengeUI({
     container: $('.simulator'),
     openModal,
+    openBriefing: openChallengeBriefing,
     onStart: (newState, definition) => {
       setMode('adventure');
       state = newState;
@@ -844,8 +852,7 @@ async function startApp() {
       playback.pause();
       syncControls();
     },
-    onLeave: () => navigateSection('explore'),
-    onLibrary: () => racing.library(),
+    onLibrary: () => navigateSection('challenge'),
     setCues: (cues) => scene?.setTrainingCues(cues),
   });
   vesselControls = mountControls($('#vessel-controls'), {
@@ -978,6 +985,7 @@ async function startApp() {
     onConditions: () => $('#conditions').click(),
     onSound: () => $('#sound-settings').click(),
     mountChallenges: (container) => racing.mountLibrary(container),
+    mountDrills: (container) => lab.mountChoices(container),
     onReview: () => {
       if (mode === 'race') racing.review();
       else if (mode === 'adventure') adventures.review();

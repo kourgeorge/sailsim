@@ -15,6 +15,7 @@ const clock = (seconds) =>
 export function createRaceUI({
   container,
   openModal,
+  openBriefing = openModal,
   onStart,
   onStop,
   onLeave,
@@ -61,7 +62,7 @@ export function createRaceUI({
   function briefing(id = selected) {
     selected = id;
     const course = RACE_COURSES.find((item) => item.id === id);
-    openModal(
+    openBriefing(
       `<section class="race-briefing" data-no-translate><div class="eyebrow">${tr('RACE BRIEFING')}</div><h2>${tr(course.name)}</h2><p>${tr(course.description)}</p><div class="race-setup"><span>${tr('Wind')}<bdi>${course.windSpeed} kn · ${course.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${course.currentSpeed} kn · ${course.currentDirection}°</bdi></span><span>${tr('Fleet')}<b>${tr('You + 3 bots')}</b></span></div><label class="race-difficulty" for="race-difficulty">${tr('Difficulty')}<select id="race-difficulty">${Object.entries(
         RACE_DIFFICULTIES,
       )
@@ -173,7 +174,7 @@ export function createRaceUI({
         /* Optional personal best. */
       }
     openModal(
-      `<section class="race-results" data-no-translate><div class="eyebrow">${tr('RACE RESULTS')}</div><h2>${tr(completed ? (position === 1 ? 'You won!' : 'Across the finish.') : race.reason)}</h2><p>${tr(race.course.name)} · ${tr(RACE_DIFFICULTIES[race.difficulty].name)}</p><div class="race-result-score">${completed ? `<strong dir="ltr">${position}<small> / 4</small></strong><time dir="ltr">${clock(player.finished)}</time>` : `<strong>${tr('Did not finish')}</strong>`}</div>${improved ? `<p class="race-best">${tr('New personal best')}</p>` : ''}<ol class="race-result-list">${standings.map((item) => `<li><i style="background:${item.color}"></i><span>${tr(item.name)}</span><bdi>${item.finished !== null ? clock(item.finished) : tr('Unfinished')}</bdi></li>`).join('')}</ol><p>${tr('Finish times decide places. Unfinished boats are ordered by course progress.')}</p><div class="training-actions"><button id="race-again" class="training-button primary">${tr('Race again')}</button><button id="race-other" class="training-button">${tr('All races')}</button><button id="race-result-exit" class="training-button">${tr('Free sailing')}</button></div></section>`,
+      `<section class="race-results" data-no-translate><div class="eyebrow">${tr('RACE RESULTS')}</div><h2>${tr(completed ? (position === 1 ? 'You won!' : 'Across the finish.') : race.reason)}</h2><p>${tr(race.course.name)} · ${tr(RACE_DIFFICULTIES[race.difficulty].name)}</p><div class="race-result-score">${completed ? `<strong dir="ltr">${position}<small> / 4</small></strong><time dir="ltr">${clock(player.finished)}</time>` : `<strong>${tr('Did not finish')}</strong>`}</div>${improved ? `<p class="race-best">${tr('New personal best')}</p>` : ''}<ol class="race-result-list">${standings.map((item) => `<li><i style="background:${item.color}"></i><span>${tr(item.name)}</span><bdi>${item.finished !== null ? clock(item.finished) : tr('Unfinished')}</bdi></li>`).join('')}</ol><p>${tr('Finish times decide places. Unfinished boats are ordered by course progress.')}</p><div class="training-actions"><button id="race-again" class="training-button primary">${tr('Race again')}</button><button id="race-other" class="training-button">${tr('All races')}</button></div></section>`,
     );
     const map = document.createElement('div');
     document.querySelector('.race-result-list').before(map);
@@ -184,10 +185,6 @@ export function createRaceUI({
       start();
     };
     document.querySelector('#race-other').onclick = library;
-    document.querySelector('#race-result-exit').onclick = () => {
-      document.querySelector('#modal').close();
-      onLeave('explore');
-    };
   }
   return {
     library,

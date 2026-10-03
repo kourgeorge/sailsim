@@ -16,6 +16,10 @@ async function home(page, section) {
   await expect(page.locator('.simulation-console')).toBeHidden();
   await expect(page.locator('#challenge-hud')).toBeHidden();
   await expect(page.locator('#race-hud')).toBeHidden();
+  if (page.viewportSize().width > 900) await expect(page.locator('.sidebar')).toBeVisible();
+  else await expect(page.locator('.sidebar')).toBeHidden();
+  await expect(page.locator('.mobile-course')).toBeHidden();
+  if (section !== 'learn') await expect(page.locator('#lesson-cover')).toBeHidden();
   await expect(page.locator('dialog[open]')).toHaveCount(0);
 }
 async function navigate(page, section) {
@@ -27,6 +31,12 @@ async function navigate(page, section) {
     )
     .click();
   await home(page, section);
+}
+async function choose(page, selector) {
+  if (page.viewportSize().width <= 900 && !(await page.locator(selector).isVisible())) {
+    await page.locator('#cover-browser-title').click();
+  }
+  await page.locator(selector).click();
 }
 async function exit(page) {
   if (page.viewportSize().width <= 900) await page.locator('#mobile-menu-toggle').click();
@@ -69,6 +79,8 @@ test('desktop covers separate lesson and free-sailing setup from the cockpit', a
   await home(page, 'explore');
   await page.locator('#cover-start-free').click();
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+  await expect(page.locator('.sidebar')).toBeHidden();
+  await expect(page.locator('.lesson-card')).toBeHidden();
   await expect(page.locator('#location-title')).toHaveText('Shelter Bay');
   await page.locator('#session-restart').click();
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
@@ -96,24 +108,37 @@ for (const size of [
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto('./');
     await navigate(page, 'challenge');
-    await page.locator('[data-sailing-challenge=rescue-run]').click();
+    await choose(page, '[data-sailing-challenge=rescue-run]');
+    await expect(page.locator('#cover-challenge-briefing .challenge-briefing')).toBeVisible();
+    await expect(page.locator('dialog[open]')).toHaveCount(0);
+    await page.locator('#challenge-library').click();
+    await home(page, 'challenge');
+    await choose(page, '[data-sailing-challenge=rescue-run]');
     await page.locator('#challenge-start').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
     await exit(page);
     await home(page, 'challenge');
     await page.locator('#cover-review').click();
     await expect(page.locator('.challenge-results')).toBeVisible();
-    await page.locator('#close-modal').click();
-    await page.locator('[data-race-course=harbor-sprint]').click();
+    await page.locator('#adventure-library').click();
+    await home(page, 'challenge');
+    await choose(page, '[data-race-course=harbor-sprint]');
+    await expect(page.locator('#cover-challenge-briefing .race-briefing')).toBeVisible();
+    await expect(page.locator('dialog[open]')).toHaveCount(0);
+    await page.locator('#race-back').click();
+    await home(page, 'challenge');
+    await choose(page, '[data-race-course=harbor-sprint]');
     await page.locator('#race-start').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
     await exit(page);
     await home(page, 'challenge');
     await page.locator('#cover-review').click();
     await expect(page.locator('.race-results')).toBeVisible();
-    await page.locator('#close-modal').click();
-    await page.locator('#race-engine-drills').click();
-    await page.locator('[data-drill]').first().click();
+    await page.locator('#race-other').click();
+    await home(page, 'challenge');
+    await choose(page, '[data-cover-drill=engine-stop]');
+    await expect(page.locator('#cover-challenge-briefing .maneuver-briefing')).toBeVisible();
+    await expect(page.locator('dialog[open]')).toHaveCount(0);
     await page.locator('#begin-drill').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
     await exit(page);
@@ -121,14 +146,16 @@ for (const size of [
     await page.locator('#cover-review').click();
     await expect(page.locator('.maneuver-review')).toBeVisible();
     await page.locator('#close-modal').click();
-    await page.locator('#race-engine-drills').click();
-    await page.locator('#lab-buoys').click();
+    await choose(page, '[data-cover-buoys]');
+    await expect(page.locator('#cover-challenge-briefing .buoy-briefing')).toBeVisible();
+    await page.locator('#cover-start-buoys').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
     await exit(page);
     await home(page, 'challenge');
     await page.locator('#cover-review').click();
     await expect(page.locator('.challenge-debrief')).toBeVisible();
-    await page.locator('#close-modal').click();
+    await page.locator('#challenge-exit').click();
+    await home(page, 'challenge');
     await navigate(page, 'explore');
     await page.locator('#cover-start-free').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
@@ -158,7 +185,7 @@ test('mobile covers and exit support six languages and 200% text', async ({ brow
       ).toBe(true);
       await page.screenshot({ path: `artifacts/section-covers/${section}-mobile-${lang}.png` });
     }
-    await page.locator('[data-sailing-challenge=rescue-run]').click();
+    await choose(page, '[data-sailing-challenge=rescue-run]');
     await page.locator('#challenge-start').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
     await exit(page);
