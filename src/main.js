@@ -1,6 +1,7 @@
 import { createChartRenderer } from './navigation/chart.js';
 import './style.css';
 import { mountSimulationControls } from './activity/ui.js';
+import { mountSimulationSession } from './activity/session.js';
 import { createActivityController } from './activity/controller.js';
 import { mountAppShell } from './app-shell.js';
 import { initializeTextSize, mountTextSize } from './accessibility/text-size.js';
@@ -65,6 +66,7 @@ async function startApp() {
     learningTools,
     helmDashboard,
     cockpitControls,
+    simulationSession,
     sailingAudio;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
@@ -161,7 +163,10 @@ async function startApp() {
   });
   const cockpitEnabled = () => playback.controlsEnabled;
   function syncPlayback() {
-    if (mode === 'explore' && !playback.paused) freeSailingStarted = true;
+    if (['explore', 'challenge'].includes(mode) && !playback.paused && !freeSailingStarted) {
+      setStartingCamera();
+      freeSailingStarted = true;
+    }
     const simulator = $('.simulator');
     const sceneCompass = $('#scene-compass');
     if (sceneCompass) sceneCompass.hidden = !cockpitEnabled() || !playback.canRender;
@@ -176,6 +181,20 @@ async function startApp() {
     const activity = playback.state,
       button = $('#play'),
       action = activity.action;
+    simulationSession?.sync({
+      started:
+        !learning?.reading &&
+        !learning?.training &&
+        (mode === 'learn'
+          ? learning?.practiceActive
+          : mode === 'maneuver'
+            ? lab?.active
+            : mode === 'race'
+              ? racing?.active
+              : freeSailingStarted),
+      graphicsReady: scene?.ready ?? true,
+      paused: !playback.canSimulate,
+    });
     const playbackAvailable =
       ['pause', 'resume'].includes(activity.command) && !(mode === 'race' && !racing?.active);
     button.hidden = !playbackAvailable;
@@ -309,6 +328,12 @@ async function startApp() {
       btn.classList.toggle('selected', btn.dataset.camera === camera);
       btn.setAttribute('aria-pressed', String(btn.dataset.camera === camera));
     });
+  }
+  function setStartingCamera(desktopView) {
+    const view = window.matchMedia('(max-width: 900px), (pointer: coarse)').matches
+      ? 'chase'
+      : desktopView;
+    if (view) setCamera(view, { record: false });
   }
   document
     .querySelectorAll('button[data-camera]')
@@ -642,7 +667,7 @@ async function startApp() {
       playback.resume();
       syncControls();
     },
-    onTrainingStart: () => setCamera('helm', { record: false }),
+    onTrainingStart: () => setStartingCamera('helm'),
     onTrainingEnd: () => {
       playback.pause();
       syncControls();
@@ -676,6 +701,7 @@ async function startApp() {
       lastCollisionSequence = 0;
       ensureScene(state.locationId);
       updateLocation();
+      setStartingCamera();
       playback.resume();
       syncControls();
       toggleSystems(false);
@@ -742,6 +768,38 @@ async function startApp() {
       vesselControls.update();
     }
   }
+  function exitSession() {
+    keys.clear();
+    toggleSystems(false);
+    playback.pause();
+    if (mode === 'learn') learning.endPractice();
+    else if (mode === 'maneuver') lab.end();
+    else if (mode === 'race') {
+      setMode('explore');
+      racing.library();
+    } else freeSailingStarted = false;
+    syncControls();
+  }
+  function restartSession() {
+    keys.clear();
+    toggleSystems(false);
+    if (mode === 'learn') learning.restart();
+    else if (mode === 'maneuver') lab.start(lab.current.drillId);
+    else if (mode === 'race') racing.restart();
+    else {
+      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      state = initialState(state.locationId);
+      Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      lastCollisionSequence = 0;
+      challengeIndex = 0;
+      challengeDone = false;
+      challengeTime = 0;
+      setMode(mode);
+      setStartingCamera();
+      playback.resume();
+    }
+    syncControls();
+  }
   learningTools.mount();
   $('#systems-toggle').onclick = () => toggleSystems($('#systems-drawer').hidden);
   $('#systems-close').onclick = () => {
@@ -780,6 +838,11 @@ async function startApp() {
     }
   };
   mountMobileLayout();
+  simulationSession = mountSimulationSession({
+    onExit: exitSession,
+    onRestart: restartSession,
+    onChange: () => learning.placeCard(),
+  });
   mountTextSize($('#text-size-control'));
   observeTranslations(document.body);
   if (localeLoadError) toast('Language could not be loaded. Please try again.');

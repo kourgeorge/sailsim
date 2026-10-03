@@ -67,6 +67,7 @@ test('free sailing plays audio, mutes layers independently, and suspends when pa
   });
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'paused');
   await page.locator('#play').click();
+  await page.locator('#session-exit').click();
   await page.locator('[data-mode="learn"]').click();
   await expect(page.locator('#sound-settings')).toBeHidden();
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
@@ -101,10 +102,14 @@ test('mobile mute preferences survive reload and work with large RTL text', asyn
   await page.locator('#play').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
+  await expect(page.locator('#mobile-menu-toggle')).toBeHidden();
+  await page.locator('#session-exit').click();
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#sound-settings').click();
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#sound-sea-mute').click();
+  await page.locator('#close-modal').click();
+  await page.locator('#play').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
 });
 

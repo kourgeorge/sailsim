@@ -14,16 +14,13 @@ test.beforeEach(async ({ context }) => {
 
 async function selectLesson(page, index) {
   if (page.viewportSize().width <= 900) {
-    await page.locator('#mobile-lesson-toggle').click();
+    await page.locator('#mobile-menu-toggle').click();
   }
-  await page.locator('#course-library:visible').click();
+  await page.locator('button[data-mode=learn]').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 }
 
 async function openBriefing(page) {
-  if (page.viewportSize().width <= 900) {
-    await page.locator('#mobile-lesson-toggle').click();
-  }
   await page.locator('#lesson-briefing').click();
 }
 

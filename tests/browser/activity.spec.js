@@ -18,7 +18,7 @@ async function open(page) {
 }
 
 async function selectLesson(page, index) {
-  await page.locator('#course-library').click();
+  await page.locator('button[data-mode=learn]').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 }
 
@@ -66,7 +66,9 @@ test('lesson briefing owns launch and displays the setup that will actually be a
   await expect.poll(async () => (await record(page)).records?.['sail-09']?.attempts).toBe(1);
 });
 
-test('free-sailing weather is editable while paused on desktop and mobile', async ({ page }) => {
+test('free-sailing weather setup stays available after leaving a mobile session', async ({
+  page,
+}) => {
   await open(page);
   await page.locator('[data-mode="explore"]').click();
   await page.locator('#conditions').click();
@@ -80,6 +82,8 @@ test('free-sailing weather is editable while paused on desktop and mobile', asyn
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('.simulation-console > #play')).toBeVisible();
   await page.locator('#play').click();
+  await expect(page.locator('#mobile-menu-toggle')).toBeHidden();
+  await page.locator('#session-exit').click();
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#conditions').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
@@ -87,7 +91,6 @@ test('free-sailing weather is editable while paused on desktop and mobile', asyn
   await expect(page.locator('#current-speed')).toHaveValue('1.5');
   await page.locator('#close-modal').click();
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await page.locator('#reset').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-paused');
 });
 
@@ -104,7 +107,6 @@ test('lesson conditions and start remain reachable in every language at 200% mob
     await page.locator('.text-size-control summary').click();
     await page.setViewportSize({ width: 390, height: 844 });
     await expect(page.locator('#play')).toBeHidden();
-    await page.locator('#mobile-lesson-toggle').click();
     await page.locator('#practice-start').click();
     await expect(page.locator('#mobile-lessons')).toBeHidden();
     const briefing = page.locator('#practice-briefing');
@@ -159,12 +161,16 @@ test('simultaneous quiz submissions in two tabs count each answer exactly once',
   expect((await record(page)).records['sail-01'].wrongAnswers).toBe(2);
 });
 
-test('changing language flushes the ended attempt before navigation', async ({ page }) => {
+test('leaving simulation before changing language preserves the ended attempt', async ({
+  page,
+}) => {
   await open(page);
   await selectLesson(page, 8);
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
+  await page.locator('#session-exit').click();
+  await page.locator('#close-modal').click();
   await page.locator('#language-select').selectOption('he');
   await expect(page).toHaveURL(/lang=he/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'he');
@@ -241,7 +247,7 @@ test('mobile sheets, resizing and study preserve the same physical attempt', asy
   await page.locator('#reader-close').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-paused');
   await page.setViewportSize({ width: 1440, height: 1000 });
-  await expect(page.locator('.sidebar > .lesson-card')).toBeVisible();
+  await expect(page.locator('.session-mission > .lesson-card')).toBeVisible();
   await page.locator('#play').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
   await page.locator('#practice-end').click();

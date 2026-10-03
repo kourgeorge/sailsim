@@ -35,6 +35,8 @@ For a committed change that should be undone while preserving history, inspect i
 
 The focused deployment checks are `npm test`, `npm run build`, `npm run format:check`, and `npm run test:browser`. The Playwright suite starts and stops its own production preview on port 5198. To verify a Pages build locally, run `npm run build -- --base /sailsim/`, then `SAIL_TEST_BASE_PATH=/sailsim/ npm run test:browser`.
 
+If that preview port is occupied, use `SAIL_TEST_PORT=5298 npm run test:browser` to run an isolated preview without stopping another server.
+
 Course persistence now lives in `src/learning/progress-store.js`. It serializes read/merge/write transactions across tabs with Web Locks where available, merges counter deltas and stable report IDs, and receives storage updates without changing the active lesson or attempt. Language navigation waits for pending saves. Maneuver replay restoration accepts the same finite, nonnegative timeline as recording; sample and history counts remain bounded.
 
 `src/activity/controller.js` owns playback and overlay gates. Decision scenarios use their own navigation and hide the unrelated playback button. `src/scene.js` draws paused scenes only after invalidation or while the camera is settling; controls, camera input, resizing, text sizing and context restoration invalidate the view. `render()` remains an explicit forced draw for scene harnesses, while the application loop calls `renderIfNeeded()`.
@@ -100,3 +102,13 @@ The final general browser regression passed after all source changes: training a
 `Start training` prepares the authored exercise and opens `#practice-briefing` over the simulator. Preparation must not create an attempt, run a timer or award evidence. `#practice-launch` begins scoring. Study material is a separate full-page reader; its practice buttons use the same preparation path. Reopened task briefings pause and preserve an active attempt. End simulation saves an interrupted result without awarding completion. The large lesson number/title is a cover and stays hidden while physical practice is active or paused.
 
 `check-activity-status.mjs` covers the Hebrew beam-reach report, authored setup after changing preview weather, dismissal/resume, study return, explicit end, actual instrument checkpoints scoring 50 then 100, prerequisite preview behavior, decision scenarios, free sailing, and all six languages at 200% on mobile. Other browser helpers explicitly click Start simulation after preparing a new attempt.
+
+## Lesson covers and live sessions
+
+Lesson introductions use `#lesson-cover`, with Study and Start actions and no cockpit panel or per-lesson Course button. Course navigation is available from the site navigation and mobile lesson selector. Preparing an exercise stays outside the session.
+
+`src/activity/session.js` switches live boat handling to a viewport-filling cockpit once the graphics have rendered (or the WebGL fallback has resolved). Physical lessons, free sailing, engine drills, buoy courses, and fleet races share Exit and Restart actions. Pausing or opening a utility dialog preserves the session layout; study temporarily restores site navigation. Ending an assessed attempt preserves its report. Restarting starts a fresh attempt; free sailing retains its location and current weather settings.
+
+Mobile sessions remove the site menu and expose a compact three-button viewpoint switch beside Systems. The switch reuses the desktop camera buttons, with labeled icons and a highlighted active view; the dropdown remains in the menu outside sessions. The current-goal sheet contains the active task, without lesson navigation. Leaving the session restores the complete site menu and returns its controls to their original positions.
+
+`tests/browser/session.spec.js` covers these transitions, desktop/mobile resizing, six languages at 200% text, result persistence, and the real rendered scene. Screenshots are written to `artifacts/session/`.

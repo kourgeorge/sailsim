@@ -80,6 +80,7 @@ export function mountTextSize(container) {
   });
   for (const [selector, property] of [
     ['.topbar', '--topbar-height'], ['.simulation-console', '--control-dock-height'],
+    ['#session-controls', '--session-controls-height'],
     ['.scene-title', '--scene-title-height'], ['.lesson-card', '--lesson-card-height'],
     ['.mobile-scene-toolbar', '--mobile-toolbar-height'], ['.mobile-indicators', '--mobile-indicators-height'],
   ]) {

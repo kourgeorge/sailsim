@@ -169,7 +169,9 @@ test('race bots and rings render in the real 3D scene and appear on the chart', 
   await expect(page.locator('#large-chart')).toHaveAttribute('data-vessel-visible', 'true');
   await page.screenshot({ path: testInfo.outputPath('race-chart.png') });
   await page.locator('#close-modal').click();
-  await page.locator('[data-mode="explore"]').click();
+  await page.locator('#session-exit').click();
+  await page.locator('#close-modal').click();
+  await page.locator('button[data-mode="explore"]').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-race-boats', '0', { timeout: 120000 });
   expect(errors).toEqual([]);
 });

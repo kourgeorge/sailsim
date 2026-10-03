@@ -8,6 +8,8 @@ export function mountMobileLayout() {
   const simulator = document.querySelector('.simulator');
   const views = simulator.querySelector('.view-controls');
   const cameraViews = views.querySelector('.camera-views');
+  const cameraPlaceholder = document.createComment('camera toolbar position');
+  cameraViews.before(cameraPlaceholder);
   const camera = document.createElement('select');
   camera.id = 'mobile-camera';
   camera.className = 'mobile-camera';
@@ -17,7 +19,7 @@ export function mountMobileLayout() {
     camera.add(option);
   }
   cameraViews.prepend(camera);
-  camera.addEventListener('change', () => views.querySelector(`[data-camera="${camera.value}"]`).click());
+  camera.addEventListener('change', () => cameraViews.querySelector(`[data-camera="${camera.value}"]`).click());
   const syncCamera = () => { camera.value = simulator.dataset.view || 'chase'; };
   new MutationObserver(syncCamera).observe(simulator, {attributes: true, attributeFilter: ['data-view']});
   syncCamera();
@@ -161,8 +163,9 @@ export function mountMobileLayout() {
   title.textContent = t('Choose a lesson');
   const browse = document.createElement('button');
   browse.type = 'button';
+  browse.id = 'mobile-browse-course';
   browse.textContent = t('All lessons');
-  browse.addEventListener('click', () => document.querySelector('#course-library')?.click());
+  browse.addEventListener('click', () => document.querySelector('button[data-mode=learn]')?.click());
   heading.append(title, browse);
   const list = document.createElement('div');
   list.className = 'mobile-lesson-list';
@@ -265,12 +268,23 @@ export function mountMobileLayout() {
     };
     trigger.addEventListener('click', show);
     close.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('close', () => { trigger.setAttribute('aria-expanded', 'false'); if (mobile.matches && !document.querySelector('dialog[open]')) trigger.focus(); });
+    dialog.addEventListener('close', () => { trigger.setAttribute('aria-expanded', 'false'); if (mobile.matches && trigger.getClientRects().length && !document.querySelector('dialog[open]')) trigger.focus(); });
     dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
     document.body.append(dialog);
     return dialog;
   };
   const menu = sheet('mobile-menu', 'Menu', menuButton);
+  const sessionTools = document.createElement('div');
+  sessionTools.className = 'mobile-session-tools';
+  sessionTools.setAttribute('role', 'group');
+  sessionTools.setAttribute('aria-label', t('Simulation controls'));
+  toolbar.prepend(sessionTools);
+  const systemsButton = document.querySelector('#systems-toggle');
+  const systemsPlaceholder = document.createComment('systems toolbar position');
+  systemsButton.before(systemsPlaceholder);
+  sessionTools.addEventListener('click', event => {
+    if (event.target.closest('#systems-toggle')) dismissControls();
+  });
   const lessonSheet = sheet('mobile-lessons', 'Lessons', lessonButton);
   const lessonContent = document.createElement('div');
   lessonContent.id = 'mobile-lesson-content';
@@ -311,33 +325,53 @@ export function mountMobileLayout() {
   }, true);
   camera.addEventListener('change', () => menu.close());
   lessonSheet.addEventListener('click', event => {
-    if (event.target.closest('#practice-start, #practice-end, #lesson-briefing, #course-library, #training-goals, #practice-debrief, #lab-instructions, #lab-end')) lessonSheet.close();
+    if (event.target.closest('.mobile-lesson, #mobile-browse-course, #practice-start, #practice-end, #lesson-briefing, #training-goals, #practice-debrief, #lab-instructions, #lab-end')) lessonSheet.close();
   }, true);
   // Bubble after the button's own handler: Resume must read the sheet's paused
   // state before it disappears. A microtask in capture can run before the button.
   lessonSheet.addEventListener('click', event => {
     if (event.target.closest('#practice-toggle')) lessonSheet.close();
   });
-  document.querySelector('#systems-close').addEventListener('click', () => { if (mobile.matches) menuButton.focus(); });
+  document.querySelector('#systems-close').addEventListener('click', () => {
+    if (mobile.matches) (document.body.dataset.session === 'active' ? systemsButton : menuButton).focus();
+  });
+  function arrangeSessionTools() {
+    const immersive = mobile.matches && document.body.dataset.session === 'active';
+    menuButton.hidden = immersive;
+    if (immersive) {
+      if (menu.open) menu.close();
+      if (cameraViews.parentElement !== sessionTools) sessionTools.append(cameraViews, systemsButton, chartButton);
+    } else {
+      if (cameraViews.parentElement !== views) cameraPlaceholder.after(cameraViews);
+      if (systemsButton.parentElement !== views) systemsPlaceholder.after(systemsButton);
+      if (chartButton.parentElement === sessionTools) {
+        if (mobile.matches) toolbar.insertBefore(chartButton, lessonButton);
+        else moves.find(({node}) => node === chartButton).placeholder.after(chartButton);
+      }
+    }
+  }
   const syncOverlayLabels = () => {
+    arrangeSessionTools();
     const mode = simulator.dataset.mode || 'learn';
     chartButton.hidden = mobile.matches && simulator.dataset.simulationRunning !== 'true';
     lessonSheet.dataset.mobileMode = mode;
-    lessonButton.hidden = !['learn', 'maneuver'].includes(mode);
+    lessonButton.hidden = !['learn', 'maneuver', 'challenge'].includes(mode);
     const active = ['training-running', 'training-paused'].includes(document.body.dataset.activity);
+    const sheetTitle = t(document.body.dataset.session === 'active' ? 'Current goal' : 'Lessons');
+    if (document.querySelector('#mobile-lessons-title').textContent !== sheetTitle) document.querySelector('#mobile-lessons-title').textContent = sheetTitle;
     const current = document.querySelector('#lessons [aria-current]');
     const lessonNumber = Number(current?.dataset.courseLesson || 0) + 1;
     const number = String(lessonNumber).padStart(2, '0');
     const heading = mode === 'maneuver' ? t('Current goal') : `${t('Lesson {number}').replace('{number}', lessonNumber)}: ${document.querySelector('#scene-heading').textContent}`;
     const description = mode === 'maneuver' ? '' : document.querySelector('#scene-subheading').textContent;
-    const label = mode === 'maneuver' ? t('Current goal') : active ? document.querySelector('#objective-text').textContent : t('Lesson {number}').replace('{number}', number);
+    const label = mode === 'maneuver' ? t('Current goal') : active || mode === 'challenge' ? document.querySelector('#objective-text').textContent : t('Lesson {number}').replace('{number}', number);
     if (lessonButtonLabel.textContent !== label) lessonButtonLabel.textContent = label;
     lessonSummary.hidden = mode !== 'learn' || active;
     lessonDescription.hidden = !description;
     for (const [node, value] of [[lessonTitle, heading], [lessonDescription, description]]) {
       if (node.textContent !== value) node.textContent = value;
     }
-    lessonButton.setAttribute('aria-label', active || mode === 'maneuver' ? t('Current goal') : t('Choose a lesson'));
+    lessonButton.setAttribute('aria-label', active || ['maneuver', 'challenge'].includes(mode) ? t('Current goal') : t('Choose a lesson'));
     lessonButton.title = label;
   };
   const arrangeOverlays = () => {
@@ -348,7 +382,7 @@ export function mountMobileLayout() {
       else placeholder.after(node);
     }
     const card = document.querySelector('.lesson-card');
-    if (mobile.matches) lessonContent.append(card);
+    if (mobile.matches && card.parentElement.id !== 'lesson-cover') lessonContent.append(card);
     else {
       menu.close(); lessonSheet.close();
       if (card.parentElement === lessonContent) simulator.insertBefore(card, simulator.querySelector('.scene-footer'));
@@ -357,7 +391,7 @@ export function mountMobileLayout() {
   };
   mobile.addEventListener('change', arrangeOverlays);
   new MutationObserver(syncOverlayLabels).observe(simulator, {attributes: true, attributeFilter: ['data-mode', 'data-simulation-running']});
-  new MutationObserver(syncOverlayLabels).observe(document.body, {attributes: true, attributeFilter: ['data-activity']});
+  new MutationObserver(syncOverlayLabels).observe(document.body, {attributes: true, attributeFilter: ['data-activity', 'data-session']});
   new MutationObserver(syncOverlayLabels).observe(document.querySelector('#lessons'), {childList: true});
   new MutationObserver(syncOverlayLabels).observe(document.querySelector('#objective-text'), {childList: true, characterData: true, subtree: true});
   for (const selector of ['#scene-heading', '#scene-subheading']) {

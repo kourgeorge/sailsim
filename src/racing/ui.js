@@ -182,6 +182,7 @@ export function createRaceUI({
     library,
     briefing,
     options,
+    restart: start,
     get current() {
       return race;
     },

@@ -1,0 +1,115 @@
+/* The browser viewport becomes the cockpit only after the scene is ready. */
+body[data-session=active]{overflow:hidden}
+body[data-session=active] #app>.topbar,
+body[data-session=active] .workspace>.sidebar,
+body[data-session=active] #location-select,
+body[data-session=active] .scene-title,
+body[data-session=active] #reset,
+body[data-session=active] .mobile-course,
+body[data-session=active] #course-library,
+body[data-session=active] #mobile-menu .topbar nav,
+body[data-session=active] #mobile-menu .language-switch{display:none!important}
+html[data-text-size] body[data-session=active] .workspace{display:block;height:100dvh;min-height:0}
+html[data-text-size] body[data-session=active] .simulator{height:100dvh;min-height:0;overflow:hidden}
+body[data-session=active] .simulator:focus{outline:none}
+body[data-session=active] .simulator:is([data-mode=explore],[data-mode=maneuver],[data-mode=race]) .lesson-card{display:none!important}
+
+#session-controls{position:absolute;inset-block-start:max(18px,env(safe-area-inset-top));inset-inline-start:max(22px,env(safe-area-inset-left));z-index:12;display:flex;align-items:center;gap:8px;max-width:calc(50% - 40px)}
+#session-controls button{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:44px;min-width:44px;padding:10px 13px;background:#102f3de8;color:#f8eedb;border:1px solid #ffffff40;border-radius:9px;backdrop-filter:blur(8px);box-shadow:0 3px 16px #001c2526;font-size:calc(12px * var(--text-scale,1));line-height:1.4}
+#session-controls button:hover{background:#214755;border-color:#e7c58e}
+#session-controls button:focus-visible{outline:2px solid #e7c58e;outline-offset:3px}
+#session-controls svg{width:18px;height:18px;flex:none;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+#session-status{display:flex;align-items:center;gap:7px;padding:8px;color:#e0eee9;font-size:calc(11px * var(--text-scale,1));line-height:1.4;text-shadow:0 1px 4px #001c25}
+#session-status::before{content:'';width:7px;height:7px;flex:none;border-radius:50%;background:#9de2bf;box-shadow:0 0 0 3px #9de2bf20}
+#session-controls[data-paused=true] #session-status::before{background:#e7c58e;box-shadow:0 0 0 3px #e7c58e20}
+.session-mission{display:contents}
+.mobile-session-tools{display:none}
+.session-camera-icon{display:none}
+@media(min-width:901px){
+ body[data-session=active] .session-mission{display:block;position:absolute;inset-inline-start:22px;top:calc(max(18px,env(safe-area-inset-top)) + var(--session-controls-height,44px) + 20px);bottom:calc(var(--control-dock-height,151px) + 22px);width:300px;max-width:34%;z-index:6;pointer-events:none}
+ html[data-text-size] body[data-session=active] #app .session-mission .lesson-card{position:relative;inset:auto;display:block;width:100%;max-width:none;max-height:100%;margin:0;padding:20px;border-radius:12px;overflow:auto;overscroll-behavior:contain;pointer-events:auto;transform:none;opacity:1;box-shadow:0 8px 30px #001c2530}
+ .session-mission .lesson-copy{width:100%;max-width:none}
+ .session-mission .lesson-card-icon{display:none}
+ body[data-session=active] #race-hud{inset-block-start:calc(max(18px,env(safe-area-inset-top)) + var(--session-controls-height,44px) + 20px)}
+ html[data-large-text] #session-status{display:none}
+}
+@media(max-width:900px){
+ #session-controls{position:static;grid-column:1/-1;max-width:none;width:100%;justify-content:space-between;pointer-events:auto}
+ #session-status{display:none}
+ #session-controls button{min-height:44px;padding:9px 12px;max-width:48%;overflow-wrap:anywhere}
+ body[data-session=active] #mobile-lesson-summary{display:none}
+ body[data-session=active] #mobile-menu-toggle{display:none!important}
+ body[data-session=active] .mobile-scene-toolbar{gap:6px}
+ body[data-session=active] .mobile-session-tools{display:flex;align-items:stretch;gap:6px;grid-column:1/-1;justify-self:end;width:max-content;max-width:100%;min-width:0;pointer-events:auto}
+ body[data-session=active] .mobile-session-tools .camera-views{flex:none;flex-wrap:nowrap;gap:0;padding:0;border:1px solid #ffffff3b;border-radius:10px;background:#102f3de8;color:#c5d8dc;box-shadow:0 3px 16px #001c2533;backdrop-filter:blur(8px)}
+ body[data-session=active] .mobile-session-tools .mobile-camera,
+ body[data-session=active] .mobile-session-tools .session-camera-label{display:none}
+ body[data-session=active] .mobile-session-tools [data-camera]{display:flex;align-items:center;justify-content:center;width:44px;min-width:44px;min-height:44px;padding:10px;border:1px solid transparent;border-radius:9px;color:inherit}
+ body[data-session=active] .mobile-session-tools [data-camera]>svg{display:block;width:20px;height:20px;flex:none}
+ body[data-session=active] .mobile-session-tools [data-camera][aria-pressed=true]{background:#e7c58e;color:#18343b;border-color:#e7c58e}
+ body[data-session=active] .mobile-session-tools [data-camera]:focus-visible{outline:2px solid #fff5df;outline-offset:-3px}
+ body[data-session=active] .mobile-session-tools>button{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px 10px;background:#102f3de8;border:1px solid #ffffff3b;border-radius:10px;color:#f8eedb;box-shadow:0 3px 16px #001c2533;font-size:calc(12px * var(--text-scale,1));line-height:1.4;overflow-wrap:anywhere}
+ body[data-session=active] .mobile-session-tools #chart-toggle{flex:none;width:44px;padding:10px}
+ body[data-session=active] .mobile-session-tools #chart-toggle>span{display:none}
+ body[data-session=active] #mobile-lesson-toggle{grid-column:1/-1;max-width:100%;min-height:44px;padding:8px 12px}
+}
+@media(prefers-reduced-motion:no-preference){
+ body[data-session=active] #session-controls{animation:session-arrive .3s ease-out}
+ @keyframes session-arrive{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
+}
+
+/* Lesson introductions have their own reading layout, without cockpit chrome. */
+.lesson-cover{display:contents}
+body[data-session=outside] .simulator[data-mode=learn] .simulation-console,
+body[data-session=outside] .simulator[data-mode=learn] .scene-tools,
+body[data-session=outside] .simulator[data-mode=learn] .right-instruments,
+body[data-session=outside] .simulator[data-mode=learn] .scene-footer,
+body[data-session=outside] .simulator[data-mode=learn] .mobile-indicators,
+body[data-session=outside] .simulator[data-mode=learn] #mobile-lesson-summary{display:none!important}
+html[data-text-size] body[data-session=outside] .workspace:has(.simulator[data-mode=learn]){min-height:0}
+html[data-text-size] body[data-session=outside] .simulator[data-mode=learn]{min-height:0}
+html[data-text-size] body[data-session=outside] .simulator[data-mode=learn] #scene,
+html[data-text-size] body[data-session=outside] .simulator[data-mode=learn] .scene-vignette{inset:0}
+body[data-session=outside] .simulator[data-mode=learn] .scene-vignette{background:linear-gradient(90deg,#0b2b3bee,#123946a8 55%,#133e5144)}
+html[dir=rtl] body[data-session=outside] .simulator[data-mode=learn] .scene-vignette{background:linear-gradient(270deg,#0b2b3bee,#123946a8 55%,#133e5144)}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover{position:relative;z-index:2;display:flex;flex-direction:column;justify-content:center;gap:28px;height:100%;padding:clamp(28px,5vw,80px);overflow:auto;overscroll-behavior:contain}
+html[data-text-size] body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .scene-title{position:static;display:block;inset:auto;margin:0;padding:0;background:none;max-width:720px;opacity:1;transform:none}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .scene-title h2{font-size:clamp(30px,calc(38px * var(--text-scale,1)),72px);line-height:1.15;max-width:100%;margin:18px 0}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .scene-title p{font-size:calc(15px * var(--text-scale,1));line-height:1.6;max-width:560px;color:#c2d7d9}
+html[data-text-size] body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-card{position:static;inset:auto;display:block;flex-shrink:0;width:min(540px,100%);max-width:100%;max-height:none!important;margin:0;padding:24px!important;border:1px solid #ffffff2b;border-radius:14px;background:#102f3dd9;color:#e8eeea;box-shadow:none;overflow:visible;transform:none;opacity:1;pointer-events:auto}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-card-icon,
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover #card-eyebrow,
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover #card-title,
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .objective,
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover #next-lesson,
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .training-status-line{display:none}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-copy{max-width:none;width:100%}
+.lesson-training-type{display:none}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-training-type{display:inline-flex;max-width:100%;margin-bottom:12px;padding:6px 10px;border:1px solid #dec49366;border-radius:6px;background:#dec49312;color:#f3d9aa;font-size:calc(12px * var(--text-scale,1));font-weight:650;line-height:1.5;overflow-wrap:anywhere}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-training-type[data-type=live]{border-color:#9fd4cf66;background:#9fd4cf12;color:#bce8e1}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover p#card-body{display:block!important;color:#c2d7d9;font-size:calc(13px * var(--text-scale,1));line-height:1.7}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .training-actions{gap:10px;margin-top:16px}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-practice-actions{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));max-width:420px}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .lesson-practice-actions .training-button{min-width:0;overflow-wrap:anywhere}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .training-button{min-height:44px;font-size:calc(13px * var(--text-scale,1));padding:10px 15px;color:#e8eeea;border-color:#ffffff40}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .training-button.primary{background:#e7c58e;color:#18343b;border-color:#e7c58e}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .training-button:hover{background:#264c58;color:#fff5df}
+body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .training-button.primary:hover{background:#f5d7a5;color:#18343b}
+@media(max-width:900px){
+ body[data-session=outside] .simulator[data-mode=learn] .lesson-cover{padding:calc(var(--mobile-toolbar-height,48px) + 40px) 24px 32px;justify-content:safe center}
+ body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .mobile-practice-details{display:contents}
+ body[data-session=outside] .simulator[data-mode=learn] .lesson-cover .mobile-practice-details>summary{display:none}
+}
+
+/* The buoy course keeps its live objective after the introductory copy leaves. */
+body[data-session=active] .lesson-card:has(#training-actions[hidden]) #card-eyebrow,
+body[data-session=active] .lesson-card:has(#training-actions[hidden]) #card-title,
+body[data-session=active] .lesson-card:has(#training-actions[hidden]) #card-body{display:none!important}
+@media(min-width:901px){
+ html[data-text-size] body[data-session=active] .simulator[data-mode=challenge] .lesson-card{inset-block-start:calc(max(18px,env(safe-area-inset-top)) + var(--session-controls-height,44px) + 20px);inset-block-end:auto;width:300px;max-width:34%;max-height:calc(100% - var(--control-dock-height,151px) - 120px)}
+ body[data-session=active] .simulator[data-mode=challenge] .lesson-card .objective{margin-top:0}
+}
+@media(max-width:900px){
+ #mobile-lessons[data-mobile-mode=challenge] .mobile-course{display:none}
+ body[data-session=active] #mobile-lessons[data-mobile-mode=challenge] .lesson-card .objective{display:flex}
+}

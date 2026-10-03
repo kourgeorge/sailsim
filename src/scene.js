@@ -335,6 +335,9 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   camera.position.set(location.start.x + 20, 13, location.start.z + 27);
   return {
     locationId: location.id,
+    get ready() {
+      return Boolean(lastState);
+    },
     render,
     invalidate,
     renderIfNeeded(state, time) {

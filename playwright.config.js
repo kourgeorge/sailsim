@@ -2,7 +2,10 @@ import { defineConfig } from '@playwright/test';
 
 const basePath = process.env.SAIL_TEST_BASE_PATH || '/';
 if (!/^\/[\w/-]*$/.test(basePath)) throw new Error('Invalid browser test base path');
-const baseURL = `http://127.0.0.1:5198${basePath}`;
+const port = Number(process.env.SAIL_TEST_PORT || 5198);
+if (!Number.isInteger(port) || port < 1 || port > 65535)
+  throw new Error('Invalid browser test port');
+const baseURL = `http://127.0.0.1:${port}${basePath}`;
 
 export default defineConfig({
   testDir: './tests/browser',
@@ -20,7 +23,7 @@ export default defineConfig({
     launchOptions: { args: ['--use-angle=swiftshader', '--enable-webgl'] },
   },
   webServer: {
-    command: `npm run preview -- --host 127.0.0.1 --port 5198 --strictPort --base ${basePath}`,
+    command: `npm run preview -- --host 127.0.0.1 --port ${port} --strictPort --base ${basePath}`,
     url: baseURL,
     reuseExistingServer: false,
     timeout: 30000,
