@@ -152,7 +152,8 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
   navigation.forEach((g,i)=>syncBodyTransform(g,bodies.get(g.userData.bodyId)||buoys[i],state.elapsed||0,time,i));
   birdObjects.forEach(({group,wings},i)=>{const a=time*.026+i*.65;group.position.set(location.islands[0].x+Math.cos(a)*130,24+i*2+Math.sin(time*.7+i)*1.3,location.islands[0].z+Math.sin(a)*90);group.rotation.y=-a;wings.forEach((w,j)=>w.rotation.z=Math.sin(time*2.9+i)*.22*(j?1:-1));});
-  wake.position.set(state.x-Math.sin(state.heading*Math.PI/180)*26,.01,state.z+Math.cos(state.heading*Math.PI/180)*26);wake.rotation.z=state.heading*Math.PI/180;wake.visible=state.speed>.4;wake.material.opacity=Math.min(.66,state.speed*.1);
+  // The plane's local Z axis points up after flattening; match the yacht's negative yaw.
+  wake.position.set(state.x-Math.sin(state.heading*Math.PI/180)*26,.01,state.z+Math.cos(state.heading*Math.PI/180)*26);wake.rotation.z=-state.heading*Math.PI/180;wake.visible=state.speed>.4;wake.material.opacity=Math.min(.66,state.speed*.1);
  },dispose(){
   const ownedTextures=new Set([environmentMap.texture]);
   if(reflectionTexture)ownedTextures.add(reflectionTexture);
