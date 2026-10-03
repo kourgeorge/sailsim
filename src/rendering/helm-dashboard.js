@@ -37,7 +37,7 @@ export function createHelmDashboard({container,getState,openModal,onChart}){
    cog:state.speedOverGround>.05?bearing(state.courseOverGround):'—',depth:`${number(state.depth)} m`,
    'apparent-speed':`${number(state.apparentWindSpeed)} kn`,'apparent-angle':state.apparentWindSpeed>1e-9?relative(state.apparentWindAngle):'—',
    'water-speed':`${number(water.speed)} kn`,'water-direction':bearing(water.direction),'water-angle':relative(water.angle),
-   rudder:relative(state.rudder),throttle:`${state.throttle<-.005?'▼':state.throttle>.005?'▲':'–'} ${number(Math.abs(state.throttle)*100,0)}%`,
+   rudder:relative(state.rudder),throttle:state.vesselId==='catamaran'?`P ${number(state.portThrottle*100,0)}% · S ${number(state.starboardThrottle*100,0)}%`:`${state.throttle<-.005?'▼':state.throttle>.005?'▲':'–'} ${number(Math.abs(state.throttle)*100,0)}%`,
   };
   for(const node of document.querySelectorAll('[data-dashboard-value]')){
    const value=values[node.dataset.dashboardValue];if(node.textContent!==value)node.textContent=value;

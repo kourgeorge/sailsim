@@ -18,6 +18,10 @@ export const PLAYER_HULL = Object.freeze({ ...playerShape, vertices: Object.free
 export const createWorldBodies = locationId => getWorldBodyDefinitions(locationId).map(createRigidBody);
 
 function localVertices(shape) {
+  if(shape.type==='compound'){
+    const points=shape.parts.flatMap(part=>part.vertices),xs=points.map(p=>p[0]),zs=points.map(p=>p[1]);
+    return [[Math.min(...xs),Math.min(...zs)],[Math.max(...xs),Math.min(...zs)],[Math.max(...xs),Math.max(...zs)],[Math.min(...xs),Math.max(...zs)]];
+  }
   if (shape.vertices) return shape.vertices;
   if (shape.type === 'circle') return Array.from({ length: 16 }, (_, i) => [Math.cos(i * Math.PI / 8) * shape.radius, Math.sin(i * Math.PI / 8) * shape.radius]);
   const halfLength = shape.length / 2, halfBeam = shape.beam / 2;
@@ -28,6 +32,8 @@ function localVertices(shape) {
 export function createRigidBody(definition) {
   const shape = structuredClone(definition.shape ?? { type: 'box', length: definition.length, beam: definition.beam });
   const vertices = localVertices(shape);
+  const parts=shape.type==='compound'?shape.parts.map(part=>part.vertices):[vertices];
+  if(parts.some(part=>part.length<3||part.some(p=>!Array.isArray(p)||!p.every(Number.isFinite))))throw new Error(`Invalid compound body: ${definition.id}`);
   if (!['fixed', 'free', 'moored'].includes(definition.kind) || vertices.length < 3 || vertices.some(point => !Array.isArray(point) || !point.every(Number.isFinite))) throw new Error(`Invalid body shape: ${definition.id}`);
   const mass = definition.kind === 'fixed' ? 1 : definition.mass;
   if (!(mass > 0) || !Number.isFinite(mass)) throw new Error(`Invalid body mass: ${definition.id}`);
@@ -39,7 +45,7 @@ export function createRigidBody(definition) {
     inertia: definition.inertia > 0 ? definition.inertia : mass * (width * width + length * length) / 12,
     restitution: clamp(definition.restitution ?? .06, 0, .2), friction: clamp(definition.friction ?? .3, 0, 1),
     linearDamping: definition.linearDamping ?? .08, angularDamping: definition.angularDamping ?? .3,
-    _vertices: vertices, _radius: Math.max(...vertices.map(([x, z]) => Math.hypot(x, z))), _featureSize: Math.min(width, length),
+    _vertices: vertices, _parts:parts, _radius: Math.max(...vertices.map(([x, z]) => Math.hypot(x, z))), _featureSize: Math.min(width, length,...parts.map(part=>Math.max(...part.map(p=>p[0]))-Math.min(...part.map(p=>p[0])))),
   };
 }
 
@@ -48,7 +54,8 @@ export function worldVertices(body) {
   if(old&&old.x===body.x&&old.z===body.z&&old.heading===body.heading)return old.vertices;
   const c = Math.cos(body.heading * RAD), s = Math.sin(body.heading * RAD);
   const vertices=body._vertices.map(([x, z]) => ({ x: body.x + c * x - s * z, z: body.z + s * x + c * z }));
-  body._worldCache={x:body.x,z:body.z,heading:body.heading,vertices,minX:Math.min(...vertices.map(p=>p.x)),maxX:Math.max(...vertices.map(p=>p.x)),minZ:Math.min(...vertices.map(p=>p.z)),maxZ:Math.max(...vertices.map(p=>p.z))};
+  const parts=body._parts?.length>1?body._parts.map(part=>part.map(([x,z])=>({x:body.x+c*x-s*z,z:body.z+s*x+c*z}))):[vertices];
+  body._worldCache={x:body.x,z:body.z,heading:body.heading,vertices,parts,minX:Math.min(...vertices.map(p=>p.x)),maxX:Math.max(...vertices.map(p=>p.x)),minZ:Math.min(...vertices.map(p=>p.z)),maxZ:Math.max(...vertices.map(p=>p.z))};
   return vertices;
 }
 
@@ -78,7 +85,10 @@ function projection(vertices, axis) {
 // A separating-axis gap is a conservative clearance measure for convex shapes.
 export function separatedBeyond(a, b, clearance = .15) {
   if (Math.hypot(b.x - a.x, b.z - a.z) > a._radius + b._radius + clearance) return true;
-  const av = worldVertices(a), bv = worldVertices(b);
+  worldVertices(a);worldVertices(b);
+  return a._worldCache.parts.every(av=>b._worldCache.parts.every(bv=>polygonsSeparated(av,bv,clearance)));
+}
+function polygonsSeparated(av,bv,clearance){
   for (const vertices of [av, bv]) for (let i = 0; i < vertices.length; i++) {
     const edge = sub(vertices[(i + 1) % vertices.length], vertices[i]), length = Math.hypot(edge.x, edge.z);
     if (length < 1e-9) continue;
@@ -113,10 +123,16 @@ function overlapPatch(subject, clip) {
 }
 
 export function detectContact(a, b) {
-  if (Math.hypot(b.x - a.x, b.z - a.z) > a._radius + b._radius) return null;
-  const av = worldVertices(a), bv = worldVertices(b);
+  return detectContacts(a,b).sort((left,right)=>right.penetration-left.penetration)[0]||null;
+}
+function detectContacts(a,b){
+  if (Math.hypot(b.x - a.x, b.z - a.z) > a._radius + b._radius) return [];
+  worldVertices(a);worldVertices(b);
   const ab=a._worldCache,bb=b._worldCache;
-  if(ab.maxX<=bb.minX||bb.maxX<=ab.minX||ab.maxZ<=bb.minZ||bb.maxZ<=ab.minZ)return null;
+  if(ab.maxX<=bb.minX||bb.maxX<=ab.minX||ab.maxZ<=bb.minZ||bb.maxZ<=ab.minZ)return [];
+  return ab.parts.flatMap(av=>bb.parts.map(bv=>polygonContact(av,bv,a,b)).filter(Boolean));
+}
+function polygonContact(av,bv,a,b){
   let penetration = Infinity, normal;
   for (const vertices of [av, bv]) for (let i = 0; i < vertices.length; i++) {
     const edge = sub(vertices[(i + 1) % vertices.length], vertices[i]), length = Math.hypot(edge.x, edge.z);
@@ -181,10 +197,11 @@ export function solveContacts(bodies, iterations = 4) {
   for (let i=0;i<moving.length;i++) { for(let j=i+1;j<moving.length;j++)addPair(moving[i],moving[j]); for(const stationary of nearbyStatic(moving[i],immovable))addPair(moving[i],stationary); }
   for (let iteration = 0; iteration < iterations; iteration++) {
     for (const [a,b] of pairs) {
-      const contact = detectContact(a, b); if (!contact) continue;
+      for(const contact of detectContacts(a,b)){
       const result = resolveContact(a, b, contact), key = `${a.id}|${b.id}`, previous = contacts.get(key);
       if (!previous) contacts.set(key, { aId: a.id, bId: b.id, ...contact, ...result });
       else { previous.impulse += result.impulse; previous.closingSpeed = Math.max(previous.closingSpeed, result.closingSpeed); }
+      }
     }
   }
   return [...contacts.values()];

@@ -11,10 +11,10 @@ import { createHelmDisplay } from './helm-display.js';
 
 function deckOutline(){const shape=new THREE.Shape();shape.moveTo(0,6.6);for(let z=-6.6;z<=5.25;z+=.12)shape.lineTo(widthAt(z),-z);shape.lineTo(1.62,-5.25);shape.lineTo(-1.62,-5.25);for(let z=5.25;z>=-6.6;z-=.12)shape.lineTo(-widthAt(z),-z);shape.closePath();return shape;}
 
-function makeSail(parent,mat,{height,foot,jib=false}){
+export function makeSail(parent,mat,{height,foot,jib=false,luffReach=4.8,mark='H  39'}){
  const rows=36,cols=18,pos=[],uv=[],index=[];
  for(let y=0;y<=rows;y++){const v=y/rows;for(let x=0;x<=cols;x++){const u=x/cols,chord=foot*(1-v),camber=Math.sin(u*Math.PI)*chord*.16;
-  const z=jib?-4.8*(1-v)+chord*u:chord*u;
+  const z=jib?-luffReach*(1-v)+chord*u:chord*u;
   pos.push(camber,height*v,z);uv.push(u,v);
   if(y<rows&&x<cols){const k=y*(cols+1)+x;index.push(k,k+1,k+cols+2,k,k+cols+2,k+cols+1);}
  }}
@@ -24,16 +24,16 @@ function makeSail(parent,mat,{height,foot,jib=false}){
   c.strokeStyle='#aaa998';c.lineWidth=1.4;for(let y=100;y<h;y+=160){c.beginPath();c.moveTo(0,y);c.bezierCurveTo(w*.3,y+30,w*.7,y+32,w,y+5);c.stroke();c.strokeStyle='#b7b5a3';c.beginPath();c.moveTo(0,y+6);c.lineTo(w,y+10);c.stroke();}
   c.strokeStyle='#ceccbb';c.lineWidth=18;c.strokeRect(8,8,w-16,h-16);
   c.fillStyle='#bec0ae';for(let y=260;y<h;y+=420){c.fillRect(w*.25,y,w*.75,9);}
-  if(!jib){c.fillStyle='#16444c';c.font='600 115px sans-serif';c.textAlign='center';c.fillText('H  39',w*.52,h*.35);c.font='36px sans-serif';c.fillText('H A V E N',w*.52,h*.43);c.fillStyle='#3b696b';c.fillRect(0,h*.84,w,80);}
+  if(!jib){c.fillStyle='#16444c';c.font='600 115px sans-serif';c.textAlign='center';c.fillText(mark,w*.52,h*.35);c.font='36px sans-serif';c.fillText('H A V E N',w*.52,h*.43);c.fillStyle='#3b696b';c.fillRect(0,h*.84,w,80);}
  });
  const sailMat=mat.cloth.clone();sailMat.map=texture;const sail=mesh(parent,geometry,sailMat);sail.castShadow=false;
  // Visible bolt rope and leech, with real curvature rather than flat triangles.
- const edge=[];for(let i=0;i<=24;i++){const v=i/24;edge.push([0,height*v,jib?-4.8*(1-v)+foot*(1-v):foot*(1-v)]);}
+ const edge=[];for(let i=0;i<=24;i++){const v=i/24;edge.push([0,height*v,jib?-luffReach*(1-v)+foot*(1-v):foot*(1-v)]);}
  const leech=rope(parent,mat.ivory,edge,.018,36);if(jib)leech.visible=false;
  const base=new Float32Array(pos);
- return {mesh:sail,update(time,luff,{angle=0,side=1,outhaul=.5,vang=.5,deploy=1}={}){const p=geometry.attributes.position;for(let i=0;i<p.count;i++){const u=uv[i*2],v=uv[i*2+1],chord=foot*(1-v)*deploy;const bulge=base[i*3]*deploy*side*(1.3-outhaul*.6)+Math.sin(time*8+v*15+u*5)*luff*.11*Math.sin(u*Math.PI)*(1-v);const twist=(1-vang)*v*.14*side;const rotation=angle+twist;p.setXYZ(i,chord*u*Math.sin(rotation)+bulge*Math.cos(rotation),base[i*3+1],(jib?-4.8*(1-v):0)+chord*u*Math.cos(rotation)-bulge*Math.sin(rotation));}p.needsUpdate=true;geometry.computeVertexNormals();}};
+ return {mesh:sail,update(time,luff,{angle=0,side=1,outhaul=.5,vang=.5,deploy=1}={}){const p=geometry.attributes.position;for(let i=0;i<p.count;i++){const u=uv[i*2],v=uv[i*2+1],chord=foot*(1-v)*deploy;const bulge=base[i*3]*deploy*side*(1.3-outhaul*.6)+Math.sin(time*8+v*15+u*5)*luff*.11*Math.sin(u*Math.PI)*(1-v);const twist=(1-vang)*v*.14*side;const rotation=angle+twist;p.setXYZ(i,chord*u*Math.sin(rotation)+bulge*Math.cos(rotation),base[i*3+1],(jib?-luffReach*(1-v):0)+chord*u*Math.cos(rotation)-bulge*Math.sin(rotation));}p.needsUpdate=true;geometry.computeVertexNormals();}};
 }
-function winch(parent,mat,x,y,z,color){
+export function winch(parent,mat,x,y,z,color){
  cylinder(parent,mat.rubber,x,y,z,.18,.23,.09);cylinder(parent,mat.steel,x,y+.16,z,.13,.18,.28);
  cylinder(parent,mat.aluminum,x,y+.31,z,.20,.16,.045);cylinder(parent,mat.rubber,x,y+.34,z,.055,.055,.023);
  const coil=[];for(let i=0;i<=130;i++){const t=i/130*Math.PI*7;coil.push([x+Math.cos(t)*.147,y+.07+i/130*.16,z+Math.sin(t)*.147]);}rope(parent,color,coil,.018,110);

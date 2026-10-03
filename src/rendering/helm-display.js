@@ -82,7 +82,7 @@ export function createHelmDisplay(parent,mat){
   if(Number.isFinite(awa)&&state.apparentWindSpeed>1e-9){c.save();c.translate(windX,windY);c.rotate(awa*Math.PI/180);c.strokeStyle='#f1cc86';c.lineWidth=4;c.beginPath();c.moveTo(0,34);c.lineTo(0,-39);c.lineTo(-8,-28);c.moveTo(0,-39);c.lineTo(8,-28);c.stroke();c.restore();}
   c.strokeStyle='#31545c';c.lineWidth=2;c.beginPath();c.moveTo(20,535);c.lineTo(1180,535);c.stroke();
   label('HELM',24,595,270,32);value(`${state.rudder<-.5?'←':state.rudder>.5?'→':'↔'} ${number(Math.abs(state.rudder),0)}°`,24,683,270,52);
-  label('Engine throttle',340,607,335,32);value(`${state.throttle<-.005?'▼':state.throttle>.005?'▲':'–'} ${number(Math.abs(state.throttle)*100,0)}%`,340,683,335,52,Math.abs(state.throttle)>.005?'#f1cc86':'#edfff3');
+  label(state.vesselId==='catamaran'?'Twin engines':'Engine throttle',340,607,335,32);value(state.vesselId==='catamaran'?`P ${number(state.portThrottle*100,0)}  S ${number(state.starboardThrottle*100,0)}%`:`${state.throttle<-.005?'▼':state.throttle>.005?'▲':'–'} ${number(Math.abs(state.throttle)*100,0)}%`,340,683,335,state.vesselId==='catamaran'?38:52,Math.abs(state.throttle)>.005?'#f1cc86':'#edfff3');
   label('Wind over water',914,600,260,30);value(`${number(state.waterWindSpeed)} kn`,914,650,260,39);value(degrees(state.waterWindDirection),914,700,260,34,'#b4d0d0');
   screen.userData.telemetry={speed:state.speed,speedOverGround:sog,heading:state.heading,courseOverGround:cog,depth:state.depth,apparentWindSpeed:state.apparentWindSpeed,apparentWindAngle:awa,windSpeed:state.windSpeed,windDirection:state.windDirection,waterWindSpeed:state.waterWindSpeed,waterWindDirection:state.waterWindDirection,waterWindAngle:state.waterWindAngle,rudder:state.rudder,throttle:state.throttle,language:getLanguage()};
   texture.needsUpdate=true;
@@ -90,7 +90,7 @@ export function createHelmDisplay(parent,mat){
  return {group,canvas:texture.image,update(state,time){
   const sameTime=time===lastTime;lastTime=time;const tick=Math.floor(time*5);
   if(tick===lastTick&&!sameTime)return;
-  const signature=JSON.stringify([getLanguage(),state.locationId,state.x,state.z,state.speed,state.heading,state.speedOverGround,state.courseOverGround,state.depth,state.apparentWindSpeed,state.apparentWindAngle,state.windSpeed,state.windDirection,state.waterWindSpeed,state.waterWindDirection,state.waterWindAngle,state.rudder,state.throttle,(state.worldBodies||[]).map(b=>[b.x,b.z,b.heading])]);
+  const signature=JSON.stringify([getLanguage(),state.vesselId,state.portThrottle,state.starboardThrottle,state.locationId,state.x,state.z,state.speed,state.heading,state.speedOverGround,state.courseOverGround,state.depth,state.apparentWindSpeed,state.apparentWindAngle,state.windSpeed,state.windDirection,state.waterWindSpeed,state.waterWindDirection,state.waterWindAngle,state.rudder,state.throttle,(state.worldBodies||[]).map(b=>[b.x,b.z,b.heading])]);
   if(signature===lastSignature)return;
   draw(state);lastSignature=signature;lastTick=tick;
  }};

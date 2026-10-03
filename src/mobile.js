@@ -91,6 +91,10 @@ export function mountMobileLayout() {
     groups.append(panel);
     return {id, label, panel, button};
   });
+  const helmGroup = panels[0].panel.querySelector('.cockpit-group-helm');
+  const engineGroup = panels[0].panel.querySelector('.cockpit-group-engine');
+  const engineControl = engineGroup.querySelector('.engine-control');
+  const twinEngines = engineControl.querySelector('.twin-engines');
   const mobile = window.matchMedia('(max-width: 900px)');
   let selected = 'helm';
   const update = () => {
@@ -116,6 +120,14 @@ export function mountMobileLayout() {
     // The dashboard remains its own full-width row on desktop.
     const dashboard = dock.querySelector('#helm-dashboard-mount');
     (mobile.matches ? panels[3].panel : dock).append(dashboard);
+    // Match the desktop reading order and use the indicator row for twin throttles.
+    const firstGroup = mobile.matches ? helmGroup : engineGroup;
+    if (panels[0].panel.firstElementChild !== firstGroup) panels[0].panel.prepend(firstGroup);
+    const engineTarget = mobile.matches ? engineControl : dashboard.querySelector('#helm-dashboard');
+    if (twinEngines.parentElement !== engineTarget) {
+      if (mobile.matches) engineTarget.append(twinEngines);
+      else engineTarget.prepend(twinEngines);
+    }
     dock.scrollTop = 0;
   };
   for (const {id, button} of panels) button.addEventListener('click', () => {

@@ -19,7 +19,13 @@ html[dir=rtl] .cockpit-control-group{direction:rtl}
 .simulator .control-dock.cockpit-controls .control-hint kbd{font-size:inherit}
 .simulator .control-dock.cockpit-controls #ideal-trim{font-size:calc(11px * var(--text-scale,1));font-weight:500}
 .simulator .control-dock.cockpit-controls .cockpit-hoist{display:flex;align-items:center;justify-content:space-between;gap:7px;font-size:calc(11px * var(--text-scale,1));font-weight:500;line-height:1.3;color:#c2d7d8}
-.simulator .control-dock.cockpit-controls .cockpit-hoist>span{min-width:0;overflow-wrap:anywhere}
+.simulator .control-dock.cockpit-controls .cockpit-hoist>:first-child{min-width:0;overflow-wrap:anywhere}
+.simulator .control-dock.cockpit-controls .cockpit-hoist-input{display:inline-flex;align-items:center;gap:3px;flex-shrink:0;direction:ltr}
+.simulator .control-dock.cockpit-controls .cockpit-hoist-input input[type=number]{width:3.7em;text-align:right;font-variant-numeric:tabular-nums;appearance:textfield;border-radius:4px 0 0 4px}
+.cockpit-hoist-input input::-webkit-inner-spin-button,.cockpit-hoist-input input::-webkit-outer-spin-button{appearance:none;margin:0}
+.cockpit-hoist-stepper{display:flex;flex-direction:column;align-self:stretch;flex-shrink:0;width:1.3em;margin-inline-start:-3px;border:1px solid #ffffff26;border-inline-start:0;border-radius:0 4px 4px 0;overflow:hidden}
+.simulator .control-dock.cockpit-controls .cockpit-hoist-stepper button{flex:1;width:100%;min-width:0;min-height:0;padding:0;border:0;border-radius:0;font-size:calc(10px * var(--text-scale,1));line-height:1;color:#d0e0dc;background:#ffffff0a}
+.simulator .control-dock.cockpit-controls .cockpit-hoist-stepper button:hover{background:#ffffff20}
 .simulator .control-dock.cockpit-controls select,.simulator .control-dock.cockpit-controls input[type=number]{font:inherit;color:#f1f6ee;background:#173b47;border:1px solid #62848b;border-radius:5px;min-height:26px;padding:2px 4px;max-width:100%;min-width:0}
 .simulator .control-dock.cockpit-controls select{width:64px;flex-shrink:0;font-size:calc(11px * var(--text-scale,1))}
 .simulator .control-dock.cockpit-controls .sail-actions{position:static;display:flex;flex-direction:row;flex-wrap:wrap;align-items:center;gap:3px 5px;margin:0}

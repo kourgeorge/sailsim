@@ -34,7 +34,7 @@ async function checkDashboard(){
  for(const id of ['rudder','trim','cockpit-jib-sheet','engine-throttle','engine-neutral','cockpit-main-hoist','cockpit-jib-hoist','reef','cockpit-anchor-rode','anchor'])await expect(page.locator(`.control-dock #${id}`)).toBeVisible();
  const dockHeight=await page.locator('.control-dock').evaluate(node=>node.getBoundingClientRect().height);assert.ok(dockHeight<250,`Desktop cockpit stays compact: ${dockHeight}px`);
  await page.locator('#trim').fill('30');await page.locator('#cockpit-jib-sheet').fill('45');await expect(page.locator('#vessel-jibSheet')).toHaveValue('45');await expect(page.locator('#trim')).toHaveValue('30');
- await page.locator('#cockpit-main-hoist').selectOption('0.5');await page.locator('#cockpit-jib-hoist').selectOption('0');await expect(page.locator('#vessel-mainHoist')).toHaveValue('0.5');await expect(page.locator('#vessel-jibHoist')).toHaveValue('0');
+ await page.locator('#cockpit-main-hoist').fill('50');await page.locator('#cockpit-jib-hoist').fill('0');await expect(page.locator('#vessel-mainHoist')).toHaveValue('0.5');await expect(page.locator('#vessel-jibHoist')).toHaveValue('0');
  await page.locator('#reef').click();await page.locator('#reef').click();await expect(page.locator('#vessel-reefLevel')).toHaveValue('2');
  await page.locator('#cockpit-anchor-rode').fill('0');await page.locator('#anchor').click();await expect(page.locator('#cockpit-anchor-rode')).toBeFocused();await expect(page.locator('#systems-drawer')).toBeHidden();
  await page.locator('#cockpit-anchor-rode').fill('50');await page.locator('#anchor').click();await expect(page.locator('#cockpit-anchor-paid')).toHaveText('0.0 m');
@@ -59,7 +59,7 @@ async function checkDashboard(){
  await page.locator('.text-size-control summary').click();await page.locator('#sail-text-size-range').fill('200');await page.locator('.text-size-control summary').click();await page.setViewportSize({width:390,height:844});
  await expect(dashboard).toBeVisible();assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth>innerWidth+2),false,'Mobile 200% dashboard does not widen the page');
  assert.equal(await page.locator('.cockpit-control-groups').evaluate(node=>getComputedStyle(node).gridTemplateColumns.split(' ').length),1,'200% phone controls use one readable column');
- assert.equal(await page.locator('.cockpit-hoist>span').evaluateAll(nodes=>nodes.every(node=>node.clientWidth>100)),true,'Hoist labels have room for words');
+ assert.equal(await page.locator('.cockpit-hoist>label').evaluateAll(nodes=>nodes.every(node=>node.clientWidth>100)),true,'Hoist labels have room for words');
  await page.screenshot({path:'artifacts/live-practice/dashboard-mobile-he-200.png',fullPage:true});
  await page.locator('#dashboard-enlarge').click();await expect(page.locator('.dashboard-expanded')).toBeVisible();
  assert.equal(await page.locator('.dashboard-expanded').evaluate(root=>[...root.querySelectorAll('dd,dt,.dashboard-detail')].some(el=>el.scrollWidth>el.clientWidth+2)),false,'Expanded mobile readings fit');

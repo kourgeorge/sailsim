@@ -1,4 +1,5 @@
 import { depthAt } from './water-depth.js';
+import { getVessel } from './vessels.js';
 
 /** Local vessel coordinates: +x starboard, +y up, -z bow. Metres. */
 export const BOW_FAIRLEAD=Object.freeze({x:0,y:1.2,z:-6.6});
@@ -9,7 +10,8 @@ const length=value=>Math.max(0,Math.min(MAX_RODE,Number.isFinite(value)?value:0)
 const distance=(a,b)=>Math.hypot(a.x-b.x,a.y-b.y,a.z-b.z);
 export function bowFairlead(state) {
   const angle=state.heading*Math.PI/180,c=Math.cos(angle),s=Math.sin(angle);
-  return {x:state.x+c*BOW_FAIRLEAD.x-s*BOW_FAIRLEAD.z,y:BOW_FAIRLEAD.y,z:state.z+s*BOW_FAIRLEAD.x+c*BOW_FAIRLEAD.z};
+  const fairlead=getVessel(state).fairlead;
+  return {x:state.x+c*fairlead.x-s*fairlead.z,y:fairlead.y,z:state.z+s*fairlead.x+c*fairlead.z};
 }
 const recordPoint=(record,fairlead)=>record&&record.onBottom!==false?{x:record.x,y:-record.depth,z:record.z}:record?.point?{...record.point}:{...fairlead};
 const onBottom=record=>Boolean(record)&&record.onBottom!==false;

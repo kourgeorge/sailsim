@@ -8,6 +8,7 @@ import { syncBodyTransform } from './body-motion.js';
 import { islandHeight } from './geography.js';
 import { installHullWaterExclusion } from './hull-geometry.js';
 import { createMobileWater } from './mobile-water.js';
+import { getVessel } from '../vessels.js';
 import { createIslandTerrain, createShoreline } from './shoreline.js';
 import { getCoastalFeatures, clearOfCoastalBuildings } from '../world/coastal-features.js';
 import { createCoastalVillage } from './coastal-village.js';
@@ -28,7 +29,8 @@ function cloudDome(){
  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p=p*2.04+vec2(11.4,7.8);a*=.52;}return v;}
  void main(){vec3 d=normalize(ray);if(d.y<.015)discard;vec2 p=d.xz/(d.y+.16)*2.2+vec2(time*.002,0);float f=fbm(p);float density=smoothstep(.53,.78,f)*smoothstep(.015,.15,d.y);vec3 color=mix(vec3(.57,.64,.67),vec3(1.,.96,.87),smoothstep(.50,.79,f));gl_FragColor=vec4(color,density*.66);}` }));
 }
-export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'}={}){
+export function createEnvironment(scene,renderer,mat,{quality,locationId='haven',vesselId='monohull'}={}){
+ const vessel=getVessel(vesselId);
  const location=getLocation(locationId),{islands}=location;
  const definitions=getWorldBodyDefinitions(location.id),buoys=definitions.filter(body=>body.visual.type==='buoy');
  const random=seededRandom(83),sunDirection=new THREE.Vector3(-.8,.64,-1.1).normalize();
@@ -45,9 +47,9 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  water.rotation.x=-Math.PI/2;water.position.y=-.07;water.material.uniforms.size.value=2.3;
  // Replace the overly reflective default with water's physical normal-incidence Fresnel value.
  if(water.isWater)water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
- const excludeWater=installHullWaterExclusion(water.material);
+ const excludeWater=installHullWaterExclusion(water.material,{vesselId:vessel.id});
  scene.add(water);
- const shoreline=createShoreline(scene,location,waterOptions.waterNormals);
+ const shoreline=createShoreline(scene,location,waterOptions.waterNormals,{vesselId:vessel.id});
  const excludeHullWater=boat=>{excludeWater(boat);shoreline.excludeHullWater(boat);};
  // Water keeps its reflection target in a closure and exposes no dispose method.
  // Capture that target through the renderer's public API on its first reflection.
@@ -119,9 +121,11 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  // All land above is charted and participates in depth/grounding.
  // Foam trail as a soft textured surface rather than rigid white rectangles.
  const foamTexture=canvasTexture(256,512,(c,w,h)=>{c.clearRect(0,0,w,h);for(let i=0;i<3200;i++){const y=random()*h,t=y/h,x=w/2+(random()-.5)*(35+t*190);c.fillStyle=`rgba(220,244,238,${(1-t)*random()*.23})`;c.beginPath();c.ellipse(x,y,1+random()*4,1+random()*7,0,0,6.28);c.fill();}});
- const wake=new THREE.Mesh(new THREE.PlaneGeometry(12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false}));wake.rotation.x=-Math.PI/2;scene.add(wake);
+ const wakes=(vessel.type==='catamaran'?[-vessel.hullSpacing/2,vessel.hullSpacing/2]:[0]).map(across=>{
+  const wake=new THREE.Mesh(new THREE.PlaneGeometry(vessel.type==='catamaran'?5:12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false}));wake.rotation.x=-Math.PI/2;wake.userData.across=across;scene.add(wake);return wake;
+ });
  for(const child of [...scene.children]){if(child.isGroup){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
- batchStaticMeshes(scene,mergeGeometries,[water,wake]);
+ batchStaticMeshes(scene,mergeGeometries,[water,...wakes]);
  createCoastalVillage(scene,coastalFeatures);
  const marineLife=createMarineLife(scene,location.id,quality);
  const birdLife=createBirdLife(scene,location.id,quality);
@@ -132,7 +136,8 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
   navigation.forEach((g,i)=>syncBodyTransform(g,bodies.get(g.userData.bodyId)||buoys[i],state.elapsed||0,time,i));
   // The plane's local Z axis points up after flattening; match the yacht's negative yaw.
-  wake.position.set(state.x-Math.sin(state.heading*Math.PI/180)*26,.01,state.z+Math.cos(state.heading*Math.PI/180)*26);wake.rotation.z=-state.heading*Math.PI/180;wake.visible=state.speed>.4;wake.material.opacity=Math.min(.66,state.speed*.1);
+  const heading=state.heading*Math.PI/180,behind=vessel.type==='catamaran'?28.5:26;
+  for(const wake of wakes){const across=wake.userData.across;wake.position.set(state.x+Math.cos(heading)*across-Math.sin(heading)*behind,.01,state.z+Math.sin(heading)*across+Math.cos(heading)*behind);wake.rotation.z=-heading;wake.visible=state.speed>.4&&!state.capsized;wake.material.opacity=Math.min(.66,state.speed*.1);}
  },dispose(){
   const ownedTextures=new Set([environmentMap.texture]);
   if(reflectionTexture)ownedTextures.add(reflectionTexture);

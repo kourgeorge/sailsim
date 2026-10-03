@@ -45,6 +45,7 @@ import { mountSailingAudio } from './audio/ui.js';
 import { createRaceUI } from './racing/ui.js';
 import { createChallengeUI } from './challenges/ui.js';
 import { mountSectionCovers, sectionForMode } from './activity/section-covers.js';
+import { getVessel } from './vessels.js';
 
 async function startApp() {
   initializeTextSize();
@@ -56,6 +57,10 @@ async function startApp() {
     localeLoadError = true;
   }
   let sceneTime = 0;
+  let selectedVessel = 'monohull';
+  try {
+    selectedVessel = getVessel(localStorage.getItem('sail-vessel')).id;
+  } catch {}
   let lesson = 0,
     state = initialState(),
     mode = 'learn',
@@ -122,6 +127,14 @@ async function startApp() {
     if (value !== mode)
       learning?.cancel('Mode changed. Return to the lesson and restart practice.');
     mode = value;
+    // The saved boat choice belongs only to free sailing, including its setup page.
+    if (mode !== 'explore' && state.vesselId === 'catamaran') {
+      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      state = initialState(state.locationId);
+      Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      lastCollisionSequence = 0;
+      ensureScene(state.locationId);
+    }
     $('.simulator').dataset.mode = mode;
     document
       .querySelectorAll('button[data-mode]')
@@ -282,9 +295,11 @@ async function startApp() {
     $('#anchor').classList.toggle('on', state.anchor);
     $('#engine-throttle').value = state.throttle;
     $('#engine-throttle-value').textContent =
-      Math.abs(state.throttle) < 0.01
-        ? 'Neutral'
-        : `${state.throttle < 0 ? 'Astern' : 'Ahead'} ${Math.round(Math.abs(state.throttle) * 100)}%`;
+      state.vesselId === 'catamaran' && state.portThrottle !== state.starboardThrottle
+        ? t('Independent engines')
+        : Math.abs(state.throttle) < 0.01
+          ? 'Neutral'
+          : `${state.throttle < 0 ? 'Astern' : 'Ahead'} ${Math.round(Math.abs(state.throttle) * 100)}%`;
     syncPlayback();
   }
   $('#rudder').oninput = (e) => {
@@ -381,7 +396,7 @@ async function startApp() {
     freeSailingStarted = false;
     lab?.cancel();
     learning?.cancel('Boat reset. Restart the assessed practice to record a new attempt.');
-    state = initialState(state.locationId);
+    state = initialState(state.locationId, state.vesselId);
     lastCollisionSequence = 0;
     playback.pause();
     challengeIndex = 0;
@@ -472,11 +487,11 @@ async function startApp() {
   }
   function ensureScene(locationId) {
     const location = getLocation(locationId);
-    if (scene?.locationId !== location.id) {
+    if (scene?.locationId !== location.id || scene?.vesselId !== getVessel(state).id) {
       scene?.dispose();
       scene = null;
       try {
-        scene = createScene($('#scene'), { locationId: location.id });
+        scene = createScene($('#scene'), { locationId: location.id, vesselId: state.vesselId });
         scene.setView(camera);
       } catch (error) {
         console.error(error);
@@ -491,7 +506,7 @@ async function startApp() {
       onSelect: (id) => {
         lab?.leave();
         learning.cancel('Location changed. Restart practice when you return.');
-        state = initialState(id);
+        state = initialState(id, selectedVessel);
         lastCollisionSequence = 0;
         ensureScene(id);
         playback.pause();
@@ -699,7 +714,7 @@ async function startApp() {
       cockpitControls?.update();
       helmDashboard?.update();
       const twa = state.waterWindAngle,
-        point = twa === null ? t('Calm over water') : pointOfSail(twa);
+        point = twa === null ? t('Calm over water') : pointOfSail(twa, state.vesselId);
       $('#speed').textContent = state.speed.toFixed(1);
       $('#heading').textContent = String(Math.round(state.heading) % 360).padStart(3, '0');
       $('#heading-caption').textContent = compass(state.heading);
@@ -924,7 +939,7 @@ async function startApp() {
     else if (mode === 'adventure') adventures.restart();
     else {
       const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
-      state = initialState(state.locationId);
+      state = initialState(state.locationId, state.vesselId);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       lastCollisionSequence = 0;
       challengeIndex = 0;
@@ -961,14 +976,28 @@ async function startApp() {
   sectionCovers = mountSectionCovers({
     simulator: $('.simulator'),
     getState: () => state,
+    getSelectedVessel: () => selectedVessel,
+    onVessel: (id) => {
+      selectedVessel = getVessel(id).id;
+      try {
+        localStorage.setItem('sail-vessel', selectedVessel);
+      } catch {}
+      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      state = initialState(state.locationId, selectedVessel);
+      Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      lastCollisionSequence = 0;
+      ensureScene(state.locationId);
+      syncControls();
+    },
     onNavigate: navigateSection,
     onCourse: () => learning.libraryModal(),
     onStartFree: () => {
       closeOverlays();
       // Every entry begins a fresh voyage with the selected location and weather.
       const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
-      state = initialState(state.locationId);
+      state = initialState(state.locationId, selectedVessel);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      ensureScene(state.locationId);
       lastCollisionSequence = 0;
       setMode('explore');
       freeSailingStarted = true;
@@ -978,7 +1007,7 @@ async function startApp() {
       syncControls();
     },
     onLocation: (id) => {
-      state = initialState(id);
+      state = initialState(id, selectedVessel);
       lastCollisionSequence = 0;
       ensureScene(id);
       updateLocation();

@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { CATAMARAN } from '../vessels.js';
 
 // Existing visual hull sections, metres: local +X starboard and −Z forward.
 // Water exclusion and the visible shell use the same section definition.
@@ -24,7 +25,7 @@ export function hullGeometry(){
 
 // Discard only water fragments inside the actual heeled/pitched hull volume.
 // This prevents an infinite ocean plane crossing a dry cockpit when heeled.
-export function installHullWaterExclusion(material){
+export function installHullWaterExclusion(material,{vesselId='monohull'}={}){
  const inverse={value:new THREE.Matrix4()},active={value:false};
  material.uniforms.hullInverse=inverse;material.uniforms.hullExclusionActive=active;
  const gl=n=>Number(n).toFixed(8);
@@ -32,10 +33,24 @@ export function installHullWaterExclusion(material){
   const [pz,pw]=HULL_SECTIONS[i];
   return `if(p.z<=${gl(z)})w=mix(${gl(pw)},${gl(w)},(p.z-(${gl(pz)}))/${gl(z-pz)});`;
  }).join('else ');
+ const catSections=CATAMARAN.sections.slice(1).map(([z,w],i)=>{
+  const [pz,pw]=CATAMARAN.sections[i];return `if(p.z<=${gl(z)})w=mix(${gl(pw)},${gl(w)},(p.z-(${gl(pz)}))/${gl(z-pz)});`;
+ }).join('else ');
  material.fragmentShader=`uniform mat4 hullInverse;\nuniform bool hullExclusionActive;\n`+material.fragmentShader;
  material.fragmentShader=material.fragmentShader.replace('void main() {',`void main() {
   if(hullExclusionActive){
    vec3 p=(hullInverse*worldPosition).xyz;
+   ${vesselId==='catamaran'?`
+   if(p.z>=-6.&&p.z<=6.){
+    float x=abs(abs(p.x)-2.5);
+    float sheer=p.z>4.?1.3-(p.z-4.)*.5:1.3+.18*pow(max(0.,-p.z)/6.,2.);
+    float depth=sheer+.7*(1.-.8*pow(abs(p.z)/6.,3.));
+    float s=(sheer-p.y)/depth;
+    if(s>=0.&&s<=1.){float w=.53;${catSections}
+     if(x<w*(1.-.07*s)*sqrt(max(0.,1.-s*s)))discard;
+    }
+   }
+   `:`
    if(p.z>=-6.6&&p.z<=5.25&&abs(p.x)<2.061){
     float sheerRatio=(p.z-1.)/7.;
     float sheer=.94+.17*sheerRatio*sheerRatio;
@@ -45,6 +60,7 @@ export function installHullWaterExclusion(material){
      if(abs(p.x)<w*(1.-.07*s)*sqrt(max(0.,1.-s*s)))discard;
     }
    }
+   `}
   }`);
  material.needsUpdate=true;
  return boat=>{boat.updateWorldMatrix(true,false);inverse.value.copy(boat.matrixWorld).invert();active.value=true;};

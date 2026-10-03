@@ -82,7 +82,7 @@ function ropeGeometry() {
  geometry.setIndex(indices);return geometry;
 }
 
-export function createAnchorRig(materials,{detailed=true}={}) {
+export function createAnchorRig(materials,{detailed=true,fairlead=BOW_FAIRLEAD}={}) {
  const group=new THREE.Group();group.name='anchor-rig';
  const fittings=new THREE.Group();group.add(fittings);
  box(fittings,materials.steel,0,1.19,-6.32,.18,.08,.85);
@@ -92,13 +92,14 @@ export function createAnchorRig(materials,{detailed=true}={}) {
   ring.rotation.set(Math.PI/2,i%2*Math.PI/2,0);
  }
  batchStaticMeshes(fittings,mergeGeometries);
- const stowed=anchorBody(materials.steel);stowed.name='stowed-anchor';stowed.position.set(BOW_FAIRLEAD.x,BOW_FAIRLEAD.y,BOW_FAIRLEAD.z);stowed.rotation.x=Math.PI*.75;group.add(stowed);
+ fittings.position.set(fairlead.x-BOW_FAIRLEAD.x,fairlead.y-BOW_FAIRLEAD.y,fairlead.z-BOW_FAIRLEAD.z);
+ const stowed=anchorBody(materials.steel);stowed.name='stowed-anchor';stowed.position.set(fairlead.x,fairlead.y,fairlead.z);stowed.rotation.x=Math.PI*.75;group.add(stowed);
  if(!detailed)return{group,update(){}};
  const deployedWorld=new THREE.Group();deployedWorld.name='deployed-anchor-world';deployedWorld.matrixAutoUpdate=false;deployedWorld.visible=false;group.add(deployedWorld);
  const deployed=stowed.clone(true);deployed.name='deployed-anchor';deployed.position.set(0,0,0);deployed.rotation.set(0,0,0);deployedWorld.add(deployed);
  const geometry=ropeGeometry(),ropeMaterial=new THREE.MeshStandardMaterial({color:'#b5bbb8',metalness:.55,roughness:.5});
  const rode=new THREE.Mesh(geometry,ropeMaterial);rode.name='deployed-anchor-rode';rode.frustumCulled=false;deployedWorld.add(rode);
- const localBow=new THREE.Vector3(BOW_FAIRLEAD.x,BOW_FAIRLEAD.y,BOW_FAIRLEAD.z),bow=new THREE.Vector3();
+ const localBow=new THREE.Vector3(fairlead.x,fairlead.y,fairlead.z),bow=new THREE.Vector3();
  const tangent=new THREE.Vector3(),axis=new THREE.Vector3(),normal=new THREE.Vector3(),binormal=new THREE.Vector3();
  const first=new THREE.Vector3(),last=new THREE.Vector3(),up=new THREE.Vector3(0,1,0);
  const bottomRotation=new THREE.Quaternion(),hangingRotation=new THREE.Quaternion(),seatRotation=new THREE.Quaternion(),boatRotation=new THREE.Quaternion();

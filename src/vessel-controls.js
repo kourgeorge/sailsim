@@ -1,8 +1,14 @@
 import { applyAnchorControlPatch } from './anchor.js';
+import { getVessel } from './vessels.js';
 // Apply a control patch atomically, including the original dock's aliases.
 export function applyControlPatch(state, patch) {
   const {anchor,anchorRode,anchorWinchRunning,anchorPaidRode,...direct}=patch;
   Object.assign(state,direct);
+  if(getVessel(state).type==='catamaran'){
+    if('throttle' in patch){state.portThrottle=patch.throttle;state.starboardThrottle=patch.throttle;}
+    if('portThrottle' in patch||'starboardThrottle' in patch)state.throttle=(state.portThrottle+state.starboardThrottle)/2;
+    state._engineThrottle=state.throttle;
+  }
   applyAnchorControlPatch(state,patch);
   if('trim' in patch && !('mainSheet' in patch))state.mainSheet=patch.trim;
   if('mainSheet' in patch)state.trim=patch.mainSheet;

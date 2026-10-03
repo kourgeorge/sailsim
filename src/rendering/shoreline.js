@@ -57,7 +57,7 @@ export function createIslandTerrain(island) {
   return geometry;
 }
 
-export function createShoreline(scene, location, waterNormals) {
+export function createShoreline(scene, location, waterNormals, { vesselId = 'monohull' } = {}) {
   const positions = [],
     uvs = [],
     indices = [];
@@ -159,7 +159,7 @@ export function createShoreline(scene, location, waterNormals) {
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = 'Coastal shallows';
   scene.add(mesh);
-  const excludeHullWater = installHullWaterExclusion(material);
+  const excludeHullWater = installHullWaterExclusion(material, { vesselId });
   return {
     mesh,
     excludeHullWater,

@@ -1,5 +1,16 @@
 // Small runtime compositions and accessibility labels; course content is in locale JSON.
 const entries={
+ 'Choose your boat':['Choose your boat','Elige tu barco','اختر قاربك','בחרו את הסירה','Выберите судно','Choisissez votre bateau'],
+ 'Cruising catamaran':['Cruising catamaran','Catamarán de crucero','كاتاماران للإبحار الترفيهي','קטמרן לשיט נופש','Круизный катамаран','Catamaran de croisière'],
+ 'Sailing yacht':['Sailing yacht','Yate de vela','يخت شراعي','יאכטת מפרשים','Парусная яхта','Voilier'],
+ 'Beam':['Beam','Manga','العرض','רוחב','Ширина','Largeur'],
+ 'Draft':['Draft','Calado','الغاطس','שוקע','Осадка','Tirant d’eau'],
+ 'Twin engines':['Twin engines','Dos motores','محركان','שני מנועים','Два двигателя','Deux moteurs'],
+ 'Port engine':['Port engine','Motor de babor','محرك الميسرة','מנוע שמאל','Левый двигатель','Moteur bâbord'],
+ 'Starboard engine':['Starboard engine','Motor de estribor','محرك الميمنة','מנוע ימין','Правый двигатель','Moteur tribord'],
+ 'Independent engines':['Independent engines','Motores independientes','محركان مستقلان','מנועים עצמאיים','Раздельное управление','Moteurs indépendants'],
+ 'Capsized · restart the voyage':['Capsized · restart the voyage','Vuelco · reinicia la travesía','انقلاب · أعد بدء الرحلة','הסירה התהפכה · התחילו את ההפלגה מחדש','Опрокидывание · начните плавание заново','Chavirage · recommencez la navigation'],
+ 'High sail load · reef or ease sheets':['High sail load · reef or ease sheets','Carga de vela elevada · toma rizos o larga escotas','حمل مرتفع على الأشرعة · قلل مساحتها أو أرخِ الحبال','עומס מפרשים גבוה · צמצמו או שחררו מיתרים','Высокая нагрузка · возьмите рифы или потравите шкоты','Forte charge sur les voiles · prenez un ris ou choquez les écoutes'],
  'Menu':['Menu','Menú','القائمة','תפריט','Меню','Menu'],
  'Lessons':['Lessons','Lecciones','الدروس','שיעורים','Уроки','Leçons'],
  'Lesson {number}':['Lesson {number}','Lección {number}','الدرس {number}','שיעור {number}','Урок {number}','Leçon {number}'],

@@ -1,6 +1,7 @@
 import {translate as t} from '../i18n/runtime.js';
 import './controls.css';
 import './dock.css';
+import { mountTwinEngines } from './twin-engines.js';
 
 /** Move existing controls, retaining their nodes/listeners, and add core rig controls. */
 export function mountCockpitControls({container,getState,onChange,getEnabled=()=>true}){
@@ -34,11 +35,19 @@ export function mountCockpitControls({container,getState,onChange,getEnabled=()=
  const jibInput=element('input');Object.assign(jibInput,{type:'range',id:'cockpit-jib-sheet',min:'0',max:'90',step:'1'});jibInput.setAttribute('aria-label',t('Headsail sheet'));
  jibInput.addEventListener('input',()=>onChange({jibSheet:Number(jibInput.value)}));jibTitle.append(jibLabel,jibValue);jib.append(jibTitle,jibInput);group('headsail','Headsail sheet').append(jib);
  group('engine','Engine control').append(engine);
+ const twinEngines=mountTwinEngines(engine,{getState,onChange});
  const rig=group('rig','Sail handling & shape'),hoists=[];
  for(const [key,id,label] of [['mainHoist','cockpit-main-hoist','Main halyard'],['jibHoist','cockpit-jib-hoist','Headsail furler']]){
-  const row=element('label','cockpit-hoist'),name=element('span','',label),select=element('select');select.id=id;row.htmlFor=id;select.setAttribute('aria-label',t(label));
-  for(const value of [0,.5,1]){const option=element('option','',`${value*100}%`);option.value=String(value);select.append(option);}
-  select.addEventListener('change',()=>onChange({[key]:Number(select.value)}));row.append(name,select);rig.append(row);hoists.push({key,select});
+  const row=element('div','cockpit-hoist'),name=element('label','',label),field=element('span','cockpit-hoist-input'),input=element('input'),unit=element('span','','%'),arrows=element('span','cockpit-hoist-stepper');
+  Object.assign(input,{type:'number',id,min:'0',max:'100',step:'any',inputMode:'decimal'});name.htmlFor=id;input.setAttribute('aria-label',t(label));unit.id=`${id}-unit`;input.setAttribute('aria-describedby',unit.id);
+  const setHoist=()=>{if(input.value!==''&&input.validity.valid)onChange({[key]:Number(input.value)/100});};
+  // Separate arrow increments from validation so typed percentages can remain exact.
+  const stepHoist=delta=>{input.value=String(Math.max(0,Math.min(100,Number((getState()[key]*100+delta).toFixed(2)))));setHoist();};
+  for(const [direction,delta,symbol] of [['up',10,'▴'],['down',-10,'▾']]){
+   const button=element('button','',symbol);button.type='button';button.id=`${id}-${direction}`;button.setAttribute('aria-label',`${t(label)} ${delta>0?'+':'−'}10%`);button.onclick=()=>stepHoist(delta);arrows.append(button);
+  }
+  input.addEventListener('keydown',event=>{if(event.key==='ArrowUp'||event.key==='ArrowDown'){event.preventDefault();stepHoist(event.key==='ArrowUp'?10:-10);}});
+  input.addEventListener('input',setHoist);input.addEventListener('change',setHoist);field.append(input,arrows,unit);row.append(name,field);rig.append(row);hoists.push({key,input});
  }
  rig.append(sailActions);
  const anchoring=group('anchor','Anchor & holding'),targetLabel=element('label','cockpit-rode-label','Rode target');targetLabel.htmlFor='cockpit-anchor-rode';
@@ -53,15 +62,13 @@ export function mountCockpitControls({container,getState,onChange,getEnabled=()=
  const dashboard=container.querySelector('#helm-dashboard-mount');
  container.append(groups);if(dashboard)container.append(dashboard);
  const update=()=>{
+  twinEngines.update();
   const state=getState();jibInput.value=String(state.jibSheet);jibValue.textContent=`${Math.round(state.jibSheet)}°`;
-  for(const {key,select} of hoists){
-   const value=state[key],text=String(value);let custom=select.querySelector('[data-current-hoist]');
-   if(![0,.5,1].includes(value)){if(!custom){custom=element('option');custom.dataset.currentHoist='true';select.append(custom);}custom.value=text;custom.textContent=`${Math.round(value*100)}%`;}
-   else custom?.remove();select.value=text;
-  }
+  for(const {key,input} of hoists)if(document.activeElement!==input)input.value=String(Number((state[key]*100).toFixed(2)));
   if(document.activeElement!==rode)rode.value=String(state.anchorRode);
   paidValue.textContent=`${Number(state.anchorPaidRode||0).toFixed(1)} m`;
  };
+ for(const {input} of hoists)input.addEventListener('blur',update);
  rode.addEventListener('blur',update);update();
  return {update,syncAvailability};
 }

@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { createMaterials } from './rendering/materials.js';
 import { createYacht } from './rendering/yacht.js';
+import { createCatamaran } from './rendering/catamaran.js';
+import { getVessel } from './vessels.js';
 import { createEnvironment } from './rendering/environment.js';
 import { createTrainingCues } from './rendering/training-cues.js';
 import { getLocation } from './locations.js';
@@ -12,7 +14,9 @@ import { createRaceVisuals } from './racing/visuals.js';
 import { createHelmCamera } from './rendering/helm-camera.js';
 import { createRenderQuality, isMobileGraphicsDevice } from './rendering/quality.js';
 
-export function createScene(container, { locationId = 'haven' } = {}) {
+export function createScene(container, { locationId = 'haven', vesselId = 'monohull' } = {}) {
+  const vessel = getVessel(vesselId);
+  container.dataset.vessel = vessel.id;
   let dirty = true,
     lastState = null,
     lastVisualTime = null;
@@ -72,8 +76,9 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     environment = createEnvironment(scene, renderer, materials, {
       quality: renderBudget,
       locationId: location.id,
+      vesselId: vessel.id,
     }),
-    yacht = createYacht(materials);
+    yacht = vessel.type === 'catamaran' ? createCatamaran(materials) : createYacht(materials);
   scene.add(yacht.group);
   const anchorCloseup = createAnchorCloseup(container, renderer, yacht.group, scene.environment, {
     onResize: invalidate,
@@ -139,7 +144,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     target = new THREE.Vector3(),
     desired = new THREE.Vector3(),
     up = new THREE.Vector3(0, 1, 0);
-  const helmCamera = createHelmCamera();
+  const helmCamera = createHelmCamera(vessel);
   const views = {
     chase: { fov: 47 },
     helm: { fov: 72 },
@@ -238,10 +243,14 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     }
     container.dataset.fps = (1000 / frameAverage).toFixed(1);
     container.dataset.frames = frameCount;
-    const roll = Math.sin(time * 0.72) * 0.008 * (state.windSpeed / 12),
+    const roll =
+        Math.sin(time * 0.72) *
+        0.008 *
+        (state.windSpeed / 12) *
+        (vessel.type === 'catamaran' ? 0.3 : 1),
       pitch = Math.sin(time * 0.95) * 0.005;
     const playerImpact = impactMotion(
-      { ...state, mass: 5600, lastImpact: state.collision },
+      { ...state, mass: vessel.mass, lastImpact: state.collision },
       state.elapsed || 0,
     );
     yacht.group.position.set(state.x, Math.sin(time * 0.8) * 0.045, state.z);
@@ -356,6 +365,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   camera.position.set(location.start.x + 20, 13, location.start.z + 27);
   return {
     locationId: location.id,
+    vesselId: vessel.id,
     get ready() {
       return Boolean(lastState);
     },

@@ -156,7 +156,7 @@ try {
   await expect(page.locator('#engine-throttle')).toHaveValue('0');
   await page.locator('#mobile-tab-sails').click();
   await expect(page.locator('#rudder')).toBeHidden();
-  await page.locator('#cockpit-main-hoist').selectOption('0.5');
+  await page.locator('#cockpit-main-hoist').fill('50');
   await page.locator('#trim').fill('30');
   await page.locator('#cockpit-jib-sheet').fill('35');
   await page.locator('#mobile-tab-anchor').click();
@@ -293,7 +293,7 @@ try {
   for(const id of ['helm','sails','anchor','instruments']) await expect(page.locator(`#mobile-tab-${id}`)).toBeInViewport();
   await page.locator('#mobile-tab-sails').click();
   await inspect('hebrew-controls-large-text',390,844);
-  await page.locator('#cockpit-main-hoist').selectOption('1');
+  await page.locator('#cockpit-main-hoist').fill('100');
   await mode('challenge');
   await page.locator('#race-engine-drills').click();
   await page.locator('[data-drill="engine-stop"]').click();
