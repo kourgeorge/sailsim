@@ -165,6 +165,9 @@ export function mountSectionCovers({
         root.hidden = active;
         root.inert = active;
         navigation.hidden = active;
+        // A live restart can open the same briefing in a dialog. Release the
+        // page controls so their IDs and handlers belong to only one host.
+        if (active) briefing.replaceChildren();
         document.body.dataset.section = section;
         lessonSidebarNodes.forEach((node) => {
           node.hidden = section !== 'learn';

@@ -53,7 +53,7 @@ test('races start from Challenges and pause, restart, and leave without leaking 
   await expect(page.locator('.simulator')).toHaveAttribute('data-mode', 'race');
   await expect(page.locator('#race-standings li')).toHaveCount(4);
   await expect(page.locator('#race-hud')).toHaveAttribute('data-race-status', 'countdown');
-  await expect(page.locator('.scene-title')).toBeHidden();
+  await expect(page.locator('.scene-title:visible')).toHaveCount(0);
   await expect(page.locator('.lesson-card')).toBeHidden();
   await expect(page.locator('.cockpit-group-engine')).toBeHidden();
   await expect(page.locator('#conditions')).toBeHidden();
@@ -81,6 +81,7 @@ test('races start from Challenges and pause, restart, and leave without leaking 
   await expect(page.locator('#race-hud')).toBeHidden();
   await expect(page.locator('body')).toHaveAttribute('data-section', 'challenge');
   await expect(page.locator('#section-cover')).toBeVisible();
+  await expect(page.locator('#race-difficulty')).toHaveValue('expert');
   await page.locator('[data-mode="challenge"]').click();
   await page.locator('#race-engine-drills').click();
   await expect(page.locator('[data-drill]')).toHaveCount(3);
@@ -108,10 +109,14 @@ test('mobile race briefing and controls fit large Hebrew text', async ({
   await page.locator('.text-size-control summary').click();
   await page.locator('[data-mode="challenge"]').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
+  await page.locator('#cover-browser-title').click();
   await page.locator('[data-race-course="channel-chase"]').click();
+  await expect(page.locator('#cover-challenge-briefing')).toBeVisible();
   await page.locator('#race-start').scrollIntoViewIfNeeded();
   expect(
-    await page.locator('#modal').evaluate((node) => node.scrollWidth <= node.clientWidth + 1),
+    await page
+      .locator('#section-cover')
+      .evaluate((node) => node.scrollWidth <= node.clientWidth + 1),
   ).toBe(true);
   await page.locator('#race-start').click();
   await expect(page.locator('#race-hud')).toBeVisible();

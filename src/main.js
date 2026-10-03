@@ -405,6 +405,8 @@ async function startApp() {
     }
     if (sectionForMode(mode) !== 'challenge') navigateSection('challenge');
     else closeOverlays();
+    // Returning from a restart dialog transfers the briefing back to the page.
+    $('#modal-content').replaceChildren();
     sectionCovers.showChallengeBriefing(content);
   }
   function finishChallenge(completed) {
