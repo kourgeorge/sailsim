@@ -126,6 +126,7 @@
   .mobile-control-panel { display: flex; flex-direction: column; gap: 20px; }
   .simulator .control-dock.cockpit-controls .cockpit-control-group { padding: 0; border: 0; gap: 12px; }
   .simulator .control-dock.cockpit-controls .cockpit-control-group + .cockpit-control-group { padding-top: 16px; border-top: 1px solid #ffffff20; }
+  .simulator .control-dock.cockpit-controls .cockpit-control-group + .cockpit-control-group.cockpit-group-headsail { padding-top: 0; border-top: 0; }
   .simulator .control-dock.cockpit-controls .control-title { flex-wrap: wrap; margin-bottom: 6px; }
   .simulator .control-dock.cockpit-controls .control-title label,
   .simulator .control-dock.cockpit-controls .control-title > span,

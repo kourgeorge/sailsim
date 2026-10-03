@@ -16,6 +16,24 @@
   height: 112px;
   margin: 0 auto 10px;
 }
+#scene-compass .wind-dial > span { line-height: 1; text-align: center; background: transparent; }
+/* Small scale markings stay inside the fixed-size dial, including on phones. */
+#scene-compass .dial-angle {
+  display: block;
+  font-size: 8px;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: 0;
+  font-variant-numeric: tabular-nums;
+  color: #a6bdc3;
+  pointer-events: none;
+}
+#scene-compass small.dial-angle { margin-top: 2px; }
+#scene-compass .wind-dial > .dial-angle { transform: translate(-50%, -50%); }
+#scene-compass .dial-ne { left: 76%; top: 24%; }
+#scene-compass .dial-se { left: 76%; top: 76%; }
+#scene-compass .dial-sw { left: 24%; top: 76%; }
+#scene-compass .dial-nw { left: 24%; top: 24%; }
 #scene-compass .dial-n, #scene-compass .dial-s {
   left: 50%;
   transform: translateX(-50%);
@@ -67,6 +85,7 @@ html[data-large-text] #scene-compass .point-of-sail { display: none; }
   .compass-dock-target { position: absolute; border: 1px dashed #ecc78e99; border-radius: 9px; background: #102e3b33; }
   .compass-dock-target.is-nearest { border: 2px solid var(--gold); background: #ecc78e22; }
   #scene-compass .wind-dial { width: 96px; height: 96px; margin: 0 auto; }
+  #scene-compass .dial-angle { font-size: 7px; }
   #scene-compass .wind-value,
   html[data-large-text] #scene-compass .wind-value {
     display: flex;

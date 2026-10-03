@@ -5,9 +5,14 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { getLocation } from '../locations.js';
 import { getWorldBodyDefinitions, getWorldRockDefinitions } from '../world/bodies.js';
 import { syncBodyTransform } from './body-motion.js';
-import { islandHeight,shoreScale } from './geography.js';
+import { islandHeight } from './geography.js';
 import { installHullWaterExclusion } from './hull-geometry.js';
 import { createMobileWater } from './mobile-water.js';
+import { createIslandTerrain, createShoreline } from './shoreline.js';
+import { getCoastalFeatures, clearOfCoastalBuildings } from '../world/coastal-features.js';
+import { createCoastalVillage } from './coastal-village.js';
+import { createMarineLife } from './marine-life.js';
+import { createBirdLife } from './bird-life.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,seededRandom,batchStaticMeshes } from './materials.js';
 
 function normalTexture(){
@@ -15,21 +20,6 @@ function normalTexture(){
  for(let i=0;i<20;i++)waves.push({x:Math.round((random()-.5)*35)||1,y:Math.round((random()-.5)*35)||1,a:.5/(1+i*.20),p:random()*6.28});
  for(let y=0;y<size;y++)for(let x=0;x<size;x++){let dx=0,dy=0;for(const w of waves){const d=Math.cos((x*w.x+y*w.y)/size*Math.PI*2+w.p)*w.a;dx+=d*w.x*.024;dy+=d*w.y*.024;}const n=new THREE.Vector3(-dx,-dy,2).normalize(),i=(y*size+x)*4;data[i]=(n.x*.5+.5)*255;data[i+1]=(n.y*.5+.5)*255;data[i+2]=(n.z*.5+.5)*255;data[i+3]=255;}
  const texture=new THREE.DataTexture(data,size,size);texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.magFilter=THREE.LinearFilter;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.generateMipmaps=true;texture.needsUpdate=true;return texture;
-}
-function terrain(island,mat,random,n=64){
- const extent=1.16,pos=[],uv=[],colors=[],indices=[];
- const sand=new THREE.Color('#a89d7c'),grass=new THREE.Color('#626c38'),rock=new THREE.Color('#85887a');
- for(let row=0;row<=n;row++)for(let col=0;col<=n;col++){
-  const x=island.x+(col/n*2-1)*island.rx*extent,z=island.z+(row/n*2-1)*island.rz*extent,y=islandHeight(x,z,island);
-  pos.push(x,y,z);uv.push(x/32,z/32);
-  const slope=Math.hypot(islandHeight(x+1,z,island)-y,islandHeight(x,z+1,island)-y);
-  const patch=(Math.sin(x*.045+Math.sin(z*.034))*Math.cos(z*.052))*.5+.5;
-  const color=y<2.3?sand.clone():grass.clone().lerp(rock,THREE.MathUtils.clamp((slope-.3)*1.8+patch*.35,0,1));
-  color.multiplyScalar(.88+random()*.15);colors.push(color.r,color.g,color.b);
-  if(row<n&&col<n){const a=row*(n+1)+col;indices.push(a,a+n+1,a+1,a+1,a+n+1,a+n+2);}
- }
- const geometry=new THREE.BufferGeometry();geometry.setAttribute('position',new THREE.Float32BufferAttribute(pos,3));geometry.setAttribute('uv',new THREE.Float32BufferAttribute(uv,2));geometry.setAttribute('color',new THREE.Float32BufferAttribute(colors,3));geometry.setIndex(indices);geometry.computeVertexNormals();
- const ground=mesh(new THREE.Group(),geometry,mat);return ground;
 }
 function cloudDome(){
  return new THREE.Mesh(new THREE.SphereGeometry(3900,32,16),new THREE.ShaderMaterial({side:THREE.BackSide,transparent:true,depthWrite:false,uniforms:{time:{value:0}},vertexShader:'varying vec3 ray; void main(){ray=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:`varying vec3 ray;uniform float time;
@@ -55,8 +45,10 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  water.rotation.x=-Math.PI/2;water.position.y=-.07;water.material.uniforms.size.value=2.3;
  // Replace the overly reflective default with water's physical normal-incidence Fresnel value.
  if(water.isWater)water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
- const excludeHullWater=installHullWaterExclusion(water.material);
+ const excludeWater=installHullWaterExclusion(water.material);
  scene.add(water);
+ const shoreline=createShoreline(scene,location,waterOptions.waterNormals);
+ const excludeHullWater=boat=>{excludeWater(boat);shoreline.excludeHullWater(boat);};
  // Water keeps its reflection target in a closure and exposes no dispose method.
  // Capture that target through the renderer's public API on its first reflection.
  const reflect=water.onBeforeRender,reflectionTexture=water.material.uniforms.mirrorSampler?.value;
@@ -80,20 +72,18 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   renderer.shadowMap.enabled=next.shadowSize>0;
   renderer.shadowMap.needsUpdate=true;
   if(reflectionTarget && next.reflectionSize!==quality.reflectionSize)reflectionTarget.setSize(next.reflectionSize,next.reflectionSize);
-  quality=next;clouds.visible=quality.clouds;reflectionFrame=0;
+  quality=next;clouds.visible=quality.clouds;reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);
  }
 
 
  const rockMap=canvasTexture(256,256,(c,w,h)=>{const img=c.createImageData(w,h);for(let i=0;i<img.data.length;i+=4){const shade=150+random()*90;img.data[i]=shade;img.data[i+1]=shade;img.data[i+2]=shade;img.data[i+3]=255;}c.putImageData(img,0,0);for(let i=0;i<100;i++){c.strokeStyle='#38382920';c.lineWidth=random()*3;c.beginPath();c.moveTo(random()*w,random()*h);c.lineTo(random()*w,random()*h);c.stroke();}});
- const groundMat=new THREE.MeshStandardMaterial({vertexColors:true,map:rockMap,bumpMap:rockMap,bumpScale:.32,roughness:1});
+ const groundMat=new THREE.MeshStandardMaterial({vertexColors:true,map:rockMap,bumpMap:rockMap,bumpScale:.14,roughness:1});
  const bark=mat.paint('#574f39',{roughness:1}),leaves=mat.paint('#3f5238',{roughness:.94});
+ const coastalFeatures=getCoastalFeatures(location.id);
  const treePoints=[],rockPoints=getWorldRockDefinitions(location.id);
- for(const island of islands){scene.add(terrain(island,groundMat,random));
-  for(let i=0;i<location.treeDensity;i++){const a=random()*Math.PI*2,r=.18+Math.sqrt(random())*.72;const x=island.x+Math.cos(a)*island.rx*r,z=island.z+Math.sin(a)*island.rz*r,y=islandHeight(x,z,island);if(y>4){treePoints.push({x,y,z,scale:.65+random()*1.1,angle:random()*Math.PI*2,color:new THREE.Color().setHSL(.22+random()*.08,.19+random()*.10,.19+random()*.08)});}}
-  // An uneven shallow-water fringe and a thin foam line around each coast.
-  const foamPos=[],foamUv=[],foamIndices=[];for(let i=0;i<=200;i++){const a=i/200*Math.PI*2;for(const r of [1.005,1.021]){foamPos.push(island.x+Math.cos(a)*island.rx*shoreScale(a)*r,-.015,island.z+Math.sin(a)*island.rz*shoreScale(a)*r);foamUv.push(i/200*12,r===1.005?0:1);}if(i<200){const k=i*2;foamIndices.push(k,k+1,k+2,k+1,k+3,k+2);}}
-  const g=new THREE.BufferGeometry();g.setAttribute('position',new THREE.Float32BufferAttribute(foamPos,3));g.setAttribute('uv',new THREE.Float32BufferAttribute(foamUv,2));g.setIndex(foamIndices);
-  const foamMat=new THREE.MeshBasicMaterial({color:'#d0e2d9',transparent:true,opacity:.2,side:THREE.DoubleSide,depthWrite:false});scene.add(new THREE.Mesh(g,foamMat));
+ for(const island of islands){const ground=new THREE.Mesh(createIslandTerrain(island),groundMat);ground.receiveShadow=true;ground.castShadow=true;scene.add(ground);
+  for(let i=0;i<location.treeDensity;i++){const a=random()*Math.PI*2,r=.18+Math.sqrt(random())*.72;const x=island.x+Math.cos(a)*island.rx*r,z=island.z+Math.sin(a)*island.rz*r,y=islandHeight(x,z,island);if(y>4&&clearOfCoastalBuildings(x,z,coastalFeatures)){treePoints.push({x,y,z,scale:.65+random()*1.1,angle:random()*Math.PI*2,color:new THREE.Color().setHSL(.22+random()*.08,.19+random()*.10,.19+random()*.08)});}}
+
  }
  // Instanced, irregular umbrella pines: layered organic crowns with visible trunks.
  const crowns=[];for(const [x,y,z,sx,sy,sz] of [[0,5.4,0,2.8,1.4,2.6],[-1.4,4.7,.3,1.8,1.25,1.8],[1.25,5.05,-.5,1.9,1.3,1.6],[.4,5.9,.6,1.7,1.05,1.6]]){const g=new THREE.IcosahedronGeometry(1,0);g.scale(sx,sy,sz);g.translate(x,y,z);crowns.push(g);}const crownGeometry=mergeGeometries(crowns);
@@ -111,17 +101,6 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  for(let i=0;i<8;i++){const a=i/8*Math.PI*2;bar(tower,mat.navy,[Math.cos(a)*2.13,20.1,Math.sin(a)*2.13],[Math.cos(a)*2.13,22.8,Math.sin(a)*2.13],.06);}
  box(tower,mat.teak,2.8,2.3,0,.09,3.1,1.3);for(const y of [7,12,17])box(tower,mat.glass,2.55,y,0,.04,1.2,.63);
  }
- // Coastal settlement, individually pitched tile roofs, chimneys, shutters, and terraces.
- if(location.settlement){
- const settlement=location.settlement,isle=islands[settlement.islandIndex];
- const walls=[mat.paint('#e6deca'),mat.paint('#cbbdab'),mat.paint('#ebe8d8')],roofMat=mat.paint('#9b6753',{roughness:.85});
- for(let i=0;i<settlement.count;i++){
-  const a=settlement.startAngle+i*settlement.angleStep,r=.73+(i%3)*.045,x=isle.x+Math.cos(a)*isle.rx*r,z=isle.z+Math.sin(a)*isle.rz*r,y=islandHeight(x,z,isle),w=5+random()*3,d=4+random()*3,h=3+random()*2;
-  const house=new THREE.Group();house.position.set(x,y,z);house.rotation.y=-a+.3;scene.add(house);box(house,walls[i%3],0,h/2,0,w,h,d,.07);
-  const roofGeometry=new THREE.BufferGeometry(),p=[-w*.55,0,-d*.56,w*.55,0,-d*.56,0,1.7,-d*.56,-w*.55,0,d*.56,0,1.7,d*.56,w*.55,0,d*.56,-w*.55,0,-d*.56,0,1.7,-d*.56,-w*.55,0,d*.56,0,1.7,-d*.56,0,1.7,d*.56,-w*.55,0,d*.56,0,1.7,-d*.56,w*.55,0,-d*.56,w*.55,0,d*.56,0,1.7,-d*.56,w*.55,0,d*.56,0,1.7,d*.56];roofGeometry.setAttribute('position',new THREE.Float32BufferAttribute(p,3));roofGeometry.computeVertexNormals();mesh(house,roofGeometry,roofMat,0,h,0);
-  box(house,walls[1],w*.25,h+.65,0,.55,1.8,.65);for(const side of [-1,1]){box(house,mat.glass,side*w*.25,h*.55,d*.5+.04,.85,1.2,.04);box(house,mat.navy,side*w*.25-.58,h*.55,d*.5+.055,.23,1.3,.05);box(house,mat.navy,side*w*.25+.58,h*.55,d*.5+.055,.23,1.3,.05);}
- }
- }
  // Fixed collision fixtures are also the marina's rendering transforms.
  for(const definition of definitions.filter(body=>body.visual.type==='pier')){
   const pier=new THREE.Group();pier.userData.bodyId=definition.id;
@@ -138,20 +117,20 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   const tex=canvasTexture(128,128,(c)=>{c.fillStyle='#e6c570';c.fillRect(0,0,128,128);c.fillStyle='#252d25';c.font='bold 90px sans-serif';c.textAlign='center';c.fillText(String(i+1),64,101);});mesh(g,new THREE.PlaneGeometry(.46,.46),new THREE.MeshStandardMaterial({map:tex}),0,1.1,.57);
  });
  // All land above is charted and participates in depth/grounding.
- // Gulls move independently of the yacht.
- const birds=new THREE.Group();scene.add(birds);const gullMat=mat.paint('#d8dbd4',{side:THREE.DoubleSide});const birdObjects=[];
- for(let i=0;i<9;i++){const g=new THREE.Group();birds.add(g);const wings=[];for(const side of [-1,1]){const geom=new THREE.BufferGeometry();geom.setAttribute('position',new THREE.Float32BufferAttribute([0,0,0,side*1.3,.12,.08,side*.45,0,.35],3));geom.computeVertexNormals();wings.push(mesh(g,geom,gullMat));}birdObjects.push({group:g,wings});}
  // Foam trail as a soft textured surface rather than rigid white rectangles.
  const foamTexture=canvasTexture(256,512,(c,w,h)=>{c.clearRect(0,0,w,h);for(let i=0;i<3200;i++){const y=random()*h,t=y/h,x=w/2+(random()-.5)*(35+t*190);c.fillStyle=`rgba(220,244,238,${(1-t)*random()*.23})`;c.beginPath();c.ellipse(x,y,1+random()*4,1+random()*7,0,0,6.28);c.fill();}});
  const wake=new THREE.Mesh(new THREE.PlaneGeometry(12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false}));wake.rotation.x=-Math.PI/2;scene.add(wake);
- for(const child of [...scene.children]){if(child.isGroup && child!==birds){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
+ for(const child of [...scene.children]){if(child.isGroup){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
  batchStaticMeshes(scene,mergeGeometries,[water,wake]);
- return {water,excludeHullWater,setQuality,update(state,time){
+ createCoastalVillage(scene,coastalFeatures);
+ const marineLife=createMarineLife(scene,location.id,quality);
+ const birdLife=createBirdLife(scene,location.id,quality);
+ return {water,excludeHullWater,setQuality,marineLife,birdLife,update(state,time){
+  shoreline.update(state,time);marineLife.update(state,time);birdLife.update(state,time);
   water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;clouds.material.uniforms.time.value=time;
   sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
   navigation.forEach((g,i)=>syncBodyTransform(g,bodies.get(g.userData.bodyId)||buoys[i],state.elapsed||0,time,i));
-  birdObjects.forEach(({group,wings},i)=>{const a=time*.026+i*.65;group.position.set(location.islands[0].x+Math.cos(a)*130,24+i*2+Math.sin(time*.7+i)*1.3,location.islands[0].z+Math.sin(a)*90);group.rotation.y=-a;wings.forEach((w,j)=>w.rotation.z=Math.sin(time*2.9+i)*.22*(j?1:-1));});
   // The plane's local Z axis points up after flattening; match the yacht's negative yaw.
   wake.position.set(state.x-Math.sin(state.heading*Math.PI/180)*26,.01,state.z+Math.cos(state.heading*Math.PI/180)*26);wake.rotation.z=-state.heading*Math.PI/180;wake.visible=state.speed>.4;wake.material.opacity=Math.min(.66,state.speed*.1);
  },dispose(){

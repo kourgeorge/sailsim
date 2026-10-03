@@ -5,6 +5,7 @@ import { anchorSnapshot } from '../anchor.js';
 import { translate as t } from '../i18n/runtime.js';
 import { localToWorld } from '../world/bodies.js';
 import { sailingTrackFrame } from './sailing-track.js';
+import { getCoastalFeatures } from '../world/coastal-features.js';
 
 export function createChartRenderer({
   getState,
@@ -85,8 +86,19 @@ export function createChartRenderer({
     }
     for (const i of islands) {
       const [x, y] = map(i.x, i.z);
+      ctx.fillStyle = '#28535a';
+      ctx.beginPath();
+      for (let j = 0; j <= 90; j++) {
+        const a = (j / 90) * Math.PI * 2,
+          r = shoreScale(a) * (1 + 3.8 / location.shoreDepthScale),
+          px = x + Math.cos(a) * i.rx * scale * r,
+          py = y + Math.sin(a) * i.rz * scale * r;
+        j ? ctx.lineTo(px, py) : ctx.moveTo(px, py);
+      }
+      ctx.closePath();
+      ctx.fill();
       ctx.fillStyle = '#577669';
-      ctx.strokeStyle = '#8eaa8a';
+      ctx.strokeStyle = '#bdba91';
       ctx.beginPath();
       for (let j = 0; j <= 90; j++) {
         const a = (j / 90) * Math.PI * 2,
@@ -119,6 +131,43 @@ export function createChartRenderer({
         ctx.textAlign = 'center';
         ctx.fillText(i.name, x, y + 5);
       }
+    }
+    for (const feature of getCoastalFeatures(location.id)) {
+      const [x, y] = map(feature.x, feature.z);
+      ctx.save();
+      ctx.translate(x, y);
+      ctx.rotate(-feature.rotation);
+      ctx.fillStyle = feature.type === 'chapel' ? '#e8ddbc' : '#bca487';
+      const width = Math.max(1.5, feature.width * scale),
+        length = Math.max(2, feature.length * scale);
+      ctx.fillRect(-width / 2, -length / 2, width, length);
+      ctx.restore();
+      if (feature.type === 'chapel' && w > 300) {
+        ctx.strokeStyle = '#f5e9c8';
+        ctx.lineWidth = 1.5;
+        ctx.beginPath();
+        ctx.moveTo(x, y - 7);
+        ctx.lineTo(x, y - 15);
+        ctx.moveTo(x - 3, y - 12);
+        ctx.lineTo(x + 3, y - 12);
+        ctx.stroke();
+      }
+    }
+    if (location.lighthouse && w > 300) {
+      const [x, y] = map(location.lighthouse.x, location.lighthouse.z);
+      ctx.fillStyle = '#f5e9c8';
+      ctx.beginPath();
+      ctx.moveTo(x, y - 6);
+      ctx.lineTo(x + 3, y + 3);
+      ctx.lineTo(x - 3, y + 3);
+      ctx.closePath();
+      ctx.fill();
+      ctx.strokeStyle = '#f5e9c880';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x - 8, y - 4);
+      ctx.lineTo(x + 8, y - 4);
+      ctx.stroke();
     }
     if (race) {
       ctx.strokeStyle = '#ecd09477';

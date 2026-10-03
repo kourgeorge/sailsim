@@ -63,6 +63,11 @@ html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control
 .simulator .control-dock.cockpit-controls .key-range{display:flex;align-items:center;gap:4px;direction:ltr}
 /* Sliders always run left to right, so their end words follow the same order in every language. */
 .simulator .control-dock.cockpit-controls .control-hint,.simulator .control-dock.cockpit-controls .helm-range{direction:ltr}
+/* The dock keeps left-to-right control order even when its labels read right-to-left. */
+@media(min-width:901px){
+ .simulator .control-dock.cockpit-controls .cockpit-control-group.cockpit-group-sheets{border-inline:0;border-left:1px solid #ffffff12;padding-left:10px}
+ .simulator .control-dock.cockpit-controls .cockpit-control-group.cockpit-group-headsail{border-inline:0}
+}
 /* Keep enlarged text readable on phones instead of squeezing it into columns. */
 @media(max-width:600px){
  html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:1fr;row-gap:12px}
