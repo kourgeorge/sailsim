@@ -33,7 +33,9 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     debug = gl.getExtension('WEBGL_debug_renderer_info');
   const software =
     debug && /swiftshader|llvmpipe|software/i.test(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL));
-  let sailingPixelRatio = software ? 0.7 : Math.min(devicePixelRatio, 1.65);
+  // Give touch devices a little more rendering headroom in either orientation.
+  const pixelRatioCap = window.matchMedia('(pointer: coarse)').matches ? 1.5 : 1.65;
+  let sailingPixelRatio = software ? 0.7 : Math.min(devicePixelRatio, pixelRatioCap);
   renderer.setPixelRatio(sailingPixelRatio);
   container.dataset.quality = software ? 'compatibility' : 'high';
   renderer.setSize(container.clientWidth, container.clientHeight);
