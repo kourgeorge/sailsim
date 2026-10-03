@@ -268,7 +268,7 @@ export function mountMobileLayout() {
     };
     trigger.addEventListener('click', show);
     close.addEventListener('click', () => dialog.close());
-    dialog.addEventListener('close', () => { trigger.setAttribute('aria-expanded', 'false'); if (mobile.matches && trigger.getClientRects().length && !document.querySelector('dialog[open]')) trigger.focus(); });
+    dialog.addEventListener('close', () => { trigger.setAttribute('aria-expanded', 'false'); if (mobile.matches && trigger.getClientRects().length && !document.querySelector('dialog[open]') && document.querySelector('#systems-drawer').hidden) trigger.focus(); });
     dialog.addEventListener('click', event => { if (event.target === dialog) { const rect = dialog.getBoundingClientRect(); if (event.clientX < rect.left || event.clientX > rect.right || event.clientY < rect.top || event.clientY > rect.bottom) dialog.close(); } });
     document.body.append(dialog);
     return dialog;
@@ -278,12 +278,19 @@ export function mountMobileLayout() {
   sessionTools.className = 'mobile-session-tools';
   sessionTools.setAttribute('role', 'group');
   sessionTools.setAttribute('aria-label', t('Simulation controls'));
-  toolbar.prepend(sessionTools);
+  const cameraHeading = document.createElement('p');
+  cameraHeading.className = 'mobile-session-camera-heading';
+  cameraHeading.textContent = t('Camera view');
+  sessionTools.append(cameraHeading);
+  menu.append(sessionTools);
   const systemsButton = document.querySelector('#systems-toggle');
   const systemsPlaceholder = document.createComment('systems toolbar position');
   systemsButton.before(systemsPlaceholder);
   sessionTools.addEventListener('click', event => {
-    if (event.target.closest('#systems-toggle')) dismissControls();
+    if (event.target.closest('#systems-toggle')) {
+      dismissControls();
+      document.querySelector('#systems-close').focus();
+    }
   });
   const lessonSheet = sheet('mobile-lessons', 'Lessons', lessonButton);
   const lessonContent = document.createElement('div');
@@ -321,7 +328,7 @@ export function mountMobileLayout() {
     moves.push({node, placeholder, target, before});
   }
   menu.addEventListener('click', event => {
-    if (event.target.closest('button[data-mode], #help, #systems-toggle, #conditions, #reset, #location-select, #sound-settings')) menu.close();
+    if (event.target.closest('button[data-mode], [data-camera], #systems-toggle, #chart-toggle, #session-exit, #session-restart, #help, #conditions, #reset, #location-select, #sound-settings')) menu.close();
   }, true);
   camera.addEventListener('change', () => menu.close());
   lessonSheet.addEventListener('click', event => {
@@ -333,13 +340,18 @@ export function mountMobileLayout() {
     if (event.target.closest('#practice-toggle')) lessonSheet.close();
   });
   document.querySelector('#systems-close').addEventListener('click', () => {
-    if (mobile.matches) (document.body.dataset.session === 'active' ? systemsButton : menuButton).focus();
+    if (mobile.matches) menuButton.focus();
   });
   function arrangeSessionTools() {
     const immersive = mobile.matches && document.body.dataset.session === 'active';
-    menuButton.hidden = immersive;
-    if (immersive) {
+    const menuState = immersive ? 'active' : 'outside';
+    if (menu.dataset.session !== menuState) {
       if (menu.open) menu.close();
+      menu.dataset.session = menuState;
+    }
+    const menuTitle = t(immersive ? 'Simulation controls' : 'Menu');
+    if (document.querySelector('#mobile-menu-title').textContent !== menuTitle) document.querySelector('#mobile-menu-title').textContent = menuTitle;
+    if (immersive) {
       if (cameraViews.parentElement !== sessionTools) sessionTools.append(cameraViews, systemsButton, chartButton);
     } else {
       if (cameraViews.parentElement !== views) cameraPlaceholder.after(cameraViews);
@@ -353,7 +365,7 @@ export function mountMobileLayout() {
   const syncOverlayLabels = () => {
     arrangeSessionTools();
     const mode = simulator.dataset.mode || 'learn';
-    chartButton.hidden = mobile.matches && simulator.dataset.simulationRunning !== 'true';
+    chartButton.hidden = mobile.matches && document.body.dataset.session !== 'active' && simulator.dataset.simulationRunning !== 'true';
     lessonSheet.dataset.mobileMode = mode;
     lessonButton.hidden = !['learn', 'maneuver', 'challenge'].includes(mode);
     const active = ['training-running', 'training-paused'].includes(document.body.dataset.activity);

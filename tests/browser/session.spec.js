@@ -10,8 +10,15 @@ async function expectSession(page) {
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
   await expect(page.locator('#location-select')).toBeHidden();
   await expect(page.locator('.scene-title')).toBeHidden();
-  await expect(page.locator('#session-exit')).toBeInViewport({ ratio: 1 });
-  await expect(page.locator('#session-restart')).toBeInViewport({ ratio: 1 });
+  if (page.viewportSize().width <= 900) {
+    await expect(page.locator('#mobile-menu-toggle')).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('#mobile-menu')).toBeHidden();
+    await expect(page.locator('#session-exit')).toBeHidden();
+    await expect(page.locator('#session-restart')).toBeHidden();
+  } else {
+    await expect(page.locator('#session-exit')).toBeInViewport({ ratio: 1 });
+    await expect(page.locator('#session-restart')).toBeInViewport({ ratio: 1 });
+  }
   expect(
     await page.locator('.simulator').evaluate((node) => {
       const box = node.getBoundingClientRect();
@@ -156,16 +163,27 @@ test.describe('session lifecycle', () => {
       await page.locator('#practice-start').click();
       await page.locator('#practice-launch').click();
       await expectSession(page);
+      await page.locator('#mobile-menu-toggle').click();
       await expect(page.locator('#session-exit')).toHaveAccessibleName(
         sessionUI[lang]['Exit simulation'],
       );
       await expect(page.locator('#session-restart')).toHaveAccessibleName(
         sessionUI[lang]['Restart simulation'],
       );
+      await expect(page.locator('#mobile-menu-title')).toHaveText(
+        sessionUI[lang]['Simulation controls'],
+      );
+      await page.locator('#session-restart').click();
+      await expectSession(page);
+      await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
+      await page.locator('#mobile-menu-toggle').click();
+      await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-paused');
+      await page.keyboard.press('Escape');
+      await expect(page.locator('#mobile-menu-toggle')).toBeFocused();
+      await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
       await page.locator('#play').click();
       await expectSession(page);
-      await expect(page.locator('#mobile-menu-toggle')).toBeHidden();
-      await expect(page.locator('#mobile-menu')).toBeHidden();
+      await page.locator('#mobile-menu-toggle').click();
       for (const selector of [
         '#location-select',
         '#language-select',
@@ -185,24 +203,33 @@ test.describe('session lifecycle', () => {
         await expect(button).toBeInViewport({ ratio: 1 });
         await expect(button).toHaveAccessibleName(/\S/);
         await button.click();
+        await expect(page.locator('#mobile-menu')).toBeHidden();
         await expect(page.locator('.simulator')).toHaveAttribute('data-view', view);
         await expect(button).toHaveAttribute('aria-pressed', 'true');
+        await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-paused');
+        await page.locator('#mobile-menu-toggle').click();
         await expect(
           page.locator('.mobile-session-tools [data-camera][aria-pressed=true]'),
         ).toHaveCount(1);
       }
       await page.locator('#systems-toggle').click();
       await expect(page.locator('#systems-drawer')).toBeVisible();
+      await expect(page.locator('#mobile-menu')).toBeHidden();
+      await expect(page.locator('#systems-close')).toBeFocused();
       await page.locator('#systems-close').click();
-      await expect(page.locator('#systems-toggle')).toBeFocused();
+      await expect(page.locator('#mobile-menu-toggle')).toBeFocused();
+      await page.locator('#mobile-menu-toggle').click();
       await page.setViewportSize({ width: 1440, height: 1000 });
+      await expect(page.locator('#mobile-menu')).toBeHidden();
       await expect(page.locator('.view-controls #systems-toggle')).toBeVisible();
+      await expect(page.locator('.simulator > #session-controls')).toBeVisible();
       await expect(page.locator('#mobile-camera')).toBeHidden();
       await page.setViewportSize({ width: 390, height: 844 });
       await expect(page.locator('.mobile-session-tools [data-camera=deck]')).toHaveAttribute(
         'aria-pressed',
         'true',
       );
+      await page.locator('#mobile-menu-toggle').click();
       await page.locator('#session-exit').click();
       await page.locator('#close-modal').click();
       await expect(page.locator('#mobile-menu-toggle')).toBeVisible();
@@ -241,6 +268,9 @@ test('the rendered scene fills the session and restores the lesson cover after f
   await page.setViewportSize({ width: 390, height: 844 });
   await expectSession(page);
   await page.screenshot({ path: 'artifacts/session/live-mobile.png' });
+  await page.locator('#mobile-menu-toggle').click();
+  await page.screenshot({ path: 'artifacts/session/mobile-menu.png', animations: 'disabled' });
+  await page.keyboard.press('Escape');
   await page.setViewportSize({ width: 1440, height: 1000 });
   await expect(page.locator('.session-mission .lesson-card')).toBeVisible();
   await page.locator('[data-camera=deck]').click();

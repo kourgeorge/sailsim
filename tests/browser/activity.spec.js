@@ -82,7 +82,7 @@ test('free-sailing weather setup stays available after leaving a mobile session'
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('.simulation-console > #play')).toBeVisible();
   await page.locator('#play').click();
-  await expect(page.locator('#mobile-menu-toggle')).toBeHidden();
+  await page.locator('#mobile-menu-toggle').click();
   await page.locator('#session-exit').click();
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#conditions').click();

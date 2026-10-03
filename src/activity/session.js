@@ -19,8 +19,11 @@ export function mountSimulationSession({ onExit, onRestart, onChange }) {
   controls.querySelector('#session-restart').onclick = onRestart;
   const mobile = window.matchMedia('(max-width: 900px)');
   function arrange() {
-    const parent = mobile.matches ? document.querySelector('.mobile-scene-toolbar') : simulator;
-    if (parent && controls.parentElement !== parent) parent.prepend(controls);
+    const parent = mobile.matches ? document.querySelector('#mobile-menu') : simulator;
+    if (parent && controls.parentElement !== parent) {
+      if (mobile.matches) parent.append(controls);
+      else parent.prepend(controls);
+    }
   }
   mobile.addEventListener('change', arrange);
   arrange();

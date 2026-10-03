@@ -102,7 +102,7 @@ test('mobile mute preferences survive reload and work with large RTL text', asyn
   await page.locator('#play').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
-  await expect(page.locator('#mobile-menu-toggle')).toBeHidden();
+  await page.locator('#mobile-menu-toggle').click();
   await page.locator('#session-exit').click();
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#sound-settings').click();

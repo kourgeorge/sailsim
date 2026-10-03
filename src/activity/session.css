@@ -34,24 +34,27 @@ body[data-session=active] .simulator:is([data-mode=explore],[data-mode=maneuver]
  html[data-large-text] #session-status{display:none}
 }
 @media(max-width:900px){
- #session-controls{position:static;grid-column:1/-1;max-width:none;width:100%;justify-content:space-between;pointer-events:auto}
+ #session-controls{position:static;display:grid;grid-template-columns:repeat(2,minmax(0,1fr));order:2;max-width:none;width:auto;margin:0 16px 16px;padding-top:16px;border-top:1px solid #ffffff20;pointer-events:auto}
  #session-status{display:none}
- #session-controls button{min-height:44px;padding:9px 12px;max-width:48%;overflow-wrap:anywhere}
+ #session-controls button{min-height:48px;padding:10px;min-width:0;overflow-wrap:anywhere}
  body[data-session=active] #mobile-lesson-summary{display:none}
- body[data-session=active] #mobile-menu-toggle{display:none!important}
- body[data-session=active] .mobile-scene-toolbar{gap:6px}
- body[data-session=active] .mobile-session-tools{display:flex;align-items:stretch;gap:6px;grid-column:1/-1;justify-self:end;width:max-content;max-width:100%;min-width:0;pointer-events:auto}
- body[data-session=active] .mobile-session-tools .camera-views{flex:none;flex-wrap:nowrap;gap:0;padding:0;border:1px solid #ffffff3b;border-radius:10px;background:#102f3de8;color:#c5d8dc;box-shadow:0 3px 16px #001c2533;backdrop-filter:blur(8px)}
- body[data-session=active] .mobile-session-tools .mobile-camera,
- body[data-session=active] .mobile-session-tools .session-camera-label{display:none}
- body[data-session=active] .mobile-session-tools [data-camera]{display:flex;align-items:center;justify-content:center;width:44px;min-width:44px;min-height:44px;padding:10px;border:1px solid transparent;border-radius:9px;color:inherit}
- body[data-session=active] .mobile-session-tools [data-camera]>svg{display:block;width:20px;height:20px;flex:none}
- body[data-session=active] .mobile-session-tools [data-camera][aria-pressed=true]{background:#e7c58e;color:#18343b;border-color:#e7c58e}
- body[data-session=active] .mobile-session-tools [data-camera]:focus-visible{outline:2px solid #fff5df;outline-offset:-3px}
- body[data-session=active] .mobile-session-tools>button{display:flex;align-items:center;justify-content:center;min-width:44px;min-height:44px;padding:8px 10px;background:#102f3de8;border:1px solid #ffffff3b;border-radius:10px;color:#f8eedb;box-shadow:0 3px 16px #001c2533;font-size:calc(12px * var(--text-scale,1));line-height:1.4;overflow-wrap:anywhere}
- body[data-session=active] .mobile-session-tools #chart-toggle{flex:none;width:44px;padding:10px}
- body[data-session=active] .mobile-session-tools #chart-toggle>span{display:none}
- body[data-session=active] #mobile-lesson-toggle{grid-column:1/-1;max-width:100%;min-height:44px;padding:8px 12px}
+ body[data-session=active] .mobile-scene-toolbar{grid-template-columns:48px minmax(0,1fr);gap:8px}
+ body[data-session=active] #mobile-menu>.topbar,
+ body[data-session=active] #mobile-menu>.mobile-menu-tools{display:none!important}
+ body[data-session=active] #mobile-menu .mobile-session-tools{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;order:1;min-width:0;padding:16px}
+ body[data-session=active] #mobile-menu .mobile-session-camera-heading{grid-column:1/-1;margin:0;color:#bbd1d5;font-size:calc(13px * var(--text-scale,1));line-height:1.4}
+ body[data-session=active] #mobile-menu .mobile-session-tools .camera-views{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));grid-column:1/-1;gap:4px;padding:3px;border:1px solid #ffffff3b;border-radius:10px;background:#ffffff06;color:#c5d8dc}
+ body[data-session=active] #mobile-menu .mobile-session-tools .mobile-camera{display:none}
+ body[data-session=active] #mobile-menu .mobile-session-tools [data-camera]{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;min-width:0;min-height:56px;padding:10px 4px;border:1px solid transparent;border-radius:7px;color:inherit;font-size:calc(12px * var(--text-scale,1));line-height:1.4}
+ body[data-session=active] #mobile-menu .session-camera-label{max-width:100%;overflow-wrap:anywhere}
+ body[data-session=active] #mobile-menu .mobile-session-tools [data-camera]>svg{display:block;width:20px;height:20px;flex:none}
+ body[data-session=active] #mobile-menu .mobile-session-tools [data-camera][aria-pressed=true]{background:#e7c58e;color:#18343b;border-color:#e7c58e}
+ body[data-session=active] #mobile-menu .mobile-session-tools [data-camera]:focus-visible{outline:2px solid #fff5df;outline-offset:-3px}
+ body[data-session=active] #mobile-menu .mobile-session-tools>button{display:flex;align-items:center;justify-content:center;gap:8px;min-width:0;min-height:48px;padding:10px;background:#ffffff06;border:1px solid #ffffff3b;border-radius:9px;color:#f8eedb;font-size:calc(12px * var(--text-scale,1));line-height:1.4;overflow-wrap:anywhere}
+ body[data-session=active] #mobile-menu .desktop-chart-label{display:none}
+ body[data-session=active] #mobile-menu .mobile-chart-label{display:inline}
+ body[data-session=active] #mobile-menu #chart-toggle svg{flex:none}
+ body[data-session=active] #mobile-lesson-toggle{grid-column:2;max-width:100%;min-height:48px;padding:8px 12px}
 }
 @media(prefers-reduced-motion:no-preference){
  body[data-session=active] #session-controls{animation:session-arrive .3s ease-out}
