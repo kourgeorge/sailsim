@@ -508,8 +508,16 @@ async function startApp() {
     learning?.event('event', 'chart');
     const race = mode === 'race' ? racing.current : null;
     const adventure = mode === 'adventure' ? adventures.current : null;
+    const targetVisible = adventure && !!adventures.chart?.cues.target;
+    const chartInstructions = adventure
+      ? `${t(targetVisible ? 'The green circle marks your current target.' : 'Your treasure target is hidden. Follow the clue, or choose Reveal target (−10 points) to show it on the chart.')} ${t('Yellow circles mark course buoys.')}`
+      : race
+        ? t('Sail through the numbered rings in order.')
+        : learning?.chart
+          ? t('Follow the numbered targets in order. The highlighted marker is your current goal.')
+          : 'Your position updates live. Amber marks indicate the buoy course.';
     openModal(
-      `<div class="eyebrow">NAVIGATION</div><h2>${t(adventure ? adventure.definition.name : race ? race.course.name : getLocation(state.locationId).title)}</h2><p>${adventure ? t('The green circle marks your target. Treasure targets stay hidden until revealed.') : race ? t('Sail through the numbered rings in order.') : learning?.chart ? t('Follow the numbered targets in order. The highlighted marker is your current goal.') : 'Your position updates live. Amber marks indicate the buoy course.'}</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span>● Course buoys</span><span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
+      `<div class="eyebrow">NAVIGATION</div><h2>${t(adventure ? adventure.definition.name : race ? race.course.name : getLocation(state.locationId).title)}</h2><p>${chartInstructions}</p><canvas id="large-chart" width="760" height="570"></canvas><div class="chart-legend"><span>▲ Your yacht</span><span class="chart-legend-buoys">● Course buoys</span>${targetVisible ? `<span class="chart-legend-target">${t('○ Current target')}</span>` : ''}<span>△ Other vessels</span><span>⚓ ${t('Anchor & swing room')}</span><span>${t('Plan view · bow swing limit')}</span><span>Dashed: 3 m contour</span></div>`,
     );
     drawChart($('#large-chart'));
   }

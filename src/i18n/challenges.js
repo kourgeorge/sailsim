@@ -473,12 +473,34 @@ const rows = {
     'גוף הסירה נגע בסמן החילוץ.',
     'لامس الهيكل علامة الإنقاذ.',
   ],
-  'The green circle marks your target. Treasure targets stay hidden until revealed.': [
-    'El círculo verde marca el objetivo. Los objetivos del tesoro permanecen ocultos hasta revelarlos.',
-    'Le cercle vert indique votre cible. Les cibles du trésor restent cachées jusqu’à leur révélation.',
-    'Зелёный круг обозначает цель. Цели сокровища скрыты, пока вы их не откроете.',
-    'המעגל הירוק מסמן את היעד. יעדי האוצר מוסתרים עד לחשיפתם.',
-    'تحدد الدائرة الخضراء هدفك. تبقى أهداف الكنز مخفية حتى كشفها.',
+  'Your treasure target is hidden. Follow the clue, or choose Reveal target (−10 points) to show it on the chart.':
+    [
+      'El objetivo del tesoro está oculto. Sigue la pista o elige Revelar objetivo (−10 puntos) para mostrarlo en la carta.',
+      'Votre cible du trésor est cachée. Suivez l’indice ou choisissez Révéler la cible (−10 points) pour l’afficher sur la carte.',
+      'Цель сокровища скрыта. Следуйте подсказке или выберите «Показать цель (−10 очков)», чтобы увидеть её на карте.',
+      'יעד האוצר מוסתר. עקבו אחר הרמז, או בחרו בחשיפת יעד (−10 נקודות) כדי להציג אותו במפה.',
+      'هدف الكنز مخفي. اتبع الدليل أو اختر كشف الهدف (−10 نقاط) لإظهاره على الخريطة.',
+    ],
+  'The green circle marks your current target.': [
+    'El círculo verde marca tu objetivo actual.',
+    'Le cercle vert indique votre cible actuelle.',
+    'Зелёный круг обозначает текущую цель.',
+    'המעגל הירוק מסמן את היעד הנוכחי.',
+    'تحدد الدائرة الخضراء هدفك الحالي.',
+  ],
+  'Yellow circles mark course buoys.': [
+    'Los círculos amarillos indican las boyas del recorrido.',
+    'Les cercles jaunes indiquent les bouées du parcours.',
+    'Жёлтые круги обозначают буи маршрута.',
+    'העיגולים הצהובים מסמנים את מצופי המסלול.',
+    'تشير الدوائر الصفراء إلى عوامات المسار.',
+  ],
+  '○ Current target': [
+    '○ Objetivo actual',
+    '○ Cible actuelle',
+    '○ Текущая цель',
+    '○ היעד הנוכחי',
+    '○ الهدف الحالي',
   ],
 };
 
