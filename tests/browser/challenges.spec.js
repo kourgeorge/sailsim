@@ -79,8 +79,9 @@ test('five challenges launch, pause, restart and end with a recorded path withou
   await expect(page.locator('#challenge-hud')).toBeHidden();
   await expect(page.locator('#race-hud')).toBeVisible();
   await page.locator('#session-exit').click();
+  await page.locator('#cover-review').click();
   await page.locator('#race-result-exit').click();
-  await expect(page.locator('.simulator')).toHaveAttribute('data-mode', 'explore');
+  await expect(page.locator('#cover-start-free')).toBeVisible();
   expect(errors).toEqual([]);
 });
 
@@ -121,9 +122,9 @@ test('all locales fit 200% mobile text, with an accessible live objective and si
     await expect(page.locator('[data-sailing-challenge=anchor-bullseye] strong')).toHaveText(
       challengesUI[language]['Anchor Bullseye'],
     );
-    await expect(page.locator('#modal')).toBeVisible();
+    await expect(page.locator('#section-cover')).toBeVisible();
     expect(
-      await page.locator('#modal').evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
+      await page.locator('#section-cover').evaluate((el) => el.scrollWidth <= el.clientWidth + 1),
     ).toBe(true);
     await page.locator('[data-sailing-challenge=anchor-bullseye]').click();
     await page.locator('#challenge-start').click();
@@ -164,6 +165,7 @@ test('all locales fit 200% mobile text, with an accessible live objective and si
     if (language === 'he') await page.screenshot({ path: 'artifacts/challenges/mobile-he.png' });
     await page.locator('#mobile-menu-toggle').click();
     await page.locator('#session-exit').click();
+    await page.locator('#cover-review').click();
     await expect(page.locator('.challenge-results')).toBeVisible();
   }
 });
@@ -191,6 +193,7 @@ test('rescue marker and challenge cues render, pause and clear from the actual 3
   await page.screenshot({ path: 'artifacts/challenges/rescue-chart.png' });
   await page.locator('#close-modal').click();
   await page.locator('#session-exit').click();
+  await page.locator('#cover-review').click();
   await page.locator('#adventure-exit').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-rescue-marker', 'false');
   await expect(page.locator('#challenge-hud')).toBeHidden();

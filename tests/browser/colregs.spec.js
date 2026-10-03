@@ -17,6 +17,7 @@ async function selectLesson(page, index) {
     await page.locator('#mobile-menu-toggle').click();
   }
   await page.locator('button[data-mode=learn]').click();
+  await page.locator('#cover-course').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 }
 

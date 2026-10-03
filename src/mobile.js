@@ -165,7 +165,7 @@ export function mountMobileLayout() {
   browse.type = 'button';
   browse.id = 'mobile-browse-course';
   browse.textContent = t('All lessons');
-  browse.addEventListener('click', () => document.querySelector('button[data-mode=learn]')?.click());
+  browse.addEventListener('click', () => document.querySelector('#cover-course')?.click());
   heading.append(title, browse);
   const list = document.createElement('div');
   list.className = 'mobile-lesson-list';

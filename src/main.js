@@ -44,6 +44,7 @@ import { mountMobileLayout } from './mobile.js';
 import { mountSailingAudio } from './audio/ui.js';
 import { createRaceUI } from './racing/ui.js';
 import { createChallengeUI } from './challenges/ui.js';
+import { mountSectionCovers, sectionForMode } from './activity/section-covers.js';
 
 async function startApp() {
   initializeTextSize();
@@ -73,6 +74,7 @@ async function startApp() {
     helmDashboard,
     cockpitControls,
     simulationSession,
+    sectionCovers,
     sailingAudio;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
@@ -177,13 +179,18 @@ async function startApp() {
     }),
     onStart: () => learning.resumeOrStart(),
   });
-  const cockpitEnabled = () =>
-    playback.controlsEnabled && !(mode === 'adventure' && !adventures?.active);
+  const sessionStarted = () =>
+    mode === 'learn'
+      ? Boolean(learning?.practiceActive)
+      : mode === 'maneuver'
+        ? Boolean(lab?.active)
+        : mode === 'race'
+          ? Boolean(racing?.active)
+          : mode === 'adventure'
+            ? Boolean(adventures?.active)
+            : freeSailingStarted;
+  const cockpitEnabled = () => playback.controlsEnabled && sessionStarted();
   function syncPlayback() {
-    if (['explore', 'challenge'].includes(mode) && !playback.paused && !freeSailingStarted) {
-      setStartingCamera();
-      freeSailingStarted = true;
-    }
     const simulator = $('.simulator');
     const sceneCompass = $('#scene-compass');
     if (sceneCompass) sceneCompass.hidden = !cockpitEnabled() || !playback.canRender;
@@ -199,20 +206,24 @@ async function startApp() {
       button = $('#play'),
       action = activity.action;
     simulationSession?.sync({
-      started:
-        !learning?.reading &&
-        !learning?.training &&
-        (mode === 'learn'
-          ? learning?.practiceActive
-          : mode === 'maneuver'
-            ? lab?.active
-            : mode === 'race'
-              ? racing?.active
-              : mode === 'adventure'
-                ? adventures?.active
-                : freeSailingStarted),
+      started: !learning?.reading && !learning?.training && sessionStarted(),
       graphicsReady: scene?.ready ?? true,
       paused: !playback.canSimulate,
+    });
+    sectionCovers?.sync({
+      mode,
+      active: document.body.dataset.session === 'active',
+      reviewable:
+        !sessionStarted() &&
+        Boolean(
+          mode === 'race'
+            ? racing?.current
+            : mode === 'adventure'
+              ? adventures?.current
+              : mode === 'maneuver'
+                ? lab?.current
+                : mode === 'challenge' && challengeDone && challengeTrack,
+        ),
     });
     const playbackAvailable =
       ['pause', 'resume'].includes(activity.command) &&
@@ -245,8 +256,7 @@ async function startApp() {
     }
   }
   function togglePlayback() {
-    if (mode === 'race' && !racing?.active) return;
-    if (mode === 'adventure' && !adventures?.active) return;
+    if (!sessionStarted()) return;
     playback.toggle();
     sailingAudio?.sync(true);
     syncControls();
@@ -337,9 +347,7 @@ async function startApp() {
   document.querySelectorAll('button[data-mode]').forEach(
     (b) =>
       (b.onclick = () => {
-        if (b.dataset.mode === 'challenge') racing.library();
-        else if (b.dataset.mode === 'learn' && mode === 'learn') learning.libraryModal();
-        else setMode(b.dataset.mode);
+        navigateSection(b.dataset.mode);
       }),
   );
   function setCamera(value, { record = true } = {}) {
@@ -625,7 +633,7 @@ async function startApp() {
       if (applyHeldKeys(state, keys, dt, applyControlPatch)) syncControls();
     }
     if (playback.canTickDecision) learning.tickDecision(dt);
-    if (playback.canSimulate) {
+    if (playback.canSimulate && sessionStarted()) {
       if (mode === 'challenge' && !challengeDone && !challengeTrack)
         challengeTrack = createSailingTrack(state);
       sceneTime += dt;
@@ -772,7 +780,17 @@ async function startApp() {
     },
     openModal,
     setCues: (cues) => scene?.setTrainingCues(cues),
-    onBuoyCourse: () => setMode('challenge'),
+    onBuoyCourse: () => {
+      setMode('challenge');
+      state = initialState('haven');
+      lastCollisionSequence = 0;
+      ensureScene(state.locationId);
+      updateLocation();
+      freeSailingStarted = true;
+      setStartingCamera();
+      playback.resume();
+      syncControls();
+    },
     toast,
   });
   racing = createRaceUI({
@@ -793,14 +811,11 @@ async function startApp() {
       playback.pause();
       syncControls();
     },
-    onLeave: () => {
-      playback.pause();
-      setMode('explore');
-      syncControls();
-    },
+    onLeave: (section = 'challenge') => navigateSection(section),
     onVisuals: (race) => scene?.setRace(race),
     onDrills: () => lab.library(),
     onChallenge: (id) => adventures.briefing(id),
+    onLibrary: () => navigateSection('challenge'),
   });
   adventures = createChallengeUI({
     container: $('.simulator'),
@@ -821,11 +836,7 @@ async function startApp() {
       playback.pause();
       syncControls();
     },
-    onLeave: () => {
-      playback.pause();
-      setMode('explore');
-      syncControls();
-    },
+    onLeave: () => navigateSection('explore'),
     onLibrary: () => racing.library(),
     setCues: (cues) => scene?.setTrainingCues(cues),
   });
@@ -854,6 +865,8 @@ async function startApp() {
   }
   function exitSession() {
     keys.clear();
+    clearTimeout(toast.timer);
+    $('#toast').classList.remove('show');
     toggleSystems(false);
     playback.pause();
     if (mode === 'learn') learning.endPractice();
@@ -862,7 +875,28 @@ async function startApp() {
     else if (mode === 'adventure') adventures.end();
     else if (mode === 'challenge') finishChallenge(false);
     else freeSailingStarted = false;
+    // Exit returns to the section. Explicit End & review actions still show
+    // the report, and the cover can reopen the finished attempt.
+    closeOverlays();
     syncControls();
+    sectionCovers?.focus();
+  }
+  function closeOverlays() {
+    document.querySelectorAll('dialog[open]').forEach((dialog) => dialog.close());
+  }
+  function navigateSection(section) {
+    if (sessionStarted()) exitSession();
+    keys.clear();
+    playback.pause();
+    freeSailingStarted = false;
+    toggleSystems(false);
+    learning?.closeReader();
+    learning?.closeTraining();
+    closeOverlays();
+    if (sectionForMode(mode) !== section || section === 'learn') setMode(section);
+    syncControls();
+    if (section === 'challenge') sectionCovers?.refreshChallenges();
+    sectionCovers?.focus();
   }
   function restartSession() {
     keys.clear();
@@ -881,6 +915,7 @@ async function startApp() {
       challengeTime = 0;
       challengeTrack = null;
       setMode(mode);
+      freeSailingStarted = true;
       setStartingCamera();
       playback.resume();
     }
@@ -906,6 +941,42 @@ async function startApp() {
   updateLesson();
   syncControls();
   updateLocation();
+  sectionCovers = mountSectionCovers({
+    simulator: $('.simulator'),
+    getState: () => state,
+    onNavigate: navigateSection,
+    onCourse: () => learning.libraryModal(),
+    onStartFree: () => {
+      closeOverlays();
+      // Every entry begins a fresh voyage with the selected location and weather.
+      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      state = initialState(state.locationId);
+      Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      lastCollisionSequence = 0;
+      setMode('explore');
+      freeSailingStarted = true;
+      setStartingCamera();
+      playback.resume();
+      sailingAudio?.sync(true);
+      syncControls();
+    },
+    onLocation: (id) => {
+      state = initialState(id);
+      lastCollisionSequence = 0;
+      ensureScene(id);
+      updateLocation();
+      syncControls();
+    },
+    onConditions: () => $('#conditions').click(),
+    onSound: () => $('#sound-settings').click(),
+    mountChallenges: (container) => racing.mountLibrary(container),
+    onReview: () => {
+      if (mode === 'race') racing.review();
+      else if (mode === 'adventure') adventures.review();
+      else if (mode === 'maneuver') lab.review();
+      else if (mode === 'challenge' && challengeDone) finishChallenge(challengeIndex === 3);
+    },
+  });
   $('#language-select').onchange = async (e) => {
     const select = e.target;
     select.disabled = true;

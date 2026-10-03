@@ -3,6 +3,7 @@ import { readFileSync } from 'node:fs';
 
 const select = async (page, index) => {
   await page.locator('button[data-mode=learn]').click();
+  await page.locator('#cover-course').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 };
 
@@ -113,8 +114,8 @@ test('marina targets render on the water and chart and clear on leaving lessons'
   await page.screenshot({ path: testInfo.outputPath('marina-chart.png') });
   await page.locator('#close-modal').click();
   await page.locator('#session-exit').click();
-  await page.locator('#close-modal').click();
   await page.locator('[data-mode="explore"]').click();
+  await page.locator('#cover-start-free').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-training-cues', 'false');
   expect(errors).toEqual([]);
 });

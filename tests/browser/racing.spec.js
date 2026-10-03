@@ -79,8 +79,8 @@ test('races start from Challenges and pause, restart, and leave without leaking 
   await page.locator('#race-menu').click();
   await page.locator('#race-exit').click();
   await expect(page.locator('#race-hud')).toBeHidden();
-  await expect(page.locator('.simulator')).toHaveAttribute('data-mode', 'explore');
-  await expect(page.locator('.cockpit-group-engine')).toBeVisible();
+  await expect(page.locator('body')).toHaveAttribute('data-section', 'challenge');
+  await expect(page.locator('#section-cover')).toBeVisible();
   await page.locator('[data-mode="challenge"]').click();
   await page.locator('#race-engine-drills').click();
   await expect(page.locator('[data-drill]')).toHaveCount(3);
@@ -171,7 +171,6 @@ test('race bots and rings render in the real 3D scene and appear on the chart', 
   await page.screenshot({ path: testInfo.outputPath('race-chart.png') });
   await page.locator('#close-modal').click();
   await page.locator('#session-exit').click();
-  await page.locator('#close-modal').click();
   await page.locator('button[data-mode="explore"]').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-race-boats', '0', { timeout: 120000 });
   expect(errors).toEqual([]);

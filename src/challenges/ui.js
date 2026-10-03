@@ -212,6 +212,7 @@ export function createChallengeUI({
   return {
     briefing,
     end,
+    review: results,
     restart: start,
     get active() {
       return run?.status === 'running';

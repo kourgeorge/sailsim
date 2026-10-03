@@ -3,6 +3,7 @@ import { sessionUI } from '../../src/i18n/session.js';
 
 async function selectLesson(page, index) {
   await page.locator('button[data-mode=learn]').click();
+  await page.locator('#cover-course').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 }
 
@@ -79,6 +80,7 @@ test.describe('session lifecycle', () => {
     await page.locator('#reader-close').click();
     await expectSession(page);
     await page.locator('#session-exit').click();
+    await page.locator('#practice-debrief').click();
     await expect(page.locator('.practice-debrief')).toBeVisible();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'outside');
     await page.locator('#close-modal').click();
@@ -94,13 +96,12 @@ test.describe('session lifecycle', () => {
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto('./');
     await page.locator('button[data-mode=explore]').click();
-    await page.locator('#location-select').click();
-    await page.locator('[data-location=shelter]').click();
+    await page.locator('[data-cover-location=shelter]').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'outside');
-    await page.locator('#conditions').click();
+    await page.locator('#cover-conditions-button').click();
     await page.locator('#wind-speed').fill('18');
     await page.locator('#close-modal').click();
-    await page.locator('#play').click();
+    await page.locator('#cover-start-free').click();
     await expectSession(page);
     await page.locator('#rudder').fill('20');
     await page.locator('#play').click();
@@ -110,7 +111,7 @@ test.describe('session lifecycle', () => {
     await expect(page.locator('#weather-wind')).toContainText('18 kn');
     await expect(page.locator('#location-title')).toHaveText('Shelter Bay');
     await page.locator('#session-exit').click();
-    await expect(page.locator('#location-select')).toBeVisible();
+    await expect(page.locator('#cover-start-free')).toBeVisible();
     await page.locator('button[data-mode=challenge]').click();
     await page.locator('#race-engine-drills').click();
     await page.locator('[data-drill]').first().click();
@@ -119,11 +120,11 @@ test.describe('session lifecycle', () => {
     await page.locator('#session-restart').click();
     await expectSession(page);
     await page.locator('#session-exit').click();
+    await page.locator('#cover-review').click();
     await expect(page.locator('.maneuver-review')).toBeVisible();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'outside');
     await page.locator('#lab-library').click();
     await page.locator('#lab-buoys').click();
-    await page.locator('#play').click();
     await expectSession(page);
     await expect(page.locator('#objective-text')).toBeVisible();
     await page.setViewportSize({ width: 390, height: 844 });
@@ -135,6 +136,7 @@ test.describe('session lifecycle', () => {
     await page.locator('#session-restart').click();
     await expect(page.locator('#objective-text')).toContainText('buoy 1 of 3');
     await page.locator('#session-exit').click();
+    await page.locator('#cover-review').click();
     await expect(page.locator('.challenge-debrief .sailing-track canvas')).toBeVisible();
     await page.locator('#challenge-exit').click();
     await page.locator('button[data-mode=challenge]').click();
@@ -144,6 +146,7 @@ test.describe('session lifecycle', () => {
     await page.locator('#session-restart').click();
     await expect(page.locator('#race-clock')).toHaveText('0:00');
     await page.locator('#session-exit').click();
+    await page.locator('#cover-review').click();
     await expect(page.locator('.race-results .sailing-track canvas')).toBeVisible();
     await expect(page.locator('#race-hud')).toHaveAttribute('data-race-status', 'finished');
     await expect(page.locator('body')).toHaveAttribute('data-session', 'outside');
@@ -164,6 +167,7 @@ test.describe('session lifecycle', () => {
       await expect(page.locator('#practice-start')).toBeVisible();
       await page.locator('#mobile-menu-toggle').click();
       await page.locator('button[data-mode=learn]').click();
+      await page.locator('#cover-course').click();
       await page.locator('[data-library-lesson="8"]').click();
       await page.locator('#practice-start').click();
       await page.locator('#practice-launch').click();
@@ -236,7 +240,6 @@ test.describe('session lifecycle', () => {
       );
       await page.locator('#mobile-menu-toggle').click();
       await page.locator('#session-exit').click();
-      await page.locator('#close-modal').click();
       await expect(page.locator('#mobile-menu-toggle')).toBeVisible();
       await page.locator('#mobile-menu-toggle').click();
       await expect(page.locator('#language-select')).toBeVisible();

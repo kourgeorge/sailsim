@@ -22,6 +22,8 @@ test('paused rendering stops after settling and wakes for camera, controls, resi
   expect(await frames()).toBe(initialFrames);
 
   await page.locator('[data-mode="explore"]').click();
+  await page.locator('#cover-start-free').click();
+  await page.locator('#play').click();
   await page.locator('[data-camera="helm"]').click();
   await expect(scene).toHaveAttribute('data-camera', 'helm');
   await settle();
@@ -116,7 +118,7 @@ test.describe('mobile water', () => {
     await page.locator('#mobile-menu-toggle').tap();
     await page.locator('[data-mode="explore"]').tap();
     const before = Number(await scene.getAttribute('data-visual-time'));
-    await page.locator('#play').tap();
+    await page.locator('#cover-start-free').tap();
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');
     await expect
       .poll(async () => Number(await scene.getAttribute('data-visual-time')))

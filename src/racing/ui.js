@@ -21,6 +21,7 @@ export function createRaceUI({
   onVisuals,
   onDrills,
   onChallenge,
+  onLibrary,
 }) {
   let race = null,
     selected = RACE_COURSES[0].id,
@@ -45,14 +46,15 @@ export function createRaceUI({
   };
   const setVisuals = () => onVisuals(race);
   function library() {
-    openModal(
-      `<section class="race-library" data-no-translate><div class="eyebrow">${tr('CHALLENGES')}</div><h2>${tr('Find your next adventure.')}</h2><p>${tr('Five missions. Five different ways to master your boat.')}</p>${challengeCatalog()}<h3>${tr('Race the fleet.')}</h3><p>${tr('Three rivals. The same yacht and wind. Find your fastest way around the course.')}</p><div class="race-courses">${RACE_COURSES.map((course, i) => `<button data-race-course="${course.id}"><span class="race-course-number">0${i + 1}</span><span><strong>${tr(course.name)}</strong><small>${tr(course.description)}</small></span><span aria-hidden="true">→</span></button>`).join('')}</div><button id="race-engine-drills" class="training-button">${tr('Engine drills & buoy course')}</button></section>`,
-    );
-    document
+    onLibrary();
+  }
+  function mountLibrary(target) {
+    target.innerHTML = `<section class="race-library" data-no-translate><div class="eyebrow">${tr('CHALLENGES')}</div><h2>${tr('Find your next adventure.')}</h2><p>${tr('Five missions. Five different ways to master your boat.')}</p>${challengeCatalog()}<h3>${tr('Race the fleet.')}</h3><p>${tr('Three rivals. The same yacht and wind. Find your fastest way around the course.')}</p><div class="race-courses">${RACE_COURSES.map((course, i) => `<button data-race-course="${course.id}"><span class="race-course-number">0${i + 1}</span><span><strong>${tr(course.name)}</strong><small>${tr(course.description)}</small></span><span aria-hidden="true">→</span></button>`).join('')}</div><button id="race-engine-drills" class="training-button">${tr('Engine drills & buoy course')}</button></section>`;
+    target
       .querySelectorAll('[data-race-course]')
       .forEach((button) => (button.onclick = () => briefing(button.dataset.raceCourse)));
-    document.querySelector('#race-engine-drills').onclick = onDrills;
-    document
+    target.querySelector('#race-engine-drills').onclick = onDrills;
+    target
       .querySelectorAll('[data-sailing-challenge]')
       .forEach((button) => (button.onclick = () => onChallenge(button.dataset.sailingChallenge)));
   }
@@ -184,11 +186,13 @@ export function createRaceUI({
     document.querySelector('#race-other').onclick = library;
     document.querySelector('#race-result-exit').onclick = () => {
       document.querySelector('#modal').close();
-      onLeave();
+      onLeave('explore');
     };
   }
   return {
     library,
+    mountLibrary,
+    review: results,
     briefing,
     options,
     end() {

@@ -19,6 +19,7 @@ async function open(page) {
 
 async function selectLesson(page, index) {
   await page.locator('button[data-mode=learn]').click();
+  await page.locator('#cover-course').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 }
 
@@ -71,21 +72,20 @@ test('free-sailing weather setup stays available after leaving a mobile session'
 }) => {
   await open(page);
   await page.locator('[data-mode="explore"]').click();
-  await page.locator('#conditions').click();
+  await page.locator('#cover-conditions-button').click();
   await page.locator('#wind-speed').fill('18');
   await page.locator('#current-speed').fill('1.5');
   await page.locator('#current-direction').fill('90');
   await page.locator('#close-modal').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-paused');
-  await page.locator('#play').click();
+  await page.locator('#cover-start-free').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');
   await page.setViewportSize({ width: 390, height: 844 });
   await expect(page.locator('.simulation-console > #play')).toBeVisible();
   await page.locator('#play').click();
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#session-exit').click();
-  await page.locator('#mobile-menu-toggle').click();
-  await page.locator('#conditions').click();
+  await page.locator('#cover-conditions-button').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page.locator('#wind-speed')).toHaveValue('18');
   await expect(page.locator('#current-speed')).toHaveValue('1.5');
@@ -170,7 +170,6 @@ test('leaving simulation before changing language preserves the ended attempt', 
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
   await page.locator('#session-exit').click();
-  await page.locator('#close-modal').click();
   await page.locator('#language-select').selectOption('he');
   await expect(page).toHaveURL(/lang=he/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'he');

@@ -1,0 +1,80 @@
+// Spanish, French, Russian, Hebrew, Arabic; shared section covers use the current locale.
+const rows = {
+  'Section home': [
+    'Inicio de sección',
+    'Accueil de la section',
+    'Главная страница раздела',
+    'דף הבית של המדור',
+    'الصفحة الرئيسية للقسم',
+  ],
+  'Build confidence, one lesson at a time.': [
+    'Gana confianza, lección a lección.',
+    'Prenez confiance, une leçon à la fois.',
+    'Обретайте уверенность с каждым уроком.',
+    'בונים ביטחון, שיעור אחר שיעור.',
+    'اكتسب الثقة، درساً بعد درس.',
+  ],
+  'Browse lessons': [
+    'Explorar lecciones',
+    'Parcourir les leçons',
+    'Выбрать урок',
+    'עיון בשיעורים',
+    'تصفح الدروس',
+  ],
+  'Your next lesson': [
+    'Tu próxima lección',
+    'Votre prochaine leçon',
+    'Ваш следующий урок',
+    'השיעור הבא שלכם',
+    'درسك القادم',
+  ],
+  'THE OPEN WATER': ['MAR ABIERTO', 'LE LARGE', 'ОТКРЫТАЯ ВОДА', 'הים הפתוח', 'المياه المفتوحة'],
+  'Choose your waters, set the breeze, and sail at your own pace.': [
+    'Elige dónde navegar, ajusta la brisa y navega a tu ritmo.',
+    'Choisissez votre plan d’eau, réglez la brise et naviguez à votre rythme.',
+    'Выберите акваторию, настройте ветер и плывите в своём темпе.',
+    'בחרו אזור הפלגה, כוונו את הרוח והפליגו בקצב שלכם.',
+    'اختر منطقة الإبحار واضبط الرياح وأبحر بالوتيرة التي تناسبك.',
+  ],
+  'Islands, open water, and winding passages.': [
+    'Islas, mar abierto y pasos sinuosos.',
+    'Des îles, le large et des passages sinueux.',
+    'Острова, открытая вода и извилистые проходы.',
+    'איים, ים פתוח ומעברים מפותלים.',
+    'جزر ومياه مفتوحة وممرات متعرجة.',
+  ],
+  'A sheltered bay with room to find your rhythm.': [
+    'Una bahía protegida para encontrar tu ritmo.',
+    'Une baie abritée pour trouver votre rythme.',
+    'Защищённая бухта, где можно найти свой ритм.',
+    'מפרץ מוגן עם מקום למצוא את הקצב שלכם.',
+    'خليج محمي يمنحك مساحة للتدرب على راحتك.',
+  ],
+  'Long headlands and a current to navigate.': [
+    'Cabos alargados y una corriente que dominar.',
+    'De longs caps et un courant à négocier.',
+    'Длинные мысы и течение для практики навигации.',
+    'לשונות יבשה ארוכות וזרם שצריך לקחת בחשבון.',
+    'رؤوس برية طويلة وتيار تتعلم الإبحار فيه.',
+  ],
+  'Your last attempt is ready to review.': [
+    'Tu último intento está listo para revisar.',
+    'Votre dernière tentative est prête à être consultée.',
+    'Можно просмотреть последнюю попытку.',
+    'הניסיון האחרון שלכם מוכן לסקירה.',
+    'محاولتك الأخيرة جاهزة للمراجعة.',
+  ],
+  'Review last attempt': [
+    'Revisar último intento',
+    'Revoir la dernière tentative',
+    'Просмотреть последнюю попытку',
+    'סקירת הניסיון האחרון',
+    'مراجعة المحاولة الأخيرة',
+  ],
+};
+export const sectionUI = Object.fromEntries(
+  ['en', 'es', 'fr', 'ru', 'he', 'ar'].map((language, i) => [
+    language,
+    Object.fromEntries(Object.entries(rows).map(([key, values]) => [key, i ? values[i - 1] : key])),
+  ]),
+);

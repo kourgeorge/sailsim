@@ -69,6 +69,13 @@ The searchable learning library contains **26 verified official-source records**
 
 ## Simulator
 
+Learn to sail, Free sailing and Challenges each have a cover page outside the
+immersive session, on desktop and mobile. Browse lessons from the learning cover;
+choose waters, conditions and sound before starting a free sail; or pick a mission,
+race or engine drill from the Challenges cover. Exit returns directly to that
+section's cover. Completed and ended attempts remain available through View debrief
+or Review last attempt. Pause and utility dialogs preserve the current session.
+
 **Challenges** now includes five scored missions alongside the fleet races:
 
 | Challenge | Objective |

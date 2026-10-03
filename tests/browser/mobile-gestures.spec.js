@@ -16,6 +16,8 @@ test.beforeEach(async ({ context, page }, testInfo) => {
 async function explore(page) {
   await page.locator('#mobile-menu-toggle').tap();
   await page.locator('[data-mode="explore"]').tap();
+  await page.locator('#cover-start-free').tap();
+  await page.locator('#play').tap();
   await expect(page.locator('#scene-compass')).toBeVisible();
   await expect(page.locator('#scene-compass')).toHaveAttribute(
     'data-compass-position',
