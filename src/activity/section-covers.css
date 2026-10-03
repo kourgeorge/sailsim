@@ -14,6 +14,9 @@ body[data-session=outside] .section-backdrop{display:block}
 body[data-section=learn]{--section-image:url('/section-backgrounds/learn.webp')}
 body[data-section=explore]{--section-image:url('/section-backgrounds/explore.webp')}
 body[data-section=challenge]{--section-image:url('/section-backgrounds/challenge.webp')}
+body[data-section=explore][data-location-background=haven]{--section-image:url('/section-backgrounds/learn.webp')}
+body[data-section=explore][data-location-background=shelter]{--section-image:url('/section-backgrounds/explore.webp')}
+body[data-section=explore][data-location-background=strait]{--section-image:url('/section-backgrounds/challenge.webp')}
 html[dir=rtl] .section-backdrop{transform:scaleX(-1)}
 .section-cover{position:relative;z-index:3;height:100%;overflow:auto;overscroll-behavior:contain;color:#ebf1e9;font-size:calc(14px * var(--text-scale,1))}
 .section-cover:focus{outline:none}
@@ -60,6 +63,9 @@ html[dir=rtl] .section-backdrop{transform:scaleX(-1)}
  body[data-section=learn]{--section-image:url('/section-backgrounds/learn-mobile.webp')}
  body[data-section=explore]{--section-image:url('/section-backgrounds/explore-mobile.webp')}
  body[data-section=challenge]{--section-image:url('/section-backgrounds/challenge-mobile.webp')}
+ body[data-section=explore][data-location-background=haven]{--section-image:url('/section-backgrounds/learn-mobile.webp')}
+ body[data-section=explore][data-location-background=shelter]{--section-image:url('/section-backgrounds/explore-mobile.webp')}
+ body[data-section=explore][data-location-background=strait]{--section-image:url('/section-backgrounds/challenge-mobile.webp')}
  .section-backdrop{background-image:linear-gradient(180deg,#082632cc,#08263266 40%,#08263288 75%,#082632ee),var(--section-image);background-position:center top}
  body[data-session=outside] .mobile-scene-toolbar{grid-template-columns:48px minmax(0,1fr);gap:8px}
  body[data-session=outside] .cover-navigation{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:3px;min-width:0;padding:4px;margin:0;border:1px solid #ffffff30;border-radius:12px;background:#102e3bf2;pointer-events:auto}

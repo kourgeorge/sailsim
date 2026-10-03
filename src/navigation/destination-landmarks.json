@@ -1,0 +1,33 @@
+{
+  "haven": [
+    {
+      "label": "Lighthouse",
+      "x": 48,
+      "y": 33.62
+    },
+    {
+      "label": "Marina",
+      "x": 70.77,
+      "y": 69.35
+    }
+  ],
+  "shelter": [
+    {
+      "label": "Lighthouse",
+      "x": 64.76,
+      "y": 44.09
+    },
+    {
+      "label": "Marina",
+      "x": 40.33,
+      "y": 58.15
+    }
+  ],
+  "strait": [
+    {
+      "label": "Lighthouse",
+      "x": 45.14,
+      "y": 40.29
+    }
+  ]
+}

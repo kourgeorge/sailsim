@@ -1,4 +1,5 @@
 import { LOCATIONS, getLocation } from '../locations.js';
+import { destinationPreview } from '../navigation/destination-preview.js';
 import { translate, getLanguage } from '../i18n/runtime.js';
 import { sectionUI } from '../i18n/sections.js';
 import './section-covers.css';
@@ -38,7 +39,7 @@ export function mountSectionCovers({
   const lessonSidebarNodes = [...sidebar.children];
   const sectionSidebar = document.createElement('div');
   sectionSidebar.className = 'section-sidebar';
-  sectionSidebar.innerHTML = `<div class="sidebar-heading"><div class="eyebrow" id="section-sidebar-eyebrow"></div><h1 id="section-sidebar-title"></h1><p id="section-sidebar-description"></p></div><div class="lesson-list section-group-list"><div data-sidebar-page="explore"><details class="course-module" open><summary><span>${tr('Change location')}</span><small>3</small></summary>${LOCATIONS.map((location, index) => `<button class="lesson-row" data-cover-location="${location.id}" aria-pressed="false"><span class="lesson-index">0${index + 1}</span><span><strong>${tr(location.title)}</strong><small>${tr(waterDescription(location.id))}</small></span></button>`).join('')}</details></div><div id="cover-challenges" data-sidebar-page="challenge"></div></div>`;
+  sectionSidebar.innerHTML = `<div class="sidebar-heading"><div class="eyebrow" id="section-sidebar-eyebrow"></div><h1 id="section-sidebar-title"></h1><p id="section-sidebar-description"></p></div><div class="lesson-list section-group-list"><div data-sidebar-page="explore"><details class="course-module" open><summary><span>${tr('Change location')}</span><small>3</small></summary><div class="destination-choices">${LOCATIONS.map((location, index) => `<button class="destination-choice" data-cover-location="${location.id}" aria-pressed="false">${destinationPreview(location)}<span class="destination-number" aria-hidden="true">0${index + 1}</span><span class="destination-selected" aria-hidden="true">✓</span><span class="destination-copy"><strong>${tr(location.title)}</strong><small>${tr(waterDescription(location.id))}</small></span></button>`).join('')}</div></details></div><div id="cover-challenges" data-sidebar-page="challenge"></div></div>`;
   sidebar.append(sectionSidebar);
   const courseButton = document.createElement('button');
   courseButton.id = 'cover-course';
@@ -94,6 +95,7 @@ export function mountSectionCovers({
     button.onclick = () => {
       onLocation(button.dataset.coverLocation);
       browser.open = false;
+      root.scrollTop = 0;
     };
   });
   catalog.addEventListener(
@@ -221,6 +223,7 @@ export function mountSectionCovers({
       ].join(':');
       if (key === previousConditions) return;
       previousConditions = key;
+      document.body.dataset.locationBackground = state.locationId;
       root.querySelector('#cover-location-name').textContent = t(
         getLocation(state.locationId).title,
       );

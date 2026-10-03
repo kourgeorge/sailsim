@@ -1,5 +1,7 @@
 // Spanish, French, Russian, Hebrew, Arabic; shared section covers use the current locale.
 const rows = {
+  Lighthouse: ['Faro', 'Phare', 'Маяк', 'מגדלור', 'منارة'],
+  Marina: ['Puerto deportivo', 'Port de plaisance', 'Марина', 'מרינה', 'مرسى'],
   'Section home': [
     'Inicio de sección',
     'Accueil de la section',
