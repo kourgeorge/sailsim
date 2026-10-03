@@ -4,7 +4,6 @@ import { lessons, modules } from './curriculum.js';
 import {
   recordFor,
   masteredIds,
-  lessonReady,
   checkKnowledge,
   beginAttempt,
   advanceAttempt,
@@ -89,7 +88,7 @@ export function createLearning({
           .map((l) => {
             const i = lessons.indexOf(l),
               done = mastered.has(l.id);
-            return `<button class="lesson-row ${selected === i && getMode() === 'learn' ? 'current' : ''} ${done ? 'complete' : ''}" data-course-lesson="${i}" ${selected === i ? 'aria-current="step"' : ''}><span class="lesson-index">${done ? '✓' : String(i + 1).padStart(2, '0')}</span><span><strong>${esc(l.title)}</strong><small>${l.practice ? 'Live boat handling' : 'Interactive seamanship'} · ${l.minutes} MIN${!lessonReady(progress, l) ? ' · PREVIEW' : ''}</small></span></button>`;
+            return `<button class="lesson-row ${selected === i && getMode() === 'learn' ? 'current' : ''} ${done ? 'complete' : ''}" data-course-lesson="${i}" ${selected === i ? 'aria-current="step"' : ''}><span class="lesson-index">${done ? '✓' : String(i + 1).padStart(2, '0')}</span><span><strong>${esc(l.title)}</strong><small>${l.practice ? 'Live boat handling' : 'Interactive seamanship'} · ${l.minutes} MIN</small></span></button>`;
           })
           .join('')}</details>`;
       })
@@ -171,11 +170,9 @@ export function createLearning({
           ? 'Training evidence saved.'
           : active
             ? l.practice.steps[attempt.index].label
-            : !lessonReady(progress, l)
-              ? 'Preview and practice freely. Earlier lessons must be mastered for course credit.'
-              : (l.practice ? r.practice : r.decision)
-                ? 'Training evidence saved.'
-                : 'Start training to perform assessed tasks. Study material is available separately.';
+            : (l.practice ? r.practice : r.decision)
+              ? 'Training evidence saved.'
+              : 'Start training to perform assessed tasks. Study material is available separately.';
     let panel = $('#training-actions');
     if (!panel) {
       panel = document.createElement('div');
@@ -293,7 +290,6 @@ export function createLearning({
       active,
       score: active ? practiceAssessment(attempt, l).score : 0,
       completed: active ? attempt.index : 0,
-      preview: !lessonReady(progress, l),
     });
     tickPanel();
   }
@@ -357,7 +353,6 @@ export function createLearning({
     getEvidence: () => ({
       ...recordFor(progress, current().id),
       trainingActive: decision.active || attempt?.status === 'active',
-      ready: lessonReady(progress, current()),
       mastered: completed().has(current().id),
     }),
   });

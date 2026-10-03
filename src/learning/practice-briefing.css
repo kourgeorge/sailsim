@@ -27,7 +27,6 @@ html[data-text-size] #practice-briefing,#practice-briefing{position:fixed;inset:
 .practice-briefing-goals small{display:block;color:#637d76;font-size:calc(11px * var(--text-scale,1));margin-top:3px}
 .practice-pass{padding:4px 14px;background:#e4e9df;border-radius:8px}
 #practice-briefing .practice-pass h3{margin-top:10px}
-#practice-briefing .practice-preview{font-size:calc(11px * var(--text-scale,1));margin-top:14px}
 .practice-briefing-actions{padding:14px 20px 16px;border-top:1px solid #cad5ce;flex-shrink:0;background:#f1f2e9}
 .practice-briefing-actions>.primary{width:100%;background:#244f53;border-color:#244f53;color:#fff6df;min-height:46px;font-size:calc(13px * var(--text-scale,1))}
 .practice-briefing-actions>div{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin-top:8px}
