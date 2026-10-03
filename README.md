@@ -69,6 +69,26 @@ The searchable learning library contains **26 verified official-source records**
 
 ## Simulator
 
+**Challenges** now includes five scored missions alongside the fleet races:
+
+| Challenge | Objective |
+|---|---|
+| Rescue Run | Return to a drifting person-overboard marker and hold safely alongside in neutral. |
+| Treasure Chart | Solve three sequential bearing clues; optional target reveals cost 10 points each. |
+| Anchor Bullseye | Settle inside a target circle with actual bottom contact, completed payout and at least 4:1 scope. |
+| The Shallow Shortcut | Choose an inner or outer passage around Pine Island, keeping at least 1 m beneath the keel across the hull. |
+| One-Tack Wonder | Reach an upwind finish with one established tack; a second tack or a gybe ends the attempt. |
+
+Each mission has authored conditions, a briefing, live requirements, a time limit,
+Gold/Silver/Bronze medals, a recorded sailing path and a saved personal best.
+Grounding or hull contact ends the attempt. Treasure Chart and One-Tack Wonder
+disable the engine; the other missions start with sails lowered and allow it.
+Pause, utility dialogs, Exit and Restart use the shared simulation lifecycle.
+All six interface languages and mobile layouts are supported. These missions
+assess the existing simulator model, including a visual rescue marker rather
+than physical casualty recovery. Best scores are stored separately from course
+progress under `sail-challenge-best-v1:<id>`.
+
 **Challenges → Race the fleet** offers three races against Skye, Amber and Coral:
 Harbor Sprint (a short triangular course), Windward Duel (tacking and downwind
 sailing), and Channel Chase (a passage with cross-current). Choose Relaxed, Club

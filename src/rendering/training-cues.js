@@ -45,6 +45,18 @@ export function createTrainingCues(scene) {
   const target = new THREE.Group();group.add(target);
   flat(target, new THREE.RingGeometry(.975, 1, 64), mint);
   const targetCenter = flat(target, new THREE.RingGeometry(.12, .16, 24), mint);
+  // A floating training marker is a visual target, separate from the world's collision bodies.
+  const rescue = new THREE.Group(); group.add(rescue);
+  const rescueOrange = makeMaterial('#ff9c45'), rescueWhite = makeMaterial('#fff4d6');
+  flat(rescue, new THREE.RingGeometry(.55, 1, 32), rescueOrange);
+  const jacket = add(rescue, new THREE.SphereGeometry(.42, 12, 8), rescueOrange);
+  jacket.scale.set(1, .55, 1.5); jacket.position.y = .18;
+  const head = add(rescue, new THREE.SphereGeometry(.22, 12, 8), rescueWhite);
+  head.position.set(0, .45, -.38);
+  const rescuePole = add(rescue, new THREE.CylinderGeometry(.045, .045, 2.6, 6), rescueWhite);
+  rescuePole.position.set(.85, 1.3, .1);
+  const rescueFlag = add(rescue, new THREE.PlaneGeometry(.8, .48), rescueOrange);
+  rescueFlag.position.set(1.2, 2.25, .1);
   const corridor = new THREE.Group();group.add(corridor);
   const boundaries = [-1, 1].map(() => flat(corridor, new THREE.PlaneGeometry(1, 1), faint));
   const trailGeometry = new THREE.BufferGeometry();
@@ -67,6 +79,7 @@ export function createTrainingCues(scene) {
     set(cues) {
       group.visible = Boolean(cues);
       if (!cues) { trailGeometry.setDrawRange(0, 0); return; }
+      place(rescue, cues.rescue);
       if (place(gate, cues.gate)) {
         const width = length(cues.gate.width, 18, 2, 500);
         posts.forEach((post, i) => { post.position.x = (i ? 1 : -1) * width / 2; });

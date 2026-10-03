@@ -195,6 +195,25 @@ export function createChartRenderer({
     if (training) {
       const { gate, target, corridor } = training.cues;
       ctx.save();
+      for (const [index, route] of (training.cues.alternatives || []).entries()) {
+        ctx.strokeStyle = index ? '#aadcd0aa' : '#f1c888aa';
+        ctx.fillStyle = ctx.strokeStyle;
+        ctx.lineWidth = 1.5;
+        ctx.setLineDash([5, 4]);
+        ctx.beginPath();
+        route.points.forEach((point, i) =>
+          i ? ctx.lineTo(...map(point.x, point.z)) : ctx.moveTo(...map(point.x, point.z)),
+        );
+        ctx.stroke();
+        if (w > 300) {
+          const point = route.points[Math.floor(route.points.length / 2)];
+          const [x, y] = map(point.x, point.z);
+          ctx.font = '12px sans-serif';
+          ctx.textAlign = index ? 'right' : 'left';
+          ctx.fillText(t(route.name), x + (index ? -10 : 10), y - 10);
+        }
+      }
+      ctx.setLineDash([]);
       if (training.cues.route) {
         ctx.strokeStyle = '#93c5ae88';
         ctx.lineWidth = 1;

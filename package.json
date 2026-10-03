@@ -10,8 +10,8 @@
     "test": "node --test tests/*.test.js",
     "scrape": "python3 scripts/scrape_esail.py",
     "test:browser": "playwright test",
-    "format": "prettier --write src/main.js src/app-shell.js src/activity/*.js src/audio/*.js src/racing/*.js src/i18n/audio.js src/i18n/racing.js src/scene.js src/learning/ui.js src/learning/progress-store.js src/learning/maneuver-records.js playwright.config.js tests/browser/*.js src/navigation/chart.js src/learning/training-report.js",
-    "format:check": "prettier --check src/main.js src/app-shell.js src/activity/*.js src/audio/*.js src/racing/*.js src/i18n/audio.js src/i18n/racing.js src/scene.js src/learning/ui.js src/learning/progress-store.js src/learning/maneuver-records.js playwright.config.js tests/browser/*.js src/navigation/chart.js src/learning/training-report.js"
+    "format": "prettier --write src/main.js src/app-shell.js src/activity/*.js src/audio/*.js src/racing/*.js src/challenges/*.js src/i18n/challenges.js src/i18n/audio.js src/i18n/racing.js src/scene.js src/learning/ui.js src/learning/progress-store.js src/learning/maneuver-records.js playwright.config.js tests/browser/*.js src/navigation/chart.js src/learning/training-report.js",
+    "format:check": "prettier --check src/main.js src/app-shell.js src/activity/*.js src/audio/*.js src/racing/*.js src/challenges/*.js src/i18n/challenges.js src/i18n/audio.js src/i18n/racing.js src/scene.js src/learning/ui.js src/learning/progress-store.js src/learning/maneuver-records.js playwright.config.js tests/browser/*.js src/navigation/chart.js src/learning/training-report.js"
   },
   "dependencies": {
     "three": "^0.180.0"

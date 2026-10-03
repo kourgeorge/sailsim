@@ -380,6 +380,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
       if (disposed) return;
       trainingCues.set(cues);
       container.dataset.trainingCues = String(Boolean(cues));
+      container.dataset.rescueMarker = String(Boolean(cues?.rescue));
       invalidate();
     },
     setView(v) {

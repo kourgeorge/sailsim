@@ -2,6 +2,7 @@ import { RACE_COURSES, RACE_DIFFICULTIES, createRace, advanceRace, raceStandings
 import { translate as t } from '../i18n/runtime.js';
 import { mountSailingTrack } from '../navigation/sailing-track-view.js';
 import './race.css';
+import { challengeCatalog } from '../challenges/ui.js';
 const esc = (value) =>
   String(value).replace(
     /[&<>"']/g,
@@ -19,6 +20,7 @@ export function createRaceUI({
   onLeave,
   onVisuals,
   onDrills,
+  onChallenge,
 }) {
   let race = null,
     selected = RACE_COURSES[0].id,
@@ -44,12 +46,15 @@ export function createRaceUI({
   const setVisuals = () => onVisuals(race);
   function library() {
     openModal(
-      `<section class="race-library" data-no-translate><div class="eyebrow">${tr('CHALLENGES')}</div><h2>${tr('Race the fleet.')}</h2><p>${tr('Three rivals. The same yacht and wind. Find your fastest way around the course.')}</p><div class="race-courses">${RACE_COURSES.map((course, i) => `<button data-race-course="${course.id}"><span class="race-course-number">0${i + 1}</span><span><strong>${tr(course.name)}</strong><small>${tr(course.description)}</small></span><span aria-hidden="true">→</span></button>`).join('')}</div><button id="race-engine-drills" class="training-button">${tr('Engine drills & buoy course')}</button></section>`,
+      `<section class="race-library" data-no-translate><div class="eyebrow">${tr('CHALLENGES')}</div><h2>${tr('Find your next adventure.')}</h2><p>${tr('Five missions. Five different ways to master your boat.')}</p>${challengeCatalog()}<h3>${tr('Race the fleet.')}</h3><p>${tr('Three rivals. The same yacht and wind. Find your fastest way around the course.')}</p><div class="race-courses">${RACE_COURSES.map((course, i) => `<button data-race-course="${course.id}"><span class="race-course-number">0${i + 1}</span><span><strong>${tr(course.name)}</strong><small>${tr(course.description)}</small></span><span aria-hidden="true">→</span></button>`).join('')}</div><button id="race-engine-drills" class="training-button">${tr('Engine drills & buoy course')}</button></section>`,
     );
     document
       .querySelectorAll('[data-race-course]')
       .forEach((button) => (button.onclick = () => briefing(button.dataset.raceCourse)));
     document.querySelector('#race-engine-drills').onclick = onDrills;
+    document
+      .querySelectorAll('[data-sailing-challenge]')
+      .forEach((button) => (button.onclick = () => onChallenge(button.dataset.sailingChallenge)));
   }
   function briefing(id = selected) {
     selected = id;

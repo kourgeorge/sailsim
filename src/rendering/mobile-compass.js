@@ -30,7 +30,7 @@ export function mountMobileCompass(simulator, mobile) {
   let points = [];
   const obstacles = [
     ...simulator.querySelectorAll(
-      '.mobile-scene-toolbar, .mobile-indicators, .simulation-console, .mobile-controls-drawer, #race-hud',
+      '.mobile-scene-toolbar, .mobile-indicators, .simulation-console, .mobile-controls-drawer, #race-hud, #challenge-hud',
     ),
   ];
 

@@ -1,0 +1,65 @@
+#modal:has(.challenge-catalog){width:min(980px,calc(100vw - 32px))}
+#challenge-hud .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.challenge-catalog{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 34px}
+.challenge-choice{position:relative;display:flex;align-items:flex-start;gap:15px;min-width:0;padding:18px;border:1px solid #ffffff26;border-radius:12px;text-align:start;background:linear-gradient(135deg,#295c6544,#102e3b88);transition:border-color .15s,background .15s}
+.challenge-choice:last-child{grid-column:1/-1}
+.challenge-choice:hover,.challenge-choice:focus-visible{border-color:#efca88;background:#28546166}
+.challenge-art{position:relative;display:grid;place-items:center;flex:0 0 66px;aspect-ratio:1;border:1px solid #e7c58e38;border-radius:50%;color:#f1d49e;overflow:hidden}
+.challenge-art svg{position:absolute;inset:0;width:100%;height:100%;fill:none}
+.challenge-grid{stroke:#a2d0cb16;stroke-width:1}
+.challenge-course-line{stroke:#ecd09677;stroke-width:1.5;stroke-dasharray:4 3}
+.challenge-art>span{position:relative;font-size:29px;text-shadow:0 2px 6px #102e3b}
+.challenge-choice-copy{display:grid;gap:8px;min-width:0}
+.challenge-choice-copy>strong{color:#f3e9d5;font-size:calc(17px * var(--text-scale,1));line-height:1.25}
+.challenge-choice-copy>span{color:#bcd0d1;font-size:calc(12px * var(--text-scale,1));line-height:1.6}
+.challenge-choice-copy>small{color:#b9c9c1;font-size:calc(10px * var(--text-scale,1));line-height:1.5}
+.challenge-choice-copy>.challenge-personal-best{color:#e7c58e;margin-top:4px}
+.challenge-choice-arrow{margin-inline-start:auto;color:#e7c58e}
+.challenge-rule{padding:15px 18px;border-inline-start:3px solid #9fd4c1;background:#ffffff06;border-radius:0 8px 8px 0}
+.challenge-medal-targets{display:flex;gap:18px;flex-wrap:wrap;font-size:calc(13px * var(--text-scale,1));margin:18px 0}
+.challenge-medal-targets>span:first-child{color:#efca88}
+.challenge-medal-targets>span:nth-child(2){color:#c9dcdf}
+.challenge-medal-targets>span:last-child{color:#d3a47c}
+.challenge-best{color:#a7e4ce!important}
+#challenge-hud{position:absolute;z-index:6;inset-inline-start:22px;inset-block-start:calc(max(18px,env(safe-area-inset-top)) + var(--session-controls-height,44px) + 20px);width:280px;max-width:34%;max-height:calc(100% - var(--control-dock-height,160px) - 125px);overflow:auto;overscroll-behavior:contain;padding:15px;border:1px solid #ffffff30;border-radius:12px;background:#102e3bf2;color:#e9f1e9;box-shadow:0 8px 30px #001c2530;font-size:calc(12px * var(--text-scale,1));line-height:1.5}
+#challenge-hud[hidden],#challenge-reveal[hidden]{display:none}
+.challenge-hud-top{display:flex;align-items:flex-start;gap:8px}
+.challenge-hud-top>strong{flex:1;min-width:0;color:#f3d6a0;font-size:calc(15px * var(--text-scale,1));overflow-wrap:anywhere}
+#challenge-options{flex:none;min-width:44px;min-height:44px;margin:-8px -6px -4px;font-size:22px}
+.challenge-hud-meta{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;margin:9px 0;color:#b8d2d1;font-variant-numeric:tabular-nums}
+#challenge-live-goal{margin:9px 0;color:#e7e6cf;font-size:inherit;line-height:1.6}
+#challenge-progress{display:block;width:100%;height:5px;accent-color:#9bdac7;margin:12px 0;border:0;border-radius:5px;overflow:hidden}
+#challenge-live-details>summary{cursor:pointer;min-height:32px;color:#a8c7c9;padding:5px 0}
+#challenge-requirements{display:grid;gap:9px;margin:10px 0}
+.challenge-requirement{display:flex;align-items:flex-start;gap:7px}
+.challenge-requirement>span:nth-child(2){flex:1;min-width:0;overflow-wrap:anywhere}
+.challenge-requirement small{display:block;font:inherit;color:#a4b9bb;font-size:.9em}
+.challenge-requirement bdi{white-space:nowrap;font-variant-numeric:tabular-nums}
+.challenge-requirement[data-met=true]>span:first-child{color:#9fdfbe}
+#challenge-reveal{width:100%;margin-top:8px;font-size:inherit;min-height:44px}
+#challenge-reveal:disabled{opacity:.6;cursor:default}
+.challenge-result-score{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin:22px 0;color:#e7c58e}
+.challenge-result-score[data-medal=Silver]{color:#c9dcdf}
+.challenge-result-score[data-medal=Bronze]{color:#d3a47c}
+.challenge-result-score[data-medal=none]{color:#b5c6cb}
+.challenge-result-score strong{font-size:calc(38px * var(--text-scale,1))}
+.challenge-result-score small{font-size:calc(17px * var(--text-scale,1))}
+.challenge-result-score time{font-size:calc(23px * var(--text-scale,1))}
+.challenge-result-evidence{display:grid;gap:8px;border-block:1px solid #ffffff22;padding:16px 0;font-size:calc(13px * var(--text-scale,1));color:#bdd2ce}
+.simulator[data-mode=adventure] .scene-title,.simulator[data-mode=adventure] .lesson-card{display:none!important}
+.workspace:has(.simulator[data-mode=adventure]){grid-template-columns:1fr}
+.workspace:has(.simulator[data-mode=adventure])>.sidebar{display:none}
+.simulator[data-challenge-engine=false] .cockpit-group-engine,.simulator[data-challenge-engine=false] .vessel-tabs>details:has(#vessel-throttle){display:none!important}
+.simulator[data-challenge-engine=false] .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(5,minmax(0,1fr))}
+@media(max-width:900px){
+ .challenge-catalog{grid-template-columns:1fr;gap:10px}
+ .challenge-choice{padding:14px;gap:12px}
+ .challenge-art{flex-basis:48px}
+ #challenge-hud{inset-block-start:calc(max(12px,env(safe-area-inset-top)) + var(--mobile-toolbar-height,48px) + 12px);inset-inline-start:max(12px,env(safe-area-inset-left));width:min(285px,calc(100% - 24px));max-width:none;max-height:min(42%,calc(100dvh - var(--control-dock-height,64px) - 150px));padding:12px;font-size:calc(11px * var(--text-scale,1))}
+ .simulator:has(.control-dock[aria-disabled=false]) #challenge-hud{inset-block-start:calc(max(12px,env(safe-area-inset-top)) + var(--mobile-toolbar-height,48px) + var(--mobile-indicators-height,60px) + 24px);width:min(285px,calc(100% - 160px - 32px * (var(--text-scale,1) - 1)))}
+ .challenge-hud-top>strong{font-size:calc(13px * var(--text-scale,1))}
+ html[data-large-text] .challenge-choice{gap:10px}
+ html[data-large-text] .challenge-art{display:none}
+ html[data-large-text] .challenge-requirement{flex-wrap:wrap}
+ html[data-large-text] .challenge-requirement bdi{margin-inline-start:20px}
+}
