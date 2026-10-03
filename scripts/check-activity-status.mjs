@@ -31,7 +31,7 @@ try{
  await launch();await expect(page.locator('#play')).not.toContainText('Set sail');await screenshot('running-he');
  // Reopening the task pauses the SAME attempt; Escape leaves it paused.
  await page.locator('#training-goals').click();await state('training-paused');
- await expect(page.locator('#practice-launch')).toHaveText(`▶ ${practiceFlowUI.he['Continue simulation']}`);
+ await expect(page.locator('#practice-launch')).toHaveText(practiceFlowUI.he['Continue simulation']);
  const activeRecord=await records();await page.keyboard.press('Escape');await state('training-paused');
  const heading=await page.locator('#heading').textContent();await page.waitForTimeout(300);assert.equal(await page.locator('#heading').textContent(),heading);
  await page.locator('#play').click();await state('training-running');assert.deepEqual(await records(),activeRecord,'resume preserves attempt');
@@ -56,7 +56,7 @@ try{
   await page.setViewportSize({width:1440,height:1100});
   await page.goto(`${url}/?lang=${lang}`,{waitUntil:'domcontentloaded',timeout:120000});await expect(page.locator('html')).toHaveAttribute('lang',lang);
   await selectLesson(8);await prepare();
-  await expect(page.locator('#practice-launch')).toHaveText(`▶ ${practiceFlowUI[lang]['Start simulation']}`);
+  await expect(page.locator('#practice-launch')).toHaveText(practiceFlowUI[lang]['Start simulation']);
   assert.equal(await page.locator('#practice-briefing').evaluate(node=>getComputedStyle(node,'::backdrop').backdropFilter),'none');
   await page.keyboard.press('Escape');
   await page.locator('.text-size-control summary').click();await page.locator('#sail-text-size-range').fill('200');await page.locator('.text-size-control summary').click();

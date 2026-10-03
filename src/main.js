@@ -1,6 +1,7 @@
 import { createChartRenderer } from './navigation/chart.js';
 import './style.css';
 import { mountSimulationControls } from './activity/ui.js';
+import { playbackIcon } from './activity/playback-icon.js';
 import { mountSimulationSession } from './activity/session.js';
 import { createActivityController } from './activity/controller.js';
 import { mountAppShell } from './app-shell.js';
@@ -203,7 +204,7 @@ async function startApp() {
     $('#reset').hidden = mode === 'learn';
     if (activity.command && button.dataset.action !== action) {
       button.dataset.action = action;
-      button.replaceChildren(document.createTextNode(activity.command === 'pause' ? 'Ⅱ ' : '▶ '));
+      button.innerHTML = playbackIcon(activity.command === 'pause' ? 'pause' : 'play');
       const span = document.createElement('span');
       span.textContent = t(action);
       button.append(span, keyBadge('Space'));

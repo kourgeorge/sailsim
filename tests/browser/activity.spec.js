@@ -114,7 +114,7 @@ test('lesson conditions and start remain reachable in every language at 200% mob
       practiceFlowUI[language]['Starting conditions'],
     );
     await expect(page.locator('#practice-launch')).toHaveText(
-      `▶ ${practiceFlowUI[language]['Start simulation']}`,
+      practiceFlowUI[language]['Start simulation'],
     );
     await briefing.locator('.practice-conditions dl > div').last().scrollIntoViewIfNeeded();
     const fits = await briefing.evaluate((node) => {

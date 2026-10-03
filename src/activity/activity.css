@@ -4,7 +4,9 @@
 .topbar .brand-caption{display:none}
 
 /* A compact pause button shares the scene tools; starting belongs to the briefing. */
-#play{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;min-width:40px;min-height:40px;padding:8px;border-radius:7px;background:var(--gold);color:#203a40;font-size:18px}
+svg.playback-icon{width:1em;height:1em;vertical-align:-.125em;fill:currentColor;stroke:none;pointer-events:none}
+#play{display:inline-flex;align-items:center;justify-content:center;flex-shrink:0;width:40px;min-width:40px;min-height:40px;padding:8px;border-radius:7px;background:var(--gold);color:#203a40;font-size:18px;-webkit-appearance:none;appearance:none}
+#play>svg.playback-icon{width:20px;height:20px}
 #play:hover{background:#ffdcab;color:#142c34}
 #play>span{display:none}
 #play:focus-visible,#conditions:focus-visible{outline:2px solid #e7c78f;outline-offset:3px}
