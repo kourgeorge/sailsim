@@ -10,6 +10,7 @@ import { disposeSceneResources } from './rendering/dispose.js';
 import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 import { createRaceVisuals } from './racing/visuals.js';
 import { createHelmCamera } from './rendering/helm-camera.js';
+import { createRenderQuality } from './rendering/quality.js';
 
 export function createScene(container, { locationId = 'haven' } = {}) {
   let dirty = true,
@@ -33,16 +34,21 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     debug = gl.getExtension('WEBGL_debug_renderer_info');
   const software =
     debug && /swiftshader|llvmpipe|software/i.test(gl.getParameter(debug.UNMASKED_RENDERER_WEBGL));
-  // Give touch devices a little more rendering headroom in either orientation.
-  const pixelRatioCap = window.matchMedia('(pointer: coarse)').matches ? 1.5 : 1.65;
-  let sailingPixelRatio = software ? 0.7 : Math.min(devicePixelRatio, pixelRatioCap);
-  renderer.setPixelRatio(sailingPixelRatio);
-  container.dataset.quality = software ? 'compatibility' : 'high';
+  // Include tablets with a connected mouse, even when their primary pointer is fine.
+  const quality = createRenderQuality({
+    touch: window.matchMedia('(any-pointer: coarse)').matches || navigator.maxTouchPoints > 1,
+    software,
+    pixelRatio: devicePixelRatio,
+  });
+  let renderBudget = quality.current;
+  renderer.setPixelRatio(renderBudget.pixelRatio);
+  container.dataset.quality = renderBudget.name;
+  container.dataset.pixelRatio = String(renderBudget.pixelRatio);
   renderer.setSize(container.clientWidth, container.clientHeight);
   renderer.outputColorSpace = THREE.SRGBColorSpace;
   renderer.toneMapping = THREE.ACESFilmicToneMapping;
   renderer.toneMappingExposure = 0.85;
-  renderer.shadowMap.enabled = !software;
+  renderer.shadowMap.enabled = renderBudget.shadowSize > 0;
   renderer.shadowMap.type = THREE.PCFSoftShadowMap;
   container.append(renderer.domElement);
   renderer.domElement.setAttribute(
@@ -57,7 +63,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
   );
   const materials = createMaterials(),
     environment = createEnvironment(scene, renderer, materials, {
-      software,
+      quality: renderBudget,
       locationId: location.id,
     }),
     yacht = createYacht(materials);
@@ -140,6 +146,7 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     renderer.setSize(width, height);
     camera.aspect = width / height;
     camera.updateProjectionMatrix();
+    quality.resetTiming();
     invalidate();
   }
   const observer = new ResizeObserver(resize);
@@ -209,10 +216,17 @@ export function createScene(container, { locationId = 'haven' } = {}) {
     lastFrameTime = now;
     frameCount++;
     frameAverage = frameAverage * 0.95 + elapsed * 1000 * 0.05;
-    if (!software && frameCount === 30 && frameAverage > 45)
-      sailingPixelRatio = Math.min(devicePixelRatio, 0.85);
-    if (renderer.getPixelRatio() !== sailingPixelRatio) {
-      renderer.setPixelRatio(sailingPixelRatio);
+    // Only advancing simulation frames measure sustained rendering performance.
+    // Dragging a paused camera or returning from a menu must not lower quality.
+    const nextBudget = quality.recordFrame(
+      lastVisualTime !== null && time !== lastVisualTime ? elapsed * 1000 : null,
+    );
+    if (nextBudget !== renderBudget) {
+      renderBudget = nextBudget;
+      environment.setQuality(renderBudget);
+      renderer.setPixelRatio(renderBudget.pixelRatio);
+      container.dataset.quality = renderBudget.name;
+      container.dataset.pixelRatio = String(renderBudget.pixelRatio);
       resize();
     }
     container.dataset.fps = (1000 / frameAverage).toFixed(1);
@@ -344,7 +358,10 @@ export function createScene(container, { locationId = 'haven' } = {}) {
       if (dirty || state !== lastState || time !== lastVisualTime) render(state, time);
       // An idle pause is not a slow GPU frame. Exclude it from camera smoothing
       // and the automatic quality decision when rendering next resumes.
-      else lastFrameTime = null;
+      else {
+        lastFrameTime = null;
+        quality.resetTiming();
+      }
     },
     getInstrumentCanvas: () => yacht.instrumentCanvas,
     setRace(race) {

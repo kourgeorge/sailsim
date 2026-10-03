@@ -37,17 +37,17 @@ function cloudDome(){
  float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p=p*2.04+vec2(11.4,7.8);a*=.52;}return v;}
  void main(){vec3 d=normalize(ray);if(d.y<.015)discard;vec2 p=d.xz/(d.y+.16)*2.2+vec2(time*.002,0);float f=fbm(p);float density=smoothstep(.53,.78,f)*smoothstep(.015,.15,d.y);vec3 color=mix(vec3(.57,.64,.67),vec3(1.,.96,.87),smoothstep(.50,.79,f));gl_FragColor=vec4(color,density*.66);}` }));
 }
-export function createEnvironment(scene,renderer,mat,{software=false,locationId='haven'}={}){
+export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'}={}){
  const location=getLocation(locationId),{islands}=location;
  const definitions=getWorldBodyDefinitions(location.id),buoys=definitions.filter(body=>body.visual.type==='buoy');
  const random=seededRandom(83),sunDirection=new THREE.Vector3(-.8,.64,-1.1).normalize();
  const sky=new Sky();sky.scale.setScalar(4500);scene.add(sky);
  const u=sky.material.uniforms;u.turbidity.value=2.5;u.rayleigh.value=2.0;u.mieCoefficient.value=.005;u.mieDirectionalG.value=.83;u.sunPosition.value.copy(sunDirection).multiplyScalar(4500);
  const generator=new THREE.PMREMGenerator(renderer),environmentScene=new THREE.Scene();environmentScene.add(sky.clone());const environmentMap=generator.fromScene(environmentScene,.03);scene.environment=environmentMap.texture;scene.environmentIntensity=.55;generator.dispose();
- const clouds=cloudDome();scene.add(clouds);
+ const clouds=cloudDome();clouds.visible=quality.clouds;scene.add(clouds);
  scene.add(new THREE.HemisphereLight('#cde9ff','#53503f',1.25));
- const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(software?512:1024,software?512:1024);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
- const water=new Water(new THREE.PlaneGeometry(12000,12000),{textureWidth:software?256:512,textureHeight:software?256:512,waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:'#217887',distortionScale:2.8,fog:true});
+ const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
+ const water=new Water(new THREE.PlaneGeometry(12000,12000),{textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:'#217887',distortionScale:2.8,fog:true});
  water.rotation.x=-Math.PI/2;water.position.y=-.07;water.material.uniforms.size.value=2.3;
  // Replace the overly reflective default with water's physical normal-incidence Fresnel value.
  water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
@@ -58,15 +58,26 @@ export function createEnvironment(scene,renderer,mat,{software=false,locationId=
  const reflect=water.onBeforeRender;
  let reflectionTarget=null,reflectionFrame=0,environmentDisposed=false;
  water.onBeforeRender=function(...args){
-  if(environmentDisposed || (software && reflectionFrame++%4!==0))return;
+  if(environmentDisposed || reflectionFrame++%quality.reflectionInterval!==0)return;
   if(reflectionTarget){reflect.apply(this,args);return;}
   const drawingRenderer=args[0],setTarget=drawingRenderer.setRenderTarget;
   drawingRenderer.setRenderTarget=function(target,...rest){
-   if(target?.texture===water.material.uniforms.mirrorSampler.value)reflectionTarget=target;
+   if(target?.texture===water.material.uniforms.mirrorSampler.value){reflectionTarget=target;target.setSize(quality.reflectionSize,quality.reflectionSize);}
    return setTarget.call(this,target,...rest);
   };
   try{reflect.apply(this,args);}finally{drawingRenderer.setRenderTarget=setTarget;}
  };
+ function setQuality(next){
+  const shadowSize=next.shadowSize||512;
+  if(sun.shadow.mapSize.x!==shadowSize){
+   sun.shadow.map?.dispose();sun.shadow.map=null;
+   sun.shadow.mapSize.set(shadowSize,shadowSize);
+  }
+  renderer.shadowMap.enabled=next.shadowSize>0;
+  renderer.shadowMap.needsUpdate=true;
+  if(reflectionTarget && next.reflectionSize!==quality.reflectionSize)reflectionTarget.setSize(next.reflectionSize,next.reflectionSize);
+  quality=next;clouds.visible=quality.clouds;reflectionFrame=0;
+ }
 
 
  const rockMap=canvasTexture(256,256,(c,w,h)=>{const img=c.createImageData(w,h);for(let i=0;i<img.data.length;i+=4){const shade=150+random()*90;img.data[i]=shade;img.data[i+1]=shade;img.data[i+2]=shade;img.data[i+3]=255;}c.putImageData(img,0,0);for(let i=0;i<100;i++){c.strokeStyle='#38382920';c.lineWidth=random()*3;c.beginPath();c.moveTo(random()*w,random()*h);c.lineTo(random()*w,random()*h);c.stroke();}});
@@ -131,7 +142,7 @@ export function createEnvironment(scene,renderer,mat,{software=false,locationId=
  const wake=new THREE.Mesh(new THREE.PlaneGeometry(12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false}));wake.rotation.x=-Math.PI/2;scene.add(wake);
  for(const child of [...scene.children]){if(child.isGroup && child!==birds){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
  batchStaticMeshes(scene,mergeGeometries,[water,wake]);
- return {water,excludeHullWater,update(state,time){
+ return {water,excludeHullWater,setQuality,update(state,time){
   water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;clouds.material.uniforms.time.value=time;
   sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
