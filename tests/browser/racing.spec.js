@@ -107,7 +107,8 @@ test('mobile race briefing and controls fit large Hebrew text', async ({
   await page.locator('.text-size-control summary').click();
   await page.locator('#sail-text-size-range').fill('200');
   await page.locator('.text-size-control summary').click();
-  await page.locator('[data-mode="challenge"]').click();
+  await page.locator('#mobile-menu .mobile-sheet-close').click();
+  await page.locator('[data-section="challenge"]').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await page.locator('#cover-browser-title').click();
   await page.locator('[data-race-course="channel-chase"]').click();

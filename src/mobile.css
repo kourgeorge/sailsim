@@ -48,11 +48,8 @@
   #mobile-menu .topbar { order: 1; flex-shrink: 0; }
   html[data-text-size] #mobile-menu .topbar { display: flex; flex-wrap: wrap; height: auto; min-height: 0; gap: 12px; padding: 16px; border: 0; background: none; }
   #mobile-menu .brand, #mobile-menu .brand-caption, #mobile-menu .preview-badge { display: none; }
-  html[data-text-size] #mobile-menu .topbar nav { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); order: 0; width: 100%; height: auto; margin: 0; gap: 6px; }
-  html[data-large-text] #mobile-menu .topbar nav { grid-template-columns: 1fr; }
-  html[data-text-size] #mobile-menu .nav-item { min-width: 0; min-height: 48px; padding: 10px 6px; font-size: calc(12px * var(--text-scale, 1)); border: 1px solid #ffffff26; border-radius: 8px; }
-  #mobile-menu .nav-item.active { background: #ffffff12; }
-  #mobile-menu .nav-item.active::after { display: none; }
+  /* Section navigation already lives in the upper mobile toolbar. */
+  html[data-text-size] #mobile-menu .topbar nav { display: none; }
   html[data-text-size] #mobile-menu .language-switch { display: grid; grid-template-columns: minmax(0, 1fr); gap: 8px; margin: 0; flex: 1 1 100%; min-width: 0; }
   html[data-text-size] #mobile-menu .language-switch label { display: block; color: #bbd1d5; font-size: calc(12px * var(--text-scale, 1)); line-height: 1.4; }
   html[data-text-size] #mobile-menu .language-switch select { width: 100%; max-width: 100%; min-height: 48px; font-size: max(16px, calc(12px * var(--text-scale, 1))); }

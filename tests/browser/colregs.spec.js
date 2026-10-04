@@ -13,10 +13,11 @@ test.beforeEach(async ({ context }) => {
 });
 
 async function selectLesson(page, index) {
-  if (page.viewportSize().width <= 900) {
-    await page.locator('#mobile-menu-toggle').click();
-  }
-  await page.locator('button[data-mode=learn]').click();
+  await page
+    .locator(
+      page.viewportSize().width <= 900 ? 'button[data-section=learn]' : 'button[data-mode=learn]',
+    )
+    .click();
   await page.locator('#cover-course').click();
   await page.locator(`[data-library-lesson="${index}"]`).click();
 }

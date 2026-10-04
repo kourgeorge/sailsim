@@ -115,8 +115,7 @@ test.describe('mobile water', () => {
     expect(shaders.length).toBeGreaterThan(0);
     expect(shaders.every((source) => !source.includes('mirrorSampler'))).toBe(true);
 
-    await page.locator('#mobile-menu-toggle').tap();
-    await page.locator('[data-mode="explore"]').tap();
+    await page.locator('[data-section="explore"]').tap();
     const before = Number(await scene.getAttribute('data-visual-time'));
     await page.locator('#cover-start-free').tap();
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');

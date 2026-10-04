@@ -117,9 +117,8 @@ test('all locales fit 200% mobile text, with an accessible live objective and si
   await context.addInitScript(() => localStorage.setItem('sail-text-size', '200'));
   for (const language of ['en', 'es', 'fr', 'ru', 'he', 'ar']) {
     await page.goto(`./?lang=${language}`);
-    await page.locator('#mobile-menu-toggle').click();
     await expect(page.locator('html')).toHaveAttribute('data-text-size', '200');
-    await page.locator('[data-mode=challenge]').click();
+    await page.locator('[data-section=challenge]').click();
     await expect(page.locator('[data-sailing-challenge]')).toHaveCount(5);
     await expect(page.locator('[data-sailing-challenge=anchor-bullseye] strong')).toHaveText(
       challengesUI[language]['Anchor Bullseye'],
