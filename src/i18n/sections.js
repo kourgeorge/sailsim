@@ -1,5 +1,24 @@
 // Spanish, French, Russian, Hebrew, Arabic; shared section covers use the current locale.
 const rows = {
+  'Browse this section': [
+    'Explorar esta sección',
+    'Parcourir cette section',
+    'Навигация по разделу',
+    'עיון במדור',
+    'تصفح هذا القسم',
+  ],
+  Previous: ['Anterior', 'Précédent', 'Назад', 'הקודם', 'السابق'],
+  Next: ['Siguiente', 'Suivant', 'Далее', 'הבא', 'التالي'],
+  Lesson: ['Lección', 'Leçon', 'Урок', 'שיעור', 'درس'],
+  Location: ['Lugar', 'Lieu', 'Акватория', 'מיקום', 'موقع'],
+  Challenge: ['Desafío', 'Défi', 'Испытание', 'אתגר', 'تحدٍ'],
+  'Swipe to browse': [
+    'Desliza para explorar',
+    'Balayez pour parcourir',
+    'Листайте смахиванием',
+    'החליקו כדי לעבור',
+    'اسحب للتصفح',
+  ],
   Lighthouse: ['Faro', 'Phare', 'Маяк', 'מגדלור', 'منارة'],
   Marina: ['Puerto deportivo', 'Port de plaisance', 'Марина', 'מרינה', 'مرسى'],
   'Section home': [

@@ -983,6 +983,9 @@ async function startApp() {
   sectionCovers = mountSectionCovers({
     simulator: $('.simulator'),
     getState: () => state,
+    lessons,
+    getSelectedLesson: () => learning.selected,
+    onLesson: (index) => learning.select(index),
     getSelectedVessel: () => selectedVessel,
     onVessel: (id) => {
       selectedVessel = getVessel(id).id;

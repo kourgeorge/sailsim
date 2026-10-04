@@ -4,6 +4,7 @@ import { translate, getLanguage } from '../i18n/runtime.js';
 import { sectionUI } from '../i18n/sections.js';
 import './section-covers.css';
 import { mountVesselPicker } from './vessel-picker.js';
+import { mountCoverPager } from './cover-pager.js';
 
 const t = (value) => sectionUI[getLanguage()]?.[value] ?? translate(value);
 const esc = (value) =>
@@ -28,6 +29,9 @@ const waterDescription = (id) =>
 export function mountSectionCovers({
   simulator,
   getState,
+  lessons,
+  getSelectedLesson,
+  onLesson,
   onNavigate,
   onCourse,
   onStartFree,
@@ -89,6 +93,48 @@ export function mountSectionCovers({
   const catalog = sectionSidebar.querySelector('#cover-challenges');
   const briefing = root.querySelector('#cover-challenge-briefing');
   let lastSection, wasActive, previousConditions, selectedChallenge;
+  let challengeItems = [];
+  const challengeSelector =
+    '[data-sailing-challenge], [data-race-course], [data-cover-drill], [data-cover-buoys]';
+  const pager = mountCoverPager({
+    container: simulator,
+    cover: root,
+    translate: t,
+    getPage() {
+      if (!lastSection || wasActive) return null;
+      const items =
+        lastSection === 'learn' ? lessons : lastSection === 'explore' ? LOCATIONS : challengeItems;
+      const index =
+        lastSection === 'learn'
+          ? getSelectedLesson()
+          : lastSection === 'explore'
+            ? items.findIndex((item) => item.id === getState().locationId)
+            : items.findIndex((item) => selectedChallenge && item.matches(selectedChallenge));
+      if (index < 0 || !items.length) return null;
+      const title = (item) =>
+        item
+          ? lastSection === 'challenge'
+            ? item.querySelector('strong').textContent
+            : t(item.title)
+          : '';
+      return {
+        kind:
+          lastSection === 'learn' ? 'Lesson' : lastSection === 'explore' ? 'Location' : 'Challenge',
+        index,
+        total: items.length,
+        title: title(items[index]),
+        previous: title(items[index - 1]),
+        next: title(items[index + 1]),
+      };
+    },
+    select(index) {
+      vesselChoice.close();
+      browser.open = false;
+      if (lastSection === 'learn') onLesson(index);
+      else if (lastSection === 'explore') onLocation(LOCATIONS[index].id);
+      else challengeItems[index].click();
+    },
+  });
   function arrange() {
     const target = mobile.matches ? browser : sidebar;
     if (sectionSidebar.parentElement !== target) target.append(sectionSidebar);
@@ -110,9 +156,7 @@ export function mountSectionCovers({
   catalog.addEventListener(
     'click',
     (event) => {
-      const button = event.target.closest(
-        '[data-sailing-challenge], [data-race-course], [data-cover-drill], [data-cover-buoys]',
-      );
+      const button = event.target.closest(challengeSelector);
       if (!button) return;
       const attribute = [
         'data-sailing-challenge',
@@ -127,6 +171,7 @@ export function mountSectionCovers({
         else row.removeAttribute('aria-current');
       });
       browser.open = false;
+      pager.sync();
     },
     true,
   );
@@ -163,6 +208,7 @@ export function mountSectionCovers({
     drillButton.className = 'reference-link';
     drillButton.textContent = t('Recent attempts');
     catalog.replaceChildren(challenges, races, drills, drillButton);
+    challengeItems = [...catalog.querySelectorAll(challengeSelector)];
     // The first item supplies a useful detail panel on entry, just like a lesson.
     (
       (selectedChallenge && catalog.querySelector(selectedChallenge)) ||
@@ -221,6 +267,7 @@ export function mountSectionCovers({
         if (!active && section === 'challenge') refreshChallenges();
       }
       root.querySelector('.cover-review').hidden = !reviewable;
+      pager.sync();
       if (section !== 'explore' || active) {
         vesselChoice.close();
         return;
