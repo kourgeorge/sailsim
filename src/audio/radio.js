@@ -1,11 +1,45 @@
 // Official direct streams: https://radioparadise.com/listen/stream-links
+// Classical: https://www.radioswissclassic.ch/en/reception/internet
 // MP3 works across the browsers supported by the simulator; these endpoints
 // allow CORS so the same Web Audio volume controls also work on mobile Safari.
+const radioParadise = {
+  name: 'Radio Paradise',
+  url: 'https://radioparadise.com/listen/stream-links',
+};
 export const RADIO_STATIONS = [
-  { id: 'rp-main', name: 'radio main', url: 'https://stream.radioparadise.com/mp3-128' },
-  { id: 'rp-mellow', name: 'radio relax', url: 'https://stream.radioparadise.com/mellow-192' },
-  { id: 'rp-rock', name: 'radio rock', url: 'https://stream.radioparadise.com/rock-192' },
-  { id: 'rp-global', name: 'radio global', url: 'https://stream.radioparadise.com/global-192' },
+  {
+    id: 'rp-main',
+    name: 'radio main',
+    url: 'https://stream.radioparadise.com/mp3-128',
+    provider: radioParadise,
+  },
+  {
+    id: 'rp-mellow',
+    name: 'radio relax',
+    url: 'https://stream.radioparadise.com/mellow-192',
+    provider: radioParadise,
+  },
+  {
+    id: 'rp-rock',
+    name: 'radio rock',
+    url: 'https://stream.radioparadise.com/rock-192',
+    provider: radioParadise,
+  },
+  {
+    id: 'rp-global',
+    name: 'radio global',
+    url: 'https://stream.radioparadise.com/global-192',
+    provider: radioParadise,
+  },
+  {
+    id: 'swiss-classical',
+    name: 'radio classical',
+    url: 'https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128',
+    provider: {
+      name: 'Radio Swiss Classic',
+      url: 'https://www.radioswissclassic.ch/en/reception/internet',
+    },
+  },
 ];
 export const AUDIO_SOURCES = [
   {

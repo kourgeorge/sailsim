@@ -70,7 +70,13 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
     if (!root) return;
     root.querySelector('#sound-source').value = musicSource;
     root.querySelector('#sound-source').disabled = state === 'unavailable';
-    root.querySelector('#sound-radio-info').hidden = !radioStation(musicSource);
+    const station = radioStation(musicSource);
+    root.querySelector('#sound-radio-info').hidden = !station;
+    if (station) {
+      const provider = root.querySelector('#sound-radio-provider');
+      provider.textContent = `${station.provider.name} ↗`;
+      provider.href = station.provider.url;
+    }
     const percent = muted ? 0 : Math.round(music * 100);
     root.querySelector('#sound-music').value = percent;
     root.querySelector('#sound-music-value').textContent = `${percent}%`;
@@ -100,11 +106,11 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
           ? 'Sound off'
           : sourceState === 'error'
             ? radioStation(musicSource)
-              ? 'Radio is unavailable. Retry or choose another mix.'
+              ? 'Radio is unavailable. Retry or choose another station.'
               : 'Sound is unavailable. Retry or choose another source.'
             : sourceState === 'connecting'
               ? radioStation(musicSource)
-                ? 'Connecting to Radio Paradise…'
+                ? 'Connecting to radio…'
                 : 'Loading sound…'
               : state === 'blocked' || sourceState === 'blocked'
                 ? 'Tap Enable sound to start the audio.'
@@ -115,7 +121,7 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
   }
   function showSettings() {
     openModal(
-      `<section id="sailing-audio-settings" data-no-translate><h2>${label('Sound settings')}</h2><label class="setting-label" for="sound-source">${label('Sound source')}</label><div class="sound-source-picker"><select id="sound-source">${AUDIO_SOURCES.map((station) => `<option value="${station.id}">${label(station.name)}</option>`).join('')}</select><svg width="18" height="18" viewBox="0 0 20 20" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="m5 7 5 5 5-5"/></svg></div><p id="sound-radio-info" hidden><a href="https://radioparadise.com/listen/stream-links" target="_blank" rel="noopener noreferrer">Radio Paradise ↗</a><span>${label('Live radio requires internet.')}</span></p><label class="setting-label" for="sound-music">${label('Volume')}<output id="sound-music-value" for="sound-music" dir="ltr"></output></label><div class="sound-level"><input id="sound-music" type="range" min="0" max="100" step="1"><button id="sound-music-mute" class="sound-mute" type="button">${icon}<span>${label('Mute')}</span></button></div><p id="sound-status" role="status" hidden></p><button id="sound-retry" class="training-button" hidden>${label('Enable sound')}</button></section>`,
+      `<section id="sailing-audio-settings" data-no-translate><h2>${label('Sound settings')}</h2><label class="setting-label" for="sound-source">${label('Sound source')}</label><div class="sound-source-picker"><select id="sound-source">${AUDIO_SOURCES.map((station) => `<option value="${station.id}">${label(station.name)}</option>`).join('')}</select></div><p id="sound-radio-info" hidden><a id="sound-radio-provider" target="_blank" rel="noopener noreferrer"></a><span>${label('Live radio requires internet.')}</span></p><label class="setting-label" for="sound-music">${label('Volume')}<output id="sound-music-value" for="sound-music" dir="ltr"></output></label><div class="sound-level"><input id="sound-music" type="range" min="0" max="100" step="1"><button id="sound-music-mute" class="sound-mute" type="button">${icon}<span>${label('Mute')}</span></button></div><p id="sound-status" role="status" hidden></p><button id="sound-retry" class="training-button" hidden>${label('Enable sound')}</button></section>`,
     );
     const root = document.querySelector('#sailing-audio-settings');
     root.querySelector('#sound-source').onchange = (e) =>

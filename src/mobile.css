@@ -66,7 +66,7 @@
   #mobile-menu .camera-views { flex: 1 1 110px; }
   #mobile-menu .camera-views > [data-camera] { display: none; }
   html[data-text-size] #mobile-menu .view-controls button { min-width: 44px; min-height: 44px; padding: 8px 10px; font-size: calc(12px * var(--text-scale, 1)); flex: 1 1 auto; }
-  .mobile-camera { display: block; min-width: 0; min-height: 44px; width: 110px; flex: 1 1 auto; padding: 8px; font: inherit; font-size: max(16px, calc(12px * var(--text-scale, 1))); color: #f4e0b7; background: #264653; border: 0; border-radius: 6px; }
+  .mobile-camera{display:block;min-width:0;width:110px;flex:1 1 auto;font-size:max(16px,calc(12px * var(--text-scale,1)))}
   html[data-text-size] #mobile-menu .location, html[data-text-size] #mobile-menu .weather { position: static; inset: auto; margin: 0; max-width: none; min-height: 44px; padding: 10px; width: 100%; text-align: start; justify-content: flex-start; }
   #mobile-menu .location span { letter-spacing: 0; }
 
@@ -141,7 +141,7 @@
   .simulator .control-dock.cockpit-controls input[type=number],
   .simulator .control-dock .dashboard-actions button { min-height: 44px; }
   .simulator .control-dock.cockpit-controls .topic-help { min-width: 44px; }
-  .simulator .control-dock.cockpit-controls select,
+  .simulator .control-dock.cockpit-controls select { font-size: max(16px, calc(12px * var(--text-scale, 1))); width: 100px; }
   .simulator .control-dock.cockpit-controls input[type=number] { font-size: max(16px, calc(12px * var(--text-scale, 1))); padding: 6px 10px; width: 90px; }
   .simulator .control-dock.cockpit-controls .sail-actions button,
   .simulator .control-dock.cockpit-controls #anchor { white-space: normal; font-size: calc(12px * var(--text-scale, 1)); padding: 10px 14px; border: 1px solid #62818a; }

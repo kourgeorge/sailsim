@@ -180,7 +180,7 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#sound-options').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page.locator('#sailing-audio-settings')).toBeVisible();
-  await expect(page.locator('#sound-source option')).toHaveCount(6);
+  await expect(page.locator('#sound-source option')).toHaveCount(7);
   await expect(page.locator('#sound-source')).toHaveValue('waves');
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#sound-music-mute').click();

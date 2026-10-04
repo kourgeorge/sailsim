@@ -50,6 +50,7 @@ import { getVessel } from './vessels.js';
 import { createWeather, advanceWeather, weatherConditions } from './weather.js';
 import { weatherControl } from './activity/weather-control.js';
 import { mountSceneCapture } from './activity/scene-capture.js';
+import './ui/dropdown.css';
 
 async function startApp() {
   initializeTextSize();
@@ -465,8 +466,16 @@ async function startApp() {
     $('#challenge-exit').onclick = () => navigateSection('challenge');
   }
   $('#close-modal').onclick = () => $('#modal').close();
+  let backdropPress = false;
+  $('#modal').addEventListener('pointerdown', (e) => {
+    // Native option menus can retarget their final click to the dialog in WebKit.
+    const nativeMenuOpen =
+      CSS.supports('selector(select:open)') && $('#modal').querySelector('select:open');
+    backdropPress = e.target === $('#modal') && !nativeMenuOpen;
+  });
   $('#modal').addEventListener('click', (e) => {
-    if (e.target === $('#modal')) $('#modal').close();
+    if (backdropPress && e.target === $('#modal')) $('#modal').close();
+    backdropPress = false;
   });
   $('#help').onclick = () =>
     openModal(

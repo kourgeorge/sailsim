@@ -1,13 +1,13 @@
 /* Text-only scaling: canvas resolution, chart geometry and sailing physics are unchanged. */
 html[data-text-size]{font-size:calc(16px * var(--text-scale,1))}
 .text-size-control{position:relative;flex-shrink:0;z-index:60;color:#e5eeeb}
-.text-size-control>summary{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 10px;border:1px solid #59717b;border-radius:6px;background:#163643;cursor:pointer;list-style:none;font-size:calc(12px * var(--text-scale,1));line-height:1.2;white-space:nowrap}
+.text-size-control>summary{display:flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:8px 10px;cursor:pointer;list-style:none;font-size:calc(12px * var(--text-scale,1));line-height:1.2;white-space:nowrap}
 .text-size-control>summary::-webkit-details-marker{display:none}
 .text-size-control>summary::marker{content:''}
 .text-size-control>summary:hover,.text-size-control[open]>summary{border-color:#ecc78e;color:#ffe0ac}
 .text-size-control :focus-visible{outline:2px solid #ecc78e;outline-offset:4px}
 .text-size-current{font-variant-numeric:tabular-nums}
-.text-size-popover{position:absolute;inset-block-start:calc(100% + 9px);inset-inline-end:0;width:min(360px,calc(100vw - 24px));max-height:calc(100dvh - 110px);overflow:auto;overscroll-behavior:contain;padding:20px;background:#12333f;border:1px solid #658088;border-radius:10px;box-shadow:0 14px 50px #0007;font-size:calc(13px * var(--text-scale,1));line-height:1.5;white-space:normal;text-align:start}
+.text-size-popover{position:absolute;inset-block-start:calc(100% + 9px);inset-inline-end:0;width:min(360px,calc(100vw - 24px));max-height:calc(100dvh - 110px);overflow:auto;overscroll-behavior:contain;padding:20px;font-size:calc(13px * var(--text-scale,1));line-height:1.5;white-space:normal;text-align:start}
 .text-size-heading{display:flex;align-items:baseline;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:16px}
 .text-size-heading label{font-weight:600}
 .text-size-heading output{color:#ecc78e;font-size:calc(17px * var(--text-scale,1));font-variant-numeric:tabular-nums}

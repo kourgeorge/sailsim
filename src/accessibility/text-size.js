@@ -34,11 +34,11 @@ export function mountTextSize(container) {
   if (!container) throw new Error('A container is required for the text-size control.');
   const details = document.createElement('details');
   details.className = 'text-size-control';
-  details.innerHTML = `<summary aria-label="Adjust text size" title="Text size">
+  details.innerHTML = `<summary class="dropdown-trigger" aria-label="Adjust text size" title="Text size">
     <svg aria-hidden="true" viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 19 8 5l6 14M4 14h8M15 19l3.5-8L22 19M16.5 16h4"/></svg>
     <span class="text-size-current" dir="ltr"></span>
   </summary>
-  <div class="text-size-popover">
+  <div class="text-size-popover dropdown-surface">
     <div class="text-size-heading"><label for="sail-text-size-range">Text size</label><output for="sail-text-size-range" dir="ltr" aria-live="polite"></output></div>
     <input id="sail-text-size-range" type="range" min="100" max="200" step="5" aria-label="Text size">
     <div class="text-size-limits"><span>Current minimum</span><span>Larger text</span></div>

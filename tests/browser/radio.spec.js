@@ -82,14 +82,14 @@ test('radio connects only while sailing, shares music controls, and releases the
   const requests = [],
     errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await page.route('https://stream.radioparadise.com/**', async (route) => {
+  await page.route(/^https:\/\/stream\.(radioparadise\.com|srg-ssr\.ch)\//, async (route) => {
     requests.push(route.request().url());
     await route.fulfill(response);
   });
   await page.goto('./');
   await page.locator('[data-mode=explore]').click();
   await page.locator('#cover-sound-options').click();
-  await expect(page.locator('#sound-source option')).toHaveCount(6);
+  await expect(page.locator('#sound-source option')).toHaveCount(7);
   await page.locator('#sound-source').selectOption('rp-mellow');
   expect(requests).toEqual([]);
   expect(await page.evaluate(() => window.radioElements.length)).toBe(0);
@@ -127,15 +127,23 @@ test('radio connects only while sailing, shares music controls, and releases the
   expect(await page.evaluate(() => window.radioElements[0].getAttribute('src'))).toBeNull();
   await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.32);
   expect(await page.evaluate(() => window.localLoops.at(-1).loop)).toBe(true);
-  for (const mix of ['rp-main', 'rp-rock', 'rp-global']) {
+  for (const mix of ['rp-main', 'rp-rock', 'rp-global', 'swiss-classical']) {
     await page.locator('#sound-source').selectOption(mix);
     await expect.poll(() => page.evaluate(() => window.radioElements[0].paused)).toBe(false);
     await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.32);
     expect(await page.evaluate(() => window.radioElements[0].loop)).toBe(false);
+    await expect(page.locator('#sound-radio-provider')).toHaveText(
+      mix === 'swiss-classical' ? 'Radio Swiss Classic ↗' : 'Radio Paradise ↗',
+    );
     await expect
       .poll(() => page.evaluate(() => window.localLoops.every((node) => node.ended)))
       .toBe(true);
   }
+  expect(requests.at(-1)).toBe('https://stream.srg-ssr.ch/srgssr/rsc_de/mp3/128');
+  await expect(page.locator('#sound-radio-provider')).toHaveAttribute(
+    'href',
+    'https://www.radioswissclassic.ch/en/reception/internet',
+  );
   expect(await page.evaluate(() => window.radioElements.length)).toBe(1);
   await page.locator('#close-modal').click();
   await page.locator('#play').click();
@@ -147,7 +155,8 @@ test('radio connects only while sailing, shares music controls, and releases the
   await page.reload();
   await page.locator('[data-mode=explore]').click();
   await page.locator('#cover-sound-options').click();
-  await expect(page.locator('#sound-source')).toHaveValue('rp-global');
+  await expect(page.locator('#sound-source')).toHaveValue('swiss-classical');
+  await expect(page.locator('#sound-radio-provider')).toHaveText('Radio Swiss Classic ↗');
   expect(await page.evaluate(() => window.radioElements.length)).toBe(0);
   expect(errors).toEqual([]);
 });
@@ -156,7 +165,7 @@ test('a failed station can be retried and the radio controls fit large mobile RT
   page,
 }, testInfo) => {
   let attempts = 0;
-  await page.route('https://stream.radioparadise.com/**', (route) =>
+  await page.route(/^https:\/\/stream\.(radioparadise\.com|srg-ssr\.ch)\//, (route) =>
     route.fulfill(
       ++attempts <= 2
         ? { status: 503, headers: { 'Access-Control-Allow-Origin': '*' }, body: 'Unavailable' }
@@ -166,7 +175,7 @@ test('a failed station can be retried and the radio controls fit large mobile RT
   await page.goto('./');
   await page.locator('[data-mode=explore]').click();
   await page.locator('#cover-sound-options').click();
-  await page.locator('#sound-source').selectOption('rp-mellow');
+  await page.locator('#sound-source').selectOption('swiss-classical');
   await page.locator('#close-modal').click();
   await page.locator('#cover-start-free').click();
   await expect
@@ -174,12 +183,13 @@ test('a failed station can be retried and the radio controls fit large mobile RT
     .toBeNull();
   await page.locator('#sound-options').click();
   await expect(page.locator('#sound-status')).toHaveText(
-    'Radio is unavailable. Retry or choose another mix.',
+    'Radio is unavailable. Retry or choose another station.',
   );
   await page.locator('#sound-retry').click();
   await expect.poll(() => page.evaluate(() => window.radioElements[0].paused)).toBe(false);
   await expect(page.locator('#sound-retry')).toBeHidden();
   await page.locator('#sound-source').selectOption('rp-rock');
+  await expect(page.locator('#sound-radio-provider')).toHaveText('Radio Paradise ↗');
   await expect.poll(() => page.evaluate(() => window.radioElements[0].paused)).toBe(false);
   await page.locator('#close-modal').click();
   await page.evaluate(() => {
@@ -193,6 +203,9 @@ test('a failed station can be retried and the radio controls fit large mobile RT
   await page.locator('[data-section=explore]').click();
   await page.locator('#cover-sound-options').click();
   await expect(page.locator('#sound-source')).toHaveValue('rp-rock');
+  await page.locator('#sound-source').selectOption('swiss-classical');
+  await expect(page.locator('#sound-source option:checked')).toHaveText('רדיו קלאסי');
+  await expect(page.locator('#sound-radio-provider')).toHaveText('Radio Swiss Classic ↗');
   await page.screenshot({ path: testInfo.outputPath('radio-mobile-he-200.png') });
   expect(
     await page.locator('#modal').evaluate((node) => node.scrollWidth <= node.clientWidth + 1),

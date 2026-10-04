@@ -15,8 +15,8 @@
 .simulator .control-dock.cockpit-controls .helm-control .control-hint{justify-content:flex-end}
 .simulator .control-dock.cockpit-controls .topic-help{min-width:16px;min-height:16px;width:16px;height:16px;padding:0;font-size:calc(11px * var(--text-scale,1));font-weight:500;border:0;background:transparent;color:#9fbcbc}
 .simulator .control-dock.cockpit-controls .cockpit-hoist{font-size:calc(11px * var(--text-scale,1));font-weight:500;min-height:20px;color:#a9c3c4}
-.simulator .control-dock.cockpit-controls select,.simulator .control-dock.cockpit-controls input[type=number]{min-height:20px;padding:0 3px;border-color:#ffffff26;background:#ffffff0a;border-radius:4px}
-.simulator .control-dock.cockpit-controls select{width:4.9em;font-size:calc(11px * var(--text-scale,1));font-weight:500}
+.simulator .control-dock.cockpit-controls input[type=number]{min-height:20px;padding:0 3px;border-color:#ffffff26;background:#ffffff0a;border-radius:4px}
+.simulator .control-dock.cockpit-controls select{width:6em;font-size:calc(11px * var(--text-scale,1));font-weight:500;--dropdown-height:30px;--dropdown-padding:4px 8px}
 .simulator .control-dock.cockpit-controls .sail-actions{gap:3px 4px;flex-wrap:wrap}
 .simulator .control-dock.cockpit-controls .sail-actions button,.simulator .control-dock.cockpit-controls #anchor{min-height:20px;padding:1px 6px;gap:4px;font-size:calc(11px * var(--text-scale,1));font-weight:500;border:0;white-space:nowrap}
 .simulator .control-dock.cockpit-controls .sail-actions button:hover,.simulator .control-dock.cockpit-controls #anchor:hover,.simulator .control-dock.cockpit-controls .control-hint button:hover{background:#ffffff0d}
@@ -54,7 +54,7 @@ button .key-badge kbd{opacity:.75}
 @container(max-width:900px){.simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}.simulator .control-dock.cockpit-controls .cockpit-control-group:nth-child(4){border-inline-start:0;padding-inline-start:0}}
 @container(max-width:560px){.simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(2,minmax(0,1fr))}.simulator .control-dock.cockpit-controls .cockpit-control-group:nth-child(4){border-inline-start:1px solid #ffffff12;padding-inline-start:10px}.simulator .control-dock.cockpit-controls .cockpit-control-group:nth-child(odd){border-inline-start:0;padding-inline-start:0}.simulator .control-dock.cockpit-controls .cockpit-group-anchor{grid-column:auto;display:flex}}
 html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control-groups{grid-template-columns:repeat(3,minmax(0,1fr));row-gap:8px}
-@media(pointer:coarse){.simulator .control-dock.cockpit-controls input[type=range]{height:28px}.simulator .control-dock.cockpit-controls button,.simulator .control-dock.cockpit-controls select,.simulator .control-dock.cockpit-controls input[type=number]{min-height:30px}}
+@media(pointer:coarse){.simulator .control-dock.cockpit-controls input[type=range]{height:28px}.simulator .control-dock.cockpit-controls button,.simulator .control-dock.cockpit-controls input[type=number]{min-height:30px}}
 .simulator .scene-footer #sim-status{display:none}
 .simulator .scene-footer>span:first-child:has(#sim-status){visibility:hidden}
 @container(max-width:560px){.simulator .control-dock.cockpit-controls .cockpit-rode-target{flex-wrap:wrap}.simulator .control-dock.cockpit-controls #anchor,.simulator .control-dock.cockpit-controls .sail-actions button{white-space:normal;min-width:0;max-width:100%}}
