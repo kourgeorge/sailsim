@@ -1,5 +1,5 @@
 import { chromium } from '@playwright/test';
-import { mkdir, writeFile } from 'node:fs/promises';
+import { mkdir, writeFile, readFile } from 'node:fs/promises';
 
 // Render the real destination geometry once, at publication quality. Browsing
 // uses compressed images and does not start a second live WebGL scene.
@@ -18,8 +18,12 @@ try {
       body: '<style>body{margin:0}canvas{display:block}</style>',
     }),
   );
-  const labels = {};
-  for (const id of ['haven', 'shelter', 'strait']) {
+  const labelFile = new URL('../src/navigation/destination-landmarks.json', import.meta.url);
+  const labels = JSON.parse(await readFile(labelFile, 'utf8'));
+  const ids = process.argv.filter((argument) =>
+    ['haven', 'shelter', 'strait', 'fjord'].includes(argument),
+  );
+  for (const id of ids.length ? ids : ['haven', 'shelter', 'strait', 'fjord']) {
     await page.goto(`${url}/__destination-capture`);
     const result = await page.evaluate(async (id) => {
       const THREE = await import('/node_modules/three/build/three.module.js');

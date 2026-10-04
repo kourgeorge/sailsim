@@ -15,10 +15,12 @@ export function createIslandTerrain(island) {
     uvs = [],
     colors = [],
     indices = [];
-  const sand = new THREE.Color('#c7b58c'),
-    wet = new THREE.Color('#827c60');
-  const grass = new THREE.Color('#626c38'),
-    rock = new THREE.Color('#85887a');
+  const fjord = island.profile === 'fjord';
+  const sand = new THREE.Color(fjord ? '#778783' : '#c7b58c'),
+    wet = new THREE.Color(fjord ? '#455b61' : '#827c60');
+  const grass = new THREE.Color(fjord ? '#54765a' : '#626c38'),
+    rock = new THREE.Color(fjord ? '#73858c' : '#85887a'),
+    snow = new THREE.Color('#e8f2f4');
   for (let row = 0; row < RADII.length; row++) {
     const radius = RADII[row];
     for (let column = 0; column <= SEGMENTS; column++) {
@@ -39,6 +41,10 @@ export function createIslandTerrain(island) {
         .lerp(rock, THREE.MathUtils.clamp((slope - 0.3) * 1.8 + patch * 0.35, 0, 1));
       color.lerp(sand, 1 - THREE.MathUtils.smoothstep(y, 0.5, 3.8));
       color.lerp(wet, THREE.MathUtils.smoothstep(radius, 0.954, 1.005) * 0.78);
+      if (fjord) {
+        color.multiplyScalar(.91 + .09 * Math.sin(y*.16 + x*.025));
+        color.lerp(snow, THREE.MathUtils.smoothstep(y + patch*75, island.height*.43, island.height*.61) * (1-THREE.MathUtils.smoothstep(slope,3,7)*.75));
+      }
       color.multiplyScalar(0.93 + 0.07 * Math.sin(x * 0.23 + z * 0.17));
       colors.push(color.r, color.g, color.b);
       if (row && column < SEGMENTS) {

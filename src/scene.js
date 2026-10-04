@@ -13,8 +13,12 @@ import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 import { createRaceVisuals } from './racing/visuals.js';
 import { createHelmCamera } from './rendering/helm-camera.js';
 import { createRenderQuality, isMobileGraphicsDevice } from './rendering/quality.js';
+import { createSecretTaps } from './world/secret-taps.js';
 
-export function createScene(container, { locationId = 'haven', vesselId = 'monohull' } = {}) {
+export function createScene(
+  container,
+  { locationId = 'haven', vesselId = 'monohull', isFreeSailing = () => false } = {},
+) {
   const vessel = getVessel(vesselId);
   container.dataset.vessel = vessel.id;
   let dirty = true,
@@ -169,8 +173,17 @@ export function createScene(container, { locationId = 'haven', vesselId = 'monoh
     Boolean(
       document.querySelector('.mobile-controls-drawer.is-open, #systems-drawer:not([hidden])'),
     );
+  let secretEncounters = 0;
+  container.dataset.secretEncounters = '0';
+  const secretTaps = createSecretTaps(() => {
+    environment.summonAnimal();
+    container.dataset.secretEncounters = String(++secretEncounters);
+    invalidate();
+  });
+  const encounterDirection = new THREE.Vector3();
   const pointerDown = (e) => {
     if (controlsOpen() || !e.isPrimary || e.button !== 0 || dragPointer !== null) return;
+    secretTaps.down(e);
     dragPointer = e.pointerId;
     lastX = e.clientX;
     lastY = e.clientY;
@@ -178,6 +191,7 @@ export function createScene(container, { locationId = 'haven', vesselId = 'monoh
   };
   const pointerMove = (e) => {
     if (e.pointerId !== dragPointer) return;
+    secretTaps.move(e);
     if (controlsOpen()) {
       pointerUp(e);
       return;
@@ -190,6 +204,8 @@ export function createScene(container, { locationId = 'haven', vesselId = 'monoh
   };
   const pointerUp = (e) => {
     if (e.pointerId !== dragPointer) return;
+    if (e.type === 'pointerup' && !controlsOpen()) secretTaps.up(e);
+    else secretTaps.cancel();
     dragPointer = null;
     if (renderer.domElement.hasPointerCapture(e.pointerId))
       renderer.domElement.releasePointerCapture(e.pointerId);
@@ -261,7 +277,6 @@ export function createScene(container, { locationId = 'haven', vesselId = 'monoh
     );
     yacht.update(state, time);
     environment.excludeHullWater(yacht.group);
-    environment.update(state, time);
     raceVisuals.update(time);
     container.dataset.raceBoats = String(raceVisuals.count);
     const worldBodies = new Map((state.worldBodies || []).map((body) => [body.id, body]));
@@ -347,6 +362,14 @@ export function createScene(container, { locationId = 'haven', vesselId = 'monoh
     const zoomMoving = Math.abs(camera.fov - desiredFov) > 0.001;
     if (!zoomMoving) camera.fov = desiredFov;
     camera.updateProjectionMatrix();
+    camera.getWorldDirection(encounterDirection);
+    environment.update(state, time, {
+      position: camera.position,
+      direction: encounterDirection,
+      fov: camera.fov,
+      aspect: camera.aspect,
+      freeSailing: isFreeSailing(),
+    });
     dirty = cameraMoving || zoomMoving;
     renderer.render(scene, camera);
     const sceneCalls = renderer.info.render.calls,
@@ -358,6 +381,13 @@ export function createScene(container, { locationId = 'haven', vesselId = 'monoh
       sceneTriangles + (anchorVisible ? renderer.info.render.triangles : 0);
     container.dataset.camera = view;
     container.dataset.fov = camera.fov.toFixed(1);
+    container.dataset.cruiseShip = String(environment.cruiseShip.group.visible);
+    container.dataset.wildlife = String(
+      environment.marineLife.group.children.reduce(
+        (n, mesh) => n + (mesh.name === 'Wildlife ripples' ? 0 : mesh.count),
+        0,
+      ),
+    );
     lastState = state;
     lastVisualTime = time;
     container.dataset.renderPending = String(dirty);

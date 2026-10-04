@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { createMarineEncounters } from '../world/marine-encounters.js';
+import { sceneryBuilder, coloredGeometry } from './scenery-geometry.js';
 
 function animalGeometry(dolphin) {
   const positions = [],
@@ -26,8 +27,8 @@ function animalGeometry(dolphin) {
         [0.25, 0.065, 0.1],
         [0.4, 0.025, 0.035],
       ];
-  const back = new THREE.Color(dolphin ? '#536f79' : '#688f91');
-  const belly = new THREE.Color(dolphin ? '#bbc9c6' : '#dae1c7');
+  const back = new THREE.Color(dolphin ? '#658d9c' : '#3b9caf');
+  const belly = new THREE.Color(dolphin ? '#d5e4df' : '#f7d87f');
   const radial = 10;
   sections.forEach(([z, width, height], row) => {
     for (let i = 0; i <= radial; i++) {
@@ -83,7 +84,7 @@ function animalGeometry(dolphin) {
       ),
     );
     for (const side of [-1, 1]) {
-      const eyeSource = new THREE.SphereGeometry(0.028, 6, 4);
+      const eyeSource = new THREE.SphereGeometry(0.043, 8, 6);
       eyeSource.translate(side * 0.17, 0.09, -1.01);
       const eye = eyeSource.toNonIndexed();
       eyeSource.dispose();
@@ -111,6 +112,11 @@ function animalGeometry(dolphin) {
       ]);
     }
   } else {
+    for (const side of [-1, 1]) {
+      const eye = new THREE.SphereGeometry(0.035, 8, 6);
+      eye.translate(side * 0.088, 0.05, -0.29);
+      parts.push(coloredGeometry(eye, '#142a35'));
+    }
     fin([
       [0, 0, 0.31],
       [0, 0.23, 0.59],
@@ -125,9 +131,58 @@ function animalGeometry(dolphin) {
       [0, 0.1, 0.23],
     ]);
   }
+  // Tiny eye glints remain part of the body geometry: no extra draw calls.
+  for (const side of [-1, 1]) {
+    const glint = new THREE.SphereGeometry(dolphin ? 0.014 : 0.011, 6, 4);
+    glint.translate(
+      side * (dolphin ? 0.201 : 0.113),
+      dolphin ? 0.106 : 0.062,
+      dolphin ? -1.025 : -0.304,
+    );
+    parts.push(coloredGeometry(glint, '#ffffff'));
+  }
   const geometry = mergeGeometries(parts);
   parts.forEach((part) => part.dispose());
   return geometry;
+}
+
+function turtleGeometry(flippers = false) {
+  const builder = sceneryBuilder();
+  if (flippers) {
+    for (const side of [-1, 1]) {
+      builder.oval('#80a77c', side * 0.68, 0, -0.34, 0.53, 0.055, 0.22);
+      builder.oval('#729365', side * 0.49, -0.02, 0.56, 0.28, 0.055, 0.18);
+    }
+  } else {
+    builder.oval('#d5cb8d', 0, -0.03, 0, 0.57, 0.13, 0.79);
+    builder.oval('#446f52', 0, 0.08, 0, 0.6, 0.3, 0.81, 2);
+    // Raised warm-edged scutes make the shell readable from the cockpit.
+    for (const [x, z] of [
+      [0, -0.4],
+      [0, 0],
+      [0, 0.4],
+      [-0.31, -0.23],
+      [0.31, -0.23],
+      [-0.3, 0.25],
+      [0.3, 0.25],
+    ])
+      builder.oval(
+        '#8caa66',
+        x,
+        0.31 - Math.abs(x) * 0.2 - Math.abs(z) * 0.13,
+        z,
+        0.2,
+        0.065,
+        0.23,
+      );
+    builder.oval('#94b584', 0, 0.04, -0.94, 0.2, 0.17, 0.27, 2);
+    for (const side of [-1, 1]) {
+      builder.oval('#132d30', side * 0.163, 0.108, -1.045, 0.045, 0.052, 0.047);
+      builder.oval('#ffffff', side * 0.191, 0.13, -1.062, 0.014, 0.017, 0.016);
+    }
+    builder.oval('#749464', 0, -0.015, 0.83, 0.07, 0.04, 0.19);
+  }
+  return builder.finish();
 }
 
 export function createMarineLife(scene, locationId, quality, options) {
@@ -141,9 +196,13 @@ export function createMarineLife(scene, locationId, quality, options) {
   });
   const dolphins = new THREE.InstancedMesh(animalGeometry(true), material, 3);
   const fish = new THREE.InstancedMesh(animalGeometry(false), material, 12);
+  const turtles = new THREE.InstancedMesh(turtleGeometry(), material, 2);
+  const flippers = new THREE.InstancedMesh(turtleGeometry(true), material, 2);
   dolphins.name = 'Dolphins';
   fish.name = 'Surface fish';
-  for (const mesh of [dolphins, fish]) {
+  turtles.name = 'Sea turtles';
+  flippers.name = 'Turtle flippers';
+  for (const mesh of [dolphins, fish, turtles, flippers]) {
     mesh.instanceMatrix.setUsage(THREE.DynamicDrawUsage);
     mesh.frustumCulled = false;
     mesh.count = 0;
@@ -170,7 +229,7 @@ export function createMarineLife(scene, locationId, quality, options) {
       vertexColors: true,
       depthWrite: false,
     }),
-    15,
+    17,
   );
   ripples.name = 'Wildlife ripples';
   ripples.frustumCulled = false;
@@ -186,16 +245,17 @@ export function createMarineLife(scene, locationId, quality, options) {
     setQuality(next) {
       budget = next;
     },
-    update(state, time) {
-      const slots = encounters.update(state, time);
+    update(state, time, view) {
+      const slots = encounters.update(state, time, view);
       const small = ['low', 'minimum', 'compatibility'].includes(budget.name);
-      dolphins.count = fish.count = ripples.count = 0;
+      dolphins.count = fish.count = turtles.count = flippers.count = ripples.count = 0;
       for (const { event } of slots) {
         if (!event) continue;
         const age = time - event.start,
-          dolphin = event.kind === 'dolphin';
-        const animals = dolphin ? dolphins : fish,
-          count = dolphin ? (small ? 2 : 3) : small ? 6 : 12;
+          dolphin = event.kind === 'dolphin',
+          turtle = event.kind === 'turtle';
+        const animals = dolphin ? dolphins : turtle ? turtles : fish,
+          count = dolphin ? (small ? 2 : 3) : turtle ? 1 : small ? 6 : 12;
         const period = dolphin ? 4.8 : 2.1;
         for (let i = 0; i < count; i++) {
           const offset = i * (dolphin ? 0.85 : 0.31);
@@ -212,19 +272,31 @@ export function createMarineLife(scene, locationId, quality, options) {
           )
             continue;
           const departure = THREE.MathUtils.smoothstep(age, event.duration - 3, event.duration - 1);
+          const arrival = event.secret ? 0 : 1 - THREE.MathUtils.smoothstep(localAge, 0, 1.2);
           const y =
-            (dolphin ? -0.55 + Math.max(0, swim) * 1.25 : -0.25 + Math.max(0, swim) * 0.86) -
+            (dolphin
+              ? -0.55 + Math.max(0, swim) * (event.close ? 1.95 : 1.25)
+              : turtle
+                ? 0.04 + Math.sin(localAge * 1.4) * 0.025
+                : -0.25 + Math.max(0, swim) * 0.86) -
+            arrival * 1.3 -
             departure * (dolphin ? 1.5 : 1);
           transform.position.set(x, y, z);
           transform.rotation.set(
-            Math.cos(phase * Math.PI * 2) * (dolphin ? 0.28 : 0.62),
+            Math.cos(phase * Math.PI * 2) * (dolphin ? 0.28 : turtle ? 0.025 : 0.62),
             -event.heading,
-            dolphin ? 0 : Math.sin(localAge * 9 + event.seed) * 0.12,
+            dolphin || turtle ? 0 : Math.sin(localAge * 9 + event.seed) * 0.12,
             'YXZ',
           );
           transform.scale.setScalar(dolphin ? 1 - i * 0.08 : 0.8 + (i % 3) * 0.14);
           transform.updateMatrix();
           animals.setMatrixAt(animals.count++, transform.matrix);
+          if (turtle) {
+            transform.rotation.z = Math.sin(localAge * 2.1 + i) * 0.13;
+            transform.scale.x *= 1 + Math.sin(localAge * 2.1 + i) * 0.1;
+            transform.updateMatrix();
+            flippers.setMatrixAt(flippers.count++, transform.matrix);
+          }
           if (Math.abs(swim) < 0.5) {
             const scale = (dolphin ? 0.8 : 0.35) + phase * (dolphin ? 1.7 : 0.7);
             transform.position.set(x, -0.025, z);
@@ -235,7 +307,7 @@ export function createMarineLife(scene, locationId, quality, options) {
           }
         }
       }
-      for (const mesh of [dolphins, fish, ripples]) {
+      for (const mesh of [dolphins, fish, turtles, flippers, ripples]) {
         mesh.visible = mesh.count > 0;
         mesh.instanceMatrix.needsUpdate = true;
       }

@@ -6,8 +6,8 @@ import { initialState, depthAt, islands, buoys, refreshDerived, step, VESSEL } f
 import { islandRatio, islandHeight, shoreScale } from '../src/rendering/geography.js';
 
 const near = (a,b,tolerance=1e-8) => assert.ok(Math.abs(a-b)<tolerance,`${a} differs from ${b}`);
-test('three immutable fictional locations keep the original course aliases',()=>{
-  assert.deepEqual(LOCATIONS.map(l=>l.id),['haven','shelter','strait']);
+test('four immutable fictional locations keep the original course aliases',()=>{
+  assert.deepEqual(LOCATIONS.map(l=>l.id),['haven','shelter','strait','fjord']);
   assert.equal(DEFAULT_LOCATION_ID,'haven');
   assert.equal(islands,getLocation('haven').islands);assert.equal(buoys,getLocation('haven').buoys);
   assert.equal(getLocation('unknown'),getLocation('haven'));assert.equal(initialState('unknown').locationId,'haven');
@@ -61,7 +61,7 @@ test('grounding uses the selected location instead of the Haven fallback',()=>{
   step(bay,.1);step(haven,.1);assert.equal(bay.grounded,true);assert.equal(haven.grounded,false);
 });
 test('each location has a different depth ceiling and geography, not just a new color',()=>{
-  assert.equal(new Set(LOCATIONS.map(l=>JSON.stringify(l.islands))).size,3);
-  assert.deepEqual(LOCATIONS.map(l=>depthAt(5000,5000,l.id)),[35,25,55]);
+  assert.equal(new Set(LOCATIONS.map(l=>JSON.stringify(l.islands))).size,4);
+  assert.deepEqual(LOCATIONS.map(l=>depthAt(5000,5000,l.id)),[35,25,55,120]);
   assert.equal(getLocation('strait').marina,null);
 });

@@ -3,12 +3,16 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
 // All buildings, shutters, terraces and garden trees become one colored mesh.
 // These distant landmarks need neither individual materials nor texture loads.
-export function createCoastalVillage(scene, features) {
+export function createCoastalVillage(scene, features, { nordic = false } = {}) {
   const parts = [],
     transform = new THREE.Object3D(),
     color = new THREE.Color();
-  const walls = ['#e7ddc6', '#d4c2a6', '#eee6d3', '#c7d3c4'];
-  const roofs = ['#a05f48', '#8d5746', '#bd7856', '#96654e'];
+  const walls = nordic
+    ? ['#a44237', '#e6c071', '#eee6d3', '#974638']
+    : ['#e7ddc6', '#d4c2a6', '#eee6d3', '#c7d3c4'];
+  const roofs = nordic
+    ? ['#4b5b60', '#526361', '#586b63', '#45565c']
+    : ['#a05f48', '#8d5746', '#bd7856', '#96654e'];
   let feature;
   const add = (geometry, tint, x, y, z, rotation = 0) => {
     transform.position.set(
@@ -71,9 +75,16 @@ export function createCoastalVillage(scene, features) {
         for (const sz of [-1, 1])
           box('#e9e2cc', tx + sx * 1.28, 10.4, tz + sz * 1.33, 0.44, 2, 0.44);
       box('#eee5cc', tx, 11.55, tz, 3.4, 0.35, 3.5);
-      add(new THREE.ConeGeometry(2.5, 2.1, 4), '#9e6750', tx, 12.8, tz, Math.PI / 4);
-      box('#514e3f', tx, 14.35, tz, 0.14, 1.4, 0.14);
-      box('#514e3f', tx, 14.57, tz, 0.82, 0.14, 0.14);
+      add(
+        new THREE.ConeGeometry(2.5, nordic ? 5.5 : 2.1, 4),
+        nordic ? '#465b63' : '#9e6750',
+        tx,
+        nordic ? 14.5 : 12.8,
+        tz,
+        Math.PI / 4,
+      );
+      box('#514e3f', tx, nordic ? 17.75 : 14.35, tz, 0.14, 1.4, 0.14);
+      box('#514e3f', tx, nordic ? 17.97 : 14.57, tz, 0.82, 0.14, 0.14);
       add(new THREE.CylinderGeometry(0.43, 0.66, 0.7, 10), '#a78e50', tx, 10, tz);
       box('#c3b797', 0, 0.02, d / 2 + 1.6, w + 2, 0.18, 2.8);
     } else {

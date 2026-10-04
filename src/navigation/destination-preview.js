@@ -14,5 +14,5 @@ const esc = (value) =>
 // The containing destination card supplies the accessible name and description.
 export function destinationPreview(location) {
   const t = (value) => sectionUI[getLanguage()]?.[value] ?? translate(value);
-  return `<span class="destination-aerial" aria-hidden="true"><img class="destination-image" src="${import.meta.env.BASE_URL}destination-previews/${location.id}.webp" width="2100" height="1400" alt="" loading="lazy" decoding="async">${landmarks[location.id].map((mark) => `<span class="destination-landmark" style="left:${mark.x}%;top:${mark.y}%"><span class="destination-landmark-dot"></span>${esc(t(mark.label))}</span>`).join('')}</span>`;
+  return `<span class="destination-aerial" aria-hidden="true"><img class="destination-image" src="${import.meta.env.BASE_URL}destination-previews/${location.id}.webp" width="2100" height="1400" alt="" loading="lazy" decoding="async">${(landmarks[location.id] || []).map((mark) => `<span class="destination-landmark" style="left:${mark.x}%;top:${mark.y}%"><span class="destination-landmark-dot"></span>${esc(t(mark.label))}</span>`).join('')}</span>`;
 }

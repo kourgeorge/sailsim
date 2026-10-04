@@ -33,6 +33,55 @@ function birdBody(species) {
   if (longNeck) oval(species.back, 0, 0.03, -length * 0.42, 0.05, 0.06, length * 0.25);
   const headZ = -length * (longNeck ? 0.68 : 0.43);
   oval(species.head, 0, length * 0.08, headZ, length * 0.11, length * 0.12, length * 0.14, 1);
+  for (const side of [-1, 1]) {
+    oval(
+      '#d9b96c',
+      side * length * 0.103,
+      length * 0.11,
+      headZ - length * 0.025,
+      length * 0.026,
+      length * 0.032,
+      length * 0.03,
+      1,
+    );
+    oval(
+      '#14272b',
+      side * length * 0.122,
+      length * 0.113,
+      headZ - length * 0.031,
+      length * 0.014,
+      length * 0.022,
+      length * 0.019,
+      1,
+    );
+    oval(
+      '#ffffff',
+      side * length * 0.134,
+      length * 0.123,
+      headZ - length * 0.037,
+      length * 0.006,
+      length * 0.008,
+      length * 0.007,
+    );
+    oval(
+      species.beak,
+      side * length * 0.08,
+      -length * 0.22,
+      length * 0.1,
+      length * 0.022,
+      length * 0.07,
+      length * 0.025,
+    );
+    oval(
+      species.beak,
+      side * length * 0.08,
+      -length * 0.28,
+      length * 0.075,
+      length * 0.047,
+      length * 0.016,
+      length * 0.07,
+    );
+  }
   const beak = new THREE.ConeGeometry(length * 0.045, length * 0.21, 5);
   beak.rotateX(-Math.PI / 2);
   beak.translate(0, length * 0.04, headZ - length * 0.21);
@@ -189,6 +238,7 @@ export function createBirdLife(scene, locationId, quality, options) {
     pose = {},
     transform = new THREE.Object3D();
   const wingRotation = new THREE.Matrix4(),
+    wingFold = new THREE.Matrix4(),
     wingMatrix = new THREE.Matrix4();
   let budget = quality;
   return {
@@ -197,8 +247,8 @@ export function createBirdLife(scene, locationId, quality, options) {
     setQuality(next) {
       budget = next;
     },
-    update(state, time) {
-      const slots = encounters.update(state, time),
+    update(state, time, view) {
+      const slots = encounters.update(state, time, view),
         limit = birdLimit(budget);
       for (const { meshes } of pools) for (const mesh of meshes) mesh.count = 0;
       let total = 0;
@@ -219,7 +269,8 @@ export function createBirdLife(scene, locationId, quality, options) {
               : species.id === 'cormorant'
                 ? 0.58
                 : 0.4;
-          const flap = Math.sin(phase) * amplitude + 0.06;
+          const flap =
+            (Math.sin(phase) * amplitude + 0.06) * (1 - pose.perched) + pose.perched * 0.03;
           transform.position.set(pose.x, pose.y, pose.z);
           transform.rotation.set(Math.sin(phase) * 0.025, -pose.heading, pose.bank, 'YXZ');
           transform.scale.setScalar(1 - (i % 4) * 0.035);
@@ -231,6 +282,13 @@ export function createBirdLife(scene, locationId, quality, options) {
             [2, 1],
           ]) {
             wingRotation.makeRotationZ(side * flap);
+            if (pose.perched) {
+              wingFold.makeRotationY(-side * pose.perched * 1.2);
+              wingRotation.multiply(wingFold);
+              wingRotation.elements[0] *= 1 - pose.perched * 0.5;
+              wingRotation.elements[1] *= 1 - pose.perched * 0.5;
+              wingRotation.elements[2] *= 1 - pose.perched * 0.5;
+            }
             wingMatrix.multiplyMatrices(transform.matrix, wingRotation);
             meshes[index].setMatrixAt(instance, wingMatrix);
           }

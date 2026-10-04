@@ -14,6 +14,8 @@ import { getCoastalFeatures, clearOfCoastalBuildings } from '../world/coastal-fe
 import { createCoastalVillage } from './coastal-village.js';
 import { createMarineLife } from './marine-life.js';
 import { createBirdLife } from './bird-life.js';
+import { createLandDetails } from './land-details.js';
+import { createCruiseShip } from './cruise-ship.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,seededRandom,batchStaticMeshes } from './materials.js';
 
 function normalTexture(){
@@ -40,7 +42,7 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const clouds=cloudDome();clouds.visible=quality.clouds;scene.add(clouds);
  scene.add(new THREE.HemisphereLight('#cde9ff','#53503f',1.25));
  const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
- const waterGeometry=new THREE.PlaneGeometry(12000,12000),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:'#217887'};
+ const waterGeometry=new THREE.PlaneGeometry(12000,12000),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:location.biome==='fjord'?'#225b6b':'#217887'};
  const water=quality.reflectionSize>0
   ?new Water(waterGeometry,{...waterOptions,textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,distortionScale:2.8,fog:true})
   :createMobileWater(waterGeometry,waterOptions);
@@ -74,21 +76,23 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   renderer.shadowMap.enabled=next.shadowSize>0;
   renderer.shadowMap.needsUpdate=true;
   if(reflectionTarget && next.reflectionSize!==quality.reflectionSize)reflectionTarget.setSize(next.reflectionSize,next.reflectionSize);
-  quality=next;clouds.visible=quality.clouds;reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);
+  quality=next;clouds.visible=quality.clouds;reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);landDetails.setQuality(next);cruiseShip.setQuality(next);
  }
 
 
  const rockMap=canvasTexture(256,256,(c,w,h)=>{const img=c.createImageData(w,h);for(let i=0;i<img.data.length;i+=4){const shade=150+random()*90;img.data[i]=shade;img.data[i+1]=shade;img.data[i+2]=shade;img.data[i+3]=255;}c.putImageData(img,0,0);for(let i=0;i<100;i++){c.strokeStyle='#38382920';c.lineWidth=random()*3;c.beginPath();c.moveTo(random()*w,random()*h);c.lineTo(random()*w,random()*h);c.stroke();}});
  const groundMat=new THREE.MeshStandardMaterial({vertexColors:true,map:rockMap,bumpMap:rockMap,bumpScale:.14,roughness:1});
- const bark=mat.paint('#574f39',{roughness:1}),leaves=mat.paint('#3f5238',{roughness:.94});
+ const bark=mat.paint('#574f39',{roughness:1}),leaves=mat.paint(location.biome==='fjord'?'#ffffff':'#3f5238',{roughness:.94});
  const coastalFeatures=getCoastalFeatures(location.id);
  const treePoints=[],rockPoints=getWorldRockDefinitions(location.id);
  for(const island of islands){const ground=new THREE.Mesh(createIslandTerrain(island),groundMat);ground.receiveShadow=true;ground.castShadow=true;scene.add(ground);
-  for(let i=0;i<location.treeDensity;i++){const a=random()*Math.PI*2,r=.18+Math.sqrt(random())*.72;const x=island.x+Math.cos(a)*island.rx*r,z=island.z+Math.sin(a)*island.rz*r,y=islandHeight(x,z,island);if(y>4&&clearOfCoastalBuildings(x,z,coastalFeatures)){treePoints.push({x,y,z,scale:.65+random()*1.1,angle:random()*Math.PI*2,color:new THREE.Color().setHSL(.22+random()*.08,.19+random()*.10,.19+random()*.08)});}}
+  for(let i=0;i<location.treeDensity;i++){const a=random()*Math.PI*2,r=.18+Math.sqrt(random())*.72;const x=island.x+Math.cos(a)*island.rx*r,z=island.z+Math.sin(a)*island.rz*r,y=islandHeight(x,z,island);const slope=Math.hypot(islandHeight(x+1,z,island)-y,islandHeight(x,z+1,island)-y);if(y>4&&(location.biome!=='fjord'||(y<260&&slope<1.3))&&clearOfCoastalBuildings(x,z,coastalFeatures)){treePoints.push({x,y,z,scale:.65+random()*1.1,angle:random()*Math.PI*2,color:new THREE.Color().setHSL(.22+random()*.08,.19+random()*.10,.19+random()*.08)});}}
 
  }
  // Instanced, irregular umbrella pines: layered organic crowns with visible trunks.
- const crowns=[];for(const [x,y,z,sx,sy,sz] of [[0,5.4,0,2.8,1.4,2.6],[-1.4,4.7,.3,1.8,1.25,1.8],[1.25,5.05,-.5,1.9,1.3,1.6],[.4,5.9,.6,1.7,1.05,1.6]]){const g=new THREE.IcosahedronGeometry(1,0);g.scale(sx,sy,sz);g.translate(x,y,z);crowns.push(g);}const crownGeometry=mergeGeometries(crowns);
+ const crowns=[];
+ if(location.biome==='fjord')for(const [radius,height,y] of [[2.3,5.5,5],[1.7,4.7,7],[1,3.5,8.8]]){const g=new THREE.ConeGeometry(radius,height,7).toNonIndexed();g.translate(0,y,0);crowns.push(g);}
+ else for(const [x,y,z,sx,sy,sz] of [[0,5.4,0,2.8,1.4,2.6],[-1.4,4.7,.3,1.8,1.25,1.8],[1.25,5.05,-.5,1.9,1.3,1.6],[.4,5.9,.6,1.7,1.05,1.6]]){const g=new THREE.IcosahedronGeometry(1,0);g.scale(sx,sy,sz);g.translate(x,y,z);crowns.push(g);}const crownGeometry=mergeGeometries(crowns);crowns.forEach(g=>g.dispose());
  const foliage=new THREE.InstancedMesh(crownGeometry,leaves,treePoints.length),trunks=new THREE.InstancedMesh(new THREE.CylinderGeometry(.15,.27,4.6,6),bark,treePoints.length),dummy=new THREE.Object3D();
  treePoints.forEach((t,i)=>{dummy.position.set(t.x,t.y,t.z);dummy.scale.setScalar(t.scale);dummy.rotation.set(0,t.angle,0);dummy.updateMatrix();foliage.setMatrixAt(i,dummy.matrix);foliage.setColorAt(i,t.color);dummy.position.y+=2.3*t.scale;dummy.updateMatrix();trunks.setMatrixAt(i,dummy.matrix);});foliage.receiveShadow=true;scene.add(foliage,trunks);
  const stones=new THREE.InstancedMesh(new THREE.IcosahedronGeometry(1,1),mat.paint('#969586',{roughness:1}),rockPoints.length);rockPoints.forEach((r,i)=>{dummy.position.set(r.x,r.y,r.z);dummy.scale.set(r.scale,r.scale*.65,r.scale*.78);dummy.rotation.set(r.pitch,r.angle,r.roll);dummy.updateMatrix();stones.setMatrixAt(i,dummy.matrix);stones.setColorAt(i,new THREE.Color().setHSL(.10,.06,r.shade));});stones.receiveShadow=true;scene.add(stones);
@@ -126,11 +130,15 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  });
  for(const child of [...scene.children]){if(child.isGroup){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
  batchStaticMeshes(scene,mergeGeometries,[water,...wakes]);
- createCoastalVillage(scene,coastalFeatures);
+ createCoastalVillage(scene,coastalFeatures,{nordic:location.biome==='fjord'});
  const marineLife=createMarineLife(scene,location.id,quality);
  const birdLife=createBirdLife(scene,location.id,quality);
- return {water,excludeHullWater,setQuality,marineLife,birdLife,update(state,time){
-  shoreline.update(state,time);marineLife.update(state,time);birdLife.update(state,time);
+ const landDetails=createLandDetails(scene,location);landDetails.setQuality(quality);
+ const cruiseShip=createCruiseShip(scene,location.id,quality);
+ let secretPending=false;
+ return {water,excludeHullWater,setQuality,marineLife,birdLife,landDetails,cruiseShip,summonAnimal(){secretPending=true;},update(state,time,view){
+  shoreline.update(state,time);marineLife.update(state,time,view);birdLife.update(state,time,view);landDetails.update(time);cruiseShip.update(state,time,view,view?.freeSailing);
+  if(secretPending){secretPending=false;if(marineLife.encounters.summon(state,time,view))marineLife.update(state,time,view);else{birdLife.encounters.summon(state,time,view);birdLife.update(state,time,view);}}
   water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;clouds.material.uniforms.time.value=time;
   sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));

@@ -70,7 +70,7 @@ export function getWorldBodyDefinitions(locationId = 'haven') {
     }
   }
   // An unpowered drifting yacht, clear of the lesson start and buoy routes.
-  const freePoints={haven:{x:310,z:85},shelter:{x:-180,z:205},strait:{x:125,z:800}};
+  const freePoints={haven:{x:310,z:85},shelter:{x:-180,z:205},strait:{x:125,z:800},fjord:{x:110,z:760}};
   const scale=.84,mass=5600*scale**3,shape=yachtHullShape(scale);
   bodies.push({id:`${prefix}:yacht:free:0`,kind:'free',...freePoints[prefix],heading:20,
     vx:0,vz:0,yawRate:0,mass,inertia:mass*(shape.length**2+shape.beam**2)/12,shape,

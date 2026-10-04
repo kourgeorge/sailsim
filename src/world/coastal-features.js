@@ -75,6 +75,7 @@ export function getCoastalFeatures(locationId) {
   // A couple of isolated cottages on the other islands, facing the open bay.
   location.islands.forEach((island, index) => {
     if (index === settlement.islandIndex) return;
+    if (island.profile === 'fjord') return;
     const angle = Math.atan2(-island.z, -island.x);
     for (let i = 0; i < 2; i++) add('house', index, angle + i * 0.13, 0.79, i + index);
   });

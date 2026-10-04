@@ -85,7 +85,9 @@ async function startApp() {
   const $ = (s) => document.querySelector(s);
   let scene;
   try {
-    scene = createScene($('#scene'));
+    scene = createScene($('#scene'), {
+      isFreeSailing: () => mode === 'explore' && freeSailingStarted,
+    });
   } catch (error) {
     $('#scene').innerHTML =
       '<div class="webgl-fallback"><h2>A browser with WebGL is needed for the 3D view.</h2><p>You can still use the chart, controls, and lessons.</p></div>';
@@ -491,7 +493,11 @@ async function startApp() {
       scene?.dispose();
       scene = null;
       try {
-        scene = createScene($('#scene'), { locationId: location.id, vesselId: state.vesselId });
+        scene = createScene($('#scene'), {
+          locationId: location.id,
+          vesselId: state.vesselId,
+          isFreeSailing: () => mode === 'explore' && freeSailingStarted,
+        });
         scene.setView(camera);
       } catch (error) {
         console.error(error);

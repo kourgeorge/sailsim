@@ -60,9 +60,9 @@ for (const location of LOCATIONS) {
       before = structuredClone(state);
     const encounters = createMarineEncounters(location.id, { random: randomSource() });
     const seen = new Set(),
-      starts = { dolphin: [], fish: [] };
+      starts = { dolphin: [], fish: [], turtle: [] };
     let lastEvents = [];
-    for (let time = 0; time < 300; time += 0.5) {
+    for (let time = 0; time < 43200; time += 5) {
       const slots = encounters.update(state, time);
       for (const { event } of slots) {
         if (!event || lastEvents.includes(event)) continue;
@@ -77,10 +77,17 @@ for (const location of LOCATIONS) {
       }
       lastEvents = slots.map((slot) => slot.event);
     }
-    assert.deepEqual([...seen].sort(), ['dolphin', 'fish']);
+    assert.deepEqual(
+      [...seen].sort(),
+      location.id === 'fjord' ? ['dolphin', 'fish'] : ['dolphin', 'fish', 'turtle'],
+    );
+    assert.ok(starts.fish.length > starts.dolphin.length * 2);
+    assert.ok(starts.dolphin.length > starts.turtle.length);
     for (const [kind, times] of Object.entries(starts))
       for (let i = 1; i < times.length; i++)
-        assert.ok(times[i] - times[i - 1] > (kind === 'dolphin' ? 50 : 22));
+        assert.ok(
+          times[i] - times[i - 1] > (kind === 'dolphin' ? 120 : kind === 'turtle' ? 240 : 30),
+        );
     assert.deepEqual(state, before, 'Cosmetic sightings never mutate physics or course state');
   });
 }
@@ -113,14 +120,15 @@ test('wildlife uses fixed instance pools, reduces counts on low quality and disp
   const marine = createMarineLife(scene, 'haven', { name: 'high' }, { random: randomSource() });
   let maxDolphins = 0,
     maxFish = 0;
-  for (let time = 0; time < 60; time += 0.1) {
+  for (let time = 0; time < 1800; time += 0.5) {
     marine.update(state, time);
     const dolphins = scene.getObjectByName('Dolphins'),
       fish = scene.getObjectByName('Surface fish');
     maxDolphins = Math.max(maxDolphins, dolphins.count);
     maxFish = Math.max(maxFish, fish.count);
     assert.ok(dolphins.count <= 3 && fish.count <= 12);
-    assert.ok(scene.getObjectByName('Wildlife ripples').count <= 15);
+    assert.ok(scene.getObjectByName('Sea turtles').count <= 1);
+    assert.ok(scene.getObjectByName('Wildlife ripples').count <= 17);
     assert.ok(
       [...dolphins.instanceMatrix.array, ...fish.instanceMatrix.array].every(Number.isFinite),
     );
@@ -128,7 +136,7 @@ test('wildlife uses fixed instance pools, reduces counts on low quality and disp
   assert.equal(maxDolphins, 3);
   assert.equal(maxFish, 12);
   marine.setQuality({ name: 'minimum' });
-  for (let time = 60; time < 150; time += 0.5) {
+  for (let time = 1800; time < 3600; time += 0.5) {
     marine.update(state, time);
     assert.ok(scene.getObjectByName('Dolphins').count <= 2);
     assert.ok(scene.getObjectByName('Surface fish').count <= 6);
@@ -140,7 +148,7 @@ test('wildlife uses fixed instance pools, reduces counts on low quality and disp
   assert.ok(village.geometry.attributes.position.count / 3 < 12000);
   assert.match(shore.mesh.material.fragmentShader, /hullExclusionActive/);
   const disposed = disposeSceneResources(scene);
-  assert.equal(disposed.geometries, 5);
+  assert.equal(disposed.geometries, 7);
   assert.equal(disposed.materials, 4);
   assert.equal(disposed.textures, 1);
   assert.equal(scene.children.length, 0);

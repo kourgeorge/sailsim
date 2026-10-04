@@ -143,11 +143,11 @@ try {
       assert.equal(result.paused, true);
       assert.equal(result.reflections, !mobile);
       assert.ok(
-        result.visible.calls - result.idle.calls <= 6,
-        'Wildlife adds at most three draws per water/render pass',
+        result.visible.calls - result.idle.calls <= 10,
+        'Wildlife adds at most five draws per water/render pass',
       );
       assert.ok(
-        result.visible.triangles - result.idle.triangles < 5000,
+        result.visible.triangles - result.idle.triangles < 20000,
         'Wildlife has a small fixed geometry budget',
       );
       await page.screenshot({

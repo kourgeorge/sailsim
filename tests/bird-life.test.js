@@ -54,7 +54,8 @@ for (const location of LOCATIONS)
       events = new Set();
     const pose = {};
     let empty = 0;
-    for (let time = 0; time < 1200; time += 1) {
+    // Rare species are no longer guaranteed on a short sail.
+    for (let time = 0; time < 43200; time += 5) {
       const slots = encounters.update(state, time);
       if (slots.every((slot) => !slot.event)) empty++;
       for (const { event } of slots) {
@@ -72,7 +73,7 @@ for (const location of LOCATIONS)
             sampleBirdFlight(event, i, event.start + age, pose);
             assert.ok(Object.values(pose).every(Number.isFinite));
             for (const island of location.islands)
-              assert.ok(pose.y > islandHeight(pose.x, pose.z, island) + 8);
+              assert.ok(pose.y > islandHeight(pose.x, pose.z, island) + (event.landing ? 0.1 : 8));
           }
       }
     }
@@ -114,7 +115,7 @@ test('bird pools cap total flock size, animate wings, obey pause and share one m
     state = initialState();
   const birds = createBirdLife(scene, 'haven', { name: 'high' }, { random: randomSource() });
   let maximum = 0;
-  for (let time = 0; time <= 150; time += 0.25) {
+  for (let time = 0; time <= 900; time += 0.5) {
     birds.update(state, time);
     const bodies = birds.group.children.filter((mesh) => mesh.name.endsWith('bodies'));
     const count = bodies.reduce((sum, mesh) => sum + mesh.count, 0);
@@ -126,13 +127,13 @@ test('bird pools cap total flock size, animate wings, obey pause and share one m
   }
   assert.ok(maximum >= 10);
   const before = birds.group.children.map((mesh) => [...mesh.instanceMatrix.array]);
-  birds.update(state, 150);
+  birds.update(state, 900);
   assert.deepEqual(
     birds.group.children.map((mesh) => [...mesh.instanceMatrix.array]),
     before,
   );
   birds.setQuality({ name: 'minimum' });
-  for (let time = 151; time <= 300; time++) {
+  for (let time = 901; time <= 1800; time++) {
     birds.update(state, time);
     const count = birds.group.children
       .filter((mesh) => mesh.name.endsWith('bodies'))

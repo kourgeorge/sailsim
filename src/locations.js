@@ -63,6 +63,27 @@ export const LOCATIONS = deepFreeze([
     settlement: null,
     treeDensity: 250,
   },
+  {
+    id: 'fjord', title: 'Norwegian Fjords',
+    description: 'Fictional Norwegian waters beneath snowy peaks, tumbling waterfalls, and a quiet waterside village.',
+    biome: 'fjord',
+    islands: [
+      { x: -700, z: -450, rx: 430, rz: 1750, height: 850, profile: 'fjord', name: 'Eagle Ridge' },
+      { x: 720, z: -350, rx: 435, rz: 1850, height: 960, profile: 'fjord', name: 'Silver Falls' },
+      { x: -80, z: -2380, rx: 650, rz: 490, height: 1080, profile: 'fjord', name: 'Snow Crown' },
+      { x: 375, z: 960, rx: 140, rz: 230, height: 44, name: 'Hearth Island' },
+    ],
+    buoys: [{ x: -70, z: 350 }, { x: 30, z: -450 }, { x: -20, z: -1320 }],
+    start: { x: -60, z: 900, heading: 0 },
+    conditions: { windDirection: 285, windSpeed: 10, currentDirection: 180, currentSpeed: .3 },
+    maxDepth: 120, shoreDepthScale: 68,
+    chart: { centerX: 0, centerZ: -550, span: 5500 },
+    marina: null,
+    lighthouse: { islandIndex: 3, x: 278, z: 920 },
+    settlement: { islandIndex: 3, count: 13, startAngle: 2.35, angleStep: .09 },
+    treeDensity: 300,
+    waterfalls: [{ islandIndex: 0, angle: -.35 }, { islandIndex: 1, angle: 3.3 }, { islandIndex: 1, angle: 2.65 }],
+  },
 ]);
 const byId = new Map(LOCATIONS.map(location => [location.id, location]));
 // Unknown or old saved ids resolve predictably to the original course waters.

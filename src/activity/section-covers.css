@@ -86,3 +86,5 @@ html[dir=rtl] .section-backdrop{transform:scaleX(-1)}
  .section-detail .scene-title h2{font-size:clamp(30px,calc(38px * var(--text-scale,1)),72px)}
  .section-detail-card{padding:24px}
 }
+
+body[data-section=explore][data-location-background=fjord]{--section-image:url('/section-backgrounds/fjord.webp')}
