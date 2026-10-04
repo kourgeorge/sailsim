@@ -76,7 +76,8 @@ try {
   }
   await page.goto(url);
   await page.locator('[data-mode="explore"]').click();
-  await page.locator('#cover-vessel').selectOption('catamaran');
+  await page.locator('#cover-vessel').click();
+  await page.locator('#vessel-option-catamaran').click();
   await expect(page.locator('#cover-vessel-specs')).toContainText('6.6');
   await page.locator('#cover-start-free').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-vessel', 'catamaran');
@@ -105,7 +106,7 @@ try {
   await page.setViewportSize({ width: 390, height: 844 });
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#session-exit').click();
-  await expect(page.locator('#cover-vessel')).toHaveValue('catamaran');
+  await expect(page.locator('#cover-vessel')).toHaveAttribute('data-vessel', 'catamaran');
   await page.screenshot({ path: 'artifacts/catamaran/mobile-choice.png' });
   await page.locator('#cover-start-free').click();
   await page.locator('#play').click();
@@ -125,16 +126,16 @@ try {
   // A fresh page retains the free-sailing preference while lessons use the original yacht.
   await page.reload();
   await monohullOnly(page);
-  await page.locator('#mobile-menu-toggle').click();
-  await page.locator('[data-mode="explore"]').click();
-  await expect(page.locator('#cover-vessel')).toHaveValue('catamaran');
-  await page.locator('#cover-vessel').selectOption('monohull');
+  await page.locator('[data-section="explore"]').click();
+  await expect(page.locator('#cover-vessel')).toHaveAttribute('data-vessel', 'catamaran');
+  await page.locator('#cover-vessel').click();
+  await page.locator('#vessel-option-monohull').click();
   await page.locator('#cover-start-free').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-vessel', 'monohull');
   await page.goto(`${url}/?lang=he`);
-  await page.locator('#mobile-menu-toggle').click();
-  await page.locator('[data-mode="explore"]').click();
-  await page.locator('#cover-vessel').selectOption('catamaran');
+  await page.locator('[data-section="explore"]').click();
+  await page.locator('#cover-vessel').click();
+  await page.locator('#vessel-option-catamaran').click();
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
   await page.locator('#cover-start-free').click();
   await page.locator('#play').click();
@@ -164,7 +165,7 @@ try {
   };
   const startCatamaran = async () => {
     await navigate('explore');
-    await expect(page.locator('#cover-vessel')).toHaveValue('catamaran');
+    await expect(page.locator('#cover-vessel')).toHaveAttribute('data-vessel', 'catamaran');
     await page.locator('#cover-start-free').click();
     await expect(page.locator('#scene')).toHaveAttribute('data-vessel', 'catamaran');
   };

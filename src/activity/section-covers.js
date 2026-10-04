@@ -3,7 +3,7 @@ import { destinationPreview } from '../navigation/destination-preview.js';
 import { translate, getLanguage } from '../i18n/runtime.js';
 import { sectionUI } from '../i18n/sections.js';
 import './section-covers.css';
-import { VESSELS, getVessel } from '../vessels.js';
+import { mountVesselPicker } from './vessel-picker.js';
 
 const t = (value) => sectionUI[getLanguage()]?.[value] ?? translate(value);
 const esc = (value) =>
@@ -77,11 +77,10 @@ export function mountSectionCovers({
     button.onclick = () => onNavigate(button.dataset.section);
   });
   root.querySelector('#cover-start-free').onclick = onStartFree;
-  const vesselChoice = document.createElement('div');
-  vesselChoice.className = 'vessel-choice';
-  vesselChoice.innerHTML = `<label for="cover-vessel">${tr('Choose your boat')}</label><select id="cover-vessel">${VESSELS.map((vessel) => `<option value="${vessel.id}">${tr(vessel.name)} · ${tr(vessel.type === 'catamaran' ? 'Cruising catamaran' : 'Sailing yacht')}</option>`).join('')}</select><p id="cover-vessel-specs" dir="auto"></p>`;
-  root.querySelector('#cover-conditions').before(vesselChoice);
-  vesselChoice.querySelector('select').onchange = (event) => onVessel(event.target.value);
+  const vesselChoice = mountVesselPicker(root.querySelector('#cover-conditions'), {
+    getSelectedVessel,
+    onVessel,
+  });
   root.querySelector('#cover-conditions-button').onclick = onConditions;
   mountSound(root.querySelector('#cover-conditions-button').parentElement);
   root.querySelector('#cover-review').onclick = onReview;
@@ -222,12 +221,12 @@ export function mountSectionCovers({
         if (!active && section === 'challenge') refreshChallenges();
       }
       root.querySelector('.cover-review').hidden = !reviewable;
-      if (section !== 'explore' || active) return;
+      if (section !== 'explore' || active) {
+        vesselChoice.close();
+        return;
+      }
       const state = getState();
-      const vessel = getVessel(getSelectedVessel());
-      vesselChoice.querySelector('select').value = vessel.id;
-      vesselChoice.querySelector('p').textContent =
-        `${vessel.length} m · ${t('Beam')} ${vessel.beam} m · ${t('Draft')} ${vessel.draft} m${vessel.type === 'catamaran' ? ` · ${t('Twin engines')}` : ''}`;
+      vesselChoice.sync();
       const key = [
         state.locationId,
         state.windSpeed,
