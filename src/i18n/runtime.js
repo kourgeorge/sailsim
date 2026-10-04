@@ -1,4 +1,5 @@
 import {validateCourseLocale} from './validation.js';
+import {preferredInterfaceLanguage} from './language-preference.js';
 export {validateCourseLocale} from './validation.js';
 import englishUI from './en-ui.json';
 import englishManeuvers from './en-maneuvers.json';
@@ -25,7 +26,7 @@ const maneuverLoaders=import.meta.glob(['./*-maneuvers.json','!./en-maneuvers.js
 let language='en',dictionary=englishUI,patterns=[];
 const cache=new Map();
 export function getLanguage(){return language;}
-export function preferredLanguage(){try{const value=new URL(location.href).searchParams.get('lang')||localStorage.getItem('sail-language');return LANGUAGES.some(l=>l.code===value)?value:'en';}catch{return 'en';}}
+export function preferredLanguage(){return preferredInterfaceLanguage(LANGUAGES.map(l=>l.code));}
 function escapeRegex(value){return value.replace(/[.*+?^${}()|[\]\\]/g,'\\$&');}
 function compilePatterns(dict){return Object.entries(dict).filter(([key])=>key.includes('{')).map(([key,value])=>{const names=[];let source='',last=0;for(const match of key.matchAll(/\{(\w+)\}/g)){source+=escapeRegex(key.slice(last,match.index))+'(.+?)';names.push(match[1]);last=match.index+match[0].length;}source+=escapeRegex(key.slice(last));return {regex:new RegExp('^'+source+'$'),names,value};});}
 export function translate(value,depth=0){
