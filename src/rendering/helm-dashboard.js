@@ -13,9 +13,9 @@ function readings(){
  return `<dl class="dashboard-readings">
  ${reading('BOAT SPEED','speed',`${esc(t('SOG'))} <bdi dir="ltr" data-dashboard-value="sog"></bdi>`)}
  ${reading('HEADING','heading',`${esc(t('COG'))} <bdi dir="ltr" data-dashboard-value="cog"></bdi>`)}
- ${reading('DEPTH','depth')}
  ${reading('APPARENT WIND','apparent-speed',`<bdi dir="ltr" data-dashboard-value="apparent-angle"></bdi>`)}
  ${reading('Wind over water','water-speed',`<bdi dir="ltr" data-dashboard-value="water-direction"></bdi> <span aria-hidden="true">·</span> <bdi dir="ltr" data-dashboard-value="water-angle"></bdi>`)}
+ ${reading('DEPTH','depth')}
  ${reading('Helm angle','rudder',`${esc(t('Engine throttle'))} <bdi dir="ltr" data-dashboard-value="throttle"></bdi>`)}
  </dl>`;
 }

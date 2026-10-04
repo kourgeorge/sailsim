@@ -47,7 +47,7 @@ async function checkDashboard(){
   const layout=await dashboard.evaluate(node=>{const rect=node.getBoundingClientRect(),control=document.querySelector('#rudder').getBoundingClientRect();return {below:rect.top>control.bottom,clipped:[...node.querySelectorAll('dd,dt,.dashboard-detail')].some(el=>el.scrollWidth>el.clientWidth+2)};});
   assert.equal(layout.below,true,`${camera}: dashboard below controls`);assert.equal(layout.clipped,false,`${camera}: no clipped readings`);
  }
- const pixelRatio=await page.locator('#scene canvas').evaluate(canvas=>canvas.width/canvas.getBoundingClientRect().width);assert.ok(pixelRatio>=.69,'Camera retains adaptive rendering resolution');
+ const pixelRatio=await page.locator('#scene > canvas').evaluate(canvas=>canvas.width/canvas.getBoundingClientRect().width);assert.ok(pixelRatio>=.69,'Camera retains adaptive rendering resolution');
  await page.locator('#rudder').fill('-15');await expect(read('rudder')).toHaveText('← 15°');
  await page.locator('#engine-throttle').fill('0.5');await expect(read('throttle')).toHaveText('▲ 50%');await expect(page.locator('#vessel-throttle')).toHaveValue('0.5');await page.locator('#engine-neutral').click();await expect(read('throttle')).toHaveText('– 0%');
  // Camera has actual wall time to settle; simulation remains paused throughout.
@@ -132,7 +132,7 @@ try{
  await page.locator('[data-camera="deck"]').click();await expect(page.locator('#scene')).toHaveAttribute('data-camera','deck');
  const frames=Number(await page.locator('#scene').getAttribute('data-frames'));await page.waitForFunction(frames=>Number(document.querySelector('#scene').dataset.frames)>frames+36,frames,{timeout:180000});
  assert.equal(await visualTime(),time);await page.screenshot({path:'artifacts/live-practice/cockpit-paused-he.png',fullPage:true});
- const before=await page.locator('#scene canvas').screenshot();await page.waitForTimeout(350);const after=await page.locator('#scene canvas').screenshot();
+ const before=await page.locator('#scene > canvas').screenshot();await page.waitForTimeout(350);const after=await page.locator('#scene > canvas').screenshot();
  assert.ok(before.equals(after),'Paused water and yacht pixels remain stationary after camera settles');
  await page.locator('[data-camera="helm"]').click();await page.locator('#play').click();await activity('training-running');
  let previousHeading=await heading(),previousTime=await visualTime(),metSeen=false;

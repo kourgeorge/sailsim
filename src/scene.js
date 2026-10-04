@@ -12,6 +12,7 @@ import { disposeSceneResources } from './rendering/dispose.js';
 import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 import { createRaceVisuals } from './racing/visuals.js';
 import { createHelmCamera } from './rendering/helm-camera.js';
+import { createHelmScreen } from './rendering/helm-screen.js';
 import { createRenderQuality, isMobileGraphicsDevice } from './rendering/quality.js';
 import { createSecretTaps } from './world/secret-taps.js';
 
@@ -36,6 +37,7 @@ export function createScene(
   scene.fog = new THREE.FogExp2('#b7c7ce', 0.00031);
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
+    alpha: true,
     powerPreference: 'high-performance',
   });
   const gl = renderer.getContext(),
@@ -84,6 +86,7 @@ export function createScene(
     }),
     yacht = vessel.type === 'catamaran' ? createCatamaran(materials) : createYacht(materials);
   scene.add(yacht.group);
+  const helmScreen = createHelmScreen(container, renderer, camera, yacht);
   const anchorCloseup = createAnchorCloseup(container, renderer, yacht.group, scene.environment, {
     onResize: invalidate,
   });
@@ -371,6 +374,7 @@ export function createScene(
       freeSailing: isFreeSailing(),
     });
     dirty = cameraMoving || zoomMoving;
+    helmScreen.render(view === 'helm');
     renderer.render(scene, camera);
     const sceneCalls = renderer.info.render.calls,
       sceneTriangles = renderer.info.render.triangles;
@@ -451,6 +455,7 @@ export function createScene(
         canvas.removeEventListener(event, handler);
       trainingCues.dispose();
       anchorCloseup.dispose();
+      helmScreen.dispose();
       const excludedTextures = environment.dispose();
       disposeSceneResources(scene, { extraMaterials: Object.values(materials), excludedTextures });
       renderer.dispose();

@@ -67,6 +67,7 @@ html[data-large-text] .simulator .control-dock.cockpit-controls .cockpit-control
 @media(min-width:901px){
  .simulator .control-dock.cockpit-controls .cockpit-control-group.cockpit-group-sheets{border-inline:0;border-left:1px solid #ffffff12;padding-left:10px}
  .simulator .control-dock.cockpit-controls .cockpit-control-group.cockpit-group-headsail{border-inline:0}
+ .simulator .control-dock.cockpit-controls .cockpit-control-group.cockpit-group-anchor{border-inline:0;border-left:1px solid #ffffff12;padding-left:10px}
 }
 /* Keep enlarged text readable on phones instead of squeezing it into columns. */
 @media(max-width:600px){
