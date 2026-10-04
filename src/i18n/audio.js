@@ -1,11 +1,33 @@
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
-  'Music source': [
-    'Fuente de música',
-    'Source musicale',
-    'Источник музыки',
-    'מקור המוזיקה',
-    'مصدر الموسيقى',
+  waves: ['olas', 'vagues', 'волны', 'גלים', 'أمواج'],
+  'Loading sound…': [
+    'Cargando sonido…',
+    'Chargement du son…',
+    'Загрузка звука…',
+    'טוען צליל…',
+    'جارٍ تحميل الصوت…',
+  ],
+  'Retry sound': [
+    'Reintentar sonido',
+    'Réessayer le son',
+    'Повторить воспроизведение',
+    'ניסיון חוזר לצליל',
+    'إعادة محاولة الصوت',
+  ],
+  'Sound is unavailable. Retry or choose another source.': [
+    'El sonido no está disponible. Reintenta o elige otra fuente.',
+    'Le son est indisponible. Réessayez ou choisissez une autre source.',
+    'Звук недоступен. Повторите попытку или выберите другой источник.',
+    'הצליל אינו זמין. נסו שוב או בחרו מקור אחר.',
+    'الصوت غير متاح. أعد المحاولة أو اختر مصدراً آخر.',
+  ],
+  'Sound source': [
+    'Fuente de sonido',
+    'Source sonore',
+    'Источник звука',
+    'מקור הצליל',
+    'مصدر الصوت',
   ],
   'Sail relaxing': [
     'Sail relajante',
@@ -24,13 +46,7 @@ const rows = {
   'radio relax': ['radio relax', 'radio détente', 'радио релакс', 'רדיו רגוע', 'راديو هادئ'],
   'radio rock': ['radio rock', 'radio rock', 'радио рок', 'רדיו רוק', 'راديو روك'],
   'radio global': ['radio global', 'radio du monde', 'радио мира', 'רדיו עולם', 'راديو عالمي'],
-  'Music volume': [
-    'Volumen de música',
-    'Volume de la musique',
-    'Громкость музыки',
-    'עוצמת המוזיקה',
-    'مستوى صوت الموسيقى',
-  ],
+  Volume: ['Volumen', 'Volume', 'Громкость', 'עוצמת הצליל', 'مستوى الصوت'],
   'Live radio requires internet.': [
     'La radio en directo requiere internet.',
     'La radio en direct nécessite Internet.',
@@ -38,12 +54,12 @@ const rows = {
     'רדיו חי דורש חיבור לאינטרנט.',
     'يتطلب الراديو المباشر اتصالاً بالإنترنت.',
   ],
-  'Choose Sail relaxing or live radio.': [
-    'Elige Sail relajante o radio en directo.',
-    'Choisissez Sail détente ou la radio en direct.',
-    'Выберите расслабляющую музыку Sail или прямое радио.',
-    'בחרו ב־Sail רגוע או ברדיו חי.',
-    'اختر Sail للاسترخاء أو الراديو المباشر.',
+  'Choose Sail relaxing, waves, or live radio.': [
+    'Elige Sail relajante, olas o radio en directo.',
+    'Choisissez Sail détente, les vagues ou la radio en direct.',
+    'Выберите расслабляющую музыку Sail, волны или прямое радио.',
+    'בחרו ב־Sail רגוע, בגלים או ברדיו חי.',
+    'اختر Sail للاسترخاء أو الأمواج أو الراديو المباشر.',
   ],
   'Connecting to Radio Paradise…': [
     'Conectando a Radio Paradise…',
@@ -111,19 +127,13 @@ const rows = {
     'הפעלת הצליל',
     'تشغيل الصوت',
   ],
-  'Mute music': [
-    'Silenciar música',
-    'Couper la musique',
-    'Выключить музыку',
-    'השתקת המוזיקה',
-    'كتم الموسيقى',
-  ],
-  'Unmute music': [
-    'Activar música',
-    'Rétablir la musique',
-    'Включить музыку',
-    'ביטול השתקת המוזיקה',
-    'إلغاء كتم الموسيقى',
+  'Mute sound': ['Silenciar sonido', 'Couper le son', 'Выключить звук', 'השתקת הצליל', 'كتم الصوت'],
+  'Unmute sound': [
+    'Activar sonido',
+    'Rétablir le son',
+    'Включить звук',
+    'ביטול השתקת הצליל',
+    'إلغاء كتم الصوت',
   ],
   'Background audio is unavailable in this browser.': [
     'El audio de fondo no está disponible en este navegador.',

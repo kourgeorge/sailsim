@@ -7,12 +7,43 @@ test.beforeEach(async ({ context }) => {
     HTMLCanvasElement.prototype.getContext = function (type, ...args) {
       return /webgl/.test(type) ? null : getContext.call(this, type, ...args);
     };
+    window.audioMedia = [];
+    const NativeAudio = window.Audio;
+    window.Audio = function () {
+      const media = new NativeAudio();
+      window.audioMedia.push(media);
+      return media;
+    };
     const Audio = window.AudioContext;
     window.audioContexts = [];
     window.AudioContext = class extends Audio {
       constructor(...args) {
         super(...args);
         window.audioContexts.push(this);
+        this.requestedOptions = args[0];
+        this.synthesisNodes = 0;
+      }
+      createOscillator() {
+        this.synthesisNodes++;
+        return super.createOscillator();
+      }
+      createConvolver() {
+        this.synthesisNodes++;
+        return super.createConvolver();
+      }
+      createBufferSource() {
+        const node = super.createBufferSource();
+        (this.loops ||= []).push(node);
+        const start = node.start;
+        node.start = function (when = 0, offset = 0) {
+          return start.call(
+            this,
+            when,
+            window.startNearLoopEnd ? this.buffer.duration - 0.25 : offset,
+          );
+        };
+        node.addEventListener('ended', () => (node.ended = true));
+        return node;
       }
       createGain() {
         const gain = super.createGain();
@@ -53,11 +84,11 @@ test('free sailing plays audio, mutes music, and suspends when paused or hidden'
   await expect
     .poll(() => page.evaluate(() => window.audioContexts[0].gains[0].gain.value))
     .toBeCloseTo(0.75, 3);
-  await page.getByRole('button', { name: 'Mute music', exact: true }).click();
+  await page.getByRole('button', { name: 'Mute sound', exact: true }).click();
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
-  await page.getByRole('button', { name: 'Unmute music', exact: true }).click();
+  await page.getByRole('button', { name: 'Unmute sound', exact: true }).click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
   await expect(page.locator('#sound-music')).toHaveValue('32');
   await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
@@ -106,6 +137,8 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#cover-sound-options').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page.locator('#sailing-audio-settings h2')).toHaveText('הגדרות צליל');
+  await page.locator('#sound-source').selectOption('waves');
+  await expect(page.locator('#sound-radio-info')).toBeHidden();
   await page.locator('#sound-music-mute').click();
   await page.locator('#sound-music-mute').scrollIntoViewIfNeeded();
   await page.screenshot({ path: testInfo.outputPath('sound-mobile-he-200.png') });
@@ -130,7 +163,8 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#sound-options').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
   await expect(page.locator('#sailing-audio-settings')).toBeVisible();
-  await expect(page.locator('#sound-source option')).toHaveCount(5);
+  await expect(page.locator('#sound-source option')).toHaveCount(6);
+  await expect(page.locator('#sound-source')).toHaveValue('waves');
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#sound-music-mute').click();
   await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
@@ -153,48 +187,111 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await expect(page.locator('#sound-quiet')).not.toBeChecked();
 });
 
-test('the sound graph renders smooth music and stays silent without a selected tune', async ({
+test('rendered music and wave assets have continuous loops without deep gaps or clipping', async ({
   page,
 }) => {
   await page.goto('./');
-  const source = await readFile(new URL('../../src/audio/soundscape.js', import.meta.url), 'utf8');
-  const rendered = await page.evaluate(async (source) => {
-    const { createSoundscape } = await import(`data:text/javascript,${encodeURIComponent(source)}`);
+  const assets = {};
+  for (const name of ['sail-relaxing', 'waves'])
+    assets[name] = (
+      await readFile(new URL(`../../src/audio/assets/${name}.mp3`, import.meta.url))
+    ).toString('base64');
+  const signals = await page.evaluate(async (assets) => {
     const results = {};
-    for (const layer of ['music', 'silence']) {
-      const context = new OfflineAudioContext(2, 50 * 22050, 22050);
-      const graph = createSoundscape(context);
-      graph.music.gain.value = 0.45;
-      graph.output.gain.setValueAtTime(0, 0);
-      graph.output.gain.linearRampToValueAtTime(0.75, 1.5);
-      graph.output.gain.setValueAtTime(0.75, 47);
-      graph.output.gain.linearRampToValueAtTime(0, 48);
-      if (layer === 'music') graph.schedule(50);
-      const buffer = await context.startRendering();
-      const data = buffer.getChannelData(0);
+    const context = new OfflineAudioContext(2, 1, 44100);
+    for (const [name, base64] of Object.entries(assets)) {
+      const buffer = await context.decodeAudioData(
+        Uint8Array.from(atob(base64), (c) => c.charCodeAt(0)).buffer,
+      );
       let peak = 0,
-        jump = 0;
+        jump = 0,
+        seam = 0;
       const rms = [];
-      for (let second = 0; second < 50; second++) {
-        let sum = 0;
-        for (let i = second * 22050; i < (second + 1) * 22050; i++) {
-          sum += data[i] ** 2;
-          peak = Math.max(peak, Math.abs(data[i]));
-          if (i) jump = Math.max(jump, Math.abs(data[i] - data[i - 1]));
+      for (let channel = 0; channel < buffer.numberOfChannels; channel++) {
+        const data = buffer.getChannelData(channel);
+        seam = Math.max(seam, Math.abs(data[0] - data[data.length - 1]));
+        for (let start = 0; start + 44100 <= data.length; start += 44100) {
+          let sum = 0;
+          for (let i = start; i < start + 44100; i++) {
+            sum += data[i] ** 2;
+            peak = Math.max(peak, Math.abs(data[i]));
+            if (i) jump = Math.max(jump, Math.abs(data[i] - data[i - 1]));
+          }
+          rms.push(Math.sqrt(sum / 44100));
         }
-        rms.push(Math.sqrt(sum / 22050));
       }
-      results[layer] = { peak, jump, rms };
+      rms.sort((a, b) => a - b);
+      results[name] = {
+        peak,
+        jump,
+        seam,
+        duration: buffer.duration,
+        floor: rms[0],
+        median: rms[Math.floor(rms.length / 2)],
+      };
     }
     return results;
-  }, source);
-  expect(rendered.silence.peak, 'no ambient noise is mixed into playback').toBe(0);
-  for (const [layer, signal] of [['music', rendered.music]]) {
-    expect(signal.peak, `${layer} is audible`).toBeGreaterThan(0.01);
-    expect(signal.peak, `${layer} leaves mixing headroom`).toBeLessThan(0.45);
-    expect(signal.jump, `${layer} has no large sample discontinuities`).toBeLessThan(0.15);
-    for (const rms of signal.rms.slice(4, 46))
-      expect(rms, `${layer} has no silent loop/chord gaps`).toBeGreaterThan(0.002);
-    expect(signal.rms[49], `${layer} fades to silence`).toBe(0);
+  }, assets);
+  for (const [name, signal] of Object.entries(signals)) {
+    expect(signal.duration).toBeCloseTo(name === 'waves' ? 48 : 80, 1);
+    expect(signal.peak, `${name}: audible`).toBeGreaterThan(0.05);
+    expect(signal.peak, `${name}: no clipping`).toBeLessThan(0.95);
+    expect(signal.jump, `${name}: smooth samples`).toBeLessThan(0.25);
+    expect(signal.seam, `${name}: continuous wrap`).toBeLessThan(signal.jump * 1.5 + 0.005);
+    expect(
+      signal.floor / signal.median,
+      `${name}: no near-silent chord or loop gaps`,
+    ).toBeGreaterThan(0.35);
+  }
+});
+
+test('local playback loops while the UI is busy without running a synthesizer', async ({
+  page,
+}) => {
+  await page.goto('./');
+  await page.evaluate(() => {
+    window.startNearLoopEnd = true;
+  });
+  await page.locator('[data-mode=explore]').click();
+  await page.locator('#cover-start-free').click();
+  await page.locator('#sound-options').click();
+  for (const source of ['sail', 'waves']) {
+    await page.locator('#sound-source').selectOption(source);
+    await expect(page.locator('#sound-status')).toHaveText('Background sound is playing.');
+    const playback = await page.evaluate(async () => {
+      const context = window.audioContexts[0];
+      const node = context.loops.at(-1);
+      const analyser = context.createAnalyser();
+      node.connect(analyser);
+      const before = context.currentTime;
+      const start = performance.now();
+      while (performance.now() - start < 750) {
+        /* Simulate a long UI/render task. */
+      }
+      await new Promise((resolve) => setTimeout(resolve, 50));
+      const samples = new Float32Array(analyser.fftSize);
+      analyser.getFloatTimeDomainData(samples);
+      const rms = Math.sqrt(samples.reduce((sum, value) => sum + value ** 2, 0) / samples.length);
+      node.disconnect(analyser);
+      analyser.disconnect();
+      return {
+        ended: Boolean(node.ended),
+        loop: node.loop,
+        rms,
+        elapsed: context.currentTime - before,
+        synthesisNodes: context.synthesisNodes,
+        options: context.requestedOptions,
+        mediaCount: window.audioMedia.length,
+        activeLoops: context.loops.filter((loop) => !loop.ended).length,
+      };
+    });
+    expect(playback.loop).toBe(true);
+    expect(playback.ended).toBe(false);
+    expect(playback.elapsed).toBeGreaterThan(0.5);
+    expect(playback.rms).toBeGreaterThan(0.001);
+    expect(playback.synthesisNodes).toBe(0);
+    expect(playback.mediaCount).toBe(0);
+    expect(playback.activeLoops).toBe(1);
+    expect(playback.options.latencyHint).toBe('playback');
   }
 });

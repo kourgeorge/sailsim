@@ -57,8 +57,11 @@ test.beforeEach(async ({ context }) => {
         return voice;
       }
       createBufferSource() {
+        const node = super.createBufferSource();
+        (window.localLoops ||= []).push(node);
+        node.addEventListener('ended', () => (node.ended = true));
         window.bufferSources = (window.bufferSources || 0) + 1;
-        return super.createBufferSource();
+        return node;
       }
       createMediaElementSource(media) {
         const source = super.createMediaElementSource(media);
@@ -86,7 +89,7 @@ test('radio connects only while sailing, shares music controls, and releases the
   await page.goto('./');
   await page.locator('[data-mode=explore]').click();
   await page.locator('#cover-sound-options').click();
-  await expect(page.locator('#sound-source option')).toHaveCount(5);
+  await expect(page.locator('#sound-source option')).toHaveCount(6);
   await page.locator('#sound-source').selectOption('rp-mellow');
   expect(requests).toEqual([]);
   expect(await page.evaluate(() => window.radioElements.length)).toBe(0);
@@ -95,7 +98,7 @@ test('radio connects only while sailing, shares music controls, and releases the
   await expect.poll(() => page.evaluate(() => window.radioElements[0]?.paused)).toBe(false);
   await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.45);
   expect(requests).toEqual(['https://stream.radioparadise.com/mellow-192']);
-  expect(await page.evaluate(() => window.audioContexts[0].gains[1].gain.value)).toBe(0);
+  expect(await page.evaluate(() => window.radioElements[0].loop)).toBe(false);
   expect(await page.evaluate(() => window.audioContexts[0].voices?.length || 0)).toBe(0);
   expect(await page.evaluate(() => window.bufferSources || 0)).toBe(0);
   await page.locator('#sound-options').click();
@@ -118,24 +121,21 @@ test('radio connects only while sailing, shares music controls, and releases the
   await expect
     .poll(() => page.evaluate(() => window.audioContexts[0].gains[1].gain.value))
     .toBeCloseTo(0.32);
-  expect(await page.evaluate(() => window.audioContexts[0].voices.length)).toBeGreaterThan(0);
-  await page.evaluate(() => {
-    window.overlappingSources = false;
-    window.sourceMonitor = setInterval(() => {
-      if (window.audioContexts[0].gains[1].gain.value > 0 && window.radioGain.gain.value > 0)
-        window.overlappingSources = true;
-    }, 5);
-  });
+  expect(await page.evaluate(() => window.audioContexts[0].voices?.length || 0)).toBe(0);
+  await page.locator('#sound-source').selectOption('waves');
+  await expect(page.locator('#sound-radio-info')).toBeHidden();
+  expect(await page.evaluate(() => window.radioElements[0].getAttribute('src'))).toBeNull();
+  await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.32);
+  expect(await page.evaluate(() => window.localLoops.at(-1).loop)).toBe(true);
   for (const mix of ['rp-main', 'rp-rock', 'rp-global']) {
     await page.locator('#sound-source').selectOption(mix);
     await expect.poll(() => page.evaluate(() => window.radioElements[0].paused)).toBe(false);
     await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.32);
+    expect(await page.evaluate(() => window.radioElements[0].loop)).toBe(false);
     await expect
-      .poll(() => page.evaluate(() => window.audioContexts[0].voices.every((voice) => voice.ended)))
+      .poll(() => page.evaluate(() => window.localLoops.every((node) => node.ended)))
       .toBe(true);
   }
-  expect(await page.evaluate(() => window.overlappingSources)).toBe(false);
-  await page.evaluate(() => clearInterval(window.sourceMonitor));
   expect(await page.evaluate(() => window.radioElements.length)).toBe(1);
   await page.locator('#close-modal').click();
   await page.locator('#play').click();
@@ -197,4 +197,33 @@ test('a failed station can be retried and the radio controls fit large mobile RT
   expect(
     await page.locator('#modal').evaluate((node) => node.scrollWidth <= node.clientWidth + 1),
   ).toBe(true);
+});
+
+test('a failed local wave file can be retried without falling back to another source', async ({
+  page,
+}) => {
+  let unavailable = true;
+  await page.route('**/assets/waves*.mp3', (route) =>
+    route.fulfill(unavailable ? { status: 503, body: 'Unavailable' } : response),
+  );
+  await page.goto('./');
+  await page.locator('[data-mode=explore]').click();
+  await page.locator('#cover-sound-options').click();
+  await page.locator('#sound-source').selectOption('waves');
+  await page.locator('#close-modal').click();
+  await page.locator('#cover-start-free').click();
+  await page.locator('#sound-options').click();
+  await expect(page.locator('#sound-status')).toHaveText(
+    'Sound is unavailable. Retry or choose another source.',
+  );
+  await expect(page.locator('#sound-source')).toHaveValue('waves');
+  await expect(page.locator('#sound-radio-info')).toBeHidden();
+  await expect(page.locator('#sound-retry')).toHaveText('Retry sound');
+  unavailable = false;
+  await page.locator('#sound-retry').click();
+  await expect
+    .poll(() => page.evaluate(() => window.audioContexts[0].gains[1].gain.value))
+    .toBeCloseTo(0.45);
+  expect(await page.evaluate(() => window.radioElements.length)).toBe(0);
+  expect(await page.evaluate(() => window.localLoops.length)).toBe(1);
 });

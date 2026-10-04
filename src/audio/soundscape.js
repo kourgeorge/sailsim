@@ -1,5 +1,5 @@
-// Original, gently evolving ambience. Native audio nodes keep it independent of
-// rendering frame rate, network availability, and third-party recordings.
+// Offline score used by scripts/generate-sailing-audio.mjs. The app plays the
+// rendered files, so synthesis and reverb do not compete with mobile rendering.
 const CHORD_SECONDS = 20;
 const CHORDS = [
   [50, 57, 61, 64, 66], // D major 9
@@ -55,8 +55,11 @@ export function createSoundscape(context) {
     voice.detune.value = detune;
     envelope.gain.setValueAtTime(0, when);
     envelope.gain.linearRampToValueAtTime(level, when + attack);
-    if (duration > 20) envelope.gain.linearRampToValueAtTime(level * 0.8, when + duration - 7);
-    envelope.gain.exponentialRampToValueAtTime(0.0001, when + duration);
+    if (duration > CHORD_SECONDS) {
+      // Sustain until the next chord starts, then crossfade with its attack.
+      envelope.gain.setValueAtTime(level, when + CHORD_SECONDS);
+      envelope.gain.linearRampToValueAtTime(0.0001, when + duration);
+    } else envelope.gain.exponentialRampToValueAtTime(0.0001, when + duration);
     envelope.gain.linearRampToValueAtTime(0, when + duration + 0.1);
     voice.connect(envelope);
     envelope.connect(music);
@@ -75,7 +78,7 @@ export function createSoundscape(context) {
     while (origin + chordIndex * CHORD_SECONDS < until) {
       const when = origin + chordIndex * CHORD_SECONDS;
       const chord = CHORDS[chordIndex % CHORDS.length];
-      chord.forEach((pitch, i) => note(pitch, when, 24, 0.085, 4.5, i % 2 ? 2 : -2));
+      chord.forEach((pitch, i) => note(pitch, when, 26, 0.085, 6, i % 2 ? 2 : -2));
       // Sparse upper notes, without percussion or abrupt attacks.
       [2, 4, 3, 1].forEach((index, i) =>
         note(chord[index] + 12, when + 2.5 + i * 4.6, 6, 0.055, 0.18),
@@ -90,4 +93,57 @@ export function createSoundscape(context) {
     chordIndex = 0;
   }
   return { output, music, schedule, stop };
+}
+
+export function createWaves(context) {
+  const frames = context.sampleRate * 48;
+  const overlap = context.sampleRate / 2;
+  const buffer = context.createBuffer(2, frames, context.sampleRate);
+  const next = random(7319);
+  for (let channel = 0; channel < 2; channel++) {
+    const noise = new Float32Array(frames + overlap);
+    let low = 0,
+      mid = 0,
+      high = 0;
+    for (let i = 0; i < noise.length; i++) {
+      const white = next() * 2 - 1;
+      low = 0.99765 * low + white * 0.099046;
+      mid = 0.963 * mid + white * 0.2965164;
+      high = 0.57 * high + white * 1.0526913;
+      noise[i] = (low + mid + high + white * 0.1848) * 0.12;
+    }
+    const data = buffer.getChannelData(channel);
+    data.set(noise.subarray(0, frames));
+    // Overlap the noise at the wrap instead of dipping to silence every loop.
+    for (let i = 0; i < overlap; i++) {
+      const angle = ((i / overlap) * Math.PI) / 2;
+      data[i] = noise[frames + i] * Math.cos(angle) + noise[i] * Math.sin(angle);
+    }
+  }
+  const wash = context.createBufferSource();
+  wash.buffer = buffer;
+  wash.loop = true;
+  const rumbleCut = context.createBiquadFilter();
+  rumbleCut.type = 'highpass';
+  rumbleCut.frequency.value = 90;
+  const softness = context.createBiquadFilter();
+  softness.type = 'lowpass';
+  softness.frequency.value = 1100;
+  softness.Q.value = 0.35;
+  const output = context.createGain();
+  output.gain.value = 0.65;
+  wash.connect(rumbleCut).connect(softness).connect(output).connect(context.destination);
+  // Both swell periods fit the 48-second loop exactly.
+  for (const [period, depth] of [
+    [12, 0.22],
+    [16, 0.08],
+  ]) {
+    const wave = context.createOscillator(),
+      amount = context.createGain();
+    wave.frequency.value = 1 / period;
+    amount.gain.value = depth;
+    wave.connect(amount).connect(output.gain);
+    wave.start();
+  }
+  wash.start();
 }

@@ -109,6 +109,10 @@ test('radio choices persist without connecting while paused and unknown sources 
     createMedia: () => assert.fail('Choosing a paused station must not start a stream'),
   };
   const audio = createSailingAudio(options);
+  audio.setSettings({ musicSource: 'waves' });
+  const waves = createSailingAudio(options);
+  assert.equal(waves.settings.musicSource, 'waves');
+  waves.dispose();
   audio.setSettings({ musicSource: 'rp-mellow' });
   const restored = createSailingAudio(options);
   assert.equal(restored.settings.musicSource, 'rp-mellow');

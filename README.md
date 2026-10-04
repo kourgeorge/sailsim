@@ -47,9 +47,11 @@ Browser scripts require the development server and Playwright Chromium (`npx pla
 
 ## Free-sailing ambience
 
-Free sailing plays one music source at a time: the built-in Sail relaxing tune or a live Radio Paradise mix. The built-in tune uses Web Audio for a slow chord progression and sparse upper notes, with no downloads needed. Radio requires internet. There is no added sea-noise layer.
+Free sailing plays one source at a time: Sail relaxing, waves, or a live Radio Paradise mix. Music and waves are original, looping MP3 assets shipped with the app. Local files decode once and loop on the audio thread; radio uses a native media player. A Web Audio context configured for playback handles volume, avoiding live synthesis, convolution reverb, and main-thread loop restarts while the phone renders the scene. Only the last local file is retained in the decoded cache. Radio requires internet; built-in files are loaded from the same site and can use the browser cache.
 
-Open the arrow beside **Sound** in the scene toolbar (in the mobile menu) to choose a source, adjust music volume, or mute playback. Source, mute, and volume preferences survive reloads. Switching sources stops the previous audio before the replacement becomes audible. Audio fades out on pause or when leaving Free sailing, suspends in hidden tabs, and never starts in lessons or challenges. The audio context is created from a user gesture and suspends when silent; browsers that block sound offer an explicit retry.
+Open the arrow beside **Sound** in the scene toolbar (in the mobile menu) to choose a source, adjust volume, or mute playback. Source, mute, and volume preferences survive reloads. Switching sources stops the previous audio before the replacement becomes audible. Playback stops on pause or when leaving Free sailing, suspends in hidden tabs, and never starts in lessons or challenges. The audio context is created from a user gesture and suspends when silent; browsers that block sound offer an explicit retry.
+
+Regenerate the original audio files with `node scripts/generate-sailing-audio.mjs` (requires Playwright Chromium and ffmpeg). The score and wave generator live in `src/audio/soundscape.js` and are not bundled into the app. Committed assets make normal builds independent of those generation tools.
 
 ## Sailing school
 

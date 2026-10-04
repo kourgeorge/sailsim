@@ -1,5 +1,4 @@
-import { createSoundscape } from './soundscape.js';
-import { createRadioStream, radioStation, musicSource } from './radio.js';
+import { createAudioPlayer, audioSource, musicSource } from './radio.js';
 
 const STORAGE_KEY = 'sail-audio-v1';
 const DEFAULTS = {
@@ -13,7 +12,8 @@ const level = (value, fallback) =>
   typeof value === 'number' && Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : fallback;
 
 export function createSailingAudio({
-  createContext = () => new (window.AudioContext || window.webkitAudioContext)(),
+  createContext = () =>
+    new (window.AudioContext || window.webkitAudioContext)({ latencyHint: 'playback' }),
   storage = () => localStorage,
   onChange = () => {},
   createMedia,
@@ -33,103 +33,66 @@ export function createSailingAudio({
   } catch {
     /* Sound remains usable without browser storage. */
   }
-  let context, graph, scheduler, suspendTimer, resumePromise, radio, radioGain;
-  let sourceReadyAt = 0;
+  let context, output, sourceGain, player, suspendTimer, resumePromise;
   let active = false,
     unavailable = false,
     disposed = false;
   const audible = () => settings.musicEnabled && settings.music > 0;
   const wanted = () => active && settings.enabled && audible();
-  const ramp = (parameter, value, seconds, readyAt = 0) => {
+  const ramp = (parameter, value, seconds) => {
     const now = context.currentTime;
-    // Hold the current curve when users change their minds during a fade.
     if (parameter.cancelAndHoldAtTime) parameter.cancelAndHoldAtTime(now);
     else {
       parameter.cancelScheduledValues(now);
       parameter.setValueAtTime(parameter.value, now);
     }
-    // Finish fading out the old source before making its replacement audible.
-    const start = value > 0 ? Math.max(now, readyAt) : now;
-    if (start > now) {
-      parameter.setValueAtTime(0, now);
-      parameter.setValueAtTime(0, start);
-    }
-    const end = value === 0 && readyAt > now ? Math.min(now + seconds, readyAt) : start + seconds;
-    parameter.linearRampToValueAtTime(value, end);
+    parameter.linearRampToValueAtTime(value, now + seconds);
   };
   function levels() {
-    if (!graph) return;
-    ramp(
-      graph.music.gain,
-      settings.musicEnabled && settings.musicSource === 'sail' ? settings.music : 0,
-      0.25,
-      sourceReadyAt,
-    );
-    if (radioGain)
-      ramp(
-        radioGain.gain,
-        settings.musicEnabled && radioStation(settings.musicSource) && radio?.state === 'playing'
-          ? settings.music
-          : 0,
-        0.25,
-        sourceReadyAt,
-      );
+    if (!sourceGain) return;
+    ramp(sourceGain.gain, audible() && player?.state === 'playing' ? settings.music : 0, 0.25);
   }
-  function startScheduler() {
-    graph.schedule();
-    if (!scheduler) scheduler = setInterval(() => graph.schedule(), 500);
-  }
-  function stopScheduler() {
-    clearInterval(scheduler);
-    scheduler = null;
-  }
-  function apply({ gesture = false, immediate = false, retryRadio = false } = {}) {
+  function apply({ gesture = false, immediate = false, retrySource = false } = {}) {
     clearTimeout(suspendTimer);
     if (disposed) return;
     if (wanted()) {
       if (!context && gesture && !unavailable) {
         try {
           context = createContext();
-          graph = createSoundscape(context);
-          context.onstatechange = onChange;
-          levels();
-        } catch {
-          unavailable = true;
-          context?.close().catch(() => {});
-          context = null;
-          graph = null;
-          onChange();
-          return;
-        }
-      }
-      if (!context) return;
-      const station = radioStation(settings.musicSource);
-      if (station) {
-        stopScheduler();
-        graph.stop(Math.max(context.currentTime, sourceReadyAt));
-      }
-      if (station && settings.musicEnabled && settings.music > 0) {
-        if (!radio && gesture) {
-          radioGain = context.createGain();
-          radioGain.gain.value = 0;
-          radioGain.connect(graph.output);
-          radio = createRadioStream({
+          output = context.createGain();
+          output.gain.value = 0;
+          output.connect(context.destination);
+          sourceGain = context.createGain();
+          sourceGain.gain.value = 0;
+          sourceGain.connect(output);
+          // One source plays at a time: a decoded local loop or live radio.
+          // No synthesizer, reverb, or JS note scheduler runs with the scene.
+          player = createAudioPlayer({
             context,
-            output: radioGain,
+            output: sourceGain,
             createMedia,
             onChange: () => {
               levels();
               onChange();
             },
           });
+          context.onstatechange = onChange;
+        } catch {
+          unavailable = true;
+          context?.close().catch(() => {});
+          context = null;
+          sourceGain = null;
+          output = null;
+          onChange();
+          return;
         }
-        radio?.start(station, { retry: retryRadio });
-      } else radio?.stop();
+      }
+      if (!context) return;
+      player.start(audioSource(settings.musicSource), { retry: retrySource });
       if (context.state === 'running') {
-        if (!station) startScheduler();
-        ramp(graph.output.gain, settings.quiet ? 0.1875 : 0.75, settings.quiet ? 0.4 : 1.5);
+        ramp(output.gain, settings.quiet ? 0.1875 : 0.75, settings.quiet ? 0.4 : 1.5);
       } else if (gesture && !resumePromise) {
-        // resume() must be called in the initiating click/key handler on mobile.
+        // Both play() and resume() run inside the initiating mobile gesture.
         resumePromise = context
           .resume()
           .catch(() => {})
@@ -142,10 +105,9 @@ export function createSailingAudio({
           });
       }
     } else {
-      radio?.stop();
+      player?.stop();
       if (context) {
-        ramp(graph.output.gain, 0, immediate ? 0 : 0.6);
-        stopScheduler();
+        ramp(output.gain, 0, immediate ? 0 : 0.6);
         const suspend = () => {
           if (!wanted() && context.state !== 'closed') context.suspend().catch(() => {});
         };
@@ -159,8 +121,8 @@ export function createSailingAudio({
     get settings() {
       return { ...settings };
     },
-    get radioState() {
-      return radio?.state || 'idle';
+    get sourceState() {
+      return player?.state || 'idle';
     },
     get state() {
       if (unavailable) return 'unavailable';
@@ -174,7 +136,6 @@ export function createSailingAudio({
       if (changed || options.gesture || options.immediate) apply(options);
     },
     setSettings(patch) {
-      const previousSource = settings.musicSource;
       settings = {
         enabled: typeof patch.enabled === 'boolean' ? patch.enabled : settings.enabled,
         quiet: typeof patch.quiet === 'boolean' ? patch.quiet : settings.quiet,
@@ -188,20 +149,18 @@ export function createSailingAudio({
       } catch {
         /* Optional. */
       }
-      if (context && previousSource !== settings.musicSource)
-        sourceReadyAt = context.currentTime + 0.25;
       levels();
       apply({ gesture: true });
     },
     retry() {
-      apply({ gesture: true, retryRadio: ['error', 'blocked'].includes(radio?.state) });
+      apply({ gesture: true, retrySource: ['error', 'blocked'].includes(player?.state) });
     },
     dispose() {
       disposed = true;
       clearTimeout(suspendTimer);
-      stopScheduler();
-      radio?.dispose();
-      radioGain?.disconnect();
+      player?.dispose();
+      sourceGain?.disconnect();
+      output?.disconnect();
       if (context) {
         context.onstatechange = null;
         context.close().catch(() => {});

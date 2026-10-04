@@ -7,12 +7,37 @@ export const RADIO_STATIONS = [
   { id: 'rp-rock', name: 'radio rock', url: 'https://stream.radioparadise.com/rock-192' },
   { id: 'rp-global', name: 'radio global', url: 'https://stream.radioparadise.com/global-192' },
 ];
+export const AUDIO_SOURCES = [
+  {
+    id: 'sail',
+    name: 'Sail relaxing',
+    url: new URL('./assets/sail-relaxing.mp3', import.meta.url).href,
+    loop: true,
+  },
+  {
+    id: 'waves',
+    name: 'waves',
+    url: new URL('./assets/waves.mp3', import.meta.url).href,
+    loop: true,
+  },
+  ...RADIO_STATIONS,
+];
 export const radioStation = (id) => RADIO_STATIONS.find((station) => station.id === id);
-export const musicSource = (value, fallback = 'sail') =>
-  value === 'sail' || radioStation(value) ? value : fallback;
+export const audioSource = (id) => AUDIO_SOURCES.find((source) => source.id === id);
+export const musicSource = (value, fallback = 'sail') => (audioSource(value) ? value : fallback);
 
-export function createRadioStream({ context, output, onChange, createMedia = () => new Audio() }) {
-  let media, source, selected, timer;
+export function createAudioPlayer({
+  context,
+  output,
+  onChange,
+  createMedia = () => new Audio(),
+  loadBuffer = async (url, signal) => {
+    const response = await fetch(url, { signal });
+    if (!response.ok) throw new Error(`Audio request failed: ${response.status}`);
+    return context.decodeAudioData(await response.arrayBuffer());
+  },
+}) {
+  let media, mediaNode, localNode, selected, timer, requestController, cached;
   let state = 'idle',
     generation = 0,
     disposed = false;
@@ -21,53 +46,95 @@ export function createRadioStream({ context, output, onChange, createMedia = () 
     state = next;
     onChange();
   };
-  function stop() {
-    generation++;
-    selected = null;
+  function release() {
     clearTimeout(timer);
+    requestController?.abort();
+    requestController = null;
+    if (localNode) {
+      localNode.onended = null;
+      localNode.stop();
+      localNode.disconnect();
+      localNode = null;
+    }
     if (media) {
       media.pause();
       media.removeAttribute('src');
-      // Release the live connection and buffered audio, including while muted.
       media.load();
     }
+  }
+  function stop() {
+    generation++;
+    selected = null;
+    release();
     notify('idle');
   }
   function fail(next = 'error') {
     generation++;
-    clearTimeout(timer);
-    media?.pause();
-    if (media) {
-      media.removeAttribute('src');
-      media.load();
-    }
+    release();
     notify(next);
+  }
+  async function startLoop(choice, request) {
+    try {
+      let buffer = cached?.id === choice.id ? cached.buffer : null;
+      if (!buffer) {
+        requestController = new AbortController();
+        buffer = await loadBuffer(choice.url, requestController.signal);
+      }
+      if (request !== generation || disposed) return;
+      // Retain only the last local sound, bounding decoded audio memory.
+      cached = { id: choice.id, buffer };
+      requestController = null;
+      localNode = context.createBufferSource();
+      localNode.buffer = buffer;
+      localNode.loop = true;
+      localNode.connect(output);
+      localNode.onended = () => {
+        if (request === generation) fail();
+      };
+      localNode.start();
+      clearTimeout(timer);
+      notify('playing');
+    } catch {
+      if (request === generation && !disposed) fail();
+    }
   }
   return {
     get state() {
       return state;
     },
-    start(station, { retry = false } = {}) {
-      if (disposed || (selected === station.id && !retry)) return;
+    start(choice, { retry = false } = {}) {
+      if (disposed || (selected === choice.id && !retry)) return;
       stop();
-      selected = station.id;
+      selected = choice.id;
       const request = generation;
+      notify('connecting');
+      timer = setTimeout(() => {
+        if (request === generation) fail();
+      }, 20000);
+      if (choice.loop) {
+        // BufferSource looping runs on the audio thread, including while the
+        // main thread is busy. No ended-event restart or note timer is needed.
+        startLoop(choice, request);
+        return;
+      }
       try {
         if (!media) {
           const element = createMedia();
           element.crossOrigin = 'anonymous';
           element.preload = 'none';
+          element.loop = false;
           const node = context.createMediaElementSource(element);
           node.connect(output);
           media = element;
-          source = node;
+          mediaNode = node;
           media.onplaying = () => {
-            if (!selected || !media.src) return;
+            if (!radioStation(selected) || !media.src) return;
             clearTimeout(timer);
             notify('playing');
           };
           media.onwaiting = () => {
-            if (!selected || !['playing', 'connecting'].includes(state)) return;
+            if (!radioStation(selected) || !media.src || !['playing', 'connecting'].includes(state))
+              return;
             const pending = generation;
             clearTimeout(timer);
             timer = setTimeout(() => {
@@ -76,17 +143,13 @@ export function createRadioStream({ context, output, onChange, createMedia = () 
             notify('connecting');
           };
           media.onerror = () => {
-            if (selected && media.error) fail();
+            if (radioStation(selected) && media.error) fail();
           };
           media.onended = () => {
-            if (selected) fail();
+            if (radioStation(selected)) fail();
           };
         }
-        media.src = station.url;
-        notify('connecting');
-        timer = setTimeout(() => {
-          if (request === generation) fail();
-        }, 20000);
+        media.src = choice.url;
         Promise.resolve(media.play()).catch((error) => {
           if (request === generation && selected && !disposed)
             fail(error.name === 'NotAllowedError' ? 'blocked' : 'error');
@@ -101,8 +164,9 @@ export function createRadioStream({ context, output, onChange, createMedia = () 
     dispose() {
       stop();
       disposed = true;
+      cached = null;
       if (media) media.onplaying = media.onwaiting = media.onerror = media.onended = null;
-      source?.disconnect();
+      mediaNode?.disconnect();
     },
   };
 }
