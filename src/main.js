@@ -1020,7 +1020,12 @@ async function startApp() {
       syncControls();
     },
     onConditions: () => $('#conditions').click(),
-    onSound: () => $('#sound-settings').click(),
+    mountSound: (container) =>
+      sailingAudio.mountControls(container, {
+        id: 'cover-sound',
+        optionsId: 'cover-sound-options',
+        buttonClass: 'training-button',
+      }),
     mountChallenges: (container) => racing.mountLibrary(container),
     mountDrills: (container) => lab.mountChoices(container),
     onReview: () => {

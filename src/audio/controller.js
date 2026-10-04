@@ -1,7 +1,14 @@
 import { createSoundscape } from './soundscape.js';
 
 const STORAGE_KEY = 'sail-audio-v1';
-const DEFAULTS = { enabled: true, musicEnabled: true, seaEnabled: true, music: 0.45, sea: 0.55 };
+const DEFAULTS = {
+  enabled: true,
+  quiet: false,
+  musicEnabled: true,
+  seaEnabled: true,
+  music: 0.45,
+  sea: 0.55,
+};
 const level = (value, fallback) =>
   typeof value === 'number' && Number.isFinite(value) ? Math.max(0, Math.min(1, value)) : fallback;
 
@@ -16,6 +23,7 @@ export function createSailingAudio({
     if (saved && typeof saved === 'object') {
       settings = {
         enabled: typeof saved.enabled === 'boolean' ? saved.enabled : true,
+        quiet: typeof saved.quiet === 'boolean' ? saved.quiet : false,
         musicEnabled: typeof saved.musicEnabled === 'boolean' ? saved.musicEnabled : true,
         seaEnabled: typeof saved.seaEnabled === 'boolean' ? saved.seaEnabled : true,
         music: level(saved.music, DEFAULTS.music),
@@ -77,7 +85,7 @@ export function createSailingAudio({
       if (!context) return;
       if (context.state === 'running') {
         startScheduler();
-        ramp(graph.output.gain, 0.75, 1.5);
+        ramp(graph.output.gain, settings.quiet ? 0.1875 : 0.75, settings.quiet ? 0.4 : 1.5);
       } else if (gesture && !resumePromise) {
         // resume() must be called in the initiating click/key handler on mobile.
         resumePromise = context
@@ -120,6 +128,7 @@ export function createSailingAudio({
     setSettings(patch) {
       settings = {
         enabled: typeof patch.enabled === 'boolean' ? patch.enabled : settings.enabled,
+        quiet: typeof patch.quiet === 'boolean' ? patch.quiet : settings.quiet,
         musicEnabled:
           typeof patch.musicEnabled === 'boolean' ? patch.musicEnabled : settings.musicEnabled,
         seaEnabled: typeof patch.seaEnabled === 'boolean' ? patch.seaEnabled : settings.seaEnabled,

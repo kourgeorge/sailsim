@@ -1,6 +1,28 @@
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
   Sound: ['Sonido', 'Son', 'Звук', 'צליל', 'الصوت'],
+  'Sound settings': [
+    'Ajustes de sonido',
+    'Réglages du son',
+    'Настройки звука',
+    'הגדרות צליל',
+    'إعدادات الصوت',
+  ],
+  'Quiet sound': ['Sonido suave', 'Son discret', 'Тихий звук', 'צליל חלש', 'صوت هادئ'],
+  'Lower sound volume': [
+    'Bajar el volumen',
+    'Baisser le volume',
+    'Уменьшить громкость',
+    'הנמכת עוצמת הצליל',
+    'خفض مستوى الصوت',
+  ],
+  'Restore normal volume': [
+    'Restaurar el volumen normal',
+    'Rétablir le volume normal',
+    'Восстановить обычную громкость',
+    'החזרת עוצמת הצליל הרגילה',
+    'استعادة مستوى الصوت العادي',
+  ],
   'Sound off': ['Sonido desactivado', 'Son coupé', 'Звук выключен', 'הצליל מושתק', 'الصوت مكتوم'],
   'Sea & music': [
     'Mar y música',

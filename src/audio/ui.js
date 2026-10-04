@@ -9,32 +9,51 @@ const esc = (value) =>
   );
 const label = (value) => esc(t(value));
 const icon =
-  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><path class="sound-waves" d="M15 8a6 6 0 0 1 0 8m3-11a10 10 0 0 1 0 14"/><path class="sound-muted" d="m16 9 6 6m0-6-6 6"/></svg>';
+  '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><g class="sound-waves"><path d="M15 8a6 6 0 0 1 0 8"/><path class="sound-wave-far" d="M18 5a10 10 0 0 1 0 14"/></g><path class="sound-muted" d="m16 9 6 6m0-6-6 6"/></svg>';
 
 export function mountSailingAudio({ container, getMode, getActive, openModal }) {
-  const button = document.createElement('button');
-  button.id = 'sound-settings';
-  button.type = 'button';
-  button.dataset.noTranslate = 'true';
-  button.setAttribute('aria-haspopup', 'dialog');
-  button.innerHTML = `${icon}<span>${label('Sound')}</span>`;
-  container.append(button);
+  const controls = [];
   const audio = createSailingAudio({ onChange: update });
   let previous = '';
+  function mountControls(
+    parent,
+    { id = 'sound-settings', optionsId = 'sound-options', buttonClass = '' } = {},
+  ) {
+    const group = document.createElement('div');
+    group.className = 'sound-control';
+    group.dataset.noTranslate = 'true';
+    group.setAttribute('role', 'group');
+    group.setAttribute('aria-label', t('Sound'));
+    group.innerHTML = `<button id="${id}" class="sound-toggle ${buttonClass}" type="button">${icon}<span>${label('Sound')}</span></button><button id="${optionsId}" class="sound-options ${buttonClass}" type="button" aria-haspopup="dialog" aria-label="${label('Sound settings')}" title="${label('Sound settings')}"><svg width="12" height="12" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><path d="m4 6 4 4 4-4"/></svg></button>`;
+    const button = group.querySelector('.sound-toggle');
+    button.onclick = () => audio.setSettings({ quiet: !audio.settings.quiet });
+    group.querySelector('.sound-options').onclick = showSettings;
+    controls.push({ group, button });
+    parent.append(group);
+    previous = '';
+    update();
+  }
   function update() {
-    const { enabled, musicEnabled, seaEnabled, music, sea } = audio.settings;
+    const { enabled, quiet, musicEnabled, seaEnabled, music, sea } = audio.settings;
     const state = audio.state;
-    const key = JSON.stringify([enabled, musicEnabled, seaEnabled, music, sea, state]);
+    const key = JSON.stringify([enabled, quiet, musicEnabled, seaEnabled, music, sea, state]);
     if (key === previous) return;
     previous = key;
-    button.dataset.audioState = state;
-    button.title = t(state === 'muted' ? 'Sound off' : 'Sea & music');
-    button.setAttribute('aria-label', t('Sea & music'));
+    for (const { button } of controls) {
+      button.dataset.audioState = state;
+      button.dataset.quiet = String(quiet);
+      button.setAttribute('aria-pressed', String(quiet));
+      button.setAttribute('aria-label', t(quiet ? 'Restore normal volume' : 'Lower sound volume'));
+      button.title = button.getAttribute('aria-label');
+      button.disabled = state === 'unavailable';
+    }
     const root = document.querySelector('#sailing-audio-settings');
     if (!root) return;
     const toggle = root.querySelector('#sound-enabled');
     toggle.checked = enabled;
     toggle.disabled = state === 'unavailable';
+    root.querySelector('#sound-quiet').checked = quiet;
+    root.querySelector('#sound-quiet').disabled = !enabled || state === 'unavailable';
     for (const [name, value] of [
       ['music', music],
       ['sea', sea],
@@ -74,9 +93,9 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
               : 'Sound begins when you resume Free sailing.',
     );
   }
-  button.onclick = () => {
+  function showSettings() {
     openModal(
-      `<section id="sailing-audio-settings" data-no-translate><div class="eyebrow">${label('FREE SAILING')}</div><h2>${label('Sea & music')}</h2><p>${label('Slow, gentle music with the wash of the sea. Adjust each sound to suit your mood.')}</p><label class="sound-enable" for="sound-enabled"><span>${label('Background sound')}</span><input id="sound-enabled" type="checkbox" role="switch"></label>${[
+      `<section id="sailing-audio-settings" data-no-translate><div class="eyebrow">${label('FREE SAILING')}</div><h2>${label('Sea & music')}</h2><p>${label('Slow, gentle music with the wash of the sea. Adjust each sound to suit your mood.')}</p><label class="sound-enable" for="sound-enabled"><span>${label('Background sound')}</span><input id="sound-enabled" type="checkbox" role="switch"></label><label class="sound-enable sound-quiet" for="sound-quiet"><span>${label('Quiet sound')}</span><input id="sound-quiet" type="checkbox" role="switch"></label>${[
         ['music', 'Relaxing music'],
         ['sea', 'Sea sounds'],
       ]
@@ -91,6 +110,8 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
     const root = document.querySelector('#sailing-audio-settings');
     root.querySelector('#sound-enabled').onchange = (e) =>
       audio.setSettings({ enabled: e.target.checked });
+    root.querySelector('#sound-quiet').onchange = (e) =>
+      audio.setSettings({ quiet: e.target.checked });
     for (const name of ['music', 'sea'])
       root.querySelector(`#sound-${name}`).oninput = (e) =>
         audio.setSettings({ [name]: Number(e.target.value) / 100 });
@@ -101,14 +122,16 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
     previous = '';
     audio.retry();
     update();
-  };
+  }
+  mountControls(container);
   window.addEventListener('pagehide', (event) => {
     if (event.persisted) audio.setActive(false, { immediate: true });
     else audio.dispose();
   });
   return {
+    mountControls,
     sync(gesture = false) {
-      button.hidden = getMode() !== 'explore';
+      for (const { group } of controls) group.hidden = getMode() !== 'explore';
       audio.setActive(getActive(), { gesture, immediate: document.hidden });
       update();
     },

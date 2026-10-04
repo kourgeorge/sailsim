@@ -336,7 +336,7 @@ export function mountMobileLayout() {
     moves.push({node, placeholder, target, before});
   }
   menu.addEventListener('click', event => {
-    if (event.target.closest('button[data-mode], [data-camera], #systems-toggle, #chart-toggle, #session-exit, #session-restart, #help, #conditions, #reset, #location-select, #sound-settings')) menu.close();
+    if (event.target.closest('button[data-mode], [data-camera], #systems-toggle, #chart-toggle, #session-exit, #session-restart, #help, #conditions, #reset, #location-select, #sound-settings, #sound-options')) menu.close();
   }, true);
   camera.addEventListener('change', () => menu.close());
   lessonSheet.addEventListener('click', event => {

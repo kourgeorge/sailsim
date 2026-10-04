@@ -1,10 +1,23 @@
-#sound-settings{white-space:nowrap}
-#sound-settings .sound-muted{display:none}
-#sound-settings[data-audio-state=muted] .sound-muted{display:block}
-#sound-settings[data-audio-state=muted] .sound-waves{display:none}
-#sound-settings[data-audio-state=playing]{color:#ffe1a9}
+.sound-control{display:inline-flex;align-items:stretch;min-width:0}
+.sound-control[hidden]{display:none}
+.sound-toggle{display:flex;align-items:center;justify-content:center;gap:6px;white-space:nowrap}
+.sound-toggle .sound-muted{display:none}
+.sound-toggle[data-audio-state=muted] .sound-muted{display:block}
+.sound-toggle[data-audio-state=muted] .sound-waves{display:none}
+.sound-toggle[data-audio-state=playing]{color:#ffe1a9}
+.sound-toggle[data-quiet=true] .sound-wave-far{display:none}
+.sound-toggle[data-quiet=true]{background:#ffffff09}
+.sound-control .sound-options{display:grid;place-items:center;min-width:28px;padding-inline:7px;color:#9eb4bb;border-inline-start:1px solid #ffffff20}
+.sound-control .sound-options:hover{color:#ffe1a9;background:#ffffff0c}
+.section-detail-card .sound-control .sound-toggle{border-inline-end:0;border-start-end-radius:0;border-end-end-radius:0}
+.section-detail-card .sound-control .sound-options{min-width:36px;padding-inline:10px;border-start-start-radius:0;border-end-start-radius:0}
+@media(max-width:900px){
+ .sound-control .sound-options,.section-detail-card .sound-control .sound-options{min-width:44px;min-height:44px}
+ html[data-text-size] #mobile-menu .view-controls .sound-options{flex:0 0 44px;padding-inline:10px}
+}
 .sound-enable{display:flex;align-items:center;justify-content:space-between;gap:18px;margin:24px 0;padding:16px 0;border-block:1px solid #ffffff24}
 .sound-enable input{width:24px;height:24px;accent-color:var(--gold);cursor:pointer}
+.sound-enable.sound-quiet{margin-top:-24px;border-block-start:0}
 #sailing-audio-settings .setting-label{gap:16px;flex-wrap:wrap}
 #sailing-audio-settings input[type=range]{width:100%;min-height:44px}
 #sailing-audio-settings input:disabled{opacity:.4}

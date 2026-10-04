@@ -35,7 +35,7 @@ export function mountSectionCovers({
   getSelectedVessel = () => getState().vesselId,
   onVessel = () => {},
   onConditions,
-  onSound,
+  mountSound,
   mountChallenges,
   mountDrills,
   onReview,
@@ -65,7 +65,7 @@ export function mountSectionCovers({
     .map(([id, label]) => `<button data-section="${id}">${tr(label)}</button>`)
     .join(
       '',
-    )}</nav><div class="cover-mobile-course"></div><details class="cover-section-browser"><summary id="cover-browser-title"></summary></details><div class="section-page" data-section-page="learn"><div id="cover-current-lesson"></div></div><div class="section-page section-detail" data-section-page="explore" hidden><div class="scene-title"><span>${tr('THE OPEN WATER')}</span><h2 id="cover-location-name"></h2><p id="cover-location-description"></p></div><div class="section-detail-card"><p id="cover-conditions" dir="auto"></p><div class="training-actions"><button id="cover-start-free" class="training-button primary">${tr('Set sail')}</button><button id="cover-conditions-button" class="training-button">${tr('Conditions')}</button><button id="cover-sound" class="training-button">${tr('Sound')}</button></div></div></div><div class="section-page section-detail" data-section-page="challenge" hidden><div class="cover-review" hidden><span>${tr('Your last attempt is ready to review.')}</span><button id="cover-review" class="training-button">${tr('Review last attempt')}</button></div><div id="cover-challenge-briefing"></div></div>`;
+    )}</nav><div class="cover-mobile-course"></div><details class="cover-section-browser"><summary id="cover-browser-title"></summary></details><div class="section-page" data-section-page="learn"><div id="cover-current-lesson"></div></div><div class="section-page section-detail" data-section-page="explore" hidden><div class="scene-title"><span>${tr('THE OPEN WATER')}</span><h2 id="cover-location-name"></h2><p id="cover-location-description"></p></div><div class="section-detail-card"><p id="cover-conditions" dir="auto"></p><div class="training-actions"><button id="cover-start-free" class="training-button primary">${tr('Set sail')}</button><button id="cover-conditions-button" class="training-button">${tr('Conditions')}</button></div></div></div><div class="section-page section-detail" data-section-page="challenge" hidden><div class="cover-review" hidden><span>${tr('Your last attempt is ready to review.')}</span><button id="cover-review" class="training-button">${tr('Review last attempt')}</button></div><div id="cover-challenge-briefing"></div></div>`;
   const backdrop = document.createElement('div');
   backdrop.className = 'section-backdrop';
   backdrop.setAttribute('aria-hidden', 'true');
@@ -83,7 +83,7 @@ export function mountSectionCovers({
   root.querySelector('#cover-conditions').before(vesselChoice);
   vesselChoice.querySelector('select').onchange = (event) => onVessel(event.target.value);
   root.querySelector('#cover-conditions-button').onclick = onConditions;
-  root.querySelector('#cover-sound').onclick = onSound;
+  mountSound(root.querySelector('#cover-conditions-button').parentElement);
   root.querySelector('#cover-review').onclick = onReview;
   const browser = root.querySelector('.cover-section-browser');
   const mobile = window.matchMedia('(max-width: 900px)');
