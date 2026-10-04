@@ -21,7 +21,7 @@ export function collisionEvidence(value) {
     time: bounded(value.time), sequence: Math.floor(bounded(value.sequence, Number.MAX_SAFE_INTEGER)),
   };
 }
-const telemetryKeys = ['heading', 'speed', 'leeway', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'anchorScope', 'anchorPaidRode', 'anchorRode', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
+const telemetryKeys = ['heading', 'speed', 'leeway', 'depth', 'x', 'z', 'rudder', 'mainSheet', 'jibSheet', 'mainHoist', 'jibHoist', 'reefLevel', 'throttle', 'portThrottle', 'starboardThrottle', 'anchorScope', 'anchorPaidRode', 'anchorRode', 'windDirection', 'windSpeed', 'currentDirection', 'currentSpeed'];
 export const WINDLASS_ASSESSMENT_VERSION = 1;
 /** Shared by assessment and feedback so the displayed stop target cannot drift. */
 export function practiceStopThreshold(check) {

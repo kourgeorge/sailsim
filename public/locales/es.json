@@ -47,6 +47,10 @@
     "colregs": {
       "title": "Ceder el paso y evitar abordajes",
       "outcome": "Identifica el encuentro, asigna obligaciones, actúa pronto y comprueba hasta quedar pasado y franco."
+    },
+    "catamaran": {
+      "title": "Manejo del catamarán",
+      "outcome": "Usa dos motores con intención y considera manga, viento y cargas de las velas."
     }
   },
   "lessons": {
@@ -2043,6 +2047,58 @@
         }
       ],
       "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+    },
+    "sail-52": {
+      "title": "Manejar un catamarán con dos motores",
+      "concepts": [
+        "Un catamarán de crucero tiene dos cascos y motores separados. Ten en cuenta su manga al elegir atraque y espacio para girar. Poco calado no garantiza paso libre: comprueba barco, profundidad y márgenes. Los costados altos y la cabina ancha reciben viento a baja velocidad.",
+        "Mandos iguales producen principalmente avance o retroceso. Con timón centrado, babor avante y estribor atrás giran la proa a estribor; al invertirlos gira a babor. Usa impulsos suaves pasando por punto muerto. Igual posición de palanca no garantiza igual empuje avante y atrás: vigila rumbo y deriva.",
+        "Empiezas en aguas abiertas con velas bajadas. Usa los mandos separados de babor y estribor para girar de 000° a 090° dentro del círculo inicial. Detén el giro y mantén ambos motores en punto muerto cinco segundos. Después usa el mando conjunto para llegar a la siguiente marca y detenerte en el círculo final. No superes 2,5 nudos y evita otros barcos.",
+        "A vela, un catamarán puede escorar poco aunque aumenten las cargas. Riza pronto según el fabricante, previsión, mar y tripulación. La manga aporta estabilidad inicial, no inmunidad al vuelco. Poca escora no justifica llevar más vela."
+      ],
+      "observe": [
+        "Centra el timón para pivotar; usa motores opuestos y reduce antes de 090° para anticipar la inercia.",
+        "N o el punto muerto conjunto detiene ambos motores. Mandos opuestos no son punto muerto aunque su promedio sea cero."
+      ],
+      "mistake": "Confiar en el timón estando parado o creer que poca escora significa pocas cargas.",
+      "quiz": [
+        {
+          "prompt": "Con timón centrado, ¿qué combinación gira la proa a estribor?",
+          "options": [
+            "Babor avante y estribor atrás",
+            "Babor atrás y estribor avante",
+            "Ambos motores avante por igual"
+          ],
+          "explanation": "El empuje separado forma un par de giro. Vigila la deriva: avante y atrás pueden tener distinta fuerza."
+        },
+        {
+          "prompt": "Aumenta el viento pero el catamarán apenas escora. ¿Qué debe guiar el rizado?",
+          "options": [
+            "Esperar una gran escora",
+            "Indicaciones del fabricante, condiciones, cargas y tripulación",
+            "La manga hace innecesario rizar"
+          ],
+          "explanation": "Poca escora puede ocultar cargas crecientes. La estabilidad tiene límites y hay que reducir vela a tiempo."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Gira a 090° y mantén punto muerto por debajo de 0,15 nudos",
+            "hint": "Centra el timón. Aplica suavemente babor avante y estribor atrás. Reduce pronto, frena el giro y pon ambos motores en punto muerto."
+          },
+          {
+            "label": "Avanza al 090° a 0,5–1,5 nudos",
+            "hint": "Usa el mando conjunto para igual empuje avante. Mantén la proa al este y vigila la marca."
+          },
+          {
+            "label": "Detente al 090° con ambos motores en punto muerto",
+            "hint": "Reduce pronto. Frena el avance con un impulso breve atrás y vuelve a punto muerto. Mantén menos de 0,15 nudos cinco segundos."
+          }
+        ],
+        "debrief": "Giraste un catamarán de dos motores, hiciste una aproximación controlada y paraste con ambos motores en punto muerto."
+      },
+      "transfer": "Practica en el catamarán concreto con un instructor cualificado. El modelo no evalúa viento real sobre la obra muerta, flujo de hélices, amarras ni recuperación tras vuelco."
     }
   }
 }

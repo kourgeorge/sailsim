@@ -8,7 +8,7 @@ async function selectLesson(page, index) {
 }
 
 async function expectSession(page) {
-  await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+  await expect(page.locator('body')).toHaveAttribute('data-session', 'active', { timeout: 90000 });
   await expect(page.locator('#location-select')).toBeHidden();
   await expect(page.locator('.scene-title:visible')).toHaveCount(0);
   if (page.viewportSize().width <= 900) {
@@ -259,13 +259,9 @@ test('the rendered scene fills the session and restores the lesson cover after f
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('./');
-  await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
-    timeout: 120000,
-  });
+  await expect(page.locator('#scene > canvas')).toHaveCount(0);
   await selectLesson(page, 3);
-  await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
-    timeout: 90000,
-  });
+  await expect(page.locator('#scene > canvas')).toHaveCount(0);
   await page.screenshot({ path: 'artifacts/session/lesson-cover.png', timeout: 90000 });
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();

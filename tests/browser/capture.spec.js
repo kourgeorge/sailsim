@@ -26,7 +26,7 @@ test('exports real scene pixels in desktop and mobile helm views and offers save
   const scene = page.locator('#scene');
   const settle = () =>
     expect(scene).toHaveAttribute('data-render-pending', 'false', { timeout: 90000 });
-  await settle();
+  await expect(scene.locator(':scope > canvas')).toHaveCount(0);
   await expect(page.locator('#scene-capture')).toBeHidden();
   await page.locator('[data-mode=explore]').click();
   await page.locator('#cover-start-free').click();

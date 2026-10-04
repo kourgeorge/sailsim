@@ -14,16 +14,11 @@ test('paused rendering stops after settling and wakes for camera, controls, resi
   const frames = async () => Number(await scene.getAttribute('data-frames'));
   const settle = () =>
     expect(scene).toHaveAttribute('data-render-pending', 'false', { timeout: 90000 });
-  await expect.poll(frames, { timeout: 90000 }).toBeGreaterThan(0);
-  await settle();
-  await expect(scene).toHaveAttribute('data-water-reflections', 'true');
-  const initialFrames = await frames();
-  await page.waitForTimeout(600);
-  expect(await frames()).toBe(initialFrames);
-
+  await expect(scene.locator(':scope > canvas')).toHaveCount(0);
   await page.locator('[data-mode="explore"]').click();
   await page.locator('#cover-start-free').click();
-  await page.locator('#play').click();
+  await page.locator('#play').click({ timeout: 90000 });
+  await expect(scene).toHaveAttribute('data-water-reflections', 'true');
   await page.locator('[data-camera="helm"]').click();
   await expect(scene).toHaveAttribute('data-camera', 'helm');
   await settle();
@@ -59,6 +54,15 @@ test('paused rendering stops after settling and wakes for camera, controls, resi
   await page.waitForTimeout(600);
   expect(await frames()).toBe(pausedFrames);
   expect(await scene.getAttribute('data-visual-time')).toBe(pausedTime);
+  const canvas = await scene.locator(':scope > canvas').elementHandle();
+  await page.locator('#session-exit').click();
+  await page.waitForTimeout(400);
+  expect(await frames()).toBe(pausedFrames);
+  await page.locator('#cover-start-free').click();
+  await expect(page.locator('#scene-loading')).toBeHidden();
+  expect(await canvas.evaluate((node) => node === document.querySelector('#scene > canvas'))).toBe(
+    true,
+  );
   expect(errors).toEqual([]);
 });
 
@@ -100,7 +104,12 @@ test.describe('mobile water', () => {
     });
     await page.goto('./');
     const scene = page.locator('#scene');
-    await expect(scene).toHaveAttribute('data-render-pending', 'false', { timeout: 90000 });
+    await expect(scene.locator(':scope > canvas')).toHaveCount(0);
+    await page.locator('[data-section="explore"]').tap();
+    await page.locator('#cover-start-free').tap();
+    await expect(page.locator('body')).toHaveAttribute('data-session', 'active', {
+      timeout: 90000,
+    });
     await expect(scene).toHaveAttribute('data-quality', 'balanced');
     await expect(scene).toHaveAttribute('data-pixel-ratio', '1.75');
     await expect(scene).toHaveAttribute('data-water-reflections', 'false');
@@ -116,9 +125,7 @@ test.describe('mobile water', () => {
     expect(shaders.length).toBeGreaterThan(0);
     expect(shaders.every((source) => !source.includes('mirrorSampler'))).toBe(true);
 
-    await page.locator('[data-section="explore"]').tap();
     const before = Number(await scene.getAttribute('data-visual-time'));
-    await page.locator('#cover-start-free').tap();
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');
     await expect
       .poll(async () => Number(await scene.getAttribute('data-visual-time')), { timeout: 90000 })

@@ -1,4 +1,5 @@
 import { createAudioPlayer, audioSource, musicSource } from './radio.js';
+import { createHornPlayer } from './horns.js';
 
 const STORAGE_KEY = 'sail-audio-v1';
 const DEFAULTS = {
@@ -31,7 +32,7 @@ export function createSailingAudio({
   } catch {
     /* Sound remains usable without browser storage. */
   }
-  let context, output, sourceGain, player, suspendTimer, resumePromise;
+  let context, output, sourceGain, player, horns, suspendTimer, resumePromise;
   let active = false,
     unavailable = false,
     disposed = false;
@@ -47,6 +48,7 @@ export function createSailingAudio({
     parameter.linearRampToValueAtTime(value, now + seconds);
   };
   function levels() {
+    horns?.setVolume(settings.music);
     if (!sourceGain) return;
     ramp(sourceGain.gain, audible() && player?.state === 'playing' ? settings.music : 0, 0.25);
   }
@@ -104,6 +106,7 @@ export function createSailingAudio({
       }
     } else {
       player?.stop();
+      horns?.stop();
       if (context) {
         ramp(output.gain, 0, immediate ? 0 : 0.6);
         const suspend = () => {
@@ -151,10 +154,19 @@ export function createSailingAudio({
     retry() {
       apply({ gesture: true, retrySource: ['error', 'blocked'].includes(player?.state) });
     },
+    horn(event) {
+      if (!event || !wanted() || context?.state !== 'running') return;
+      horns ||= createHornPlayer(context, output);
+      horns.play(event, settings.music);
+    },
+    stopHorns() {
+      horns?.stop();
+    },
     dispose() {
       disposed = true;
       clearTimeout(suspendTimer);
       player?.dispose();
+      horns?.stop();
       sourceGain?.disconnect();
       output?.disconnect();
       if (context) {

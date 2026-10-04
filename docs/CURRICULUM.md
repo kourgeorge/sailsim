@@ -1,6 +1,6 @@
 # Sailing school curriculum
 
-The course contains 42 authored lessons and 84 explained knowledge questions across ten modules. Every lesson has assessed training: 19 live boat-handling exercises and 23 interactive seamanship scenarios with 69 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–42. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
+The course contains 52 authored lessons and 104 explained knowledge questions across thirteen modules. Every lesson has assessed training: 23 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–52. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
 
 ## Learning sequence
 
@@ -18,8 +18,15 @@ Each lesson has **training goals → performed tasks → judged evidence → deb
 | 8. Arrive and depart | Plan a docking approach; Choose an anchorage; Stop, then anchor; Prepare to leave | Prepare an approach and escape, reason about scope/swing, stop in sequence, depart a prepared open anchorage. |
 | 9. Respond and review | Person overboard priorities; Distress and urgent action; Your assessed first passage; From simulation to the sea | Explain emergency priorities, combine modeled skills, identify remaining supervised practice. |
 | 10. Coastal decisions | Plan the route and the escape; Tidal depth and clearance; Current vectors and passage time; Weather: go, wait or divert; Collision risk and limited visibility; Night pilotage and cross-checks | Produce bounded route plans, clearance calculations, course-to-steer solutions, revised weather decisions, collision-risk assessments and pilotage checks using stated fictional data. |
+| 11. Practical marina handling | Enter the marina under engine; Dock in a marina berth; Leave the berth and exit the marina | Follow engine approach targets and stop clear of obstacles. |
+| 12. Give way and avoid collisions | Lessons 46–51 | Assess overtaking, crossing, vessel status, channels, signals and restricted visibility. |
+| 13. Catamaran handling | Handle a catamaran with twin engines | Pivot with opposing thrust, approach and stop, and explain beam and sail-load limits. |
 
 ## Assessment contract
+
+Lessons 43–45 add practical marina entry, docking, and departure. Lessons 46–51 cover collision avoidance; large-vessel status and channels are in 49, sound signals (including the five-short-blast warning) in 50, and restricted visibility in 51. Their existing decision exercises already assess the relevant choices, so ambient free-sailing horns do not introduce a duplicate signals lesson.
+
+Lesson 52 adds catamaran handling: beam and draft margins, windage, finite stability and early reefing, plus independent twin-engine thrust. Its live exercise starts the actual catamaran in Haven open water, pivots from 000° to 090°, proceeds to a marker, and stops. Both stops require five seconds below 0.15 knots with both engines neutral; opposing commands cannot satisfy neutral through a zero average. The real-physics verifier completes the three checkpoints in approximately 185 seconds without contact or grounding. All six languages include the lesson, quizzes, hints, and accessible thrust diagram.
 
 - Every lesson is browsable. Mastery is sequential: a lesson needs its predecessor, a correct knowledge check, and a pass in its prescribed physical or decision assessment.
 - Knowledge answers have immediate explanations. Both must be correct; an incorrect response records a revision and never awards credit. Learners may retry.

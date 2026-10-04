@@ -153,13 +153,12 @@ test('race bots and rings render in the real 3D scene and appear on the chart', 
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('./');
-  await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
-    timeout: 120000,
-  });
+  await expect(page.locator('#scene > canvas')).toHaveCount(0);
   await page.locator('[data-mode="challenge"]').click();
   await page.locator('[data-race-course="harbor-sprint"]').click();
   await page.locator('#race-start').click();
-  await page.locator('#play').click();
+  await expect(page.locator('body')).toHaveAttribute('data-session', 'active', { timeout: 90000 });
+  await page.locator('#play').click({ timeout: 90000 });
   await expect(page.locator('#scene')).toHaveAttribute('data-race-boats', '3', { timeout: 120000 });
   await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
     timeout: 120000,
@@ -178,6 +177,8 @@ test('race bots and rings render in the real 3D scene and appear on the chart', 
   await page.locator('#close-modal').click();
   await page.locator('#session-exit').click();
   await page.locator('button[data-mode="explore"]').click();
+  await page.locator('#cover-start-free').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-race-boats', '0', { timeout: 120000 });
+  await expect(page.locator('#scene')).toHaveAttribute('data-traffic-boats', '4');
   expect(errors).toEqual([]);
 });

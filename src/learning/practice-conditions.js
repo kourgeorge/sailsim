@@ -30,7 +30,7 @@ export function practiceConditions(check,state,attempt){
   case 'engineWaypoint':case 'engineStop':{
    const target=check.value,distance=Math.hypot(state.x-target.x,state.z-target.z),ground=practiceGroundSpeed(state);
    const rows=[row('waypoint-distance','Distance to waypoint',distance,`≤ ${target.radius}`,'m',distance<=target.radius),row('heading','Heading',state.heading,`${target.heading} ± ${target.tolerance}`,'°',Math.abs(angle(state.heading,target.heading))<=target.tolerance),lowered(),anchorUp(),row('water-depth','Water depth',state.depth,'≥ 3','m',state.depth>=3)];
-   if(check.kind==='engineStop')rows.push(row('ground-speed','Ground speed',ground,`< ${target.maxSpeed}`,'kn',ground<target.maxSpeed),flag('engine-neutral','Engine neutral',state.throttle===0));
+   if(check.kind==='engineStop')rows.push(row('ground-speed','Ground speed',ground,`< ${target.maxSpeed}`,'kn',ground<target.maxSpeed),flag('engine-neutral','Engine neutral',state.throttle===0&&(state.vesselId!=='catamaran'||state.portThrottle===0&&state.starboardThrottle===0)));
    else rows.push(row('signed-speed','Speed through water',state.speed,`${target.speed[0]}–${target.speed[1]}`,'kn',state.speed>=target.speed[0]&&state.speed<=target.speed[1]));
    return rows;
   }

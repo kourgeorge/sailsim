@@ -43,6 +43,12 @@ Course persistence now lives in `src/learning/progress-store.js`. It serializes 
 
 `src/activity/controller.js` owns playback and overlay gates. Decision scenarios use their own navigation and hide the unrelated playback button. `src/scene.js` draws paused scenes only after invalidation or while the camera is settling; controls, camera input, resizing, text sizing and context restoration invalidate the view. `render()` remains an explicit forced draw for scene harnesses, while the application loop calls `renderIfNeeded()`.
 
+`src/activity/scene-loader.js` imports Three.js and procedural scenery only when a simulation is requested. Browsing covers, readers, and decision lessons creates no WebGL context. The localized loading dialog paints before construction; physics and exercise clocks wait for the first render. Cancellation invalidates pending work, and unchanged locations/vessels reuse the retained scene on reentry. Unsupported WebGL retains the chart/controls fallback; a failed module download offers Back and Reload.
+
+Free sailing adds four physical leisure boats per location through `src/world/free-sailing-traffic.js`, including two catamarans with compound twin-hull collision shapes. Routes use checked depth/fixture clearance; propulsion yields after impact and never overwrites contact-solver positions. `src/rendering/free-sailing-fleet.js` follows those bodies using shared simple geometry. Lessons do not spawn this traffic. `src/world/vessel-horns.js` prioritizes closing-risk/contact warnings over infrequent nearby greetings; `src/audio/horns.js` plays cached five-short-blast warnings with distinct small-boat and large-ship voices. Horns follow free-sailing activity, pause, and the shared sound volume/mute. They are ambient simulation behavior, not graded COLREG maneuvers.
+
+Fjord waterfalls sample the rendered cliff triangles in `src/rendering/waterfalls.js`, with animated flow, shore spray, and plunge foam. Animation uses simulation visual time, so it stops with playback and outside sessions.
+
 ```sh
 npm test
 npm run build

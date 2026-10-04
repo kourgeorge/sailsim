@@ -2,9 +2,9 @@
 // Values, comparison operators and units are formatted separately by the caller.
 const rows = {
   'Follow the numbered targets in order. The highlighted marker is your current goal.': ['Sigue los objetivos numerados en orden. La marca resaltada es tu objetivo actual.','Suivez les cibles numérotées dans l’ordre. Le repère surligné est votre objectif actuel.','Следуйте пронумерованным целям по порядку. Выделенная отметка — текущая цель.','עקבו אחר היעדים הממוספרים לפי הסדר. הסימון המודגש הוא היעד הנוכחי.','اتبع الأهداف المرقمة بالترتيب. العلامة المميزة هي هدفك الحالي.'],
-  'Keep both sails lowered during marina practice. Restart the exercise.': ['Mantén ambas velas bajadas durante la práctica en la marina. Reinicia el ejercicio.','Gardez les deux voiles affalées au port. Recommencez l’exercice.','Во время практики в марине держите оба паруса убранными. Начните заново.','שמרו את שני המפרשים מורדים בתרגול במרינה. התחילו את התרגיל מחדש.','أبقِ الشراعين منزّلين أثناء التدريب في المرسى. أعد بدء التمرين.'],
-  'Marina speed limit exceeded. Slow earlier and restart.': ['Límite de velocidad de la marina superado. Reduce antes y reinicia.','Limite de vitesse du port dépassée. Ralentissez plus tôt et recommencez.','Превышена скорость в марине. Замедляйтесь раньше и начните заново.','חרגתם ממגבלת המהירות במרינה. האטו מוקדם יותר והתחילו מחדש.','تجاوزت حد سرعة المرسى. أبطئ مبكرًا وأعد المحاولة.'],
-  'You left the marina practice area. Follow the marked route and restart.': ['Saliste de la zona de práctica. Sigue la ruta señalizada y reinicia.','Vous avez quitté la zone d’exercice. Suivez le parcours balisé et recommencez.','Вы покинули учебную зону марины. Следуйте отметкам и начните заново.','יצאתם מאזור התרגול במרינה. עקבו אחר המסלול המסומן והתחילו מחדש.','غادرت منطقة التدريب في المرسى. اتبع المسار المحدد وأعد المحاولة.'],
+  'Keep both sails lowered during engine practice. Restart the exercise.': ['Mantén ambas velas bajadas durante la práctica a motor. Reinicia el ejercicio.','Gardez les deux voiles affalées pendant cet exercice au moteur. Recommencez l’exercice.','Во время практики под мотором держите оба паруса убранными. Начните заново.','שמרו את שני המפרשים מורדים בתרגול מנוע. התחילו את התרגיל מחדש.','أبقِ الشراعين منزّلين أثناء التدريب بالمحرك. أعد بدء التمرين.'],
+  'Practice speed limit exceeded. Slow earlier and restart.': ['Límite de velocidad del ejercicio superado. Reduce antes y reinicia.','Limite de vitesse de l’exercice dépassée. Ralentissez plus tôt et recommencez.','Превышен предел скорости упражнения. Замедляйтесь раньше и начните заново.','חרגתם ממגבלת המהירות בתרגיל. האטו מוקדם יותר והתחילו מחדש.','تجاوزت حد سرعة التمرين. أبطئ مبكرًا وأعد المحاولة.'],
+  'You left the practice area. Follow the marked route and restart.': ['Saliste de la zona de práctica. Sigue la ruta señalizada y reinicia.','Vous avez quitté la zone d’exercice. Suivez le parcours balisé et recommencez.','Вы покинули учебную зону. Следуйте отметкам и начните заново.','יצאתם מאזור התרגול. עקבו אחר המסלול המסומן והתחילו מחדש.','غادرت منطقة التدريب. اتبع المسار المحدد وأعد المحاولة.'],
   'Anchor raised': ['Ancla levantada', 'Ancre relevée', 'Якорь поднят', 'העוגן מורם', 'المرساة مرفوعة'],
   'Sail hoist (main + jib average)': ['Izado de velas (promedio de mayor y foque)', 'Hissage (moyenne grand-voile et foc)', 'Подъём парусов (среднее грота и стакселя)', 'הרמת מפרשים (ממוצע ראשי וחלוץ)', 'رفع الأشرعة (متوسط الرئيسي والأمامي)'],
   'Mainsail hoist': ['Izado de la mayor', 'Hissage de la grand-voile', 'Подъём грота', 'הרמת המפרש הראשי', 'رفع الشراع الرئيسي'],
@@ -53,6 +53,12 @@ const rows = {
   'Continuous hold': ['Mantenimiento continuo', 'Maintien continu', 'Непрерывное удержание', 'שמירה רציפה', 'الحفاظ المستمر'],
   'Turn gently toward {heading}°, then center the helm.': ['Gira suavemente hacia {heading}°, luego centra el timón.', 'Tournez doucement vers {heading}°, puis recentrez la barre.', 'Плавно поверните на курс {heading}°, затем поставьте руль прямо.', 'פנו בעדינות לכיוון {heading}°, ואז מרכזו את ההגה.', 'انعطف برفق نحو {heading}°، ثم أعد الدفة إلى المنتصف.'],
 };
+// Older saved debriefs retain their original message keys.
+for(const [oldKey,key] of [
+ ['Keep both sails lowered during marina practice. Restart the exercise.','Keep both sails lowered during engine practice. Restart the exercise.'],
+ ['Marina speed limit exceeded. Slow earlier and restart.','Practice speed limit exceeded. Slow earlier and restart.'],
+ ['You left the marina practice area. Follow the marked route and restart.','You left the practice area. Follow the marked route and restart.'],
+])rows[oldKey]=rows[key];
 const languages = ['en', 'es', 'fr', 'ru', 'he', 'ar'];
 export const PRACTICE_FEEDBACK_KEYS = Object.freeze(Object.keys(rows));
 export const practiceFeedbackUI = Object.freeze(Object.fromEntries(languages.map((language, index) => [language,

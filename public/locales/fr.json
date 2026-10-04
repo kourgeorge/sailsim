@@ -47,6 +47,10 @@
     "colregs": {
       "title": "Céder le passage et éviter les abordages",
       "outcome": "Identifier la rencontre et les obligations, agir tôt et surveiller jusqu’à être définitivement paré et clair."
+    },
+    "catamaran": {
+      "title": "Manœuvrer un catamaran",
+      "outcome": "Utiliser les deux moteurs en tenant compte de la largeur, du fardage et des charges des voiles."
     }
   },
   "lessons": {
@@ -2043,6 +2047,58 @@
         }
       ],
       "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+    },
+    "sail-52": {
+      "title": "Manœuvrer un catamaran à deux moteurs",
+      "concepts": [
+        "Un catamaran de croisière possède deux coques et deux moteurs espacés. Prévoyez sa largeur pour choisir une place et tourner. Un faible tirant d’eau ne garantit pas le passage : vérifiez le bateau, la profondeur et les marges. Les hauts francs-bords et la large cabine prennent le vent à faible vitesse.",
+        "Des commandes identiques donnent surtout de la marche avant ou arrière. Barre au centre, bâbord en avant et tribord en arrière font tourner l’étrave à tribord ; inversez pour tourner à bâbord. Utilisez de petites impulsions séparées par le point mort. Des positions égales ne garantissent pas des poussées égales en avant et en arrière : surveillez cap et dérive.",
+        "Vous partez en eau libre, voiles baissées. Utilisez les commandes séparées bâbord et tribord pour passer du 000° au 090° dans le cercle initial. Arrêtez la rotation et gardez les deux moteurs au point mort cinq secondes. Utilisez ensuite la commande couplée pour rejoindre la marque puis vous arrêter dans le dernier cercle. Restez sous 2,5 nœuds et à l’écart du trafic.",
+        "Sous voile, un catamaran peut peu gîter alors que les charges augmentent. Prenez des ris tôt selon le constructeur, les prévisions, la mer et l’équipage. La largeur apporte de la stabilité initiale, pas une protection absolue contre le chavirage. Une faible gîte ne justifie pas davantage de toile."
+      ],
+      "observe": [
+        "Gardez la barre au centre pour pivoter ; opposez les moteurs et réduisez avant 090° pour anticiper l’inertie.",
+        "N ou le point mort couplé neutralise les deux moteurs. Des commandes opposées ne sont pas le point mort, même si leur moyenne est nulle."
+      ],
+      "mistake": "Compter sur le gouvernail à l’arrêt ou assimiler faible gîte et faibles charges.",
+      "quiz": [
+        {
+          "prompt": "Barre au centre, quelle combinaison fait tourner l’étrave à tribord ?",
+          "options": [
+            "Bâbord en avant, tribord en arrière",
+            "Bâbord en arrière, tribord en avant",
+            "Deux moteurs également en avant"
+          ],
+          "explanation": "Les poussées espacées créent un couple. Surveillez la dérive car les poussées avant et arrière peuvent différer."
+        },
+        {
+          "prompt": "Le vent augmente mais le catamaran gîte peu. Que suivre pour réduire la toile ?",
+          "options": [
+            "Attendre une forte gîte",
+            "Consignes du constructeur, conditions, charges et équipage",
+            "La largeur rend les ris inutiles"
+          ],
+          "explanation": "Une faible gîte peut cacher des charges croissantes. La stabilité est limitée : réduisez à temps."
+        }
+      ],
+      "practice": {
+        "steps": [
+          {
+            "label": "Pivoter au 090° et tenir au point mort sous 0,15 nœud",
+            "hint": "Centrez la barre. Mettez doucement bâbord en avant et tribord en arrière. Réduisez tôt, arrêtez le virage puis mettez les deux moteurs au point mort."
+          },
+          {
+            "label": "Avancer au 090° à 0,5–1,5 nœud",
+            "hint": "Utilisez la commande couplée pour une poussée égale. Gardez l’étrave à l’est et surveillez la marque."
+          },
+          {
+            "label": "S’arrêter au 090°, deux moteurs au point mort",
+            "hint": "Réduisez tôt. Une brève marche arrière freine l’erre, puis revenez au point mort. Tenez sous 0,15 nœud cinq secondes."
+          }
+        ],
+        "debrief": "Vous avez tourné un catamaran bimoteur, effectué une approche contrôlée et arrêté les deux moteurs au point mort."
+      },
+      "transfer": "Pratiquez sur le catamaran concerné avec un moniteur qualifié. Le modèle n’évalue pas le fardage réel, le flux des hélices, les amarres ni la récupération après chavirage."
     }
   }
 }

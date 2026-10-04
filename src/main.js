@@ -20,7 +20,8 @@ import {
 import './i18n/locale.css';
 import { mountLanguagePicker } from './i18n/language-picker.js';
 import { createLearning } from './learning/ui.js';
-import { createScene } from './scene.js';
+import { createSceneLoader } from './activity/scene-loader.js';
+import { mountSceneLoading } from './activity/scene-loading.js';
 import { getLocation } from './locations.js';
 import { createLearningTools } from './learning/tools-ui.js';
 import { openLocations } from './learning/location-ui.js';
@@ -47,6 +48,7 @@ import { createRaceUI } from './racing/ui.js';
 import { createChallengeUI } from './challenges/ui.js';
 import { mountSectionCovers, sectionForMode } from './activity/section-covers.js';
 import { getVessel } from './vessels.js';
+import { addFreeSailingTraffic } from './world/free-sailing-traffic.js';
 import { createWeather, advanceWeather, weatherConditions } from './weather.js';
 import { weatherControl } from './activity/weather-control.js';
 import { mountSceneCapture } from './activity/scene-capture.js';
@@ -89,18 +91,44 @@ async function startApp() {
     simulationSession,
     sectionCovers,
     sailingAudio,
-    sceneCapture;
+    sceneCapture,
+    sceneLoading;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
-  let scene;
-  try {
-    scene = createScene($('#scene'), {
+  let scene,
+    sceneCues = null,
+    sceneRace = null;
+  const graphics = createSceneLoader({
+    container: $('#scene'),
+    getOptions: () => ({
+      locationId: getLocation(state.locationId).id,
+      vesselId: getVessel(state).id,
       isFreeSailing: () => mode === 'explore' && freeSailingStarted,
-    });
-  } catch (error) {
-    $('#scene').innerHTML =
-      '<div class="webgl-fallback"><h2>A browser with WebGL is needed for the 3D view.</h2><p>You can still use the chart, controls, and lessons.</p></div>';
-    console.error(error);
+    }),
+    prepare: (next) => {
+      next.setView(camera);
+      next.setTrainingCues(sceneCues);
+      next.setRace(sceneRace);
+      next.render(state, sceneTime);
+    },
+    onChange: () => {
+      scene = graphics.scene;
+      if (graphics.status === 'fallback') {
+        $('#scene').textContent = t('A browser with WebGL is needed for the 3D view.');
+        $('#scene').dataset.renderPending = 'false';
+      }
+      // Loading time must never advance the boat or consume training/race time.
+      last = performance.now();
+      syncControls();
+    },
+  });
+  function setSceneCues(cues) {
+    sceneCues = cues;
+    scene?.setTrainingCues(cues);
+  }
+  function setSceneRace(race) {
+    sceneRace = race;
+    scene?.setRace(race);
   }
 
   function toast(message) {
@@ -154,7 +182,6 @@ async function startApp() {
       state = initialState(state.locationId);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       lastCollisionSequence = 0;
-      ensureScene(state.locationId);
     }
     $('.simulator').dataset.mode = mode;
     document
@@ -223,8 +250,13 @@ async function startApp() {
           : mode === 'adventure'
             ? Boolean(adventures?.active)
             : freeSailingStarted;
-  const cockpitEnabled = () => playback.controlsEnabled && sessionStarted();
+  const sessionRequested = () => !learning?.reading && !learning?.training && sessionStarted();
+  const cockpitEnabled = () => playback.controlsEnabled && sessionStarted() && graphics.ready;
   function syncPlayback() {
+    const requested = sessionRequested();
+    if (requested) graphics.ensure();
+    else graphics.cancel();
+    sceneLoading?.sync({ active: requested, status: graphics.status });
     const simulator = $('.simulator');
     const sceneCompass = $('#scene-compass');
     if (sceneCompass) sceneCompass.hidden = !cockpitEnabled() || !playback.canRender;
@@ -240,8 +272,8 @@ async function startApp() {
       button = $('#play'),
       action = activity.action;
     simulationSession?.sync({
-      started: !learning?.reading && !learning?.training && sessionStarted(),
-      graphicsReady: scene?.ready ?? true,
+      started: requested,
+      graphicsReady: graphics.ready,
       paused: !playback.canSimulate,
     });
     sceneCapture?.sync({
@@ -268,7 +300,7 @@ async function startApp() {
       !(mode === 'race' && !racing?.active) &&
       !(mode === 'adventure' && !adventures?.active);
     button.hidden = !playbackAvailable;
-    button.disabled = !playbackAvailable;
+    button.disabled = !playbackAvailable || !graphics.ready;
     $('#conditions').hidden = ['learn', 'race', 'adventure'].includes(mode) || Boolean(lab?.active);
     $('#reset').hidden = mode === 'learn';
     if (activity.command && button.dataset.action !== action) {
@@ -294,7 +326,7 @@ async function startApp() {
     }
   }
   function togglePlayback() {
-    if (!sessionStarted()) return;
+    if (!cockpitEnabled()) return;
     playback.toggle();
     sailingAudio?.sync(true);
     syncControls();
@@ -306,6 +338,11 @@ async function startApp() {
     scene?.invalidate();
     cockpitControls?.update();
     helmDashboard?.update();
+    $('#speed').textContent = state.speed.toFixed(1);
+    $('#heading').textContent = String(Math.round(state.heading) % 360).padStart(3, '0');
+    $('#weather-wind').textContent =
+      `${+state.windSpeed.toFixed(1)} kn ${compass(state.windDirection)}`;
+    $('#scene').dataset.visualTime = sceneTime.toFixed(5);
     $('#rudder').value = state.rudder;
     $('#trim').value = state.trim;
     $('#rudder-value').textContent =
@@ -529,24 +566,6 @@ async function startApp() {
     $('#location-title').textContent = t(location.title);
     $('#chart-location-title').textContent = t(location.title);
   }
-  function ensureScene(locationId) {
-    const location = getLocation(locationId);
-    if (scene?.locationId !== location.id || scene?.vesselId !== getVessel(state).id) {
-      scene?.dispose();
-      scene = null;
-      try {
-        scene = createScene($('#scene'), {
-          locationId: location.id,
-          vesselId: state.vesselId,
-          isFreeSailing: () => mode === 'explore' && freeSailingStarted,
-        });
-        scene.setView(camera);
-      } catch (error) {
-        console.error(error);
-        $('#scene').textContent = t('A browser with WebGL is needed for the 3D view.');
-      }
-    }
-  }
   $('#location-select').onclick = () =>
     openLocations({
       openModal,
@@ -556,7 +575,6 @@ async function startApp() {
         learning.cancel('Location changed. Restart practice when you return.');
         state = initialState(id, selectedVessel);
         lastCollisionSequence = 0;
-        ensureScene(id);
         playback.pause();
         challengeIndex = 0;
         challengeDone = false;
@@ -700,17 +718,22 @@ async function startApp() {
     }
   });
   function frame(now) {
-    const dt = Math.min((now - last) / 1000, 0.25);
+    const dt = Math.max(0, Math.min((now - last) / 1000, 0.25));
     last = now;
     if (document.hidden) {
       requestAnimationFrame(frame);
       return;
     }
+    syncPlayback();
+    if (playback.canTickDecision) learning.tickDecision(dt);
     if (!cockpitEnabled()) keys.clear();
+    if (!sessionRequested() || !graphics.ready) {
+      requestAnimationFrame(frame);
+      return;
+    }
     if (cockpitEnabled() && playback.canRender) {
       if (applyHeldKeys(state, keys, dt, applyControlPatch)) syncControls();
     }
-    if (playback.canTickDecision) learning.tickDecision(dt);
     if (playback.canSimulate && sessionStarted()) {
       if (mode === 'challenge' && !challengeDone && !challengeTrack)
         challengeTrack = createSailingTrack(state);
@@ -792,7 +815,7 @@ async function startApp() {
         `${+state.windSpeed.toFixed(1)} kn ${compass(state.windDirection)}`;
       $('#ideal-trim').textContent = `Suggested: ${Math.round(state.suggestedMainSheet)}°`;
       $('#scene').dataset.visualTime = sceneTime.toFixed(5);
-      drawChart($('#mini-chart'));
+      if ($('#mini-chart').checkVisibility()) drawChart($('#mini-chart'));
       if ($('#modal').open) drawChart($('#large-chart'));
     }
     syncPlayback();
@@ -806,8 +829,8 @@ async function startApp() {
     },
   });
   learning = createLearning({
-    setCues: (cues) => scene?.setTrainingCues(cues),
-    getPaused: () => playback.paused || overlayOpen() || learning?.briefingOpen,
+    setCues: setSceneCues,
+    getPaused: () => !graphics.ready || playback.paused || overlayOpen() || learning?.briefingOpen,
     onPause: () => {
       playback.pause();
       syncControls();
@@ -834,12 +857,10 @@ async function startApp() {
     },
     resetScenario: (setup) => {
       state = createPracticeState(setup);
-      ensureScene(state.locationId);
       lastCollisionSequence = 0;
       playback.pause();
       syncControls();
       updateLocation();
-      scene?.render(state, sceneTime);
     },
   });
   lab = createManeuverLab({
@@ -849,7 +870,6 @@ async function startApp() {
       setMode('maneuver');
       state = newState;
       lastCollisionSequence = 0;
-      ensureScene(state.locationId);
       updateLocation();
       setStartingCamera();
       playback.resume();
@@ -865,12 +885,11 @@ async function startApp() {
       syncControls();
     },
     openModal,
-    setCues: (cues) => scene?.setTrainingCues(cues),
+    setCues: setSceneCues,
     onBuoyCourse: () => {
       setMode('challenge');
       state = initialState('haven');
       lastCollisionSequence = 0;
-      ensureScene(state.locationId);
       updateLocation();
       freeSailingStarted = true;
       setStartingCamera();
@@ -887,7 +906,6 @@ async function startApp() {
       setMode('race');
       state = newState;
       lastCollisionSequence = 0;
-      ensureScene(state.locationId);
       updateLocation();
       playback.resume();
       syncControls();
@@ -899,7 +917,7 @@ async function startApp() {
       syncControls();
     },
     onLeave: (section = 'challenge') => navigateSection(section),
-    onVisuals: (race) => scene?.setRace(race),
+    onVisuals: setSceneRace,
     onDrills: () => lab.library(),
     onChallenge: (id) => adventures.briefing(id),
     onLibrary: () => navigateSection('challenge'),
@@ -913,7 +931,6 @@ async function startApp() {
       state = newState;
       $('.simulator').dataset.challengeEngine = String(definition.engine);
       lastCollisionSequence = 0;
-      ensureScene(state.locationId);
       updateLocation();
       playback.resume();
       syncControls();
@@ -925,11 +942,12 @@ async function startApp() {
       syncControls();
     },
     onLibrary: () => navigateSection('challenge'),
-    setCues: (cues) => scene?.setTrainingCues(cues),
+    setCues: setSceneCues,
   });
   vesselControls = mountControls($('#vessel-controls'), {
     getState: () => state,
     getPaused: () =>
+      !graphics.ready ||
       playback.paused ||
       document.hidden ||
       learning.reading ||
@@ -1000,6 +1018,7 @@ async function startApp() {
         mode === 'explore' ? selectedConditions() : state;
       state = initialState(state.locationId, state.vesselId);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      if (mode === 'explore') addFreeSailingTraffic(state);
       lastCollisionSequence = 0;
       challengeIndex = 0;
       challengeDone = false;
@@ -1026,6 +1045,9 @@ async function startApp() {
     container: $('.view-controls'),
     getMode: () => mode,
     getActive: () => mode === 'explore' && !playback.paused && !document.hidden,
+    getState: () => state,
+    getHornActive: () =>
+      mode === 'explore' && sessionRequested() && graphics.ready && playback.canSimulate,
     openModal,
   });
   lesson = learning.selected;
@@ -1056,7 +1078,6 @@ async function startApp() {
       state = initialState(state.locationId, selectedVessel);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       lastCollisionSequence = 0;
-      ensureScene(state.locationId);
       syncControls();
     },
     onNavigate: navigateSection,
@@ -1067,7 +1088,7 @@ async function startApp() {
       const { windSpeed, windDirection, currentSpeed, currentDirection } = selectedConditions();
       state = initialState(state.locationId, selectedVessel);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
-      ensureScene(state.locationId);
+      addFreeSailingTraffic(state);
       lastCollisionSequence = 0;
       setMode('explore');
       freeSailingStarted = true;
@@ -1079,7 +1100,6 @@ async function startApp() {
     onLocation: (id) => {
       state = initialState(id, selectedVessel);
       lastCollisionSequence = 0;
-      ensureScene(id);
       updateLocation();
       syncControls();
     },
@@ -1124,6 +1144,7 @@ async function startApp() {
     onChange: () => learning.placeCard(),
   });
   sceneCapture = mountSceneCapture({ getScene: () => scene, openModal, toast });
+  sceneLoading = mountSceneLoading({ onCancel: exitSession });
   mountTextSize($('#text-size-control'));
   observeTranslations(document.body);
   if (localeLoadError) toast('Language could not be loaded. Please try again.');

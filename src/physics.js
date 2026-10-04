@@ -5,6 +5,7 @@ export { depthAt } from './water-depth.js';
 import { createRigidBody, createWorldBodies, PLAYER_HULL, advanceFreeBodies, solveContacts, collisionStepLimit, separatedBeyond } from './collisions.js';
 import { MONOHULL, getVessel, vesselYawInertia, catamaranHullShape } from './vessels.js';
 import { advanceCatamaran } from './catamaran-physics.js';
+import { advanceFreeSailingTraffic } from './world/free-sailing-traffic.js';
 export const clamp = (v, min, max) => Math.max(min, Math.min(max, v));
 export const wrap = v => ((v % 360) + 360) % 360;
 export const angleDifference = (a, b) => ((a - b + 540) % 360 + 360) % 360 - 180;
@@ -222,8 +223,9 @@ function playerRigidBody(s){
 function integrateContacts(s,dt){
   const c=(s.currentDirection||0)*RAD,current={x:Math.sin(c)*(s.currentSpeed||0)*KNOT,z:-Math.cos(c)*(s.currentSpeed||0)*KNOT};
   const craft=s.worldBodies.filter(body=>body.visual?.type==='yacht'&&!body.grounded).map(body=>({body,x:body.x,z:body.z}));
+  advanceFreeSailingTraffic(s,dt);
   advanceFreeBodies(s.worldBodies,dt,current);
-  for(const {body,x,z} of craft)if(depthAt(body.x,body.z,s.locationId)<VESSEL.draft*(body.visual.scale??1)){body.x=x;body.z=z;body.vx=0;body.vz=0;body.yawRate=0;body.grounded=true;}
+  for(const {body,x,z} of craft)if(depthAt(body.x,body.z,s.locationId)<getVessel(body.visual.vesselId).draft*(body.visual.scale??1)){body.x=x;body.z=z;body.vx=0;body.vz=0;body.yawRate=0;body.grounded=true;}
   const player=playerRigidBody(s),bodies=[player,...s.worldBodies];
   for(const bodyId of Object.keys(s._contactEpisodes)){
     const body=s.worldBodies.find(body=>body.id===bodyId);

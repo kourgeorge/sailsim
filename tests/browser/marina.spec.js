@@ -23,7 +23,7 @@ test.describe('marina lesson flow', () => {
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto('./');
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'ready');
-    await expect(page.locator('#progress-label')).toHaveText('0 / 51');
+    await expect(page.locator('#progress-label')).toHaveText('0 / 52');
     for (const [index, steps] of [
       [42, 3],
       [43, 2],
@@ -101,11 +101,12 @@ test('marina targets render on the water and chart and clear on leaving lessons'
   const errors = [];
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('./');
-  await expect(page.locator('#scene')).toHaveAttribute('data-frames', /\d+/, { timeout: 90000 });
+  await expect(page.locator('#scene canvas')).toHaveCount(0);
   await select(page, 43);
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
-  await page.locator('#practice-toggle').click();
+  await expect(page.locator('body')).toHaveAttribute('data-session', 'active', { timeout: 90000 });
+  await page.locator('#play').click();
   await page.locator('[data-camera="chase"]').click();
   await expect(page.locator('#scene')).toHaveAttribute('data-training-cues', 'true');
   await page.screenshot({ path: testInfo.outputPath('marina-berth.png') });

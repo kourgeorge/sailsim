@@ -1,6 +1,7 @@
 import { createSailingAudio } from './controller.js';
 import { AUDIO_SOURCES, radioStation } from './radio.js';
 import { translate as t } from '../i18n/runtime.js';
+import { createVesselHorns } from '../world/vessel-horns.js';
 import './audio.css';
 
 const esc = (value) =>
@@ -12,9 +13,17 @@ const label = (value) => esc(t(value));
 const icon =
   '<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true"><path d="M11 5 6 9H3v6h3l5 4V5Z"/><g class="sound-waves"><path d="M15 8a6 6 0 0 1 0 8"/><path class="sound-wave-far" d="M18 5a10 10 0 0 1 0 14"/></g><path class="sound-muted" d="m16 9 6 6m0-6-6 6"/></svg>';
 
-export function mountSailingAudio({ container, getMode, getActive, openModal }) {
+export function mountSailingAudio({
+  container,
+  getMode,
+  getActive,
+  getState,
+  getHornActive,
+  openModal,
+}) {
   const controls = [];
   const audio = createSailingAudio({ onChange: update });
+  const horns = createVesselHorns();
   let previous = '';
   const volumeLevel = () => {
     const { musicEnabled, music } = audio.settings;
@@ -144,6 +153,9 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
     sync(gesture = false) {
       for (const { group } of controls) group.hidden = getMode() !== 'explore';
       audio.setActive(getActive(), { gesture, immediate: document.hidden });
+      const audible = getHornActive?.() && audio.settings.musicEnabled && audio.settings.music > 0;
+      if (audible && getState) audio.horn(horns.update(getState(), true));
+      else audio.stopHorns();
       update();
     },
   };

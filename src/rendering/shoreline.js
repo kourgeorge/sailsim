@@ -2,7 +2,8 @@ import * as THREE from 'three';
 import { islandHeight, shoreScale } from './geography.js';
 import { installHullWaterExclusion } from './hull-geometry.js';
 
-const SEGMENTS = 160;
+export const TERRAIN_SEGMENTS = 160;
+const SEGMENTS = TERRAIN_SEGMENTS;
 // Spend the existing terrain triangle budget at the waterline, instead of on
 // a square grid whose large edge triangles cut across the curved coast.
 const RADII = [

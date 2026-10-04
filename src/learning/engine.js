@@ -78,10 +78,10 @@ export function advanceAttempt(attempt,lesson,state,dt,progress){
  const departure=lesson.practice.setup.anchor===true&&attempt.index===0;
  if(state.anchor&&current.kind!=='anchor'&&!departure){invalidateAttempt(attempt,progress,'Anchor deployed before the stopping stage. Slow under control and restart.','early-anchor');return attempt;}
  if(lesson.practice.propulsion==='engine'){
-  if((state.mainHoist??state.sails)>.01||(state.jibHoist??state.sails)>.01){invalidateAttempt(attempt,progress,'Keep both sails lowered during marina practice. Restart the exercise.','sails-raised');return attempt;}
-  if(practiceGroundSpeed(state)>lesson.practice.maxSpeed){invalidateAttempt(attempt,progress,'Marina speed limit exceeded. Slow earlier and restart.','speed-limit');return attempt;}
+  if((state.mainHoist??state.sails)>.01||(state.jibHoist??state.sails)>.01){invalidateAttempt(attempt,progress,'Keep both sails lowered during engine practice. Restart the exercise.','sails-raised');return attempt;}
+  if(practiceGroundSpeed(state)>lesson.practice.maxSpeed){invalidateAttempt(attempt,progress,'Practice speed limit exceeded. Slow earlier and restart.','speed-limit');return attempt;}
   const area=lesson.practice.area;
-  if(area&&Math.hypot(state.x-area.x,state.z-area.z)>area.radius){invalidateAttempt(attempt,progress,'You left the marina practice area. Follow the marked route and restart.','practice-area');return attempt;}
+  if(area&&Math.hypot(state.x-area.x,state.z-area.z)>area.radius){invalidateAttempt(attempt,progress,'You left the practice area. Follow the marked route and restart.','practice-area');return attempt;}
  }else if((state.throttle??0)!==0){invalidateAttempt(attempt,progress,'This sailing exercise requires the engine in neutral. Restart under sail.','engine-engaged');return attempt;}
  const relative=windRelativeHeading(state),crossing=crossingKind(attempt.previousAngle,relative);
  if(relative===null){attempt.previousAngle=null;attempt.maneuver=null;attempt.maneuverSide=0;}

@@ -140,6 +140,9 @@ WORDS.marina=['Marina practice route','Ruta de práctica en la marina','Parcours
 NOTES.marina=['Follow the numbered targets in order. Keep clear of the dock fingers and other boats. A stopping target requires the correct position, heading, low ground speed, and neutral.','Sigue los objetivos numerados en orden. Evita los pantalanes y otros barcos. Para detenerte debes cumplir posición, rumbo, velocidad sobre el fondo baja y punto muerto.','Suivez les cibles numérotées dans l’ordre. Évitez les pontons et les autres bateaux. Un arrêt exige position, cap, faible vitesse fond et point mort.','Проходите пронумерованные цели по порядку. Не касайтесь причалов и других судов. Для остановки нужны заданные положение, курс, малая скорость относительно грунта и нейтраль.','עברו בין היעדים הממוספרים לפי הסדר. שמרו מרחק מהרציפים ומכלי שיט אחרים. עצירה דורשת מיקום וכיוון מתאימים, מהירות נמוכה ביחס לקרקע והילוך סרק.','اتبع الأهداف المرقمة بالترتيب. ابتعد عن الأرصفة والقوارب الأخرى. يتطلب التوقف موضعًا واتجاهًا صحيحين وسرعة منخفضة فوق القاع ووضع الحياد.'];
 const TOPICS = ['safety','yacht','controls','track','points','controls','points','helm','points','points','points','controls','points','tack','gybe','points','apparent','controls','stopping','weather','route','route','time','route','lookout','bearing','lights','weather','motor','anchor','anchor','anchor','person','distress','route','transfer','route','tide','track','weather','bearing','crosscheck','marina','marina','marina'];
 const C = {ink:'#173a4d',muted:'#416477',sea:'#e1e9dd',line:'#adc2be',blue:'#176aa1',teal:'#087d7b',amber:'#925800',red:'#b53743',green:'#14704c',white:'#fff',land:'#c6d4b5'};
+TOPICS[51]='catamaran';
+WORDS.catamaran=['Twin-engine catamaran','Catamarán de dos motores','Catamaran bimoteur','Двухмоторный катамаран','קטמרן בעל שני מנועים','كاتاماران بمحركين'];
+NOTES.catamaran=['With the helm centered, port ahead and starboard astern turn the bow to starboard. Watch drift, ease early, and finish with both engines neutral.','Con el timón centrado, babor avante y estribor atrás giran la proa a estribor. Vigila la deriva, reduce pronto y termina con ambos motores en punto muerto.','Barre au centre, bâbord en avant et tribord en arrière font tourner l’étrave à tribord. Surveillez la dérive, réduisez tôt et terminez avec les deux moteurs au point mort.','При руле прямо левый двигатель вперёд и правый назад поворачивают нос вправо. Следите за сносом, заранее уменьшайте тягу и завершайте на нейтрали обоих двигателей.','כשההגה ממורכז, מנוע שמאל קדימה ומנוע ימין אחורה מפנים את החרטום ימינה. עקבו אחר הסחיפה, הפחיתו כוח מוקדם וסיימו עם שני המנועים בסרק.','مع الدفة في الوسط، يدير محرك الميسرة للأمام ومحرك الميمنة للخلف المقدمة إلى الميمنة. راقب الانجراف وخفّض الدفع مبكرًا وأنهِ بوضع المحركين في الحياد.'];
 let figureSerial = 0;
 const escape = value => String(value ?? '').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 
@@ -186,7 +189,16 @@ export function renderTeachingFigure(lesson, lang='en') {
   const wind=()=>label(380,44,'wind',{size:18,max:48})+[280,380,480].map(x=>arrow(x,62,x,105,C.teal,3)).join('');
   let art='';
 
-  if(topic==='yacht') {
+  if(topic==='catamaran') {
+    art=label(380,45,'catamaran',{size:24,max:48});
+    art+=`<rect x="307" y="180" width="146" height="100" rx="12" fill="white" stroke="${C.blue}" stroke-width="3"/>`;
+    art+=boat(302,235,0,1.3)+boat(458,235,0,1.3);
+    art+=arrow(275,318,275,142,C.teal,5,'','port-ahead')+arrow(485,142,485,318,C.amber,5,'','starboard-astern');
+    art+=label(152,204,'port')+label(152,239,'ahead',{size:17,max:19});
+    art+=label(607,204,'starboard')+label(607,239,'astern',{size:17,max:19});
+    art+=arrowPath('M335 114A85 85 0 0 1 445 114',C.blue,4,'','catamaran-bow-turn');
+    art+=label(380,371,'bowRight',{size:19,max:52});
+  } else if(topic==='yacht') {
     art=`<path d="M146 249H593L551 285H195Z" fill="white" stroke="${C.blue}" stroke-width="3"/><path d="M350 98V248M350 110L497 222H350ZM337 126L180 224H337Z" fill="#fffdf4" stroke="${C.blue}" stroke-width="3"/><path d="M349 222H505M335 285L349 333H388L407 285M537 284L529 318" fill="${C.line}" stroke="${C.blue}" stroke-width="4"/>`;
     art+=line(190,248,120,202)+label(103,189,'bow');
     art+=line(563,262,639,216)+label(651,204,'stern');

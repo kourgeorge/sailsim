@@ -5,7 +5,7 @@ import {runScenario} from '../scripts/check-training-scenarios.mjs';
 import {initialState,apparentWind,angleDifference} from '../src/physics.js';
 
 test('all practical checkpoints are reachable through real physics and control inputs',()=>{
- const practical=lessons.filter(l=>l.practice);assert.equal(practical.length,22);
+ const practical=lessons.filter(l=>l.practice);assert.equal(practical.length,23);
  for(const lesson of practical){const r=runScenario(lesson);assert.equal(r.status,'passed',`${lesson.id} ${lesson.title}: ${JSON.stringify(r)}`);assert.equal(r.checkpoints.length,lesson.practice.steps.length);assert.ok(r.minDepth>=3,`${lesson.id} needs safe sea room`);assert.ok(r.seconds<1200);if(lesson.practice.steps.some(s=>s.kind==='tack'))assert.ok(r.crossings.some(c=>c.kind==='bow'));if(lesson.practice.steps.some(s=>s.kind==='gybe'))assert.ok(r.crossings.some(c=>c.kind==='stern'));}
 });
 test('coasting with sails down cannot demonstrate mainsail trim or reefing',()=>{

@@ -15,6 +15,7 @@ import { createHelmCamera } from './rendering/helm-camera.js';
 import { createHelmScreen } from './rendering/helm-screen.js';
 import { createRenderQuality, isMobileGraphicsDevice } from './rendering/quality.js';
 import { createSecretTaps } from './world/secret-taps.js';
+import { createFreeSailingFleet } from './rendering/free-sailing-fleet.js';
 
 export function createScene(
   container,
@@ -92,6 +93,7 @@ export function createScene(
   });
   const trainingCues = createTrainingCues(scene);
   const raceVisuals = createRaceVisuals(scene, materials);
+  const freeSailingFleet = createFreeSailingFleet(scene, materials);
   // Keep one transform root per physical hull; cloned fittings share GPU buffers.
   const vesselDefinitions = getWorldBodyDefinitions(location.id).filter(
     (body) => body.visual.type === 'yacht',
@@ -281,6 +283,8 @@ export function createScene(
     yacht.update(state, time);
     environment.excludeHullWater(yacht.group);
     raceVisuals.update(time);
+    freeSailingFleet.update(state, time);
+    container.dataset.trafficBoats = String(freeSailingFleet.count);
     container.dataset.raceBoats = String(raceVisuals.count);
     const worldBodies = new Map((state.worldBodies || []).map((body) => [body.id, body]));
     vessels.forEach(({ group, definition, tethers }, i) => {

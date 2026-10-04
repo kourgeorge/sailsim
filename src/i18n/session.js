@@ -1,5 +1,41 @@
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
+  'Loading simulation…': [
+    'Cargando la simulación…',
+    'Chargement de la simulation…',
+    'Загрузка симуляции…',
+    'טוענים את הסימולציה…',
+    'جارٍ تحميل المحاكاة…',
+  ],
+  'Preparing your boat and the sea.': [
+    'Preparando tu barco y el mar.',
+    'Préparation de votre bateau et de la mer.',
+    'Подготовка яхты и моря.',
+    'מכינים את הסירה ואת הים.',
+    'نجهّز قاربك والبحر.',
+  ],
+  'Could not load the simulation': [
+    'No se pudo cargar la simulación',
+    'Impossible de charger la simulation',
+    'Не удалось загрузить симуляцию',
+    'לא ניתן לטעון את הסימולציה',
+    'تعذّر تحميل المحاكاة',
+  ],
+  'Check your connection and reload the page.': [
+    'Comprueba tu conexión y vuelve a cargar la página.',
+    'Vérifiez votre connexion et rechargez la page.',
+    'Проверьте подключение и обновите страницу.',
+    'בדקו את החיבור וטענו מחדש את העמוד.',
+    'تحقّق من اتصالك وأعد تحميل الصفحة.',
+  ],
+  'Reload page': [
+    'Volver a cargar',
+    'Recharger la page',
+    'Обновить страницу',
+    'טעינה מחדש',
+    'إعادة تحميل الصفحة',
+  ],
+  Back: ['Volver', 'Retour', 'Назад', 'חזרה', 'رجوع'],
   'Live boat simulation': [
     'Simulación de navegación en vivo',
     'Simulation de navigation en direct',

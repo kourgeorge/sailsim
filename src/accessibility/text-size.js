@@ -69,14 +69,21 @@ export function mountTextSize(container) {
   // Text can wrap to additional rows. Reserve the measured dock/header height,
   // rather than covering the canvas or clipping larger labels in a fixed box.
   const measured = new Map();
+  const pending = new Map();
+  let measurementFrame = 0;
   const observer = new ResizeObserver(entries => {
     for (const entry of entries) {
       const property = measured.get(entry.target);
       const height = `${Math.ceil(entry.target.getBoundingClientRect().height)}px`;
       if (entry.target.getBoundingClientRect().height > 0 && property && document.documentElement.style.getPropertyValue(property) !== height) {
-        document.documentElement.style.setProperty(property, height);
+        pending.set(property, height);
       }
     }
+    if (pending.size && !measurementFrame) measurementFrame = requestAnimationFrame(() => {
+      measurementFrame = 0;
+      for (const [property, height] of pending) document.documentElement.style.setProperty(property, height);
+      pending.clear();
+    });
   });
   for (const [selector, property] of [
     ['.topbar', '--topbar-height'], ['.simulation-console', '--control-dock-height'],
@@ -89,6 +96,7 @@ export function mountTextSize(container) {
   }
   return {
     dispose() {
+      cancelAnimationFrame(measurementFrame);
       observer.disconnect();document.removeEventListener('pointerdown', outside);
       document.removeEventListener('keydown', escape);window.removeEventListener('sail:text-size', update);
       details.remove();
