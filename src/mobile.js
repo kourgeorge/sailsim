@@ -10,6 +10,9 @@ export function mountMobileLayout() {
   const cameraViews = views.querySelector('.camera-views');
   const cameraPlaceholder = document.createComment('camera toolbar position');
   cameraViews.before(cameraPlaceholder);
+  const soundControls = views.querySelector('.sound-control');
+  const soundPlaceholder = document.createComment('sound toolbar position');
+  soundControls.before(soundPlaceholder);
   const camera = document.createElement('select');
   camera.id = 'mobile-camera';
   camera.className = 'mobile-camera';
@@ -361,9 +364,12 @@ export function mountMobileLayout() {
     if (document.querySelector('#mobile-menu-title').textContent !== menuTitle) document.querySelector('#mobile-menu-title').textContent = menuTitle;
     if (immersive) {
       if (cameraViews.parentElement !== sessionTools) sessionTools.append(cameraViews, systemsButton, chartButton);
+      // The regular menu toolbar is hidden during a session; keep sound reachable.
+      if (soundControls.parentElement !== sessionTools) sessionTools.append(soundControls);
     } else {
       if (cameraViews.parentElement !== views) cameraPlaceholder.after(cameraViews);
       if (systemsButton.parentElement !== views) systemsPlaceholder.after(systemsButton);
+      if (soundControls.parentElement !== views) soundPlaceholder.after(soundControls);
       if (chartButton.parentElement === sessionTools) {
         if (mobile.matches) toolbar.insertBefore(chartButton, lessonButton);
         else moves.find(({node}) => node === chartButton).placeholder.after(chartButton);

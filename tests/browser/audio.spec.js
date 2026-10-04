@@ -93,7 +93,7 @@ test('free sailing plays audio, mutes layers independently, and suspends when pa
   expect(errors).toEqual([]);
 });
 
-test('mobile mute preferences survive reload and work with large RTL text', async ({
+test('mobile sound controls remain available while sailing and preserve preferences with large RTL text', async ({
   page,
 }, testInfo) => {
   await page.setViewportSize({ width: 390, height: 844 });
@@ -124,13 +124,38 @@ test('mobile mute preferences survive reload and work with large RTL text', asyn
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
   await page.locator('#mobile-menu-toggle').click();
+  for (const id of ['sound-settings', 'sound-options']) {
+    const button = page.locator(`#${id}`);
+    await expect(button).toBeInViewport({ ratio: 1 });
+    const box = await button.boundingBox();
+    expect(box.width).toBeGreaterThanOrEqual(44);
+    expect(box.height).toBeGreaterThanOrEqual(44);
+  }
+  await page.screenshot({ path: testInfo.outputPath('sound-menu-mobile-he-200.png') });
+  await page.locator('#sound-options').click();
+  await expect(page.locator('#mobile-menu')).toBeHidden();
+  await expect(page.locator('#sailing-audio-settings')).toBeVisible();
+  await expect(page.locator('#sound-source option')).toHaveCount(5);
+  await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('#sound-music-mute').click();
+  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'true');
+  await page.locator('#close-modal').click();
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
+  await page.locator('#mobile-menu-toggle').click();
+  await page.locator('#sound-settings').click();
+  await expect(page.locator('#mobile-menu')).toBeHidden();
+  await expect(page.locator('#sound-settings')).toHaveAttribute('aria-pressed', 'false');
+  await page.setViewportSize({ width: 1440, height: 1000 });
+  await expect(page.locator('.view-controls #sound-settings')).toBeVisible();
+  await expect(page.locator('.view-controls #sound-options')).toBeVisible();
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.locator('#mobile-menu-toggle').click();
+  await expect(page.locator('#sound-options')).toBeInViewport({ ratio: 1 });
   await page.locator('#session-exit').click();
   await page.locator('#cover-sound-options').click();
-  await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
-  await page.locator('#sound-sea-mute').click();
-  await page.locator('#close-modal').click();
-  await page.locator('#cover-start-free').click();
-  await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
+  await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-quiet')).not.toBeChecked();
 });
 
 test('the actual sound graph renders separate audible music and sea with smooth transitions', async ({
