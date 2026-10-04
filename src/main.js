@@ -985,6 +985,13 @@ async function startApp() {
     getState: () => state,
     lessons,
     getSelectedLesson: () => learning.selected,
+    getLessonPreview: (index) => learning.coverPreview(index),
+    getChallengePreview: (button) => {
+      if (button.dataset.sailingChallenge)
+        return adventures.preview(button.dataset.sailingChallenge);
+      if (button.dataset.raceCourse) return racing.preview(button.dataset.raceCourse);
+      return lab.preview(button.dataset.coverDrill);
+    },
     onLesson: (index) => learning.select(index),
     getSelectedVessel: () => selectedVessel,
     onVessel: (id) => {

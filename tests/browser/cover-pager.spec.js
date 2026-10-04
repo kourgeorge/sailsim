@@ -26,7 +26,7 @@ async function swipe(client, from, to, end = 'touchEnd') {
       ],
     });
   }
-  await client.send('Input.dispatchTouchEvent', { type: end, touchPoints: [] });
+  if (end) await client.send('Input.dispatchTouchEvent', { type: end, touchPoints: [] });
 }
 async function swipeCard(page, client, direction, end) {
   const title = page.locator('.section-page:not([hidden]) .scene-title h2');
@@ -145,6 +145,209 @@ test.describe('touch browsing', () => {
     const pager = await page.locator('.cover-pager').boundingBox();
     expect(lastButton.y + lastButton.height).toBeLessThan(pager.y);
     await page.screenshot({ path: '/tmp/sail-browse-large-rtl.png', animations: 'disabled' });
+  });
+
+  test('short swipes and swipes over the background advance in every section', async ({
+    page,
+    context,
+  }) => {
+    await page.goto('./?lang=en');
+    const client = await context.newCDPSession(page);
+    for (const [section, total] of [
+      ['learn', 51],
+      ['explore', 4],
+      ['challenge', 12],
+    ]) {
+      await page.locator(`button[data-section=${section}]`).tap();
+      await count(page, 1, total);
+      const title = page.locator('.section-page:not([hidden]) .scene-title h2');
+      await title.scrollIntoViewIfNeeded();
+      const bounds = await title.boundingBox();
+      const y = bounds.y + bounds.height / 2;
+      await swipe(client, { x: 270, y }, { x: 222, y: y + 16 });
+      await count(page, 2, total);
+
+      // The lower half of the mobile cover is mostly scenery, not a card.
+      await expect
+        .poll(() =>
+          page.evaluate(() => {
+            const target = document.elementFromPoint(250, 700);
+            return target?.id === 'section-cover';
+          }),
+        )
+        .toBe(true);
+      await swipe(client, { x: 280, y: 700 }, { x: 180, y: 716 });
+      await count(page, 3, total);
+      await swipe(client, { x: 180, y: 700 }, { x: 280, y: 710 });
+      await count(page, 2, total);
+    }
+  });
+
+  test('a horizontal swipe can finish diagonally or while the browser toolbar resizes', async ({
+    page,
+    context,
+  }) => {
+    await page.goto('./?lang=en');
+    const client = await context.newCDPSession(page);
+    const title = page.locator('.section-page:not([hidden]) .scene-title h2');
+    await title.scrollIntoViewIfNeeded();
+    const bounds = await title.boundingBox();
+    const y = bounds.y + bounds.height / 2;
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [{ x: 280, y, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: 220, y, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: 210, y: y + 55, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await count(page, 2, 51);
+
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [{ x: 280, y: 700, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: 220, y: 700, id: 1 }],
+    });
+    await page.setViewportSize({ width: 390, height: 800 });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: 180, y: 702, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await count(page, 3, 51);
+  });
+
+  test('the outgoing and incoming lessons slide together without disappearing', async ({
+    page,
+    context,
+  }) => {
+    await page.goto('./?lang=en');
+    const client = await context.newCDPSession(page);
+    const surface = page.locator('.section-page:not([hidden])');
+    const oldTitle = await page.locator('#scene-heading').textContent();
+    const bounds = await page.locator('#scene-heading').boundingBox();
+    const y = bounds.y + bounds.height / 2;
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchStart',
+      touchPoints: [{ x: 290, y, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: 230, y, id: 1 }],
+    });
+    await client.send('Input.dispatchTouchEvent', {
+      type: 'touchMove',
+      touchPoints: [{ x: 150, y, id: 1 }],
+    });
+    await expect
+      .poll(() => surface.evaluate((node) => new DOMMatrix(getComputedStyle(node).transform).m41))
+      .toBeCloseTo(-140);
+    const preview = page.locator('.cover-slide-preview');
+    const previewTitle = await preview.locator('.scene-title h2').textContent();
+    expect(previewTitle).not.toBe(oldTitle);
+    const previewBounds = await preview.boundingBox();
+    const currentBounds = await surface.boundingBox();
+    expect(previewBounds.x).toBeGreaterThan(0);
+    expect(previewBounds.x).toBeLessThan(390);
+    expect(previewBounds.x - currentBounds.x).toBeCloseTo(390, 0);
+    await page.screenshot({ path: '/tmp/sail-carousel-during-touch.png' });
+    await count(page, 1, 51);
+    await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+    await count(page, 2, 51);
+    await expect(page.locator('#scene-heading')).toHaveText(previewTitle);
+    await page.evaluate(() => {
+      for (const animation of document.getAnimations()) {
+        if (!animation.effect.target.matches('.is-sliding,.cover-slide-outgoing')) continue;
+        animation.pause();
+        animation.currentTime = 50;
+      }
+    });
+    const outgoing = page.locator('.cover-slide-outgoing');
+    await expect(outgoing.locator('.scene-title h2')).toHaveText(oldTitle);
+    await expect(page.locator('#scene-heading')).toHaveCount(1);
+    const oldBounds = await outgoing.boundingBox();
+    const newBounds = await surface.boundingBox();
+    expect(oldBounds.x + oldBounds.width).toBeGreaterThan(0);
+    expect(newBounds.x).toBeLessThan(390);
+    expect(newBounds.x - oldBounds.x).toBeCloseTo(390, 0);
+    await expect(outgoing).toHaveCSS('opacity', '1');
+    await expect(surface).toHaveCSS('opacity', '1');
+    await page.screenshot({ path: '/tmp/sail-carousel-mid-slide.png' });
+    await page.evaluate(() => {
+      for (const animation of document.getAnimations()) animation.play();
+    });
+    await expect(outgoing).toHaveCount(0);
+    await expect(surface).toHaveCSS('transform', 'none');
+
+    await swipe(client, { x: 250, y: 700 }, { x: 230, y: 700 });
+    await count(page, 2, 51);
+    await expect(surface).toHaveCSS('transform', 'none');
+  });
+
+  test('location and challenge previews match the final content and layout', async ({
+    page,
+    context,
+  }) => {
+    await page.goto('./?lang=en');
+    const client = await context.newCDPSession(page);
+    for (const [section, from, total] of [
+      ['explore', 1, 4],
+      ['challenge', 1, 12],
+      ['challenge', 5, 12],
+      ['challenge', 8, 12],
+      ['challenge', 11, 12],
+    ]) {
+      await page.locator(`button[data-section=${section}]`).tap();
+      if (section === 'challenge') {
+        await page.locator('.cover-section-browser > summary').tap();
+        await page
+          .locator(
+            '#cover-challenges [data-sailing-challenge], #cover-challenges [data-race-course], #cover-challenges [data-cover-drill], #cover-challenges [data-cover-buoys]',
+          )
+          .nth(from - 1)
+          .tap();
+      }
+      await count(page, from, total);
+      const surface = page.locator('.section-page:not([hidden])');
+      const heading = surface.locator('.scene-title h2');
+      await heading.scrollIntoViewIfNeeded();
+      const bounds = await heading.boundingBox();
+      const y = bounds.y + bounds.height / 2;
+      await swipe(client, { x: 290, y }, { x: 130, y: y + 8 }, null);
+      const preview = page.locator('.cover-slide-preview');
+      await expect(preview).toBeVisible();
+      const previewText = await preview.innerText();
+      const measure = (node) => {
+        const root = node.getBoundingClientRect();
+        return [
+          ...node.querySelectorAll(
+            '.scene-title h2, .section-detail-card, .vessel-copy, .vessel-chevron',
+          ),
+        ]
+          .filter((item) => item.getBoundingClientRect().width > 0)
+          .map((item) => {
+            const rect = item.getBoundingClientRect();
+            return [rect.x - root.x, rect.y - root.y, rect.width, rect.height].map(Math.round);
+          });
+      };
+      const previewLayout = await preview.evaluate(measure);
+      await count(page, from, total);
+      if (section === 'explore')
+        await page.screenshot({ path: '/tmp/sail-carousel-location-preview.png' });
+      await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
+      await count(page, from + 1, total);
+      await expect(page.locator('.cover-slide-layer')).toHaveCount(0);
+      expect(await surface.innerText()).toBe(previewText);
+      expect(await surface.evaluate(measure)).toEqual(previewLayout);
+    }
   });
 });
 

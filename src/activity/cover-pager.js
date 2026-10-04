@@ -1,9 +1,10 @@
 import './cover-pager.css';
+import { createCoverSlide } from './cover-slide.js';
 
 const interactive =
   'button,a,input,select,textarea,summary,[role="combobox"],[role="listbox"],[contenteditable="true"]';
 
-export function mountCoverPager({ container, cover, getPage, select, translate: t }) {
+export function mountCoverPager({ container, cover, getPage, getPreview, select, translate: t }) {
   const nav = document.createElement('nav');
   nav.className = 'cover-pager';
   nav.dataset.noTranslate = 'true';
@@ -16,21 +17,25 @@ export function mountCoverPager({ container, cover, getPage, select, translate: 
   next.querySelector('span').textContent = t('Next');
   nav.querySelector('.cover-swipe-hint').textContent = t('Swipe to browse');
   const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  const motion = createCoverSlide({ container, cover, reducedMotion });
   const pages = [...cover.querySelectorAll('[data-section-page]')];
   const rtl = () => document.documentElement.dir === 'rtl';
   let signature = '',
     drag = null,
-    animation = null;
+    selecting = false;
   const available = () => !cover.hidden && !cover.inert && !document.querySelector('dialog[open]');
   function sync() {
     const page = getPage();
     nav.hidden = !page;
     if (!page) {
       resetDrag();
+      motion.cancel();
       return;
     }
     const key = [page.kind, page.index, page.total, page.title, page.previous, page.next].join(':');
     if (key === signature) return;
+    resetDrag();
+    if (!selecting) motion.cancel();
     signature = key;
     previous.disabled = page.index === 0;
     next.disabled = page.index === page.total - 1;
@@ -49,29 +54,31 @@ export function mountCoverPager({ container, cover, getPage, select, translate: 
     nav.querySelector('.cover-page-track > span').style.transform =
       `scaleX(${(page.index + 1) / page.total})`;
   }
-  function reveal(surface, from) {
-    animation?.cancel();
-    if (reducedMotion.matches || !surface || surface.hidden) return;
-    animation = surface.animate(
-      [
-        { transform: `translateX(${from}px)`, opacity: 0.6 },
-        { transform: 'translateX(0)', opacity: 1 },
-      ],
-      { duration: 180, easing: 'ease-out' },
-    );
-  }
-  function move(step) {
+  function move(step, offset = 0) {
     const page = getPage();
     if (!available() || !page || page.index + step < 0 || page.index + step >= page.total)
       return false;
-    select(page.index + step);
-    cover.scrollTop = 0;
-    const lesson = cover.querySelector('#lesson-cover');
-    if (lesson) lesson.scrollTop = 0;
-    sync();
-    reveal(
-      pages.find((surface) => !surface.hidden),
-      step * (rtl() ? -24 : 24),
+    const surface = pages.find((page) => !page.hidden);
+    motion.slide(
+      surface,
+      {
+        offset,
+        direction: step * (rtl() ? -1 : 1),
+        width: cover.clientWidth,
+      },
+      () => {
+        selecting = true;
+        try {
+          select(page.index + step);
+          cover.scrollTop = 0;
+          const lesson = cover.querySelector('#lesson-cover');
+          if (lesson) lesson.scrollTop = 0;
+          sync();
+        } finally {
+          selecting = false;
+        }
+        return pages.find((page) => !page.hidden);
+      },
     );
     return true;
   }
@@ -100,78 +107,113 @@ export function mountCoverPager({ container, cover, getPage, select, translate: 
     drag = null;
     surface.style.transform = '';
     surface.classList.remove('is-swiping');
-    if (surface.hasPointerCapture(id)) surface.releasePointerCapture(id);
+    if (cover.hasPointerCapture(id)) cover.releasePointerCapture(id);
   }
-  for (const surface of pages) {
-    surface.addEventListener('pointerdown', (event) => {
-      if (!event.isPrimary) {
-        resetDrag();
-        return;
-      }
-      if (
-        event.pointerType === 'mouse' ||
-        event.button !== 0 ||
-        !available() ||
-        event.target.closest(interactive)
-      )
-        return;
-      // Leave browser edge gestures and text/control interactions available.
-      if (event.clientX < 18 || event.clientX > innerWidth - 18) return;
-      animation?.cancel();
-      drag = {
-        surface,
-        id: event.pointerId,
-        x: event.clientX,
-        y: event.clientY,
-        horizontal: false,
-      };
-    });
-    surface.addEventListener('pointermove', (event) => {
-      if (!drag || drag.id !== event.pointerId) return;
-      const dx = event.clientX - drag.x,
-        dy = event.clientY - drag.y;
-      if (!drag.horizontal) {
-        if (Math.max(Math.abs(dx), Math.abs(dy)) < 12) return;
-        if (Math.abs(dx) < Math.abs(dy) * 1.35) {
-          resetDrag();
-          return;
-        }
-        drag.horizontal = true;
-        surface.setPointerCapture(event.pointerId);
-        surface.classList.add('is-swiping');
-      }
-      if (!available()) {
-        resetDrag();
-        return;
-      }
-      if (event.cancelable) event.preventDefault();
-      if (!reducedMotion.matches)
-        surface.style.transform = `translateX(${Math.max(-48, Math.min(48, dx * 0.18))}px)`;
-    });
-    surface.addEventListener('pointerup', (event) => {
-      if (!drag || drag.id !== event.pointerId) return;
-      const dx = event.clientX - drag.x,
-        dy = event.clientY - drag.y;
-      const threshold = Math.max(40, Math.min(64, surface.clientWidth * 0.16));
-      const swipe =
-        drag.horizontal && Math.abs(dx) >= threshold && Math.abs(dx) > Math.abs(dy) * 1.35;
-      const offset = drag.horizontal ? Math.max(-48, Math.min(48, dx * 0.18)) : 0;
+  cover.addEventListener('pointerdown', (event) => {
+    if (!event.isPrimary) {
       resetDrag();
-      if (!swipe || !move((dx < 0 ? 1 : -1) * (rtl() ? -1 : 1))) {
-        if (offset) reveal(surface, offset);
+      motion.cancel();
+      return;
+    }
+    if (
+      event.pointerType === 'mouse' ||
+      event.button !== 0 ||
+      !available() ||
+      event.target.closest(`${interactive},.cover-section-browser`)
+    )
+      return;
+    // Leave browser edge gestures and text/control interactions available.
+    if (event.clientX < 18 || event.clientX > innerWidth - 18) return;
+    const surface = pages.find((page) => !page.hidden);
+    if (!surface) return;
+    motion.cancel();
+    drag = {
+      surface,
+      id: event.pointerId,
+      x: event.clientX,
+      y: event.clientY,
+      horizontal: false,
+      offset: 0,
+    };
+  });
+  cover.addEventListener('pointermove', (event) => {
+    if (!drag || drag.id !== event.pointerId) return;
+    const dx = event.clientX - drag.x,
+      dy = event.clientY - drag.y;
+    if (!drag.horizontal) {
+      if (Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
+      if (Math.abs(dy) > Math.abs(dx) * 1.25) {
+        resetDrag();
+        return;
       }
-    });
-    surface.addEventListener('pointercancel', (event) => {
-      if (drag?.id === event.pointerId) resetDrag();
-    });
-    surface.addEventListener('lostpointercapture', (event) => {
-      // Touch starts with implicit capture on the heading/text under the
-      // finger. Transferring it to the page must not cancel our own swipe.
-      if (event.target === surface && drag?.id === event.pointerId) resetDrag();
-    });
-  }
-  window.addEventListener('blur', resetDrag);
-  window.addEventListener('resize', resetDrag);
+      if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy) * 1.1) return;
+      drag.horizontal = true;
+      cover.setPointerCapture(event.pointerId);
+      drag.surface.classList.add('is-swiping');
+    }
+    if (!available()) {
+      resetDrag();
+      return;
+    }
+    if (event.cancelable) event.preventDefault();
+    const page = getPage();
+    const step = (dx < 0 ? 1 : -1) * (rtl() ? -1 : 1);
+    const canMove = page && page.index + step >= 0 && page.index + step < page.total;
+    drag.offset = canMove
+      ? Math.max(-cover.clientWidth, Math.min(cover.clientWidth, dx))
+      : Math.max(-40, Math.min(40, dx * 0.2));
+    if (!reducedMotion.matches) drag.surface.style.transform = `translateX(${drag.offset}px)`;
+    if (canMove)
+      motion.preview(drag.surface, () => getPreview(page.index + step), {
+        key: `${page.kind}:${page.index + step}`,
+        direction: step * (rtl() ? -1 : 1),
+        width: cover.clientWidth,
+        offset: drag.offset,
+      });
+    else motion.clearPreview();
+  });
+  cover.addEventListener('pointerup', (event) => {
+    if (!drag || drag.id !== event.pointerId) return;
+    const { surface } = drag;
+    const dx = event.clientX - drag.x;
+    const threshold = Math.max(28, Math.min(44, cover.clientWidth * 0.08));
+    // Once horizontal intent is established, allow a natural curved finish.
+    const swipe = drag.horizontal && Math.abs(dx) >= threshold;
+    const offset = drag.offset;
+    resetDrag();
+    if (!swipe || !move((dx < 0 ? 1 : -1) * (rtl() ? -1 : 1), offset)) {
+      motion.settle(surface, offset);
+    }
+  });
+  cover.addEventListener('pointercancel', (event) => {
+    if (drag?.id === event.pointerId) {
+      const { surface, offset } = drag;
+      resetDrag();
+      motion.settle(surface, offset);
+    }
+  });
+  cover.addEventListener('lostpointercapture', (event) => {
+    // Touch starts with implicit capture on the heading/text under the
+    // finger. Transferring it to the page must not cancel our own swipe.
+    if (event.target === cover && drag?.id === event.pointerId) {
+      const { surface, offset } = drag;
+      resetDrag();
+      motion.settle(surface, offset);
+    }
+  });
+  window.addEventListener('blur', () => {
+    resetDrag();
+    motion.cancel();
+  });
+  let viewportWidth = innerWidth;
+  window.addEventListener('resize', () => {
+    // Mobile browser toolbars can change the viewport height during a gesture.
+    if (innerWidth !== viewportWidth) {
+      resetDrag();
+      motion.cancel();
+    }
+    viewportWidth = innerWidth;
+  });
   new ResizeObserver(() => {
     if (nav.offsetHeight)
       container.style.setProperty('--cover-pager-height', `${nav.offsetHeight}px`);

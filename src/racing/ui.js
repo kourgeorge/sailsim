@@ -59,21 +59,21 @@ export function createRaceUI({
       .querySelectorAll('[data-sailing-challenge]')
       .forEach((button) => (button.onclick = () => onChallenge(button.dataset.sailingChallenge)));
   }
-  function briefing(id = selected) {
-    selected = id;
+  function briefing(id = selected, preview = false) {
     const course = RACE_COURSES.find((item) => item.id === id);
-    openBriefing(
-      `<section class="race-briefing" data-no-translate><div class="eyebrow">${tr('RACE BRIEFING')}</div><h2>${tr(course.name)}</h2><p>${tr(course.description)}</p><div class="race-setup"><span>${tr('Wind')}<bdi>${course.windSpeed} kn · ${course.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${course.currentSpeed} kn · ${course.currentDirection}°</bdi></span><span>${tr('Fleet')}<b>${tr('You + 3 bots')}</b></span></div><label class="race-difficulty" for="race-difficulty">${tr('Difficulty')}<select id="race-difficulty">${Object.entries(
-        RACE_DIFFICULTIES,
+    const content = `<section class="race-briefing" data-no-translate><div class="eyebrow">${tr('RACE BRIEFING')}</div><h2>${tr(course.name)}</h2><p>${tr(course.description)}</p><div class="race-setup"><span>${tr('Wind')}<bdi>${course.windSpeed} kn · ${course.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${course.currentSpeed} kn · ${course.currentDirection}°</bdi></span><span>${tr('Fleet')}<b>${tr('You + 3 bots')}</b></span></div><label class="race-difficulty" for="race-difficulty">${tr('Difficulty')}<select id="race-difficulty">${Object.entries(
+      RACE_DIFFICULTIES,
+    )
+      .map(
+        ([key, value]) =>
+          `<option value="${key}" ${key === difficulty ? 'selected' : ''}>${tr(value.name)}</option>`,
       )
-        .map(
-          ([key, value]) =>
-            `<option value="${key}" ${key === difficulty ? 'selected' : ''}>${tr(value.name)}</option>`,
-        )
-        .join(
-          '',
-        )}</select></label><p>${tr('Sail through the numbered rings in order. The last ring is the finish. Engines are disabled; wind and current stay fixed.')}</p><p>${tr('A five-second countdown holds the fleet at the start. Then steer and trim your sails. Pause stops every boat.')}</p><p id="race-best"></p><div class="training-actions"><button id="race-start" class="training-button primary">${tr('Start race')}</button><button id="race-back" class="training-button">${tr('All races')}</button></div></section>`,
-    );
+      .join(
+        '',
+      )}</select></label><p>${tr('Sail through the numbered rings in order. The last ring is the finish. Engines are disabled; wind and current stay fixed.')}</p><p>${tr('A five-second countdown holds the fleet at the start. Then steer and trim your sails. Pause stops every boat.')}</p><p id="race-best">${best(id) ? `${tr('Personal best')} · ${clock(best(id))}` : ''}</p><div class="training-actions"><button id="race-start" class="training-button primary">${tr('Start race')}</button><button id="race-back" class="training-button">${tr('All races')}</button></div></section>`;
+    if (preview) return content;
+    selected = id;
+    openBriefing(content);
     const updateBest = () => {
       const time = best();
       document.querySelector('#race-best').textContent = time
@@ -191,6 +191,7 @@ export function createRaceUI({
     mountLibrary,
     review: results,
     briefing,
+    preview: (id) => briefing(id, true),
     options,
     end() {
       if (!race) return;

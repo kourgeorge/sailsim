@@ -108,6 +108,38 @@ export function createLearning({
     renderLibrary();
     renderCard();
   }
+  function coverPreview(index) {
+    const l = lessons[index];
+    const copy = $('#lesson-cover').cloneNode(true);
+    const text = (selector, value) => (copy.querySelector(selector).textContent = value);
+    text('#lesson-level', t(levelFor(l).title));
+    text('#lesson-section', modules.find((m) => m.id === l.module).title);
+    text('#lesson-number', String(index + 1).padStart(2, '0'));
+    text('#scene-heading', l.title);
+    text('#scene-subheading', l.sub);
+    text(
+      '#lesson-training-type',
+      t(l.practice ? 'Live boat simulation' : 'Interactive seamanship'),
+    );
+    copy.querySelector('#lesson-training-type').dataset.type = l.practice ? 'live' : 'interactive';
+    text(
+      '#card-body',
+      t(
+        l.practice
+          ? 'Control the boat in a live, scored simulation.'
+          : 'Make decisions and complete tasks in a guided scenario.',
+      ),
+    );
+    copy.querySelector('#practice-debrief')?.parentElement.remove();
+    const record = progress.records[l.id];
+    if (record?.lastPracticeResult || record?.lastDecisionResult) {
+      const review = document.createElement('div');
+      review.className = 'training-actions';
+      review.innerHTML = `<button class="training-button">${esc(t('View debrief'))}</button>`;
+      copy.querySelector('#training-actions').append(review);
+    }
+    return copy;
+  }
   function placeCard() {
     const card = $('.lesson-card'),
       sidebar =
@@ -633,6 +665,7 @@ export function createLearning({
       return attempt?.status === 'active' || decision.active;
     },
     current,
+    coverPreview,
     select,
     refresh,
     briefing,

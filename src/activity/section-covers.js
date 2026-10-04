@@ -31,6 +31,8 @@ export function mountSectionCovers({
   getState,
   lessons,
   getSelectedLesson,
+  getLessonPreview,
+  getChallengePreview,
   onLesson,
   onNavigate,
   onCourse,
@@ -100,6 +102,27 @@ export function mountSectionCovers({
     container: simulator,
     cover: root,
     translate: t,
+    getPreview(index) {
+      const copy = root.querySelector(`[data-section-page="${lastSection}"]`).cloneNode(true);
+      if (lastSection === 'learn') copy.replaceChildren(getLessonPreview(index));
+      else if (lastSection === 'explore') {
+        const location = LOCATIONS[index];
+        const { windSpeed, windDirection, currentSpeed, currentDirection } = location.conditions;
+        copy.querySelector('#cover-location-name').textContent = t(location.title);
+        copy.querySelector('#cover-location-description').textContent = t(
+          waterDescription(location.id),
+        );
+        copy.querySelector('#cover-conditions').textContent =
+          `${t('Wind')} · ${windSpeed} kn · ${windDirection}°  /  ${t('Current')} · ${currentSpeed} kn · ${currentDirection}°`;
+        copy.querySelector('#cover-vessel').setAttribute('aria-expanded', 'false');
+        copy.querySelector('[role="listbox"]').hidden = true;
+      } else
+        arrangeBriefing(
+          copy.querySelector('#cover-challenge-briefing'),
+          getChallengePreview(challengeItems[index]),
+        );
+      return copy;
+    },
     getPage() {
       if (!lastSection || wasActive) return null;
       const items =
@@ -215,6 +238,20 @@ export function mountSectionCovers({
       catalog.querySelector('[data-sailing-challenge]')
     )?.click();
   }
+  function arrangeBriefing(target, content) {
+    target.innerHTML = content;
+    const section = target.firstElementChild;
+    const title = document.createElement('div');
+    title.className = 'scene-title';
+    const eyebrow = section.querySelector('.eyebrow');
+    const heading = section.querySelector('h2');
+    const description =
+      heading.nextElementSibling?.tagName === 'P' ? heading.nextElementSibling : null;
+    title.append(eyebrow, heading);
+    if (description) title.append(description);
+    section.classList.add('section-detail-card');
+    target.prepend(title);
+  }
   return {
     sync({ mode, active, reviewable = false }) {
       const section = sectionForMode(mode);
@@ -300,19 +337,8 @@ export function mountSectionCovers({
     },
     refreshChallenges,
     showChallengeBriefing(content) {
-      briefing.innerHTML = content;
       // Keep the same title-above-card composition as the lesson panel.
-      const section = briefing.firstElementChild;
-      const title = document.createElement('div');
-      title.className = 'scene-title';
-      const eyebrow = section.querySelector('.eyebrow');
-      const heading = section.querySelector('h2');
-      const description =
-        heading.nextElementSibling?.tagName === 'P' ? heading.nextElementSibling : null;
-      title.append(eyebrow, heading);
-      if (description) title.append(description);
-      section.classList.add('section-detail-card');
-      briefing.prepend(title);
+      arrangeBriefing(briefing, content);
       root.scrollTop = 0;
     },
     focus() {

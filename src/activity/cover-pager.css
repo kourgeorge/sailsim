@@ -104,15 +104,52 @@ html[dir='rtl'] .cover-page-track > span {
 .section-cover {
   overflow-x: hidden;
   padding-bottom: calc(var(--cover-pager-height, 60px) + 32px);
-}
-.section-page {
   touch-action: pan-y pinch-zoom;
 }
 .section-page.is-swiping {
   user-select: none;
   -webkit-user-select: none;
 }
+.section-page:is(.is-swiping, .is-sliding) {
+  will-change: transform;
+}
+.cover-slide-layer {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  overflow: hidden;
+  pointer-events: none;
+  contain: layout paint;
+}
+.cover-slide-preview {
+  overflow-wrap: anywhere;
+}
+.cover-slide-preview [data-cover-preview-id='cover-challenge-briefing'] {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+.cover-slide-preview
+  :is(
+    [data-cover-preview-id='card-eyebrow'],
+    [data-cover-preview-id='card-title'],
+    [data-cover-preview-id='next-lesson']
+  ) {
+  display: none !important;
+}
+.cover-slide-preview [data-cover-preview-id='card-body'] {
+  display: block !important;
+  color: #c2d7d9;
+  font-size: calc(13px * var(--text-scale, 1));
+  line-height: 1.7;
+}
 @media (max-width: 900px) {
+  .cover-slide-preview .lesson-cover {
+    height: auto !important;
+    padding: 0 !important;
+    overflow: visible !important;
+    justify-content: start !important;
+  }
   .cover-pager {
     width: min(360px, calc(100% - 32px));
     gap: 10px;

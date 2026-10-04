@@ -31,7 +31,8 @@
   outline: 2px solid #ecc78e;
   outline-offset: 3px;
 }
-#cover-vessel-value {
+#cover-vessel-value,
+.cover-slide-preview [data-cover-preview-id='cover-vessel-value'] {
   display: flex;
   align-items: center;
   gap: 12px;

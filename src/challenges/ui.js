@@ -58,13 +58,13 @@ export function createChallengeUI({
   panel.setAttribute('aria-label', t('Current challenge'));
   container.append(panel);
 
-  function briefing(id = selected) {
-    selected = id;
+  function briefing(id = selected, preview = false) {
     const d = getChallenge(id),
       best = readChallengeBest(storage, id);
-    openBriefing(
-      `<section class="challenge-briefing" data-no-translate><div class="eyebrow">${tr('CHALLENGE BRIEFING')}</div><h2>${tr(d.name)}</h2><p>${tr(d.description)}</p><p class="challenge-rule">${tr(d.instructions)}</p><div class="race-setup"><span>${tr('Wind')}<bdi>${d.conditions.windSpeed} kn · ${d.conditions.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${d.conditions.currentSpeed} kn · ${d.conditions.currentDirection}°</bdi></span><span>${tr('Time limit')}<bdi>${clock(d.timeLimit)}</bdi></span></div><p>${tr(d.engine ? 'Engine available. Sails start lowered.' : 'Sails only. The engine is disabled.')}</p><p>${tr('Wind and current stay fixed. Grounding or hull contact ends the attempt.')}</p><div class="challenge-medal-targets"><span>● ${tr('Gold')} <bdi>85+</bdi></span><span>● ${tr('Silver')} <bdi>65+</bdi></span><span>● ${tr('Bronze')} <bdi>1+</bdi></span></div><p>${tr('Complete the objective to earn a medal. Faster finishes score higher; treasure hints cost 10 points each.')}</p><p>${tr('Gold pace')} <bdi>${clock(d.goldTime)}</bdi> · ${tr('Silver pace')} <bdi>${clock(d.silverTime)}</bdi></p>${best ? `<p class="challenge-best">${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi></p>` : ''}<div class="training-actions"><button id="challenge-start" class="training-button primary">${tr('Start challenge')}</button><button id="challenge-library" class="training-button">${tr('All challenges')}</button></div></section>`,
-    );
+    const content = `<section class="challenge-briefing" data-no-translate><div class="eyebrow">${tr('CHALLENGE BRIEFING')}</div><h2>${tr(d.name)}</h2><p>${tr(d.description)}</p><p class="challenge-rule">${tr(d.instructions)}</p><div class="race-setup"><span>${tr('Wind')}<bdi>${d.conditions.windSpeed} kn · ${d.conditions.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${d.conditions.currentSpeed} kn · ${d.conditions.currentDirection}°</bdi></span><span>${tr('Time limit')}<bdi>${clock(d.timeLimit)}</bdi></span></div><p>${tr(d.engine ? 'Engine available. Sails start lowered.' : 'Sails only. The engine is disabled.')}</p><p>${tr('Wind and current stay fixed. Grounding or hull contact ends the attempt.')}</p><div class="challenge-medal-targets"><span>● ${tr('Gold')} <bdi>85+</bdi></span><span>● ${tr('Silver')} <bdi>65+</bdi></span><span>● ${tr('Bronze')} <bdi>1+</bdi></span></div><p>${tr('Complete the objective to earn a medal. Faster finishes score higher; treasure hints cost 10 points each.')}</p><p>${tr('Gold pace')} <bdi>${clock(d.goldTime)}</bdi> · ${tr('Silver pace')} <bdi>${clock(d.silverTime)}</bdi></p>${best ? `<p class="challenge-best">${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi></p>` : ''}<div class="training-actions"><button id="challenge-start" class="training-button primary">${tr('Start challenge')}</button><button id="challenge-library" class="training-button">${tr('All challenges')}</button></div></section>`;
+    if (preview) return content;
+    selected = id;
+    openBriefing(content);
     document.querySelector('#challenge-start').onclick = start;
     document.querySelector('#challenge-library').onclick = onLibrary;
   }
@@ -207,6 +207,7 @@ export function createChallengeUI({
 
   return {
     briefing,
+    preview: (id) => briefing(id, true),
     end,
     review: results,
     restart: start,
