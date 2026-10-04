@@ -13,7 +13,7 @@ export const HOLD_KEYS={
  KeyW:{label:'W',control:'throttle',rate:.5,min:-1,max:1},
  KeyS:{label:'S',control:'throttle',rate:-.5,min:-1,max:1},
 };
-export const PRESS_KEYS={Space:'play',KeyC:'center',KeyN:'neutral',KeyH:'sails',KeyR:'reef',KeyL:'anchor',KeyM:'chart',KeyK:'keys'};
+export const PRESS_KEYS={Space:'play',KeyC:'center',KeyN:'neutral',KeyH:'sails',KeyR:'reef',KeyL:'anchor',KeyM:'chart',KeyK:'keys',KeyB:'horn'};
 
 /** Advance every held control by dt seconds. Returns true when something moved. */
 export function applyHeldKeys(state,held,dt,applyControlPatch){
@@ -27,7 +27,7 @@ const SHORTCUTS=[
  ['← →','Steer port / starboard'],['C','Center the helm'],
  ['↑ ↓','Mainsheet in / out'],['Q A','Headsail sheet in / out'],
  ['W S','Engine ahead / astern'],['N','Engine neutral'],
- ['H','Raise or lower sails'],['R','Reef'],['L','Anchor: let go or weigh'],
+ ['B','Sound horn (Free sailing)'],['H','Raise or lower sails'],['R','Reef'],['L','Anchor: let go or weigh'],
  ['Space','Pause / sail'],['M','Open chart'],['K','Open this help'],
 ];
 
@@ -50,7 +50,7 @@ export function decorateControls(root=document){
  }
  const jib=root.querySelector('.cockpit-jib-control');
  if(jib&&!jib.querySelector('.control-hint')){const hint=document.createElement('div');hint.className='control-hint';for(const word of ['In','Out']){const span=document.createElement('span');span.textContent=t(word);hint.append(span);}jib.append(hint);}
- inside('#center-helm','C','C');inside('#engine-neutral','N','N');
+ inside('#boat-horn','B','B');inside('#center-helm','C','C');inside('#engine-neutral','N','N');
  inside('#sails','H','H');inside('#reef','R','R');inside('#anchor','L','L');
  for(const [id,label] of [['#rudder','ArrowLeft ArrowRight'],['#trim','ArrowUp ArrowDown'],['#cockpit-jib-sheet','Q A'],['#engine-throttle','W S']])root.querySelector(id)?.setAttribute('aria-keyshortcuts',label);
 }

@@ -1,5 +1,41 @@
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
+  Horn: ['Bocina', 'Avertisseur', 'Гудок', 'צופר', 'البوق'],
+  'Horn · muted': [
+    'Bocina · silenciada',
+    'Avertisseur · muet',
+    'Гудок · без звука',
+    'צופר · מושתק',
+    'البوق · مكتوم',
+  ],
+  'Sound one short blast': [
+    'Dar una pitada corta',
+    'Émettre un son bref',
+    'Подать один короткий гудок',
+    'השמעת צפירה קצרה אחת',
+    'إطلاق نفخة قصيرة واحدة',
+  ],
+  'Sound horn (Free sailing)': [
+    'Tocar la bocina (Navegación libre)',
+    'Actionner l’avertisseur (Navigation libre)',
+    'Подать гудок (свободное плавание)',
+    'השמעת צופר (שיט חופשי)',
+    'إطلاق البوق (الإبحار الحر)',
+  ],
+  'Unmute sound to use the horn.': [
+    'Activa el sonido para usar la bocina.',
+    'Rétablissez le son pour utiliser l’avertisseur.',
+    'Включите звук, чтобы использовать гудок.',
+    'בטלו את השתקת הצליל כדי להשתמש בצופר.',
+    'ألغِ كتم الصوت لاستخدام البوق.',
+  ],
+  'Resume sailing to sound the horn.': [
+    'Reanuda la navegación para tocar la bocina.',
+    'Reprenez la navigation pour actionner l’avertisseur.',
+    'Продолжите плавание, чтобы подать гудок.',
+    'המשיכו בשיט כדי להשמיע את הצופר.',
+    'استأنف الإبحار لإطلاق البوق.',
+  ],
   waves: ['olas', 'vagues', 'волны', 'גלים', 'أمواج'],
   'Loading sound…': [
     'Cargando sonido…',

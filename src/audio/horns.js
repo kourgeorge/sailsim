@@ -2,7 +2,7 @@
 // The large ship has a low two-tone voice; small boats use brighter reeds.
 export function hornSamples(voice, signal, sampleRate) {
   const ship = voice === 'ship';
-  const blast = signal === 'warning' ? 1 : ship ? 1.2 : 0.45;
+  const blast = signal === 'warning' || signal === 'short' ? 1 : ship ? 1.2 : 0.45;
   const gap = 0.22,
     count = signal === 'warning' ? 5 : 1;
   const data = new Float32Array(Math.ceil((count * (blast + gap) + 0.15) * sampleRate));
@@ -54,6 +54,7 @@ export function createHornPlayer(context, output) {
       };
       active.set(source, { gain, attenuation: event.gain * 0.65 });
       source.start();
+      return source;
     },
     setVolume(volume) {
       for (const { gain, attenuation } of active.values()) {

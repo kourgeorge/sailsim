@@ -646,6 +646,7 @@ async function startApp() {
     sails: () => pressButton('#sails'),
     reef: () => pressButton('#reef'),
     anchor: () => pressButton('#anchor'),
+    horn: () => pressButton('#boat-horn'),
     chart: openChart,
     keys: () => $('#help').click(),
   };
@@ -678,7 +679,7 @@ async function startApp() {
     if (
       !cockpitEnabled() &&
       (HOLD_KEYS[e.code] ||
-        ['center', 'neutral', 'sails', 'reef', 'anchor'].includes(PRESS_KEYS[e.code]))
+        ['center', 'neutral', 'sails', 'reef', 'anchor', 'horn'].includes(PRESS_KEYS[e.code]))
     ) {
       keys.clear();
       return;
@@ -1043,6 +1044,7 @@ async function startApp() {
   mountSimulationControls();
   sailingAudio = mountSailingAudio({
     container: $('.view-controls'),
+    hornButton: $('#boat-horn'),
     getMode: () => mode,
     getActive: () => mode === 'explore' && !playback.paused && !document.hidden,
     getState: () => state,

@@ -15,6 +15,7 @@ const icon =
 
 export function mountSailingAudio({
   container,
+  hornButton,
   getMode,
   getActive,
   getState,
@@ -25,10 +26,53 @@ export function mountSailingAudio({
   const audio = createSailingAudio({ onChange: update });
   const horns = createVesselHorns();
   let previous = '';
+  let previousHorn = '';
+  let hornSounding = false;
   const volumeLevel = () => {
     const { musicEnabled, music } = audio.settings;
     return !musicEnabled || music <= 0 ? 'mute' : music > 0.5 ? 'high' : 'medium';
   };
+  const canSoundHorn = () => getMode() === 'explore' && getActive() && getHornActive?.();
+  function updateHorn() {
+    if (!hornButton) return;
+    const muted = volumeLevel() === 'mute';
+    const available = canSoundHorn();
+    const key = JSON.stringify([getMode(), available, muted, hornSounding, audio.state]);
+    if (key === previousHorn) return;
+    previousHorn = key;
+    hornButton.hidden = getMode() !== 'explore';
+    hornButton.disabled = !available || muted || hornSounding || audio.state === 'unavailable';
+    hornButton.dataset.sounding = String(hornSounding);
+    hornButton.querySelector('span').textContent = t(muted ? 'Horn · muted' : 'Horn');
+    const description = t(
+      muted
+        ? 'Unmute sound to use the horn.'
+        : audio.state === 'unavailable'
+          ? 'Background audio is unavailable in this browser.'
+          : !available
+            ? 'Resume sailing to sound the horn.'
+            : 'Sound one short blast',
+    );
+    hornButton.title = description;
+    hornButton.setAttribute('aria-label', `${t('Horn')}. ${description}`);
+  }
+  async function soundHorn() {
+    if (!canSoundHorn() || volumeLevel() === 'mute' || hornSounding) return;
+    hornSounding = true;
+    updateHorn();
+    try {
+      const source = await audio.horn(
+        { voice: 'boat', signal: 'short', gain: 1, pan: 0 },
+        { gesture: true },
+      );
+      if (source)
+        await new Promise((resolve) => source.addEventListener('ended', resolve, { once: true }));
+    } finally {
+      hornSounding = false;
+      updateHorn();
+    }
+  }
+  if (hornButton) hornButton.onclick = soundHorn;
   function setVolume(percent) {
     // Keep the last audible setting so the menu's mute button can restore it.
     audio.setSettings({
@@ -55,6 +99,7 @@ export function mountSailingAudio({
     update();
   }
   function update() {
+    updateHorn();
     const { musicEnabled, music, musicSource } = audio.settings;
     const state = audio.state;
     const sourceState = audio.sourceState;

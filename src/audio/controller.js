@@ -36,6 +36,11 @@ export function createSailingAudio({
   let active = false,
     unavailable = false,
     disposed = false;
+  let hornGeneration = 0;
+  function stopHorns() {
+    hornGeneration++;
+    horns?.stop();
+  }
   const audible = () => settings.musicEnabled && settings.music > 0;
   const wanted = () => active && audible();
   const ramp = (parameter, value, seconds) => {
@@ -106,7 +111,7 @@ export function createSailingAudio({
       }
     } else {
       player?.stop();
-      horns?.stop();
+      stopHorns();
       if (context) {
         ramp(output.gain, 0, immediate ? 0 : 0.6);
         const suspend = () => {
@@ -154,19 +159,26 @@ export function createSailingAudio({
     retry() {
       apply({ gesture: true, retrySource: ['error', 'blocked'].includes(player?.state) });
     },
-    horn(event) {
-      if (!event || !wanted() || context?.state !== 'running') return;
-      horns ||= createHornPlayer(context, output);
-      horns.play(event, settings.music);
+    horn(event, { gesture = false } = {}) {
+      if (!event || disposed || !wanted()) return;
+      const generation = hornGeneration;
+      if (gesture) apply({ gesture: true });
+      const play = () => {
+        if (disposed || generation !== hornGeneration || !wanted() || context?.state !== 'running')
+          return;
+        horns ||= createHornPlayer(context, output);
+        return horns.play(event, settings.music);
+      };
+      // A player's tap may need to unlock mobile audio. Never replay that tap
+      // after a pause, mute, or exit while resume() was pending.
+      return gesture && resumePromise ? resumePromise.then(play) : play();
     },
-    stopHorns() {
-      horns?.stop();
-    },
+    stopHorns,
     dispose() {
       disposed = true;
       clearTimeout(suspendTimer);
       player?.dispose();
-      horns?.stop();
+      stopHorns();
       sourceGain?.disconnect();
       output?.disconnect();
       if (context) {

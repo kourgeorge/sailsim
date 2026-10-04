@@ -52,6 +52,10 @@ export function mountSectionCovers({
   const sectionSidebar = document.createElement('div');
   sectionSidebar.className = 'section-sidebar';
   sectionSidebar.innerHTML = `<div class="sidebar-heading"><div class="eyebrow" id="section-sidebar-eyebrow"></div><h1 id="section-sidebar-title"></h1><p id="section-sidebar-description"></p></div><div class="lesson-list section-group-list"><div data-sidebar-page="explore"><details class="course-module" open><summary><span>${tr('Change location')}</span><small>${LOCATIONS.length}</small></summary><div class="destination-choices">${LOCATIONS.map((location, index) => `<button class="destination-choice" data-cover-location="${location.id}" aria-pressed="false">${destinationPreview(location)}<span class="destination-number" aria-hidden="true">0${index + 1}</span><span class="destination-selected" aria-hidden="true">✓</span><span class="destination-copy"><strong>${tr(location.title)}</strong><small>${tr(waterDescription(location.id))}</small></span></button>`).join('')}</div></details></div><div id="cover-challenges" data-sidebar-page="challenge"></div></div>`;
+  // Decode the preloaded maps while their cards are still hidden, without
+  // blocking browsing or initializing the simulation.
+  for (const image of sectionSidebar.querySelectorAll('.destination-image'))
+    image.decode().catch(() => {});
   sidebar.append(sectionSidebar);
   const courseButton = document.createElement('button');
   courseButton.id = 'cover-course';
