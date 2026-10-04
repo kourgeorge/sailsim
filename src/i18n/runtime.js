@@ -53,7 +53,7 @@ export function applyCourseLocale(payload,lessons,modules){
  for(const m of modules)Object.assign(m,payload.modules[m.id]);
  for(const l of lessons){const tr=payload.lessons[l.id];for(const key of ['title','concepts','observe','mistake','transfer'])l[key]=tr[key];l.quiz.forEach((q,i)=>{q.prompt=tr.quiz[i].prompt;q.options=tr.quiz[i].options;q.explanation=tr.quiz[i].explanation;});
   if(l.practice){l.practice.debrief=tr.practice.debrief;l.practice.steps.forEach((s,i)=>{s.label=tr.practice.steps[i].label;if(s.hint)s.hint=tr.practice.steps[i].hint;});}
-  l.sub=modules.find(m=>m.id===l.module).outcome;l.body=l.concepts[0];l.goal=l.practice?l.practice.steps[0].label:translate('Read the briefing, then answer both knowledge questions.');l.tip=l.observe[0];
+  l.sub=modules.find(m=>m.id===l.module).outcome;l.body=l.concepts[0];l.goal=l.practice?l.practice.steps[0].label:translate('Read the briefing, then answer the knowledge questions.');l.tip=l.observe[0];
  }
 }
 async function loadLanguage(code,lessons,modules){

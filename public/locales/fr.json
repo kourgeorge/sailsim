@@ -163,11 +163,14 @@
       "concepts": [
         "Le cap est la direction de l’étrave, mesurée dans le sens horaire depuis le nord : 000° nord, 090° est, 180° sud, 270° ouest. La vitesse est affichée en nœuds ; un nœud correspond à un mille marin par heure.",
         "L’écran multifonction derrière la roue et le tableau de bord sous les commandes affichent les mêmes mesures en direct. Le vent relatif à l’eau indique la provenance du vent par rapport à l’eau en mouvement ; son angle est mesuré depuis l’étrave. La profondeur estime la hauteur d’eau, pas la marge sous la quille.",
-        "Le courant et la dérive peuvent faire différer la route fond du cap, et la vitesse fond de la vitesse surface. Comparez ces mesures sur le tableau de bord. Vous pouvez agrandir l’affichage pour faciliter la lecture."
+        "Le courant et la dérive peuvent faire différer la route fond du cap, et la vitesse fond de la vitesse surface. Comparez ces mesures sur le tableau de bord. Vous pouvez agrandir l’affichage pour faciliter la lecture.",
+        "L’application réunit un compas et un indicateur de vent sur un même cadran. Le nord reste en haut, l’est à droite, le sud en bas et l’ouest à gauche, même si le bateau ou la caméra tourne. Pour lire votre cap, repérez la direction de l’étrave du symbole blanc du bateau sur la graduation du compas.",
+        "La flèche dorée indique d’où vient le vent relatif à l’eau. Le secteur ombré non navigable entoure cette provenance : il marque les caps trop proches du vent pour avancer à la voile. Dans cet exemple, le bateau blanc pointe vers le nord-est, au 045°, tandis que la flèche et le secteur indiquent le nord-ouest, au 315°. La valeur en nœuds sous le cadran est la vitesse du vent."
       ],
       "observe": [
         "Ouvrez Barre ou Cockpit et comparez l’écran multifonction derrière la roue au tableau de bord sous les commandes.",
-        "Sélectionnez Carte et repérez le symbole du voilier et la flèche du nord."
+        "Sélectionnez Carte et repérez le symbole du voilier et la flèche du nord.",
+        "Repérez le compas flottant. Identifiez le nord, lisez le cap du bateau blanc, puis la flèche dorée indiquant la provenance du vent. Ce sont deux directions distinctes."
       ],
       "mistake": "Lire la profondeur comme une marge garantie sous la quille, ou considérer le cap comme une route fond garantie.",
       "quiz": [
@@ -188,6 +191,15 @@
             "3 milles marins"
           ],
           "explanation": "Distance = vitesse × temps. Six milles marins par heure pendant une demi-heure donnent trois milles marins."
+        },
+        {
+          "prompt": "Sur le compas illustré de l’application, l’étrave blanche pointe vers le 045° et la flèche dorée vers le 315°. Quel est votre cap ?",
+          "options": [
+            "045° — lire l’étrave blanche",
+            "315° — lire la flèche dorée",
+            "135° — suivre l’écoulement de l’air"
+          ],
+          "explanation": "Le cap se lit à l’étrave du bateau blanc : 045°. La flèche dorée donne la provenance du vent, au 315°. Ni l’indicateur de vent ni le secteur ombré ne désignent un cap à suivre."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -208,11 +220,14 @@
       "concepts": [
         "Un vent de nord-ouest vient du nord-ouest et souffle vers le sud-est. Le côté au vent est vers sa provenance ; le côté sous le vent est à l’opposé.",
         "Les réglages météo décrivent le vent par rapport au sol fixe. Soustrayez le vecteur courant pour obtenir le vent relatif à l’eau en mouvement : c’est ici la référence des allures. Le vent apparent est l’écoulement d’air relatif au voilier en mouvement. Vérifiez toujours la référence utilisée par un instrument pour le « vent réel ».",
-        "La zone interdite est le secteur trop proche du vent pour que les voiles propulsent le bateau. Sa limite dépend du bateau et des conditions ; ce simulateur utilise 38° de chaque côté du vent relatif à l’eau. En cas de calme relatif à l’eau, sa direction et son angle sont indéfinis."
+        "La zone interdite est le secteur trop proche du vent pour que les voiles propulsent le bateau. Sa limite dépend du bateau et des conditions ; ce simulateur utilise 38° de chaque côté du vent relatif à l’eau. En cas de calme relatif à l’eau, sa direction et son angle sont indéfinis.",
+        "Lisez l’indicateur doré de l’application comme une girouette : sa pointe indique la provenance du vent. Les flèches d’écoulement des schémas généraux montrent l’air s’éloignant de sa provenance ; elles pointent donc dans le sens opposé. Avec un vent du nord-ouest, l’indicateur du compas pointe vers le 315° et l’air se déplace vers le 135°. Le secteur ombré non navigable reste du côté d’où vient le vent.",
+        "Sur le compas illustré, le vent relatif à l’eau vient du 315° et le bateau suit le cap 045°. L’écart est de 90° : c’est le vent de travers. Tourner l’étrave vers le 315° la placerait dans le secteur ombré non navigable. Si le vent relatif à l’eau reste constant, tourner le bateau fait pivoter son symbole blanc ; la flèche dorée et le secteur gardent la même direction sur le compas."
       ],
       "observe": [
         "Sans courant et avec un vent venant du 315°, comparez les caps 315°, 045° et 135° au compas.",
-        "Le cap 045° place le vent approximativement par le travers."
+        "Le cap 045° place le vent approximativement par le travers.",
+        "Sur le compas de l’application, comparez l’étrave blanche au secteur ombré. Dites d’où vient le vent et vers où l’air se déplace avant de choisir un cap."
       ],
       "mistake": "Interpréter la flèche comme la destination du vent plutôt que sa provenance.",
       "quiz": [
@@ -233,6 +248,15 @@
             "Les voiles ne peuvent pas produire une propulsion efficace dans cette direction"
           ],
           "explanation": "Il faut naviguer hors de la zone non navigable et virer de bord pour progresser au vent."
+        },
+        {
+          "prompt": "Pourquoi la flèche dorée et le secteur ombré non navigable de l’application indiquent-ils tous deux le 315° dans cet exemple ?",
+          "options": [
+            "Ils vous indiquent de mettre le cap au 315°",
+            "L’air se déplace vers le 315°",
+            "Tous deux indiquent la provenance du vent ; l’air se déplace vers le 135°"
+          ],
+          "explanation": "L’indicateur montre un vent venant du 315° et le secteur marque les caps trop proches de cette provenance. L’air se déplace vers le 135°. Le bateau blanc au cap 045° est en dehors du secteur, au travers."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."

@@ -100,14 +100,20 @@ test('free sailing plays audio, mutes music, and suspends when paused or hidden'
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   await expect(page.locator('#sound-music')).toHaveValue('0');
   await expect(page.locator('#sound-music')).toBeEnabled();
-  await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
+  await expect
+    .poll(() => page.evaluate(() => window.audioContexts[0].loops.every((loop) => loop.ended)))
+    .toBe(true);
+  expect(await page.evaluate(() => window.audioContexts[0].state)).toBe('running');
   await page.getByRole('button', { name: 'Unmute sound', exact: true }).click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
   await expect(page.locator('#sound-music')).toHaveValue('80');
   await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
   await page.locator('#sound-music').fill('0');
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'mute');
-  await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
+  await expect
+    .poll(() => page.evaluate(() => window.audioContexts[0].loops.every((loop) => loop.ended)))
+    .toBe(true);
+  expect(await page.evaluate(() => window.audioContexts[0].state)).toBe('running');
   await page.locator('#sound-music').fill('32');
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'false');
@@ -167,7 +173,8 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await expect(page.locator('#cover-sound')).toHaveAttribute('data-volume-level', 'mute');
   await page.locator('#cover-start-free').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
-  expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
+  expect(await page.evaluate(() => window.audioContexts.length)).toBe(1);
+  expect(await page.evaluate(() => window.audioContexts[0].loops?.length || 0)).toBe(0);
   await page.locator('#mobile-menu-toggle').click();
   for (const id of ['sound-settings', 'sound-options']) {
     const button = page.locator(`#${id}`);

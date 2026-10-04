@@ -2,6 +2,7 @@ import { createAudioPlayer, audioSource, musicSource } from './radio.js';
 import { createHornPlayer } from './horns.js';
 
 const STORAGE_KEY = 'sail-audio-v1';
+const HORN_VOLUME = 0.45;
 const DEFAULTS = {
   musicEnabled: true,
   music: 0.45,
@@ -42,7 +43,6 @@ export function createSailingAudio({
     horns?.stop();
   }
   const audible = () => settings.musicEnabled && settings.music > 0;
-  const wanted = () => active && audible();
   const ramp = (parameter, value, seconds) => {
     const now = context.currentTime;
     if (parameter.cancelAndHoldAtTime) parameter.cancelAndHoldAtTime(now);
@@ -53,14 +53,13 @@ export function createSailingAudio({
     parameter.linearRampToValueAtTime(value, now + seconds);
   };
   function levels() {
-    horns?.setVolume(settings.music);
     if (!sourceGain) return;
     ramp(sourceGain.gain, audible() && player?.state === 'playing' ? settings.music : 0, 0.25);
   }
   function apply({ gesture = false, immediate = false, retrySource = false } = {}) {
     clearTimeout(suspendTimer);
     if (disposed) return;
-    if (wanted()) {
+    if (active) {
       if (!context && gesture && !unavailable) {
         try {
           context = createContext();
@@ -93,7 +92,10 @@ export function createSailingAudio({
         }
       }
       if (!context) return;
-      player.start(audioSource(settings.musicSource), { retry: retrySource });
+      // Music controls only affect the background source. Keep the context
+      // ready for horn signals throughout an active sailing session.
+      if (audible()) player.start(audioSource(settings.musicSource), { retry: retrySource });
+      else player.stop();
       if (context.state === 'running') {
         ramp(output.gain, 0.75, 1.5);
       } else if (gesture && !resumePromise) {
@@ -115,7 +117,7 @@ export function createSailingAudio({
       if (context) {
         ramp(output.gain, 0, immediate ? 0 : 0.6);
         const suspend = () => {
-          if (!wanted() && context.state !== 'closed') context.suspend().catch(() => {});
+          if (!active && context.state !== 'closed') context.suspend().catch(() => {});
         };
         if (immediate) suspend();
         else suspendTimer = setTimeout(suspend, 650);
@@ -160,17 +162,17 @@ export function createSailingAudio({
       apply({ gesture: true, retrySource: ['error', 'blocked'].includes(player?.state) });
     },
     horn(event, { gesture = false } = {}) {
-      if (!event || disposed || !wanted()) return;
+      if (!event || disposed || !active) return;
       const generation = hornGeneration;
       if (gesture) apply({ gesture: true });
       const play = () => {
-        if (disposed || generation !== hornGeneration || !wanted() || context?.state !== 'running')
+        if (disposed || generation !== hornGeneration || !active || context?.state !== 'running')
           return;
         horns ||= createHornPlayer(context, output);
-        return horns.play(event, settings.music);
+        return horns.play(event, HORN_VOLUME);
       };
       // A player's tap may need to unlock mobile audio. Never replay that tap
-      // after a pause, mute, or exit while resume() was pending.
+      // after a pause or exit while resume() was pending.
       return gesture && resumePromise ? resumePromise.then(play) : play();
     },
     stopHorns,

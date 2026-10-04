@@ -163,11 +163,14 @@
       "concepts": [
         "El rumbo indica hacia dónde apunta la proa, medido en sentido horario desde el norte: 000° norte, 090° este, 180° sur y 270° oeste. La velocidad se muestra en nudos; un nudo equivale a una milla náutica por hora.",
         "La pantalla multifunción detrás de la rueda y el panel bajo los controles muestran las mismas lecturas en tiempo real. El viento respecto al agua indica de dónde viene el viento relativo al agua en movimiento; su ángulo se mide desde la proa. La profundidad estima la altura de agua, no el margen bajo la quilla.",
-        "La corriente y el abatimiento pueden hacer que el rumbo sobre el fondo difiera del rumbo de proa y que la velocidad sobre el fondo difiera de la velocidad respecto al agua. Compara estas lecturas en el panel de instrumentos. Puedes ampliar la pantalla para leerla mejor."
+        "La corriente y el abatimiento pueden hacer que el rumbo sobre el fondo difiera del rumbo de proa y que la velocidad sobre el fondo difiera de la velocidad respecto al agua. Compara estas lecturas en el panel de instrumentos. Puedes ampliar la pantalla para leerla mejor.",
+        "La app combina un compás y un indicador de viento en una sola esfera. El norte permanece arriba, el este a la derecha, el sur abajo y el oeste a la izquierda, aunque giren el barco o la cámara. Lee hacia dónde apunta la proa del símbolo blanco del barco en la escala del compás para conocer tu rumbo.",
+        "La flecha dorada indica de dónde viene el viento respecto al agua. El sector sombreado no navegable rodea ese origen: marca rumbos demasiado cercanos al viento para navegar a vela. En este ejemplo, el barco blanco apunta al noreste, a 045°, mientras la flecha y el sector señalan el noroeste, a 315°. La lectura en nudos bajo la esfera es la velocidad del viento."
       ],
       "observe": [
         "Abre Timón o Bañera y compara la pantalla multifunción detrás de la rueda con el panel bajo los controles.",
-        "Selecciona Carta y localiza el símbolo del velero y la flecha del norte."
+        "Selecciona Carta y localiza el símbolo del velero y la flecha del norte.",
+        "Localiza el compás flotante. Identifica el norte, lee el rumbo del barco blanco y después la flecha dorada que indica de dónde viene el viento. Son dos direcciones distintas."
       ],
       "mistake": "Interpretar la profundidad como resguardo garantizado o el rumbo como trayectoria asegurada sobre el fondo.",
       "quiz": [
@@ -188,6 +191,15 @@
             "3 millas náuticas"
           ],
           "explanation": "Distancia = velocidad × tiempo. Seis millas náuticas por hora durante media hora son tres millas náuticas."
+        },
+        {
+          "prompt": "En el compás ilustrado de la app, la proa blanca apunta a 045° y la flecha dorada a 315°. ¿Cuál es tu rumbo?",
+          "options": [
+            "045° — lee la proa blanca",
+            "315° — lee la flecha dorada",
+            "135° — sigue el flujo de aire"
+          ],
+          "explanation": "El rumbo lo indica la proa del barco blanco: 045°. La flecha dorada indica que el viento viene de 315°. Ni el indicador de viento ni el sector sombreado representan un rumbo que debas seguir."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -208,11 +220,14 @@
       "concepts": [
         "Un viento del noroeste viene del noroeste y sopla hacia el sureste. Barlovento es hacia el origen del viento; sotavento, en sentido contrario.",
         "Los ajustes meteorológicos describen el viento respecto al suelo fijo. Resta el vector de corriente para obtener el viento respecto al agua en movimiento: aquí es la referencia para los rumbos respecto al viento. El viento aparente es el flujo de aire relativo al velero en movimiento. Comprueba siempre qué referencia usa el instrumento para «viento real».",
-        "La zona muerta es el sector demasiado próximo al viento para que las velas impulsen el barco. Su límite depende del barco y las condiciones; este simulador usa 38° a cada lado del viento respecto al agua. En calma respecto al agua, su dirección y su ángulo no están definidos."
+        "La zona muerta es el sector demasiado próximo al viento para que las velas impulsen el barco. Su límite depende del barco y las condiciones; este simulador usa 38° a cada lado del viento respecto al agua. En calma respecto al agua, su dirección y su ángulo no están definidos.",
+        "Lee el indicador dorado de viento de la app como una veleta: la punta señala el origen del viento. Las flechas de flujo de aire de los esquemas generales muestran el aire alejándose de su origen, por lo que apuntan en sentido opuesto. Con viento del noroeste, el indicador del compás señala 315° y el aire se mueve hacia 135°. El sector sombreado no navegable permanece del lado del origen.",
+        "En el compás ilustrado, el viento respecto al agua viene de 315° y el barco lleva rumbo 045°. La diferencia es de 90°: navega de través. Girar la proa hacia 315° la situaría dentro del sector sombreado no navegable. Con viento constante respecto al agua, al girar el barco cambia el símbolo blanco; la flecha dorada y el sector mantienen la misma dirección en el compás."
       ],
       "observe": [
         "Sin corriente y con viento de 315°, compara los rumbos 315°, 045° y 135° en el compás.",
-        "El rumbo 045° sitúa el viento aproximadamente de través."
+        "El rumbo 045° sitúa el viento aproximadamente de través.",
+        "En el compás de la app, compara la proa blanca con el sector sombreado. Di de dónde viene el viento y hacia dónde se mueve el aire antes de elegir un rumbo."
       ],
       "mistake": "Interpretar la flecha como el lugar hacia el que va el viento en vez de su procedencia.",
       "quiz": [
@@ -233,6 +248,15 @@
             "Las velas no pueden generar una fuerza propulsora eficaz en esa dirección"
           ],
           "explanation": "Debes navegar fuera de la zona muerta y virar por avante para progresar contra el viento."
+        },
+        {
+          "prompt": "¿Por qué la flecha dorada y el sector sombreado no navegable de la app señalan ambos 315° en este ejemplo?",
+          "options": [
+            "Te indican que debes poner rumbo a 315°",
+            "El aire se mueve hacia 315°",
+            "Ambos identifican el origen del viento; el aire se mueve hacia 135°"
+          ],
+          "explanation": "El indicador señala viento de 315° y el sector marca rumbos demasiado cercanos a ese origen. El aire fluye hacia 135°. El barco blanco, con rumbo 045°, está fuera del sector y navega de través."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."

@@ -35,29 +35,26 @@ export function mountSailingAudio({
   const canSoundHorn = () => getMode() === 'explore' && getActive() && getHornActive?.();
   function updateHorn() {
     if (!hornButton) return;
-    const muted = volumeLevel() === 'mute';
     const available = canSoundHorn();
-    const key = JSON.stringify([getMode(), available, muted, hornSounding, audio.state]);
+    const key = JSON.stringify([getMode(), available, hornSounding, audio.state]);
     if (key === previousHorn) return;
     previousHorn = key;
     hornButton.hidden = getMode() !== 'explore';
-    hornButton.disabled = !available || muted || hornSounding || audio.state === 'unavailable';
+    hornButton.disabled = !available || hornSounding || audio.state === 'unavailable';
     hornButton.dataset.sounding = String(hornSounding);
-    hornButton.querySelector('span').textContent = t(muted ? 'Horn · muted' : 'Horn');
+    hornButton.querySelector('span').textContent = t('Horn');
     const description = t(
-      muted
-        ? 'Unmute sound to use the horn.'
-        : audio.state === 'unavailable'
-          ? 'Background audio is unavailable in this browser.'
-          : !available
-            ? 'Resume sailing to sound the horn.'
-            : 'Sound one short blast',
+      audio.state === 'unavailable'
+        ? 'Background audio is unavailable in this browser.'
+        : !available
+          ? 'Resume sailing to sound the horn.'
+          : 'Sound one short blast',
     );
     hornButton.title = description;
     hornButton.setAttribute('aria-label', `${t('Horn')}. ${description}`);
   }
   async function soundHorn() {
-    if (!canSoundHorn() || volumeLevel() === 'mute' || hornSounding) return;
+    if (!canSoundHorn() || hornSounding) return;
     hornSounding = true;
     updateHorn();
     try {
@@ -198,8 +195,7 @@ export function mountSailingAudio({
     sync(gesture = false) {
       for (const { group } of controls) group.hidden = getMode() !== 'explore';
       audio.setActive(getActive(), { gesture, immediate: document.hidden });
-      const audible = getHornActive?.() && audio.settings.musicEnabled && audio.settings.music > 0;
-      if (audible && getState) audio.horn(horns.update(getState(), true));
+      if (getActive() && getHornActive?.() && getState) audio.horn(horns.update(getState(), true));
       else audio.stopHorns();
       update();
     },
