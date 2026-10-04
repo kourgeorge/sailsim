@@ -2,10 +2,10 @@
 // MP3 works across the browsers supported by the simulator; these endpoints
 // allow CORS so the same Web Audio volume controls also work on mobile Safari.
 export const RADIO_STATIONS = [
-  { id: 'rp-main', name: 'Main Mix', url: 'https://stream.radioparadise.com/mp3-128' },
-  { id: 'rp-mellow', name: 'Mellow Mix', url: 'https://stream.radioparadise.com/mellow-192' },
-  { id: 'rp-rock', name: 'Rock Mix', url: 'https://stream.radioparadise.com/rock-192' },
-  { id: 'rp-global', name: 'Global Mix', url: 'https://stream.radioparadise.com/global-192' },
+  { id: 'rp-main', name: 'radio main', url: 'https://stream.radioparadise.com/mp3-128' },
+  { id: 'rp-mellow', name: 'radio relax', url: 'https://stream.radioparadise.com/mellow-192' },
+  { id: 'rp-rock', name: 'radio rock', url: 'https://stream.radioparadise.com/rock-192' },
+  { id: 'rp-global', name: 'radio global', url: 'https://stream.radioparadise.com/global-192' },
 ];
 export const radioStation = (id) => RADIO_STATIONS.find((station) => station.id === id);
 export const musicSource = (value, fallback = 'sail') =>
