@@ -50,6 +50,16 @@ test.beforeEach(async ({ context }) => {
         (this.gains ||= []).push(gain);
         return gain;
       }
+      createOscillator() {
+        const voice = super.createOscillator();
+        (this.voices ||= []).push(voice);
+        voice.addEventListener('ended', () => (voice.ended = true));
+        return voice;
+      }
+      createBufferSource() {
+        window.bufferSources = (window.bufferSources || 0) + 1;
+        return super.createBufferSource();
+      }
       createMediaElementSource(media) {
         const source = super.createMediaElementSource(media);
         const connect = source.connect;
@@ -86,6 +96,8 @@ test('radio connects only while sailing, shares music controls, and releases the
   await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.45);
   expect(requests).toEqual(['https://stream.radioparadise.com/mellow-192']);
   expect(await page.evaluate(() => window.audioContexts[0].gains[1].gain.value)).toBe(0);
+  expect(await page.evaluate(() => window.audioContexts[0].voices?.length || 0)).toBe(0);
+  expect(await page.evaluate(() => window.bufferSources || 0)).toBe(0);
   await page.locator('#sound-options').click();
   expect(requests).toHaveLength(1); // Opening settings must not restart live radio.
   await page.locator('#sound-music').fill('32');
@@ -94,11 +106,11 @@ test('radio connects only while sailing, shares music controls, and releases the
   await expect
     .poll(() => page.evaluate(() => window.audioContexts[0].gains[0].gain.value))
     .toBeCloseTo(0.1875);
-  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('radio-desktop.png') });
   await page.locator('#sound-music-mute').click();
   expect(await page.evaluate(() => window.radioElements[0].getAttribute('src'))).toBeNull();
-  await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   await page.locator('#sound-music-mute').click();
   await expect.poll(() => page.evaluate(() => window.radioElements[0].paused)).toBe(false);
   await page.locator('#sound-source').selectOption('sail');
@@ -106,10 +118,24 @@ test('radio connects only while sailing, shares music controls, and releases the
   await expect
     .poll(() => page.evaluate(() => window.audioContexts[0].gains[1].gain.value))
     .toBeCloseTo(0.32);
+  expect(await page.evaluate(() => window.audioContexts[0].voices.length)).toBeGreaterThan(0);
+  await page.evaluate(() => {
+    window.overlappingSources = false;
+    window.sourceMonitor = setInterval(() => {
+      if (window.audioContexts[0].gains[1].gain.value > 0 && window.radioGain.gain.value > 0)
+        window.overlappingSources = true;
+    }, 5);
+  });
   for (const mix of ['rp-main', 'rp-rock', 'rp-global']) {
     await page.locator('#sound-source').selectOption(mix);
     await expect.poll(() => page.evaluate(() => window.radioElements[0].paused)).toBe(false);
+    await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.32);
+    await expect
+      .poll(() => page.evaluate(() => window.audioContexts[0].voices.every((voice) => voice.ended)))
+      .toBe(true);
   }
+  expect(await page.evaluate(() => window.overlappingSources)).toBe(false);
+  await page.evaluate(() => clearInterval(window.sourceMonitor));
   expect(await page.evaluate(() => window.radioElements.length)).toBe(1);
   await page.locator('#close-modal').click();
   await page.locator('#play').click();

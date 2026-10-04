@@ -15,27 +15,6 @@ function random(seed) {
   };
 }
 
-function seaBuffer(context) {
-  const buffer = context.createBuffer(2, context.sampleRate * 24, context.sampleRate);
-  const next = random(7319);
-  for (let channel = 0; channel < 2; channel++) {
-    const data = buffer.getChannelData(channel);
-    let low = 0,
-      mid = 0,
-      high = 0;
-    for (let i = 0; i < data.length; i++) {
-      const white = next() * 2 - 1;
-      low = 0.99765 * low + white * 0.099046;
-      mid = 0.963 * mid + white * 0.2965164;
-      high = 0.57 * high + white * 1.0526913;
-      // A short taper removes clicks at the loop seam.
-      const taper = Math.min(1, i / 2048, (data.length - 1 - i) / 2048);
-      data[i] = (low + mid + high + white * 0.1848) * 0.12 * taper;
-    }
-  }
-  return buffer;
-}
-
 function reverbBuffer(context) {
   const buffer = context.createBuffer(2, context.sampleRate * 3.5, context.sampleRate);
   const next = random(281);
@@ -52,45 +31,9 @@ export function createSoundscape(context) {
   const output = context.createGain();
   output.gain.value = 0;
   output.connect(context.destination);
-  const music = context.createGain(),
-    sea = context.createGain();
+  const music = context.createGain();
   music.gain.value = 0;
-  sea.gain.value = 0;
   music.connect(output);
-  sea.connect(output);
-
-  const wash = context.createBufferSource();
-  wash.buffer = seaBuffer(context);
-  wash.loop = true;
-  const rumbleCut = context.createBiquadFilter();
-  rumbleCut.type = 'highpass';
-  rumbleCut.frequency.value = 90;
-  const softness = context.createBiquadFilter();
-  softness.type = 'lowpass';
-  softness.frequency.value = 1100;
-  softness.Q.value = 0.35;
-  const swell = context.createGain();
-  swell.gain.value = 0.65;
-  wash.connect(rumbleCut).connect(softness).connect(swell).connect(sea);
-  // Different swell periods make the sea breathe without a mechanical beat.
-  for (const [period, depth] of [
-    [13.7, 0.28],
-    [19.3, 0.1],
-  ]) {
-    const wave = context.createOscillator(),
-      amount = context.createGain();
-    wave.frequency.value = 1 / period;
-    amount.gain.value = depth;
-    wave.connect(amount).connect(swell.gain);
-    wave.start();
-  }
-  const surf = context.createOscillator(),
-    brightness = context.createGain();
-  surf.frequency.value = 1 / 13.7;
-  brightness.gain.value = 650;
-  surf.connect(brightness).connect(softness.frequency);
-  surf.start();
-  wash.start();
 
   const room = context.createConvolver(),
     wet = context.createGain();
@@ -101,7 +44,8 @@ export function createSoundscape(context) {
     new Float32Array([0, 0, 0, 0]),
     new Float32Array([0, 1, 0.16, 0.035]),
   );
-  const origin = context.currentTime + 0.08;
+  const voices = new Set();
+  let origin;
   let chordIndex = 0;
   function note(midi, when, duration, level, attack, detune = 0) {
     const voice = context.createOscillator(),
@@ -119,12 +63,15 @@ export function createSoundscape(context) {
     envelope.connect(room);
     voice.start(when);
     voice.stop(when + duration + 0.15);
+    voices.add(voice);
     voice.onended = () => {
+      voices.delete(voice);
       voice.disconnect();
       envelope.disconnect();
     };
   }
   function schedule(until = context.currentTime + 1) {
+    origin ??= context.currentTime + 0.08;
     while (origin + chordIndex * CHORD_SECONDS < until) {
       const when = origin + chordIndex * CHORD_SECONDS;
       const chord = CHORDS[chordIndex % CHORDS.length];
@@ -136,5 +83,11 @@ export function createSoundscape(context) {
       chordIndex++;
     }
   }
-  return { output, music, sea, schedule };
+  function stop(when = context.currentTime) {
+    for (const voice of voices) voice.stop(when);
+    voices.clear();
+    origin = undefined;
+    chordIndex = 0;
+  }
+  return { output, music, schedule, stop };
 }

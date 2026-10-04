@@ -23,7 +23,7 @@ test.beforeEach(async ({ context }) => {
   });
 });
 
-test('free sailing plays audio, mutes layers independently, and suspends when paused or hidden', async ({
+test('free sailing plays audio, mutes music, and suspends when paused or hidden', async ({
   page,
 }, testInfo) => {
   const errors = [];
@@ -47,7 +47,7 @@ test('free sailing plays audio, mutes layers independently, and suspends when pa
   await expect(page.locator('#sound-quiet')).toBeChecked();
   await page.screenshot({ path: testInfo.outputPath('sound-desktop.png') });
   await page.locator('#sound-music').fill('32');
-  await page.locator('#sound-sea').fill('61');
+  await expect(page.locator('#sound-sea')).toHaveCount(0);
   await page.locator('#sound-quiet').uncheck();
   await expect(page.locator('#sound-settings')).toHaveAttribute('aria-pressed', 'false');
   await expect
@@ -55,16 +55,12 @@ test('free sailing plays audio, mutes layers independently, and suspends when pa
     .toBeCloseTo(0.75, 3);
   await page.getByRole('button', { name: 'Mute music', exact: true }).click();
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
-  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
-  await page.getByRole('button', { name: 'Mute sea sounds', exact: true }).click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
   await page.getByRole('button', { name: 'Unmute music', exact: true }).click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
   await expect(page.locator('#sound-music')).toHaveValue('32');
-  await expect(page.locator('#sound-sea')).toHaveValue('61');
-  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
   await page.locator('#sound-enabled').uncheck();
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
   await page.locator('#sound-enabled').check();
@@ -109,10 +105,9 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await expect(page.locator('#modal')).not.toBeVisible();
   await page.locator('#cover-sound-options').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
-  await expect(page.locator('#sailing-audio-settings h2')).toHaveText('ים ומוזיקה');
+  await expect(page.locator('#sailing-audio-settings h2')).toHaveText('הגדרות צליל');
   await page.locator('#sound-music-mute').click();
-  await page.locator('#sound-sea-mute').click();
-  await page.locator('#sound-sea-mute').scrollIntoViewIfNeeded();
+  await page.locator('#sound-music-mute').scrollIntoViewIfNeeded();
   await page.screenshot({ path: testInfo.outputPath('sound-mobile-he-200.png') });
   expect(
     await page.locator('#modal').evaluate((node) => node.scrollWidth <= node.clientWidth + 1),
@@ -138,7 +133,7 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await expect(page.locator('#sound-source option')).toHaveCount(5);
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
   await page.locator('#sound-music-mute').click();
-  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
   await page.locator('#close-modal').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
   await page.locator('#mobile-menu-toggle').click();
@@ -154,11 +149,11 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#session-exit').click();
   await page.locator('#cover-sound-options').click();
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'false');
-  await expect(page.locator('#sound-sea-mute')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
   await expect(page.locator('#sound-quiet')).not.toBeChecked();
 });
 
-test('the actual sound graph renders separate audible music and sea with smooth transitions', async ({
+test('the sound graph renders smooth music and stays silent without a selected tune', async ({
   page,
 }) => {
   await page.goto('./');
@@ -166,15 +161,15 @@ test('the actual sound graph renders separate audible music and sea with smooth 
   const rendered = await page.evaluate(async (source) => {
     const { createSoundscape } = await import(`data:text/javascript,${encodeURIComponent(source)}`);
     const results = {};
-    for (const layer of ['music', 'sea']) {
+    for (const layer of ['music', 'silence']) {
       const context = new OfflineAudioContext(2, 50 * 22050, 22050);
       const graph = createSoundscape(context);
-      graph[layer].gain.value = layer === 'music' ? 0.45 : 0.55;
+      graph.music.gain.value = 0.45;
       graph.output.gain.setValueAtTime(0, 0);
       graph.output.gain.linearRampToValueAtTime(0.75, 1.5);
       graph.output.gain.setValueAtTime(0.75, 47);
       graph.output.gain.linearRampToValueAtTime(0, 48);
-      graph.schedule(50);
+      if (layer === 'music') graph.schedule(50);
       const buffer = await context.startRendering();
       const data = buffer.getChannelData(0);
       let peak = 0,
@@ -193,7 +188,8 @@ test('the actual sound graph renders separate audible music and sea with smooth 
     }
     return results;
   }, source);
-  for (const [layer, signal] of Object.entries(rendered)) {
+  expect(rendered.silence.peak, 'no ambient noise is mixed into playback').toBe(0);
+  for (const [layer, signal] of [['music', rendered.music]]) {
     expect(signal.peak, `${layer} is audible`).toBeGreaterThan(0.01);
     expect(signal.peak, `${layer} leaves mixing headroom`).toBeLessThan(0.45);
     expect(signal.jump, `${layer} has no large sample discontinuities`).toBeLessThan(0.15);

@@ -38,12 +38,12 @@ const rows = {
     'רדיו חי דורש חיבור לאינטרנט.',
     'يتطلب الراديو المباشر اتصالاً بالإنترنت.',
   ],
-  'Choose Sail relaxing or live radio, with the wash of the sea.': [
-    'Elige Sail relajante o radio en directo, con el murmullo del mar.',
-    'Choisissez Sail détente ou la radio en direct, avec le murmure de la mer.',
-    'Выберите расслабляющую музыку Sail или прямое радио под шум моря.',
-    'בחרו ב־Sail רגוע או ברדיו חי, עם רחש גלי הים.',
-    'اختر Sail للاسترخاء أو الراديو المباشر مع حفيف أمواج البحر.',
+  'Choose Sail relaxing or live radio.': [
+    'Elige Sail relajante o radio en directo.',
+    'Choisissez Sail détente ou la radio en direct.',
+    'Выберите расслабляющую музыку Sail или прямое радио.',
+    'בחרו ב־Sail רגוע או ברדיו חי.',
+    'اختر Sail للاسترخاء أو الراديو المباشر.',
   ],
   'Connecting to Radio Paradise…': [
     'Conectando a Radio Paradise…',
@@ -90,13 +90,6 @@ const rows = {
     'استعادة مستوى الصوت العادي',
   ],
   'Sound off': ['Sonido desactivado', 'Son coupé', 'Звук выключен', 'הצליל מושתק', 'الصوت مكتوم'],
-  'Sea & music': [
-    'Mar y música',
-    'Mer et musique',
-    'Море и музыка',
-    'ים ומוזיקה',
-    'البحر والموسيقى',
-  ],
   'Background sound': [
     'Sonido de fondo',
     'Ambiance sonore',
@@ -111,7 +104,6 @@ const rows = {
     'מוזיקה מרגיעה',
     'موسيقى هادئة',
   ],
-  'Sea sounds': ['Sonidos del mar', 'Bruits de la mer', 'Звуки моря', 'קולות הים', 'أصوات البحر'],
   'Enable sound': [
     'Activar sonido',
     'Activer le son',
@@ -132,27 +124,6 @@ const rows = {
     'Включить музыку',
     'ביטול השתקת המוזיקה',
     'إلغاء كتم الموسيقى',
-  ],
-  'Mute sea sounds': [
-    'Silenciar el mar',
-    'Couper les bruits de la mer',
-    'Выключить звуки моря',
-    'השתקת קולות הים',
-    'كتم أصوات البحر',
-  ],
-  'Unmute sea sounds': [
-    'Activar el mar',
-    'Rétablir les bruits de la mer',
-    'Включить звуки моря',
-    'ביטול השתקת קולות הים',
-    'إلغاء كتم أصوات البحر',
-  ],
-  'Slow, gentle music with the wash of the sea. Adjust each sound to suit your mood.': [
-    'Música lenta y suave con el murmullo del mar. Ajusta cada sonido a tu gusto.',
-    'Une musique lente et douce, accompagnée du murmure de la mer. Réglez chaque son selon votre humeur.',
-    'Неспешная нежная музыка и шум морских волн. Настройте каждый звук под своё настроение.',
-    'מוזיקה איטית ועדינה עם רחש גלי הים. התאימו את עוצמת כל צליל למצב הרוח שלכם.',
-    'موسيقى بطيئة وناعمة مع حفيف أمواج البحر. اضبط كل صوت بما يناسب مزاجك.',
   ],
   'Background audio is unavailable in this browser.': [
     'El audio de fondo no está disponible en este navegador.',

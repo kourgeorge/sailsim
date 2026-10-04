@@ -13,30 +13,27 @@ const memory = (initial) => {
   };
 };
 
-test('each layer can be muted without losing its volume, including after reload', () => {
-  const storage = memory(null);
+test('legacy sea settings are ignored while music mute and volume survive reloads', () => {
+  const storage = memory('{"seaEnabled":true,"sea":0.72}');
   const options = {
     storage: () => storage,
     createContext: () => assert.fail('Paused audio must stay lazy'),
   };
   const audio = createSailingAudio(options);
   audio.setSettings({ music: 0.31, sea: 0.72, musicEnabled: false });
-  assert.equal(audio.settings.seaEnabled, true);
-  audio.setSettings({ seaEnabled: false });
+  assert.equal(Object.hasOwn(audio.settings, 'seaEnabled'), false);
+  assert.equal(Object.hasOwn(audio.settings, 'sea'), false);
   assert.equal(audio.state, 'muted');
   const restored = createSailingAudio(options);
   assert.deepEqual(restored.settings, {
     enabled: true,
     quiet: false,
     musicEnabled: false,
-    seaEnabled: false,
     music: 0.31,
-    sea: 0.72,
     musicSource: 'sail',
   });
   restored.setSettings({ musicEnabled: true });
   assert.equal(restored.settings.music, 0.31);
-  assert.equal(restored.settings.seaEnabled, false);
   audio.dispose();
   restored.dispose();
 });
@@ -46,7 +43,6 @@ test('stored levels are bounded and blocked storage does not disable sound contr
     storage: () => memory('{"music":9,"sea":-1,"enabled":"false"}'),
   });
   assert.equal(audio.settings.music, 1);
-  assert.equal(audio.settings.sea, 0);
   assert.equal(audio.settings.enabled, true);
   assert.equal(audio.settings.quiet, false);
   const blocked = createSailingAudio({
@@ -54,28 +50,26 @@ test('stored levels are bounded and blocked storage does not disable sound contr
       throw new Error('Storage disabled');
     },
   });
-  blocked.setSettings({ musicEnabled: false, sea: 0.6 });
+  blocked.setSettings({ musicEnabled: false, music: 0.6 });
   assert.equal(blocked.settings.musicEnabled, false);
-  assert.equal(blocked.settings.sea, 0.6);
+  assert.equal(blocked.settings.music, 0.6);
   audio.dispose();
   blocked.dispose();
 });
 
-test('quiet listening persists without changing the chosen layer levels or mutes', () => {
+test('quiet listening persists without changing the music volume or mute', () => {
   const storage = memory(null);
   const options = {
     storage: () => storage,
     createContext: () => assert.fail('Paused audio must stay lazy'),
   };
   const audio = createSailingAudio(options);
-  audio.setSettings({ music: 0.32, sea: 0.61, musicEnabled: false, quiet: true });
+  audio.setSettings({ music: 0.32, musicEnabled: false, quiet: true });
   const restored = createSailingAudio(options);
   assert.equal(restored.settings.quiet, true);
   restored.setSettings({ quiet: false });
   assert.equal(restored.settings.music, 0.32);
-  assert.equal(restored.settings.sea, 0.61);
   assert.equal(restored.settings.musicEnabled, false);
-  assert.equal(restored.settings.seaEnabled, true);
   audio.dispose();
   restored.dispose();
 });
