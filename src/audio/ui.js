@@ -1,4 +1,5 @@
 import { createSailingAudio } from './controller.js';
+import { RADIO_STATIONS } from './radio.js';
 import { translate as t } from '../i18n/runtime.js';
 import './audio.css';
 
@@ -34,9 +35,20 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
     update();
   }
   function update() {
-    const { enabled, quiet, musicEnabled, seaEnabled, music, sea } = audio.settings;
+    const { enabled, quiet, musicEnabled, seaEnabled, music, sea, musicSource } = audio.settings;
     const state = audio.state;
-    const key = JSON.stringify([enabled, quiet, musicEnabled, seaEnabled, music, sea, state]);
+    const radioState = audio.radioState;
+    const key = JSON.stringify([
+      enabled,
+      quiet,
+      musicEnabled,
+      seaEnabled,
+      music,
+      sea,
+      musicSource,
+      state,
+      radioState,
+    ]);
     if (key === previous) return;
     previous = key;
     for (const { button } of controls) {
@@ -54,6 +66,9 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
     toggle.disabled = state === 'unavailable';
     root.querySelector('#sound-quiet').checked = quiet;
     root.querySelector('#sound-quiet').disabled = !enabled || state === 'unavailable';
+    root.querySelector('#sound-source').value = musicSource;
+    root.querySelector('#sound-source').disabled = state === 'unavailable';
+    root.querySelector('#sound-radio-info').hidden = musicSource === 'sail';
     for (const [name, value] of [
       ['music', music],
       ['sea', sea],
@@ -80,23 +95,29 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
       mute.title = mute.getAttribute('aria-label');
       mute.disabled = !enabled || state === 'unavailable';
     }
-    root.querySelector('#sound-retry').hidden = state !== 'blocked';
+    const retry = root.querySelector('#sound-retry');
+    retry.hidden = state !== 'blocked' && !['blocked', 'error'].includes(radioState);
+    retry.textContent = t(radioState === 'error' ? 'Retry radio' : 'Enable sound');
     root.querySelector('#sound-status').textContent = t(
       state === 'unavailable'
         ? 'Background audio is unavailable in this browser.'
         : state === 'muted'
           ? 'Sound off'
-          : state === 'blocked'
-            ? 'Tap Enable sound to start the audio.'
-            : state === 'playing'
-              ? 'Background sound is playing.'
-              : 'Sound begins when you resume Free sailing.',
+          : radioState === 'error'
+            ? 'Radio is unavailable. Retry or choose another mix.'
+            : state === 'blocked' || radioState === 'blocked'
+              ? 'Tap Enable sound to start the audio.'
+              : radioState === 'connecting'
+                ? 'Connecting to Radio Paradise…'
+                : state === 'playing'
+                  ? 'Background sound is playing.'
+                  : 'Sound begins when you resume Free sailing.',
     );
   }
   function showSettings() {
     openModal(
-      `<section id="sailing-audio-settings" data-no-translate><div class="eyebrow">${label('FREE SAILING')}</div><h2>${label('Sea & music')}</h2><p>${label('Slow, gentle music with the wash of the sea. Adjust each sound to suit your mood.')}</p><label class="sound-enable" for="sound-enabled"><span>${label('Background sound')}</span><input id="sound-enabled" type="checkbox" role="switch"></label><label class="sound-enable sound-quiet" for="sound-quiet"><span>${label('Quiet sound')}</span><input id="sound-quiet" type="checkbox" role="switch"></label>${[
-        ['music', 'Relaxing music'],
+      `<section id="sailing-audio-settings" data-no-translate><div class="eyebrow">${label('FREE SAILING')}</div><h2>${label('Sea & music')}</h2><p>${label('Choose Sail relaxing or live radio, with the wash of the sea.')}</p><label class="sound-enable" for="sound-enabled"><span>${label('Background sound')}</span><input id="sound-enabled" type="checkbox" role="switch"></label><label class="sound-enable sound-quiet" for="sound-quiet"><span>${label('Quiet sound')}</span><input id="sound-quiet" type="checkbox" role="switch"></label><label class="setting-label" for="sound-source">${label('Music source')}</label><select id="sound-source"><option value="sail">${label('Sail relaxing')}</option><optgroup label="Radio Paradise">${RADIO_STATIONS.map((station) => `<option value="${station.id}">${label(station.name)}</option>`).join('')}</optgroup></select><p id="sound-radio-info" hidden><a href="https://radioparadise.com/listen/stream-links" target="_blank" rel="noopener noreferrer">Radio Paradise ↗</a><span>${label('Live radio requires internet.')}</span></p>${[
+        ['music', 'Music volume'],
         ['sea', 'Sea sounds'],
       ]
         .map(
@@ -108,6 +129,8 @@ export function mountSailingAudio({ container, getMode, getActive, openModal }) 
         )}<p id="sound-status" role="status"></p><button id="sound-retry" class="training-button">${label('Enable sound')}</button></section>`,
     );
     const root = document.querySelector('#sailing-audio-settings');
+    root.querySelector('#sound-source').onchange = (e) =>
+      audio.setSettings({ musicSource: e.target.value });
     root.querySelector('#sound-enabled').onchange = (e) =>
       audio.setSettings({ enabled: e.target.checked });
     root.querySelector('#sound-quiet').onchange = (e) =>

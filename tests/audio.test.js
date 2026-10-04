@@ -32,6 +32,7 @@ test('each layer can be muted without losing its volume, including after reload'
     seaEnabled: false,
     music: 0.31,
     sea: 0.72,
+    musicSource: 'sail',
   });
   restored.setSettings({ musicEnabled: true });
   assert.equal(restored.settings.music, 0.31);
@@ -104,4 +105,25 @@ test('audio controls are translated in every supported language', () => {
     for (const value of Object.values(dictionary))
       assert.ok(typeof value === 'string' && value.trim());
   }
+});
+
+test('radio choices persist without connecting while paused and unknown sources are rejected', () => {
+  const storage = memory(null);
+  const options = {
+    storage: () => storage,
+    createContext: () => assert.fail('Choosing a paused station must not create audio'),
+    createMedia: () => assert.fail('Choosing a paused station must not start a stream'),
+  };
+  const audio = createSailingAudio(options);
+  audio.setSettings({ musicSource: 'rp-mellow' });
+  const restored = createSailingAudio(options);
+  assert.equal(restored.settings.musicSource, 'rp-mellow');
+  restored.setSettings({ musicSource: 'https://unknown.example/radio' });
+  assert.equal(restored.settings.musicSource, 'rp-mellow');
+  const invalid = createSailingAudio({
+    ...options,
+    storage: () => memory('{"musicSource":"old-station"}'),
+  });
+  assert.equal(invalid.settings.musicSource, 'sail');
+  for (const controller of [audio, restored, invalid]) controller.dispose();
 });
