@@ -18,6 +18,7 @@ import {
   translate as t,
 } from './i18n/runtime.js';
 import './i18n/locale.css';
+import { mountLanguagePicker } from './i18n/language-picker.js';
 import { createLearning } from './learning/ui.js';
 import { createScene } from './scene.js';
 import { getLocation } from './locations.js';
@@ -1052,6 +1053,7 @@ async function startApp() {
       toast(t('Language could not be loaded. Please try again.'));
     }
   };
+  mountLanguagePicker($('#language-select'));
   mountMobileLayout();
   simulationSession = mountSimulationSession({
     onExit: exitSession,

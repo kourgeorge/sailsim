@@ -170,7 +170,8 @@ test('leaving simulation before changing language preserves the ended attempt', 
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
   await page.locator('#session-exit').click();
-  await page.locator('#language-select').selectOption('he');
+  await page.locator('#language-picker').click();
+  await page.locator('#language-option-he').click();
   await expect(page).toHaveURL(/lang=he/);
   await expect(page.locator('html')).toHaveAttribute('lang', 'he');
   await expect(page.locator('html')).toHaveAttribute('dir', 'rtl');
