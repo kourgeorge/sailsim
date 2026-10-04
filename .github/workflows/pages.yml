@@ -4,6 +4,12 @@ on:
   push:
     branches: [master]
   workflow_dispatch:
+    inputs:
+      skip_browser_tests:
+        description: 'Skip the full browser suite when targeted checks have already passed'
+        type: boolean
+        required: false
+        default: false
 
 permissions:
   contents: read
@@ -31,8 +37,10 @@ jobs:
       - name: Build for the Pages URL
         run: npm run build -- --base "${{ steps.pages.outputs.base_path }}/"
       - run: npm run format:check
-      - run: npx playwright install --with-deps chromium
+      - if: ${{ !inputs.skip_browser_tests }}
+        run: npx playwright install --with-deps chromium
       - name: Browser regressions against the production build
+        if: ${{ !inputs.skip_browser_tests }}
         run: npm run test:browser
         env:
           SAIL_TEST_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
