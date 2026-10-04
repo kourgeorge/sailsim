@@ -110,6 +110,12 @@ for (const viewport of [
       await touch(page, 'touchend', -100);
       await expect(surface).toHaveCSS('transform', 'none');
       await expect(page.locator('#lesson-number')).toHaveText('02');
+      await page.locator('.cover-next').tap();
+      await expect(page.locator('#lesson-number')).toHaveText('03');
+      await expect(page.locator('.cover-slide-layer')).toHaveCount(0);
+      await expect(page.locator('#lesson-number')).toHaveText('03');
+      await page.locator('.cover-previous').tap();
+      await expect(page.locator('#lesson-number')).toHaveText('02');
       expect(errors).toEqual([]);
     });
 

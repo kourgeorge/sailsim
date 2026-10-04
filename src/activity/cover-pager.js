@@ -83,8 +83,60 @@ export function mountCoverPager({ container, cover, getPage, getPreview, select,
     );
     return true;
   }
-  previous.onclick = () => move(-1);
-  next.onclick = () => move(1);
+  function bindPageButton(button, step) {
+    button.onclick = () => move(step);
+    let tap = null;
+    button.addEventListener(
+      'touchstart',
+      (event) => {
+        const touch = event.touches[0];
+        tap =
+          event.touches.length === 1
+            ? { id: touch.identifier, x: touch.clientX, y: touch.clientY }
+            : null;
+      },
+      { passive: true },
+    );
+    button.addEventListener(
+      'touchmove',
+      (event) => {
+        const touch = event.touches[0];
+        if (
+          tap &&
+          (event.touches.length !== 1 ||
+            Math.hypot(touch.clientX - tap.x, touch.clientY - tap.y) > 12)
+        )
+          tap = null;
+      },
+      { passive: true },
+    );
+    button.addEventListener('touchcancel', () => {
+      tap = null;
+    });
+    button.addEventListener(
+      'touchend',
+      (event) => {
+        const start = tap;
+        tap = null;
+        const touch = [...event.changedTouches].find((touch) => touch.identifier === start?.id);
+        if (
+          !touch ||
+          button.disabled ||
+          Math.hypot(touch.clientX - start.x, touch.clientY - start.y) > 12
+        )
+          return;
+        // Browsers can suppress the next synthesized click after a scroll/drag.
+        // Complete the tap directly and suppress its compatibility click so one
+        // release always advances exactly one page. Keyboard/mouse retain click.
+        event.preventDefault();
+        button.focus({ preventScroll: true });
+        move(step);
+      },
+      { passive: false },
+    );
+  }
+  bindPageButton(previous, -1);
+  bindPageButton(next, 1);
   function keyboard(event) {
     if (
       !['ArrowLeft', 'ArrowRight'].includes(event.key) ||

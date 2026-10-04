@@ -167,18 +167,24 @@ test.describe('touch browsing', () => {
       await swipe(client, { x: 270, y }, { x: 222, y: y + 16 });
       await count(page, 2, total);
 
-      // The lower half of the mobile cover is mostly scenery, not a card.
-      await expect
-        .poll(() =>
-          page.evaluate(() => {
-            const target = document.elementFromPoint(250, 700);
-            return target?.id === 'section-cover';
-          }),
-        )
-        .toBe(true);
-      await swipe(client, { x: 280, y: 700 }, { x: 180, y: 716 });
+      // Long challenge briefings can fill the screen. Reach the actual scenery
+      // below the content instead of assuming a fixed pixel is empty on every OS.
+      async function swipeBackground(fromX, toX) {
+        await page.locator('#section-cover').evaluate((node) => {
+          node.scrollTop = node.scrollHeight;
+        });
+        const pager = await page.locator('.cover-pager').boundingBox();
+        const y = pager.y - 10;
+        await expect
+          .poll(() =>
+            page.evaluate(({ x, y }) => document.elementFromPoint(x, y)?.id, { x: fromX, y }),
+          )
+          .toBe('section-cover');
+        await swipe(client, { x: fromX, y }, { x: toX, y });
+      }
+      await swipeBackground(280, 180);
       await count(page, 3, total);
-      await swipe(client, { x: 180, y: 700 }, { x: 280, y: 710 });
+      await swipeBackground(180, 280);
       await count(page, 2, total);
     }
   });

@@ -263,7 +263,10 @@ test('the rendered scene fills the session and restores the lesson cover after f
     timeout: 120000,
   });
   await selectLesson(page, 3);
-  await page.screenshot({ path: 'artifacts/session/lesson-cover.png' });
+  await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
+    timeout: 90000,
+  });
+  await page.screenshot({ path: 'artifacts/session/lesson-cover.png', timeout: 90000 });
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await expectSession(page);
@@ -274,6 +277,9 @@ test('the rendered scene fills the session and restores the lesson cover after f
   await page.screenshot({ path: 'artifacts/session/live-desktop.png' });
   await page.setViewportSize({ width: 390, height: 844 });
   await expectSession(page);
+  await expect(page.locator('#scene')).toHaveAttribute('data-render-pending', 'false', {
+    timeout: 90000,
+  });
   await page.screenshot({ path: 'artifacts/session/live-mobile.png' });
   await page.locator('#mobile-menu-toggle').click();
   await page.screenshot({ path: 'artifacts/session/mobile-menu.png', animations: 'disabled' });

@@ -23,6 +23,7 @@ html[dir='rtl'] .cover-pager {
   display: none;
 }
 .cover-pager button {
+  touch-action: manipulation;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -34,6 +35,9 @@ html[dir='rtl'] .cover-pager {
   color: #f4d5a0;
   font-size: calc(12px * var(--text-scale, 1));
   font-weight: 600;
+}
+.cover-pager button svg {
+  pointer-events: none;
 }
 .cover-pager button:hover:not(:disabled) {
   background: #ecc78e15;
