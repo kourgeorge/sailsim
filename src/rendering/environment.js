@@ -1,6 +1,5 @@
 import * as THREE from 'three';
 import { Water } from 'three/addons/objects/Water.js';
-import { Sky } from 'three/addons/objects/Sky.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { getLocation } from '../locations.js';
 import { getWorldBodyDefinitions, getWorldRockDefinitions } from '../world/bodies.js';
@@ -16,6 +15,7 @@ import { createMarineLife } from './marine-life.js';
 import { createBirdLife } from './bird-life.js';
 import { createLandDetails } from './land-details.js';
 import { createCruiseShip } from './cruise-ship.js';
+import { createAtmosphere } from './sky.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,seededRandom,batchStaticMeshes } from './materials.js';
 
 function normalTexture(){
@@ -24,22 +24,13 @@ function normalTexture(){
  for(let y=0;y<size;y++)for(let x=0;x<size;x++){let dx=0,dy=0;for(const w of waves){const d=Math.cos((x*w.x+y*w.y)/size*Math.PI*2+w.p)*w.a;dx+=d*w.x*.024;dy+=d*w.y*.024;}const n=new THREE.Vector3(-dx,-dy,2).normalize(),i=(y*size+x)*4;data[i]=(n.x*.5+.5)*255;data[i+1]=(n.y*.5+.5)*255;data[i+2]=(n.z*.5+.5)*255;data[i+3]=255;}
  const texture=new THREE.DataTexture(data,size,size);texture.wrapS=texture.wrapT=THREE.RepeatWrapping;texture.magFilter=THREE.LinearFilter;texture.minFilter=THREE.LinearMipmapLinearFilter;texture.generateMipmaps=true;texture.needsUpdate=true;return texture;
 }
-function cloudDome(){
- return new THREE.Mesh(new THREE.SphereGeometry(3900,32,16),new THREE.ShaderMaterial({side:THREE.BackSide,transparent:true,depthWrite:false,uniforms:{time:{value:0}},vertexShader:'varying vec3 ray; void main(){ray=position;gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.);}',fragmentShader:`varying vec3 ray;uniform float time;
- float hash(vec2 p){return fract(sin(dot(p,vec2(127.1,311.7)))*43758.5453);}
- float noise(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);return mix(mix(hash(i),hash(i+vec2(1,0)),f.x),mix(hash(i+vec2(0,1)),hash(i+1.),f.x),f.y);}
- float fbm(vec2 p){float v=0.,a=.5;for(int i=0;i<5;i++){v+=a*noise(p);p=p*2.04+vec2(11.4,7.8);a*=.52;}return v;}
- void main(){vec3 d=normalize(ray);if(d.y<.015)discard;vec2 p=d.xz/(d.y+.16)*2.2+vec2(time*.002,0);float f=fbm(p);float density=smoothstep(.53,.78,f)*smoothstep(.015,.15,d.y);vec3 color=mix(vec3(.57,.64,.67),vec3(1.,.96,.87),smoothstep(.50,.79,f));gl_FragColor=vec4(color,density*.66);}` }));
-}
 export function createEnvironment(scene,renderer,mat,{quality,locationId='haven',vesselId='monohull'}={}){
  const vessel=getVessel(vesselId);
  const location=getLocation(locationId),{islands}=location;
  const definitions=getWorldBodyDefinitions(location.id),buoys=definitions.filter(body=>body.visual.type==='buoy');
  const random=seededRandom(83),sunDirection=new THREE.Vector3(-.8,.64,-1.1).normalize();
- const sky=new Sky();sky.scale.setScalar(4500);scene.add(sky);
- const u=sky.material.uniforms;u.turbidity.value=2.5;u.rayleigh.value=2.0;u.mieCoefficient.value=.005;u.mieDirectionalG.value=.83;u.sunPosition.value.copy(sunDirection).multiplyScalar(4500);
+ const atmosphere=createAtmosphere(scene,sunDirection,location,quality),{sky}=atmosphere;
  const generator=new THREE.PMREMGenerator(renderer),environmentScene=new THREE.Scene();environmentScene.add(sky.clone());const environmentMap=generator.fromScene(environmentScene,.03);scene.environment=environmentMap.texture;scene.environmentIntensity=.55;generator.dispose();
- const clouds=cloudDome();clouds.visible=quality.clouds;scene.add(clouds);
  scene.add(new THREE.HemisphereLight('#cde9ff','#53503f',1.25));
  const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
  const waterGeometry=new THREE.PlaneGeometry(12000,12000),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:location.biome==='fjord'?'#225b6b':'#217887'};
@@ -76,7 +67,7 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   renderer.shadowMap.enabled=next.shadowSize>0;
   renderer.shadowMap.needsUpdate=true;
   if(reflectionTarget && next.reflectionSize!==quality.reflectionSize)reflectionTarget.setSize(next.reflectionSize,next.reflectionSize);
-  quality=next;clouds.visible=quality.clouds;reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);landDetails.setQuality(next);cruiseShip.setQuality(next);
+  quality=next;atmosphere.setQuality(next);reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);landDetails.setQuality(next);cruiseShip.setQuality(next);
  }
 
 
@@ -139,7 +130,7 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  return {water,excludeHullWater,setQuality,marineLife,birdLife,landDetails,cruiseShip,summonAnimal(){secretPending=true;},update(state,time,view){
   shoreline.update(state,time);marineLife.update(state,time,view);birdLife.update(state,time,view);landDetails.update(time);cruiseShip.update(state,time,view,view?.freeSailing);
   if(secretPending){secretPending=false;if(marineLife.encounters.summon(state,time,view))marineLife.update(state,time,view);else{birdLife.encounters.summon(state,time,view);birdLife.update(state,time,view);}}
-  water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;clouds.material.uniforms.time.value=time;
+  water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;atmosphere.update(state,time,view);
   sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
   navigation.forEach((g,i)=>syncBodyTransform(g,bodies.get(g.userData.bodyId)||buoys[i],state.elapsed||0,time,i));
