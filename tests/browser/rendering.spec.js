@@ -77,6 +77,7 @@ test.describe('mobile water', () => {
   test('renders at higher resolution without a mirror shader and resumes playback', async ({
     page,
   }) => {
+    test.setTimeout(300000);
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     page.on('console', (message) => {
@@ -120,9 +121,12 @@ test.describe('mobile water', () => {
     await page.locator('#cover-start-free').tap();
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-running');
     await expect
-      .poll(async () => Number(await scene.getAttribute('data-visual-time')))
+      .poll(async () => Number(await scene.getAttribute('data-visual-time')), { timeout: 90000 })
       .toBeGreaterThan(before);
-    await page.locator('#play').tap();
+    // The full-resolution mobile shader can delay Chromium's touch dispatch on
+    // a software GPU. Allow the same budget as settling, then verify the pause.
+    await page.locator('#play').tap({ timeout: 90000 });
+    await expect(page.locator('body')).toHaveAttribute('data-activity', 'free-paused');
     await expect(scene).toHaveAttribute('data-render-pending', 'false', { timeout: 90000 });
     await expect(scene).toHaveAttribute('data-water-reflections', 'false');
     expect(errors).toEqual([]);

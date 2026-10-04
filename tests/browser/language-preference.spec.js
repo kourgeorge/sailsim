@@ -2,6 +2,15 @@ import { test, expect } from '@playwright/test';
 
 test.use({ locale: 'es-MX' });
 
+test.beforeEach(async ({ context }) => {
+  await context.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return /webgl/.test(type) ? null : getContext.call(this, type, ...args);
+    };
+  });
+});
+
 test('browser language initializes a first visit while manual choices and links take priority', async ({
   page,
 }) => {

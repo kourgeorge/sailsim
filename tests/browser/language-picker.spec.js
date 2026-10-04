@@ -1,5 +1,16 @@
 import { test, expect } from '@playwright/test';
 
+// Language controls use the supported WebGL fallback, like the other UI suites.
+// The rendering suite covers the GPU path separately.
+test.beforeEach(async ({ context }) => {
+  await context.addInitScript(() => {
+    const getContext = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return /webgl/.test(type) ? null : getContext.call(this, type, ...args);
+    };
+  });
+});
+
 test('desktop language menu supports keyboard selection and recovers from a failed download', async ({
   page,
 }) => {
