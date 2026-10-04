@@ -1,0 +1,51 @@
+#scene-capture[hidden] {
+  display: none;
+}
+#scene-capture {
+  flex: none;
+}
+#scene-capture:disabled {
+  opacity: 0.45;
+  cursor: default;
+}
+#scene-capture-preview img {
+  display: block;
+  width: 100%;
+  max-height: 48dvh;
+  object-fit: contain;
+  border: 1px solid #ffffff30;
+  border-radius: 10px;
+  background: #0a2633;
+}
+#scene-capture-preview .training-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 20px;
+}
+#scene-capture-preview .training-button {
+  min-height: 44px;
+}
+#scene-capture-preview [hidden] {
+  display: none;
+}
+#scene-capture-preview #capture-message {
+  margin-bottom: 0;
+}
+@media (max-width: 900px) {
+  body[data-session='active'] .mobile-scene-toolbar {
+    grid-template-columns: 48px minmax(0, 1fr) 48px;
+  }
+  .mobile-scene-toolbar #scene-capture {
+    grid-column: 3;
+    grid-row: 1;
+    display: grid;
+    place-items: center;
+    width: 48px;
+    height: 48px;
+    padding: 12px;
+  }
+  .mobile-scene-toolbar #scene-capture[hidden] {
+    display: none;
+  }
+}

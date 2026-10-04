@@ -49,6 +49,7 @@ import { mountSectionCovers, sectionForMode } from './activity/section-covers.js
 import { getVessel } from './vessels.js';
 import { createWeather, advanceWeather, weatherConditions } from './weather.js';
 import { weatherControl } from './activity/weather-control.js';
+import { mountSceneCapture } from './activity/scene-capture.js';
 
 async function startApp() {
   initializeTextSize();
@@ -86,7 +87,8 @@ async function startApp() {
     cockpitControls,
     simulationSession,
     sectionCovers,
-    sailingAudio;
+    sailingAudio,
+    sceneCapture;
   mountAppShell({ lessonCount: lessons.length, mode });
   const $ = (s) => document.querySelector(s);
   let scene;
@@ -240,6 +242,10 @@ async function startApp() {
       started: !learning?.reading && !learning?.training && sessionStarted(),
       graphicsReady: scene?.ready ?? true,
       paused: !playback.canSimulate,
+    });
+    sceneCapture?.sync({
+      active: document.body.dataset.session === 'active',
+      available: Boolean(scene?.ready),
     });
     sectionCovers?.sync({
       mode,
@@ -1108,6 +1114,7 @@ async function startApp() {
     onRestart: restartSession,
     onChange: () => learning.placeCard(),
   });
+  sceneCapture = mountSceneCapture({ getScene: () => scene, openModal, toast });
   mountTextSize($('#text-size-control'));
   observeTranslations(document.body);
   if (localeLoadError) toast('Language could not be loaded. Please try again.');

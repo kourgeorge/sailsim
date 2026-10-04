@@ -405,6 +405,34 @@ export function createScene(
     },
     render,
     invalidate,
+    async capture() {
+      if (disposed || !lastState || renderer.getContext().isContextLost())
+        throw new Error('Scene is unavailable');
+      // Render and copy in the same task: WebGL may clear its drawing buffer
+      // after presentation. No permanent preserveDrawingBuffer cost is needed.
+      // The helm normally uses a DOM instrument layer through an alpha cutout;
+      // use its textured 3D screen for the exported image instead.
+      const image = document.createElement('canvas');
+      const source = renderer.domElement;
+      const scale = Math.min(1, 2048 / Math.max(source.width, source.height));
+      image.width = Math.max(1, Math.round(source.width * scale));
+      image.height = Math.max(1, Math.round(source.height * scale));
+      try {
+        helmScreen.render(false);
+        renderer.render(scene, camera);
+        image.getContext('2d').drawImage(source, 0, 0, image.width, image.height);
+      } finally {
+        helmScreen.render(view === 'helm');
+        invalidate();
+      }
+      return new Promise((resolve, reject) => {
+        image.toBlob((blob) => {
+          image.width = image.height = 1;
+          if (blob) resolve(blob);
+          else reject(new Error('Scene encoding failed'));
+        }, 'image/png');
+      });
+    },
     renderIfNeeded(state, time) {
       if (dirty || state !== lastState || time !== lastVisualTime) render(state, time);
       // An idle pause is not a slow GPU frame. Exclude it from camera smoothing

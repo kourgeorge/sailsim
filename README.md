@@ -61,6 +61,10 @@ Each race course uses a repeatable weather sequence shared by every competitor. 
 
 Near shore, deer, goats, foxes, rabbits and wild boar appear alone or in small groups, using irregular wildlife sighting intervals. Their foraging paths avoid water, buildings, trees, rocks and other group members. Cruise ships now share their visible hull outline with the collision solver, so contact blocks and pushes the yacht.
 
+## Scene capture
+
+The camera button stays in the active simulation toolbar on desktop, tablet and mobile, including while paused. It captures the current 3D view as a PNG without menus or controls, then offers a preview and **Save image**. Browsers that support sharing image files also offer **Share image** using the device's share sheet. Images stay on the device until the user saves or shares them. Captures are limited to 2048 pixels on the longer edge; the normal renderer does not retain an extra drawing buffer between frames.
+
 ## Sailing school
 
 **51 lessons, 12 modules, 102 explained questions, 22 assessed boat-handling practices and 29 interactive seamanship scenarios (87 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
