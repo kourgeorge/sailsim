@@ -63,6 +63,9 @@ body[data-session=active] .simulator:is([data-mode=explore],[data-mode=maneuver]
 
 /* Lesson introductions have their own reading layout, without cockpit chrome. */
 .lesson-cover{display:contents}
+.lesson-heading-meta{display:flex;flex-wrap:wrap;align-items:baseline;gap:6px 16px;line-height:1.6}
+.scene-title .lesson-section{color:#e7c58e;font-weight:650;text-transform:uppercase}
+.scene-title .lesson-count{color:#a9bec2;white-space:nowrap}
 body[data-session=outside] .simulator[data-mode=learn] .simulation-console,
 body[data-session=outside] .simulator[data-mode=learn] .scene-tools,
 body[data-session=outside] .simulator[data-mode=learn] .right-instruments,

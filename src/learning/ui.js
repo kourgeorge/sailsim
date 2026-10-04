@@ -139,6 +139,8 @@ export function createLearning({
       r = recordFor(progress, l.id),
       mastered = completed().has(l.id),
       active = attempt?.status === 'active';
+    $('#lesson-level').textContent = t(levelFor(l).title);
+    $('#lesson-section').textContent = modules.find((m) => m.id === l.module).title;
     setCues(
       getMode() === 'learn' && (prepared || active)
         ? marinaCues(l, active ? attempt.index : 0)
