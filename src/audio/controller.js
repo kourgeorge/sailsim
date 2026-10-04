@@ -2,8 +2,6 @@ import { createAudioPlayer, audioSource, musicSource } from './radio.js';
 
 const STORAGE_KEY = 'sail-audio-v1';
 const DEFAULTS = {
-  enabled: true,
-  quiet: false,
   musicEnabled: true,
   music: 0.45,
   musicSource: 'sail',
@@ -23,10 +21,10 @@ export function createSailingAudio({
     const saved = JSON.parse(storage().getItem(STORAGE_KEY));
     if (saved && typeof saved === 'object') {
       settings = {
-        enabled: typeof saved.enabled === 'boolean' ? saved.enabled : true,
-        quiet: typeof saved.quiet === 'boolean' ? saved.quiet : false,
-        musicEnabled: typeof saved.musicEnabled === 'boolean' ? saved.musicEnabled : true,
-        music: level(saved.music, DEFAULTS.music),
+        // Fold the former master/quiet switches into the one volume and mute.
+        // Old quiet mode applied one quarter of the chosen slider volume.
+        musicEnabled: saved.enabled !== false && saved.musicEnabled !== false,
+        music: level(saved.music, DEFAULTS.music) * (saved.quiet === true ? 0.25 : 1),
         musicSource: musicSource(saved.musicSource),
       };
     }
@@ -38,7 +36,7 @@ export function createSailingAudio({
     unavailable = false,
     disposed = false;
   const audible = () => settings.musicEnabled && settings.music > 0;
-  const wanted = () => active && settings.enabled && audible();
+  const wanted = () => active && audible();
   const ramp = (parameter, value, seconds) => {
     const now = context.currentTime;
     if (parameter.cancelAndHoldAtTime) parameter.cancelAndHoldAtTime(now);
@@ -90,7 +88,7 @@ export function createSailingAudio({
       if (!context) return;
       player.start(audioSource(settings.musicSource), { retry: retrySource });
       if (context.state === 'running') {
-        ramp(output.gain, settings.quiet ? 0.1875 : 0.75, settings.quiet ? 0.4 : 1.5);
+        ramp(output.gain, 0.75, 1.5);
       } else if (gesture && !resumePromise) {
         // Both play() and resume() run inside the initiating mobile gesture.
         resumePromise = context
@@ -126,7 +124,7 @@ export function createSailingAudio({
     },
     get state() {
       if (unavailable) return 'unavailable';
-      if (!settings.enabled || !audible()) return 'muted';
+      if (!audible()) return 'muted';
       if (!active) return 'paused';
       return context?.state === 'running' ? 'playing' : 'blocked';
     },
@@ -137,8 +135,6 @@ export function createSailingAudio({
     },
     setSettings(patch) {
       settings = {
-        enabled: typeof patch.enabled === 'boolean' ? patch.enabled : settings.enabled,
-        quiet: typeof patch.quiet === 'boolean' ? patch.quiet : settings.quiet,
         musicEnabled:
           typeof patch.musicEnabled === 'boolean' ? patch.musicEnabled : settings.musicEnabled,
         music: level(patch.music, settings.music),

@@ -11,18 +11,22 @@ const RATES = {
   haven: {
     birds: { gull: 60, cormorant: 18, tern: 12, eagle: 1 },
     marine: { fish: 28, dolphin: 4, turtle: 1 },
+    land: { deer: 12, goat: 8, fox: 4, rabbit: 16, boar: 6 },
   },
   shelter: {
     birds: { gull: 70, cormorant: 20, tern: 9, eagle: 0.5 },
     marine: { fish: 34, dolphin: 1.2, turtle: 0.5 },
+    land: { deer: 14, goat: 5, fox: 5, rabbit: 18, boar: 8 },
   },
   strait: {
     birds: { gull: 44, cormorant: 12, tern: 22, eagle: 0.8 },
     marine: { fish: 20, dolphin: 5, turtle: 0.35 },
+    land: { deer: 9, goat: 14, fox: 4, rabbit: 12, boar: 5 },
   },
   fjord: {
     birds: { gull: 46, cormorant: 23, tern: 8, eagle: 5 },
     marine: { fish: 22, dolphin: 1.8, turtle: 0 },
+    land: { deer: 16, goat: 18, fox: 4, rabbit: 9, boar: 1 },
   },
 };
 

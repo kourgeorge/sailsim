@@ -11,6 +11,7 @@ import {
 } from '../physics.js';
 import { createRigidBody, PLAYER_HULL, solveContacts } from '../collisions.js';
 import { createSailingTrack, captureSailingTrack } from '../navigation/sailing-track.js';
+import { createWeather, advanceWeather, raceWeatherSeed } from '../weather.js';
 
 export const RACE_COURSES = [
   {
@@ -79,7 +80,7 @@ const FIXED_STEP = 1 / 30,
 const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
 const bearing = (a, b) => wrap(Math.atan2(b.x - a.x, a.z - b.z) / RAD);
 
-export function createRace(courseId, difficulty = 'club') {
+export function createRace(courseId, difficulty = 'club', { changingWeather = true } = {}) {
   const course = RACE_COURSES.find((item) => item.id === courseId);
   if (!course || !RACE_DIFFICULTIES[difficulty]) throw new RangeError('Unknown race or difficulty');
   const racers = [{ id: 'player', name: 'You', color: '#fff1ce' }, ...RIVALS].map(
@@ -121,6 +122,7 @@ export function createRace(courseId, difficulty = 'club') {
   return {
     course,
     difficulty,
+    weather: createWeather(course, { enabled: changingWeather, seed: raceWeatherSeed(course.id) }),
     racers,
     player: racers[0].state,
     track: createSailingTrack(racers[0].state),
@@ -260,16 +262,12 @@ export function advanceRace(race, dt, { autopilotPlayer = false } = {}) {
       continue;
     }
     const before = race.racers.map((racer) => ({ x: racer.state.x, z: racer.state.z }));
+    const conditions = advanceWeather(race.weather, FIXED_STEP);
     for (const [index, racer] of race.racers.entries()) {
       const s = racer.state;
-      // Fixed conditions and no engine assistance apply to every competitor.
-      Object.assign(s, {
-        throttle: 0,
-        windDirection: race.course.windDirection,
-        windSpeed: race.course.windSpeed,
-        currentSpeed: race.course.currentSpeed,
-        currentDirection: race.course.currentDirection,
-      });
+      // All competitors experience exactly the same weather and no engine assistance.
+      Object.assign(s, conditions, { throttle: 0 });
+      refreshDerived(s);
       if (index || autopilotPlayer) steerRacer(race, racer, index);
       if (racer.finished !== null) {
         // Sail clear of the finish before stopping so early finishers do not

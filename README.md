@@ -49,9 +49,17 @@ Browser scripts require the development server and Playwright Chromium (`npx pla
 
 Free sailing plays one source at a time: Sail relaxing, waves, or a live Radio Paradise mix. Music and waves are original, looping MP3 assets shipped with the app. Local files decode once and loop on the audio thread; radio uses a native media player. A Web Audio context configured for playback handles volume, avoiding live synthesis, convolution reverb, and main-thread loop restarts while the phone renders the scene. Only the last local file is retained in the decoded cache. Radio requires internet; built-in files are loaded from the same site and can use the browser cache.
 
-Open the arrow beside **Sound** in the scene toolbar (in the mobile menu) to choose a source, adjust volume, or mute playback. Source, mute, and volume preferences survive reloads. Switching sources stops the previous audio before the replacement becomes audible. Playback stops on pause or when leaving Free sailing, suspends in hidden tabs, and never starts in lessons or challenges. The audio context is created from a user gesture and suspends when silent; browsers that block sound offer an explicit retry.
+The sound button cycles through **High (100%) → Medium (50%) → Mute**. Open its arrow in the scene toolbar (in the mobile menu) for the source dropdown, volume slider and mute button. Both controls share the same volume: slider values above 50% show High, lower audible values show Medium, and zero shows Mute. Raising the slider unmutes; the menu's mute button restores the previous volume. Source, mute, and volume preferences survive reloads. Switching sources stops the previous audio before the replacement becomes audible. Playback stops on pause or when leaving Free sailing, suspends in hidden tabs, and never starts in lessons or challenges. The audio context is created from a user gesture and suspends when silent; browsers that block sound offer an explicit retry.
 
 Regenerate the original audio files with `node scripts/generate-sailing-audio.mjs` (requires Playwright Chromium and ffmpeg). The score and wave generator live in `src/audio/soundscape.js` and are not bundled into the app. Committed assets make normal builds independent of those generation tools.
+
+## Changing weather and wildlife
+
+Free sailing and fleet races default to **Changing weather**. Choose **Fixed weather** in free-sailing Conditions or the race briefing to hold the settings steady. Wind speed and direction make a gradual, bounded random walk around the starting preset; current changes more slowly, and zero-current presets stay still. Pausing also pauses the weather. Assessed lessons, missions and maneuvering drills retain their authored conditions.
+
+Each race course uses a repeatable weather sequence shared by every competitor. Fixed and changing-weather personal bests are stored separately. Free sails get a fresh sequence; restarting a voyage restores the selected starting preset.
+
+Near shore, deer, goats, foxes, rabbits and wild boar appear alone or in small groups, using irregular wildlife sighting intervals. Their foraging paths avoid water, buildings, trees, rocks and other group members. Cruise ships now share their visible hull outline with the collision solver, so contact blocks and pushes the yacht.
 
 ## Sailing school
 
@@ -101,15 +109,15 @@ progress under `sail-challenge-best-v1:<id>`.
 **Challenges → Race the fleet** offers three races against Skye, Amber and Coral:
 Harbor Sprint (a short triangular course), Windward Duel (tacking and downwind
 sailing), and Channel Chase (a passage with cross-current). Choose Relaxed, Club
-or Expert difficulty, read the fixed starting conditions, then start the
+or Expert difficulty, choose changing or fixed weather, then start the
 five-second countdown. Sail through the numbered rings in order; the final ring
 is the finish. Colored bot yachts and chart markers, live position, course
 progress and finish results share the same race state. Personal best times are
-saved separately for each course and difficulty. Pausing freezes the whole fleet.
+saved separately for each course, difficulty and weather mode. Pausing freezes the whole fleet.
 
 Rivals steer and trim using the same yacht physics as the player; difficulty
 changes their trim and steering rather than adding a speed boost. Engines are
-disabled and all boats share fixed wind/current conditions. These are informal
+disabled and all boats share the same wind/current conditions. These are informal
 checkpoint races, without formal racing-rule adjudication. Each race has a
 15-minute limit. The original engine drills and solo buoy course remain available
 from **Engine drills & buoy course** in Challenges.

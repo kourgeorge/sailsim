@@ -26,8 +26,6 @@ test('legacy sea settings are ignored while music mute and volume survive reload
   assert.equal(audio.state, 'muted');
   const restored = createSailingAudio(options);
   assert.deepEqual(restored.settings, {
-    enabled: true,
-    quiet: false,
     musicEnabled: false,
     music: 0.31,
     musicSource: 'sail',
@@ -43,8 +41,8 @@ test('stored levels are bounded and blocked storage does not disable sound contr
     storage: () => memory('{"music":9,"sea":-1,"enabled":"false"}'),
   });
   assert.equal(audio.settings.music, 1);
-  assert.equal(audio.settings.enabled, true);
-  assert.equal(audio.settings.quiet, false);
+  assert.equal(audio.settings.musicEnabled, true);
+  assert.equal(Object.hasOwn(audio.settings, 'quiet'), false);
   const blocked = createSailingAudio({
     storage: () => {
       throw new Error('Storage disabled');
@@ -57,19 +55,22 @@ test('stored levels are bounded and blocked storage does not disable sound contr
   blocked.dispose();
 });
 
-test('quiet listening persists without changing the music volume or mute', () => {
-  const storage = memory(null);
+test('legacy quiet and disabled switches migrate into the single volume and mute without becoming louder', () => {
+  const storage = memory('{"music":0.32,"enabled":false,"quiet":true}');
   const options = {
     storage: () => storage,
     createContext: () => assert.fail('Paused audio must stay lazy'),
   };
   const audio = createSailingAudio(options);
-  audio.setSettings({ music: 0.32, musicEnabled: false, quiet: true });
+  assert.equal(audio.settings.music, 0.08);
+  assert.equal(audio.settings.musicEnabled, false);
+  audio.setSettings({ musicEnabled: true });
   const restored = createSailingAudio(options);
-  assert.equal(restored.settings.quiet, true);
-  restored.setSettings({ quiet: false });
-  assert.equal(restored.settings.music, 0.32);
-  assert.equal(restored.settings.musicEnabled, false);
+  assert.equal(restored.settings.music, 0.08, 'migration must only apply once');
+  assert.equal(restored.settings.musicEnabled, true);
+  assert.equal(Object.hasOwn(restored.settings, 'enabled'), false);
+  restored.setSettings({ music: 0.5 });
+  assert.equal(restored.settings.music, 0.5);
   audio.dispose();
   restored.dispose();
 });

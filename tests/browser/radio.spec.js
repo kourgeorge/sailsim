@@ -104,11 +104,11 @@ test('radio connects only while sailing, shares music controls, and releases the
   await page.locator('#sound-options').click();
   expect(requests).toHaveLength(1); // Opening settings must not restart live radio.
   await page.locator('#sound-music').fill('32');
-  await page.locator('#sound-quiet').check();
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'medium');
   await expect.poll(() => page.evaluate(() => window.radioGain.gain.value)).toBeCloseTo(0.32);
   await expect
     .poll(() => page.evaluate(() => window.audioContexts[0].gains[0].gain.value))
-    .toBeCloseTo(0.1875);
+    .toBeCloseTo(0.75);
   await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('radio-desktop.png') });
   await page.locator('#sound-music-mute').click();

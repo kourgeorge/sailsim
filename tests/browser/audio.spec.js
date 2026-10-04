@@ -67,35 +67,50 @@ test('free sailing plays audio, mutes music, and suspends when paused or hidden'
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'paused');
   await page.locator('#cover-start-free').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'medium');
   await page.locator('#sound-settings').click();
-  await expect(page.locator('#sound-settings')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'mute');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
+  await page.locator('#sound-settings').click();
+  await expect(page.locator('#sound-settings')).toHaveText('High');
+  await expect
+    .poll(() => page.evaluate(() => window.audioContexts[0].gains[1].gain.value))
+    .toBeCloseTo(1, 3);
+  await page.locator('#sound-settings').click();
+  await expect(page.locator('#sound-settings')).toHaveText('Medium');
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
   await expect(page.locator('#modal')).not.toBeVisible();
   await expect
-    .poll(() => page.evaluate(() => window.audioContexts[0].gains[0].gain.value))
-    .toBeCloseTo(0.1875, 3);
+    .poll(() => page.evaluate(() => window.audioContexts[0].gains[1].gain.value))
+    .toBeCloseTo(0.5, 3);
   await page.locator('#sound-options').click();
-  await expect(page.locator('#sound-quiet')).toBeChecked();
+  await expect(page.locator('#sound-music')).toHaveValue('50');
+  await expect(page.locator('#sailing-audio-settings input[type=checkbox]')).toHaveCount(0);
   await page.screenshot({ path: testInfo.outputPath('sound-desktop.png') });
   await page.locator('#sound-music').fill('32');
   await expect(page.locator('#sound-sea')).toHaveCount(0);
-  await page.locator('#sound-quiet').uncheck();
-  await expect(page.locator('#sound-settings')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'medium');
+  await page.locator('#sound-music').fill('80');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'high');
   await expect
-    .poll(() => page.evaluate(() => window.audioContexts[0].gains[0].gain.value))
-    .toBeCloseTo(0.75, 3);
+    .poll(() => page.evaluate(() => window.audioContexts[0].gains[1].gain.value))
+    .toBeCloseTo(0.8, 3);
   await page.getByRole('button', { name: 'Mute sound', exact: true }).click();
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'true');
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
+  await expect(page.locator('#sound-music')).toHaveValue('0');
+  await expect(page.locator('#sound-music')).toBeEnabled();
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
   await page.getByRole('button', { name: 'Unmute sound', exact: true }).click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
-  await expect(page.locator('#sound-music')).toHaveValue('32');
+  await expect(page.locator('#sound-music')).toHaveValue('80');
   await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
-  await page.locator('#sound-enabled').uncheck();
+  await page.locator('#sound-music').fill('0');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'mute');
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
-  await page.locator('#sound-enabled').check();
+  await page.locator('#sound-music').fill('32');
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'playing');
+  await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'false');
   await page.locator('#close-modal').click();
   await page.locator('#play').click();
   await expect.poll(() => page.evaluate(() => window.audioContexts[0].state)).toBe('suspended');
@@ -132,7 +147,9 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#mobile-menu .mobile-sheet-close').click();
   await page.locator('[data-section="explore"]').click();
   await page.locator('#cover-sound').click();
-  await expect(page.locator('#cover-sound')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#cover-sound')).toHaveAttribute('data-volume-level', 'mute');
+  await page.locator('#cover-sound').click();
+  await expect(page.locator('#cover-sound')).toHaveAttribute('data-volume-level', 'high');
   await expect(page.locator('#modal')).not.toBeVisible();
   await page.locator('#cover-sound-options').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
@@ -147,7 +164,7 @@ test('mobile sound controls remain available while sailing and preserve preferen
   ).toBe(true);
   await page.reload();
   await page.locator('[data-section="explore"]').click();
-  await expect(page.locator('#cover-sound')).toHaveAttribute('aria-pressed', 'true');
+  await expect(page.locator('#cover-sound')).toHaveAttribute('data-volume-level', 'mute');
   await page.locator('#cover-start-free').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
   expect(await page.evaluate(() => window.audioContexts.length)).toBe(0);
@@ -173,7 +190,7 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#mobile-menu-toggle').click();
   await page.locator('#sound-settings').click();
   await expect(page.locator('#mobile-menu')).toBeHidden();
-  await expect(page.locator('#sound-settings')).toHaveAttribute('aria-pressed', 'false');
+  await expect(page.locator('#sound-settings')).toHaveAttribute('data-volume-level', 'medium');
   await page.setViewportSize({ width: 1440, height: 1000 });
   await expect(page.locator('.view-controls #sound-settings')).toBeVisible();
   await expect(page.locator('.view-controls #sound-options')).toBeVisible();
@@ -184,7 +201,8 @@ test('mobile sound controls remain available while sailing and preserve preferen
   await page.locator('#cover-sound-options').click();
   await expect(page.locator('#sound-music-mute')).toHaveAttribute('aria-pressed', 'false');
   await expect(page.locator('#sound-sea-mute')).toHaveCount(0);
-  await expect(page.locator('#sound-quiet')).not.toBeChecked();
+  await expect(page.locator('#sound-music')).toHaveValue('50');
+  await expect(page.locator('#sailing-audio-settings input[type=checkbox]')).toHaveCount(0);
 });
 
 test('rendered music and wave assets have continuous loops without deep gaps or clipping', async ({

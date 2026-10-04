@@ -47,6 +47,8 @@ import { createRaceUI } from './racing/ui.js';
 import { createChallengeUI } from './challenges/ui.js';
 import { mountSectionCovers, sectionForMode } from './activity/section-covers.js';
 import { getVessel } from './vessels.js';
+import { createWeather, advanceWeather, weatherConditions } from './weather.js';
+import { weatherControl } from './activity/weather-control.js';
 
 async function startApp() {
   initializeTextSize();
@@ -58,6 +60,9 @@ async function startApp() {
     localeLoadError = true;
   }
   let sceneTime = 0;
+  let changingWeather = true,
+    voyageWeather = null,
+    voyageWeatherState = null;
   let selectedVessel = 'monohull';
   try {
     selectedVessel = getVessel(localStorage.getItem('sail-vessel')).id;
@@ -100,6 +105,16 @@ async function startApp() {
     $('#toast').classList.add('show');
     clearTimeout(toast.timer);
     toast.timer = setTimeout(() => $('#toast').classList.remove('show'), 4200);
+  }
+  function resetVoyageWeather() {
+    voyageWeather = createWeather(state, {
+      enabled: changingWeather,
+      seed: Math.floor(Math.random() * 4294967296),
+    });
+    voyageWeatherState = state;
+  }
+  function selectedConditions() {
+    return voyageWeatherState === state ? { ...voyageWeather.base } : weatherConditions(state);
   }
   function renderLessons() {
     learning?.refresh();
@@ -459,25 +474,36 @@ async function startApp() {
       return;
     }
     openModal(
-      `<div class="eyebrow">MAKE IT YOUR OWN</div><h2>A change in the weather.</h2><p>A steady breeze is a good place to start.</p><label class="setting-label" for="wind-speed">Wind speed over ground <strong id="wind-speed-value">${state.windSpeed} kn</strong></label><input id="wind-speed" type="range" min="3" max="30" value="${state.windSpeed}"><label class="setting-label" for="wind-direction">Wind over ground from <strong id="wind-direction-value">${state.windDirection}°</strong></label><input id="wind-direction" type="range" min="0" max="359" value="${state.windDirection}"><label class="setting-label" for="current-speed">Current speed <strong id="current-speed-value">${state.currentSpeed.toFixed(1)} kn</strong></label><input id="current-speed" type="range" min="0" max="4" step="0.1" value="${state.currentSpeed}"><label class="setting-label" for="current-direction">Current flowing toward <strong id="current-direction-value">${state.currentDirection}°</strong></label><input id="current-direction" type="range" min="0" max="359" value="${state.currentDirection}"><p class="modal-note">Weather wind is relative to the ground. The onboard display shows wind relative to moving water. Apparent wind is the air felt aboard. Wind names its source; current names where it flows. Conditions are fixed during assessed practice.</p>`,
+      `<div class="eyebrow">MAKE IT YOUR OWN</div><h2>A change in the weather.</h2>${mode === 'explore' ? `${weatherControl('weather-mode', changingWeather)}<p>${t('Wind shifts gradually around the starting conditions. Current changes more slowly.')}</p>` : '<p>A steady breeze is a good place to start.</p>'}<label class="setting-label" for="wind-speed">Wind speed over ground <strong id="wind-speed-value">${+state.windSpeed.toFixed(1)} kn</strong></label><input id="wind-speed" type="range" min="3" max="35" step="0.1" value="${state.windSpeed.toFixed(1)}"><label class="setting-label" for="wind-direction">Wind over ground from <strong id="wind-direction-value">${Math.round(state.windDirection) % 360}°</strong></label><input id="wind-direction" type="range" min="0" max="359" value="${Math.round(state.windDirection) % 360}"><label class="setting-label" for="current-speed">Current speed <strong id="current-speed-value">${state.currentSpeed.toFixed(1)} kn</strong></label><input id="current-speed" type="range" min="0" max="4" step="0.1" value="${state.currentSpeed.toFixed(1)}"><label class="setting-label" for="current-direction">Current flowing toward <strong id="current-direction-value">${Math.round(state.currentDirection) % 360}°</strong></label><input id="current-direction" type="range" min="0" max="359" value="${Math.round(state.currentDirection) % 360}"><p class="modal-note">Weather wind is relative to the ground. The onboard display shows wind relative to moving water. Apparent wind is the air felt aboard. Wind names its source; current names where it flows. Conditions are fixed during assessed practice.</p>`,
     );
+    const weatherMode = $('#weather-mode');
+    if (weatherMode)
+      weatherMode.onchange = (event) => {
+        changingWeather = event.target.value === 'changing';
+        resetVoyageWeather();
+        syncControls();
+      };
     $('#wind-speed').oninput = (e) => {
       state.windSpeed = +e.target.value;
+      resetVoyageWeather();
       $('#wind-speed-value').textContent = state.windSpeed + ' kn';
       syncControls();
     };
     $('#wind-direction').oninput = (e) => {
       state.windDirection = +e.target.value;
+      resetVoyageWeather();
       $('#wind-direction-value').textContent = state.windDirection + '°';
       syncControls();
     };
     $('#current-speed').oninput = (e) => {
       state.currentSpeed = +e.target.value;
+      resetVoyageWeather();
       $('#current-speed-value').textContent = state.currentSpeed.toFixed(1) + ' kn';
       syncControls();
     };
     $('#current-direction').oninput = (e) => {
       state.currentDirection = +e.target.value;
+      resetVoyageWeather();
       $('#current-direction-value').textContent = state.currentDirection + '°';
       syncControls();
     };
@@ -676,7 +702,13 @@ async function startApp() {
       sceneTime += dt;
       if (mode === 'race') racing?.tick(dt);
       else if (mode === 'adventure') adventures?.tick(dt);
-      else step(state, dt);
+      else {
+        if (mode === 'explore') {
+          if (voyageWeatherState !== state) resetVoyageWeather();
+          Object.assign(state, advanceWeather(voyageWeather, dt));
+        }
+        step(state, dt);
+      }
       if ((state.collisionCount || 0) > lastCollisionSequence && state.collision) {
         toast(
           t('Contact detected · {speed} kn closing speed').replace(
@@ -741,7 +773,8 @@ async function startApp() {
       $('.dial-boat').style.transform = `rotate(${state.heading}deg)`;
       $('.no-go').style.transform = `rotate(${state.waterWindDirection ?? 0}deg)`;
       $('#wind-value').textContent = state.waterWindSpeed.toFixed(1);
-      $('#weather-wind').textContent = `${state.windSpeed} kn ${compass(state.windDirection)}`;
+      $('#weather-wind').textContent =
+        `${+state.windSpeed.toFixed(1)} kn ${compass(state.windDirection)}`;
       $('#ideal-trim').textContent = `Suggested: ${Math.round(state.suggestedMainSheet)}°`;
       $('#scene').dataset.visualTime = sceneTime.toFixed(5);
       drawChart($('#mini-chart'));
@@ -913,7 +946,10 @@ async function startApp() {
     else if (mode === 'race') racing.end();
     else if (mode === 'adventure') adventures.end();
     else if (mode === 'challenge') finishChallenge(false);
-    else freeSailingStarted = false;
+    else {
+      Object.assign(state, selectedConditions());
+      freeSailingStarted = false;
+    }
     // Exit returns to the section. Explicit End & review actions still show
     // the report, and the cover can reopen the finished attempt.
     closeOverlays();
@@ -945,7 +981,8 @@ async function startApp() {
     else if (mode === 'race') racing.restart();
     else if (mode === 'adventure') adventures.restart();
     else {
-      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      const { windSpeed, windDirection, currentSpeed, currentDirection } =
+        mode === 'explore' ? selectedConditions() : state;
       state = initialState(state.locationId, state.vesselId);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       lastCollisionSequence = 0;
@@ -994,12 +1031,13 @@ async function startApp() {
     },
     onLesson: (index) => learning.select(index),
     getSelectedVessel: () => selectedVessel,
+    getChangingWeather: () => changingWeather,
     onVessel: (id) => {
       selectedVessel = getVessel(id).id;
       try {
         localStorage.setItem('sail-vessel', selectedVessel);
       } catch {}
-      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      const { windSpeed, windDirection, currentSpeed, currentDirection } = selectedConditions();
       state = initialState(state.locationId, selectedVessel);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       lastCollisionSequence = 0;
@@ -1011,7 +1049,7 @@ async function startApp() {
     onStartFree: () => {
       closeOverlays();
       // Every entry begins a fresh voyage with the selected location and weather.
-      const { windSpeed, windDirection, currentSpeed, currentDirection } = state;
+      const { windSpeed, windDirection, currentSpeed, currentDirection } = selectedConditions();
       state = initialState(state.locationId, selectedVessel);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       ensureScene(state.locationId);

@@ -14,6 +14,7 @@ import { createCoastalVillage } from './coastal-village.js';
 import { createMarineLife } from './marine-life.js';
 import { createBirdLife } from './bird-life.js';
 import { createLandDetails } from './land-details.js';
+import { createLandAnimals } from './land-animals.js';
 import { createCruiseShip } from './cruise-ship.js';
 import { createAtmosphere } from './sky.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,seededRandom,batchStaticMeshes } from './materials.js';
@@ -67,7 +68,7 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   renderer.shadowMap.enabled=next.shadowSize>0;
   renderer.shadowMap.needsUpdate=true;
   if(reflectionTarget && next.reflectionSize!==quality.reflectionSize)reflectionTarget.setSize(next.reflectionSize,next.reflectionSize);
-  quality=next;atmosphere.setQuality(next);reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);landDetails.setQuality(next);cruiseShip.setQuality(next);
+  quality=next;atmosphere.setQuality(next);reflectionFrame=0;marineLife.setQuality(next);birdLife.setQuality(next);landDetails.setQuality(next);landAnimals.setQuality(next);cruiseShip.setQuality(next);
  }
 
 
@@ -125,10 +126,11 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const marineLife=createMarineLife(scene,location.id,quality);
  const birdLife=createBirdLife(scene,location.id,quality);
  const landDetails=createLandDetails(scene,location);landDetails.setQuality(quality);
+ const landAnimals=createLandAnimals(scene,location.id,quality,{obstacles:[...treePoints.map(t=>({x:t.x,z:t.z,radius:t.scale*.4})),...rockPoints.map(r=>({x:r.x,z:r.z,radius:r.scale}))]});
  const cruiseShip=createCruiseShip(scene,location.id,quality);
  let secretPending=false;
- return {water,excludeHullWater,setQuality,marineLife,birdLife,landDetails,cruiseShip,summonAnimal(){secretPending=true;},update(state,time,view){
-  shoreline.update(state,time);marineLife.update(state,time,view);birdLife.update(state,time,view);landDetails.update(time);cruiseShip.update(state,time,view,view?.freeSailing);
+ return {water,excludeHullWater,setQuality,marineLife,birdLife,landDetails,landAnimals,cruiseShip,summonAnimal(){secretPending=true;},update(state,time,view){
+  shoreline.update(state,time);marineLife.update(state,time,view);birdLife.update(state,time,view);landDetails.update(time);landAnimals.update(state,time,view);cruiseShip.update(state,time,view,view?.freeSailing);
   if(secretPending){secretPending=false;if(marineLife.encounters.summon(state,time,view))marineLife.update(state,time,view);else{birdLife.encounters.summon(state,time,view);birdLife.update(state,time,view);}}
   water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;atmosphere.update(state,time,view);
   sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
@@ -141,7 +143,7 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   const ownedTextures=new Set([environmentMap.texture]);
   if(reflectionTexture)ownedTextures.add(reflectionTexture);
   if(environmentDisposed)return ownedTextures;
-  environmentDisposed=true;water.onBeforeRender=()=>{};
+  environmentDisposed=true;cruiseShip.dispose();water.onBeforeRender=()=>{};
   environmentMap.dispose();
   if(reflectionTarget)reflectionTarget.dispose();else reflectionTexture?.dispose();
   reflectionTarget=null;

@@ -39,6 +39,7 @@ export function mountSectionCovers({
   onStartFree,
   onLocation,
   getSelectedVessel = () => getState().vesselId,
+  getChangingWeather = () => true,
   onVessel = () => {},
   onConditions,
   mountSound,
@@ -113,7 +114,7 @@ export function mountSectionCovers({
           waterDescription(location.id),
         );
         copy.querySelector('#cover-conditions').textContent =
-          `${t('Wind')} · ${windSpeed} kn · ${windDirection}°  /  ${t('Current')} · ${currentSpeed} kn · ${currentDirection}°`;
+          `${t('Wind')} · ${windSpeed} kn · ${windDirection}°  /  ${t('Current')} · ${currentSpeed} kn · ${currentDirection}° · ${t(getChangingWeather() ? 'Changing weather' : 'Fixed weather')}`;
         copy.querySelector('#cover-vessel').setAttribute('aria-expanded', 'false');
         copy.querySelector('[role="listbox"]').hidden = true;
       } else
@@ -317,6 +318,7 @@ export function mountSectionCovers({
         state.windDirection,
         state.currentSpeed,
         state.currentDirection,
+        getChangingWeather(),
       ].join(':');
       if (key === previousConditions) return;
       previousConditions = key;
@@ -328,7 +330,7 @@ export function mountSectionCovers({
         waterDescription(state.locationId),
       );
       root.querySelector('#cover-conditions').textContent =
-        `${t('Wind')} · ${state.windSpeed} kn · ${state.windDirection}°  /  ${t('Current')} · ${state.currentSpeed} kn · ${state.currentDirection}°`;
+        `${t('Wind')} · ${+state.windSpeed.toFixed(1)} kn · ${Math.round(state.windDirection) % 360}°  /  ${t('Current')} · ${+state.currentSpeed.toFixed(1)} kn · ${Math.round(state.currentDirection) % 360}° · ${t(getChangingWeather() ? 'Changing weather' : 'Fixed weather')}`;
       sectionSidebar.querySelectorAll('[data-cover-location]').forEach((button) => {
         const selected = button.dataset.coverLocation === state.locationId;
         button.setAttribute('aria-pressed', String(selected));

@@ -47,6 +47,23 @@ const rows = {
   'radio rock': ['radio rock', 'radio rock', 'радио рок', 'רדיו רוק', 'راديو روك'],
   'radio global': ['radio global', 'radio du monde', 'радио мира', 'רדיו עולם', 'راديو عالمي'],
   Volume: ['Volumen', 'Volume', 'Громкость', 'עוצמת הצליל', 'مستوى الصوت'],
+  High: ['Alto', 'Fort', 'Высокая', 'גבוהה', 'مرتفع'],
+  Medium: ['Medio', 'Moyen', 'Средняя', 'בינונית', 'متوسط'],
+  Mute: ['Silencio', 'Muet', 'Без звука', 'השתקה', 'كتم'],
+  'Set high volume': [
+    'Subir el volumen',
+    'Régler le volume fort',
+    'Установить высокую громкость',
+    'הגדרת עוצמה גבוהה',
+    'ضبط مستوى صوت مرتفع',
+  ],
+  'Set medium volume': [
+    'Ajustar el volumen medio',
+    'Régler le volume moyen',
+    'Установить среднюю громкость',
+    'הגדרת עוצמה בינונית',
+    'ضبط مستوى صوت متوسط',
+  ],
   'Live radio requires internet.': [
     'La radio en directo requiere internet.',
     'La radio en direct nécessite Internet.',

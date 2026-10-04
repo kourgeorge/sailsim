@@ -1,18 +1,12 @@
 import * as THREE from 'three';
 import { sceneryBuilder } from './scenery-geometry.js';
-import { createCruiseEncounters } from '../world/cruise-encounters.js';
+import { createCruiseEncounters, cruiseHullShape } from '../world/cruise-encounters.js';
 
 function shipGeometry(decks) {
   const b = sceneryBuilder();
-  const outline = new THREE.Shape();
-  outline.moveTo(0, -89);
-  outline.bezierCurveTo(11, -76, 14, -58, 14, -40);
-  outline.lineTo(14, 71);
-  outline.quadraticCurveTo(14, 81, 7, 81);
-  outline.lineTo(-7, 81);
-  outline.quadraticCurveTo(-14, 81, -14, 71);
-  outline.lineTo(-14, -40);
-  outline.bezierCurveTo(-14, -58, -11, -76, 0, -89);
+  const outline = new THREE.Shape(
+    cruiseHullShape().vertices.map(([x, z]) => new THREE.Vector2(x, z)),
+  );
   const hull = new THREE.ExtrudeGeometry(outline, {
     depth: 10,
     bevelEnabled: false,
@@ -122,8 +116,8 @@ export function createCruiseShip(scene, locationId, quality, options) {
         roof = next.roof;
         decks = event.decks;
       }
-      group.position.set(event.x + event.vx * event.age, 0, event.z + event.vz * event.age);
-      group.rotation.y = -event.heading;
+      group.position.set(event.body.x, 0, event.body.z);
+      group.rotation.y = (-event.body.heading * Math.PI) / 180;
       tourists.count = ['low', 'minimum', 'compatibility'].includes(budget.name) ? 16 : 48;
       for (let i = 0; i < tourists.count; i++) {
         const side = i % 2 ? -1 : 1;
@@ -136,6 +130,10 @@ export function createCruiseShip(scene, locationId, quality, options) {
       }
       tourists.instanceMatrix.needsUpdate = true;
       tourists.instanceColor.needsUpdate = true;
+    },
+    dispose() {
+      encounters.dispose();
+      group.visible = false;
     },
   };
 }

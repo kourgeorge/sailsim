@@ -104,6 +104,11 @@ html[dir='rtl'] .cover-page-track > span {
 .section-cover {
   overflow-x: hidden;
   padding-bottom: calc(var(--cover-pager-height, 60px) + 32px);
+}
+.section-cover,
+.section-cover .lesson-cover {
+  /* The desktop/iPad lesson is itself scrollable. Touch-action is evaluated
+     only as far as the nearest scroll container, so both need this rule. */
   touch-action: pan-y pinch-zoom;
 }
 .section-page.is-swiping {

@@ -22,7 +22,8 @@ export function mountCoverPager({ container, cover, getPage, getPreview, select,
   const rtl = () => document.documentElement.dir === 'rtl';
   let signature = '',
     drag = null,
-    selecting = false;
+    selecting = false,
+    dragFrame = 0;
   const available = () => !cover.hidden && !cover.inert && !document.querySelector('dialog[open]');
   function sync() {
     const page = getPage();
@@ -102,44 +103,50 @@ export function mountCoverPager({ container, cover, getPage, getPreview, select,
   cover.addEventListener('keydown', keyboard);
   nav.addEventListener('keydown', keyboard);
   function resetDrag() {
+    cancelAnimationFrame(dragFrame);
+    dragFrame = 0;
     if (!drag) return;
-    const { surface, id } = drag;
+    const { surface, id, source } = drag;
     drag = null;
     surface.style.transform = '';
     surface.classList.remove('is-swiping');
-    if (cover.hasPointerCapture(id)) cover.releasePointerCapture(id);
+    if (source === 'pen' && cover.hasPointerCapture(id)) cover.releasePointerCapture(id);
   }
-  cover.addEventListener('pointerdown', (event) => {
-    if (!event.isPrimary) {
-      resetDrag();
-      motion.cancel();
-      return;
-    }
-    if (
-      event.pointerType === 'mouse' ||
-      event.button !== 0 ||
-      !available() ||
-      event.target.closest(`${interactive},.cover-section-browser`)
-    )
-      return;
+  function startDrag(target, id, x, y, source) {
+    if (!available() || target.closest(`${interactive},.cover-section-browser`)) return;
     // Leave browser edge gestures and text/control interactions available.
-    if (event.clientX < 18 || event.clientX > innerWidth - 18) return;
+    if (x < 18 || x > innerWidth - 18) return;
     const surface = pages.find((page) => !page.hidden);
     if (!surface) return;
     motion.cancel();
     drag = {
       surface,
-      id: event.pointerId,
-      x: event.clientX,
-      y: event.clientY,
+      source,
+      id,
+      x,
+      y,
+      width: cover.clientWidth,
       horizontal: false,
       offset: 0,
     };
-  });
-  cover.addEventListener('pointermove', (event) => {
-    if (!drag || drag.id !== event.pointerId) return;
-    const dx = event.clientX - drag.x,
-      dy = event.clientY - drag.y;
+  }
+  function drawDrag() {
+    dragFrame = 0;
+    if (!drag) return;
+    const { surface, offset, width, page, step, canMove } = drag;
+    if (!reducedMotion.matches) surface.style.transform = `translateX(${offset}px)`;
+    if (canMove)
+      motion.preview(surface, () => getPreview(page.index + step), {
+        key: `${page.kind}:${page.index + step}`,
+        direction: step * (rtl() ? -1 : 1),
+        width,
+        offset,
+      });
+    else motion.clearPreview();
+  }
+  function moveDrag(x, y, event) {
+    const dx = x - drag.x,
+      dy = y - drag.y;
     if (!drag.horizontal) {
       if (Math.max(Math.abs(dx), Math.abs(dy)) < 10) return;
       if (Math.abs(dy) > Math.abs(dx) * 1.25) {
@@ -148,7 +155,7 @@ export function mountCoverPager({ container, cover, getPage, getPreview, select,
       }
       if (Math.abs(dx) < 10 || Math.abs(dx) < Math.abs(dy) * 1.1) return;
       drag.horizontal = true;
-      cover.setPointerCapture(event.pointerId);
+      if (drag.source === 'pen') cover.setPointerCapture(drag.id);
       drag.surface.classList.add('is-swiping');
     }
     if (!available()) {
@@ -160,23 +167,17 @@ export function mountCoverPager({ container, cover, getPage, getPreview, select,
     const step = (dx < 0 ? 1 : -1) * (rtl() ? -1 : 1);
     const canMove = page && page.index + step >= 0 && page.index + step < page.total;
     drag.offset = canMove
-      ? Math.max(-cover.clientWidth, Math.min(cover.clientWidth, dx))
+      ? Math.max(-drag.width, Math.min(drag.width, dx))
       : Math.max(-40, Math.min(40, dx * 0.2));
-    if (!reducedMotion.matches) drag.surface.style.transform = `translateX(${drag.offset}px)`;
-    if (canMove)
-      motion.preview(drag.surface, () => getPreview(page.index + step), {
-        key: `${page.kind}:${page.index + step}`,
-        direction: step * (rtl() ? -1 : 1),
-        width: cover.clientWidth,
-        offset: drag.offset,
-      });
-    else motion.clearPreview();
-  });
-  cover.addEventListener('pointerup', (event) => {
-    if (!drag || drag.id !== event.pointerId) return;
-    const { surface } = drag;
-    const dx = event.clientX - drag.x;
-    const threshold = Math.max(28, Math.min(44, cover.clientWidth * 0.08));
+    Object.assign(drag, { page, step, canMove });
+    // Touch samples can arrive faster than painting. Update the two page
+    // transforms together once per frame, keeping preview work off that path.
+    if (!dragFrame) dragFrame = requestAnimationFrame(drawDrag);
+  }
+  function endDrag(x) {
+    const { surface } = drag,
+      dx = x - drag.x;
+    const threshold = Math.max(28, Math.min(44, drag.width * 0.08));
     // Once horizontal intent is established, allow a natural curved finish.
     const swipe = drag.horizontal && Math.abs(dx) >= threshold;
     const offset = drag.offset;
@@ -184,22 +185,72 @@ export function mountCoverPager({ container, cover, getPage, getPreview, select,
     if (!swipe || !move((dx < 0 ? 1 : -1) * (rtl() ? -1 : 1), offset)) {
       motion.settle(surface, offset);
     }
+  }
+  function cancelDrag() {
+    if (drag) {
+      const { surface, offset } = drag;
+      resetDrag();
+      motion.settle(surface, offset);
+    }
+  }
+  // iPad browsers can cancel their pointer stream when an inner scroll view
+  // takes ownership. The native touch stream continues through that handoff;
+  // track it directly and prevent native scrolling only after horizontal intent.
+  cover.addEventListener(
+    'touchstart',
+    (event) => {
+      if (event.touches.length !== 1) {
+        cancelDrag();
+        return;
+      }
+      const touch = event.changedTouches[0];
+      startDrag(event.target, touch.identifier, touch.clientX, touch.clientY, 'touch');
+    },
+    { passive: true },
+  );
+  cover.addEventListener(
+    'touchmove',
+    (event) => {
+      if (drag?.source !== 'touch') return;
+      if (event.touches.length !== 1) {
+        cancelDrag();
+        return;
+      }
+      const touch = [...event.touches].find((touch) => touch.identifier === drag.id);
+      if (touch) moveDrag(touch.clientX, touch.clientY, event);
+    },
+    { passive: false },
+  );
+  cover.addEventListener('touchend', (event) => {
+    if (drag?.source !== 'touch') return;
+    const touch = [...event.changedTouches].find((touch) => touch.identifier === drag.id);
+    if (touch) endDrag(touch.clientX);
+  });
+  cover.addEventListener('touchcancel', () => {
+    if (drag?.source === 'touch') cancelDrag();
+  });
+  // Stylus browsing still uses pointer capture; touch must not run twice.
+  cover.addEventListener('pointerdown', (event) => {
+    if (event.pointerType !== 'pen' || event.button !== 0) return;
+    if (!event.isPrimary) {
+      cancelDrag();
+      return;
+    }
+    startDrag(event.target, event.pointerId, event.clientX, event.clientY, 'pen');
+  });
+  cover.addEventListener('pointermove', (event) => {
+    if (drag?.source === 'pen' && drag.id === event.pointerId)
+      moveDrag(event.clientX, event.clientY, event);
+  });
+  cover.addEventListener('pointerup', (event) => {
+    if (drag?.source === 'pen' && drag.id === event.pointerId) endDrag(event.clientX);
   });
   cover.addEventListener('pointercancel', (event) => {
-    if (drag?.id === event.pointerId) {
-      const { surface, offset } = drag;
-      resetDrag();
-      motion.settle(surface, offset);
-    }
+    if (drag?.source === 'pen' && drag.id === event.pointerId) cancelDrag();
   });
   cover.addEventListener('lostpointercapture', (event) => {
-    // Touch starts with implicit capture on the heading/text under the
-    // finger. Transferring it to the page must not cancel our own swipe.
-    if (event.target === cover && drag?.id === event.pointerId) {
-      const { surface, offset } = drag;
-      resetDrag();
-      motion.settle(surface, offset);
-    }
+    if (event.target === cover && drag?.source === 'pen' && drag.id === event.pointerId)
+      cancelDrag();
   });
   window.addEventListener('blur', () => {
     resetDrag();

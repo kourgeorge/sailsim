@@ -3,6 +3,8 @@ import { translate as t } from '../i18n/runtime.js';
 import { mountSailingTrack } from '../navigation/sailing-track-view.js';
 import './race.css';
 import { challengeCatalog } from '../challenges/ui.js';
+import { weatherControl } from '../activity/weather-control.js';
+import { raceRecordKey } from '../weather.js';
 const esc = (value) =>
   String(value).replace(
     /[&<>"']/g,
@@ -27,6 +29,7 @@ export function createRaceUI({
   let race = null,
     selected = RACE_COURSES[0].id,
     difficulty = 'club',
+    changingWeather = true,
     updateTime = 0,
     previous = '';
   const panel = document.createElement('aside');
@@ -35,11 +38,11 @@ export function createRaceUI({
   panel.dataset.noTranslate = 'true';
   panel.setAttribute('aria-label', t('Race standings'));
   container.append(panel);
-  const storageKey = (course = selected, level = difficulty) =>
-    `sail-race-best-v1:${course}:${level}`;
-  const best = (course = selected, level = difficulty) => {
+  const storageKey = (course = selected, level = difficulty, changing = changingWeather) =>
+    raceRecordKey(course, level, changing);
+  const best = (course = selected, level = difficulty, changing = changingWeather) => {
     try {
-      const value = Number(localStorage.getItem(storageKey(course, level)));
+      const value = Number(localStorage.getItem(storageKey(course, level, changing)));
       return value > 0 && value <= 900 ? value : null;
     } catch {
       return null;
@@ -70,7 +73,7 @@ export function createRaceUI({
       )
       .join(
         '',
-      )}</select></label><p>${tr('Sail through the numbered rings in order. The last ring is the finish. Engines are disabled; wind and current stay fixed.')}</p><p>${tr('A five-second countdown holds the fleet at the start. Then steer and trim your sails. Pause stops every boat.')}</p><p id="race-best">${best(id) ? `${tr('Personal best')} · ${clock(best(id))}` : ''}</p><div class="training-actions"><button id="race-start" class="training-button primary">${tr('Start race')}</button><button id="race-back" class="training-button">${tr('All races')}</button></div></section>`;
+      )}</select></label>${weatherControl('race-weather', changingWeather)}<p>${tr('Wind shifts gradually around the starting conditions. Current changes more slowly.')}</p><p>${tr('Sail through the numbered rings in order. Engines are disabled. Every boat shares the same weather.')}</p><p>${tr('A five-second countdown holds the fleet at the start. Then steer and trim your sails. Pause stops every boat.')}</p><p id="race-best">${best(id) ? `${tr('Personal best')} · ${clock(best(id))}` : ''}</p><div class="training-actions"><button id="race-start" class="training-button primary">${tr('Start race')}</button><button id="race-back" class="training-button">${tr('All races')}</button></div></section>`;
     if (preview) return content;
     selected = id;
     openBriefing(content);
@@ -84,12 +87,16 @@ export function createRaceUI({
       difficulty = event.target.value;
       updateBest();
     };
+    document.querySelector('#race-weather').onchange = (event) => {
+      changingWeather = event.target.value === 'changing';
+      updateBest();
+    };
     updateBest();
     document.querySelector('#race-start').onclick = start;
     document.querySelector('#race-back').onclick = library;
   }
   function start() {
-    race = createRace(selected, difficulty);
+    race = createRace(selected, difficulty, { changingWeather });
     previous = '';
     updateTime = 0;
     onStart(race.player);
@@ -165,11 +172,14 @@ export function createRaceUI({
       player = race.racers[0],
       position = standings.findIndex((item) => item.id === 'player') + 1;
     const completed = player.finished !== null;
-    const personalBest = best(race.course.id, race.difficulty);
+    const personalBest = best(race.course.id, race.difficulty, race.weather.enabled);
     const improved = completed && (personalBest === null || player.finished < personalBest);
     if (improved)
       try {
-        localStorage.setItem(storageKey(race.course.id, race.difficulty), String(player.finished));
+        localStorage.setItem(
+          storageKey(race.course.id, race.difficulty, race.weather.enabled),
+          String(player.finished),
+        );
       } catch {
         /* Optional personal best. */
       }
@@ -182,6 +192,7 @@ export function createRaceUI({
     document.querySelector('#race-again').onclick = () => {
       selected = race.course.id;
       difficulty = race.difficulty;
+      changingWeather = race.weather.enabled;
       start();
     };
     document.querySelector('#race-other').onclick = library;
