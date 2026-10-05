@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { Water } from 'three/addons/objects/Water.js';
+import { createDesktopWater } from './desktop-water.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { getLocation } from '../locations.js';
 import { getWorldBodyDefinitions, getWorldRockDefinitions } from '../world/bodies.js';
@@ -36,11 +36,9 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
  const waterGeometry=new THREE.PlaneGeometry(12000,12000),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor:location.biome==='fjord'?'#225b6b':'#217887'};
  const water=quality.reflectionSize>0
-  ?new Water(waterGeometry,{...waterOptions,textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,distortionScale:2.8,fog:true})
+  ?createDesktopWater(waterGeometry,{...waterOptions,textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,distortionScale:2.8,fog:true})
   :createMobileWater(waterGeometry,waterOptions);
  water.rotation.x=-Math.PI/2;water.position.y=-.07;water.material.uniforms.size.value=2.3;
- // Replace the overly reflective default with water's physical normal-incidence Fresnel value.
- if(water.isWater)water.material.fragmentShader=water.material.fragmentShader.replace('float rf0 = 0.3;','float rf0 = 0.022;').replace('( sunColor * diffuseLight * 0.3 + scatter )','( waterColor * ( 0.65 + diffuseLight * 0.45 ) + scatter * 0.35 )').replace('reflectance);','reflectance * 0.68);');
  const excludeWater=installHullWaterExclusion(water.material,{vesselId:vessel.id});
  scene.add(water);
  const shoreline=createShoreline(scene,location,waterOptions.waterNormals,{vesselId:vessel.id});
