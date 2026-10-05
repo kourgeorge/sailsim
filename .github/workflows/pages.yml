@@ -5,6 +5,11 @@ on:
     branches: [master]
   workflow_dispatch:
     inputs:
+      skip_tests:
+        description: 'Skip unit and browser tests for an explicitly requested deployment'
+        type: boolean
+        required: false
+        default: false
       skip_browser_tests:
         description: 'Skip the full browser suite when targeted checks have already passed'
         type: boolean
@@ -33,14 +38,15 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
-      - run: npm test
+      - if: ${{ !inputs.skip_tests }}
+        run: npm test
       - name: Build for the Pages URL
         run: npm run build -- --base "${{ steps.pages.outputs.base_path }}/"
       - run: npm run format:check
-      - if: ${{ !inputs.skip_browser_tests }}
+      - if: ${{ !inputs.skip_tests && !inputs.skip_browser_tests }}
         run: npx playwright install --with-deps chromium
       - name: Browser regressions against the production build
-        if: ${{ !inputs.skip_browser_tests }}
+        if: ${{ !inputs.skip_tests && !inputs.skip_browser_tests }}
         run: npm run test:browser
         env:
           SAIL_TEST_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
