@@ -2,7 +2,7 @@ import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 import { mesh,box,cylinder,bar,rope,canvasTexture,labelTexture,batchStaticMeshes } from './materials.js';
 import { angleDifference,clamp,VESSEL } from '../physics.js';
-import { rigVisualState, smoothBoomAngle } from './rig-state.js';
+import { rigVisualState, smoothBoomAngle, createSailAnimation } from './rig-state.js';
 import { createKeelGeometry } from './keel-geometry.js';
 import { anchorSnapshot } from '../anchor.js';
 import { createAnchorRig } from './anchor-rig.js';
@@ -31,7 +31,7 @@ export function makeSail(parent,mat,{height,foot,jib=false,luffReach=4.8,mark='H
  const edge=[];for(let i=0;i<=24;i++){const v=i/24;edge.push([0,height*v,jib?-luffReach*(1-v)+foot*(1-v):foot*(1-v)]);}
  const leech=rope(parent,mat.ivory,edge,.018,36);if(jib)leech.visible=false;
  const base=new Float32Array(pos);
- return {mesh:sail,update(time,luff,{angle=0,side=1,outhaul=.5,vang=.5,deploy=1}={}){const p=geometry.attributes.position;for(let i=0;i<p.count;i++){const u=uv[i*2],v=uv[i*2+1],chord=foot*(1-v)*deploy;const bulge=base[i*3]*deploy*side*(1.3-outhaul*.6)+Math.sin(time*8+v*15+u*5)*luff*.11*Math.sin(u*Math.PI)*(1-v);const twist=(1-vang)*v*.14*side;const rotation=angle+twist;p.setXYZ(i,chord*u*Math.sin(rotation)+bulge*Math.cos(rotation),base[i*3+1],(jib?-luffReach*(1-v):0)+chord*u*Math.cos(rotation)-bulge*Math.sin(rotation));}p.needsUpdate=true;geometry.computeVertexNormals();}};
+ return {mesh:sail,update(time,luff,{angle=0,side=1,outhaul=.5,vang=.5,deploy=1}={}){const p=geometry.attributes.position;for(let i=0;i<p.count;i++){const u=uv[i*2],v=uv[i*2+1],chord=foot*(1-v)*deploy;const bulge=base[i*3]*deploy*side*(1.3-outhaul*.6)+Math.sin(time*8+v*15+u*5)*luff*.11*Math.sin(u*Math.PI)*(1-v)*deploy;const twist=(1-vang)*v*.14*side;const rotation=angle+twist;p.setXYZ(i,chord*u*Math.sin(rotation)+bulge*Math.cos(rotation),base[i*3+1],(jib?-luffReach*(1-v):0)+chord*u*Math.cos(rotation)-bulge*Math.sin(rotation));}p.needsUpdate=true;geometry.computeVertexNormals();geometry.computeBoundingSphere();}};
 }
 export function winch(parent,mat,x,y,z,color){
  cylinder(parent,mat.rubber,x,y,z,.18,.23,.09);cylinder(parent,mat.steel,x,y+.16,z,.13,.18,.28);
@@ -112,8 +112,9 @@ export function createYacht(mat,{detailed=true}={}){
  for(const side of [-1,1]){rope(boat,mat.steel,[[side*1.87,1.22,-1.4],[side*1.6,7.3,-1.95],[side*1.6,12,-1.95],[0,17.5,-1.95]],.009,36);bar(boat,mat.steel,[side*1.87,1.22,-1.4],[side*1.85,1.68,-1.42],.027);bar(boat,mat.steel,[0,17.4,-1.95],[side*1.42,1.9,5.1],.008);}
  bar(boat,mat.steel,[0,17.5,-1.95],[0,1.25,-6.5],.012);cylinder(boat,mat.aluminum,0,1.28,-6.33,.115,.115,.22);
  const boomGroup=new THREE.Group();boomGroup.name='mainsail-boom';boomGroup.position.set(0,2.85,-1.95);boat.add(boomGroup);bar(boomGroup,mat.aluminum,[0,0,0],[0,0,5.35],.085,12);
- const mainGroup=new THREE.Group();mainGroup.position.y=.15;boomGroup.add(mainGroup);const mainsail=makeSail(mainGroup,mat,{height:14.35,foot:5.2});
- const jibGroup=new THREE.Group();jibGroup.position.set(0,1.8,-1.95);boat.add(jibGroup);const jib=makeSail(jibGroup,mat,{height:15.2,foot:5.4,jib:true});
+ const mainGroup=new THREE.Group();mainGroup.name='mainsail-cloth';mainGroup.position.y=.15;boomGroup.add(mainGroup);const mainsail=makeSail(mainGroup,mat,{height:14.35,foot:5.2});
+ const jibGroup=new THREE.Group();jibGroup.name='headsail-cloth';jibGroup.position.set(0,1.8,-1.95);boat.add(jibGroup);const jib=makeSail(jibGroup,mat,{height:15.2,foot:5.4,jib:true});
+ const jibRoll=bar(boat,mat.cloth,[0,1.8,-6.75],[0,17,-1.95],.075,12);jibRoll.name='furled-headsail';
  const furled=box(boomGroup,mat.cloth,0,.13,2.5,.23,.19,4.9,.08);furled.visible=false;
  const traveler=box(boat,mat.aluminum,0,1.92,.9,2.5,.065,.065);const travelerCar=box(boat,mat.rubber,0,1.97,.9,.19,.14,.12);travelerCar.name='traveler-car';
  const sheet=bar(boat,mat.ivory,[0,2,1],[0,2.8,2.8],.023);
@@ -140,19 +141,22 @@ export function createYacht(mat,{detailed=true}={}){
  box(windVane,mat.red,0,0,.19,.24,.008,.18);
  const vaneArrow=mesh(windVane,new THREE.ConeGeometry(.055,.14,4),mat.red,0,0,-.46);vaneArrow.rotation.x=-Math.PI/2;
  const bow=[];for(let i=0;i<2;i++){bow.push(mesh(boat,new THREE.PlaneGeometry(.7,2),new THREE.MeshBasicMaterial({color:'#d5f3ef',transparent:true,opacity:.15,depthWrite:false}),i?1:-1,.025,-4.5));bow[i].rotation.x=-Math.PI/2;}
- batchStaticMeshes(boat,mergeGeometries,[rudder,sheet,travelerCar,...bow]);
+ batchStaticMeshes(boat,mergeGeometries,[rudder,sheet,travelerCar,jibRoll,...bow]);
+ const sailAnimation=createSailAnimation();
  let previousRigTime=null;
  return {group:boat,instrumentCanvas:display.canvas,update(state,time){
   const windAngle=state.apparentWindAngle??angleDifference(state.windDirection,state.heading),sign=Math.sign(windAngle)||1;
   const rig=rigVisualState(state),rigElapsed=previousRigTime===null?0:time-previousRigTime;
   boomGroup.rotation.y=previousRigTime===null?rig.boomAngle:smoothBoomAngle(boomGroup.rotation.y,rig.boomAngle,rigElapsed);
   if(Number.isFinite(time))previousRigTime=time;
-  const mainHoist=state.mainHoist??Number(Boolean(state.sails)),jibHoist=state.jibHoist??Number(Boolean(state.sails));
-  mainGroup.scale.y=mainHoist*[1,.72,.48][state.reefLevel??Number(Boolean(state.reef))];mainGroup.visible=mainHoist>.01;furled.visible=mainHoist<.99;
-  jibGroup.visible=jibHoist>.01;
-  const mainLuff=state.mainFlow==='Luffing'?1:state.mainFlow==='Stalled'?.45:.08;
+  const pose=sailAnimation.update(state,time);
+  mainGroup.scale.y=pose.main;mainGroup.visible=pose.main>.001;furled.visible=pose.main<.999;
+  furled.scale.set(1+.5*(1-pose.main),.3+.7*(1-pose.main),1);
+  jibGroup.visible=pose.jib>.001;jibRoll.visible=pose.jib<.999;
+  const rollRadius=.3+.7*Math.sqrt(1-pose.jib);jibRoll.scale.set(rollRadius,1,rollRadius);
+  const mainLuff=Math.max(pose.mainMoving?.7:0,state.mainFlow==='Luffing'?1:state.mainFlow==='Stalled'?.45:.08);
   mainsail.update(time,mainLuff,{side:-sign,outhaul:state.outhaul??.5,vang:state.vang??.5});
-  jib.update(time,state.jibFlow==='Luffing'?1:.08,{angle:-sign*(state.jibSheet??40)*Math.PI/180,side:-sign,outhaul:.5,vang:.7,deploy:jibHoist});
+  jib.update(time,Math.max(pose.jibMoving?.7:0,state.jibFlow==='Luffing'?1:.08),{angle:-sign*(state.jibSheet??40)*Math.PI/180,side:-sign,outhaul:.5,vang:.7,deploy:pose.jib});
   travelerCar.position.x=rig.travelerX;
   throttleLever.rotation.x=-(state.throttle??0)*.7;
   wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;windVane.rotation.y=rig.windVaneAngle;

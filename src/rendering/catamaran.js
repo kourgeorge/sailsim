@@ -18,7 +18,7 @@ import {
   catamaranSection,
 } from './catamaran-hull.js';
 import { makeSail, winch } from './yacht.js';
-import { rigVisualState, smoothBoomAngle } from './rig-state.js';
+import { rigVisualState, smoothBoomAngle, createSailAnimation } from './rig-state.js';
 import { createAnchorRig } from './anchor-rig.js';
 import { createHelmDisplay } from './helm-display.js';
 
@@ -304,13 +304,17 @@ export function createCatamaran(mat) {
   boat.add(boom);
   bar(boom, mat.aluminum, [0, 0, 0], [0, 0, 7], 0.105, 12);
   const mainGroup = new THREE.Group();
+  mainGroup.name = 'mainsail-cloth';
   mainGroup.position.y = 0.15;
   boom.add(mainGroup);
   const main = makeSail(mainGroup, mat, { height: 14.5, foot: 6.9, mark: 'H  40 C' });
   const jibGroup = new THREE.Group();
+  jibGroup.name = 'headsail-cloth';
   jibGroup.position.set(0, 1.6, -1.7);
   boat.add(jibGroup);
   const jib = makeSail(jibGroup, mat, { height: 17.2, foot: 3.26, jib: true, luffReach: 3.8 });
+  const jibRoll = bar(boat, mat.cloth, [0, 1.6, -5.5], [0, 18.8, -1.7], 0.075, 12);
+  jibRoll.name = 'furled-headsail';
   const bag = box(boom, mat.navy, 0, 0.13, 3.3, 0.28, 0.22, 6.5, 0.07);
   box(boat, mat.aluminum, 0, 3.4, 3.8, 3.4, 0.07, 0.07);
   const car = box(boat, mat.rubber, 0, 3.46, 3.8, 0.21, 0.13, 0.13);
@@ -334,7 +338,8 @@ export function createCatamaran(mat) {
   // Bow mooring/bridle strongpoints on both hulls.
   for (const side of [-1, 1])
     bar(boat, mat.steel, [side * 2.5, 1.45, -5.3], [side * 2.5, 1.65, -5.3], 0.035);
-  batchStaticMeshes(boat, mergeGeometries, [...rudders, car, sheet]);
+  batchStaticMeshes(boat, mergeGeometries, [...rudders, car, sheet, jibRoll]);
+  const sailAnimation = createSailAnimation();
   let previousTime = null;
   return {
     group: boat,
@@ -347,21 +352,28 @@ export function createCatamaran(mat) {
           ? rig.boomAngle
           : smoothBoomAngle(boom.rotation.y, rig.boomAngle, time - previousTime);
       previousTime = time;
-      const mainHoist = state.mainHoist ?? 1,
-        jibHoist = state.jibHoist ?? 1;
-      mainGroup.visible = mainHoist > 0.01;
-      mainGroup.scale.y = mainHoist * [1, 0.72, 0.48][state.reefLevel || 0];
-      bag.visible = mainHoist < 0.99;
-      jibGroup.visible = jibHoist > 0.01;
-      main.update(time, state.mainFlow === 'Luffing' ? 1 : 0.08, {
-        side: -side,
-        outhaul: state.outhaul,
-        vang: state.vang,
-      });
-      jib.update(time, state.jibFlow === 'Luffing' ? 1 : 0.08, {
+      const pose = sailAnimation.update(state, time);
+      mainGroup.visible = pose.main > 0.001;
+      mainGroup.scale.y = pose.main;
+      bag.visible = pose.main < 0.999;
+      bag.scale.set(1 + 0.5 * (1 - pose.main), 0.3 + 0.7 * (1 - pose.main), 1);
+      jibGroup.visible = pose.jib > 0.001;
+      jibRoll.visible = pose.jib < 0.999;
+      const rollRadius = 0.3 + 0.7 * Math.sqrt(1 - pose.jib);
+      jibRoll.scale.set(rollRadius, 1, rollRadius);
+      main.update(
+        time,
+        Math.max(pose.mainMoving ? 0.7 : 0, state.mainFlow === 'Luffing' ? 1 : 0.08),
+        {
+          side: -side,
+          outhaul: state.outhaul,
+          vang: state.vang,
+        },
+      );
+      jib.update(time, Math.max(pose.jibMoving ? 0.7 : 0, state.jibFlow === 'Luffing' ? 1 : 0.08), {
         side: -side,
         angle: (-side * state.jibSheet * Math.PI) / 180,
-        deploy: jibHoist,
+        deploy: pose.jib,
       });
       car.position.x = rig.travelerX * 1.5;
       const tip = new THREE.Vector3(0, 0, 6)

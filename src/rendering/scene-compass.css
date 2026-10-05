@@ -45,6 +45,7 @@
 #scene-compass #wind-arrow { width: calc(100% - 8px); height: calc(100% - 8px); }
 #scene-compass .dial-boat { left: calc(50% - 8.5px); top: calc(50% - 14px); }
 #scene-compass .wind-value { margin-top: 0; }
+#scene-compass .wind-speed-icon { width: 18px; height: 18px; align-self: center; color: #bbd1d5; }
 #scene-compass .wind-value strong { font-size: calc(20px * var(--text-scale, 1)); }
 /* The dashboard already carries these readings; enlarged text prioritizes the dial. */
 html[data-large-text] #scene-compass .wind-value,

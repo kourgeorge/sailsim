@@ -36,14 +36,16 @@
   body[data-session='active'] .mobile-scene-toolbar {
     grid-template-columns: 48px minmax(0, 1fr) 48px;
   }
-  /* The first row belongs to the menu and live readings. Keep photo capture
-     beside the goal below it, including when larger text makes readings taller. */
-  body[data-session='active'] #mobile-lesson-toggle {
-    grid-column: 1 / 3;
+  /* Reserve the final button slot beside the live readings, including when
+     landscape layout leaves room for the compass at the end of the toolbar. */
+  body[data-session='active'] .simulator:has(#scene-capture:not([hidden])) .mobile-indicators {
+    padding-inline-end: 56px;
+    overflow-wrap: anywhere;
   }
   .mobile-scene-toolbar #scene-capture {
     grid-column: 3;
-    grid-row: 2;
+    grid-row: 1;
+    align-self: center;
     display: grid;
     place-items: center;
     width: 48px;
