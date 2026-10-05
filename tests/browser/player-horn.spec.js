@@ -13,10 +13,52 @@ test.beforeEach(async ({ page }) => {
       constructor(...args) {
         super(...args);
         window.sailingContext = this;
+        // Capture real rendered audio on the audio thread. A one-second blast
+        // can finish between Playwright polls on a busy CI worker.
+        const meterURL = URL.createObjectURL(
+          new Blob(
+            [
+              `registerProcessor('horn-test-meter', class extends AudioWorkletProcessor {
+                constructor() { super(); this.peak = 0; this.blocks = 0; }
+                process(inputs) {
+                  const samples = inputs[0]?.[0];
+                  if (samples?.length) {
+                    let energy = 0;
+                    for (const sample of samples) energy += sample * sample;
+                    this.peak = Math.max(this.peak, Math.sqrt(energy / samples.length));
+                  }
+                  if (++this.blocks % 16 === 0) {
+                    this.port.postMessage(this.peak);
+                    this.peak = 0;
+                  }
+                  return true;
+                }
+              });`,
+            ],
+            { type: 'text/javascript' },
+          ),
+        );
+        this.meterReady = this.audioWorklet
+          .addModule(meterURL)
+          .then(() => {
+            this.measurePeak = (input, result) => {
+              const meter = new AudioWorkletNode(this, 'horn-test-meter');
+              meter.port.onmessage = ({ data }) => {
+                result.peakRms = Math.max(result.peakRms || 0, data);
+              };
+              input.connect(meter);
+              // The processor emits silence, so it cannot duplicate the horn.
+              meter.connect(this.destination);
+              return meter;
+            };
+            this.outputMeter = this.measurePeak(this.outputGain, this);
+          })
+          .finally(() => URL.revokeObjectURL(meterURL));
       }
       createGain() {
         const gain = super.createGain();
         if (!this.outputAnalyser) {
+          this.outputGain = gain;
           this.outputAnalyser = this.createAnalyser();
           gain.connect(this.outputAnalyser);
         }
@@ -33,11 +75,15 @@ test.beforeEach(async ({ page }) => {
         source.start = function (...args) {
           if (this.buffer.duration < 2 && !this.loop) {
             window.playerHorns.push(this);
+            this.context.peakRms = 0;
+            this.meter = this.context.measurePeak(this.hornGain, this);
             this.analyser = this.context.createAnalyser();
             this.hornGain.connect(this.analyser);
             this.addEventListener('ended', () => {
               this.ended = true;
               this.analyser.disconnect();
+              this.meter.disconnect();
+              this.meter.port.close();
             });
           }
           return start.apply(this, args);
@@ -54,6 +100,7 @@ async function start(page) {
   await page.locator('[data-mode=explore]').click();
   await page.locator('#cover-start-free').click();
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+  await page.evaluate(() => window.sailingContext.meterReady);
   await expect(page.locator('#boat-horn')).toBeEnabled();
 }
 const hornCount = (page) => page.evaluate(() => window.playerHorns.length);
@@ -66,15 +113,7 @@ async function audible(page) {
       page.evaluate(() => {
         const horn = window.playerHorns.at(-1);
         if (!horn) return 0;
-        return Math.min(
-          ...[horn.analyser, horn.context.outputAnalyser].map((analyser) => {
-            const samples = new Float32Array(analyser.fftSize);
-            analyser.getFloatTimeDomainData(samples);
-            return Math.sqrt(
-              samples.reduce((sum, value) => sum + value * value, 0) / samples.length,
-            );
-          }),
-        );
+        return Math.min(horn.peakRms || 0, horn.context.peakRms || 0);
       }),
     )
     .toBeGreaterThan(0.01);
@@ -188,6 +227,7 @@ test('muted catamaran horn is reachable in the mobile helm with large RTL text',
   await page.locator('#vessel-option-catamaran').click();
   await page.locator('#cover-start-free').click();
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+  await page.evaluate(() => window.sailingContext.meterReady);
   await page.locator('#mobile-tab-helm').click();
   const horn = page.locator('#boat-horn');
   await expect(horn).toBeInViewport({ ratio: 1 });

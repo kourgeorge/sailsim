@@ -370,7 +370,7 @@ test('desktop buttons and arrow keys share the selected lesson, location and cha
   await page.keyboard.press('ArrowLeft');
   await count(page, 2, 52);
   await page.locator('#cover-course').click();
-  await page.locator('[data-library-lesson="50"]').click();
+  await page.locator('[data-library-lesson]').last().click();
   await count(page, 52, 52);
   await expect(page.locator('.cover-next')).toBeDisabled();
   await page.locator('[data-mode=explore]').click();

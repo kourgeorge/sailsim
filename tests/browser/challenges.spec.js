@@ -175,6 +175,7 @@ test('all locales fit 200% mobile text, with an accessible live objective and si
 test('rescue marker and challenge cues render, pause and clear from the actual 3D scene', async ({
   page,
 }) => {
+  test.setTimeout(300000);
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('./');
@@ -182,7 +183,11 @@ test('rescue marker and challenge cues render, pause and clear from the actual 3
   await page.screenshot({ path: 'artifacts/challenges/catalog.png' });
   await page.locator('[data-sailing-challenge=rescue-run]').click();
   await page.locator('#challenge-start').click();
-  await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+  // The scene is built on demand. Software WebGL on CI needs the same
+  // startup allowance as the dedicated rendering tests.
+  await expect(page.locator('body')).toHaveAttribute('data-session', 'active', {
+    timeout: 90000,
+  });
   await expect(page.locator('#scene')).toHaveAttribute('data-rescue-marker', 'true');
   await expect(page.locator('#scene')).toHaveAttribute('data-training-cues', 'true');
   await page.locator('#play').click();
