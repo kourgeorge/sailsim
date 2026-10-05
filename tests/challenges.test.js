@@ -9,6 +9,7 @@ import {
   challengeChart,
   challengeScore,
   revealChallengeTarget,
+  recordWindObservation,
   finishChallenge,
   keelClearance,
   targetBearing,
@@ -22,15 +23,16 @@ import { initializeAnchoredScenario } from '../src/anchor.js';
 import { refreshDerived, angleDifference, clamp, KNOT } from '../src/physics.js';
 import { challengesUI } from '../src/i18n/challenges.js';
 
-test('five distinct authored challenges start safely and cannot complete untouched', () => {
-  assert.equal(new Set(CHALLENGES.map((d) => d.kind)).size, 5);
+test('distinct authored challenges start safely and cannot complete untouched', () => {
+  assert.equal(new Set(CHALLENGES.map((d) => d.kind)).size, 6);
   for (const d of CHALLENGES) {
     const run = createChallenge(d.id);
     assert.ok(run.minClearance > 1);
     for (let i = 0; i < 30; i++) advanceChallenge(run, 1);
     assert.equal(run.status, 'running', d.id);
     assert.equal(run.stage, 0);
-    assert.equal(run.hold, 0);
+    assert.equal(run.hold, d.kind === 'wind-lab' ? 2 : 0);
+    assert.equal(run.observations.length, 0);
     assert.equal(run.tacks, 0);
   }
   assert.throws(() => createChallenge('missing'), RangeError);
@@ -253,6 +255,8 @@ test('all six languages cover authored challenge text and preserve every placeho
         d.name,
         d.description,
         d.instructions,
+        ...(d.stages ?? []).flatMap(stage => [stage.title, stage.instruction]),
+        ...(d.debrief ? [d.debrief] : []),
         ...d.targets.map((p) => p.clue).filter(Boolean),
       ])
         assert.ok(dictionary[text], text);
@@ -286,7 +290,14 @@ test('every challenge and both passage choices can be completed through the prod
       stopped = false;
     while (run.status === 'running') {
       const s = run.state;
-      if (id === 'treasure-chart') {
+      if (id === 'apparent-wind-lab') {
+        if (run.stage > 0) {
+          s.sails = s.mainHoist = s.jibHoist = 1;
+          steer(s, run.stage === 1 ? 90 : 155);
+          trim(s);
+        }
+        recordWindObservation(run);
+      } else if (id === 'treasure-chart') {
         steer(
           s,
           targetBearing(s, run.target) -
@@ -339,5 +350,42 @@ test('every challenge and both passage choices can be completed through the prod
     assert.ok(run.score >= 1 && run.score <= 100);
     assert.ok(run.track.samples.length > 20);
     assert.equal(run.state.collisionCount, 0);
+    if (id === 'apparent-wind-lab') {
+      const [stopped, reach, broad] = run.observations;
+      assert.equal(run.observations.length, 3);
+      assert.ok(Math.abs(stopped.apparentSpeed - 10) < .2);
+      assert.ok(reach.boatSpeed >= 5 && reach.apparentSpeed > 10.5);
+      assert.ok(reach.apparentAngle < 75);
+      assert.ok(broad.apparentSpeed <= 9 && broad.apparentAngle > 90);
+      assert.ok(reach.boatSpeed < reach.trueSpeed, 'does not misrepresent a cruising yacht as a racing foiler');
+    }
   }
+});
+
+test('wind observations need a fresh continuous hold and explicit action, not cached displays', () => {
+  const run = createChallenge('apparent-wind-lab');
+  assert.equal(challengeChart(run).cues.target, null);
+  assert.equal(recordWindObservation(run), false);
+  for (let i = 0; i < 30; i++) advanceChallenge(run, .1);
+  assert.equal(run.stage, 0);
+  assert.equal(recordWindObservation(run), true);
+  assert.equal(recordWindObservation(run), false, 'cannot reuse the previous hold');
+  Object.assign(run.state, {speed: 6, heading: 90, mainHoist: 1, jibHoist: 1, sails: 1, mainSheet: 40, jibSheet: 40});
+  refreshDerived(run.state);
+  for (let i = 0; i < 49; i++) assessChallenge(run, .1);
+  assert.equal(recordWindObservation(run), false);
+  const cachedSpeed = run.state.apparentWindSpeed;
+  run.state.heading = 180;
+  run.state.apparentWindSpeed = cachedSpeed;
+  assessChallenge(run, .1);
+  assert.equal(run.hold, 0, 'raw heading overrides stale wind instruments');
+  assert.equal(recordWindObservation(run), false);
+  run.state.heading = 90;
+  refreshDerived(run.state);
+  for (let i = 0; i < 51; i++) assessChallenge(run, .1);
+  assert.equal(recordWindObservation(run), true);
+  assert.equal(run.stage, 2);
+  assert.equal(run.observations.length, 2);
+  finishChallenge(run);
+  assert.equal(recordWindObservation(run), false);
 });

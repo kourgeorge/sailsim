@@ -735,7 +735,11 @@
       "concepts": [
         "El viento aparente es el flujo de aire relativo al velero. El viento meteorológico se refiere al suelo fijo; el viento respecto al agua se obtiene restando la corriente de esa velocidad del aire. «Viento real» puede tomar como referencia el suelo o el agua: comprueba la convención del instrumento.",
         "Al aumentar la velocidad respecto al agua en un través estable, el viento aparente suele adelantarse respecto al viento relativo al agua. A favor del viento, moverse con el flujo de aire puede reducir la velocidad aparente. Cuando hay calma respecto al agua, su dirección no está definida, pero un velero que se mueve por el agua puede seguir sintiendo un flujo aparente.",
-        "Compara Viento respecto al agua con Viento aparente en la pantalla multifunción o el panel de instrumentos. Los rumbos respecto al viento, la zona muerta y la respuesta modelada del pujamen usan el viento respecto al agua. La presión de las velas, los coeficientes y los ángulos de escota sugeridos usan el viento aparente. Este modelo empírico no sustituye observar catavientos y forma de las velas."
+        "Compara Viento respecto al agua con Viento aparente en la pantalla multifunción o el panel de instrumentos. Los rumbos respecto al viento, la zona muerta y la respuesta modelada del pujamen usan el viento respecto al agua. La presión de las velas, los coeficientes y los ángulos de escota sugeridos usan el viento aparente. Este modelo empírico no sustituye observar catavientos y forma de las velas.",
+        "Una vela puede funcionar como el ala de un avión: al desviar el aire genera una fuerza aerodinámica con una componente hacia delante y otra lateral. La quilla, la orza o los perfiles sumergidos resisten el desplazamiento lateral. Navegando a un largo o de través, una vela bien ajustada puede seguir impulsando el barco aunque su velocidad supere la del viento real. La aceleración termina cuando el empuje equilibra la resistencia.",
+        "Por eso los barcos de regata eficientes pueden navegar más rápido que el viento real. Ayudan los cascos ligeros y las velas eficientes; los hidroalas pueden elevar el casco sobre el agua y reducir aún más la resistencia. La energía procede del viento que se mueve respecto al agua. El viento aparente describe el aire junto a la vela en movimiento; el movimiento del barco no crea energía adicional. Un velero de crucero normal puede tener demasiada resistencia para superar la velocidad del viento.",
+        "Ejemplo sin corriente ni abatimiento: un barco de regata navega al norte a 30 nudos y un viento de 20 nudos sopla desde el oeste. Las velocidades son perpendiculares. El viento aparente es √(20² + 30²) ≈ 36,1 nudos y llega unos 34° por babor de la proa. El cálculo supone una velocidad del barco; no demuestra que cualquier barco alcance 30 nudos. Navegar exactamente a favor del viento a su misma velocidad elimina el viento aparente en este caso sencillo.",
+        "Prueba Desafíos → Laboratorio de viento aparente. Registra el viento con las velas bajadas, después ízalas y ajústalas navegando de través. Observa cómo el viento aparente aumenta y se adelanta al acelerar. Arriba hasta un largo y vuelve a comparar. Este ejercicio con el velero de crucero muestra el cambio del flujo; el ejemplo de regata explica cómo una menor resistencia permite superar al viento."
       ],
       "observe": [
         "Imagina ir en bicicleta con aire en calma: notas viento de frente.",
@@ -760,6 +764,24 @@
             "Flujo de aire medido en la perilla del mástil"
           ],
           "explanation": "El viento aparente refleja el movimiento del barco. El modelo empírico de fuerzas sigue omitiendo muchos detalles aerodinámicos reales."
+        },
+        {
+          "prompt": "¿Por qué un barco de regata eficiente puede superar al viento real navegando de través?",
+          "options": [
+            "El movimiento del barco crea energía ilimitada",
+            "La sustentación vélica puede seguir generando un empuje mayor que la resistencia",
+            "Todo velero iguala automáticamente la velocidad del viento aparente"
+          ],
+          "explanation": "La vela interactúa con el aire aparente y las superficies sumergidas resisten el movimiento lateral. Con resistencia suficientemente baja puede mantenerse un empuje útil por encima de la velocidad del viento real. La energía sigue procediendo del viento respecto al agua."
+        },
+        {
+          "prompt": "Sin corriente ni abatimiento, un barco navega a 30 nudos perpendicularmente a un viento real de 20 nudos. ¿Qué velocidad de viento aparente siente?",
+          "options": [
+            "10 nudos",
+            "50 nudos",
+            "Unos 36,1 nudos"
+          ],
+          "explanation": "Las velocidades perpendiculares se combinan como √(20² + 30²) ≈ 36,1 nudos. Sumarlas o restarlas directamente solo sirve para movimientos en la misma línea; el ejemplo supone que el barco ya alcanza 30 nudos."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."

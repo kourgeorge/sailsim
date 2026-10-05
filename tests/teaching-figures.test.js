@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {lessons} from '../src/learning/curriculum.js';
 import {advancedLessons} from '../src/learning/advanced-course.js';
 import {renderTeachingFigure,getTeachingFigureCaption} from '../src/learning/teaching-figures.js';
+import {apparentWind} from '../src/physics.js';
 
 const course=[...new Map([...lessons,...advancedLessons].map(lesson=>[lesson.id,lesson])).values()];
 const languages=['en','es','fr','ru','he','ar'];
@@ -82,4 +83,23 @@ test('lesson-specific concepts distinguish wind maneuvers, currents, depth and n
   assert.match(getTeachingFigureCaption({id:'sail-39'}),/ground track/);
   assert.match(getTeachingFigureCaption({id:'sail-42'}),/not independent/);
   for(const lang of ['he','ar']) assert.match(getTeachingFigureCaption({id:'sail-38'},lang),/\u20662\.4 \+ 1\.1 − 1\.8 = 1\.7\u2069/);
+});
+
+test('the racing example subtracts boat velocity, keeps proportional arrows, and localizes the assumption',()=>{
+  const lesson=lessons.find(l=>l.id==='sail-17');
+  assert.equal(lesson.conceptFigures[5],'faster-than-wind');
+  assert.equal(lesson.quiz[3].figure,'faster-than-wind');
+  const result=apparentWind({heading:0,speed:30,leeway:0,windDirection:270,windSpeed:20,currentSpeed:0,currentDirection:0});
+  assert.ok(Math.abs(result.speed-Math.sqrt(20**2+30**2))<1e-9);
+  assert.ok(Math.abs(result.angle+33.6900675)<1e-6);
+  for(const lang of languages){
+    const figure={...lesson,figure:'faster-than-wind'},svg=renderTeachingFigure(figure,lang);
+    assert.match(svg,new RegExp(`lang="${lang}"`));
+    assert.ok(description(svg).length>100);
+    const vectors=Object.fromEntries([...svg.matchAll(/data-wind-vector="([^"]+)" d="M210 204L(\d+) (\d+)"/g)].map(([,key,x,y])=>[key,[Number(x)-210,Number(y)-204]]));
+    assert.deepEqual(vectors.apparent,vectors.true.map((value,index)=>value-vectors.boat[index]));
+    assert.equal(Math.hypot(...vectors.boat)/Math.hypot(...vectors.true),30/20);
+    assert.doesNotMatch(svg,/undefined|NaN/);
+    if(lang!=='en')assert.notEqual(getTeachingFigureCaption(figure,lang),getTeachingFigureCaption(figure,'en'));
+  }
 });

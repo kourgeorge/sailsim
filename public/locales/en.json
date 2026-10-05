@@ -735,7 +735,11 @@
       "concepts": [
         "Apparent wind is airflow relative to the yacht. Weather wind is relative to fixed ground; wind over water subtracts current from that air velocity. “True wind” may use either ground or water as its reference, so check the instrument convention.",
         "As speed through water increases on a steady reach, apparent wind generally shifts forward relative to wind over water. Downwind, motion with the airflow can reduce apparent wind speed. When wind over water is calm, its direction is undefined, but a yacht moving through the water can still experience apparent airflow.",
-        "Compare Wind over water with Apparent wind on the onboard multifunction display or dashboard. Points of sail, the no-go sector, and modeled outhaul response use wind over water. Sail pressure, coefficients, and suggested sheet angles use apparent wind. This empirical model does not replace reading telltales and sail shape."
+        "Compare Wind over water with Apparent wind on the onboard multifunction display or dashboard. Points of sail, the no-go sector, and modeled outhaul response use wind over water. Sail pressure, coefficients, and suggested sheet angles use apparent wind. This empirical model does not replace reading telltales and sail shape.",
+        "A sail can work like an aircraft wing: deflecting airflow produces an aerodynamic force with a forward component and a sideways component. The keel, centreboard or underwater foils resist sideways motion. On a reach, a well-trimmed sail can still provide forward drive when boat speed exceeds true-wind speed. Acceleration ends when driving force balances resistance.",
+        "Efficient racing boats can therefore sail faster than the true wind. Light hulls and efficient sails help; hydrofoils can lift the hull clear of the water and reduce resistance further. The energy comes from wind moving relative to the water. Apparent wind describes the airflow at the moving sail; boat motion creates no extra energy. An ordinary cruising yacht may have too much resistance to exceed wind speed.",
+        "For a worked example, assume no current or leeway: a racing boat travels north at 30 knots while a 20-knot wind blows from the west. The two velocities are perpendicular. Apparent wind speed is √(20² + 30²) ≈ 36.1 knots, arriving about 34° to port of the bow. This calculates the airflow for an assumed boat speed; it does not prove that every boat can reach 30 knots. Sailing straight downwind at wind speed instead removes the apparent airflow in this simple case.",
+        "Try Challenges → Apparent Wind Lab. Record the wind with sails lowered, then hoist and trim on a beam reach. Watch apparent wind strengthen and move forward as boat speed builds. Bear away to a broad reach and compare again. This live cruising-yacht exercise demonstrates the changing airflow; the racing-boat example explains how lower resistance can make faster-than-wind sailing possible."
       ],
       "observe": [
         "Imagine riding a bicycle in still air: you feel wind from ahead.",
@@ -760,6 +764,24 @@
             "Measured masthead airflow"
           ],
           "explanation": "Apparent wind reflects vessel motion. The empirical force model still omits many real aerodynamic details."
+        },
+        {
+          "prompt": "Why can an efficient racing boat sail faster than the true wind on a reach?",
+          "options": [
+            "Boat motion creates an unlimited energy supply",
+            "Sail lift can still provide forward drive greater than resistance",
+            "Every sailboat automatically matches apparent wind speed"
+          ],
+          "explanation": "The sail interacts with apparent airflow while underwater surfaces resist sideways motion. With sufficiently low resistance, useful forward drive can remain above true-wind speed. Energy still comes from wind relative to water."
+        },
+        {
+          "prompt": "With no current or leeway, a boat travels at 30 knots perpendicular to a 20-knot true wind. What apparent wind speed does it experience?",
+          "options": [
+            "10 knots",
+            "50 knots",
+            "About 36.1 knots"
+          ],
+          "explanation": "Perpendicular velocities combine as √(20² + 30²) ≈ 36.1 knots. Adding or subtracting the speeds directly only applies to collinear motion; this example assumes the boat has reached 30 knots."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."

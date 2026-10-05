@@ -6,6 +6,7 @@ import {
   challengeRequirements,
   challengeChart,
   revealChallengeTarget,
+  recordWindObservation,
   targetBearing,
 } from './engine.js';
 import { readChallengeBest, saveChallengeBest } from './records.js';
@@ -30,10 +31,15 @@ const storage = {
 };
 const bearing = (from, to) => `${Math.round(targetBearing(from, to)) % 360}`.padStart(3, '0');
 
+function windObservations(run) {
+  if (run.definition.kind !== 'wind-lab' || !run.observations.length) return '';
+  return `<div class="wind-observations"><h3>${tr('Your wind observations')}</h3><table><thead><tr><th>${tr('Observation')}</th><th>${tr('Boat')}</th><th>${tr('Wind over water')}</th><th>${tr('Apparent wind')}</th></tr></thead><tbody>${run.observations.map((r) => `<tr><th>${tr(run.definition.stages.find((s) => s.id === r.stage).title)}</th><td><bdi>${r.boatSpeed.toFixed(1)} kn</bdi></td><td><bdi>${r.trueSpeed.toFixed(1)} kn<br>${r.trueAngle.toFixed(0)}°</bdi></td><td><bdi>${r.apparentSpeed.toFixed(1)} kn<br>${r.apparentAngle.toFixed(0)}°</bdi></td></tr>`).join('')}</tbody></table><p>${tr('Wind angles are measured from the bow; 0° is ahead and 90° is abeam.')}</p></div>`;
+}
+
 export function challengeCatalog() {
   return `<div class="challenge-catalog">${CHALLENGES.map((d, index) => {
     const best = readChallengeBest(storage, d.id);
-    return `<button class="challenge-choice" data-sailing-challenge="${d.id}"><span class="challenge-art" aria-hidden="true"><svg viewBox="0 0 100 65"><path class="challenge-grid" d="M0 20H100M0 40H100M20 0V65M50 0V65M80 0V65"/><path class="challenge-course-line" d="${['M5 50Q80 60 65 20T25 15', 'M12 50L40 32 68 40 86 12', 'M10 45Q50 15 76 32', 'M8 55Q25 40 30 15T80 5', 'M15 55L80 32 15 8'][index]}"/></svg><span>${d.symbol}</span></span><span class="challenge-choice-copy"><small>${tr(d.difficulty)} · <bdi>${clock(d.goldTime)}</bdi> ${tr('gold target')}</small><strong>${tr(d.name)}</strong><span>${tr(d.description)}</span><small class="challenge-personal-best">${best ? `${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi>` : tr('Set your first record')}</small></span><span class="challenge-choice-arrow" aria-hidden="true">↗</span></button>`;
+    return `<button class="challenge-choice" data-sailing-challenge="${d.id}"><span class="challenge-art" aria-hidden="true"><svg viewBox="0 0 100 65"><path class="challenge-grid" d="M0 20H100M0 40H100M20 0V65M50 0V65M80 0V65"/><path class="challenge-course-line" d="${['M5 50Q80 60 65 20T25 15', 'M12 50L40 32 68 40 86 12', 'M10 45Q50 15 76 32', 'M8 55Q25 40 30 15T80 5', 'M15 55L80 32 15 8', 'M15 15L60 15L85 50'][index]}"/></svg><span>${d.symbol}</span></span><span class="challenge-choice-copy"><small>${tr(d.difficulty)} · <bdi>${clock(d.goldTime)}</bdi> ${tr('gold target')}</small><strong>${tr(d.name)}</strong><span>${tr(d.description)}</span><small class="challenge-personal-best">${best ? `${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi>` : tr('Set your first record')}</small></span><span class="challenge-choice-arrow" aria-hidden="true">↗</span></button>`;
   }).join('')}</div>`;
 }
 
@@ -81,6 +87,21 @@ export function createChallengeUI({
       revealChallengeTarget(run);
       update();
     };
+    const record = document.createElement('button');
+    record.id = 'challenge-record-wind';
+    record.className = 'training-button primary';
+    record.textContent = t('Record wind reading');
+    record.hidden = run.definition.kind !== 'wind-lab';
+    record.onclick = () => {
+      if (!recordWindObservation(run)) return;
+      update();
+      if (run.status !== 'running') results();
+    };
+    panel.querySelector('#challenge-live-details').before(record);
+    const instruction = document.createElement('p');
+    instruction.id = 'challenge-wind-instruction';
+    instruction.hidden = run.definition.kind !== 'wind-lab';
+    panel.querySelector('#challenge-requirements').before(instruction);
     document.querySelector('#modal').close();
     update();
   }
@@ -89,18 +110,23 @@ export function createChallengeUI({
     if (!run || panel.hidden) return;
     const d = run.definition,
       treasure = d.kind === 'treasure';
+    const windLab = d.kind === 'wind-lab',
+      windStage = d.stages?.[run.stage];
     const revealed = !treasure || run.hints.includes(run.stage);
     panel.dataset.challengeStatus = run.status;
     panel.dataset.challengeId = d.id;
     panel.dataset.stage = run.stage;
     panel.querySelector('#challenge-clock').textContent =
       `${clock(run.elapsed)} / ${clock(d.timeLimit)}`;
-    panel.querySelector('#challenge-navigation').textContent = revealed
-      ? `${Math.round(Math.hypot(run.target.x - run.state.x, run.target.z - run.state.z))} m · ${bearing(run.state, run.target)}°`
-      : '';
+    panel.querySelector('#challenge-navigation').textContent =
+      revealed && !windLab
+        ? `${Math.round(Math.hypot(run.target.x - run.state.x, run.target.z - run.state.z))} m · ${bearing(run.state, run.target)}°`
+        : '';
     let goal = run.reason;
     if (run.status === 'running') {
-      if (treasure) {
+      if (windLab) {
+        goal = `${run.stage + 1}/3 · ${t(windStage.title)}. ${t('Continuous hold')} · \u2066${run.hold.toFixed(1)} / ${windStage.hold} s\u2069`;
+      } else if (treasure) {
         const origin = run.stage ? d.targets[run.stage - 1] : d.start;
         goal = `${format('Clue {number} of {total}', { number: run.stage + 1, total: d.targets.length })} · ${t(run.target.clue)} ${format('From {origin}: steer {bearing}° for {distance} m.', { origin: t(run.stage ? 'the last discovery' : 'the start'), bearing: bearing(origin, run.target), distance: Math.round(Math.hypot(origin.x - run.target.x, origin.z - run.target.z)) })}`;
       } else if (d.hold)
@@ -120,7 +146,7 @@ export function createChallengeUI({
       announcement.dataset.milestone = milestone;
       announcement.textContent =
         run.status === 'running'
-          ? treasure
+          ? treasure || windLab
             ? goal
             : d.kind === 'tack'
               ? `${t('Tacks completed')}: ${run.tacks}`
@@ -131,16 +157,18 @@ export function createChallengeUI({
     progress.value =
       run.status === 'completed'
         ? 1
-        : d.hold
-          ? run.hold / d.hold
-          : treasure
-            ? run.stage / d.targets.length
-            : Math.max(
-                0,
-                1 -
-                  Math.hypot(run.target.x - run.state.x, run.target.z - run.state.z) /
-                    Math.hypot(d.start.x - run.target.x, d.start.z - run.target.z),
-              );
+        : windLab
+          ? (run.stage + run.hold / windStage.hold) / d.stages.length
+          : d.hold
+            ? run.hold / d.hold
+            : treasure
+              ? run.stage / d.targets.length
+              : Math.max(
+                  0,
+                  1 -
+                    Math.hypot(run.target.x - run.state.x, run.target.z - run.state.z) /
+                      Math.hypot(d.start.x - run.target.x, d.start.z - run.target.z),
+                );
     const rows = (run.evidence || challengeRequirements(run))
       .map(
         (item) =>
@@ -153,6 +181,14 @@ export function createChallengeUI({
     reveal.hidden = !treasure || run.status !== 'running';
     reveal.disabled = run.hints.includes(run.stage);
     reveal.textContent = t(reveal.disabled ? 'Target revealed' : 'Reveal target (−10 points)');
+    const record = panel.querySelector('#challenge-record-wind');
+    record.hidden = !windLab || run.status !== 'running';
+    record.disabled =
+      !windLab ||
+      run.hold + 1e-8 < windStage.hold ||
+      !challengeRequirements(run).every((item) => item.met);
+    if (windLab)
+      panel.querySelector('#challenge-wind-instruction').textContent = t(windStage.instruction);
     setCues(challengeChart(run).cues);
   }
 
@@ -189,10 +225,17 @@ export function createChallengeUI({
           '',
         )}<span>${tr('Minimum keel clearance')} <bdi>${run.minClearance.toFixed(1)} m</bdi></span>${run.hints.length ? `<span>${tr('Hint penalty')} <bdi>−${run.hints.length * 10}</bdi></span>` : ''}</div><div id="adventure-track"></div><div class="training-actions"><button id="adventure-again" class="training-button primary">${tr('Try again')}</button><button id="adventure-library" class="training-button">${tr('All challenges')}</button></div></section>`,
     );
+    if (run.definition.kind === 'wind-lab') {
+      const explanation = document.createElement('div');
+      explanation.innerHTML = `${windObservations(run)}<p>${tr(run.definition.debrief)}</p>`;
+      document.querySelector('#adventure-track').before(explanation);
+    }
     const marks =
-      run.definition.kind === 'treasure'
-        ? run.definition.targets.slice(0, run.stage)
-        : [run.target];
+      run.definition.kind === 'wind-lab'
+        ? []
+        : run.definition.kind === 'treasure'
+          ? run.definition.targets.slice(0, run.stage)
+          : [run.target];
     mountSailingTrack(document.querySelector('#adventure-track'), run.track, { marks });
     document.querySelector('#adventure-again').onclick = start;
     document.querySelector('#adventure-library').onclick = onLibrary;

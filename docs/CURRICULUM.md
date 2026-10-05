@@ -1,10 +1,12 @@
 # Sailing school curriculum
 
-The course contains 52 authored lessons and 104 explained knowledge questions across thirteen modules. Every lesson has assessed training: 23 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–52. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
+The course contains 52 authored lessons and 108 explained knowledge questions across thirteen modules. Every lesson has assessed training: 23 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–52. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
 
 ## Learning sequence
 
-Each lesson has **training goals → performed tasks → judged evidence → debrief**, accompanied by illustrated study and knowledge checks. **Start training** launches its physical exercise or decision workspace directly. **Study material** opens the separate paged reader and can pause/resume an existing attempt. Reading and page navigation award no training credit. Estimated durations are planning guidance, not enforced time requirements.
+A **module** groups related **lessons**: for example, “Stay in control” contains Lesson 17, “True and apparent wind.” A lesson contains teaching pages and a bundle of **questions**; each quiz item is a question, not a separate lesson. These names match the `modules`, `lessons`, and lesson `quiz` data in `src/learning/curriculum.js`.
+
+Each lesson has **training goals → performed tasks → judged evidence → debrief**, accompanied by illustrated study and knowledge checks. **Start training** opens the goals briefing; **Start simulation** begins its physical exercise or decision workspace. **Study material** opens the separate paged reader and can pause/resume an existing attempt. Reading and page navigation award no training credit. Estimated durations are planning guidance, not enforced time requirements.
 
 | Module | Lessons | Intended outcome |
 | --- | --- | --- |
@@ -29,7 +31,7 @@ Lessons 43–45 add practical marina entry, docking, and departure. Lessons 46�
 Lesson 52 adds catamaran handling: beam and draft margins, windage, finite stability and early reefing, plus independent twin-engine thrust. Its live exercise starts the actual catamaran in Haven open water, pivots from 000° to 090°, proceeds to a marker, and stops. Both stops require five seconds below 0.15 knots with both engines neutral; opposing commands cannot satisfy neutral through a zero average. The real-physics verifier completes the three checkpoints in approximately 185 seconds without contact or grounding. All six languages include the lesson, quizzes, hints, and accessible thrust diagram.
 
 - Every lesson is browsable. Mastery is sequential: a lesson needs its predecessor, a correct knowledge check, and a pass in its prescribed physical or decision assessment.
-- Knowledge answers have immediate explanations. Both must be correct; an incorrect response records a revision and never awards credit. Learners may retry.
+- Knowledge answers have immediate explanations. All must be correct; an incorrect response records a revision and never awards credit. Learners may retry.
 - Practical attempts start explicitly and reset the boat and prescribed steady weather. Free sailing cannot silently complete a lesson.
 - Checkpoints are ordered. Observation events from an earlier stage cannot be banked for a later stage.
 - Timed checks require continuous performance. Leaving tolerance resets that checkpoint's timer. Pauses, dialogs, and suspended browser time earn no credit.
@@ -39,6 +41,14 @@ Lesson 52 adds catamaran handling: beam and draft margins, windage, finite stabi
 - Successful practical evidence remains available while studying its quiz. Repeating a mastered exercise does not erase earlier credit.
 - The final passage combines heading, trim, tack, coasting, and anchoring in order. Passing means those modeled tasks were demonstrated in the prescribed environment.
 - Decision scenarios require inspecting the stated reports and submitting a plan, sequence, chart route, calculation or control decision. Stages award 34/33/33 points; incorrect committed decisions deduct 5 points, and authored critical choices end the attempt. Missing inputs do not carry a penalty. All stages, at least 80/100 and no critical failure are required. See [the scoring contract](PRACTICE_SCORING.md) for numerical tolerances and physical scoring.
+
+## Apparent wind and faster-than-wind sailing
+
+Lesson 17, **True and apparent wind**, retains its original explanations, velocity diagram, and decision calculations. Four additional teaching pages explain sail lift, lateral resistance, energy from wind relative to water, low-drag racing boats and hydrofoils, and the limits of the cruising-yacht example. The worked example assumes no current or leeway: 30 knots northward with a 20-knot wind from the west gives `sqrt(20² + 30²) = 36.06 kn` apparent wind, arriving 33.69° to port. Its proportional SVG arrows show airflow travel directions, and the lesson states that the assumed boat speed is not a predicted performance result. Two added questions assess the mechanism and the perpendicular-vector calculation. All six languages include these additions and the zoomable diagram.
+
+**Challenges → Apparent Wind Lab**, also linked directly from the reader, runs the existing monohull physics with a steady northerly 10-knot wind and no current. It requires three explicit recorded observations: stopped with both sails lowered (two seconds), a beam reach at at least 5 knots with apparent wind at least 10.5 knots and within 75° of the bow (five seconds), and a broad reach at at least 2 knots with apparent wind at most 9 knots and aft of the beam (five seconds). The latter stages require both sails drawing. The live requirements and judge use the same calculation from raw boat/weather state; a changed condition resets the continuous hold. Reading capture cannot skip a stage or reuse the previous hold. Grounding, collision, and timeout retain the challenge failure rules.
+
+The debrief compares the three measured boat speeds, water-relative wind speeds/angles, and apparent wind speeds/angles. This exercise demonstrates the mechanism with the cruising yacht; it does not claim that the yacht sails at racing-foil speeds or alter its resistance model. It is an additional challenge and leaves Lesson 17’s existing decision assessment and course progress IDs intact. Challenge personal bests use the existing score/time storage; the detailed observation log remains available in the current run’s debrief.
 
 ## Feedback and records
 

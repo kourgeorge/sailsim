@@ -847,6 +847,10 @@ async function startApp() {
     },
     openFigure: (l) => learningTools.figure(l),
     openGuide: (l) => learningTools.forLesson(l),
+    onChallenge: (id) => {
+      navigateSection('challenge');
+      sectionCovers.selectChallenge(id);
+    },
     openManeuvers: () => lab.library(),
     getState: () => state,
     getMode: () => mode,

@@ -52,7 +52,8 @@ test('lesson briefing owns launch and displays the setup that will actually be a
   await page.locator('#practice-briefing-close').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'briefing');
   await expect(page.locator('#play')).toBeHidden();
-  await page.locator('#training-goals').click();
+  await expect(page.locator('#training-goals')).toHaveCount(0);
+  await page.locator('#practice-start').click();
   await expect(condition('Heading')).toHaveText('075°');
   await expect(page.locator('#heading')).toHaveText('075');
   await page.locator('#practice-launch').click();

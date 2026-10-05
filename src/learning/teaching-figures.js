@@ -1,6 +1,7 @@
 // Original, schematic teaching artwork. Geometry is fixed to maritime conventions;
 // language changes labels, never port/starboard or compass directions.
 import {marinaLessons} from './marina-course.js';
+import {renderApparentWindFigure,apparentWindCaption} from './apparent-wind-figure.js';
 import {isColregsLesson,renderColregsFigure,colregsFigureCaption} from './colregs-figures.js';
 import {getWorldBodyDefinitions} from '../world/bodies.js';
 import {renderAppCompassFigure,appCompassCaption} from './compass-figure.js';
@@ -161,6 +162,7 @@ function splitLabel(value, max=28) {
  * All supplied lesson text is escaped; no external images, scripts, or foreignObject.
  */
 export function renderTeachingFigure(lesson, lang='en') {
+  if(lesson?.figure==='faster-than-wind') return renderApparentWindFigure(lang);
   if(lesson?.figure==='app-compass') return renderAppCompassFigure(lang);
   if(isColregsLesson(lesson)) return renderColregsFigure(lesson,lang);
   const code=String(lang).toLowerCase().split(/[-_]/)[0];
@@ -355,6 +357,7 @@ export function renderTeachingFigure(lesson, lang='en') {
 }
 
 export function getTeachingFigureCaption(lesson,lang='en') {
+  if(lesson?.figure==='faster-than-wind') return apparentWindCaption(lang);
   if(lesson?.figure==='app-compass') return appCompassCaption(lang);
   if(isColregsLesson(lesson)) return colregsFigureCaption(lesson,lang);
   const number=/^sail-(\d{2})$/.exec(String(lesson?.id??''))?.[1];

@@ -13,6 +13,7 @@ import { anchorSnapshot } from '../anchor.js';
 import { createSailingTrack, captureSailingTrack } from '../navigation/sailing-track.js';
 import { markEntryFraction } from '../racing/race.js';
 import { getChallenge } from './catalog.js';
+import { windLabReadings, windLabRequirements } from './apparent-wind.js';
 
 const RAD = Math.PI / 180;
 const FIXED_STEP = 1 / 30;
@@ -36,6 +37,7 @@ export function createChallenge(id) {
     elapsed: 0,
     accumulator: 0,
     stage: 0,
+    observations: [],
     hold: 0,
     hints: [],
     tacks: 0,
@@ -92,6 +94,7 @@ export function rescueGeometry(run) {
 export function challengeRequirements(run) {
   const s = run.state,
     d = run.definition;
+  if (d.kind === 'wind-lab') return windLabRequirements(run);
   const range = distance(s, run.target);
   if (d.kind === 'rescue') {
     const geometry = rescueGeometry(run);
@@ -196,6 +199,25 @@ export function revealChallengeTarget(run) {
   return true;
 }
 
+// Each observation needs both sustained physical evidence and a learner action.
+export function recordWindObservation(run) {
+  if (run.status !== 'running' || run.definition.kind !== 'wind-lab') return false;
+  const stage = run.definition.stages[run.stage];
+  if (
+    !stage ||
+    run.hold + 1e-8 < stage.hold ||
+    !challengeRequirements(run).every((item) => item.met)
+  )
+    return false;
+  run.observations.push({ stage: stage.id, elapsed: run.elapsed, ...windLabReadings(run.state) });
+  if (run.stage === run.definition.stages.length - 1) finishChallenge(run, '', true);
+  else {
+    run.stage++;
+    run.hold = 0;
+  }
+  return true;
+}
+
 export function challengeScore(run) {
   const { goldTime, silverTime, timeLimit } = run.definition;
   const timeScore =
@@ -261,6 +283,13 @@ export function assessChallenge(run, dt, previous = run.state) {
   if (d.clearance && run.minClearance < d.clearance)
     return finishChallenge(run, 'Keel clearance fell below 1 m.');
   if (run.elapsed >= d.timeLimit) return finishChallenge(run, 'Time limit reached');
+  if (d.kind === 'wind-lab') {
+    const hold = d.stages[run.stage].hold;
+    run.hold = challengeRequirements(run).every((item) => item.met)
+      ? Math.min(hold, run.hold + dt)
+      : 0;
+    return;
+  }
   if (d.kind === 'tack') {
     countTacks(run, dt);
     if (run.status !== 'running') return;
@@ -318,7 +347,7 @@ export function challengeChart(run) {
   return {
     ...d.chart,
     cues: {
-      target: revealed ? run.target : null,
+      target: revealed && d.kind !== 'wind-lab' ? run.target : null,
       rescue: d.kind === 'rescue' ? run.target : null,
       alternatives: d.alternatives,
       route:

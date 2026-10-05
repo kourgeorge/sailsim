@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { CHALLENGES } from '../../src/challenges/catalog.js';
 
 async function fallback(context) {
   await context.addInitScript(() => {
@@ -88,7 +89,7 @@ test('desktop covers separate lesson and free-sailing setup from the cockpit', a
   await home(page, 'explore');
   await expect(page.locator('#cover-conditions')).toContainText('17 kn');
   await navigate(page, 'challenge');
-  await expect(page.locator('[data-sailing-challenge]')).toHaveCount(5);
+  await expect(page.locator('[data-sailing-challenge]')).toHaveCount(CHALLENGES.length);
   await expect(page.locator('[data-race-course]')).toHaveCount(3);
   await page.screenshot({ path: 'artifacts/section-covers/challenges-desktop.png' });
   expect(errors).toEqual([]);

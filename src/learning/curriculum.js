@@ -3,7 +3,8 @@ import {decisionScenarios} from './decision-scenarios.js';
 import {marinaModule,marinaLessons} from './marina-course.js';
 import {colregsModule,colregsLessons} from './colregs-course.js';
 import {catamaranModule,catamaranLessons} from './catamaran-course.js';
-// Original instructional content. Practical assessments only use simulated capabilities.
+// A module groups related lessons. Each lesson contains teaching pages, questions,
+// and its assessed training. Practical assessments only use simulated capabilities.
 export const modules=[
  {id:'aboard',title:'Before you leave',outcome:'Use boat terminology, identify essential equipment, and prepare a safe crew briefing.'},
  {id:'wind',title:'Your first sail',outcome:'Read the wind, raise sails, get underway, and hold a steady course.'},
@@ -147,10 +148,16 @@ lesson('maneuvers','Recover from loss of drive',[
 lesson('conditions','True and apparent wind',[
  'Apparent wind is airflow relative to the yacht. Weather wind is relative to fixed ground; wind over water subtracts current from that air velocity. “True wind” may use either ground or water as its reference, so check the instrument convention.',
  'As speed through water increases on a steady reach, apparent wind generally shifts forward relative to wind over water. Downwind, motion with the airflow can reduce apparent wind speed. When wind over water is calm, its direction is undefined, but a yacht moving through the water can still experience apparent airflow.',
- 'Compare Wind over water with Apparent wind on the onboard multifunction display or dashboard. Points of sail, the no-go sector, and modeled outhaul response use wind over water. Sail pressure, coefficients, and suggested sheet angles use apparent wind. This empirical model does not replace reading telltales and sail shape.'
+ 'Compare Wind over water with Apparent wind on the onboard multifunction display or dashboard. Points of sail, the no-go sector, and modeled outhaul response use wind over water. Sail pressure, coefficients, and suggested sheet angles use apparent wind. This empirical model does not replace reading telltales and sail shape.',
+ 'A sail can work like an aircraft wing: deflecting airflow produces an aerodynamic force with a forward component and a sideways component. The keel, centreboard or underwater foils resist sideways motion. On a reach, a well-trimmed sail can still provide forward drive when boat speed exceeds true-wind speed. Acceleration ends when driving force balances resistance.',
+ 'Efficient racing boats can therefore sail faster than the true wind. Light hulls and efficient sails help; hydrofoils can lift the hull clear of the water and reduce resistance further. The energy comes from wind moving relative to the water. Apparent wind describes the airflow at the moving sail; boat motion creates no extra energy. An ordinary cruising yacht may have too much resistance to exceed wind speed.',
+ 'For a worked example, assume no current or leeway: a racing boat travels north at 30 knots while a 20-knot wind blows from the west. The two velocities are perpendicular. Apparent wind speed is √(20² + 30²) ≈ 36.1 knots, arriving about 34° to port of the bow. This calculates the airflow for an assumed boat speed; it does not prove that every boat can reach 30 knots. Sailing straight downwind at wind speed instead removes the apparent airflow in this simple case.',
+ 'Try Challenges → Apparent Wind Lab. Record the wind with sails lowered, then hoist and trim on a beam reach. Watch apparent wind strengthen and move forward as boat speed builds. Bear away to a broad reach and compare again. This live cruising-yacht exercise demonstrates the changing airflow; the racing-boat example explains how lower resistance can make faster-than-wind sailing possible.'
 ],['Imagine riding a bicycle in still air: you feel wind from ahead.','Compare the apparent wind display as speed increases on a steady course.'], 'Assuming true and apparent wind have identical direction and speed while the yacht is moving.',[
  q('What wind does a moving sail actually experience?',['Only the weather forecast wind','Apparent wind','A fixed compass wind'],1,'Sails interact with airflow relative to the moving yacht.'),
- q('What does this prototype use for its sail-force calculation?',['An empirical model using apparent wind','A validated full aerodynamic simulation','Measured masthead airflow'],0,'Apparent wind reflects vessel motion. The empirical force model still omits many real aerodynamic details.')]);
+ q('What does this prototype use for its sail-force calculation?',['An empirical model using apparent wind','A validated full aerodynamic simulation','Measured masthead airflow'],0,'Apparent wind reflects vessel motion. The empirical force model still omits many real aerodynamic details.'),
+ q('Why can an efficient racing boat sail faster than the true wind on a reach?',['Boat motion creates an unlimited energy supply','Sail lift can still provide forward drive greater than resistance','Every sailboat automatically matches apparent wind speed'],1,'The sail interacts with apparent airflow while underwater surfaces resist sideways motion. With sufficiently low resistance, useful forward drive can remain above true-wind speed. Energy still comes from wind relative to water.'),
+ q('With no current or leeway, a boat travels at 30 knots perpendicular to a 20-knot true wind. What apparent wind speed does it experience?',['10 knots','50 knots','About 36.1 knots'],2,'Perpendicular velocities combine as √(20² + 30²) ≈ 36.1 knots. Adding or subtracting the speeds directly only applies to collinear motion; this example assumes the boat has reached 30 knots.')]);
 lesson('conditions','Reef before you need to',[
  'Reefing reduces sail area to improve control as wind increases. A decision to reef should consider forecast, gusts, sea state, crew ability, and the boat’s behavior, not a universal wind-speed rule.',
  'Excessive heel, heavy helm, and difficulty maintaining control are reasons to reassess sail area early. Delaying can make the work harder when conditions deteriorate.',
@@ -299,4 +306,9 @@ lessons.push(...catamaranLessons);
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 // Supplemental pages retain the original general-purpose lesson diagrams.
 for(const id of ['sail-04','sail-05']){const lesson=lessons.find(l=>l.id===id);lesson.conceptFigures={3:'app-compass',4:'app-compass'};lesson.quiz[2].figure='app-compass';}
+const apparentWindLesson=lessons.find(l=>l.id==='sail-17');
+apparentWindLesson.conceptFigures={5:'faster-than-wind'};
+apparentWindLesson.quiz[3].figure='faster-than-wind';
+apparentWindLesson.minutes=10;
+apparentWindLesson.challengeId='apparent-wind-lab';
 export {lessons};

@@ -11,7 +11,7 @@ async function fallback(context) {
   });
 }
 
-test('five challenges launch, pause, restart and end with a recorded path without disrupting races', async ({
+test('all challenges launch, pause, restart and end with a recorded path without disrupting races', async ({
   page,
   context,
 }, testInfo) => {
@@ -20,7 +20,7 @@ test('five challenges launch, pause, restart and end with a recorded path withou
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('./');
   await page.locator('[data-mode=challenge]').click();
-  await expect(page.locator('[data-sailing-challenge]')).toHaveCount(5);
+  await expect(page.locator('[data-sailing-challenge]')).toHaveCount(CHALLENGES.length);
   await expect(page.locator('[data-race-course]')).toHaveCount(3);
   for (const definition of CHALLENGES) {
     await page.locator(`[data-sailing-challenge="${definition.id}"]`).click();
@@ -119,7 +119,7 @@ test('all locales fit 200% mobile text, with an accessible live objective and si
     await page.goto(`./?lang=${language}`);
     await expect(page.locator('html')).toHaveAttribute('data-text-size', '200');
     await page.locator('[data-section=challenge]').click();
-    await expect(page.locator('[data-sailing-challenge]')).toHaveCount(5);
+    await expect(page.locator('[data-sailing-challenge]')).toHaveCount(CHALLENGES.length);
     await expect(page.locator('[data-sailing-challenge=anchor-bullseye] strong')).toHaveText(
       challengesUI[language]['Anchor Bullseye'],
     );

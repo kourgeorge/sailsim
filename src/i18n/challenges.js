@@ -1,5 +1,7 @@
+import { apparentWindRows } from './apparent-wind.js';
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
+  ...apparentWindRows,
   'Find your next adventure.': [
     'Encuentra tu próxima aventura.',
     'Trouvez votre prochaine aventure.',

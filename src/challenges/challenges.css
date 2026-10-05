@@ -2,7 +2,7 @@
 #challenge-hud .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
 .challenge-catalog{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin:24px 0 34px}
 .challenge-choice{position:relative;display:flex;align-items:flex-start;gap:15px;min-width:0;padding:18px;border:1px solid #ffffff26;border-radius:12px;text-align:start;background:linear-gradient(135deg,#295c6544,#102e3b88);transition:border-color .15s,background .15s}
-.challenge-choice:last-child{grid-column:1/-1}
+.challenge-choice:last-child:nth-child(odd){grid-column:1/-1}
 .challenge-choice:hover,.challenge-choice:focus-visible{border-color:#efca88;background:#28546166}
 .challenge-art{position:relative;display:grid;place-items:center;flex:0 0 66px;aspect-ratio:1;border:1px solid #e7c58e38;border-radius:50%;color:#f1d49e;overflow:hidden}
 .challenge-art svg{position:absolute;inset:0;width:100%;height:100%;fill:none}
@@ -22,7 +22,7 @@
 .challenge-medal-targets>span:last-child{color:#d3a47c}
 .challenge-best{color:#a7e4ce!important}
 #challenge-hud{position:absolute;z-index:6;inset-inline-start:22px;inset-block-start:calc(max(18px,env(safe-area-inset-top)) + var(--session-controls-height,44px) + 20px);width:280px;max-width:34%;max-height:calc(100% - var(--control-dock-height,160px) - 125px);overflow:auto;overscroll-behavior:contain;padding:15px;border:1px solid #ffffff30;border-radius:12px;background:#102e3bf2;color:#e9f1e9;box-shadow:0 8px 30px #001c2530;font-size:calc(12px * var(--text-scale,1));line-height:1.5}
-#challenge-hud[hidden],#challenge-reveal[hidden]{display:none}
+#challenge-hud[hidden],#challenge-reveal[hidden],#challenge-record-wind[hidden]{display:none}
 .challenge-hud-top{display:flex;align-items:flex-start;gap:8px}
 .challenge-hud-top>strong{flex:1;min-width:0;color:#f3d6a0;font-size:calc(15px * var(--text-scale,1));overflow-wrap:anywhere}
 #challenge-options{flex:none;min-width:44px;min-height:44px;margin:-8px -6px -4px;font-size:22px}
@@ -63,3 +63,24 @@
  html[data-large-text] .challenge-requirement{flex-wrap:wrap}
  html[data-large-text] .challenge-requirement bdi{margin-inline-start:20px}
 }
+.wind-observations {
+  overflow-x: auto;
+  margin-block: 1rem;
+}
+.wind-observations table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.85em;
+}
+.wind-observations th,
+.wind-observations td {
+  padding: 0.5rem;
+  text-align: start;
+  border-bottom: 1px solid #6f858744;
+}
+.wind-observations bdi {
+  white-space: nowrap;
+}
+
+#challenge-record-wind{width:100%;white-space:normal;overflow-wrap:anywhere;font-size:inherit;min-height:44px;margin-top:8px}
+#challenge-record-wind:disabled{opacity:.6;cursor:default}

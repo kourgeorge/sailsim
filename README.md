@@ -67,7 +67,7 @@ The camera button stays in the active simulation toolbar on desktop, tablet and 
 
 ## Sailing school
 
-**52 lessons, 13 modules, 104 explained questions, 23 assessed boat-handling practices and 29 interactive seamanship scenarios (87 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
+**52 lessons, 13 modules, 108 explained questions, 23 assessed boat-handling practices and 29 interactive seamanship scenarios (87 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
 
 | Level | Lessons | Focus |
 |---|---|---|

@@ -735,7 +735,11 @@
       "concepts": [
         "Le vent apparent est l’écoulement d’air relatif au voilier. Le vent météo est référencé au sol fixe ; le vent relatif à l’eau s’obtient en soustrayant le courant de cette vitesse de l’air. Le « vent réel » peut être référencé au sol ou à l’eau : vérifiez la convention de l’instrument.",
         "Quand la vitesse surface augmente sur un travers stable, le vent apparent vient généralement davantage de l’avant que le vent relatif à l’eau. Au portant, se déplacer dans le sens du flux d’air peut réduire la vitesse apparente. Si le vent relatif à l’eau est nul, sa direction est indéfinie, mais un voilier avançant dans l’eau peut toujours ressentir un flux apparent.",
-        "Comparez Vent relatif à l’eau et Vent apparent sur l’écran multifonction de bord ou le tableau de bord. Les allures, la zone interdite et la réponse modélisée de la bordure utilisent le vent relatif à l’eau. La pression des voiles, les coefficients et les angles d’écoute conseillés utilisent le vent apparent. Ce modèle empirique ne remplace pas l’observation des penons et de la forme des voiles."
+        "Comparez Vent relatif à l’eau et Vent apparent sur l’écran multifonction de bord ou le tableau de bord. Les allures, la zone interdite et la réponse modélisée de la bordure utilisent le vent relatif à l’eau. La pression des voiles, les coefficients et les angles d’écoute conseillés utilisent le vent apparent. Ce modèle empirique ne remplace pas l’observation des penons et de la forme des voiles.",
+        "Une voile peut fonctionner comme une aile d’avion : dévier l’air produit une force aérodynamique comportant une composante vers l’avant et une composante latérale. La quille, la dérive ou les foils immergés résistent au déplacement latéral. Au travers ou au largue, une voile bien réglée peut encore propulser le bateau quand sa vitesse dépasse celle du vent réel. L’accélération cesse lorsque la force propulsive équilibre la résistance.",
+        "Les voiliers de course efficaces peuvent donc dépasser le vent réel. Des coques légères et des voiles efficaces y contribuent ; les foils peuvent soulever la coque au-dessus de l’eau et réduire davantage la résistance. L’énergie vient du vent en mouvement par rapport à l’eau. Le vent apparent décrit l’air rencontré par la voile en mouvement ; le déplacement du bateau ne crée aucune énergie supplémentaire. Un voilier de croisière ordinaire peut avoir trop de résistance pour dépasser le vent.",
+        "Exemple sans courant ni dérive : un voilier de course va au nord à 30 nœuds tandis qu’un vent de 20 nœuds vient de l’ouest. Les vitesses sont perpendiculaires. Le vent apparent vaut √(20² + 30²) ≈ 36,1 nœuds et arrive à environ 34° sur bâbord avant. Le calcul suppose la vitesse du bateau ; il ne prouve pas que tout bateau puisse atteindre 30 nœuds. Au vent arrière exact, avancer à la vitesse du vent supprime au contraire le vent apparent dans ce cas simple.",
+        "Essayez Défis → Atelier du vent apparent. Relevez le vent voiles affalées, puis hissez et réglez au travers. Observez le vent apparent se renforcer et revenir vers l’avant à mesure que le bateau accélère. Abattez au grand largue et comparez à nouveau. Cet exercice avec le voilier de croisière montre l’évolution du flux ; l’exemple du voilier de course explique comment une moindre résistance permet de dépasser le vent."
       ],
       "observe": [
         "Imaginez rouler à vélo dans un air immobile : vous sentez du vent de face.",
@@ -760,6 +764,24 @@
             "Un écoulement mesuré en tête de mât"
           ],
           "explanation": "Le vent apparent reflète le mouvement du bateau. Le modèle empirique omet encore de nombreux détails aérodynamiques réels."
+        },
+        {
+          "prompt": "Pourquoi un voilier de course efficace peut-il dépasser le vent réel au travers ?",
+          "options": [
+            "Le mouvement du bateau crée une énergie illimitée",
+            "La portance des voiles peut encore fournir une force propulsive supérieure à la résistance",
+            "Tout voilier égale automatiquement la vitesse du vent apparent"
+          ],
+          "explanation": "La voile interagit avec le flux apparent tandis que les surfaces immergées résistent au déplacement latéral. Si la résistance est assez faible, une force propulsive utile peut subsister au-delà de la vitesse du vent réel. L’énergie vient toujours du vent par rapport à l’eau."
+        },
+        {
+          "prompt": "Sans courant ni dérive, un bateau avance à 30 nœuds perpendiculairement à un vent réel de 20 nœuds. Quelle vitesse de vent apparent rencontre-t-il ?",
+          "options": [
+            "10 nœuds",
+            "50 nœuds",
+            "Environ 36,1 nœuds"
+          ],
+          "explanation": "Les vitesses perpendiculaires se combinent selon √(20² + 30²) ≈ 36,1 nœuds. Additionner ou soustraire directement les vitesses ne convient qu’aux mouvements colinéaires ; l’exemple suppose le bateau déjà à 30 nœuds."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."

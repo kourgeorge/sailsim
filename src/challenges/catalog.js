@@ -1,3 +1,4 @@
+import { APPARENT_WIND_LAB } from './apparent-wind.js';
 // Authored positions use the same metres, compass bearings and depth model as the chart.
 export const CHALLENGES = [
   {
@@ -134,6 +135,7 @@ export const CHALLENGES = [
     timeLimit: 900,
     chart: { center: { x: 100, z: 920 }, span: 650 },
   },
+  APPARENT_WIND_LAB,
 ];
 
 export function getChallenge(id) {

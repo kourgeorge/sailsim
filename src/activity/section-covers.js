@@ -342,6 +342,9 @@ export function mountSectionCovers({
       });
     },
     refreshChallenges,
+    selectChallenge(id) {
+      challengeItems.find((item) => item.dataset.sailingChallenge === id)?.click();
+    },
     showChallengeBriefing(content) {
       // Keep the same title-above-card composition as the lesson panel.
       arrangeBriefing(briefing, content);

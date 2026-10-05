@@ -115,7 +115,7 @@ The final general browser regression passed after all source changes: training a
 
 ## Lesson covers and live sessions
 
-Lesson introductions use `#lesson-cover`, with Study and Start actions and no cockpit panel or per-lesson Course button. Course navigation is available from the site navigation and mobile lesson selector. Preparing an exercise stays outside the session.
+Lesson introductions use `#lesson-cover`, with Study material and Start training actions and no cockpit panel or per-lesson Course button. Start training opens the goals briefing; the cover has no duplicate Training goals button. During an active exercise, Show briefing reopens the same paused attempt. Course navigation is available from the site navigation and mobile lesson selector. Preparing an exercise stays outside the session.
 
 `src/activity/session.js` switches live boat handling to a viewport-filling cockpit once the graphics have rendered (or the WebGL fallback has resolved). Physical lessons, free sailing, engine drills, buoy courses, and fleet races share Exit and Restart actions. Pausing or opening a utility dialog preserves the session layout; study temporarily restores site navigation. Ending an assessed attempt preserves its report. Restarting starts a fresh attempt; free sailing retains its location and current weather settings.
 
