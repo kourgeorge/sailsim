@@ -90,13 +90,13 @@ test.describe('touch browsing', () => {
     await count(page, 3, 4);
 
     await page.locator('button[data-section=challenge]').tap();
-    await count(page, 1, 12);
+    await count(page, 1, 13);
     const items = page.locator(
       '#cover-challenges [data-sailing-challenge], #cover-challenges [data-race-course], #cover-challenges [data-cover-drill], #cover-challenges [data-cover-buoys]',
     );
-    for (let i = 1; i < 12; i++) {
+    for (let i = 1; i < 13; i++) {
       await swipeCard(page, client, 'left');
-      await count(page, i + 1, 12);
+      await count(page, i + 1, 13);
       await expect(items.nth(i)).toHaveAttribute('aria-current', 'true');
     }
     await expect(page.locator('#cover-start-buoys')).toBeVisible();
@@ -156,7 +156,7 @@ test.describe('touch browsing', () => {
     for (const [section, total] of [
       ['learn', 52],
       ['explore', 4],
-      ['challenge', 12],
+      ['challenge', 13],
     ]) {
       await page.locator(`button[data-section=${section}]`).tap();
       await count(page, 1, total);
@@ -306,10 +306,10 @@ test.describe('touch browsing', () => {
     const client = await context.newCDPSession(page);
     for (const [section, from, total] of [
       ['explore', 1, 4],
-      ['challenge', 1, 12],
-      ['challenge', 5, 12],
-      ['challenge', 8, 12],
-      ['challenge', 11, 12],
+      ['challenge', 1, 13],
+      ['challenge', 6, 13],
+      ['challenge', 9, 13],
+      ['challenge', 12, 13],
     ]) {
       await page.locator(`button[data-section=${section}]`).tap();
       if (section === 'challenge') {
@@ -384,9 +384,9 @@ test('desktop buttons and arrow keys share the selected lesson, location and cha
   await page.screenshot({ path: '/tmp/sail-browse-desktop.png', animations: 'disabled' });
   await page.locator('[data-mode=challenge]').click();
   await page.locator('[data-cover-drill=engine-stop]').click();
-  await count(page, 9, 12);
+  await count(page, 10, 13);
   await page.locator('.cover-previous').click();
-  await count(page, 8, 12);
+  await count(page, 9, 13);
   await expect(page.locator('#cover-challenge-briefing .race-briefing')).toBeVisible();
 });
 

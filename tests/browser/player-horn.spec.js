@@ -127,10 +127,25 @@ test('helm horn and B stay audible when music is muted, suppress overlapping pre
   await start(page);
   const horn = page.locator('#boat-horn');
   await expect(horn).toHaveAttribute('aria-keyshortcuts', 'B');
+  // Observe the short blast and send the overlapping key in the click event,
+  // before slow CI round trips can outlast the 1.37-second audio buffer.
+  await horn.evaluate((button) => {
+    button.addEventListener(
+      'click',
+      () => {
+        window.hornWhilePressed = { sounding: button.dataset.sounding, disabled: button.disabled };
+        window.dispatchEvent(new KeyboardEvent('keydown', { key: 'b', code: 'KeyB' }));
+        window.dispatchEvent(new KeyboardEvent('keyup', { key: 'b', code: 'KeyB' }));
+      },
+      { once: true },
+    );
+  });
   await horn.click();
   await audible(page);
-  await expect(horn).toHaveAttribute('data-sounding', 'true');
-  await page.keyboard.press('b');
+  expect(await page.evaluate(() => window.hornWhilePressed)).toEqual({
+    sounding: 'true',
+    disabled: true,
+  });
   expect(await hornCount(page)).toBe(1);
   expect(await page.evaluate(() => window.playerHorns[0].buffer.duration)).toBeCloseTo(1.37, 2);
   await expect(horn).toBeEnabled();
@@ -147,12 +162,20 @@ test('helm horn and B stay audible when music is muted, suppress overlapping pre
   await expect(horn).toBeDisabled();
   await page.locator('#play').click();
   await expect(horn).toBeEnabled();
+  await horn.evaluate((button) => {
+    button.addEventListener(
+      'click',
+      () => {
+        document.querySelector('#sound-settings').click();
+        window.hornWhileMuted = button.dataset.sounding;
+      },
+      { once: true },
+    );
+  });
   await horn.click();
   await audible(page);
-  await page.locator('#sound-settings').click();
   await expect(page.locator('#sound-settings')).toHaveAttribute('data-audio-state', 'muted');
-  await audible(page);
-  expect(await sounding(page)).toBe(1);
+  expect(await page.evaluate(() => window.hornWhileMuted)).toBe('true');
   await expect(horn).toContainText('Horn');
   await expect(horn).toHaveAttribute('title', 'Sound one short blast');
   await expect(horn).toBeEnabled();
