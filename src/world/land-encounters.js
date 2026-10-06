@@ -13,8 +13,8 @@ const smooth = (x) => {
 
 export const LAND_SPECIES = Object.freeze(
   [
-    { id: 'deer', name: 'Deer', range: 190, solo: 0.28, maxGroup: 5, radius: 1.05, slope: 0.42 },
-    { id: 'goat', name: 'Goats', range: 160, solo: 0.25, maxGroup: 6, radius: 0.8, slope: 0.65 },
+    { id: 'deer', name: 'Deer', range: 240, solo: 0.28, maxGroup: 5, radius: 1.05, slope: 0.42 },
+    { id: 'goat', name: 'Goats', range: 220, solo: 0.25, maxGroup: 6, radius: 0.8, slope: 0.65 },
     { id: 'fox', name: 'Foxes', range: 110, solo: 0.8, maxGroup: 2, radius: 0.7, slope: 0.42 },
     { id: 'rabbit', name: 'Rabbits', range: 75, solo: 0.4, maxGroup: 6, radius: 0.4, slope: 0.3 },
     {
@@ -102,40 +102,89 @@ export function createLandEncounters(locationId, { random = Math.random, obstacl
       (obstacle) => Math.hypot(x - obstacle.x, z - obstacle.z) > obstacle.radius + radius,
     );
   const sites = [];
+  function addSite(x, z, heading) {
+    const y = height(x, z);
+    if (y <= 1.7 || y >= 32) return;
+    const dx = height(x + 1, z) - y,
+      dz = height(x, z + 1) - y,
+      slope = Math.hypot(dx, dz);
+    if (slope < 0.65 && clear(x, z, 1))
+      sites.push({ x, y, z, slope, heading: heading ?? Math.atan2(dz, dx) });
+  }
   // Candidate meadows follow the actual coastline. Expensive footprint checks
   // happen only when an encounter is due, never on each rendered frame.
-  for (const island of location.islands)
+  for (const island of slotRate > 0 ? location.islands : []) {
+    if (island.raster) {
+      // A survey covers many separate islands; its bounding ellipse is not a
+      // coastline. Sample its low ground and interpolate coastal contours so
+      // narrow shore meadows between widely spaced grid nodes are included.
+      const r = island.raster,
+        stepX = r.width / (r.cols - 1),
+        stepZ = r.length / (r.rows - 1);
+      for (let row = 0; row < r.rows; row++)
+        for (let col = 0; col < r.cols; col++) {
+          const x = island.x - r.width / 2 + col * stepX,
+            z = island.z - r.length / 2 + row * stepZ,
+            y = islandHeight(x, z, island);
+          if (y > 1.7 && y < 32) addSite(x, z);
+          for (const [ox, oz] of [
+            [col < r.cols - 1 ? stepX : 0, 0],
+            [0, row < r.rows - 1 ? stepZ : 0],
+          ]) {
+            if (!ox && !oz) continue;
+            const next = islandHeight(x + ox, z + oz, island);
+            if ((y < 4 && next >= 4) || (next < 4 && y >= 4)) {
+              const t = (4 - y) / (next - y);
+              addSite(x + ox * t, z + oz * t);
+            }
+          }
+        }
+      continue;
+    }
     for (let i = 0; i < 192; i++) {
       const angle = (i / 192) * TAU;
       for (const radius of [0.86, 0.89, 0.92, 0.95, 0.97]) {
         const r = radius * shoreScale(angle),
           x = island.x + Math.cos(angle) * island.rx * r;
-        const z = island.z + Math.sin(angle) * island.rz * r,
-          y = height(x, z);
-        const slope = Math.hypot(height(x + 1, z) - y, height(x, z + 1) - y);
-        if (y > 1.7 && y < 32 && slope < 0.65 && clear(x, z, 1))
-          sites.push({
-            x,
-            y,
-            z,
-            slope,
-            heading: Math.atan2(-Math.sin(angle) * island.rx, -Math.cos(angle) * island.rz),
-          });
+        const z = island.z + Math.sin(angle) * island.rz * r;
+        addSite(x, z, Math.atan2(-Math.sin(angle) * island.rx, -Math.cos(angle) * island.rz));
       }
     }
-  function schedule(slot, time) {
-    slot.due = time + wildlifeDelay(slotRate, random, 35);
+  }
+  function schedule(slot, time, phase = 'repeat') {
+    const delay =
+      slotRate <= 0
+        ? Infinity
+        : phase === 'initial'
+          ? 6 + random() * 8
+          : phase === 'retry'
+            ? 5 + random() * 7
+            : Math.min(90, wildlifeDelay(slotRate * 3, random, 12));
+    slot.due = time + delay;
   }
   function spawn(state, time, view) {
-    const id = weightedWildlife(rates, random),
-      species = LAND_SPECIES.find((animal) => animal.id === id);
-    const nearby = sites.filter(
+    const visible = sites.filter(
       (site) =>
-        Math.hypot(site.x - state.x, site.z - state.z) < species.range &&
-        site.slope < species.slope &&
-        inEncounterView(site, view, 1.05),
+        Math.hypot(site.x - state.x, site.z - state.z) < 240 && inEncounterView(site, view, 1.05),
     );
-    if (!nearby.length) return null;
+    const eligible = new Map(),
+      weights = {};
+    for (const species of LAND_SPECIES) {
+      if (!(rates[species.id] > 0)) continue;
+      const nearby = visible.filter(
+        (site) =>
+          site.slope < species.slope &&
+          Math.hypot(site.x - state.x, site.z - state.z) < species.range,
+      );
+      if (nearby.length) {
+        eligible.set(species.id, nearby);
+        weights[species.id] = rates[species.id];
+      }
+    }
+    const id = weightedWildlife(weights, random);
+    if (!id) return null;
+    const species = LAND_SPECIES.find((animal) => animal.id === id),
+      nearby = eligible.get(id);
     const count = random() < species.solo ? 1 : 2 + Math.floor(random() * (species.maxGroup - 1));
     const duration = 70 + random() * 40;
     for (let attempt = 0; attempt < 12; attempt++) {
@@ -224,7 +273,7 @@ export function createLandEncounters(locationId, { random = Math.random, obstacl
       ) {
         for (const slot of slots) {
           slot.event = null;
-          schedule(slot, time);
+          schedule(slot, time, 'initial');
         }
       }
       if (!previous || time !== previous.time)
@@ -235,7 +284,7 @@ export function createLandEncounters(locationId, { random = Math.random, obstacl
           }
           if (!slot.event && time >= slot.due) {
             slot.event = spawn(state, time, view);
-            if (!slot.event) schedule(slot, time);
+            if (!slot.event) schedule(slot, time, 'retry');
           }
         }
       previous = { x: state.x, z: state.z, elapsed: state.elapsed, time };

@@ -1,7 +1,8 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import * as THREE from 'three';
-import { PRACTICE_LOCATIONS as LOCATIONS } from '../src/locations.js';
+import { PRACTICE_LOCATIONS as LOCATIONS, getLocation } from '../src/locations.js';
+import { wildlifeRates } from '../src/world/wildlife-probability.js';
 import { initialState } from '../src/physics.js';
 import { islandHeight, shoreScale } from '../src/rendering/geography.js';
 import { seededRandom } from '../src/rendering/materials.js';
@@ -22,6 +23,68 @@ function shoreState(location, angle = 0) {
     z: island.z + Math.sin(angle) * island.rz * 1.015 * shoreScale(angle),
   });
 }
+
+test('a short coastal visit reveals wildlife, including after looking back from open water', () => {
+  for (const location of LOCATIONS)
+    for (const seed of [42, 92, 618, 2917, 5362, 8273]) {
+      const state = shoreState(location, Math.PI / 2);
+      const view = {
+        position: { x: state.x, y: 3, z: state.z },
+        direction: { x: 0, y: 0, z: -1 },
+        fov: 72,
+        aspect: 1.6,
+      };
+      const animals = createLandEncounters(location.id, { random: seededRandom(seed) });
+      for (let time = 0; time < 40; time++)
+        animals.update(state, time, { ...view, direction: { x: 0, y: 1, z: 0 } });
+      assert.ok(
+        animals.slots.every((slot) => !slot.event),
+        'No unseen sightings consume the slots',
+      );
+      let event;
+      for (let time = 40; time < 70 && !event; time++)
+        event = animals.update(state, time, view).find((slot) => slot.event)?.event;
+      assert.ok(
+        event,
+        `${location.id}, seed ${seed}: a visible shore should not need minutes of waiting`,
+      );
+      assert.ok(inEncounterView({ ...event.members[0].path[0] }, view, 1.05));
+    }
+});
+
+test('real destination shorelines support local goats on dry paths', () => {
+  for (const [id, x, z] of [
+    ['virgin-islands', 12796.875, -7849.624060150376],
+    ['geiranger', -4282.178217821782, -5690.104166666666],
+  ]) {
+    const location = getLocation(id),
+      state = { ...initialState(id), x, z };
+    assert.ok(Math.max(...location.islands.map((island) => islandHeight(x, z, island))) < 0);
+    const animals = createLandEncounters(id, { random: seededRandom(92) });
+    let event;
+    for (let time = 0; time < 30 && !event; time++)
+      event = animals.update(state, time).find((slot) => slot.event)?.event;
+    assert.ok(event, `${id}: animals must use the surveyed coast, not its bounding ellipse`);
+    assert.equal(event.species, 'goat');
+    for (const member of event.members)
+      for (const point of member.path) {
+        const y = Math.max(
+          ...location.islands.map((island) => islandHeight(point.x, point.z, island)),
+        );
+        assert.ok(y >= 1.5);
+        assert.ok(Math.abs(point.y - y - 0.035) < 1e-8);
+      }
+  }
+  assert.equal(wildlifeRates('virgin-islands').land.deer, 0, 'Keep regional fauna');
+  for (const id of ['exumas', 'seychelles']) {
+    const animals = createLandEncounters(id);
+    animals.update(initialState(id), 0);
+    assert.ok(
+      animals.slots.every((slot) => slot.due === Infinity && !slot.event),
+      'Destination pigs and tortoises retain their dedicated renderer',
+    );
+  }
+});
 
 for (const location of LOCATIONS)
   test(`${location.id}: coastal animals use dry, clear paths, with singles and groups`, () => {

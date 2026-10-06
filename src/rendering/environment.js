@@ -7,6 +7,7 @@ import { syncBodyTransform } from './body-motion.js';
 import { islandHeight } from './geography.js';
 import { installHullWaterExclusion } from './hull-geometry.js';
 import { createMobileWater } from './mobile-water.js';
+import { createWaterGeometry } from './water-geometry.js';
 import { getVessel } from '../vessels.js';
 import { createIslandTerrain, createShoreline } from './shoreline.js';
 import { getCoastalFeatures, clearOfCoastalBuildings } from '../world/coastal-features.js';
@@ -39,7 +40,7 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
  const waterSpan=location.coordinates?Math.max(120000,location.chart.span*6):12000;
  const waterColor=location.character?.water??(location.biome==='fjord'?'#225b6b':'#217887');
- const waterGeometry=new THREE.PlaneGeometry(waterSpan,waterSpan),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor};
+ const waterGeometry=createWaterGeometry(waterSpan),waterOptions={waterNormals:normalTexture(),sunDirection,sunColor:'#fff4dd',waterColor};
  const water=quality.reflectionSize>0
   ?createDesktopWater(waterGeometry,{...waterOptions,textureWidth:quality.reflectionSize,textureHeight:quality.reflectionSize,distortionScale:2.8,fog:true})
   :createMobileWater(waterGeometry,waterOptions);

@@ -37,7 +37,13 @@ export function wildlifeRates(locationId) {
   return {
     birds: { gull: 46, cormorant: 12, tern: 22, eagle: 0 },
     marine: { fish: 28, dolphin: 4, turtle: location.biome === 'tropical' ? 2 : 0 },
-    land: { deer: 0, goat: 0, fox: 0, rabbit: 0, boar: 0 },
+    land: {
+      deer: 0,
+      goat: location.character?.animals === 'goat' ? 24 : 0,
+      fox: 0,
+      rabbit: 0,
+      boar: 0,
+    },
   };
 }
 
