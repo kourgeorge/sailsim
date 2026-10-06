@@ -1,116 +1,95 @@
 import * as THREE from 'three';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
+import { createBuildings } from './building-kit.js';
+import { islandHeight } from './geography.js';
 
-// All buildings, shutters, terraces and garden trees become one colored mesh.
-// These distant landmarks need neither individual materials nor texture loads.
-export function createCoastalVillage(scene, features, { nordic = false } = {}) {
-  if (!features.length) return null;
-  const parts = [],
-    transform = new THREE.Object3D(),
-    color = new THREE.Color();
-  const walls = nordic
-    ? ['#a44237', '#e6c071', '#eee6d3', '#974638']
-    : ['#e7ddc6', '#d4c2a6', '#eee6d3', '#c7d3c4'];
-  const roofs = nordic
-    ? ['#4b5b60', '#526361', '#586b63', '#45565c']
-    : ['#a05f48', '#8d5746', '#bd7856', '#96654e'];
-  let feature;
-  const add = (geometry, tint, x, y, z, rotation = 0) => {
-    transform.position.set(
-      feature.x + Math.cos(feature.rotation) * x + Math.sin(feature.rotation) * z,
-      feature.y + y,
-      feature.z - Math.sin(feature.rotation) * x + Math.cos(feature.rotation) * z,
-    );
-    transform.rotation.set(0, feature.rotation + rotation, 0);
-    transform.updateMatrix();
-    const part = geometry.index ? geometry.toNonIndexed() : geometry.clone();
-    geometry.dispose();
-    part.applyMatrix4(transform.matrix);
-    part.deleteAttribute('uv');
-    color.set(tint);
-    const colors = new Float32Array(part.attributes.position.count * 3);
-    for (let i = 0; i < colors.length; i += 3) colors.set([color.r, color.g, color.b], i);
-    part.setAttribute('color', new THREE.BufferAttribute(colors, 3));
-    parts.push(part);
-  };
-  const box = (tint, x, y, z, w, h, d) => add(new THREE.BoxGeometry(w, h, d), tint, x, y, z);
-  const roof = (x, y, z, w, d, h, tint) => {
-    const shape = new THREE.Shape();
-    shape.moveTo(-w / 2, 0);
-    shape.lineTo(0, h);
-    shape.lineTo(w / 2, 0);
-    shape.closePath();
-    add(
-      new THREE.ExtrudeGeometry(shape, { depth: d, bevelEnabled: false, steps: 1 }),
-      tint,
-      x,
-      y,
-      z - d / 2,
-    );
-    box('#cb9970', x, y + h, z, 0.18, 0.16, d + 0.1);
-  };
-  for (feature of features) {
-    const { width: w, length: d, height: h, foundation: f, variant } = feature;
-    box('#8d8975', 0, -f / 2, 0, w + 1.2, f + 0.15, d + 1.2);
-    box(walls[variant], 0, h / 2, 0, w, h, d);
-    roof(0, h, 0, w + 0.6, d + 0.8, feature.type === 'chapel' ? 2.4 : 1.7, roofs[variant]);
-    const front = d / 2 + 0.055;
-    box('#354b49', 0, 1.15, front, 1.1, 2.3, 0.12);
-    box('#d2c3a1', 0, 0.14, front + 0.5, 1.7, 0.28, 1.1);
-    for (const side of [-1, 1]) {
-      box('#334b4e', side * w * 0.29, h * 0.62, front, 0.9, 1.25, 0.1);
-      box('#658071', side * w * 0.29 - 0.58, h * 0.62, front + 0.02, 0.26, 1.36, 0.13);
-      box('#658071', side * w * 0.29 + 0.58, h * 0.62, front + 0.02, 0.26, 1.36, 0.13);
-      box('#c7b494', side * w * 0.29, h * 0.62 - 0.69, front + 0.12, 1.25, 0.13, 0.32);
-      // Side windows give the cottages depth from oblique sailing approaches.
-      for (const z of [-d * 0.25, d * 0.25])
-        box('#3e5655', side * (w / 2 + 0.04), h * 0.6, z, 0.1, 1.1, 0.85);
-    }
-    if (feature.type === 'chapel') {
-      const tx = -w / 2 + 1.5,
-        tz = d / 2 - 1.4;
-      box('#e9e2cc', tx, 6.3, tz, 3, 12.6, 3.1);
-      // Dark bell openings and narrow corner piers read clearly from the sea.
-      box('#30423e', tx, 10.4, tz, 3.04, 1.8, 3.14);
-      for (const sx of [-1, 1])
-        for (const sz of [-1, 1])
-          box('#e9e2cc', tx + sx * 1.28, 10.4, tz + sz * 1.33, 0.44, 2, 0.44);
-      box('#eee5cc', tx, 11.55, tz, 3.4, 0.35, 3.5);
-      add(
-        new THREE.ConeGeometry(2.5, nordic ? 5.5 : 2.1, 4),
-        nordic ? '#465b63' : '#9e6750',
-        tx,
-        nordic ? 14.5 : 12.8,
-        tz,
-        Math.PI / 4,
-      );
-      box('#514e3f', tx, nordic ? 17.75 : 14.35, tz, 0.14, 1.4, 0.14);
-      box('#514e3f', tx, nordic ? 17.97 : 14.57, tz, 0.82, 0.14, 0.14);
-      add(new THREE.CylinderGeometry(0.43, 0.66, 0.7, 10), '#a78e50', tx, 10, tz);
-      box('#c3b797', 0, 0.02, d / 2 + 1.6, w + 2, 0.18, 2.8);
-    } else {
-      box('#c9b99c', w * 0.25, h + 0.8, -d * 0.2, 0.55, 1.8, 0.65);
-      box('#715746', w * 0.25, h + 1.72, -d * 0.2, 0.72, 0.18, 0.82);
-      box('#a97658', -w * 0.32, 0.3, front + 0.4, 0.65, 0.6, 0.65);
-      add(new THREE.IcosahedronGeometry(0.55, 0), '#617845', -w * 0.32, 0.85, front + 0.4);
-      if (variant % 2 === 0) {
-        box('#827d64', w / 2 + 1.4, -0.25, 0, 1.6, 0.6, 1.6);
-        add(new THREE.CylinderGeometry(0.1, 0.16, 2.3, 5), '#6a6050', w / 2 + 1.4, 1, 0);
-        const crown = new THREE.IcosahedronGeometry(1, 1);
-        crown.scale(1.5, 1.1, 1.4);
-        add(crown, '#77825a', w / 2 + 1.4, 2.5, 0);
+const STREET_WIDTH = 3;
+
+// Low dry-stone walls along both sides of each street, open where a path joins,
+// so the road reads from the water as a line with its own shadow.
+function streetWalls(lanes, islands, nordic) {
+  const streets = lanes.filter((lane) => lane[0].width >= STREET_WIDTH),
+    joins = lanes.filter((lane) => lane[0].width < STREET_WIDTH).map((lane) => lane.at(-1));
+  const stone = new THREE.Color(nordic ? '#8f8b80' : '#d9cfb4'), shade = new THREE.Color(), parts = [];
+  for (const street of streets)
+    for (let i = 1; i < street.length; i++) {
+      const a = street[i - 1], b = street[i], length = Math.hypot(b.x - a.x, b.z - a.z);
+      const mx = (a.x + b.x) / 2, mz = (a.z + b.z) / 2, nx = -(b.z - a.z) / length, nz = (b.x - a.x) / length;
+      for (const side of [-1, 1]) {
+        const x = mx + nx * side * (a.width / 2 + 0.35), z = mz + nz * side * (a.width / 2 + 0.35);
+        if (joins.some((join) => Math.hypot(join.x - x, join.z - z) < 3.2)) continue;
+        const y = islandHeight(x, z, islands[a.islandIndex]);
+        if (y < 0.6) continue;
+        const wall = new THREE.BoxGeometry(0.55, 0.5 + ((i * 7 + side) % 3) * 0.06, length + 0.1).toNonIndexed();
+        wall.rotateY(Math.atan2(b.x - a.x, b.z - a.z));
+        wall.translate(x, y + 0.2, z);
+        shade.copy(stone).multiplyScalar(0.86 + ((i * 13 + side * 5) % 7) * 0.03);
+        wall.setAttribute('color', new THREE.Float32BufferAttribute(Array.from({ length: wall.attributes.position.count }, () => [shade.r, shade.g, shade.b]).flat(), 3));
+        parts.push(wall);
       }
     }
-  }
+  if (!parts.length) return null;
   const geometry = mergeGeometries(parts);
   parts.forEach((part) => part.dispose());
-  const village = new THREE.Mesh(
+  return geometry;
+}
+
+// Lanes draped over the hillside: a pale worn centre between darker verges,
+// raised a touch so the coarser terrain mesh never covers them.
+function createLanes(scene, lanes, islands, nordic) {
+  if (!lanes.length) return null;
+  const positions = [], colors = [], index = [];
+  const verge = new THREE.Color(nordic ? '#8a8577' : '#b9a983'),
+    centre = new THREE.Color(nordic ? '#c2bcae' : '#ece2c6');
+  for (const lane of lanes) {
+    const first = positions.length / 3;
+    lane.forEach((point, i) => {
+      const prev = lane[Math.max(0, i - 1)], next = lane[Math.min(lane.length - 1, i + 1)];
+      const length = Math.hypot(next.x - prev.x, next.z - prev.z) || 1,
+        nx = -(next.z - prev.z) / length, nz = (next.x - prev.x) / length,
+        island = islands[point.islandIndex];
+      for (const [side, color] of [[-1, verge], [0, centre], [1, verge]]) {
+        const x = point.x + nx * side * point.width / 2, z = point.z + nz * side * point.width / 2;
+        positions.push(x, Math.max(point.y, islandHeight(x, z, island)) + 0.4, z);
+        colors.push(color.r, color.g, color.b);
+      }
+      if (i) {
+        const a = first + (i - 1) * 3, b = a + 3;
+        index.push(a, a + 1, b, a + 1, b + 1, b, a + 1, a + 2, b + 1, a + 2, b + 2, b + 1);
+      }
+    });
+  }
+  const geometry = new THREE.BufferGeometry();
+  geometry.setAttribute('position', new THREE.Float32BufferAttribute(positions, 3));
+  geometry.setAttribute('color', new THREE.Float32BufferAttribute(colors, 3));
+  geometry.setIndex(index);
+  geometry.computeVertexNormals();
+  const mesh = new THREE.Mesh(
     geometry,
-    new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 0.9 }),
+    new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1, side: THREE.DoubleSide, polygonOffset: true, polygonOffsetFactor: -2, polygonOffsetUnits: -4 }),
   );
-  village.name = 'Coastal cottages and chapel';
-  village.castShadow = true;
-  village.receiveShadow = true;
-  scene.add(village);
-  return village;
+  mesh.name = 'Village lanes';
+  mesh.receiveShadow = true;
+  scene.add(mesh);
+  const walls = streetWalls(lanes, islands, nordic);
+  if (walls) {
+    const wallMesh = new THREE.Mesh(walls, new THREE.MeshStandardMaterial({ vertexColors: true, roughness: 1 }));
+    wallMesh.name = 'Village street walls';
+    wallMesh.castShadow = wallMesh.receiveShadow = true;
+    scene.add(wallMesh);
+  }
+  return mesh;
+}
+
+// Practice-water cottages and chapel: detailed houses with framed windows,
+// shutters, tiled roofs and chimneys (see building-kit.js), joined by lanes.
+export function createCoastalVillage(scene, features, { nordic = false, quality = null, lanes = [], islands = [] } = {}) {
+  const town = createBuildings(scene, features, nordic ? 'nordic' : 'mediterranean', {
+    quality,
+    name: 'Coastal cottages and chapel',
+    castShadow: true,
+  });
+  const roads = createLanes(scene, lanes, islands, nordic);
+  if (town) town.lanes = roads;
+  return town;
 }

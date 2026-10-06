@@ -91,3 +91,103 @@ export function getCoastalFeatures(locationId) {
 export function clearOfCoastalBuildings(x, z, features) {
   return features.every((feature) => Math.hypot(x - feature.x, z - feature.z) > feature.radius + 4);
 }
+
+const LANE_STEP = 2.5;
+
+function insideFootprint(x, z, feature, margin) {
+  const X = x - feature.x,
+    Z = z - feature.z,
+    c = Math.cos(feature.rotation),
+    s = Math.sin(feature.rotation);
+  return Math.abs(c * X - s * Z) < feature.width / 2 + margin && Math.abs(s * X + c * Z) < feature.length / 2 + margin;
+}
+
+function lanePoint(x, z, island, islandIndex, width) {
+  const y = islandHeight(x, z, island);
+  return y > 0.6 ? { x, y, z, width, islandIndex } : null;
+}
+
+// Gravel lanes for the practice-water villages: one street running behind the
+// cottages on each island, and a short path from the street to every door.
+// Each lane is a list of points on dry land, clear of every building footprint.
+export function getVillageLanes(locationId) {
+  const location = getLocation(locationId);
+  const key = `${location.id}:lanes`;
+  if (cache.has(key)) return cache.get(key);
+  const lanes = [];
+  if (!location.coordinates) {
+    const features = getCoastalFeatures(location.id);
+    const blocked = (x, z, margin = 1.2, except = null) =>
+      features.some((feature) => feature !== except && insideFootprint(x, z, feature, margin));
+    location.islands.forEach((island, islandIndex) => {
+      const homes = features.filter((feature) => feature.islandIndex === islandIndex);
+      if (homes.length < 2) return;
+      const polar = (feature) => {
+        const ratio = Math.hypot((feature.x - island.x) / island.rx, (feature.z - island.z) / island.rz) / shoreScale(Math.atan2((feature.z - island.z) / island.rz, (feature.x - island.x) / island.rx));
+        return { angle: Math.atan2((feature.z - island.z) / island.rz, (feature.x - island.x) / island.rx), ratio };
+      };
+      const houses = homes.filter((feature) => feature.type === 'house').map(polar);
+      // Measure around the first building so a village crossing ±180° stays together.
+      const base = polar(homes[0]).angle;
+      const angles = homes.map((feature) => base + Math.atan2(Math.sin(polar(feature).angle - base), Math.cos(polar(feature).angle - base)));
+      // The street runs just inland of the innermost cottage.
+      const ratio = Math.min(...houses.map((house) => house.ratio)) - 0.05;
+      const start = Math.min(...angles) - 0.012,
+        end = Math.max(...angles) + 0.012;
+      const along = (angle, r) => {
+        const scale = r * shoreScale(angle);
+        return [island.x + Math.cos(angle) * island.rx * scale, island.z + Math.sin(angle) * island.rz * scale];
+      };
+      const [x0, z0] = along(start, ratio),
+        [x1, z1] = along(start + 0.001, ratio);
+      const step = (LANE_STEP / Math.hypot(x1 - x0, z1 - z0)) * 0.001;
+      let street = [];
+      const streetAt = new Map();
+      for (let angle = start; angle <= end + step / 2; angle += step) {
+        let point = null;
+        // Bend inland around anything in the way.
+        for (let nudge = 0; nudge <= 0.05 && !point; nudge += 0.01) {
+          const [x, z] = along(angle, ratio - nudge);
+          if (!blocked(x, z, 3)) point = lanePoint(x, z, island, islandIndex, 4.2);
+        }
+        if (point) {
+          street.push(point);
+          streetAt.set(angle, point);
+        } else {
+          if (street.length > 1) lanes.push(street);
+          street = [];
+        }
+      }
+      if (street.length > 1) lanes.push(street);
+      // A short path from each building to the nearest street point.
+      const streetPoints = [...streetAt.values()];
+      for (const home of homes) {
+        if (!streetPoints.length) break;
+        const target = streetPoints.reduce((best, point) =>
+          Math.hypot(point.x - home.x, point.z - home.z) < Math.hypot(best.x - home.x, best.z - home.z) ? point : best,
+        );
+        const distance = Math.hypot(target.x - home.x, target.z - home.z),
+          path = [];
+        for (let d = 0; d <= distance; d += LANE_STEP * 0.6) {
+          const t = d / distance,
+            x = home.x + (target.x - home.x) * t,
+            z = home.z + (target.z - home.z) * t;
+          if (insideFootprint(x, z, home, 0.4)) continue;
+          if (blocked(x, z, 1.6, home)) break;
+          const point = lanePoint(x, z, island, islandIndex, 2.4);
+          if (!point) break;
+          path.push(point);
+        }
+        if (path.length) path.push({ ...target, width: 2.4 });
+        if (path.length > 1) lanes.push(path);
+      }
+    });
+  }
+  const result = Object.freeze(lanes.map((lane) => Object.freeze(lane.map((point) => Object.freeze(point)))));
+  cache.set(key, result);
+  return result;
+}
+
+export function clearOfVillageLanes(x, z, lanes, margin = 2) {
+  return lanes.every((lane) => lane.every((point) => Math.hypot(x - point.x, z - point.z) > point.width / 2 + margin));
+}

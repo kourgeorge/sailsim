@@ -4,12 +4,8 @@ import { seededRandom } from './materials.js';
 import { geographicPoint, terrainHeight, polygonHeight } from '../world/real-terrain.js';
 import { getCoastalFeatures } from '../world/coastal-features.js';
 import { destinationBungalows } from '../world/destination-features.js';
+import { createBuildings } from './building-kit.js';
 
-function roof(builder, x,y,z,w,d,h,color,rotation=0) {
-  const geometry=new THREE.ConeGeometry(1,h,4,1);
-  geometry.rotateY(Math.PI/4);geometry.scale(w/Math.SQRT2,1,d/Math.SQRT2);
-  geometry.rotateY(rotation);geometry.translate(x,y+h/2,z);builder.add(geometry,color);
-}
 function branch(builder,color,a,b,radius){
   const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),delta=end.clone().sub(start);
   const geometry=new THREE.CylinderGeometry(radius*.65,radius,delta.length(),5);
@@ -69,26 +65,12 @@ export function createDestinationTrees(scene,location,quality={}) {
   }
 }
 
-export function createDestinationScenery(scene,location) {
+export function createDestinationScenery(scene,location,quality=null) {
   const b=sceneryBuilder(),random=seededRandom(385),character=location.character,style=character.architecture,land=location.islands[0];
   const features=getCoastalFeatures(location.id),roads=[];
-  const palettes={caribbean:['#e8c798','#a2c6bb','#dfae91','#ece6d3'],bahamian:['#f0c0c6','#90d1cb','#e5d88f','#e6ece5'],creole:['#e0d3b2','#f0e6d2','#b5c9b1','#d4b693'],nordic:['#a84235','#d8bd78','#e5e4dc','#945347'],adriatic:['#dfd3b9','#ccbea6','#d9d2bc','#ded6c8'],cycladic:['#f5f1e3','#e9e5dc','#f6ebd6','#ede5d4'],polynesian:['#b79b6b','#d8c5a0','#a9b694','#d5b788'],queensland:['#e7e9db','#ddd6bf','#bfd2cd','#e2d6cb'],weatherboard:['#e9e8da','#dddcc9','#c3d0c1','#e2d4b6']};
-  for(const f of features) {
-    const {x,y,z,width:w,length:d,height:h}=f;
-    b.box('#a39b86',x,y-f.foundation/2,z,w+.5,f.foundation,d+.5);
-    b.box(palettes[style][f.variant],x,y+h/2,z,w,h,d);
-    if(style==='cycladic') {
-      b.box('#fcf6e8',x,y+h+.2,z,w+.6,.4,d+.6);
-      if(f.variant===0){const dome=new THREE.SphereGeometry(Math.min(w,d)*.3,10,6,0,Math.PI*2,0,Math.PI/2);dome.translate(x,y+h,z);b.add(dome,'#3e83ae');}
-    } else roof(b,x,y+h,z,w+.8,d+.8,style==='nordic'?4:style==='polynesian'?3:2,style==='adriatic'?'#ae6c4b':style==='nordic'?'#4c575c':style==='polynesian'?'#9a8350':style==='weatherboard'?'#60776b':'#aaa89c');
-    for(const side of [-1,1]) {
-      b.box(style==='cycladic'?'#3e7795':'#4f7078',x+side*w*.27,y+h*.58,z+d/2+.04,w*.16,h*.28,.08);
-      b.box('#436774',x+side*w/2,y+h*.55,z,.08,h*.25,d*.22);
-    }
-    if(f.type==='chapel' && ['nordic','adriatic'].includes(style)) {
-      b.box('#e8e1c6',x,y+h,z,3,h*1.6,3);roof(b,x,y+h*1.8,z,3.5,3.5,4,style==='nordic'?'#52636b':'#ad7154');
-    }
-  }
+  // Houses, chapels and overwater bungalows share the detailed building kit.
+  const huts=destinationBungalows(location).map((hut,i)=>({type:'bungalow',x:hut.x,z:hut.z,y:1.8,width:9,length:7,height:3.4,foundation:0,rotation:0,variant:i%4}));
+  const town=createBuildings(scene,[...features,...huts],style,{quality,name:`${location.title} town`,snapRotation:true});
   // Small road segments follow sampled dry land between town blocks. Remote
   // cays receive no invented roads. Vehicles use these same checked segments.
   for(const district of character.settlements) {
@@ -109,13 +91,6 @@ export function createDestinationScenery(scene,location) {
       }
     }
   }
-  for(const hut of destinationBungalows(location)) {
-    const {x,z}=hut;
-    b.box('#bda981',x,1.6,z,12,.5,10);b.box('#b19a6c',x,3.5,z,9,3.4,7);
-    roof(b,x,5.2,z,10.5,8.5,3.5,'#998250');
-    for(const dx of [-4.5,4.5])for(const dz of [-3.5,3.5])b.box('#807a64',x+dx,-1,z+dz,.35,5,.35);
-    b.box('#6f949c',x,3.5,z+3.55,4,2,.08);
-  }
   for(const site of character.boulders||[]) {
     const c=geographicPoint(location,site.lat,site.lon);
     for(let i=0;i<70;i++) {
@@ -129,12 +104,12 @@ export function createDestinationScenery(scene,location) {
     b.box('#b6ad90',c.x,y+6,c.z,50,12,34);
     for(const x of [-23,23])for(const z of [-15,15]){const g=new THREE.CylinderGeometry(6,7,18,12);g.translate(c.x+x,y+9,c.z+z);b.add(g,'#b6ad90');}
   }
-  const buildings=new THREE.Mesh(b.finish(),new THREE.MeshStandardMaterial({vertexColors:true,roughness:.95}));buildings.name=`${location.title} waterfront and landmarks`;buildings.receiveShadow=true;scene.add(buildings);
+  const buildings=new THREE.Mesh(b.finish(),new THREE.MeshStandardMaterial({vertexColors:true,roughness:.95}));buildings.name=`${location.title} roads and landmarks`;buildings.receiveShadow=true;scene.add(buildings);
   const carBuilder=sceneryBuilder();carBuilder.box('#deddd2',0,.65,0,1.65,.8,3.6);carBuilder.box('#587882',0,1.1,-.15,1.4,.7,1.8);
   for(const x of [-.83,.83])for(const z of [-1.1,1.1])carBuilder.oval('#393e3e',x,.35,z,.17,.34,.34,0);
   const carCount=Math.min(style==='creole'?2:12,roads.length),cars=new THREE.InstancedMesh(carBuilder.finish(),new THREE.MeshLambertMaterial({vertexColors:true}),carCount);cars.name='Local road traffic';scene.add(cars);
   const dummy=new THREE.Object3D();
-  return {roads,buildings,cars,update(time){
+  return {roads,buildings,town,cars,setQuality(next){town?.setQuality(next);},update(time){
     for(let i=0;i<carCount;i++) {
       const route=roads[i],progress=((time*(style==='creole'?.06:.12)+i*.37)%(route.length-1)),j=Math.floor(progress),f=progress-j,a=route[j],c=route[j+1];
       dummy.position.set(a.x+(c.x-a.x)*f,a.y+(c.y-a.y)*f,a.z+(c.z-a.z)*f);dummy.rotation.set(0,Math.atan2(c.x-a.x,c.z-a.z),0);dummy.scale.setScalar(1);dummy.updateMatrix();cars.setMatrixAt(i,dummy.matrix);

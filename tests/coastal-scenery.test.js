@@ -6,7 +6,7 @@ import { depthAt } from '../src/water-depth.js';
 import { initialState } from '../src/physics.js';
 import { islandRatio } from '../src/rendering/geography.js';
 import { createIslandTerrain, createShoreline } from '../src/rendering/shoreline.js';
-import { getCoastalFeatures, clearOfCoastalBuildings } from '../src/world/coastal-features.js';
+import { getCoastalFeatures, clearOfCoastalBuildings, getVillageLanes } from '../src/world/coastal-features.js';
 import { createMarineEncounters } from '../src/world/marine-encounters.js';
 import { createMarineLife } from '../src/rendering/marine-life.js';
 import { createCoastalVillage } from '../src/rendering/coastal-village.js';
@@ -20,6 +20,22 @@ function randomSource(seed = 38) {
 }
 
 for (const location of LOCATIONS) {
+  test(`${location.id}: village lanes run on dry land, reach every building and never cross a house`, () => {
+    const features = getCoastalFeatures(location.id),
+      lanes = getVillageLanes(location.id);
+    assert.ok(lanes.length > 0);
+    for (const lane of lanes)
+      for (const point of lane) {
+        assert.equal(depthAt(point.x, point.z, location.id), 0);
+        for (const feature of features) {
+          const X = point.x - feature.x, Z = point.z - feature.z, c = Math.cos(feature.rotation), s = Math.sin(feature.rotation);
+          assert.ok(Math.abs(c * X - s * Z) >= feature.width / 2 || Math.abs(s * X + c * Z) >= feature.length / 2);
+        }
+      }
+    for (const feature of features)
+      assert.ok(lanes.some((lane) => lane.some((point) => Math.hypot(point.x - feature.x, point.z - feature.z) < Math.hypot(feature.width, feature.length) / 2 + 4)));
+  });
+
   test(`${location.id}: detailed terrain follows the charted coast within the original triangle budget`, () => {
     for (const island of location.islands) {
       const geometry = createIslandTerrain(island),
@@ -144,12 +160,18 @@ test('wildlife uses fixed instance pools, reduces counts on low quality and disp
   const texture = new THREE.Texture();
   const shore = createShoreline(scene, LOCATIONS[0], texture);
   const village = createCoastalVillage(scene, getCoastalFeatures('haven'));
-  assert.ok(village.geometry.index === null);
-  assert.ok(village.geometry.attributes.position.count / 3 < 12000);
+  assert.ok(village.body.geometry.index === null);
+  // Repeated windows, doors and railings are instanced; ornaments hide on low tiers.
+  assert.ok(village.triangles < 120000);
+  village.setQuality({ name: 'minimum' });
+  const lowDetail = village.triangles;
+  assert.ok(village.meshes.some((mesh) => !mesh.visible));
+  village.setQuality({ name: 'high' });
+  assert.ok(village.meshes.every((mesh) => mesh.visible) && village.triangles > lowDetail);
   assert.match(shore.mesh.material.fragmentShader, /hullExclusionActive/);
   const disposed = disposeSceneResources(scene);
-  assert.equal(disposed.geometries, 7);
-  assert.equal(disposed.materials, 4);
+  assert.equal(disposed.geometries, 6 + village.meshes.length);
+  assert.equal(disposed.materials, 5);
   assert.equal(disposed.textures, 1);
   assert.equal(scene.children.length, 0);
 });
