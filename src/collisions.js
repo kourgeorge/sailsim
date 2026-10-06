@@ -239,6 +239,23 @@ export function advanceFreeBodies(bodies, dt, current = { x: 0, z: 0 }) {
   }
 }
 
+export function recordContactImpacts(bodies, contacts, elapsed) {
+  for (const contact of contacts) {
+    if (contact.impulse <= 1) continue;
+    for (const id of [contact.aId, contact.bId]) {
+      const body = bodies.find(item => item.id === id), previous = body.lastImpact;
+      // Sustained nudging must not replace a buoy's initial knock with tiny
+      // per-substep impulses, which makes its visible reaction disappear.
+      if (body.visual?.type === 'buoy' && previous) {
+        const age = elapsed - previous.time;
+        if (age >= 0 && age < 2 && contact.impulse < previous.impulse * Math.exp(-age * 2.8)) continue;
+      }
+      body.lastImpact = { time: elapsed, impulse: contact.impulse, point: { ...contact.point },
+        otherId: id === contact.aId ? contact.bId : contact.aId };
+    }
+  }
+}
+
 /** Bound translation plus rotational tip travel relative to the thinnest collider. */
 export function collisionStepLimit(bodies, maxStep = .02) {
   let limit=maxStep;

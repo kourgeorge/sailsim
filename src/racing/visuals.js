@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { createYacht } from '../rendering/yacht.js';
-import { MARK_RADIUS } from './race.js';
+import { MARK_RADIUS, RACE_BUOY_RADIUS } from './race.js';
+import { syncBodyTransform } from '../rendering/body-motion.js';
 
 export function createRaceVisuals(scene, materials) {
   const root = new THREE.Group();
@@ -103,19 +104,33 @@ export function createRaceVisuals(scene, materials) {
           ring.rotation.x = -Math.PI / 2;
           ring.position.y = 0.15;
           group.add(ring);
-          const buoy = new THREE.Mesh(new THREE.CylinderGeometry(0.9, 1.8, 2.3, 12), material);
+          const floating = new THREE.Group();
+          floating.name = 'Physical race buoy';
+          group.add(floating);
+          const buoyMaterial = new THREE.MeshStandardMaterial({
+            color: '#efad38',
+            roughness: 0.85,
+          });
+          const buoy = new THREE.Mesh(
+            new THREE.CylinderGeometry(0.9, RACE_BUOY_RADIUS, 2.3, 12),
+            buoyMaterial,
+          );
           buoy.position.y = 1.1;
-          group.add(buoy);
+          buoy.castShadow = true;
+          floating.add(buoy);
           const number = label(String(i + 1), '#f4c87b');
           number.scale.set(0.026, 0.026, 1);
           number.position.y = 4;
-          group.add(number);
+          floating.add(number);
           root.add(group);
-          marks.push({ group, material });
+          marks.push({ group, floating, material });
         }
-        const mark = race.course.marks[i];
+        const mark = race.marks[i];
         marks[i].group.visible = Boolean(mark);
-        if (mark) marks[i].group.position.set(mark.x, 0, mark.z);
+        if (mark) {
+          marks[i].group.userData.bodyId = mark.id;
+          marks[i].group.position.set(mark.x, 0, mark.z);
+        }
       }
     },
     update(time) {
@@ -134,7 +149,13 @@ export function createRaceVisuals(scene, materials) {
         points.needsUpdate = true;
         boat.raceSails.jib.geometry.computeVertexNormals();
       });
-      marks.forEach(({ material }, i) => {
+      marks.forEach(({ group, floating, material }, i) => {
+        const body = current.marks[i];
+        if (!body) return;
+        group.position.set(body.x, 0, body.z);
+        // Keep the guidance ring flat while the solid buoy bobs and heels.
+        syncBodyTransform(floating, body, current.player.elapsed, time, i);
+        floating.position.x = floating.position.z = 0;
         const next = current.racers[0].mark;
         material.color.set(i < next ? '#5b8279' : i === next ? '#fff0a9' : '#dba85d');
         material.opacity = i === next ? 0.8 : 0.28;

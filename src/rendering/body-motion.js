@@ -9,9 +9,10 @@ export function impactMotion(body,elapsed) {
   const angle=body.heading*Math.PI/180,dx=impact.point.x-body.x,dz=impact.point.z-body.z;
   const side=Math.cos(angle)*dx+Math.sin(angle)*dz;
   const aft=-Math.sin(angle)*dx+Math.cos(angle)*dz;
-  const strength=Math.min(.085,impact.impulse/Math.max(400,body.mass)*.035);
+  const buoy=body.visual?.type==='buoy';
+  const strength=Math.min(buoy?.36:.085,impact.impulse/Math.max(buoy?100:400,body.mass)*(buoy?.13:.035));
   const wave=Math.sin(age*13+.25)*Math.exp(-age*2.8)*strength;
-  return{roll:-Math.sign(side)*wave,pitch:Math.sign(aft)*wave*.6};
+  return{roll:-Math.sign(side)*wave,pitch:Math.sign(aft)*wave*(buoy?1:.6)};
 }
 
 export function syncBodyTransform(group,body,elapsed,time,index=0) {

@@ -95,7 +95,7 @@ export function createYacht(mat,{detailed=true}={}){
   for(const side of [-1,1])for(const z of [1.7,3.4]){const x=side*2.04;rope(boat,mat.ivory,[[side*1.92,1.88,z],[x,1.18,z],[x,.95,z]],.012,12);const f=mesh(boat,new THREE.CapsuleGeometry(.135,.50,5,10),mat.gelcoat,x,.63,z);f.rotation.z=side*.12;cylinder(boat,mat.navy,x,.98,z,.10,.09,.12);}
   for(const side of [-1,1])bar(boat,mat.steel,[side*.34,.3,5.55],[side*.34,-.5,5.85],.023);for(let i=0;i<4;i++)bar(boat,mat.steel,[-.34,.25-i*.2,5.6+i*.065],[.34,.25-i*.2,5.6+i*.065],.027);
   const lifering=mesh(boat,new THREE.TorusGeometry(.31,.095,10,36),mat.ivory,-1.28,1.7,5.28);for(let i=0;i<4;i++){const a=i*Math.PI/2;box(boat,mat.red,-1.28+Math.cos(a)*.31,1.7+Math.sin(a)*.31,5.33,.13,.13,.09);}
-  const transom=mesh(boat,new THREE.PlaneGeometry(1.4,.36),new THREE.MeshStandardMaterial({map:labelTexture('SERENITY','HAVEN ISLANDS'),transparent:true}),0,.69,5.313);
+  const transom=mesh(boat,new THREE.PlaneGeometry(1.4,.36),new THREE.MeshStandardMaterial({map:labelTexture('SERENITY','HAVEN ISLANDS'),transparent:true,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2}),0,.69,5.313);
   // Sheet winches and paired banks of clutches.
   winch(boat,mat,-1.66,1.65,3.4,mat.red);winch(boat,mat,1.66,1.65,3.4,mat.green);
   winch(boat,mat,-1.05,1.8,.32,mat.blue);winch(boat,mat,1.05,1.8,.32,mat.ivory);
@@ -113,7 +113,9 @@ export function createYacht(mat,{detailed=true}={}){
  bar(boat,mat.steel,[0,17.5,-1.95],[0,1.25,-6.5],.012);cylinder(boat,mat.aluminum,0,1.28,-6.33,.115,.115,.22);
  const boomGroup=new THREE.Group();boomGroup.name='mainsail-boom';boomGroup.position.set(0,2.85,-1.95);boat.add(boomGroup);bar(boomGroup,mat.aluminum,[0,0,0],[0,0,5.35],.085,12);
  const mainGroup=new THREE.Group();mainGroup.name='mainsail-cloth';mainGroup.position.y=.15;boomGroup.add(mainGroup);const mainsail=makeSail(mainGroup,mat,{height:14.35,foot:5.2});
- const jibGroup=new THREE.Group();jibGroup.name='headsail-cloth';jibGroup.position.set(0,1.8,-1.95);boat.add(jibGroup);const jib=makeSail(jibGroup,mat,{height:15.2,foot:5.4,jib:true});
+ // A non-overlapping jib leaves room for the mainsail's belly with the boom
+ // fully eased. Keep its luff and furling axis fixed on the existing rig.
+ const jibGroup=new THREE.Group();jibGroup.name='headsail-cloth';jibGroup.position.set(0,1.8,-1.95);boat.add(jibGroup);const jib=makeSail(jibGroup,mat,{height:15.2,foot:3.4,jib:true});
  const jibRoll=bar(boat,mat.cloth,[0,1.8,-6.75],[0,17,-1.95],.075,12);jibRoll.name='furled-headsail';
  const furled=box(boomGroup,mat.cloth,0,.13,2.5,.23,.19,4.9,.08);furled.visible=false;
  const traveler=box(boat,mat.aluminum,0,1.92,.9,2.5,.065,.065);const travelerCar=box(boat,mat.rubber,0,1.97,.9,.19,.14,.12);travelerCar.name='traveler-car';

@@ -49,13 +49,15 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  let reflectionTarget=null,reflectionFrame=0,environmentDisposed=false;
  if(water.isWater)water.onBeforeRender=function(...args){
   if(environmentDisposed || reflectionFrame++%quality.reflectionInterval!==0)return;
-  if(reflectionTarget){reflect.apply(this,args);return;}
+  // Foam belongs to the surface itself. Reflecting it doubles the trail and
+  // makes the duplicate jump whenever this lower-rate capture is refreshed.
+  const wakeVisibility=wakes.map(wake=>{const visible=wake.visible;wake.visible=false;return visible;});
   const drawingRenderer=args[0],setTarget=drawingRenderer.setRenderTarget;
-  drawingRenderer.setRenderTarget=function(target,...rest){
+  if(!reflectionTarget)drawingRenderer.setRenderTarget=function(target,...rest){
    if(target?.texture===water.material.uniforms.mirrorSampler.value){reflectionTarget=target;target.setSize(quality.reflectionSize,quality.reflectionSize);}
    return setTarget.call(this,target,...rest);
   };
-  try{reflect.apply(this,args);}finally{drawingRenderer.setRenderTarget=setTarget;}
+  try{reflect.apply(this,args);}finally{drawingRenderer.setRenderTarget=setTarget;wakes.forEach((wake,i)=>{wake.visible=wakeVisibility[i];});}
  };
  function setQuality(next){
   const shadowSize=next.shadowSize||512;
@@ -114,9 +116,9 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  });
  // All land above is charted and participates in depth/grounding.
  // Foam trail as a soft textured surface rather than rigid white rectangles.
- const foamTexture=canvasTexture(256,512,(c,w,h)=>{c.clearRect(0,0,w,h);for(let i=0;i<3200;i++){const y=random()*h,t=y/h,x=w/2+(random()-.5)*(35+t*190);c.fillStyle=`rgba(220,244,238,${(1-t)*random()*.23})`;c.beginPath();c.ellipse(x,y,1+random()*4,1+random()*7,0,0,6.28);c.fill();}});
+ const foamTexture=canvasTexture(256,512,(c,w,h)=>{c.clearRect(0,0,w,h);for(let i=0;i<3200;i++){const y=random()*h,t=y/h,x=w/2+(random()-.5)*(35+t*190);c.fillStyle=`rgba(220,244,238,${Math.min(1,t/.025)*(1-t)*random()*.23})`;c.beginPath();c.ellipse(x,y,1+random()*4,1+random()*7,0,0,6.28);c.fill();}});
  const wakes=(vessel.type==='catamaran'?[-vessel.hullSpacing/2,vessel.hullSpacing/2]:[0]).map(across=>{
-  const wake=new THREE.Mesh(new THREE.PlaneGeometry(vessel.type==='catamaran'?5:12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false}));wake.rotation.x=-Math.PI/2;wake.userData.across=across;scene.add(wake);return wake;
+  const wake=new THREE.Mesh(new THREE.PlaneGeometry(vessel.type==='catamaran'?5:12,45),new THREE.MeshBasicMaterial({map:foamTexture,transparent:true,opacity:.5,depthWrite:false,polygonOffset:true,polygonOffsetFactor:-1,polygonOffsetUnits:-2}));wake.name='Stern wake';wake.rotation.x=-Math.PI/2;wake.renderOrder=1;wake.userData.across=across;scene.add(wake);return wake;
  });
  for(const child of [...scene.children]){if(child.isGroup){batchStaticMeshes(child,mergeGeometries);if(!navigation.includes(child)){child.updateMatrix();for(const part of [...child.children]){if(part.isMesh){part.applyMatrix4(child.matrix);scene.add(part);}}scene.remove(child);}}}
  batchStaticMeshes(scene,mergeGeometries,[water,...wakes]);
@@ -135,7 +137,8 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
   navigation.forEach((g,i)=>syncBodyTransform(g,bodies.get(g.userData.bodyId)||buoys[i],state.elapsed||0,time,i));
   // The plane's local Z axis points up after flattening; match the yacht's negative yaw.
-  const heading=state.heading*Math.PI/180,behind=vessel.type==='catamaran'?28.5:26;
+  // Start beyond the transom, never inside the heaving hull or swim platform.
+  const heading=state.heading*Math.PI/180,behind=vessel.type==='catamaran'?29:28.5;
   for(const wake of wakes){const across=wake.userData.across;wake.position.set(state.x+Math.cos(heading)*across-Math.sin(heading)*behind,.01,state.z+Math.sin(heading)*across+Math.cos(heading)*behind);wake.rotation.z=-heading;wake.visible=state.speed>.4&&!state.capsized;wake.material.opacity=Math.min(.66,state.speed*.1);}
  },dispose(){
   const ownedTextures=new Set([environmentMap.texture]);

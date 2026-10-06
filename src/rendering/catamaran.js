@@ -316,9 +316,16 @@ export function createCatamaran(mat) {
   const jibRoll = bar(boat, mat.cloth, [0, 1.6, -5.5], [0, 18.8, -1.7], 0.075, 12);
   jibRoll.name = 'furled-headsail';
   const bag = box(boom, mat.navy, 0, 0.13, 3.3, 0.28, 0.22, 6.5, 0.07);
-  box(boat, mat.aluminum, 0, 3.4, 3.8, 3.4, 0.07, 0.07);
-  const car = box(boat, mat.rubber, 0, 3.46, 3.8, 0.21, 0.13, 0.13);
-  const sheet = bar(boat, mat.ivory, [0, 3.46, 3.8], [0, 4.3, 4.3], 0.023);
+  // Lead the mainsheet to the aft cockpit beam, below the raised helm's
+  // sightline. The former roof-height lead swept across the instrument screen.
+  for (const x of [-1.65, 1.65])
+    bar(boat, mat.aluminum, [Math.sign(x) * 2.5, 1.2, 4.65], [x, 1.57, 4.65], 0.05);
+  box(boat, mat.aluminum, 0, 1.57, 4.65, 3.4, 0.09, 0.12);
+  const car = box(boat, mat.rubber, 0, 1.63, 4.65, 0.21, 0.13, 0.13);
+  car.name = 'traveler-car';
+  const sheet = bar(boat, mat.ivory, [0, 1.63, 4.65], [0, 4.3, 4.3], 0.023);
+  sheet.name = 'mainsheet-tackle';
+  const sheetLength = sheet.geometry.parameters.height;
   winch(boat, mat, 2.62, 3.25, 1.47, mat.green);
   winch(boat, mat, -1.97, 1.56, 1.42, mat.red);
   for (const side of [-1, 1])
@@ -379,10 +386,10 @@ export function createCatamaran(mat) {
       const tip = new THREE.Vector3(0, 0, 6)
         .applyAxisAngle(new THREE.Vector3(0, 1, 0), boom.rotation.y)
         .add(boom.position);
-      const base = new THREE.Vector3(car.position.x, 3.46, 3.8),
+      const base = car.position.clone(),
         delta = tip.clone().sub(base);
       sheet.position.copy(base).add(tip).multiplyScalar(0.5);
-      sheet.scale.y = delta.length() / Math.hypot(0.84, 0.5);
+      sheet.scale.y = delta.length() / sheetLength;
       sheet.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), delta.normalize());
       wheel.rotation.z = (-state.rudder * Math.PI) / 90;
       rudders.forEach((rudder) => (rudder.rotation.y = (-state.rudder * Math.PI) / 180));

@@ -75,7 +75,7 @@ try {
   assert.equal(result.vaneParts,3);close(result.boom,-side*50*Math.PI/180,'Boom angle');close(result.car,-side,'Traveler side');close(result.vane,-fixture.angle*Math.PI/180,'Vane angle');
   close(result.pointer.x,Math.sin(fixture.angle*Math.PI/180),'Actual pointer direction x');close(result.pointer.z,-Math.cos(fixture.angle*Math.PI/180),'Actual pointer direction z');
   assert.equal(result.mainVisible,fixture.mainHoist>.01);assert.equal(result.jibVisible,fixture.jibHoist>.01);
-  close(result.mainScale,fixture.mainHoist*[1,.72,.48][fixture.reefLevel],'Reef/hoist scaling');close(result.jibFoot,5.4*fixture.jibHoist,'Headsail exposed foot',2e-6);
+  close(result.mainScale,fixture.mainHoist*[1,.72,.48][fixture.reefLevel],'Reef/hoist scaling');close(result.jibFoot,3.4*fixture.jibHoist,'Headsail exposed foot',2e-6);
   await page.screenshot({path:`artifacts/rig-${fixture.id}.png`,timeout:120000});results.push(result);
  }
  const timing=await page.evaluate(()=>{

@@ -2,7 +2,7 @@ import { getLocation, DEFAULT_LOCATION_ID } from './locations.js';
 import { depthAt } from './water-depth.js';
 import { bowFairlead, anchorSnapshot, anchorStatusText, reconcileAnchorControls, advanceAnchorWinch, updateAirborneAnchor } from './anchor.js';
 export { depthAt } from './water-depth.js';
-import { createRigidBody, createWorldBodies, PLAYER_HULL, advanceFreeBodies, solveContacts, collisionStepLimit, separatedBeyond } from './collisions.js';
+import { createRigidBody, createWorldBodies, PLAYER_HULL, advanceFreeBodies, solveContacts, collisionStepLimit, separatedBeyond, recordContactImpacts } from './collisions.js';
 import { MONOHULL, getVessel, vesselYawInertia, catamaranHullShape } from './vessels.js';
 import { advanceCatamaran } from './catamaran-physics.js';
 import { advanceFreeSailingTraffic } from './world/free-sailing-traffic.js';
@@ -234,9 +234,7 @@ function integrateContacts(s,dt){
   const contacts=solveContacts(bodies);
   const playerContacts=contacts.filter(contact=>contact.aId==='player'||contact.bId==='player');
   s.contactActive=playerContacts.length>0||Object.keys(s._contactEpisodes).length>0;
-  for(const contact of contacts){
-    if(contact.impulse>1)for(const id of [contact.aId,contact.bId]){const body=bodies.find(body=>body.id===id);body.lastImpact={time:s.elapsed,impulse:contact.impulse,point:{...contact.point},otherId:id===contact.aId?contact.bId:contact.aId};}
-  }
+  recordContactImpacts(bodies,contacts,s.elapsed);
   if(playerContacts.length){
     if(!s.grounded){
       s.x=player.x;s.z=player.z;s.heading=player.heading;s.yawRate=player.yawRate;

@@ -188,7 +188,7 @@ export function createRaceUI({
     );
     const map = document.createElement('div');
     document.querySelector('.race-result-list').before(map);
-    mountSailingTrack(map, race.track, { marks: race.course.marks });
+    mountSailingTrack(map, race.track, { marks: race.marks });
     document.querySelector('#race-again').onclick = () => {
       selected = race.course.id;
       difficulty = race.difficulty;

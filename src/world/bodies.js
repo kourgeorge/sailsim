@@ -17,6 +17,16 @@ export function yachtHullShape(scale = 1) {
       ...[...sections].reverse().map(([z,x])=>[-x*scale,z*scale])] };
 }
 
+export function buoyBodyDefinition(id, point, index, { radius = 1.03, mass = 480 } = {}) {
+  return {
+    id, kind: 'moored', x: point.x, z: point.z, heading: 0,
+    vx: 0, vz: 0, yawRate: 0, mass, inertia: mass * radius ** 2 / 2,
+    shape: { type: 'circle', radius }, linearDamping: .65, angularDamping: .9,
+    mooring: { x: point.x, z: point.z, slack: .8, stiffness: 900, damping: 850, maxRadius: 3.5 },
+    visual: { type: 'buoy', index },
+  };
+}
+
 // A separate seed keeps collision geography independent of texture/tree draws.
 export function getWorldRockDefinitions(locationId = 'haven') {
   const location=getLocation(locationId),rocks=[];
@@ -35,13 +45,7 @@ export function getWorldRockDefinitions(locationId = 'haven') {
 
 export function getWorldBodyDefinitions(locationId = 'haven') {
   const location = getLocation(locationId), prefix = location.id, bodies = [];
-  location.buoys.forEach((point,index) => bodies.push({
-    id:`${prefix}:buoy:${index}`, kind:'moored', ...point, heading:0,
-    vx:0,vz:0,yawRate:0,mass:480,inertia:260,
-    shape:{type:'circle',radius:1.03},
-    mooring:{...point,slack:.8,stiffness:900,damping:850,maxRadius:3.5},
-    visual:{type:'buoy',index},
-  }));
+  location.buoys.forEach((point,index) => bodies.push(buoyBodyDefinition(`${prefix}:buoy:${index}`, point, index)));
   if (location.marina) {
     const marina = location.marina, span = (marina.berths-1)*marina.spacing;
     const pier = (id,x,z,length,beam,index) => bodies.push({

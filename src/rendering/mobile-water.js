@@ -58,7 +58,7 @@ export function createMobileWater(geometry, { waterNormals, sunDirection, sunCol
           float broadFade = mix(1.0, 0.35, smoothstep(120.0, 900.0, viewDistance));
           vec2 slope = broad.xy * (0.55 * broadFade)
                      + vec2(fine.y, -fine.x) * (0.32 * rippleFade);
-          slope *= distortionScale * 0.6;
+          slope *= distortionScale * 0.45;
           vec3 normal = normalize(vec3(slope.x, 1.0, slope.y));
           float diffuse = max(dot(normal, sunDirection), 0.0);
           float facing = clamp(dot(normal, viewDirection), 0.0, 1.0);
@@ -69,15 +69,15 @@ export function createMobileWater(geometry, { waterNormals, sunDirection, sunCol
           float skyHeight = smoothstep(0.0, 0.65, max(reflectedView.y, 0.0));
           vec3 sky = mix(horizonColor, skyColor, skyHeight);
           float sunAlignment = clamp(dot(reflectedView, sunDirection), 0.0, 1.0);
-          sky += sunColor * pow(sunAlignment, 8.0) * 0.08;
+          sky += sunColor * pow(sunAlignment, 8.0) * 0.035;
           float fresnel = 0.022 + 0.978 * pow(1.0 - facing, 5.0);
           vec3 body = waterColor * (0.65 + diffuse * 0.35 + facing * 0.12);
-          vec3 color = mix(body, sky, fresnel * 0.7);
+          vec3 color = mix(body, sky, fresnel * 0.35);
 
           // A soft sun reflection underneath finer glints gives the ripples
           // shape. Broaden distant glints to keep the horizon stable in motion.
-          float sunlight = pow(sunAlignment, 28.0) * 0.12
-                         + pow(sunAlignment, mix(48.0, 160.0, rippleFade)) * 0.85;
+          float sunlight = pow(sunAlignment, 24.0) * 0.015
+                         + pow(sunAlignment, mix(36.0, 80.0, rippleFade)) * 0.09;
           color += sunColor * sunlight;
           gl_FragColor = vec4(color, 1.0);
           #include <tonemapping_fragment>

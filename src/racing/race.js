@@ -9,7 +9,13 @@ import {
   KNOT,
   VESSEL,
 } from '../physics.js';
-import { createRigidBody, PLAYER_HULL, solveContacts } from '../collisions.js';
+import {
+  createRigidBody,
+  PLAYER_HULL,
+  solveContacts,
+  recordContactImpacts,
+} from '../collisions.js';
+import { buoyBodyDefinition } from '../world/bodies.js';
 import { createSailingTrack, captureSailingTrack } from '../navigation/sailing-track.js';
 import { createWeather, advanceWeather, raceWeatherSeed } from '../weather.js';
 
@@ -75,6 +81,7 @@ const RIVALS = [
   { id: 'coral', name: 'Coral', color: '#f48aa1' },
 ];
 export const MARK_RADIUS = 24;
+export const RACE_BUOY_RADIUS = 1.8;
 const FIXED_STEP = 1 / 30,
   RAD = Math.PI / 180;
 const distance = (a, b) => Math.hypot(a.x - b.x, a.z - b.z);
@@ -95,7 +102,8 @@ export function createRace(courseId, difficulty = 'club', { changingWeather = tr
       });
       // All four boats start abreast, behind the first mark, at the same speed.
       const direction = bearing(course.start, course.marks[0]) * RAD,
-        lane = [0, -20, 20, 40][index];
+        // Leave the start/finish buoy between lanes, clear of every hull.
+        lane = [-10, -30, 10, 30][index];
       state.x += Math.cos(direction) * lane;
       state.z += Math.sin(direction) * lane;
       if (index) state.worldBodies = [];
@@ -119,8 +127,20 @@ export function createRace(courseId, difficulty = 'club', { changingWeather = tr
       };
     },
   );
+  const marks = course.marks.map((point, index) =>
+    createRigidBody(
+      buoyBodyDefinition(`race:${course.id}:buoy:${index}`, point, index, {
+        radius: RACE_BUOY_RADIUS,
+        mass: 240,
+      }),
+    ),
+  );
+  // One shared body per mark. The player's normal physics step advances it
+  // once; fleet contacts below let every rival push that same buoy.
+  racers[0].state.worldBodies.push(...marks);
   return {
     course,
+    marks,
     difficulty,
     weather: createWeather(course, { enabled: changingWeather, seed: raceWeatherSeed(course.id) }),
     racers,
@@ -139,7 +159,7 @@ export function createRace(courseId, difficulty = 'club', { changingWeather = tr
 // same sail-force, drag, current and rudder model used by the player's yacht.
 export function steerRacer(race, racer, index = 0) {
   const s = racer.state,
-    target = race.course.marks[racer.mark];
+    target = race.marks[racer.mark];
   if (!target || racer.finished !== null) return;
   const skill = RACE_DIFFICULTIES[race.difficulty];
   const direct = bearing(s, target),
@@ -192,8 +212,11 @@ function fleetContacts(race) {
     });
     return b;
   });
-  const contacts = solveContacts(bodies);
+  const buoys = race.player.worldBodies.filter((body) => body.visual?.type === 'buoy');
+  const sharedBodies = [...bodies, ...buoys];
+  const contacts = solveContacts(sharedBodies);
   if (!contacts.length) return;
+  recordContactImpacts(sharedBodies, contacts, race.player.elapsed);
   race.contacts += contacts.filter((contact) => contact.impulse > 1).length;
   for (const racer of race.racers) {
     const s = racer.state,
@@ -234,9 +257,9 @@ export function markEntryFraction(from, to, mark, radius = MARK_RADIUS) {
 export function raceStandings(race) {
   const remaining = (racer) => {
     if (racer.finished !== null) return 0;
-    let length = distance(racer.state, race.course.marks[racer.mark]);
-    for (let i = racer.mark + 1; i < race.course.marks.length; i++)
-      length += distance(race.course.marks[i - 1], race.course.marks[i]);
+    let length = distance(racer.state, race.marks[racer.mark]);
+    for (let i = racer.mark + 1; i < race.marks.length; i++)
+      length += distance(race.marks[i - 1], race.marks[i]);
     return length;
   };
   return race.racers
@@ -273,7 +296,7 @@ export function advanceRace(race, dt, { autopilotPlayer = false } = {}) {
         // Sail clear of the finish before stopping so early finishers do not
         // form a wall across the final ring for the boats behind them.
         s.rudder = 0;
-        if (distance(s, race.course.marks.at(-1)) > 90) {
+        if (distance(s, race.marks.at(-1)) > 90) {
           s.speed = 0;
           s.leeway = 0;
           s.yawRate = 0;
@@ -285,8 +308,8 @@ export function advanceRace(race, dt, { autopilotPlayer = false } = {}) {
     fleetContacts(race);
     for (const [index, racer] of race.racers.entries()) {
       if (racer.finished !== null) continue;
-      const entry = markEntryFraction(before[index], racer.state, race.course.marks[racer.mark]);
-      if (entry !== null && ++racer.mark === race.course.marks.length)
+      const entry = markEntryFraction(before[index], racer.state, race.marks[racer.mark]);
+      if (entry !== null && ++racer.mark === race.marks.length)
         racer.finished = race.elapsed + entry * FIXED_STEP;
     }
     race.elapsed += FIXED_STEP;

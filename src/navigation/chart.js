@@ -28,7 +28,7 @@ export function createChartRenderer({
     if (race) {
       const points = [
         race.course.start,
-        ...race.course.marks,
+        ...(race.marks || race.course.marks),
         ...race.racers.map((item) => item.state),
       ];
       const xs = points.map((p) => p.x),
@@ -52,7 +52,7 @@ export function createChartRenderer({
       buoys = track
         ? track.marks || []
         : race
-          ? race.course.marks
+          ? race.marks || race.course.marks
           : location.buoys.map(
               (b, i) =>
                 state.worldBodies?.find((body) => body.id === `${location.id}:buoy:${i}`) || b,

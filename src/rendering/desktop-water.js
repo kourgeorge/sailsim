@@ -47,27 +47,32 @@ export function createDesktopWater(geometry, options) {
       vec2 slope = (broad.xy * 0.5 + vec2(-crossWave.y, crossWave.x) * 0.33) * broadFade
                  + fine.xy * (0.2 * rippleFade)
                  + vec2(detail.y, -detail.x) * (0.12 * detailFade);
-      slope *= distortionScale * 0.7;
+      slope *= distortionScale * 0.5;
       vec3 normal = normalize(vec3(slope.x, 1.0, slope.y));
 
       // Distort the existing live reflection gently enough that coastlines and
       // the boat remain recognizable. No extra scene capture is introduced.
-      vec2 distortion = normal.xz * (0.001 + 0.25 / max(viewDistance, 1.0)) * distortionScale;
+      vec2 distortion = normal.xz * (0.0007 + 0.08 / max(viewDistance, 1.0)) * distortionScale;
       vec2 mirrorUV = clamp(mirrorCoord.xy / mirrorCoord.w + distortion, vec2(0.002), vec2(0.998));
-      vec3 reflectedScene = texture2D(mirrorSampler, mirrorUV).rgb;
+      // Limit HDR sky peaks before mixing; otherwise even a small reflection
+      // weight turns whole wave faces into bright, oily-looking streaks.
+      vec3 reflectedScene = min(texture2D(mirrorSampler, mirrorUV).rgb, vec3(1.0));
       float facing = clamp(dot(normal, viewDirection), 0.0, 1.0);
       float fresnel = 0.022 + 0.978 * pow(1.0 - facing, 5.0);
       float diffuse = max(dot(normal, sunDirection), 0.0);
       float shadow = getShadowMask();
       vec3 body = waterColor * (0.62 + diffuse * 0.4 + facing * 0.12);
-      vec3 color = mix(body * shadow, reflectedScene, fresnel * 0.78);
+      // Keep nearby water's body color: sharp, intermittently refreshed hull
+      // reflections otherwise flash around the stern and look like a mirror.
+      float reflectionWeight = mix(0.06, 0.2, smoothstep(12.0, 90.0, viewDistance));
+      vec3 color = mix(body * shadow, reflectedScene, fresnel * reflectionWeight);
 
       // Direct sunlight stays distinct from the reflected scene: a soft lobe
       // supports the finer glints instead of washing every reflection white.
       vec3 reflectedView = reflect(-viewDirection, normal);
       float sunAlignment = clamp(dot(reflectedView, sunDirection), 0.0, 1.0);
-      float sunlight = pow(sunAlignment, 28.0) * 0.1
-                     + pow(sunAlignment, mix(48.0, 192.0, rippleFade)) * 0.75;
+      float sunlight = pow(sunAlignment, 24.0) * 0.015
+                     + pow(sunAlignment, mix(36.0, 80.0, rippleFade)) * 0.065;
       color += sunColor * sunlight * shadow;
 
       gl_FragColor = vec4(color, alpha);
