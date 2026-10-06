@@ -1,6 +1,6 @@
 # SAIL — browser sailing simulator
 
-An original Three.js sailing simulator with a multilingual sailing school, independent yacht controls and three fictional practice areas. Inspired by the educational themes of eSail’s public website; not affiliated with eSail.
+An original Three.js sailing simulator with a multilingual sailing school, independent yacht controls, four fictional practice areas and ten real-world sailing destinations. Inspired by the educational themes of eSail’s public website; not affiliated with eSail.
 
 **Play online:** https://kourgeorge.github.io/sailsim/ · [עברית](https://kourgeorge.github.io/sailsim/?lang=he)
 
@@ -16,7 +16,12 @@ npm run dev
 Open **http://localhost:5187**. The development server reserves port 5187.
 
 ```sh
-npm test                                  # Physics, assessment, content and state tests
+npm run test:quick                        # Fast state/persistence checks
+npm run test:changed                      # Unit coverage selected from local changes
+npm run test:plan                         # Preview affected unit/browser tests without running
+npm run test:area -- covers --browser     # Choose a feature area; builds before browser checks
+npm test                                  # All Node physics, assessment, content and state tests
+npm run test:full                         # Complete unit/build/browser regression run
 npm run build                             # Refresh reference library; build dist/
 npm run test:browser                      # Production-build regressions; starts/stops its own preview server
 npm run format:check                      # Check formatting of the refactored application modules
@@ -43,7 +48,13 @@ node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feed
 
 Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
 
-`npm run test:browser` uses the production build and owns port 5198. It covers multi-tab progress, language changes, desktop/mobile training, music muting and exclusive source switching, rendered audio signals, and real WebGL pause/resume rendering. UI state tests use the supported WebGL fallback; the rendering test uses Chromium's software GPU. Failures retain screenshots and traces in `test-results/`. GitHub Pages deployment runs this suite before uploading the site.
+`npm run test:browser` uses the production build and owns port 5198. It covers multi-tab progress, language changes, desktop/mobile training, music muting and exclusive source switching, rendered audio signals, and real WebGL pause/resume rendering. UI state tests use the supported WebGL fallback; the rendering test uses Chromium's software GPU. Failures retain screenshots and traces in `test-results/`. GitHub Pages pushes run affected unit tests and four browser smoke journeys; broader coverage is selectable. See [choosing test coverage](docs/TESTING.md) for profiles, feature areas and change-based selection.
+
+## Sail the world
+
+Free sailing includes a selectable world map with the British Virgin Islands, the Grenadines, Exumas, Dalmatian coast, Santorini, Geirangerfjord, Seychelles, Whitsundays, Bora Bora and Bay of Islands. On desktop, destination details, the yacht picker and Set sail sit beside the map. The map works without WebGL; unsupported 3D browsers can sail using the live chart view.
+
+Coastlines and terrain use geographic source data. Each destination has its own palette, vegetation, settlement style, harbor scale, traffic and characteristic scenery. The British Virgin Islands include Sandy Spit's sand ring and central foliage. Terrain has finite resolution, settlements are generalized, and underwater depths are modeled rather than surveyed. See [destination sources and limits](docs/WORLD-DESTINATIONS.md).
 
 ## Free-sailing ambience
 
@@ -67,15 +78,17 @@ The camera button stays in the active simulation toolbar on desktop, tablet and 
 
 ## Sailing school
 
-**52 lessons, 13 modules, 108 explained questions, 23 assessed boat-handling practices and 29 interactive seamanship scenarios (87 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
+**53 lessons, 14 modules, 110 explained questions, 24 assessed boat-handling practices and 29 interactive seamanship scenarios (87 stages).** Start training opens the lesson’s practice briefing; Study material opens the separate illustrated reader. Every lesson requires its training evidence and knowledge check for sequential mastery. Study pauses and resumes the current task.
 
 | Level | Lessons | Focus |
 |---|---|---|
 | Basic | 01–16 | Crew safety, wind, helm, trim and fundamental maneuvers |
 | Intermediate | 17–36 | Sail power, navigation, harbor planning and emergency decisions |
-| Advanced | 37–52 | Coastal decisions, marina handling, collision avoidance, and twin-engine catamarans |
+| Advanced | 37–53 | Coastal decisions, marina handling, collision avoidance, twin-engine catamarans, and night navigation |
 
 Lessons **46–51**, **Give way and avoid collisions** (פינוי דרך ומניעת התנגשויות), cover tack and overtaking, powered and mixed encounters, give-way and stand-on actions, special vessel status, channels and traffic lanes, lights and signals, and restricted visibility. The six illustrated lessons include 18 decision stages and direct references to the International COLREGs. All six languages are supported; existing lesson IDs and progress records stay intact. These are core encounter lessons, not the complete lights syllabus, local navigation law or a sailing qualification.
+
+Lesson **53**, **Navigate a night approach**, adds a separate practical night-navigation module. Steer a low-speed engine approach through Haven under a moonlit sky, using the charted flashing lighthouse and buoy lights and a steady white leading line. Complete chart review, two approach checkpoints and a five-second controlled stop. Lesson 42 remains the original night-pilotage theory and decision exercise.
 
 The full-page illustrated reader presents concepts, observations, questions and takeaways in steps. Reading a page does not award assessment credit. The interface, lessons and **13 contextual guides** support **English, Spanish, Arabic, Hebrew, Russian and French**, with RTL reading layouts for Arabic and Hebrew. Text size is adjustable from **100–200%**, defaults to **100%**, and is saved in the browser. Select a language in the header or use `?lang=es` (`en`, `ar`, `he`, `ru`, `fr` also work).
 
@@ -127,17 +140,17 @@ checkpoint races, without formal racing-rule adjudication. Each race has a
 from **Engine drills & buoy course** in Challenges.
 
 - Detailed yacht with a live multifunction screen behind the wheel: chart, speed through water/over ground, heading/course, depth, wind, helm and throttle. Larger translated labels and a higher-resolution texture improve the onboard screen; a compact strip below the controls repeats the readings as sharp, scalable text in every camera view. The ↗ control opens enlarged readings. Practice starts at the helm; the dashboard’s ↗ control enlarges the instrument readings. Pausing freezes water, cloud and vessel animation while camera movement remains available. The cockpit sole is continuous and the ocean is excluded from the hull interior.
-- Three fictional maps: **Haven Islands**, **Shelter Bay** and **Windward Strait**. Chart, cockpit plotter, coastlines and depth model share location data.
+- Four fictional practice maps: **Haven Islands**, **Shelter Bay**, **Windward Strait** and **Norwegian Fjords**, alongside ten geographic sailing destinations. Chart, cockpit plotter, coastlines and depth model share location data.
 - Weather settings describe wind over ground. Instruments and points of sail use wind over water (weather air velocity minus current); apparent wind describes the airflow aboard. The model's no-go and sail-shape rules now preserve force consistency under uniform changes of reference frame. These numerical checks do not calibrate the empirical sail coefficients to a real yacht.
 - Independent main/headsail hoists and sheets, two reefs, traveler, vang, outhaul, engine ahead/neutral/astern, anchor and rode length.
 - Compact cockpit control groups expose steering, both sheets, engine/neutral, independent hoists, reef selection and anchor target/payout directly below the scene. Systems keeps the finer rig adjustments. Early acceleration practice starts with sails lowered; navigation starts require steering before credit, with untouched-start regressions across all 19 physical lessons.
 - On mobile, the sea fills the viewport. Floating Menu and Lesson buttons open navigation/settings and the numbered lesson picker without reserving screen space. The active goal appears as a compact overlay; its lesson sheet contains progress and practice actions. Play/pause and folding Boat controls float at the bottom. Speed, heading and depth overlays are optional via Show instruments. Menu and lesson sheets pause the simulation while open and preserve its previous playback state when dismissed.
 - Timed powered windlass with separate rode target and actual paid length, stop/resume controls, and recovery that waits for unloaded rode. Bow-based 3D anchor/rode, a six-language illustrated monitor and the chart share physical geometry. Assessments require actual payout or full stowage; stopping includes current and sideways drift.
 - Apparent-wind vectors, empirical sail forces, inertia, drag, speed-dependent steering and astern reversal, leeway, steady current, heel, grounding and a simplified anchor constraint.
-- A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 23 course practices.
+- A separate **three-drill maneuvering lab**: controlled ahead stop, astern steering corridor and precision approach/stop. Debriefs use the **actual recorded track**, control/speed history, measured results and replay. Lab records are separate from the 24 course practices.
 - Free sailing, a three-buoy route, live chart and wind/current controls. Touch controls and keyboard shortcuts, labelled next to each control: ← → steer, ↑ ↓ mainsheet, Q/A headsail sheet, W/S engine ahead/astern, C center the helm, N engine neutral, B sound the horn in Free sailing, H raise/lower sails, R reef, L anchor, Space start/pause, M chart, K help. Start/pause, Conditions and Reset sit together in the top bar.
 
-The physics is **not calibrated against a real yacht or sea trials**. Visual waves do not apply hull forces. Prop walk, loaded line handling, spring lines, collision damage, changing tides, detailed backed sails and physical casualty recovery are not modeled. Hull contact moves and rotates movable vessels and buoys, while fixed docks and rocks remain stationary. Engine drills assess open-water model control. Lessons 43–45 assess marina entry, berth positioning and departure in the model; they do not assess mooring-line handling or real-world docking competence. Anchor exercises assess modeled sequence and settling, not real seabed holding. All maps are fictional. Course completion is a study record, not certification or permission to skipper.
+The physics is **not calibrated against a real yacht or sea trials**. Visual waves do not apply hull forces. Prop walk, loaded line handling, spring lines, collision damage, changing tides, detailed backed sails and physical casualty recovery are not modeled. Hull contact moves and rotates movable vessels and buoys, while fixed docks and rocks remain stationary. Engine drills assess open-water model control. Lessons 43–45 assess marina entry, berth positioning and departure in the model; they do not assess mooring-line handling or real-world docking competence. Anchor exercises assess modeled sequence and settling, not real seabed holding. Practice maps are fictional; geographic destinations use generalized terrain and modeled depths. Course completion is a study record, not certification or permission to skipper.
 
 Translations still need nautical instructor/native-speaker review; hardware-GPU performance needs independent measurement. The app supports preparation for supervised on-water instruction.
 

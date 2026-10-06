@@ -9,6 +9,7 @@ export function createSceneLoader({ container, getOptions, prepare, onChange }) 
   let generation = 0;
   let createScene;
   let unavailable = false;
+  let createChartScene;
   const matches = () => {
     const options = getOptions();
     return scene?.locationId === options.locationId && scene?.vesselId === options.vesselId;
@@ -21,10 +22,13 @@ export function createSceneLoader({ container, getOptions, prepare, onChange }) 
       return status;
     },
     get ready() {
-      return unavailable || (status === 'ready' && matches());
+      return ['ready', 'fallback'].includes(status) && matches();
     },
     ensure() {
-      if (unavailable || (status === 'ready' && matches()) || ['loading', 'error'].includes(status))
+      if (
+        (['ready', 'fallback'].includes(status) && matches()) ||
+        ['loading', 'error'].includes(status)
+      )
         return;
       const ticket = ++generation;
       status = 'loading';
@@ -40,16 +44,22 @@ export function createSceneLoader({ container, getOptions, prepare, onChange }) 
           scene = null;
           container.replaceChildren();
           try {
+            if (unavailable) throw new Error('WebGL unavailable');
             scene = createScene(container, getOptions());
             prepare(scene);
             status = 'ready';
           } catch (error) {
-            // Preserve the existing chart/lesson fallback on devices without WebGL.
             scene?.dispose();
             scene = null;
+            // Renderer/terrain bugs are recoverable errors, not evidence that
+            // the user's browser lacks WebGL.
+            if (!/webgl|creating.*context/i.test(error.message)) throw error;
             unavailable = true;
+            createChartScene ||= (await import('../rendering/chart-scene.js')).createChartScene;
+            if (ticket !== generation) return;
+            scene = createChartScene(container, getOptions());
+            prepare(scene);
             status = 'fallback';
-            console.error(error);
           }
         } catch (error) {
           if (ticket !== generation) return;

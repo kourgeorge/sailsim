@@ -2,7 +2,7 @@ import './cover-pager.css';
 import { createCoverSlide } from './cover-slide.js';
 
 const interactive =
-  'button,a,input,select,textarea,summary,[role="combobox"],[role="listbox"],[contenteditable="true"]';
+  'button,a,input,select,textarea,summary,.atlas-scroll,[role="combobox"],[role="listbox"],[contenteditable="true"]';
 
 export function mountCoverPager({ container, cover, getPage, getPreview, select, translate: t }) {
   const nav = document.createElement('nav');

@@ -6,6 +6,8 @@ import { translate as t } from '../i18n/runtime.js';
 import { localToWorld } from '../world/bodies.js';
 import { sailingTrackFrame } from './sailing-track.js';
 import { getCoastalFeatures } from '../world/coastal-features.js';
+import { navigationLights } from './lights.js';
+import { drawTerrainChart } from './terrain-chart.js';
 
 export function createChartRenderer({
   getState,
@@ -85,6 +87,18 @@ export function createChartRenderer({
       ctx.stroke();
     }
     for (const i of islands) {
+      if (i.polygon) {
+        ctx.fillStyle = '#d7cfaa';
+        ctx.beginPath();
+        i.polygon.forEach(([x, z], j) => (j ? ctx.lineTo(...map(x, z)) : ctx.moveTo(...map(x, z))));
+        ctx.closePath();
+        ctx.fill();
+        continue;
+      }
+      if (i.raster) {
+        drawTerrainChart(ctx, i, map, scale);
+        continue;
+      }
       const [x, y] = map(i.x, i.z);
       ctx.fillStyle = '#28535a';
       ctx.beginPath();
@@ -132,6 +146,15 @@ export function createChartRenderer({
         ctx.fillText(i.name, x, y + 5);
       }
     }
+    if (w > 300)
+      for (const landmark of location.landmarks || []) {
+        const [x, y] = map(landmark.x, landmark.z);
+        if (x < 20 || x > w - 20 || y < 25 || y > h - 30) continue;
+        ctx.font = '12px sans-serif';
+        ctx.textAlign = 'center';
+        ctx.fillStyle = '#e4e6cc';
+        ctx.fillText(landmark.name, x, y);
+      }
     for (const feature of getCoastalFeatures(location.id)) {
       const [x, y] = map(feature.x, feature.z);
       ctx.save();
@@ -168,6 +191,22 @@ export function createChartRenderer({
       ctx.moveTo(x - 8, y - 4);
       ctx.lineTo(x + 8, y - 4);
       ctx.stroke();
+    }
+    if (state.timeOfDay === 'night' && !track) {
+      ctx.save();
+      for (const light of navigationLights(state.locationId)) {
+        const [x, y] = map(light.x, light.z);
+        ctx.fillStyle = light.color;
+        ctx.beginPath();
+        ctx.arc(x, y, 3, 0, Math.PI * 2);
+        ctx.fill();
+        if (w > 300) {
+          ctx.font = '11px sans-serif';
+          ctx.textAlign = 'left';
+          ctx.fillText(light.label, x + 7, y + (light.kind === 'leading' ? 12 : -7));
+        }
+      }
+      ctx.restore();
     }
     if (race) {
       ctx.strokeStyle = '#ecd09477';

@@ -1,7 +1,7 @@
 import { bowFairlead, initializeAnchoredScenario } from '../src/anchor.js';
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LOCATIONS, DEFAULT_LOCATION_ID, getLocation } from '../src/locations.js';
+import { PRACTICE_LOCATIONS as LOCATIONS, DEFAULT_LOCATION_ID, getLocation } from '../src/locations.js';
 import { initialState, depthAt, islands, buoys, refreshDerived, step, VESSEL } from '../src/physics.js';
 import { islandRatio, islandHeight, shoreScale } from '../src/rendering/geography.js';
 

@@ -13,9 +13,12 @@ export function addFreeSailingTraffic(state) {
   if (state.worldBodies.some((body) => body.traffic)) return;
   const location = getLocation(state.locationId);
   const sites = [];
-  for (const distance of [160, 360, 610, 880, 1200]) {
-    for (const side of [-1, 1]) {
-      const center = { x: location.start.x + side * 140, z: location.start.z - distance };
+  const limit=location.character?.traffic??4;
+  const centers=[160,360,610,880,1200].flatMap(distance=>location.coordinates
+    ? Array.from({length:8},(_,i)=>{const angle=(location.start.heading+i*45)*RAD;return {x:location.start.x+Math.sin(angle)*distance,z:location.start.z-Math.cos(angle)*distance};})
+    : [-1,1].map(side=>({x:location.start.x+side*140,z:location.start.z-distance})));
+  for (const center of centers) {
+      if(location.coordinates&&sites.some(site=>Math.hypot(site.center.x-center.x,site.center.z-center.z)<220))continue;
       const route = Array.from({ length: 32 }, (_, i) => {
         const angle = (i / 32) * Math.PI * 2;
         return { x: center.x + Math.cos(angle) * 48, z: center.z + Math.sin(angle) * 72 };
@@ -35,9 +38,7 @@ export function addFreeSailingTraffic(state) {
       )
         continue;
       sites.push({ center, route });
-      if (sites.length === 4) break;
-    }
-    if (sites.length === 4) break;
+      if (sites.length === limit) break;
   }
   for (const [index, { center, route }] of sites.entries()) {
     const vessel = getVessel(index % 2 ? 'catamaran' : 'monohull');

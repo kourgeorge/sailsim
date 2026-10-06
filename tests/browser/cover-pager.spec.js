@@ -1,4 +1,5 @@
 import { test, expect } from '@playwright/test';
+import { LOCATIONS } from '../../src/locations.js';
 
 test.beforeEach(async ({ context }) => {
   // Browsing uses the published background images and works without WebGL.
@@ -61,21 +62,21 @@ test.describe('touch browsing', () => {
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto('./?lang=en');
     const client = await context.newCDPSession(page);
-    await count(page, 1, 52);
+    await count(page, 1, 53);
     await expect(page.locator('.cover-previous')).toBeDisabled();
     await swipeCard(page, client, 'left');
-    await count(page, 2, 52);
+    await count(page, 2, 53);
     await expect(page.locator('#lesson-number')).toHaveText('02');
     await swipeCard(page, client, 'right');
-    await count(page, 1, 52);
+    await count(page, 1, 53);
     await swipeCard(page, client, 'left');
-    await count(page, 2, 52);
+    await count(page, 2, 53);
     await page.reload();
-    await count(page, 2, 52);
+    await count(page, 2, 53);
     await page.screenshot({ path: '/tmp/sail-browse-lesson-mobile.png', animations: 'disabled' });
 
     await page.locator('button[data-section=explore]').tap();
-    const locations = ['haven', 'shelter', 'strait', 'fjord'];
+    const locations = LOCATIONS.map((location) => location.id);
     for (let i = 0; i < locations.length; i++) {
       if (i) await swipeCard(page, client, 'left');
       await count(page, i + 1, locations.length);
@@ -83,11 +84,11 @@ test.describe('touch browsing', () => {
     }
     await expect(page.locator('.cover-next')).toBeDisabled();
     await swipeCard(page, client, 'left');
-    await count(page, 4, 4);
+    await count(page, LOCATIONS.length, LOCATIONS.length);
     await swipeCard(page, client, 'right', 'touchCancel');
-    await count(page, 4, 4);
+    await count(page, LOCATIONS.length, LOCATIONS.length);
     await swipeCard(page, client, 'right');
-    await count(page, 3, 4);
+    await count(page, LOCATIONS.length - 1, LOCATIONS.length);
 
     await page.locator('button[data-section=challenge]').tap();
     await count(page, 1, 13);
@@ -118,14 +119,14 @@ test.describe('touch browsing', () => {
     await page.goto('./?lang=he');
     const client = await context.newCDPSession(page);
     const cover = page.locator('#section-cover');
-    await count(page, 1, 52);
+    await count(page, 1, 53);
     await swipe(client, { x: 120, y: 600 }, { x: 126, y: 280 });
     await expect.poll(() => cover.evaluate((node) => node.scrollTop)).toBeGreaterThan(0);
-    await count(page, 1, 52);
+    await count(page, 1, 53);
     await swipeCard(page, client, 'right');
-    await count(page, 2, 52);
+    await count(page, 2, 53);
     await swipeCard(page, client, 'left');
-    await count(page, 1, 52);
+    await count(page, 1, 53);
     await page.locator('button[data-section=explore]').tap();
     const picker = page.locator('#cover-vessel');
     await picker.scrollIntoViewIfNeeded();
@@ -135,9 +136,9 @@ test.describe('touch browsing', () => {
       { x: bounds.x + bounds.width - 25, y: bounds.y + 20 },
       { x: bounds.x + 25, y: bounds.y + 20 },
     );
-    await count(page, 1, 4);
+    await count(page, 1, LOCATIONS.length);
     await page.locator('.cover-next').tap();
-    await count(page, 2, 4);
+    await count(page, 2, LOCATIONS.length);
     await cover.evaluate((node) => {
       node.scrollTop = node.scrollHeight;
     });
@@ -154,8 +155,8 @@ test.describe('touch browsing', () => {
     await page.goto('./?lang=en');
     const client = await context.newCDPSession(page);
     for (const [section, total] of [
-      ['learn', 52],
-      ['explore', 4],
+      ['learn', 53],
+      ['explore', LOCATIONS.length],
       ['challenge', 13],
     ]) {
       await page.locator(`button[data-section=${section}]`).tap();
@@ -212,7 +213,7 @@ test.describe('touch browsing', () => {
       touchPoints: [{ x: 210, y: y + 55, id: 1 }],
     });
     await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-    await count(page, 2, 52);
+    await count(page, 2, 53);
 
     await client.send('Input.dispatchTouchEvent', {
       type: 'touchStart',
@@ -228,7 +229,7 @@ test.describe('touch browsing', () => {
       touchPoints: [{ x: 180, y: 702, id: 1 }],
     });
     await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-    await count(page, 3, 52);
+    await count(page, 3, 53);
   });
 
   test('the outgoing and incoming lessons slide together without disappearing', async ({
@@ -265,9 +266,9 @@ test.describe('touch browsing', () => {
     expect(previewBounds.x).toBeLessThan(390);
     expect(previewBounds.x - currentBounds.x).toBeCloseTo(390, 0);
     await page.screenshot({ path: '/tmp/sail-carousel-during-touch.png' });
-    await count(page, 1, 52);
+    await count(page, 1, 53);
     await client.send('Input.dispatchTouchEvent', { type: 'touchEnd', touchPoints: [] });
-    await count(page, 2, 52);
+    await count(page, 2, 53);
     await expect(page.locator('#scene-heading')).toHaveText(previewTitle);
     await page.evaluate(() => {
       for (const animation of document.getAnimations()) {
@@ -294,7 +295,7 @@ test.describe('touch browsing', () => {
     await expect(surface).toHaveCSS('transform', 'none');
 
     await swipe(client, { x: 250, y: 700 }, { x: 230, y: 700 });
-    await count(page, 2, 52);
+    await count(page, 2, 53);
     await expect(surface).toHaveCSS('transform', 'none');
   });
 
@@ -305,7 +306,7 @@ test.describe('touch browsing', () => {
     await page.goto('./?lang=en');
     const client = await context.newCDPSession(page);
     for (const [section, from, total] of [
-      ['explore', 1, 4],
+      ['explore', 1, LOCATIONS.length],
       ['challenge', 1, 13],
       ['challenge', 6, 13],
       ['challenge', 9, 13],
@@ -362,25 +363,25 @@ test('desktop buttons and arrow keys share the selected lesson, location and cha
 }) => {
   await page.goto('./?lang=en');
   await page.locator('.cover-next').click();
-  await count(page, 2, 52);
+  await count(page, 2, 53);
   await expect(page.locator('[data-course-lesson="1"]')).toHaveAttribute('aria-current', 'step');
   await page.locator('#section-cover').focus();
   await page.keyboard.press('ArrowRight');
-  await count(page, 3, 52);
+  await count(page, 3, 53);
   await page.keyboard.press('ArrowLeft');
-  await count(page, 2, 52);
+  await count(page, 2, 53);
   await page.locator('#cover-course').click();
   await page.locator('[data-library-lesson]').last().click();
-  await count(page, 52, 52);
+  await count(page, 53, 53);
   await expect(page.locator('.cover-next')).toBeDisabled();
   await page.locator('[data-mode=explore]').click();
   await page.locator('[data-cover-location=shelter]').click();
-  await count(page, 2, 4);
+  await count(page, 2, LOCATIONS.length);
   await page.locator('#cover-vessel').focus();
   await page.keyboard.press('ArrowRight');
-  await count(page, 2, 4);
+  await count(page, 2, LOCATIONS.length);
   await page.locator('.cover-next').click();
-  await count(page, 3, 4);
+  await count(page, 3, LOCATIONS.length);
   await page.screenshot({ path: '/tmp/sail-browse-desktop.png', animations: 'disabled' });
   await page.locator('[data-mode=challenge]').click();
   await page.locator('[data-cover-drill=engine-stop]').click();

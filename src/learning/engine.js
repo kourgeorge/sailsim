@@ -54,7 +54,7 @@ export function crossingKind(previous,current){
 export function beginAttempt(lesson,state,progress){
  if(!lesson.practice)return null;
  const r=recordFor(progress,lesson.id);r.attempts++;r.lastResult='Practice in progress';
- const attempt={id:globalThis.crypto?.randomUUID?.()??`${lesson.id}-${Date.now()}-${Math.random().toString(36).slice(2)}`,lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:windRelativeHeading(state),weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
+ const attempt={id:globalThis.crypto?.randomUUID?.()??`${lesson.id}-${Date.now()}-${Math.random().toString(36).slice(2)}`,lessonId:lesson.id,windlassAssessmentVersion:WINDLASS_ASSESSMENT_VERSION,status:'active',index:0,held:0,elapsed:0,completed:[],events:new Set(),maneuver:null,maneuverSide:0,previousAngle:windRelativeHeading(state),timeOfDay:state.timeOfDay??'day',weather:{windSpeed:state.windSpeed,windDirection:state.windDirection,currentSpeed:state.currentSpeed??0,currentDirection:state.currentDirection??0},message:'',hints:0,attemptNumber:r.attempts,objectives:beginPracticeAssessment(lesson),criticalFailure:null,collisionBaseline:playerCollisionCount(state)};
  attempt.track=createSailingTrack(state);
  if(state.contactActive===true){attempt.objectives[0].evidence=practiceEvidence(state,attempt);invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));}
  return attempt;
@@ -73,6 +73,7 @@ export function advanceAttempt(attempt,lesson,state,dt,progress){
  if(attempt.objectives?.[attempt.index])attempt.objectives[attempt.index].evidence=practiceEvidence(state,attempt);
  if(hasPlayerCollision(state,attempt.collisionBaseline)){invalidateAttempt(attempt,progress,COLLISION_FAILURE_MESSAGE,'collision',collisionEvidence(state.collision));return attempt;}
  if(state.grounded){invalidateAttempt(attempt,progress,'Grounding ended this attempt. Review the chart and restart with sea room.','grounding');return attempt;}
+ if((state.timeOfDay??'day')!==attempt.timeOfDay){invalidateAttempt(attempt,progress,'Conditions changed. Restart to assess in the prescribed weather.','conditions-changed');return attempt;}
  if(Object.entries(attempt.weather).some(([key,value])=>Math.abs((state[key]??0)-value)>.001)){invalidateAttempt(attempt,progress,'Conditions changed. Restart to assess in the prescribed weather.','conditions-changed');return attempt;}
  const current=lesson.practice.steps[attempt.index];
  const departure=lesson.practice.setup.anchor===true&&attempt.index===0;

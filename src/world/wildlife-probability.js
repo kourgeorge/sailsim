@@ -31,7 +31,14 @@ const RATES = {
 };
 
 export function wildlifeRates(locationId) {
-  return RATES[getLocation(locationId).id];
+  const location = getLocation(locationId);
+  if (RATES[location.id]) return RATES[location.id];
+  if (location.biome === 'fjord') return RATES.fjord;
+  return {
+    birds: { gull: 46, cormorant: 12, tern: 22, eagle: 0 },
+    marine: { fish: 28, dolphin: 4, turtle: location.biome === 'tropical' ? 2 : 0 },
+    land: { deer: 0, goat: 0, fox: 0, rabbit: 0, boar: 0 },
+  };
 }
 
 export function weightedWildlife(weights, random) {

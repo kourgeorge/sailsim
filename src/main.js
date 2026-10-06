@@ -113,10 +113,6 @@ async function startApp() {
     },
     onChange: () => {
       scene = graphics.scene;
-      if (graphics.status === 'fallback') {
-        $('#scene').textContent = t('A browser with WebGL is needed for the 3D view.');
-        $('#scene').dataset.renderPending = 'false';
-      }
       // Loading time must never advance the boat or consume training/race time.
       last = performance.now();
       syncControls();

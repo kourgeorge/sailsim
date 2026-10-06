@@ -51,6 +51,10 @@
     "catamaran": {
       "title": "Catamaran handling",
       "outcome": "Use twin engines deliberately and account for beam, windage, and sail loads."
+    },
+    "night-navigation": {
+      "title": "Practical night navigation",
+      "outcome": "Navigate by flashing lights and a leading line, then make a controlled stop in safe water."
     }
   },
   "lessons": {
@@ -2144,6 +2148,61 @@
           }
         ],
         "debrief": "You turned a twin-engine catamaran, made a controlled approach, and stopped with both engines neutral."
+      }
+    },
+    "sail-53": {
+      "title": "Navigate a night approach",
+      "concepts": [
+        "Start in Haven after dark, with sails lowered and the engine in neutral. Open the chart before moving. The lighthouse flashes white once every 6 seconds; buoy 1 flashes yellow every 4 seconds. Observe complete cycles and match both color and period to the chart.",
+        "Use gentle ahead thrust and steer 000° toward the first checkpoint, passing east of buoy 1. Turn toward 027° for the second checkpoint. The two steady white lights on North Head form the leading line: the higher rear light should sit above the front light. Cross-check the alignment with heading, chart position and at least 3 metres of water depth.",
+        "Keep below 3 knots throughout. Slow before the final circle and use a brief astern input to check momentum, then neutral. Hold below 0.15 knots on 027° for five seconds. If references disagree, remain in verified safe water. The route and light characteristics are fictional training aids."
+      ],
+      "observe": [
+        "Watch the white lighthouse for two complete 6-second cycles before setting off. The beacons pause when the simulation is paused.",
+        "Use W/S or the engine slider for thrust and N for neutral. Make small helm corrections; the chart and goal panel show the next checkpoint."
+      ],
+      "mistake": "Identifying a light by color alone or reaching the stopping circle before reducing speed.",
+      "quiz": [
+        {
+          "prompt": "Which observation identifies the Haven lighthouse in this exercise?",
+          "options": [
+            "Any white light",
+            "A white flash once every 6 seconds",
+            "A yellow flash once every 4 seconds"
+          ],
+          "explanation": "Match the color and the complete flash period with the training light list."
+        },
+        {
+          "prompt": "What completes the final checkpoint?",
+          "options": [
+            "Passing the circle at speed",
+            "Selecting neutral anywhere",
+            "Holding the marked position and heading below 0.15 knots in neutral"
+          ],
+          "explanation": "Position, heading, speed and neutral must meet the targets together for five continuous seconds."
+        }
+      ],
+      "transfer": "Practice real night pilotage with an instructor using current charts and light lists. This exercise does not reproduce dark adaptation, visibility limits or every vessel-light configuration.",
+      "practice": {
+        "debrief": "You reviewed the light list, steered a night approach, joined the leading line and stopped in safe water.",
+        "steps": [
+          {
+            "label": "Review the chart and light characteristics",
+            "hint": "Open the chart. Find Fl W 6s, buoy 1 (Fl Y 4s), and the steady white leading lights on 027°."
+          },
+          {
+            "label": "Approach buoy 1 on 000° at 0.5–2.5 knots",
+            "hint": "Use gentle ahead thrust and steer north. Keep the yellow buoy to port and compare its 4-second flash with the chart."
+          },
+          {
+            "label": "Join the leading line on 027° at 0.5–2 knots",
+            "hint": "Turn gradually toward 027°. Align the two steady white lights ahead; confirm your depth and chart position."
+          },
+          {
+            "label": "Stop on 027°, neutral, below 0.15 knots",
+            "hint": "Slow early. Use a short astern input, then neutral in the final circle. Hold position and heading for five seconds."
+          }
+        ]
       }
     }
   }

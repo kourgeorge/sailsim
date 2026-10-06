@@ -5,6 +5,7 @@ import { sectionUI } from '../i18n/sections.js';
 import './section-covers.css';
 import { mountVesselPicker } from './vessel-picker.js';
 import { mountCoverPager } from './cover-pager.js';
+import { worldAtlas, syncWorldAtlas } from './world-atlas.js';
 
 const t = (value) => sectionUI[getLanguage()]?.[value] ?? translate(value);
 const esc = (value) =>
@@ -16,13 +17,15 @@ const tr = (value) => esc(t(value));
 export const sectionForMode = (mode) =>
   mode === 'learn' ? 'learn' : mode === 'explore' ? 'explore' : 'challenge';
 const waterDescription = (id) =>
-  id === 'haven'
-    ? 'Islands, open water, and winding passages.'
-    : id === 'shelter'
-      ? 'A sheltered bay with room to find your rhythm.'
-      : id === 'fjord'
-        ? 'Snowy peaks, waterfalls, and a quiet Nordic village.'
-        : 'Long headlands and a current to navigate.';
+  getLocation(id).coordinates
+    ? getLocation(id).description
+    : id === 'haven'
+      ? 'Islands, open water, and winding passages.'
+      : id === 'shelter'
+        ? 'A sheltered bay with room to find your rhythm.'
+        : id === 'fjord'
+          ? 'Snowy peaks, waterfalls, and a quiet Nordic village.'
+          : 'Long headlands and a current to navigate.';
 
 // All sections share the curriculum sidebar and the original lesson detail layout.
 // Existing lesson nodes and challenge buttons retain their own action handlers.
@@ -51,7 +54,7 @@ export function mountSectionCovers({
   const lessonSidebarNodes = [...sidebar.children];
   const sectionSidebar = document.createElement('div');
   sectionSidebar.className = 'section-sidebar';
-  sectionSidebar.innerHTML = `<div class="sidebar-heading"><div class="eyebrow" id="section-sidebar-eyebrow"></div><h1 id="section-sidebar-title"></h1><p id="section-sidebar-description"></p></div><div class="lesson-list section-group-list"><div data-sidebar-page="explore"><details class="course-module" open><summary><span>${tr('Change location')}</span><small>${LOCATIONS.length}</small></summary><div class="destination-choices">${LOCATIONS.map((location, index) => `<button class="destination-choice" data-cover-location="${location.id}" aria-pressed="false">${destinationPreview(location)}<span class="destination-number" aria-hidden="true">0${index + 1}</span><span class="destination-selected" aria-hidden="true">✓</span><span class="destination-copy"><strong>${tr(location.title)}</strong><small>${tr(waterDescription(location.id))}</small></span></button>`).join('')}</div></details></div><div id="cover-challenges" data-sidebar-page="challenge"></div></div>`;
+  sectionSidebar.innerHTML = `<div class="sidebar-heading"><div class="eyebrow" id="section-sidebar-eyebrow"></div><h1 id="section-sidebar-title"></h1><p id="section-sidebar-description"></p></div><div class="lesson-list section-group-list"><div data-sidebar-page="explore"><details class="course-module" open><summary><span>${tr('Change location')}</span><small>${LOCATIONS.length}</small></summary><div class="destination-choices">${LOCATIONS.map((location, index) => `<button class="destination-choice" data-cover-location="${location.id}" aria-pressed="false">${destinationPreview(location)}<span class="destination-number" aria-hidden="true">${String(index + 1).padStart(2, '0')}</span><span class="destination-selected" aria-hidden="true">✓</span><span class="destination-copy"><strong>${tr(location.title)}</strong><small>${tr(waterDescription(location.id))}</small></span></button>`).join('')}</div></details></div><div id="cover-challenges" data-sidebar-page="challenge"></div></div>`;
   // Decode the preloaded maps while their cards are still hidden, without
   // blocking browsing or initializing the simulation.
   for (const image of sectionSidebar.querySelectorAll('.destination-image'))
@@ -78,6 +81,16 @@ export function mountSectionCovers({
       '',
     )}</nav><div class="cover-mobile-course"></div><details class="cover-section-browser"><summary id="cover-browser-title"></summary></details><div class="section-page" data-section-page="learn"><div id="cover-current-lesson"></div></div><div class="section-page section-detail" data-section-page="explore" hidden><div class="scene-title"><span>${tr('THE OPEN WATER')}</span><h2 id="cover-location-name"></h2><p id="cover-location-description"></p></div><div class="section-detail-card"><p id="cover-conditions" dir="auto"></p><div class="training-actions"><button id="cover-start-free" class="training-button primary">${tr('Set sail')}</button><button id="cover-conditions-button" class="training-button">${tr('Conditions')}</button></div></div></div><div class="section-page section-detail" data-section-page="challenge" hidden><div class="cover-review" hidden><span>${tr('Your last attempt is ready to review.')}</span><button id="cover-review" class="training-button">${tr('Review last attempt')}</button></div><div id="cover-challenge-briefing"></div></div>`;
   const backdrop = document.createElement('div');
+  const explore = root.querySelector('[data-section-page="explore"]');
+  explore.classList.add('sailing-cover');
+  const sailingSetup = document.createElement('div');
+  sailingSetup.className = 'sailing-setup';
+  sailingSetup.append(...explore.children);
+  explore.append(sailingSetup);
+  explore.insertAdjacentHTML('afterbegin', worldAtlas(t));
+  root.querySelectorAll('[data-atlas-location]').forEach((button) => {
+    button.onclick = () => onLocation(button.dataset.atlasLocation);
+  });
   backdrop.className = 'section-backdrop';
   backdrop.setAttribute('aria-hidden', 'true');
   simulator.append(backdrop, root);
@@ -112,6 +125,7 @@ export function mountSectionCovers({
       if (lastSection === 'learn') copy.replaceChildren(getLessonPreview(index));
       else if (lastSection === 'explore') {
         const location = LOCATIONS[index];
+        syncWorldAtlas(copy, location.id);
         const { windSpeed, windDirection, currentSpeed, currentDirection } = location.conditions;
         copy.querySelector('#cover-location-name').textContent = t(location.title);
         copy.querySelector('#cover-location-description').textContent = t(
@@ -327,6 +341,7 @@ export function mountSectionCovers({
       if (key === previousConditions) return;
       previousConditions = key;
       document.body.dataset.locationBackground = state.locationId;
+      syncWorldAtlas(root, state.locationId);
       root.querySelector('#cover-location-name').textContent = t(
         getLocation(state.locationId).title,
       );

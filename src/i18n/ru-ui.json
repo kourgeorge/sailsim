@@ -281,5 +281,8 @@
   "Raise or lower sails": "Поднять или убрать паруса",
   "Anchor: let go or weigh": "Якорь: отдать или выбрать",
   "Open this help": "Открыть эту справку",
-  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Удерживайте клавишу, чтобы продолжать двигать орган управления. Клавиши не действуют, пока вы вводите текст или читаете урок."
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Удерживайте клавишу, чтобы продолжать двигать орган управления. Клавиши не действуют, пока вы вводите текст или читаете урок.",
+  "Time of day": "Время суток",
+  "Day": "День",
+  "Night": "Ночь"
 }

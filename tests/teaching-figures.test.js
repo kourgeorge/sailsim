@@ -11,7 +11,7 @@ const title=svg=>svg.match(/<title[^>]*>([^<]+)<\/title>/)?.[1];
 const description=svg=>svg.match(/<desc[^>]*>([^<]+)<\/desc>/)?.[1];
 
 test('every course lesson has an accessible, localized teaching diagram in all six languages',()=>{
-  assert.equal(course.length,52);
+  assert.equal(course.length,53);
   for(const lesson of course) {
     const english=renderTeachingFigure(lesson,'en');
     for(const lang of languages) {

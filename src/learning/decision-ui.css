@@ -2,6 +2,13 @@
 
 .decision-training .training-button{font-size:.9em;min-height:44px}.decision-training .eyebrow{color:#7c5b29}.training-heading{margin:16px 0;align-items:center}.training-heading h1{font-size:clamp(1.5em,2vw,1.8em)}.training-score{width:270px;padding:12px 18px;font-size:.75em}.training-score strong{font-size:2em}.training-milestones li{padding:10px 14px;font-size:.85em}.training-milestones small{display:inline;margin-inline-start:8px;font-size:.85em}.training-layout{margin-top:18px}.training-task{padding:20px}.training-task h2{font-size:1.3em}.training-task .training-goal{font-size:.95em}.training-task #training-commit{font-weight:650;width:100%;background:#235b50;color:#fff;border-color:#235b50}.training-status-line{font-size:calc(11px * var(--text-scale,1));font-weight:500}.practice-score{color:#315d4e}
 
+.decision-training .training-button:not(.primary):not(:disabled):is(:hover, :focus-visible) {
+  color: #153a3d;
+  background: #d4e0d6;
+  border-color: #59797d;
+  outline-color: #315f59;
+}
+
 .practice-debrief .training-results summary{color:#e5ca9b}.practice-debrief .training-results details p{line-height:1.7}
 
 .training-howto{margin:16px 0;padding:10px 12px;background:#e9f1e5;border:1px solid #a8c0a9;border-inline-start:4px solid #35715b;border-radius:8px;line-height:1.5}.training-howto strong{display:block;color:#254d3f}.training-howto p{margin:5px 0 8px}.training-howto small{display:block;color:#466759}.training-field .training-field-help{margin:7px 0;font-size:.85em;color:#4b675d}.training-field .training-field-error{margin:8px 0 0;color:#9b332b;font-weight:600;font-size:.9em;line-height:1.5}.training-field-error[hidden]{display:none}

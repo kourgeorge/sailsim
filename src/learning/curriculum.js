@@ -3,6 +3,7 @@ import {decisionScenarios} from './decision-scenarios.js';
 import {marinaModule,marinaLessons} from './marina-course.js';
 import {colregsModule,colregsLessons} from './colregs-course.js';
 import {catamaranModule,catamaranLessons} from './catamaran-course.js';
+import {nightModule,nightLessons} from './night-course.js';
 // A module groups related lessons. Each lesson contains teaching pages, questions,
 // and its assessed training. Practical assessments only use simulated capabilities.
 export const modules=[
@@ -303,6 +304,8 @@ modules.push(colregsModule);
 lessons.push(...colregsLessons);
 modules.push(catamaranModule);
 lessons.push(...catamaranLessons);
+modules.push(nightModule);
+lessons.push(...nightLessons);
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 // Supplemental pages retain the original general-purpose lesson diagrams.
 for(const id of ['sail-04','sail-05']){const lesson=lessons.find(l=>l.id===id);lesson.conceptFigures={3:'app-compass',4:'app-compass'};lesson.quiz[2].figure='app-compass';}

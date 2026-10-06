@@ -51,6 +51,10 @@
     "catamaran": {
       "title": "Manejo del catamarán",
       "outcome": "Usa dos motores con intención y considera manga, viento y cargas de las velas."
+    },
+    "night-navigation": {
+      "title": "Navegación nocturna práctica",
+      "outcome": "Navega con luces intermitentes y una enfilación, y detente con control en aguas seguras."
     }
   },
   "lessons": {
@@ -2145,6 +2149,61 @@
         "debrief": "Giraste un catamarán de dos motores, hiciste una aproximación controlada y paraste con ambos motores en punto muerto."
       },
       "transfer": "Practica en el catamarán concreto con un instructor cualificado. El modelo no evalúa viento real sobre la obra muerta, flujo de hélices, amarras ni recuperación tras vuelco."
+    },
+    "sail-53": {
+      "title": "Navega una aproximación nocturna",
+      "concepts": [
+        "Comienza en Haven de noche, con las velas arriadas y el motor en punto muerto. Abre la carta antes de moverte. El faro emite un destello blanco cada 6 segundos; la boya 1, uno amarillo cada 4 segundos. Observa ciclos completos y compara color y período con la carta.",
+        "Aplica poco avante y gobierna al 000° hacia el primer punto, pasando al este de la boya 1. Gira hacia 027° para el segundo. Las dos luces blancas fijas de North Head forman una enfilación: la trasera, más alta, debe verse sobre la delantera. Contrasta la alineación con el rumbo, la posición en la carta y una profundidad mínima de 3 metros.",
+        "Mantén menos de 3 nudos. Reduce antes del círculo final, da un breve impulso atrás para frenar y vuelve a punto muerto. Mantén 027° y menos de 0,15 nudos durante cinco segundos. Si las referencias discrepan, permanece en aguas seguras verificadas. La ruta y las características de las luces son ficticias."
+      ],
+      "observe": [
+        "Observa dos ciclos completos del faro, de 6 segundos cada uno, antes de partir. Las luces se detienen al pausar la simulación.",
+        "Usa W/S o el deslizador del motor para el empuje y N para punto muerto. Haz pequeñas correcciones; la carta y el panel muestran el siguiente punto."
+      ],
+      "mistake": "Identificar una luz solo por su color o llegar al círculo de parada sin reducir la velocidad.",
+      "quiz": [
+        {
+          "prompt": "¿Qué identifica el faro de Haven en este ejercicio?",
+          "options": [
+            "Cualquier luz blanca",
+            "Un destello blanco cada 6 segundos",
+            "Un destello amarillo cada 4 segundos"
+          ],
+          "explanation": "Compara el color y el período completo con la lista de luces del ejercicio."
+        },
+        {
+          "prompt": "¿Qué completa el último punto?",
+          "options": [
+            "Cruzar el círculo a velocidad",
+            "Seleccionar punto muerto en cualquier lugar",
+            "Mantener la posición y el rumbo marcados a menos de 0,15 nudos en punto muerto"
+          ],
+          "explanation": "Posición, rumbo, velocidad y punto muerto deben cumplir los objetivos durante cinco segundos seguidos."
+        }
+      ],
+      "transfer": "Practica navegación nocturna real con un instructor y cartas y listas de luces actualizadas. El ejercicio no reproduce la adaptación a la oscuridad, los límites de visibilidad ni todas las configuraciones de luces.",
+      "practice": {
+        "debrief": "Revisaste las luces, gobernaste una aproximación nocturna, seguiste la enfilación y te detuviste en aguas seguras.",
+        "steps": [
+          {
+            "label": "Revisa la carta y las características de las luces",
+            "hint": "Abre la carta. Localiza Fl W 6s, la boya 1 (Fl Y 4s) y las luces blancas fijas de la enfilación 027°."
+          },
+          {
+            "label": "Aproxímate a la boya 1 al 000° a 0,5–2,5 nudos",
+            "hint": "Da poco avante y gobierna al norte. Deja la boya amarilla a babor y compara su período de 4 segundos con la carta."
+          },
+          {
+            "label": "Toma la enfilación al 027° a 0,5–2 nudos",
+            "hint": "Gira gradualmente a 027°. Alinea las dos luces blancas fijas de proa y comprueba profundidad y posición."
+          },
+          {
+            "label": "Detente al 027°, en punto muerto, a menos de 0,15 nudos",
+            "hint": "Reduce pronto. Da un breve impulso atrás y vuelve a punto muerto dentro del círculo final. Mantén posición y rumbo cinco segundos."
+          }
+        ]
+      }
     }
   }
 }

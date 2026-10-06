@@ -38,7 +38,7 @@ test('the compass transform used by collision hulls matches THREE group rotation
 test('shore rocks use the exact same stable positions in visuals and collisions',()=>{
  for(const location of LOCATIONS){
   const rocks=getWorldRockDefinitions(location.id),bodies=getWorldBodyDefinitions(location.id);
-  assert.equal(rocks.length,105*location.islands.length);
+  assert.equal(rocks.length,location.coordinates ? 0 : 105*location.islands.length);
   for(const body of bodies.filter(b=>b.visual.type==='rock')){
    const rock=rocks.find(r=>r.id===body.id);assert.ok(rock);
    assert.equal(body.x,rock.x);assert.equal(body.z,rock.z);assert.equal(body.shape.radius,rock.scale);

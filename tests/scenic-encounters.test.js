@@ -116,6 +116,11 @@ for (const location of LOCATIONS)
         break;
       }
     }
+    // A real lagoon or small anchorage need not have room for a cruise ship.
+    if (location.coordinates && !seen) {
+      assert.deepEqual(state,before);
+      return;
+    }
     assert.ok(seen, 'A navigable passage can be found');
     assert.ok(seen.decks >= 5 && seen.decks <= 10);
     for (let age = -20; age < seen.duration + 20; age += 1) {

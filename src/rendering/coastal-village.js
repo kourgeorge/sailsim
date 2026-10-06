@@ -4,6 +4,7 @@ import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 // All buildings, shutters, terraces and garden trees become one colored mesh.
 // These distant landmarks need neither individual materials nor texture loads.
 export function createCoastalVillage(scene, features, { nordic = false } = {}) {
+  if (!features.length) return null;
   const parts = [],
     transform = new THREE.Object3D(),
     color = new THREE.Color();

@@ -281,5 +281,8 @@
   "Raise or lower sails": "Raise or lower sails",
   "Anchor: let go or weigh": "Anchor: let go or weigh",
   "Open this help": "Open this help",
-  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson."
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.",
+  "Time of day": "Time of day",
+  "Day": "Day",
+  "Night": "Night"
 }

@@ -1,6 +1,6 @@
 # Sailing school curriculum
 
-The course contains 52 authored lessons and 108 explained knowledge questions across thirteen modules. Every lesson has assessed training: 23 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–52. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
+The course contains 53 authored lessons and 110 explained knowledge questions across fourteen modules. Every lesson has assessed training: 24 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–53. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
 
 ## Learning sequence
 
@@ -29,6 +29,8 @@ Each lesson has **training goals → performed tasks → judged evidence → deb
 Lessons 43–45 add practical marina entry, docking, and departure. Lessons 46–51 cover collision avoidance; large-vessel status and channels are in 49, sound signals (including the five-short-blast warning) in 50, and restricted visibility in 51. Their existing decision exercises already assess the relevant choices, so ambient free-sailing horns do not introduce a duplicate signals lesson.
 
 Lesson 52 adds catamaran handling: beam and draft margins, windage, finite stability and early reefing, plus independent twin-engine thrust. Its live exercise starts the actual catamaran in Haven open water, pivots from 000° to 090°, proceeds to a marker, and stops. Both stops require five seconds below 0.15 knots with both engines neutral; opposing commands cannot satisfy neutral through a zero average. The real-physics verifier completes the three checkpoints in approximately 185 seconds without contact or grounding. All six languages include the lesson, quizzes, hints, and accessible thrust diagram.
+
+Lesson 53 adds a separate night approach under engine, with sails lowered. Its fixed night environment includes a moonlit sky, sectored yacht navigation lights, a white lighthouse flashing every 6 seconds, yellow buoy lights, and two steady white leading lights on 027°. The chart shares the same light list as the 3D view. Four ordered checkpoints require chart review, two controlled approaches and a final five-second stop below 0.15 knots in neutral. The real-physics verifier completes the route in approximately 438 seconds with more than 33 m of water and no contact. Lesson 42 and its decision scenario are unchanged. Beacon timing follows simulation time and freezes on pause; ordinary practice still starts in daylight. The course text supports all six languages.
 
 - Every lesson is browsable. Mastery is sequential: a lesson needs its predecessor, a correct knowledge check, and a pass in its prescribed physical or decision assessment.
 - Knowledge answers have immediate explanations. All must be correct; an incorrect response records a revision and never awards credit. Learners may retry.

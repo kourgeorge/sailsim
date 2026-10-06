@@ -14,42 +14,44 @@ test.beforeEach(async ({ page }) => {
   });
 });
 
-test('browsing leaves graphics unloaded; entry shows loading without advancing the race clock', async ({
-  page,
-}) => {
-  let release;
-  const waiting = new Promise((resolve) => {
-    release = resolve;
-  });
-  const requested = [];
-  page.on('request', (request) => {
-    if (/\/assets\/(scene|three)-.*\.js/.test(request.url())) requested.push(request.url());
-  });
-  await page.route('**/assets/scene-*.js', async (route) => {
-    await waiting;
-    await route.continue();
-  });
-  await page.goto('./');
-  await page.locator('[data-mode=explore]').click();
-  await page.locator('[data-cover-location=fjord]').click();
-  await page.locator('#cover-vessel').click();
-  await page.locator('#vessel-option-catamaran').click();
-  await page.locator('[data-mode=challenge]').click();
-  await page.locator('[data-race-course=harbor-sprint]').click();
-  expect(requested).toEqual([]);
-  expect(await page.evaluate(() => window.webglAttempts)).toBe(0);
-  await page.locator('#race-start').click();
-  await expect(page.locator('#scene-loading')).toBeVisible();
-  await expect(page.locator('#scene-loading-title')).toHaveText('Loading simulation…');
-  await page.waitForTimeout(350);
-  await expect(page.locator('#race-clock')).toHaveText('0:00');
-  await expect(page.locator('#scene')).toHaveAttribute('data-visual-time', '0.00000');
-  expect(await page.evaluate(() => window.webglAttempts)).toBe(0);
-  release();
-  await expect(page.locator('#scene-loading')).toBeHidden();
-  await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
-  expect(await page.evaluate(() => window.webglAttempts)).toBeGreaterThan(0);
-});
+test(
+  'browsing leaves graphics unloaded; entry shows loading without advancing the race clock',
+  { tag: '@smoke' },
+  async ({ page }) => {
+    let release;
+    const waiting = new Promise((resolve) => {
+      release = resolve;
+    });
+    const requested = [];
+    page.on('request', (request) => {
+      if (/\/assets\/(scene|three)-.*\.js/.test(request.url())) requested.push(request.url());
+    });
+    await page.route('**/assets/scene-*.js', async (route) => {
+      await waiting;
+      await route.continue();
+    });
+    await page.goto('./');
+    await page.locator('[data-mode=explore]').click();
+    await page.locator('[data-cover-location=fjord]').click();
+    await page.locator('#cover-vessel').click();
+    await page.locator('#vessel-option-catamaran').click();
+    await page.locator('[data-mode=challenge]').click();
+    await page.locator('[data-race-course=harbor-sprint]').click();
+    expect(requested).toEqual([]);
+    expect(await page.evaluate(() => window.webglAttempts)).toBe(0);
+    await page.locator('#race-start').click();
+    await expect(page.locator('#scene-loading')).toBeVisible();
+    await expect(page.locator('#scene-loading-title')).toHaveText('Loading simulation…');
+    await page.waitForTimeout(350);
+    await expect(page.locator('#race-clock')).toHaveText('0:00');
+    await expect(page.locator('#scene')).toHaveAttribute('data-visual-time', '0.00000');
+    expect(await page.evaluate(() => window.webglAttempts)).toBe(0);
+    release();
+    await expect(page.locator('#scene-loading')).toBeHidden();
+    await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+    expect(await page.evaluate(() => window.webglAttempts)).toBeGreaterThan(0);
+  },
+);
 
 test('canceling an in-flight load returns to browsing and the next entry uses the latest boat', async ({
   page,

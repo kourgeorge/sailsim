@@ -12,10 +12,12 @@ import { disposeSceneResources } from './rendering/dispose.js';
 import { createAnchorCloseup } from './rendering/anchor-closeup.js';
 import { createRaceVisuals } from './racing/visuals.js';
 import { createHelmCamera } from './rendering/helm-camera.js';
+import { createCockpitCamera } from './rendering/cockpit-camera.js';
 import { createHelmScreen } from './rendering/helm-screen.js';
 import { createRenderQuality, isMobileGraphicsDevice } from './rendering/quality.js';
 import { createSecretTaps } from './world/secret-taps.js';
 import { createFreeSailingFleet } from './rendering/free-sailing-fleet.js';
+import { createNightLights } from './rendering/night-lights.js';
 
 export function createScene(
   container,
@@ -35,7 +37,10 @@ export function createScene(
   container.dataset.location = location.id;
   const scene = new THREE.Scene();
   scene.background = new THREE.Color('#b5c9d2');
-  scene.fog = new THREE.FogExp2('#b7c7ce', 0.00031);
+  scene.fog = new THREE.FogExp2(
+    location.character?.haze ?? '#b7c7ce',
+    location.character?.fog ?? 0.00031,
+  );
   const renderer = new THREE.WebGLRenderer({
     antialias: true,
     alpha: true,
@@ -77,7 +82,7 @@ export function createScene(
     47,
     container.clientWidth / container.clientHeight,
     0.08,
-    10000,
+    location.coordinates ? 80000 : 10000,
   );
   const materials = createMaterials(),
     environment = createEnvironment(scene, renderer, materials, {
@@ -87,6 +92,7 @@ export function createScene(
     }),
     yacht = vessel.type === 'catamaran' ? createCatamaran(materials) : createYacht(materials);
   scene.add(yacht.group);
+  const nightLights = createNightLights(scene, yacht.group, location.id);
   const helmScreen = createHelmScreen(container, renderer, camera, yacht);
   const anchorCloseup = createAnchorCloseup(container, renderer, yacht.group, scene.environment, {
     onResize: invalidate,
@@ -154,6 +160,7 @@ export function createScene(
     desired = new THREE.Vector3(),
     up = new THREE.Vector3(0, 1, 0);
   const helmCamera = createHelmCamera(vessel);
+  const cockpitCamera = createCockpitCamera();
   const views = {
     chase: { fov: 47 },
     helm: { fov: 72 },
@@ -324,18 +331,10 @@ export function createScene(
     let cameraMoving;
     if (view === 'helm') {
       cameraMoving = helmCamera.update(camera, yacht.group, { orbit, elevation, smooth });
+    } else if (view === 'deck') {
+      cameraMoving = cockpitCamera.update(camera, yacht.group, { orbit, elevation, zoom, smooth });
     } else {
-      if (view === 'deck') {
-        // Orbit around the cockpit from outside the hull. Portrait screens need
-        // more distance to retain the deck and surrounding water horizontally.
-        const cockpitFraming = Math.max(1, 0.85 / camera.aspect);
-        target.set(0, 1.5, 1).applyAxisAngle(up, -heading).add(yacht.group.position);
-        offset
-          .set(7 * Math.cos(orbit), 4.5 + elevation * 5, 6 + Math.sin(orbit) * 7)
-          .multiplyScalar(zoom * cockpitFraming)
-          .applyAxisAngle(up, -heading);
-        desired.copy(target).add(offset);
-      } else if (view === 'aerial') {
+      if (view === 'aerial') {
         offset
           .set(
             Math.sin(orbit) * 55 * zoom,
@@ -377,6 +376,13 @@ export function createScene(
       aspect: camera.aspect,
       freeSailing: isFreeSailing(),
     });
+    nightLights.update(state, time, camera);
+    container.dataset.timeOfDay = state.timeOfDay || 'day';
+    container.dataset.litBeacons = String(
+      nightLights.group.children.filter(
+        (child) => child.isSprite && child.visible && nightLights.group.visible,
+      ).length,
+    );
     dirty = cameraMoving || zoomMoving;
     helmScreen.render(view === 'helm');
     renderer.render(scene, camera);
@@ -461,7 +467,10 @@ export function createScene(
     },
     setView(v) {
       if (disposed || !views[v]) return;
-      if (view !== v) helmCamera.reset();
+      if (view !== v) {
+        helmCamera.reset();
+        cockpitCamera.reset();
+      }
       view = v;
       orbit = 0;
       elevation = 0;

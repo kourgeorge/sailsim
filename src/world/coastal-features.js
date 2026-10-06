@@ -1,5 +1,6 @@
 import { getLocation } from '../locations.js';
 import { islandHeight, shoreScale } from '../rendering/geography.js';
+import { destinationBuildings } from './destination-features.js';
 
 const cache = new Map();
 
@@ -7,6 +8,9 @@ const cache = new Map();
 export function getCoastalFeatures(locationId) {
   const location = getLocation(locationId);
   if (cache.has(location.id)) return cache.get(location.id);
+  if (location.coordinates) {
+    const features=destinationBuildings(location);cache.set(location.id,features);return features;
+  }
   const settlement = location.settlement || {
     islandIndex: 0,
     count: 8,

@@ -9,9 +9,9 @@ const headingLesson = lessons.find(lesson => lesson.id === 'sail-08');
 const state = () => Object.assign(initialState(), { heading: 45, windDirection: 315, speed: 3, windSpeed: 12, currentSpeed: 0, currentDirection: 0, throttle: 0, anchor: false, grounded: false });
 const advance = (attempt, lesson, boat, progress, seconds) => { for (let i = 0; i < seconds * 4; i++) advanceAttempt(attempt, lesson, boat, .25, progress); };
 
-test('all 23 physical practices have explicit weighted objectives and required continuous holds', () => {
+test('all 24 physical practices have explicit weighted objectives and required continuous holds', () => {
   const practices = lessons.filter(lesson => lesson.practice);
-  assert.equal(practices.length, 23);
+  assert.equal(practices.length, 24);
   for (const lesson of practices) {
     const rubric = practiceRubric(lesson);
     assert.equal(rubric.length, lesson.practice.steps.length);

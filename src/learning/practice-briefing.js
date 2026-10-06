@@ -19,6 +19,7 @@ function startingConditions(lesson) {
   const speed = (value) => `${Number(value.toFixed(1))} ${t('knots')}`;
   const rows = [
     ['Location', t(getLocation(state.locationId).title)],
+    ['Time of day', t(state.timeOfDay === 'night' ? 'Night' : 'Day')],
     ['Wind over ground from', `${bearing(state.windDirection)} · ${speed(state.windSpeed)}`],
     [
       'Current flowing toward',

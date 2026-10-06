@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import { LOCATIONS } from '../src/locations.js';
+import { PRACTICE_LOCATIONS as LOCATIONS } from '../src/locations.js';
 import { initialState } from '../src/physics.js';
 import { seededRandom } from '../src/rendering/materials.js';
 import { createBirdEncounters } from '../src/world/bird-encounters.js';

@@ -1,4 +1,7 @@
-// Fictional practice waters, in metres. All rendered land is represented here so
+import worldDestinations from './world/data/destinations.json' with { type: 'json' };
+import { DESTINATION_CHARACTER } from './world/destination-character.js';
+import { destinationMarina } from './world/destination-features.js';
+// Sailing waters, in metres. All rendered land is represented here so
 // the chart, depth model, cockpit plotter and 3D coastline share one source.
 function deepFreeze(value) {
   if (value && typeof value === 'object') {
@@ -8,7 +11,7 @@ function deepFreeze(value) {
   return value;
 }
 export const DEFAULT_LOCATION_ID = 'haven';
-export const LOCATIONS = deepFreeze([
+export const PRACTICE_LOCATIONS = deepFreeze([
   {
     id: 'haven', title: 'Haven Islands',
     description: 'A fictional island group for the core course, buoy navigation, and maneuvering practice.',
@@ -85,6 +88,11 @@ export const LOCATIONS = deepFreeze([
     waterfalls: [{ islandIndex: 0, angle: -.35 }, { islandIndex: 1, angle: 3.3 }, { islandIndex: 1, angle: 2.65 }],
   },
 ]);
+export const WORLD_DESTINATIONS = deepFreeze(worldDestinations.map(location => {
+  const character=DESTINATION_CHARACTER[location.id];
+  return {...location,character,islands:location.islands.map(island=>({...island,palette:character})),marina:destinationMarina(location,character)};
+}));
+export const LOCATIONS = Object.freeze([...PRACTICE_LOCATIONS, ...WORLD_DESTINATIONS]);
 const byId = new Map(LOCATIONS.map(location => [location.id, location]));
 // Unknown or old saved ids resolve predictably to the original course waters.
 export function getLocation(id = DEFAULT_LOCATION_ID) {

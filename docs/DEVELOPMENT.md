@@ -33,9 +33,11 @@ For a committed change that should be undone while preserving history, inspect i
 
 ## Validation
 
+Helm and Cockpit use a shared hull-relative camera transform. Boat movement is applied to the eye and orientation in the same frame; only deliberate view changes are smoothed. This prevents frame-time-dependent camera lag from shaking cockpit fittings. Focused checks: `node --test tests/helm-camera.test.js tests/cockpit-camera.test.js`; the optional `node scripts/check-cockpit-camera.mjs` checks the rendered cockpit on the development server at port 5199.
+
 Dropdowns share `src/ui/dropdown.css`: native selects inherit the common field, menu, focus, disabled, and invalid styles automatically. Browsers supporting `appearance: base-select` also render styled option lists in the top layer; other browsers keep their native option picker. Training forms override the shared color tokens for their light surface. The language and boat pickers use `mountDropdown` from `src/ui/dropdown.js` for keyboard search/navigation, dismissal, focus, and viewport positioning; their own modules supply labels and selection callbacks. New rich pickers should use that controller instead of copying its event handlers.
 
-The focused deployment checks are `npm test`, `npm run build`, `npm run format:check`, and `npm run test:browser`. The Playwright suite starts and stops its own production preview on port 5198. To verify a Pages build locally, run `npm run build -- --base /sailsim/`, then `SAIL_TEST_BASE_PATH=/sailsim/ npm run test:browser`.
+Choose checks by change scope using [test coverage profiles](TESTING.md). Push deployments run affected unit tests, the build, formatting and four critical browser journeys; full browser coverage is available explicitly. Use `npm run test:plan` before a focused run, `npm run test:area -- covers --browser` for cover changes, or `npm run test:full` for broad regressions. The Playwright suite starts and stops its own production preview on port 5198. To verify a Pages build locally, run `npm run build -- --base /sailsim/`, then `SAIL_TEST_BASE_PATH=/sailsim/ npm run test:quick -- --browser-only --skip-build`.
 
 If that preview port is occupied, use `SAIL_TEST_PORT=5298 npm run test:browser` to run an isolated preview without stopping another server.
 

@@ -281,5 +281,8 @@
   "Raise or lower sails": "Izar o arriar velas",
   "Anchor: let go or weigh": "Ancla: fondear o levar",
   "Open this help": "Abrir esta ayuda",
-  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Mantén pulsada una tecla para seguir moviendo un control. Las teclas se desactivan mientras escribes en un campo o lees una lección."
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "Mantén pulsada una tecla para seguir moviendo un control. Las teclas se desactivan mientras escribes en un campo o lees una lección.",
+  "Time of day": "Momento del día",
+  "Day": "Día",
+  "Night": "Noche"
 }

@@ -1,7 +1,10 @@
+import { terrainHeight, polygonHeight } from '../world/real-terrain.js';
 // A shared continuous shoreline for both terrain rendering and depth soundings.
 export function shoreScale(angle) {return 1+.075*Math.sin(angle*5+.7)+.035*Math.cos(angle*9-1.2);}
 export function islandRatio(x,z,island) {const nx=(x-island.x)/island.rx,nz=(z-island.z)/island.rz;return Math.hypot(nx,nz)/shoreScale(Math.atan2(nz,nx));}
 export function islandHeight(x,z,island){
+ if(island.polygon)return polygonHeight(x,z,island);
+ if(island.raster)return terrainHeight(x,z,island);
  const nx=(x-island.x)/island.rx,nz=(z-island.z)/island.rz,r=islandRatio(x,z,island);
  if(r>1)return -(r-1)*30;
  const fjord=island.profile==='fjord';

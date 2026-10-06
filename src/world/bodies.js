@@ -1,5 +1,6 @@
 import { getLocation } from '../locations.js';
 import { islandHeight, shoreScale } from '../rendering/geography.js';
+import { destinationBungalows } from './destination-features.js';
 
 // All dimensions are metres, masses kilograms, headings compass degrees.
 // Local +X is starboard and local −Z is the bow. The renderer and solver
@@ -30,6 +31,7 @@ export function buoyBodyDefinition(id, point, index, { radius = 1.03, mass = 480
 // A separate seed keeps collision geography independent of texture/tree draws.
 export function getWorldRockDefinitions(locationId = 'haven') {
   const location=getLocation(locationId),rocks=[];
+  if(location.coordinates)return rocks;
   let seed=17383;const random=()=>{seed=seed*16807%2147483647;return(seed-1)/2147483646;};
   location.islands.forEach((island,islandIndex)=>{
     for(let index=0;index<105;index++){
@@ -45,6 +47,7 @@ export function getWorldRockDefinitions(locationId = 'haven') {
 
 export function getWorldBodyDefinitions(locationId = 'haven') {
   const location = getLocation(locationId), prefix = location.id, bodies = [];
+  destinationBungalows(location).forEach((hut,index)=>bodies.push({id:`${prefix}:bungalow:${index}`,kind:'fixed',...hut,heading:0,vx:0,vz:0,yawRate:0,mass:0,inertia:0,shape:{type:'box',length:10,beam:12},visual:{type:'bungalow'}}));
   location.buoys.forEach((point,index) => bodies.push(buoyBodyDefinition(`${prefix}:buoy:${index}`, point, index)));
   if (location.marina) {
     const marina = location.marina, span = (marina.berths-1)*marina.spacing;
@@ -76,7 +79,7 @@ export function getWorldBodyDefinitions(locationId = 'haven') {
   // An unpowered drifting yacht, clear of the lesson start and buoy routes.
   const freePoints={haven:{x:310,z:85},shelter:{x:-180,z:205},strait:{x:125,z:800},fjord:{x:110,z:760}};
   const scale=.84,mass=5600*scale**3,shape=yachtHullShape(scale);
-  bodies.push({id:`${prefix}:yacht:free:0`,kind:'free',...freePoints[prefix],heading:20,
+  bodies.push({id:`${prefix}:yacht:free:0`,kind:'free',...(freePoints[prefix] || {x:location.start.x-70,z:location.start.z+50}),heading:20,
     vx:0,vz:0,yawRate:0,mass,inertia:mass*(shape.length**2+shape.beam**2)/12,shape,
     visual:{type:'yacht',scale,index:0},
   });

@@ -51,6 +51,10 @@
     "catamaran": {
       "title": "Manœuvrer un catamaran",
       "outcome": "Utiliser les deux moteurs en tenant compte de la largeur, du fardage et des charges des voiles."
+    },
+    "night-navigation": {
+      "title": "Navigation nocturne pratique",
+      "outcome": "Naviguez avec des feux à éclats et un alignement, puis arrêtez-vous en eaux sûres."
     }
   },
   "lessons": {
@@ -2145,6 +2149,61 @@
         "debrief": "Vous avez tourné un catamaran bimoteur, effectué une approche contrôlée et arrêté les deux moteurs au point mort."
       },
       "transfer": "Pratiquez sur le catamaran concerné avec un moniteur qualifié. Le modèle n’évalue pas le fardage réel, le flux des hélices, les amarres ni la récupération après chavirage."
+    },
+    "sail-53": {
+      "title": "Effectuer une approche de nuit",
+      "concepts": [
+        "Commencez à Haven de nuit, voiles affalées et moteur au point mort. Ouvrez la carte avant de partir. Le phare émet un éclat blanc toutes les 6 secondes ; la bouée 1, un éclat jaune toutes les 4 secondes. Observez des cycles complets et comparez couleur et période avec la carte.",
+        "Mettez doucement en avant et suivez le 000° vers le premier point, en passant à l’est de la bouée 1. Tournez vers 027° pour le deuxième. Les deux feux blancs fixes de North Head forment un alignement : le feu arrière, plus haut, doit apparaître au-dessus du feu avant. Recoupez avec le cap, la position sur la carte et une profondeur d’au moins 3 mètres.",
+        "Restez sous 3 nœuds. Ralentissez avant le cercle final, donnez un bref coup en arrière pour freiner, puis revenez au point mort. Tenez le 027° à moins de 0,15 nœud pendant cinq secondes. Si les repères se contredisent, restez dans des eaux sûres vérifiées. Le parcours et les caractéristiques des feux sont fictifs."
+      ],
+      "observe": [
+        "Observez deux cycles complets de 6 secondes du phare avant le départ. Les feux se figent lorsque la simulation est en pause.",
+        "Utilisez W/S ou le curseur moteur pour la poussée, N pour le point mort. Corrigez doucement la barre ; la carte et le panneau indiquent la prochaine cible."
+      ],
+      "mistake": "Identifier un feu uniquement par sa couleur ou atteindre le cercle d’arrêt avant de ralentir.",
+      "quiz": [
+        {
+          "prompt": "Quelle observation identifie le phare de Haven dans cet exercice ?",
+          "options": [
+            "N’importe quel feu blanc",
+            "Un éclat blanc toutes les 6 secondes",
+            "Un éclat jaune toutes les 4 secondes"
+          ],
+          "explanation": "Comparez la couleur et la période complète avec la liste des feux du parcours."
+        },
+        {
+          "prompt": "Comment valider le dernier point ?",
+          "options": [
+            "Traverser le cercle à vitesse élevée",
+            "Passer au point mort n’importe où",
+            "Tenir la position et le cap indiqués à moins de 0,15 nœud au point mort"
+          ],
+          "explanation": "Position, cap, vitesse et point mort doivent satisfaire les critères pendant cinq secondes consécutives."
+        }
+      ],
+      "transfer": "Pratiquez la navigation nocturne réelle avec un instructeur et des cartes et listes de feux à jour. Cet exercice ne reproduit ni l’adaptation à l’obscurité, ni les limites de visibilité, ni toutes les configurations de feux.",
+      "practice": {
+        "debrief": "Vous avez consulté les feux, piloté une approche nocturne, suivi l’alignement et stoppé en eaux sûres.",
+        "steps": [
+          {
+            "label": "Consulter la carte et les caractéristiques des feux",
+            "hint": "Ouvrez la carte. Repérez Fl W 6s, la bouée 1 (Fl Y 4s) et les feux blancs fixes de l’alignement au 027°."
+          },
+          {
+            "label": "Approcher la bouée 1 au 000° à 0,5–2,5 nœuds",
+            "hint": "Mettez doucement en avant vers le nord. Gardez la bouée jaune à bâbord et comparez sa période de 4 secondes à la carte."
+          },
+          {
+            "label": "Rejoindre l’alignement au 027° à 0,5–2 nœuds",
+            "hint": "Tournez progressivement au 027°. Alignez les deux feux blancs fixes devant vous ; vérifiez profondeur et position."
+          },
+          {
+            "label": "Stopper au 027°, au point mort, sous 0,15 nœud",
+            "hint": "Ralentissez tôt. Donnez un bref coup en arrière, puis passez au point mort dans le cercle final. Tenez position et cap cinq secondes."
+          }
+        ]
+      }
     }
   }
 }

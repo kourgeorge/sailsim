@@ -16,8 +16,9 @@ for (const location of LOCATIONS) {
     addFreeSailingTraffic(state);
     addFreeSailingTraffic(state);
     const fleet = state.worldBodies.filter((body) => body.traffic);
-    assert.equal(fleet.length, 4);
-    assert.equal(fleet.filter((body) => body.visual.vesselId === 'catamaran').length, 2);
+    if (location.coordinates) assert.ok(fleet.length >= 1 && fleet.length <= location.character.traffic);
+    else assert.equal(fleet.length, 4);
+    assert.equal(fleet.filter((body) => body.visual.vesselId === 'catamaran').length, Math.floor(fleet.length / 2));
     for (const boat of fleet) {
       assert.ok(boat.mass > 5000);
       assert.ok(Math.hypot(boat.x - state.x, boat.z - state.z) > 100);

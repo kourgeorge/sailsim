@@ -1,0 +1,285 @@
+body[data-session='outside'][data-section='explore'] .section-backdrop {
+  background: radial-gradient(ellipse at 70% 25%, #214a50, #0b2633 75%);
+  transform: none;
+}
+.section-detail.sailing-cover {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(310px, 350px);
+  align-content: safe center;
+  align-items: center;
+  gap: 24px;
+  padding: 24px;
+}
+.world-atlas {
+  min-width: 0;
+  container-type: inline-size;
+  border: 1px solid #b4d0bf30;
+  border-radius: 16px;
+  overflow: hidden;
+  background: #102f3b;
+}
+.sailing-setup {
+  min-width: 0;
+  padding: 22px;
+  border: 1px solid #b4d0bf40;
+  border-radius: 16px;
+  background: #102f3de8;
+  box-shadow: 0 12px 36px #061d2926;
+}
+.atlas-heading,
+.atlas-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 16px 20px;
+  flex-wrap: wrap;
+}
+.atlas-heading > span:first-child {
+  color: #ebcf9b;
+  font-size: 11px;
+  font-weight: 650;
+  letter-spacing: 2.8px;
+}
+.atlas-heading > span:last-child {
+  color: #adcbc9;
+  font-size: 12px;
+}
+.atlas-scroll {
+  overflow-x: auto;
+  overscroll-behavior-x: contain;
+  scrollbar-width: thin;
+  scrollbar-color: #527675 #102f3b;
+}
+.atlas-map {
+  position: relative;
+  min-width: 0;
+  aspect-ratio: 1.65;
+  isolation: isolate;
+}
+.atlas-map > img,
+.atlas-routes {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset: 0;
+}
+.atlas-routes {
+  overflow: visible;
+  pointer-events: none;
+}
+.atlas-routes path {
+  stroke: #c7cda87a;
+  stroke-width: 0.8;
+  fill: none;
+}
+.atlas-routes circle {
+  fill: #e5d09a;
+}
+.atlas-routes .active path {
+  stroke: #ffdd9e;
+  stroke-width: 1.8;
+}
+.atlas-routes .active circle {
+  fill: #ffe5ac;
+  stroke: #f1d59d60;
+  stroke-width: 7;
+}
+.atlas-pin {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  min-height: 44px;
+  transform: translate(-50%, -50%);
+  padding: 4px 8px 4px 4px;
+  border: 1px solid #adccb649;
+  border-radius: 22px;
+  background: #10303be8;
+  color: #dfe7d5;
+  white-space: nowrap;
+  font-size: 10px;
+  box-shadow: 0 2px 9px #08243066;
+}
+.atlas-pin b {
+  display: grid;
+  place-items: center;
+  width: 25px;
+  height: 25px;
+  flex-shrink: 0;
+  border: 1px solid #b3cbb663;
+  border-radius: 50%;
+  font-size: 10px;
+  color: #e7c58e;
+  font-weight: 500;
+}
+.atlas-pin:hover,
+.atlas-pin[aria-pressed='true'] {
+  border-color: #edca8e;
+  background: #e7c58e;
+  color: #18343b;
+  z-index: 2;
+}
+.atlas-pin:hover b,
+.atlas-pin[aria-pressed='true'] b {
+  border-color: #21404d55;
+  color: #18343b;
+}
+.atlas-pin:focus-visible {
+  outline: 3px solid #fff0c8;
+  outline-offset: 3px;
+  z-index: 3;
+}
+.atlas-ocean {
+  position: absolute;
+  font-size: 9px;
+  letter-spacing: 2.8px;
+  color: #b4cecc55;
+  pointer-events: none;
+}
+.atlas-pacific {
+  left: 7%;
+  top: 50%;
+}
+.atlas-atlantic {
+  left: 40%;
+  top: 64%;
+}
+.atlas-indian {
+  left: 66%;
+  top: 80%;
+}
+.atlas-footer {
+  padding-block: 12px;
+  border-top: 1px solid #bdd5ca16;
+  color: #a2c1c1;
+  font-size: 11px;
+}
+.atlas-footer a {
+  color: #b5c9b9;
+  text-underline-offset: 3px;
+}
+html[data-text-size] .section-detail.sailing-cover .scene-title {
+  display: block;
+  max-width: 100%;
+  margin: 0;
+}
+.sailing-cover .scene-title h2 {
+  font-size: calc(30px * var(--text-scale, 1));
+  margin: 10px 0;
+}
+html[data-text-size] .sailing-cover .scene-title p {
+  display: block;
+  max-width: 100%;
+  margin: 0;
+  font-size: calc(13px * var(--text-scale, 1));
+  line-height: 1.5;
+}
+.sailing-cover .section-detail-card {
+  width: 100%;
+  margin-top: 20px;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: none;
+}
+.sailing-cover .vessel-choice {
+  margin-bottom: 12px;
+}
+.sailing-cover .section-detail-card .training-actions {
+  margin-top: 12px;
+  gap: 8px;
+}
+.sailing-cover .training-button.primary {
+  flex-basis: 100%;
+  min-height: 48px;
+  font-size: calc(15px * var(--text-scale, 1));
+  font-weight: 650;
+}
+.destination-region {
+  color: #e7c58e;
+  font-size: 11px;
+  letter-spacing: 1px;
+}
+@container (max-width:680px) {
+  .atlas-pin {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+  .atlas-pin > span {
+    display: none;
+  }
+  .atlas-pin b {
+    border: 0;
+    width: auto;
+    height: auto;
+    font-size: 12px;
+  }
+  .atlas-ocean {
+    font-size: 7px;
+    letter-spacing: 1.5px;
+  }
+}
+@media (min-width: 901px) and (max-height: 760px) {
+  .section-detail.sailing-cover {
+    padding-block: 16px;
+  }
+  .sailing-setup {
+    padding: 18px;
+  }
+  .sailing-cover .scene-title h2 {
+    font-size: calc(27px * var(--text-scale, 1));
+  }
+  .sailing-cover .section-detail-card {
+    margin-top: 14px;
+  }
+}
+@media (max-width: 900px) {
+  .section-detail.sailing-cover {
+    grid-template-columns: minmax(0, 1fr);
+    padding: 0;
+    gap: 18px;
+  }
+  .sailing-setup {
+    padding: 20px;
+  }
+  .atlas-heading,
+  .atlas-footer {
+    padding: 12px 14px;
+  }
+  .atlas-heading > span:last-child {
+    font-size: 11px;
+  }
+  .atlas-pin {
+    font-size: 9px;
+    gap: 4px;
+    padding-inline-end: 6px;
+  }
+  .atlas-map {
+    min-width: 0;
+    aspect-ratio: 1.6;
+  }
+  .atlas-pin {
+    width: 40px;
+    height: 40px;
+    min-height: 40px;
+    padding: 0;
+    justify-content: center;
+  }
+  .atlas-pin > span {
+    display: none;
+  }
+  .atlas-pin b {
+    border: 0;
+    width: auto;
+    height: auto;
+    font-size: 12px;
+  }
+  .atlas-ocean {
+    font-size: 6px;
+    letter-spacing: 1px;
+  }
+}

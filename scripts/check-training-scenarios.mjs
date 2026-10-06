@@ -14,6 +14,7 @@ function hoist(s,value){s.mainHoist=s.jibHoist=s.sails=value;}
 // Verification pilot uses only the same throttle/helm controls as the learner.
 // It never moves the boat or completes an objective directly.
 export function steerMarina(state,lesson,index){
+ if(!['engineWaypoint','engineStop'].includes(lesson.practice.steps[index].kind))return;
  const check=lesson.practice.steps[index],p=check.value,dx=p.x-state.x,dz=p.z-state.z,distance=Math.hypot(dx,dz);
  const reversing=check.kind==='engineWaypoint'?p.speed[1]<0:lesson.practice.steps[index-1]?.value.speed?.[1]<0;
  const sign=reversing?-1:1,bearing=wrap(Math.atan2(dx,-dz)*180/Math.PI+(reversing?180:0));

@@ -5,6 +5,11 @@ on:
     branches: [master]
   workflow_dispatch:
     inputs:
+      coverage:
+        description: 'Browser coverage (pushes run smoke journeys plus affected unit tests)'
+        type: choice
+        options: [smoke, changed, full]
+        default: smoke
       skip_tests:
         description: 'Skip unit and browser tests for an explicitly requested deployment'
         type: boolean
@@ -30,6 +35,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
       - uses: actions/setup-node@v4
         with:
           node-version: 22
@@ -38,18 +45,32 @@ jobs:
         id: pages
         uses: actions/configure-pages@v5
       - run: npm ci
-      - if: ${{ !inputs.skip_tests }}
-        run: npm test
+      - name: Select unit coverage from changed files
+        if: ${{ !inputs.skip_tests }}
+        env:
+          TEST_BASE: ${{ github.event.before }}
+          TEST_COVERAGE: ${{ inputs.coverage }}
+        run: |
+          if [ -z "$TEST_BASE" ] || [ "$TEST_BASE" = "0000000000000000000000000000000000000000" ]; then
+            TEST_BASE=HEAD^
+          fi
+          node scripts/test.mjs "${TEST_COVERAGE:-changed}" --base "$TEST_BASE"
       - name: Build for the Pages URL
         run: npm run build -- --base "${{ steps.pages.outputs.base_path }}/"
       - run: npm run format:check
       - if: ${{ !inputs.skip_tests && !inputs.skip_browser_tests }}
         run: npx playwright install --with-deps chromium
-      - name: Browser regressions against the production build
+      - name: Selected browser journeys against the production build
         if: ${{ !inputs.skip_tests && !inputs.skip_browser_tests }}
-        run: npm run test:browser
+        run: |
+          if [ -z "$TEST_BASE" ] || [ "$TEST_BASE" = "0000000000000000000000000000000000000000" ]; then
+            TEST_BASE=HEAD^
+          fi
+          node scripts/test.mjs "${TEST_COVERAGE:-smoke}" --browser-only --skip-build --base "$TEST_BASE"
         env:
           SAIL_TEST_BASE_PATH: ${{ steps.pages.outputs.base_path }}/
+          TEST_BASE: ${{ github.event.before }}
+          TEST_COVERAGE: ${{ inputs.coverage }}
       - name: Retain browser failure evidence
         if: failure()
         uses: actions/upload-artifact@v4

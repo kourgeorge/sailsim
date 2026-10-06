@@ -41,13 +41,16 @@ export function installHullWaterExclusion(material,{vesselId='monohull'}={}){
   if(hullExclusionActive){
    vec3 p=(hullInverse*worldPosition).xyz;
    ${vesselId==='catamaran'?`
-   if(p.z>=-6.&&p.z<=6.){
+   // Leave a narrow overlap beneath the closed shell. Its triangulated curve
+   // is slightly inside the analytic profile; cutting to that profile opens
+   // flashing gaps at the waterline as the hull rocks.
+   if(p.z>=-5.98&&p.z<=5.98){
     float x=abs(abs(p.x)-2.5);
     float sheer=p.z>4.?1.3-(p.z-4.)*.5:1.3+.18*pow(max(0.,-p.z)/6.,2.);
     float depth=sheer+.7*(1.-.8*pow(abs(p.z)/6.,3.));
     float s=(sheer-p.y)/depth;
     if(s>=0.&&s<=1.){float w=.53;${catSections}
-     if(x<w*(1.-.07*s)*sqrt(max(0.,1.-s*s)))discard;
+     if(x<max(0.,w*(1.-.07*s)*sqrt(max(0.,1.-s*s))-.04))discard;
     }
    }
    `:`

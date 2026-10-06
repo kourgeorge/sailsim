@@ -3,6 +3,11 @@ dist/
 .DS_Store
 test-results/
 playwright-report/
+.env
+.env.*
+!.env.example
+__pycache__/
+*.py[cod]
 
 # Transient browser failure captures
 artifacts/**/failure.png

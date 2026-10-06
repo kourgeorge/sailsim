@@ -134,7 +134,7 @@ export function createYacht(mat,{detailed=true}={}){
  bar(boat,mat.steel,[-.68,3.28,3.85],[.68,3.28,3.85],.025);
  const throttleLever=new THREE.Group();throttleLever.position.set(.25,1.44,4.03);boat.add(throttleLever);bar(throttleLever,mat.steel,[0,0,0],[.15,.36,0],.02);mesh(throttleLever,new THREE.SphereGeometry(.06,12,8),mat.rubber,.15,.36,0);
  // Red/green navigation lights and masthead fitting.
- for(const side of [-1,1]){const lampMat=new THREE.MeshStandardMaterial({color:side<0?'#ab3e32':'#218873',emissive:side<0?'#d13113':'#14a67c',emissiveIntensity:.35});mesh(boat,new THREE.SphereGeometry(.052,12,8),lampMat,side*.5,1.88,-6.05);}
+ for(const side of [-1,1]){const lampMat=new THREE.MeshStandardMaterial({color:side<0?'#ab3e32':'#218873',emissive:side<0?'#d13113':'#14a67c',emissiveIntensity:.35});const lamp=mesh(boat,new THREE.SphereGeometry(.052,12,8),lampMat,side*.5,1.88,-6.05);lamp.name=side<0?'port-light-fitting':'starboard-light-fitting';}
  bar(boat,mat.steel,[0,17.6,-1.95],[0,18,-1.95],.015);
  const windVane=new THREE.Group();windVane.name='masthead-wind-vane';windVane.position.set(0,17.95,-1.95);boat.add(windVane);
  // Rotate pointer and tail together around the masthead bearing. The pointer

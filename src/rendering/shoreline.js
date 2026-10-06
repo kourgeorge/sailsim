@@ -1,6 +1,8 @@
 import * as THREE from 'three';
 import { islandHeight, shoreScale } from './geography.js';
 import { installHullWaterExclusion } from './hull-geometry.js';
+import { createSurveyTerrain, createCayTerrain } from './real-terrain.js';
+import { terrainHeights } from '../world/real-terrain.js';
 
 export const TERRAIN_SEGMENTS = 160;
 const SEGMENTS = TERRAIN_SEGMENTS;
@@ -12,6 +14,8 @@ const RADII = [
 ];
 
 export function createIslandTerrain(island) {
+  if (island.polygon) return createCayTerrain(island);
+  if (island.raster) return createSurveyTerrain(island);
   const positions = [],
     uvs = [],
     colors = [],
@@ -71,6 +75,21 @@ export function createShoreline(scene, location, waterNormals, { vesselId = 'mon
   // Metres of depth: match the same contours used by the chart and grounding.
   const depths = [-0.18, 0, 0.1, 0.35, 0.8, 1.6, 2.6, 3.8];
   for (const island of location.islands) {
+    if(island.polygon)continue;
+    if (island.raster) {
+      const r = island.raster, h = terrainHeights(r), offset = positions.length / 3;
+      for (let row=0; row<r.rows; row++) for (let col=0; col<r.cols; col++) {
+        const i=row*r.cols+col;
+        const x=island.x-r.width/2+col*r.width/(r.cols-1), z=island.z-r.length/2+row*r.length/(r.rows-1);
+        positions.push(x,.012,z); uvs.push(x+z,-h[i]);
+        if (row<r.rows-1 && col<r.cols-1) {
+          const a=i,b=i+1,c=i+r.cols,d=c+1;
+          if (Math.min(h[a],h[b],h[c],h[d])<.18 && Math.max(h[a],h[b],h[c],h[d])>-3.8)
+            indices.push(offset+a,offset+c,offset+b,offset+b,offset+c,offset+d);
+        }
+      }
+      continue;
+    }
     const offset = positions.length / 3;
     let length = 0,
       previous = null;
@@ -114,8 +133,8 @@ export function createShoreline(scene, location, waterNormals, { vesselId = 'mon
       time: { value: 0 },
       wind: { value: 12 },
       normalSampler: { value: waterNormals },
-      shallowColor: { value: new THREE.Color('#54a9a0') },
-      sandColor: { value: new THREE.Color('#92967b') },
+      shallowColor: { value: new THREE.Color(location.character?.shallows??'#54a9a0') },
+      sandColor: { value: new THREE.Color(location.character?.sand??'#92967b') },
       foamColor: { value: new THREE.Color('#e1eeDE') },
     },
     vertexShader: /* glsl */ `

@@ -44,56 +44,57 @@ async function exit(page) {
   await page.locator('#session-exit').click();
 }
 
-test('desktop covers separate lesson and free-sailing setup from the cockpit', async ({
-  page,
-  context,
-}) => {
-  await fallback(context);
-  const errors = [];
-  page.on('pageerror', (error) => errors.push(error.message));
-  await page.goto('./');
-  await home(page, 'learn');
-  await page.locator('#cover-course').click();
-  await page.locator('[data-library-lesson="8"]').click();
-  await page.locator('#practice-start').click();
-  await page.locator('#practice-launch').click();
-  await expect(page.locator('#section-cover')).toBeHidden();
-  await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
-  await page.locator('#play').click();
-  await expect(page.locator('#section-cover')).toBeHidden();
-  await exit(page);
-  await home(page, 'learn');
-  await expect(page.locator('#practice-debrief')).toBeVisible();
-  await page.locator('#practice-debrief').click();
-  await expect(page.locator('.practice-debrief')).toBeVisible();
-  await page.locator('#close-modal').click();
-  await page.screenshot({ path: 'artifacts/section-covers/learn-desktop.png' });
-  await navigate(page, 'explore');
-  await page.locator('[data-cover-location=shelter]').click();
-  await page.locator('#cover-conditions-button').click();
-  await page.locator('#wind-speed').fill('17');
-  await page.locator('#close-modal').click();
-  await expect(page.locator('#cover-conditions')).toContainText('17 kn');
-  await page.screenshot({ path: 'artifacts/section-covers/free-desktop.png' });
-  await page.locator('#section-cover').focus();
-  await page.keyboard.press('Space');
-  await home(page, 'explore');
-  await page.locator('#cover-start-free').click();
-  await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
-  await expect(page.locator('.sidebar')).toBeHidden();
-  await expect(page.locator('.lesson-card')).toBeHidden();
-  await expect(page.locator('#location-title')).toHaveText('Shelter Bay');
-  await page.locator('#session-restart').click();
-  await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
-  await exit(page);
-  await home(page, 'explore');
-  await expect(page.locator('#cover-conditions')).toContainText('17 kn');
-  await navigate(page, 'challenge');
-  await expect(page.locator('[data-sailing-challenge]')).toHaveCount(CHALLENGES.length);
-  await expect(page.locator('[data-race-course]')).toHaveCount(3);
-  await page.screenshot({ path: 'artifacts/section-covers/challenges-desktop.png' });
-  expect(errors).toEqual([]);
-});
+test(
+  'desktop covers separate lesson and free-sailing setup from the cockpit',
+  { tag: '@smoke' },
+  async ({ page, context }) => {
+    await fallback(context);
+    const errors = [];
+    page.on('pageerror', (error) => errors.push(error.message));
+    await page.goto('./');
+    await home(page, 'learn');
+    await page.locator('#cover-course').click();
+    await page.locator('[data-library-lesson="8"]').click();
+    await page.locator('#practice-start').click();
+    await page.locator('#practice-launch').click();
+    await expect(page.locator('#section-cover')).toBeHidden();
+    await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+    await page.locator('#play').click();
+    await expect(page.locator('#section-cover')).toBeHidden();
+    await exit(page);
+    await home(page, 'learn');
+    await expect(page.locator('#practice-debrief')).toBeVisible();
+    await page.locator('#practice-debrief').click();
+    await expect(page.locator('.practice-debrief')).toBeVisible();
+    await page.locator('#close-modal').click();
+    await page.screenshot({ path: 'artifacts/section-covers/learn-desktop.png' });
+    await navigate(page, 'explore');
+    await page.locator('[data-cover-location=shelter]').click();
+    await page.locator('#cover-conditions-button').click();
+    await page.locator('#wind-speed').fill('17');
+    await page.locator('#close-modal').click();
+    await expect(page.locator('#cover-conditions')).toContainText('17 kn');
+    await page.screenshot({ path: 'artifacts/section-covers/free-desktop.png' });
+    await page.locator('#section-cover').focus();
+    await page.keyboard.press('Space');
+    await home(page, 'explore');
+    await page.locator('#cover-start-free').click();
+    await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+    await expect(page.locator('.sidebar')).toBeHidden();
+    await expect(page.locator('.lesson-card')).toBeHidden();
+    await expect(page.locator('#location-title')).toHaveText('Shelter Bay');
+    await page.locator('#session-restart').click();
+    await expect(page.locator('body')).toHaveAttribute('data-session', 'active');
+    await exit(page);
+    await home(page, 'explore');
+    await expect(page.locator('#cover-conditions')).toContainText('17 kn');
+    await navigate(page, 'challenge');
+    await expect(page.locator('[data-sailing-challenge]')).toHaveCount(CHALLENGES.length);
+    await expect(page.locator('[data-race-course]')).toHaveCount(3);
+    await page.screenshot({ path: 'artifacts/section-covers/challenges-desktop.png' });
+    expect(errors).toEqual([]);
+  },
+);
 
 for (const size of [
   { width: 1440, height: 1000 },

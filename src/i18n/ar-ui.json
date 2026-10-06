@@ -281,5 +281,8 @@
   "Raise or lower sails": "رفع الأشرعة أو إنزالها",
   "Anchor: let go or weigh": "المرساة: إلقاء أو رفع",
   "Open this help": "فتح هذه المساعدة",
-  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "اضغط مع الاستمرار على مفتاح لمواصلة تحريك أداة التحكم. تتوقف المفاتيح أثناء الكتابة في حقل أو قراءة درس."
+  "Hold a key to keep moving a control. Keys pause while you type in a field or read a lesson.": "اضغط مع الاستمرار على مفتاح لمواصلة تحريك أداة التحكم. تتوقف المفاتيح أثناء الكتابة في حقل أو قراءة درس.",
+  "Time of day": "وقت اليوم",
+  "Day": "نهار",
+  "Night": "ليل"
 }

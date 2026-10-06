@@ -62,8 +62,10 @@ for(const [i,lesson] of marinaLessons.entries()){
 export function marinaCues(lesson,index=0){
  if(lesson?.practice?.propulsion!=='engine')return null;
  const check=lesson.practice.steps[Math.min(index,lesson.practice.steps.length-1)],p=check.value;
+ const points=lesson.practice.steps.filter(step=>['engineWaypoint','engineStop'].includes(step.kind));
+ if(!points.includes(check))return {route:points.map((step,i)=>({x:step.value.x,z:step.value.z,number:i+1}))};
  return {
-  route:lesson.practice.steps.map((step,i)=>({x:step.value.x,z:step.value.z,number:i+1})),
+  route:points.map((step,i)=>({x:step.value.x,z:step.value.z,number:i+1})),
   ...(lesson.id==='sail-44'?{corridor:{x:367,z:37,width:8,length:17,heading:90}}:{}),
   ...(check.kind==='engineStop'?{target:{x:p.x,z:p.z,radius:p.radius,heading:p.heading}}:{gate:{x:p.x,z:p.z,width:p.radius*2,heading:p.heading},target:{x:p.x,z:p.z,radius:p.radius}})
  };

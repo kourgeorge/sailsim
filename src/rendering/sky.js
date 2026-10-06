@@ -56,9 +56,9 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
   const fjord = location.biome === 'fjord';
   const sky = new Sky();
   sky.name = 'Atmospheric sky';
-  sky.scale.setScalar(4500);
+  sky.scale.setScalar(location.coordinates ? 60000 : 4500);
   const u = sky.material.uniforms;
-  u.turbidity.value = fjord ? 2 : 1.8;
+  u.turbidity.value = location.character?.turbidity??(fjord ? 2 : 1.8);
   u.rayleigh.value = fjord ? 2.5 : 2.8;
   u.mieCoefficient.value = 0.003;
   u.mieDirectionalG.value = 0.8;
@@ -83,8 +83,8 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
         cloudNoise: { value: cloudTexture() },
         drift: { value: new THREE.Vector2() },
         sunDirection: { value: sunDirection.clone() },
-        coverage: { value: fjord ? 0.46 : 0.5 },
-        haze: { value: new THREE.Color(fjord ? '#bacfdf' : '#c7dce8') },
+        coverage: { value: location.character?.cloudCoverage??(fjord ? 0.46 : 0.5) },
+        haze: { value: new THREE.Color(location.character?.haze??(fjord ? '#bacfdf' : '#c7dce8')) },
       },
       vertexShader: `
         varying vec3 ray;
@@ -135,20 +135,87 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
     }),
   );
   clouds.name = 'Sunlit coastal clouds';
+  if (location.coordinates) clouds.scale.setScalar(14);
   clouds.visible = quality.clouds;
   scene.add(clouds);
+  const night = new THREE.Mesh(
+    new THREE.SphereGeometry(4300, 32, 16),
+    new THREE.ShaderMaterial({
+      side: THREE.BackSide,
+      depthWrite: false,
+      uniforms: { moonDirection: { value: sunDirection.clone() } },
+      vertexShader:
+        'varying vec3 ray; void main(){ ray=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
+      fragmentShader: `varying vec3 ray; uniform vec3 moonDirection;
+      void main(){
+        vec3 d=normalize(ray);
+        vec3 color=mix(vec3(0.025,0.047,0.085),vec3(0.002,0.005,0.018),smoothstep(0.0,0.7,d.y));
+        float moon=dot(d,moonDirection);
+        color+=vec3(0.18,0.23,0.32)*pow(max(moon,0.0),160.0);
+        color+=vec3(1.2,1.3,1.4)*smoothstep(0.99987,0.9999,moon);
+        gl_FragColor=vec4(color,1.0);
+        #include <tonemapping_fragment>
+        #include <colorspace_fragment>
+      }`,
+    }),
+  );
+  night.name = 'Moonlit night sky';
+  if (location.coordinates) night.scale.setScalar(14);
+  night.visible = false;
+  scene.add(night);
+  const positions = [];
+  let seed = 7301;
+  const random = () => {
+    seed = (Math.imul(seed, 1664525) + 1013904223) >>> 0;
+    return seed / 4294967296;
+  };
+  for (let i = 0; i < 650; i++) {
+    const a = random() * Math.PI * 2,
+      y = 0.08 + 0.9 * random(),
+      r = Math.sqrt(1 - y * y);
+    positions.push(Math.cos(a) * r * 4100, y * 4100, Math.sin(a) * r * 4100);
+  }
+  const stars = new THREE.Points(
+    new THREE.BufferGeometry().setAttribute(
+      'position',
+      new THREE.Float32BufferAttribute(positions, 3),
+    ),
+    new THREE.PointsMaterial({
+      color: '#b5cce9',
+      size: 1.35,
+      sizeAttenuation: false,
+      transparent: true,
+      opacity: 0.8,
+      depthWrite: false,
+      toneMapped: false,
+    }),
+  );
+  stars.name = 'Night stars';
+  stars.visible = false;
+  scene.add(stars);
+  let nightMode = false,
+    cloudsEnabled = quality.clouds;
   let previousTime = null;
   return {
     sky,
     clouds,
+    setNight(value) {
+      nightMode = value;
+      sky.visible = !value;
+      night.visible = stars.visible = value;
+      clouds.visible = cloudsEnabled && !value;
+    },
     setQuality(next) {
-      clouds.visible = next.clouds;
+      cloudsEnabled = next.clouds;
+      clouds.visible = cloudsEnabled && !nightMode;
     },
     update(state, time, view) {
       const position = view?.position || state;
       // Keep the distant sky around the viewer even on long offshore passages.
       sky.position.set(position.x, position.y || 0, position.z);
       clouds.position.copy(sky.position);
+      night.position.copy(sky.position);
+      stars.position.copy(sky.position);
       const drift = clouds.material.uniforms.drift.value;
       if (previousTime !== null && time >= previousTime) {
         const angle = ((state.windDirection + 180) * Math.PI) / 180;

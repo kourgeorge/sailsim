@@ -86,6 +86,7 @@ export function practiceEvidence(state, attempt) {
     waterWindSpeed:finite(water.speed),waterWindDirection:finite(water.direction),waterWindAngle:finite(water.angle),
     speedOverGround: finite(practiceGroundSpeed(state)),
     anchor: state.anchor === true, grounded: state.grounded === true,
+    timeOfDay: ['day','night'].includes(state.timeOfDay) ? state.timeOfDay : null,
     anchorWinchRunning: typeof state.anchorWinchRunning==='boolean'?state.anchorWinchRunning:null,
     anchorSeabedContact: practiceAnchorContact(state),
     anchorDragging: state.anchorDragging === true,
