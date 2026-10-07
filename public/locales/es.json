@@ -693,9 +693,9 @@
     "sail-16": {
       "title": "Recupérate de la pérdida de propulsión",
       "concepts": [
-        "Quedar aproado al viento significa estar parado o casi parado apuntando hacia él. Las velas flamean y el timón pierde eficacia al disminuir la velocidad.",
-        "Evita esa situación conservando arrancada en la virada y sin orzar demasiado. Este ejercicio comienza con movimiento residual hacia delante: arriba enseguida y ajusta las velas para recuperar la propulsión.",
-        "Un velero real completamente parado puede necesitar una vela acuartelada, ayuda del motor u otro método específico. El acuartelamiento no está modelado. El motor está disponible en navegación libre, pero este ejercicio de arrancada residual exige punto muerto; reinicia si pierdes todo el gobierno."
+        "Quedar aproado al viento significa estar parado, o casi parado, apuntando hacia él. Las velas flamean, así que no hay propulsión, y al disminuir la velocidad el timón pierde agarre en el agua.",
+        "Evítalo conservando velocidad en la virada y sin orzar demasiado. Si lo notas pronto, aprovecha la velocidad que aún tienes: arriba enseguida hasta que las velas se llenen y después ajústalas para recuperar la propulsión.",
+        "Un barco completamente parado necesita otra forma de girar. En un velero real, la tripulación puede sujetar la vela de proa hacia un costado (acuartelarla) para que el viento empuje la proa, o dejar que el barco retroceda y gobernarlo para girar, recordando que al ir hacia atrás el timón funciona al revés. Algunas tripulaciones usan el motor. El acuartelamiento no está modelado aquí, así que este ejercicio empieza con algo de velocidad: aprovéchala antes de que se agote."
       ],
       "observe": [
         "Usa la arrancada restante para alejarte del rumbo 315°.",
@@ -713,13 +713,13 @@
           "explanation": "Usa el gobierno restante para salir de la zona muerta."
         },
         {
-          "prompt": "¿Este ejercicio enseña todos los métodos para recuperar un velero real completamente parado?",
+          "prompt": "El barco se ha detenido aproado al viento y empieza a retroceder. ¿Qué pasa con el gobierno?",
           "options": [
-            "Sí",
-            "No; evalúa la recuperación a vela con arrancada residual",
-            "Solo amurado a estribor"
+            "Deja de funcionar por completo",
+            "Funciona al revés: el mismo movimiento del timón gira la proa hacia el otro lado",
+            "Funciona exactamente igual que al avanzar"
           ],
-          "explanation": "El ejercicio trata la recuperación con arrancada; la recuperación real depende del barco y la situación."
+          "explanation": "Al retroceder, el agua llega al timón por detrás, así que su efecto se invierte. Las tripulaciones lo aprovechan, junto con una vela de proa acuartelada, para sacar la proa de la zona muerta."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -738,11 +738,11 @@
       "concepts": [
         "El viento aparente es el flujo de aire relativo al velero. El viento meteorológico se refiere al suelo fijo; el viento respecto al agua se obtiene restando la corriente de esa velocidad del aire. «Viento real» puede tomar como referencia el suelo o el agua: comprueba la convención del instrumento.",
         "Al aumentar la velocidad respecto al agua en un través estable, el viento aparente suele adelantarse respecto al viento relativo al agua. A favor del viento, moverse con el flujo de aire puede reducir la velocidad aparente. Cuando hay calma respecto al agua, su dirección no está definida, pero un velero que se mueve por el agua puede seguir sintiendo un flujo aparente.",
-        "Compara Viento respecto al agua con Viento aparente en la pantalla multifunción o el panel de instrumentos. Los rumbos respecto al viento, la zona muerta y la respuesta modelada del pujamen usan el viento respecto al agua. La presión de las velas, los coeficientes y los ángulos de escota sugeridos usan el viento aparente. Este modelo empírico no sustituye observar catavientos y forma de las velas.",
+        "Compara Viento respecto al agua con Viento aparente en la pantalla de a bordo. Usa el viento respecto al agua para saber en qué rumbo respecto al viento navegas y dónde está la zona muerta; ajusta las velas al viento aparente, porque es el aire que realmente reciben. Los catavientos y la forma de las velas siempre muestran directamente el viento aparente.",
         "Una vela puede funcionar como el ala de un avión: al desviar el aire genera una fuerza aerodinámica con una componente hacia delante y otra lateral. La quilla, la orza o los perfiles sumergidos resisten el desplazamiento lateral. Navegando a un largo o de través, una vela bien ajustada puede seguir impulsando el barco aunque su velocidad supere la del viento real. La aceleración termina cuando el empuje equilibra la resistencia.",
         "Por eso los barcos de regata eficientes pueden navegar más rápido que el viento real. Ayudan los cascos ligeros y las velas eficientes; los hidroalas pueden elevar el casco sobre el agua y reducir aún más la resistencia. La energía procede del viento que se mueve respecto al agua. El viento aparente describe el aire junto a la vela en movimiento; el movimiento del barco no crea energía adicional. Un velero de crucero normal puede tener demasiada resistencia para superar la velocidad del viento.",
         "Ejemplo sin corriente ni abatimiento: un barco de regata navega al norte a 30 nudos y un viento de 20 nudos sopla desde el oeste. Las velocidades son perpendiculares. El viento aparente es √(20² + 30²) ≈ 36,1 nudos y llega unos 34° por babor de la proa. El cálculo supone una velocidad del barco; no demuestra que cualquier barco alcance 30 nudos. Navegar exactamente a favor del viento a su misma velocidad elimina el viento aparente en este caso sencillo.",
-        "Prueba Desafíos → Laboratorio de viento aparente. Registra el viento con las velas bajadas, después ízalas y ajústalas navegando de través. Observa cómo el viento aparente aumenta y se adelanta al acelerar. Arriba hasta un largo y vuelve a comparar. Este ejercicio con el velero de crucero muestra el cambio del flujo; el ejemplo de regata explica cómo una menor resistencia permite superar al viento."
+        "Pruébalo en Desafíos → Laboratorio de viento aparente: registra el viento con las velas bajadas, luego navegando de través y después en un largo. De través, el viento aparente aumenta y se adelanta al ganar velocidad; en el largo, se debilita."
       ],
       "observe": [
         "Imagina ir en bicicleta con aire en calma: notas viento de frente.",
@@ -760,13 +760,13 @@
           "explanation": "Las velas interactúan con el flujo de aire relativo al velero en movimiento."
         },
         {
-          "prompt": "¿Qué usa este prototipo para calcular la fuerza de las velas?",
+          "prompt": "Aceleras navegando de través con viento constante. ¿Qué le pasa al viento aparente?",
           "options": [
-            "Un modelo empírico que utiliza viento aparente",
-            "Una simulación aerodinámica completa validada",
-            "Flujo de aire medido en la perilla del mástil"
+            "Se adelanta y aumenta",
+            "Se retrasa y se debilita",
+            "No cambia"
           ],
-          "explanation": "El viento aparente refleja el movimiento del barco. El modelo empírico de fuerzas sigue omitiendo muchos detalles aerodinámicos reales."
+          "explanation": "El propio movimiento del barco añade una brisa de proa. Sumada al viento real, hace que el viento aparente gire hacia la proa y aumente, así que cazas un poco las velas."
         },
         {
           "prompt": "¿Por qué un barco de regata eficiente puede superar al viento real navegando de través?",
@@ -792,9 +792,9 @@
     "sail-18": {
       "title": "Toma rizos antes de necesitarlos",
       "concepts": [
-        "Tomar rizos reduce la superficie vélica para mejorar el control cuando aumenta el viento. La decisión debe considerar previsión, rachas, estado de la mar, capacidad de la tripulación y comportamiento del barco, no una regla universal de velocidad del viento.",
-        "La escora excesiva, el timón duro y la dificultad para controlar el barco justifican revisar pronto la superficie vélica. Esperar puede complicar el trabajo cuando empeoran las condiciones.",
-        "El control Rizo reduce la altura de la mayor y la propulsión simulada. No enseña los procedimientos de cabos de rizo, ollao de amura ni drizas."
+        "La fuerza del viento crece con el cuadrado de su velocidad: 20 nudos empujan unas cuatro veces más que 10 nudos, no el doble. Por eso un aumento moderado del viento produce un gran aumento de la fuerza que escora el barco y carga el aparejo. Un rizo hace la mayor más pequeña y más baja, así que la fuerza es menor y actúa más abajo, lo que significa menos escora.",
+        "Escorar demasiado no hace el barco más rápido. El casco se desliza más de lado, el timón agarra menos y el barco tiende continuamente a orzar (timón ardiente). Señales de que toca tomar rizos: el timón está duro, el barco orza solo con las rachas y entra agua por la cubierta lateral. «Toma rizos en cuanto lo pienses»: es mucho más fácil antes de que suba el viento que mientras sube.",
+        "No hay una única velocidad del viento para tomar rizos: depende del barco, la tripulación, las rachas y la mar. Compara la escora y el timón antes y después de un rizo con el mismo rumbo. El control Rizo de la aplicación acorta la mayor de una sola vez; en un barco real supone manejar la driza y los cabos de rizo bajo carga, con la tripulación coordinada."
       ],
       "observe": [
         "Observa la escora y la velocidad con la brisa de 22 nudos del ejercicio.",
@@ -812,13 +812,13 @@
           "explanation": "Tomar rizos es una decisión de control basada en el barco, la tripulación y las condiciones."
         },
         {
-          "prompt": "¿Qué habilidad real no evalúa el botón Rizo?",
+          "prompt": "El viento sube de 10 a 20 nudos. ¿Aproximadamente cuánto más empuja sobre las velas?",
           "options": [
-            "Reconocer la reducción de superficie vélica",
-            "Leer la velocidad del barco",
-            "Manejar drizas y cabos de rizo bajo carga"
+            "El doble",
+            "Lo mismo",
+            "Unas cuatro veces más"
           ],
-          "explanation": "Un único control representa de forma simplificada varias tareas físicas importantes."
+          "explanation": "La fuerza del viento crece con el cuadrado de su velocidad: 2 × 2 = 4. Por eso conviene decidir los rizos antes de lo que muchos principiantes esperan."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -834,9 +834,9 @@
     "sail-19": {
       "title": "Reduce la potencia deliberadamente",
       "concepts": [
-        "Reducir la fuerza propulsora frena el barco, pero queda arrancada. Deja espacio de maniobra y no trates un velero como un coche con frenos inmediatos.",
-        "Puedes descargar parte de la propulsión largando la escota de mayor. Arriar las velas elimina su potencia simulada; el barco sigue por inercia y pierde capacidad de gobierno al ralentizarse.",
-        "En este ejercicio, reduce la potencia vélica, arría y espera a estar por debajo de 1 nudo. El ancla no sustituye una reducción de velocidad planificada."
+        "Un velero no tiene frenos. Cuando quitas potencia a las velas, el barco sigue avanzando por inercia y solo se frena por la resistencia del agua; un barco pesado puede deslizarse mucha distancia. Planifica la parada con tiempo y deja espacio de maniobra.",
+        "Formas de quitar potencia, de la más rápida a la más completa: largar las escotas hasta que las velas flameen, para que dejen de trabajar como alas; orzar hacia el viento, lo que reduce el ángulo y la propulsión; arriar las velas, lo que elimina la propulsión por completo. Al frenar, el timón agarra menos, así que el gobierno se vuelve lento y débil.",
+        "En un velero real también puedes ponerte al pairo: colocar las velas para que trabajen una contra otra, de modo que el barco casi se detiene y queda tranquilo. Eso no está modelado aquí. En este ejercicio, arría y espera a estar por debajo de 1 nudo. El ancla no es un freno."
       ],
       "observe": [
         "Compara la velocidad antes y después de arriar.",
@@ -880,8 +880,8 @@
       "title": "Establece un límite meteorológico",
       "concepts": [
         "Consulta la previsión marítima para toda la salida y un margen posterior. Considera viento medio, rachas, cambios de dirección, estado de la mar, visibilidad, temperatura, mareas y efectos locales.",
-        "El viento contra corriente puede hacer más empinadas las olas. Un viento de tierra puede dificultar el regreso; una costa expuesta a sotavento puede dejar poco espacio para recuperarse de una avería.",
-        "Decide antes de salir si se puede zarpar y qué alternativas de escape hay. La simulación permite viento constante ajustable, pero no frentes de racha, peligros de olas rompientes, previsiones ni corrientes de marea variables; la corriente ajustable es una aproximación constante."
+        "El viento contra la corriente forma olas cortas y empinadas: la corriente comprime las olas, que se vuelven más altas y más juntas y pueden romper. Una costa a sotavento es una costa hacia la que sopla el viento. Es peligrosa porque, si algo falla, como el motor, una vela o el timón, el viento te empuja contra ella. Un viento de tierra parece tranquilo cerca de la costa, pero puede dificultar el regreso.",
+        "Fija antes de salir tus límites para zarpar o no y tus alternativas de escape: qué cambio te haría acortar la salida y adónde irías en su lugar. En el simulador el viento es constante y la corriente no cambia, así que practica aquí este criterio como planificación; el tiempo real sí cambia."
       ],
       "observe": [
         "Con tripulación principiante, decide qué cambio te haría acortar o cancelar la salida.",
@@ -899,13 +899,13 @@
           "explanation": "Importan toda la previsión y su evolución, no una sola cifra."
         },
         {
-          "prompt": "¿Puede esta simulación evaluar el manejo con mar rompiente o viento contra marea?",
+          "prompt": "Se prevé viento fuerte soplando hacia la costa que piensas seguir. ¿Por qué es preocupante?",
           "options": [
-            "No",
-            "Sí, usando el velocímetro",
-            "Solo con rizos"
+            "Hace que la brújula sea imprecisa",
+            "Es una costa a sotavento: si algo falla, el viento te empuja hacia tierra",
+            "Siempre calma la mar"
           ],
-          "explanation": "Esas dinámicas ambientales no están implementadas y requieren formación específica."
+          "explanation": "Con el viento soplando hacia la costa tienes poco espacio para recuperarte de una avería. Elige una ruta con más espacio de maniobra o cambia el plan."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
@@ -914,8 +914,8 @@
       "title": "Lee una carta de prácticas",
       "concepts": [
         "Una carta es una herramienta de planificación, no una imagen que seguir a ciegas. Comprueba escala, orientación, profundidades, peligros, marcas, procedencia y actualidad.",
-        "La carta ficticia muestra islas, tu velero y boyas ámbar del recorrido. Esas marcas son objetivos de entrenamiento, no una representación completa del sistema de balizamiento IALA.",
-        "Antes de una travesía real, aprende símbolos cartográficos, cero hidrográfico, balizamiento local, alturas de marea y resguardo bajo la quilla. Nada de ello debe deducirse de este mapa simplificado."
+        "Las profundidades son números, normalmente en metros, y unas líneas llamadas veriles unen los puntos de igual profundidad. El agua más somera suele estar sombreada en azul, las zonas que quedan en seco con marea baja en verde y la tierra en color crema o amarillo. Mide las distancias en la escala de latitud del lateral de la carta: un minuto de latitud es una milla náutica.",
+        "Las boyas te indican qué hacer. Las marcas laterales señalan los dos lados de un canal y cada una se deja por un costado determinado; las marcas cardinales indican en qué lado de un peligro están las aguas seguras. Qué color va en cada lado depende de la región (IALA A o B), así que compruébalo antes de navegar. En esta aplicación, las boyas ámbar son solo objetivos de práctica."
       ],
       "observe": [
         "Abre la carta. Localiza el norte, tu posición y la siguiente marca.",
@@ -924,13 +924,13 @@
       "mistake": "Suponer que una pantalla con tu posición es una carta náutica completa y actualizada.",
       "quiz": [
         {
-          "prompt": "¿Qué representan las tres boyas ámbar de esta aplicación?",
+          "prompt": "En una carta, ¿qué mide un minuto de latitud en la escala lateral?",
           "options": [
-            "El sistema internacional completo de balizamiento",
-            "Objetivos del recorrido de prácticas",
-            "Marcas de aguas seguras garantizadas en una carta real"
+            "Un kilómetro",
+            "Una milla náutica",
+            "Un nudo"
           ],
-          "explanation": "Sirven para practicar navegación, no para enseñar todas las marcas reales."
+          "explanation": "La distancia se mide en la escala de latitud del lateral de la carta, a la altura de tu posición. La escala de longitud de arriba y abajo cambia con la latitud, así que no se usa para medir distancias."
         },
         {
           "prompt": "¿Qué debe incluir la revisión de una carta real?",
@@ -949,7 +949,7 @@
       "concepts": [
         "Una demora es la dirección desde tu posición hasta un objetivo. Antes de seguirla, decide si la derrota directa es segura y navegable a vela.",
         "Una demora directa puede apuntar a la zona muerta o cruzar tierra. En esos casos, planifica otra ruta en vez de forzar la proa hacia el objetivo.",
-        "El ejercicio empieza al sur de la boya 1. Usa la carta, gobierna hacia la marca y pasa a menos de 35 metros manteniendo la velocidad controlada."
+        "Hacia donde apunta la proa no siempre es hacia donde va el barco. La corriente y el abatimiento te desplazan de lado, así que apunta un poco corriente arriba de la marca. Comprueba de vez en cuando la demora a la marca: si sigue cambiando mientras mantienes el rumbo, te están sacando de la línea. En este ejercicio, pasa a menos de 35 metros de la boya 1."
       ],
       "observe": [
         "Abre la carta antes de cambiar de rumbo.",
@@ -1072,7 +1072,7 @@
       "title": "Mantén una vigilancia eficaz",
       "concepts": [
         "Una vigilancia adecuada usa vista, oído y todos los medios apropiados disponibles. Observa a proa, a popa y a ambos costados; las velas y las estructuras pueden ocultar otras embarcaciones.",
-        "Un barco que permanece con demora casi constante mientras se acerca advierte de riesgo de abordaje. Reevalúa pronto en vez de esperar a estar seguro a corta distancia.",
+        "Por qué una demora constante indica peligro: dos barcos con rumbos rectos que van a encontrarse mantienen el mismo ángulo entre sí hasta el punto de encuentro. Por eso, si otro barco mantiene la misma demora de compás, o sigue alineado con la misma parte de tu barco, mientras se acerca, estáis en rumbo de abordaje. Compruébalo pronto y repetidamente, y actúa en vez de esperar a estar seguro.",
         "Las ayudas electrónicas apoyan la vigilancia, no la sustituyen. Este entorno contiene veleros amarrados estáticos y no evalúa la detección realista del tráfico."
       ],
       "observe": [
@@ -1105,7 +1105,7 @@
     "sail-26": {
       "title": "Razona los encuentros",
       "concepts": [
-        "En los casos básicos de cruce entre dos veleros: con amuras distintas, el amurado a babor normalmente se mantiene apartado del amurado a estribor; con la misma amura, el de barlovento suele mantenerse apartado del de sotavento.",
+        "Las reglas deciden de antemano quién se aparta (cede el paso) y quién mantiene el rumbo (sigue a rumbo), para que los dos barcos no giren hacia el mismo lado. Entre dos veleros: con amuras distintas, se mantiene apartado el amurado a babor; con la misma amura, se mantiene apartado el de barlovento, porque normalmente puede arribar con más facilidad. La lección 46 lo trata en detalle.",
         "El barco que alcanza se mantiene apartado. Las responsabilidades entre buques, los canales estrechos, los dispositivos de tráfico, la visibilidad reducida y las normas locales pueden cambiar el análisis. No reduzcas las reglas a «la vela siempre tiene prioridad».",
         "El barco que debe mantener rumbo y velocidad sigue teniendo responsabilidades y debe actuar cuando sea necesario para evitar un abordaje. Aprende el reglamento completo aplicable y las exigencias locales antes de navegar."
       ],
@@ -1139,9 +1139,9 @@
     "sail-27": {
       "title": "Luces, marcas y señales",
       "concepts": [
-        "Las luces de navegación y las marcas diurnas comunican el tipo y la actividad del buque, no solo su dirección. Las luces laterales roja y verde ayudan a identificar qué parte observas.",
+        "Las luces de navegación muestran la dirección de un buque y lo que está haciendo. La roja va en el costado de babor, la verde en estribor y la blanca en la popa. Si ves la roja y la verde a la vez, el buque viene directo hacia ti; solo la roja, ves su costado de babor; solo la verde, su costado de estribor; solo la blanca, estás mirando su popa.",
         "En el contexto internacional de señales de maniobra, una pitada corta significa cambiar a estribor; dos, a babor; tres, dar propulsión atrás. Las señales de visibilidad reducida son otro sistema; las normas locales o de aguas interiores pueden diferir.",
-        "Esta introducción no cubre todo el programa de reconocimiento. Antes de navegar de noche o con visibilidad reducida, estudia y practica todas las reglas aplicables de luces, marcas y señales acústicas."
+        "La lección 50 trata todas las luces, marcas y señales acústicas. Las reglas pueden variar en aguas interiores o locales, así que comprueba las que se aplican donde navegas antes de salir de noche o con visibilidad reducida."
       ],
       "observe": [
         "Identifica la luz roja de babor y la verde de estribor del velero.",
@@ -1208,8 +1208,8 @@
       "title": "Planifica la aproximación al atraque",
       "concepts": [
         "Atracar combina viento, corriente, efectos de la hélice, arrancada y coordinación de la tripulación. Prepara defensas y cabos, asigna funciones, elige una aproximación y conserva una vía de escape.",
-        "Aproxímate a la menor velocidad que permita el control necesario. Nunca uses el cuerpo de una persona para frenar el barco ni pongas manos o pies entre el velero y el muelle.",
-        "Sistemas del barco incluye empuje avante y atrás, y el modelo estima la corriente. No modela el efecto lateral de la hélice, las fuerzas de los esprines ni el contacto con el muelle. Aquí el atraque se enseña como planificación y toma de decisiones; tocar el muelle visual no demuestra una habilidad de atraque evaluada."
+        "Siempre que puedas, aproxímate contra el viento o la corriente: te frenan, así que puedes llegar despacio mientras el agua sigue pasando por el timón para gobernar. Llega a la menor velocidad que todavía te permita gobernar, la velocidad a la que aceptarías tocar el muelle. Nunca uses una mano o un pie para frenar el barco.",
+        "Hay dos efectos que sorprenden a los principiantes. En marcha atrás, la hélice tira de la popa hacia un lado (efecto lateral de la hélice), así que al principio el barco no retrocede recto. Y a poca velocidad el viento aparta del muelle la proa, que es alta. Ten en cuenta los dos y guarda siempre una salida. El efecto lateral de la hélice y las amarras no están modelados en la aplicación, así que aquí el atraque se enseña como planificación."
       ],
       "observe": [
         "Describe la aproximación, las tareas de la tripulación y el plan para repetirla antes de moverte.",
@@ -1227,13 +1227,13 @@
           "explanation": "El plan de escape forma parte de la preparación; evita atrapar al barco o a la tripulación en una maniobra irrecuperable."
         },
         {
-          "prompt": "¿Llegar junto al pantalán representado demuestra aquí competencia de atraque?",
+          "prompt": "¿Por qué conviene aproximarse a un atraque contra el viento o la corriente cuando sea posible?",
           "options": [
-            "No; no se evalúan el contacto, los esprines ni las tareas de la tripulación",
-            "Sí, si el barco parece alineado",
-            "Sí, a cualquier velocidad"
+            "Hace que el barco vaya más rápido",
+            "Elimina el efecto lateral de la hélice",
+            "Frena el barco mientras el agua sigue pasando por el timón"
           ],
-          "explanation": "Un resultado visual sin las dinámicas correspondientes no es una evaluación válida de la habilidad."
+          "explanation": "El viento o la corriente actúan como freno, así que puedes entrar despacio y seguir gobernando. Si los tienes por detrás, siguen empujando el barco."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
@@ -1242,7 +1242,7 @@
       "title": "Elige un fondeadero",
       "concepts": [
         "Busca abrigo, fondo con buen agarre, profundidad suficiente durante toda la marea y espacio de borneo sin alcanzar peligros ni otros barcos.",
-        "La relación de fondeo compara la longitud largada con la distancia vertical desde la roldana de proa hasta el fondo. La necesaria depende de la línea, el ancla, las condiciones, el barco y las indicaciones; ninguna relación garantiza por sí sola el agarre.",
+        "Un ancla agarra mejor cuando se tira de ella en horizontal, a lo largo del fondo, porque así se clava. Con poca línea largada, el tirón llega desde arriba y levanta el ancla. Por eso se larga varias veces la profundidad: la longitud extra y el peso de la cadena mantienen el tirón horizontal y suavizan los tirones de las olas. Larga más con viento fuerte. La relación de fondeo es la longitud de línea dividida entre la altura desde la roldana de proa hasta el fondo.",
         "Ejemplo solo aritmético: con 5 m de agua y una roldana a 1 m sobre ella, una relación supuesta de 5:1 da 30 m de línea. El cálculo no prescribe cuánto largar. Añade los cambios de marea y evalúa el espacio de borneo."
       ],
       "observe": [
@@ -1275,10 +1275,9 @@
     "sail-31": {
       "title": "Reduce velocidad y después fondea",
       "concepts": [
-        "Una aproximación real al fondeo es lenta y controlada. La tripulación baja el ancla y larga la línea deliberadamente; después comprueba que el ancla ha agarrado y continúa vigilando la posición.",
-        "La longitud objetivo del fondeo es una orden, no la cantidad de línea en el agua. Comprueba la longitud realmente largada en Sistemas. El modelo larga a 24 metros por minuto y recoge a 15 metros por minuto; son velocidades motorizadas ilustrativas.",
-        "Arrea las velas y deja que la velocidad sobre el fondo baje de 0.8 nudos con el ancla estibada. Después fija un objetivo de 45 m y pon en marcha el molinete. Larga gradualmente y se detiene al alcanzar el objetivo. Usa «Detener el molinete» para pararlo y «Mover hasta el objetivo» para continuar. Espera hasta que haya 45 m realmente largados, el molinete esté detenido y la velocidad sobre el fondo sea inferior a 0.2 nudos. Fondear antes de tiempo invalida el intento.",
-        "El objetivo de 45 m corresponde a este ejercicio preparado en aguas poco profundas. Planifica un fondeo real según la profundidad, la marea, el abrigo, el fondo y el espacio de borneo. El modelo no valida el agarre del ancla en un fondo concreto ni representa la catenaria completa."
+        "Aproxímate despacio, contra el viento (o contra la corriente, lo que más afecte al barco), para que el barco se detenga por sí solo. Baja el ancla hasta el fondo cuando el barco se haya parado. Después deja que el viento empuje el barco hacia atrás mientras largas línea, para que la cadena quede tendida sobre el fondo en vez de amontonarse encima del ancla.",
+        "Cuando hayas largado suficiente línea, haz que el ancla agarre tirando suavemente de ella, a menudo con un poco de motor atrás. Comprueba que aguanta: elige dos objetos en tierra que estén alineados y observa si siguen alineados. Sigue comprobándolo con el tiempo, sobre todo cuando cambie el viento.",
+        "En este ejercicio: arría y deja que la velocidad baje de 0,8 nudos con el ancla estibada. Fija un objetivo de 45 m y pon en marcha el molinete; larga poco a poco y se detiene al llegar al objetivo. Espera hasta que haya 45 m realmente largados, el molinete esté detenido y la velocidad sobre el fondo sea inferior a 0,2 nudos. Fondear antes de tiempo invalida el intento."
       ],
       "observe": [
         "Reduce la potencia vélica mucho antes del punto de parada previsto.",
@@ -1296,13 +1295,13 @@
           "explanation": "El ejercicio comprueba anticipación y secuencia, no la capacidad de agarre del ancla."
         },
         {
-          "prompt": "¿Quedarse parado demuestra que un ancla real está bien afirmada?",
+          "prompt": "¿Por qué dejar que el barco retroceda mientras largas línea?",
           "options": [
-            "Sí",
-            "Solo después de 5 segundos",
-            "No; el agarre simulado no prueba el agarre real"
+            "Para que la línea quede tendida sobre el fondo en vez de amontonarse sobre el ancla",
+            "Para que el molinete vaya más rápido",
+            "Para que el ancla no toque el fondo"
           ],
-          "explanation": "El fondeo real exige comprobar el agarre y mantener la vigilancia."
+          "explanation": "La línea amontonada sobre el ancla puede enredarla. Al dejar caer el barco hacia atrás, la línea se extiende y el tirón sobre el ancla sigue siendo horizontal."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -1322,9 +1321,8 @@
       "title": "Prepárate para salir",
       "concepts": [
         "Antes de zarpar, revisa de nuevo el entorno, la ruta prevista, las condiciones y la preparación de la tripulación. Asegura cabos y equipo y comprueba que todos saben qué ocurrirá después.",
-        "Este ejercicio comienza con 45 m de línea ya largada y la proa sobre el ancla. Selecciona «Levar ancla» y observa cómo disminuye la longitud real. El ancla sigue desplegada durante la recogida. Espera a que esté completamente estibada antes de izar las velas y después establece un través estable.",
-        "Si la línea se tensa mientras el barco está alejado del ancla, la recogida se interrumpe. En navegación libre, avanza despacio hacia el ancla para aflojar la línea y después continúa la recogida. No uses el molinete para arrastrar el barco hacia el ancla.",
-        "En un puerto real, los planes de levar e izar dependen del abrigo, el espacio, el tráfico, el viento, la disponibilidad del motor y el barco. La preparación cómoda del simulador no es un procedimiento universal de salida."
+        "Para levar el ancla, lleva el barco hasta ella en vez de arrastrar el barco con la línea. Avanza despacio a motor o a vela hacia el ancla mientras la tripulación recoge la línea sobrante. Cuando la línea está a pique (vertical), el tirón es vertical y el ancla se suelta del fondo con facilidad. El molinete sirve para subir la línea, no para remolcar el barco.",
+        "En cuanto el ancla se separa del fondo vas a la deriva, así que recupera rápido el gobierno a motor o a vela. En este ejercicio, la proa empieza sobre el ancla. Selecciona «Levar ancla» y espera a que esté completamente estibada; después iza las velas y establece un través estable. Si la línea se tensa, la recogida se interrumpe."
       ],
       "observe": [
         "Confirma el viento y el rumbo deseado antes de liberar el barco.",
@@ -1342,13 +1340,13 @@
           "explanation": "La preparación debe preceder al momento en que el barco queda libre para moverse."
         },
         {
-          "prompt": "¿Esta salida a vela en aguas abiertas sirve para cualquier fondeadero real?",
+          "prompt": "¿Cuándo se suelta un ancla del fondo con más facilidad?",
           "options": [
-            "Sí",
-            "No; planifica según el barco, el espacio y las condiciones concretas",
-            "Solo si hay un trazador de cartas"
+            "Cuando se tira de la línea en horizontal a lo largo del fondo",
+            "Cuando la línea está a pique, vertical sobre el ancla",
+            "Cuando el barco se aleja rápido"
           ],
-          "explanation": "El ejercicio omite muchas limitaciones de fondeaderos y puertos reales."
+          "explanation": "Un tirón vertical levanta la uña del ancla. Un tirón horizontal es lo que la hace clavarse; por eso primero se lleva el barco sobre el ancla."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -1371,8 +1369,8 @@
       "title": "Prioridades ante una persona al agua",
       "concepts": [
         "Da la alarma, mantén contacto visual continuo, señala a la persona y lanza los medios de flotación y señalización adecuados. Asigna funciones y pide ayuda según la situación.",
-        "Una recuperación satisfactoria incluye volver con seguridad junto a la persona, detenerse en una posición adecuada, evitar lesiones por la hélice y subirla a bordo. La maniobra exacta depende del barco, el aparejo, las condiciones y la formación.",
-        "Aquí no hay un modelo de dinámica ni recuperación de persona al agua. La lección comprueba solo prioridades. Practica la maniobra y el sistema de recuperación propios del barco con un instructor, usando un objeto de entrenamiento en vez de poner a alguien en peligro."
+        "Después, recupera el control del barco y vuelve. Mantente cerca: muchas recuperaciones fracasan porque el barco se aleja demasiado y se pierde de vista a la persona. Planifica la aproximación final de ceñida abierta, para poder frenar largando las velas y detenerte junto a la persona. Mantén la hélice en punto muerto o parada cerca de ella.",
+        "Subir a la persona a bordo suele ser lo más difícil: un adulto mojado pesa mucho y el costado del barco es alto. Conoce el método de tu barco, como un arnés de izado, una driza en un winche o una escalera, antes de necesitarlo. Esta aplicación no tiene un modelo de persona al agua, así que la lección comprueba prioridades; practica la maniobra con un instructor y un objeto de entrenamiento."
       ],
       "observe": [
         "Asigna a una persona para señalar continuamente al náufrago sin perderlo de vista.",
@@ -1440,8 +1438,7 @@
       "concepts": [
         "Combina las habilidades sin prisas: establece un rumbo estable, ajusta bien las velas, cambia de amura pasando la proa por el viento, recupera el control y reduce velocidad hasta una parada planificada.",
         "El simulador proporciona objetivos medibles, pero no gobierno automático. Debes completar cada etapa en orden. Varar o usar el ancla antes de la etapa final de parada invalida el intento.",
-        "La etapa final utiliza un fondeadero preparado en aguas profundas y un objetivo de 180 m de línea. Espera hasta que se hayan largado los 180 m, el molinete se detenga y la velocidad sobre el fondo baje de 0.2 nudos. Reserva unos 15 minutos para el ejercicio completo. Este objetivo es específico de estas condiciones de entrenamiento.",
-        "Superarlo demuestra las tareas simuladas seleccionadas con viento constante y aguas abiertas. No demuestra competencia real de navegación, atraque, recuperación de emergencia ni patrón."
+        "La etapa final utiliza un fondeadero preparado en aguas profundas y un objetivo de 180 m de línea. Espera hasta que se hayan largado los 180 m, el molinete se detenga y la velocidad sobre el fondo baje de 0.2 nudos. Reserva unos 15 minutos para el ejercicio completo. Este objetivo es específico de estas condiciones de entrenamiento."
       ],
       "observe": [
         "Repasa la secuencia antes de seleccionar Comenzar práctica.",
@@ -1562,9 +1559,9 @@
     "sail-38": {
       "title": "Marea, profundidad y resguardo bajo la quilla",
       "concepts": [
-        "Las sondas de carta se refieren a un datum definido. Solo añade altura de marea si coinciden datum, lugar, fecha y hora. Profundidad del agua y resguardo bajo la quilla son magnitudes diferentes. Comprueba qué mide la sonda real y su corrección.",
+        "Las sondas de la carta se miden desde un nivel de bajamar definido llamado cero hidrográfico, así que casi siempre hay más agua de la que indica la carta. Suma una altura de marea prevista solo si usa el mismo datum, lugar, fecha y hora. La profundidad del agua no es el espacio bajo tu quilla, y una sonda puede medir desde la línea de flotación o desde la quilla, así que comprueba su corrección.",
         "Ejemplo estático ficticio: 2,4 m de sonda de carta más 1,1 m de marea dan 3,5 m de profundidad. Restar 1,8 m de calado deja 1,7 m bajo la quilla. Si el ejercicio exige una reserva de 0,8 m, sobran 0,9 m sobre esa reserva. Es aritmética, no autorización para cruzar un bajo.",
-        "La planificación real contempla la marea mínima durante el paso, incertidumbre de levantamientos y previsiones, olas, asentamiento dinámico, escora y orientación específica del barco. No sumes la marea otra vez a una lectura que ya indique profundidad del agua. Una lectura favorable no demuestra una ruta segura."
+        "La planificación real también tiene en cuenta la marea más baja durante el paso, los errores del levantamiento y de la previsión, las olas, la escora y que el barco se hunde más al navegar rápido en aguas poco profundas (asentamiento dinámico). No sumes otra vez la marea a la lectura de la sonda: ya muestra la profundidad real del agua. Una buena lectura no demuestra que una ruta sea segura."
       ],
       "observe": [
         "Separa datum, altura de marea, profundidad y calado en el dibujo.",
@@ -1698,7 +1695,8 @@
     "sail-42": {
       "title": "Pilotaje nocturno y comprobaciones cruzadas",
       "concepts": [
-        "Prepara la aproximación antes de oscurecer: luces y características esperadas, aguas seguras, peligros, demoras de seguridad, profundidades previstas, puntos de decisión y alternativa. Usa cartas y publicaciones vigentes. El color por sí solo no identifica una luz; las luces de tierra pueden confundir.",
+        "Planifica la aproximación nocturna de día: anota las luces que esperas ver, en orden, y cómo reconocerás cada una, además de los peligros, las aguas seguras, las profundidades previstas y una alternativa segura. Una luz se identifica por su color, su ritmo y su período: «Fl W 6s» es un destello blanco cada 6 segundos. Cronometra varios ciclos completos; el color solo no basta, y las luces de tierra pueden confundir.",
+        "Una enfilación luminosa son dos luces, la trasera más alta y más lejana. Cuando la luz trasera está justo encima de la delantera, estás en la línea segura. Si la trasera se ve a la derecha de la delantera, estás a la derecha de la línea: desplázate a la izquierda hasta que vuelvan a alinearse. Dos marcas en tierra usadas de la misma forma de día también forman una enfilación.",
         "Contrasta la posición electrónica con luces identificadas, demoras, enfilaciones y tendencias de profundidad, considerando marea y correcciones instrumentales. Dos pantallas con el mismo GPS no son posiciones independientes. Verifica escala, datum y actualizaciones: un símbolo preciso puede estar equivocado.",
         "Aproximación ficticia: el plotter indica la ruta correcta, pero la enfilación luminosa esperada y la profundidad discrepan. No entres en agua más somera o restringida para resolver la duda. Reduce el riesgo, permanece en aguas seguras verificadas o vuelve a ellas si es viable, comprueba observaciones y revisa el plan."
       ],
@@ -1732,9 +1730,9 @@
     "sail-43": {
       "title": "Entrar en la marina a motor",
       "concepts": [
-        "Comienza fuera de Haven con ambas velas bajadas. Usa marcha avante y pequeñas correcciones de timón para seguir la aproximación señalizada. La carta y las marcas en el agua muestran el objetivo actual.",
-        "Llega a la primera marca al 090°, gira hacia la segunda al 135° y estabilízate al 180° en el canal. No superes 2,5 nudos; cada marca tiene sus propios límites de rumbo y velocidad.",
-        "Anticipa la inercia. Pasa por punto muerto y usa un breve impulso de marcha atrás para detenerte en el círculo final. Mantén menos de 0,15 nudos en punto muerto durante cinco segundos sin tocar muelles ni barcos."
+        "Un barco a motor no tiene frenos: la única forma rápida de frenar es dar marcha atrás, e incluso eso lleva tiempo. Avante y atrás describen el empuje de la hélice, no hacia dónde te mueves; en punto muerto el empuje desaparece, pero el barco sigue moviéndose. Así que planifica cada parada con mucha antelación.",
+        "A poca velocidad pasa poca agua por el timón, así que gobierna mal. Un breve impulso avante lanza el agua de la hélice directamente sobre el timón y te da gobierno aunque el barco apenas se mueva, sin añadir mucha velocidad. Un barco gira alrededor de un punto cercano a la proa, así que al girar la popa se abre hacia el lado contrario: vigílala cerca de pantalanes y otros barcos.",
+        "En este ejercicio: sigue las marcas al 090°, 135° y 180° hasta el canal, sin superar 2,5 nudos. Después pasa a punto muerto y da un breve impulso de marcha atrás para detenerte en el círculo final, y termina en punto muerto por debajo de 0,15 nudos durante cinco segundos, sin tocar muelles ni barcos."
       ],
       "observe": [
         "Usa el deslizador del motor o W/S; N selecciona punto muerto. Centra el timón antes de pasarte.",
@@ -1783,9 +1781,9 @@
     "sail-44": {
       "title": "Atracar en una plaza de la marina",
       "concepts": [
-        "La plaza norte de Haven está vacía para practicar. Comienzas en el canal mirando al este, al 090°, alineado con el espacio entre los dos pantalanes del norte.",
-        "Acércate a la marca ámbar a 0,3–1 nudo. Entra en la plaza y detén el centro del barco a menos de 2 metros del objetivo verde, al 090° ±10°. Mantén las velas bajadas y el ancla recogida.",
-        "Usa impulsos breves avante y atrás, pasando por punto muerto. Termina por debajo de 0,15 nudos en punto muerto durante cinco segundos. Tocar un muelle o barco termina el intento; las amarras no se evalúan."
+        "Entra en un atraque a la velocidad a la que aceptarías tocar el muelle, normalmente al paso de una persona o menos. Usa impulsos breves de motor con punto muerto entre ellos: cada impulso da un poco de gobierno y velocidad, y el punto muerto te deja valorar la deriva. Es más fácil añadir un poco de potencia que quitar demasiada.",
+        "A poca velocidad el viento empuja el barco de lado, y la proa, alta y ligera, es la primera en desviarse. En marcha atrás, la mayoría de las hélices también tiran de la popa hacia un lado (efecto lateral de la hélice), así que dar atrás para frenar puede desviar la popa. Planifica la aproximación para que estos efectos te acerquen al atraque y no te alejen, y guarda una salida por si sale mal.",
+        "En este ejercicio: acércate a la marca ámbar a 0,3–1 nudo, entra en la plaza norte y detén el centro del barco a menos de 2 metros del objetivo verde, al 090° ±10°. Termina en punto muerto por debajo de 0,15 nudos durante cinco segundos. Cualquier contacto termina el intento. El efecto lateral de la hélice y las amarras no forman parte de este modelo."
       ],
       "observe": [
         "El círculo verde marca el centro del barco, no la proa. Deja espacio delante y a ambos lados.",
@@ -1830,9 +1828,9 @@
     "sail-45": {
       "title": "Desatracar y salir de la marina",
       "concepts": [
-        "Comienzas detenido en la plaza norte con la proa al este. Las amarras ya están soltadas. Mantén las velas bajadas y usa marcha atrás para salir recto al canal.",
-        "Retrocede a la primera marca al 090° a 0,3–1,2 nudos atrás. La respuesta del timón se invierte al retroceder. Detente en el segundo objetivo y selecciona punto muerto antes de girar.",
-        "Una vez libre de los pantalanes, usa avante y timón a babor para girar al norte. Sigue las dos marcas al 000° y establece velocidad avante controlada. No superes 2,5 nudos y evita otros barcos."
+        "Al ir hacia atrás, el timón queda en el extremo que va delante, así que gobierna poco y al revés: el mismo movimiento del timón gira la proa hacia el lado contrario que al avanzar. Mantén una velocidad de retroceso baja y constante, mueve poco el timón y mira hacia donde vas.",
+        "Retrocede lo suficiente para librar los pantalanes antes de girar. Cuando el barco gira, se mueven los dos extremos, así que girar entre los pantalanes puede hacer que los golpees. Detente, pasa a punto muerto y luego gira con marcha avante, donde el gobierno es más fuerte y funciona de forma normal.",
+        "En este ejercicio las amarras ya están soltadas. Retrocede a la primera marca al 090° a 0,3–1,2 nudos atrás, detente en el segundo objetivo y después usa avante y timón a babor para girar al norte y seguir las marcas de salida al 000°. No superes 2,5 nudos y mantente lejos de otros barcos."
       ],
       "observe": [
         "Mira a popa antes de retroceder. Mantén el timón centrado en el tramo recto.",
@@ -1887,7 +1885,7 @@
       "concepts": [
         "Determina primero si los buques están a la vista, si existe riesgo de abordaje y si hay alcance, canal angosto o condición especial. Estos ejemplos aplican reglas internacionales, a la vista, en aguas abiertas y sin condición especial. Ambos mantienen vigilancia y obligaciones de evitar el abordaje.",
         "Babor y estribor se definen mirando a proa. Viento por babor significa amura a babor; por estribor, amura a estribor. En la Regla 12, la banda de barlovento es la contraria a la que lleva la vela mayor. Mira la mayor, no solo el foque ni la posición del otro barco en la pantalla.",
-        "Con riesgo y amuras distintas, se aparta el velero amurado a babor. Con la misma amura, se aparta el de barlovento. Si vas amurado a babor y ves un velero a barlovento cuya amura no puedes determinar con certeza, apártate. Esta regla de duda no significa que siempre tenga preferencia el velero que ves a tu derecha.",
+        "Con riesgo y amuras distintas, se aparta el velero amurado a babor. Con la misma amura, se aparta el de barlovento, porque normalmente puede arribar con más facilidad. Si vas amurado a babor y ves un velero a barlovento cuya amura no puedes determinar con certeza, apártate. Esta regla de duda no significa que siempre tenga preferencia el velero que ves a tu derecha.",
         "Comprueba el alcance antes que las amuras. Alcanzas cuando te aproximas desde más de 22,5° a popa del través del otro buque: el sector de 135° alrededor de su popa. De noche corresponde a ver su luz de alcance y ninguna de costado. Todo buque que alcanza se mantiene apartado, incluso un velero que alcanza a un motor.",
         "Si dudas de si estás alcanzando, considérate buque que alcanza. La obligación continúa hasta quedar definitivamente pasado y franco. Estar por el través o cambiar la demora relativa no convierte un alcance ya establecido en un cruce."
       ],
@@ -1923,7 +1921,7 @@
       "concepts": [
         "Según la Regla 3, un velero navega a vela sin utilizar su maquinaria propulsora. Un yate propulsado por motor es de propulsión mecánica aunque lleve velas izadas. Un motor usado solo para cargar baterías no establece por sí mismo propulsión mecánica. Identifica la propulsión real.",
         "Entre dos buques de motor a la vista que cruzan con riesgo, se aparta quien ve al otro por estribor y, si las circunstancias lo permiten, evita cortarle la proa. El otro mantiene inicialmente rumbo y velocidad según la Regla 17. Cambia de perspectiva: quien está a estribor de A puede ver a A por babor.",
-        "Dos buques de motor en rumbos opuestos o casi opuestos con riesgo caen ambos a estribor para pasar babor con babor. Si dudas de si existe vuelta encontrada, considérala existente. Esta regla es para buques de motor; no la apliques automáticamente a dos veleros.",
+        "Dos buques de motor en rumbos opuestos o casi opuestos con riesgo caen ambos a estribor para pasar babor con babor. Si los dos giran a la derecha, siempre se alejan el uno del otro. Si dudas de si existe vuelta encontrada, considérala existente. Esta regla es para buques de motor; no la apliques automáticamente a dos veleros.",
         "En un encuentro ordinario a la vista, un motor en navegación se aparta de un velero. Comprueba antes las excepciones de las Reglas 9, 10 y 13 y los estados especiales. Un velero que alcanza a un motor sigue apartándose; un yate propulsado por motor no reclama condición de velero. El tamaño por sí solo no decide."
       ],
       "observe": [
@@ -1957,7 +1955,7 @@
       "title": "Ceder y mantener: actuar mientras evoluciona el riesgo",
       "concepts": [
         "Vigila por vista, oído y todos los medios apropiados. Usa velocidad segura según visibilidad, tráfico, maniobrabilidad y condiciones. Una demora casi constante con distancia decreciente indica riesgo; una demora cambiante no siempre lo excluye, sobre todo cerca de buques grandes o remolques. Ante la duda, considera que existe riesgo.",
-        "El buque que cede actúa pronto y de forma decidida para quedar bien apartado. Haz cambios de rumbo o velocidad perceptibles cuando sea posible; evita sucesivos cambios pequeños. Comprueba espacio y tráfico. Reduce, detén o invierte la propulsión si hace falta para evitar el abordaje o evaluar, y vigila hasta quedar pasado y franco.",
+        "El buque que cede actúa pronto y de forma decidida para quedar bien apartado. Haz cambios de rumbo o velocidad perceptibles cuando sea posible; evita sucesivos cambios pequeños: el otro buque debe poder ver que estás actuando, y los cambios pequeños parecen no ser ningún cambio. Comprueba espacio y tráfico. Reduce, detén o invierte la propulsión si hace falta para evitar el abordaje o evaluar, y vigila hasta quedar pasado y franco.",
         "La Regla 17 tiene tres fases. Al principio, el buque que mantiene conserva rumbo y velocidad. Puede actuar por su propia maniobra cuando resulte evidente que el otro no actúa adecuadamente. Cuando estén tan cerca que la acción del que cede por sí sola no pueda evitar el abordaje, debe actuar como mejor ayude a evitarlo. Evalúa opciones antes de esa fase final.",
         "En un cruce entre motores, el buque que mantiene y actúa según la Regla 17(a)(ii), si las circunstancias lo permiten, no debe caer a babor por otro situado a su babor. Es una restricción concreta, no una orden universal de girar a estribor. El buque que cede conserva su obligación aunque el otro actúe.",
         "No hay una distancia segura universal ni un punto fijo para girar a última hora. Evalúa las circunstancias continuamente. La Regla 2 mantiene la responsabilidad por la buena práctica marinera y circunstancias especiales; apartarse de las reglas solo se justifica si es necesario para evitar peligro inmediato. Mantener no da derecho incondicional a colisionar."
@@ -1993,7 +1991,7 @@
       "title": "Buques especiales, canales angostos y vías de circulación",
       "concepts": [
         "Identifica el estado real, no la apariencia o tamaño. «Sin gobierno» significa que circunstancias excepcionales impiden maniobrar según las reglas. «Maniobra restringida» depende del trabajo, como dragado. «Dedicado a la pesca» exige artes que restrinjan la maniobrabilidad; el curricán que no la limita no basta. Confirma luces, marcas y situación.",
-        "Salvo lo dispuesto en las Reglas 9, 10 y 13, un velero ordinario en navegación se aparta de buques sin gobierno, de maniobra restringida y dedicados a la pesca. Un motor ordinario también se aparta de veleros. Según la Regla internacional 18(d), los buques salvo las dos primeras categorías evitarán, si las circunstancias lo permiten, estorbar a uno restringido por su calado con las señales requeridas. Este conserva especial cautela.",
+        "La idea: los buques que no pueden girar o detenerse con facilidad reciben espacio de los que sí pueden. Salvo lo dispuesto en las Reglas 9, 10 y 13, un velero ordinario en navegación se aparta de buques sin gobierno, de maniobra restringida y dedicados a la pesca. Un motor ordinario también se aparta de veleros. Según la Regla internacional 18(d), los buques salvo las dos primeras categorías evitarán, si las circunstancias lo permiten, estorbar a uno restringido por su calado con las señales requeridas. Este conserva especial cautela.",
         "En un canal angosto, navega cerca del límite exterior de estribor cuando sea seguro y practicable. Un velero o buque menor de 20 m no estorbará al que solo puede navegar seguro dentro del canal. No cruces si lo estorbas. Los pesqueros no estorban a otros buques que navegan por el canal. Prevé recodos y evita fondear cuando sea posible.",
         "En un dispositivo aprobado por la OMI, sigue el sentido de la vía e incorpórate o sal por el costado con un ángulo pequeño. Evita cruzar si es posible; si debes hacerlo, lleva rumbo lo más perpendicular posible al flujo. Es el rumbo de proa, no la trayectoria corregida por corriente. Veleros y menores de 20 m no estorban a motores que siguen la vía. Evita zonas de separación salvo permiso reglamentario.",
         "«No estorbar» exige actuar pronto para dejar espacio suficiente antes de que aparezca riesgo de abordaje. La obligación continúa si surge riesgo y ambos siguen sujetos a las reglas de prevención. Una vía de circulación no concede preferencia incondicional. Consulta también instrucciones portuarias, cartas y avisos locales."
@@ -2101,7 +2099,7 @@
       "title": "Manejar un catamarán con dos motores",
       "concepts": [
         "Un catamarán de crucero tiene dos cascos y motores separados. Ten en cuenta su manga al elegir atraque y espacio para girar. Poco calado no garantiza paso libre: comprueba barco, profundidad y márgenes. Los costados altos y la cabina ancha reciben viento a baja velocidad.",
-        "Mandos iguales producen principalmente avance o retroceso. Con timón centrado, babor avante y estribor atrás giran la proa a estribor; al invertirlos gira a babor. Usa impulsos suaves pasando por punto muerto. Igual posición de palanca no garantiza igual empuje avante y atrás: vigila rumbo y deriva.",
+        "Los motores están muy separados, así que cada uno empuja con un brazo de palanca largo: empujes opuestos hacen girar el barco casi sobre sí mismo. Mandos iguales producen principalmente avance o retroceso. Con timón centrado, babor avante y estribor atrás giran la proa a estribor; al invertirlos gira a babor. Usa impulsos suaves pasando por punto muerto. Igual posición de palanca no garantiza igual empuje avante y atrás: vigila rumbo y deriva.",
         "Empiezas en aguas abiertas con velas bajadas. Usa los mandos separados de babor y estribor para girar de 000° a 090° dentro del círculo inicial. Detén el giro y mantén ambos motores en punto muerto cinco segundos. Después usa el mando conjunto para llegar a la siguiente marca y detenerte en el círculo final. No superes 2,5 nudos y evita otros barcos.",
         "A vela, un catamarán puede escorar poco aunque aumenten las cargas. Riza pronto según el fabricante, previsión, mar y tripulación. La manga aporta estabilidad inicial, no inmunidad al vuelco. Poca escora no justifica llevar más vela."
       ],
@@ -2152,9 +2150,9 @@
     "sail-53": {
       "title": "Navega una aproximación nocturna",
       "concepts": [
-        "Comienza en Haven de noche, con las velas arriadas y el motor en punto muerto. Abre la carta antes de moverte. El faro emite un destello blanco cada 6 segundos; la boya 1, uno amarillo cada 4 segundos. Observa ciclos completos y compara color y período con la carta.",
-        "Aplica poco avante y gobierna al 000° hacia el primer punto, pasando al este de la boya 1. Gira hacia 027° para el segundo. Las dos luces blancas fijas de North Head forman una enfilación: la trasera, más alta, debe verse sobre la delantera. Contrasta la alineación con el rumbo, la posición en la carta y una profundidad mínima de 3 metros.",
-        "Mantén menos de 3 nudos. Reduce antes del círculo final, da un breve impulso atrás para frenar y vuelve a punto muerto. Mantén 027° y menos de 0,15 nudos durante cinco segundos. Si las referencias discrepan, permanece en aguas seguras verificadas. La ruta y las características de las luces son ficticias."
+        "De noche, una luz se reconoce por su color, su ritmo y su período, el tiempo que dura un ciclo completo. Observa dos o tres ciclos completos y cuenta, y luego compáralos con la carta. El color solo no basta: en tierra hay muchas luces blancas. Protege tu visión nocturna: baja el brillo de las pantallas y usa luz roja en la bañera.",
+        "Una enfilación luminosa son dos luces, la trasera más alta y más lejana. Cuando la luz trasera está justo encima de la delantera, estás en la línea. Si la trasera se ve a la derecha, estás a la derecha de la línea: desplázate a la izquierda hasta que vuelvan a alinearse. Contrástalo con el rumbo, la posición en la carta y la profundidad.",
+        "En este ejercicio (luces ficticias), el faro emite un destello blanco cada 6 segundos y la boya 1, uno amarillo cada 4 segundos. Gobierna al 000° con poco avante, pasando al este de la boya 1, y después entra en la enfilación al 027°. Mantén menos de 3 nudos y al menos 3 metros de profundidad; luego reduce, da un breve impulso atrás y mantén menos de 0,15 nudos en punto muerto al 027° durante cinco segundos."
       ],
       "observe": [
         "Observa dos ciclos completos del faro, de 6 segundos cada uno, antes de partir. Las luces se detienen al pausar la simulación.",

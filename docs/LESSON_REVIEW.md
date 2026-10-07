@@ -2,6 +2,8 @@
 
 Scope: the reader text of all 53 lessons (`concepts`, `observe`, `mistake`, `quiz`, `transfer`) and the 13 "Learn more" topic guides (`src/learning/instrument-guides.js`, opened by **Explore this topic**). The goal is to judge each lesson against one test: **after reading it, does the learner understand how to control the boat, and why it behaves that way?** Explaining the app is allowed, but it is not the purpose of a lesson.
 
+**Progress:** Lessons 05–53 have been rewritten following this review, in all six languages. Lessons 01–04 (Module 1) are not done yet. Done beyond the review: the "Explore this topic" mapping now covers all 53 lessons. Not done: merging 27/41 (they were shortened instead), turning L50's status lights into a figure, and the plain-language pass on 37, 40, 41, 50 and 51. Interactive diagrams are planned in `docs/MINILABS_PLAN.md`.
+
 Length target: keep roughly today's page count per lesson. Where a lesson gains a "why" page, it should lose a page of simulator explanation.
 
 ## What is wrong across the course

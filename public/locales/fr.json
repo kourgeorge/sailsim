@@ -693,9 +693,9 @@
     "sail-16": {
       "title": "Retrouvez la propulsion",
       "concepts": [
-        "Être bout au vent signifie être arrêté ou presque, face au vent. Les voiles faseyent et le gouvernail perd son efficacité à mesure que la vitesse baisse.",
-        "Évitez cette situation en gardant de l’erre pendant le virement et en ne pinçant pas le vent. Cet exercice commence avec une erre résiduelle en avant : abattez rapidement et réglez pour retrouver de la propulsion.",
-        "Un vrai voilier complètement arrêté peut nécessiter une voile à contre, l’aide du moteur ou une méthode propre au bateau. Les voiles à contre ne sont pas modélisées. Le moteur est disponible en navigation libre, mais cet exercice exige le point mort ; recommencez si toute efficacité de barre est perdue."
+        "Être bout au vent signifie être arrêté ou presque, face au vent. Les voiles faseyent, il n’y a donc plus de propulsion, et le gouvernail perd son efficacité à mesure que la vitesse baisse.",
+        "Évitez cette situation en gardant de la vitesse pendant le virement et en ne pinçant pas le vent. Si vous le remarquez tôt, profitez de la vitesse qui reste : abattez rapidement jusqu’à ce que les voiles se gonflent, puis réglez pour retrouver de la propulsion.",
+        "Un bateau complètement arrêté a besoin d’une autre façon de tourner. Sur un vrai voilier, l’équipage peut tenir le foc à contre d’un côté pour que le vent repousse l’étrave, ou laisser le bateau reculer et le faire pivoter à la barre, en se rappelant que la barre agit à l’envers en marche arrière. Certains équipages utilisent le moteur. Les voiles à contre ne sont pas modélisées ici : cet exercice commence donc avec un peu de vitesse. Utilisez-la avant qu’elle ne disparaisse."
       ],
       "observe": [
         "Utilisez l’erre restante pour vous éloigner du 315°.",
@@ -713,13 +713,13 @@
           "explanation": "Utilisez l’efficacité restante du gouvernail pour sortir de la zone non navigable."
         },
         {
-          "prompt": "Cet exercice enseigne-t-il toutes les méthodes de reprise d’un vrai voilier complètement arrêté ?",
+          "prompt": "Le bateau s’est arrêté face au vent et commence à reculer. Que devient la barre ?",
           "options": [
-            "Oui",
-            "Non ; il évalue la reprise sous voiles avec une erre résiduelle",
-            "Seulement tribord amures"
+            "Elle ne fonctionne plus du tout",
+            "Elle agit à l’envers : le même coup de barre fait tourner l’étrave de l’autre côté",
+            "Elle agit exactement comme en marche avant"
           ],
-          "explanation": "L’exercice traite la reprise avec de l’erre ; la méthode réelle dépend du bateau et de la situation."
+          "explanation": "En marche arrière, l’eau arrive sur le gouvernail par l’arrière, donc son effet s’inverse. Les équipages s’en servent, avec un foc à contre, pour sortir l’étrave de la zone interdite."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -738,11 +738,11 @@
       "concepts": [
         "Le vent apparent est l’écoulement d’air relatif au voilier. Le vent météo est référencé au sol fixe ; le vent relatif à l’eau s’obtient en soustrayant le courant de cette vitesse de l’air. Le « vent réel » peut être référencé au sol ou à l’eau : vérifiez la convention de l’instrument.",
         "Quand la vitesse surface augmente sur un travers stable, le vent apparent vient généralement davantage de l’avant que le vent relatif à l’eau. Au portant, se déplacer dans le sens du flux d’air peut réduire la vitesse apparente. Si le vent relatif à l’eau est nul, sa direction est indéfinie, mais un voilier avançant dans l’eau peut toujours ressentir un flux apparent.",
-        "Comparez Vent relatif à l’eau et Vent apparent sur l’écran multifonction de bord ou le tableau de bord. Les allures, la zone interdite et la réponse modélisée de la bordure utilisent le vent relatif à l’eau. La pression des voiles, les coefficients et les angles d’écoute conseillés utilisent le vent apparent. Ce modèle empirique ne remplace pas l’observation des penons et de la forme des voiles.",
+        "Comparez Vent relatif à l’eau et Vent apparent sur l’écran de bord. Servez-vous du vent relatif à l’eau pour nommer votre allure et la zone interdite ; réglez les voiles sur le vent apparent, car c’est l’air qu’elles reçoivent réellement. Les penons et la forme des voiles montrent toujours directement le vent apparent.",
         "Une voile peut fonctionner comme une aile d’avion : dévier l’air produit une force aérodynamique comportant une composante vers l’avant et une composante latérale. La quille, la dérive ou les foils immergés résistent au déplacement latéral. Au travers ou au largue, une voile bien réglée peut encore propulser le bateau quand sa vitesse dépasse celle du vent réel. L’accélération cesse lorsque la force propulsive équilibre la résistance.",
         "Les voiliers de course efficaces peuvent donc dépasser le vent réel. Des coques légères et des voiles efficaces y contribuent ; les foils peuvent soulever la coque au-dessus de l’eau et réduire davantage la résistance. L’énergie vient du vent en mouvement par rapport à l’eau. Le vent apparent décrit l’air rencontré par la voile en mouvement ; le déplacement du bateau ne crée aucune énergie supplémentaire. Un voilier de croisière ordinaire peut avoir trop de résistance pour dépasser le vent.",
         "Exemple sans courant ni dérive : un voilier de course va au nord à 30 nœuds tandis qu’un vent de 20 nœuds vient de l’ouest. Les vitesses sont perpendiculaires. Le vent apparent vaut √(20² + 30²) ≈ 36,1 nœuds et arrive à environ 34° sur bâbord avant. Le calcul suppose la vitesse du bateau ; il ne prouve pas que tout bateau puisse atteindre 30 nœuds. Au vent arrière exact, avancer à la vitesse du vent supprime au contraire le vent apparent dans ce cas simple.",
-        "Essayez Défis → Atelier du vent apparent. Relevez le vent voiles affalées, puis hissez et réglez au travers. Observez le vent apparent se renforcer et revenir vers l’avant à mesure que le bateau accélère. Abattez au grand largue et comparez à nouveau. Cet exercice avec le voilier de croisière montre l’évolution du flux ; l’exemple du voilier de course explique comment une moindre résistance permet de dépasser le vent."
+        "Essayez-le dans Défis → Atelier du vent apparent : relevez le vent voiles affalées, puis au travers, puis au grand largue. Au travers, le vent apparent se renforce et revient vers l’avant à mesure que le bateau accélère ; au grand largue, il faiblit."
       ],
       "observe": [
         "Imaginez rouler à vélo dans un air immobile : vous sentez du vent de face.",
@@ -760,13 +760,13 @@
           "explanation": "Les voiles interagissent avec l’écoulement d’air relatif au voilier en mouvement."
         },
         {
-          "prompt": "Qu’utilise ce prototype pour calculer les forces de voile ?",
+          "prompt": "Vous accélérez au travers, à cap constant. Que devient le vent apparent ?",
           "options": [
-            "Un modèle empirique utilisant le vent apparent",
-            "Une simulation aérodynamique complète validée",
-            "Un écoulement mesuré en tête de mât"
+            "Il revient vers l’avant et se renforce",
+            "Il recule vers l’arrière et faiblit",
+            "Il ne change pas"
           ],
-          "explanation": "Le vent apparent reflète le mouvement du bateau. Le modèle empirique omet encore de nombreux détails aérodynamiques réels."
+          "explanation": "Le mouvement du bateau ajoute une brise venant de l’avant. Combinée au vent réel, elle fait tourner le vent apparent vers l’étrave et le renforce : vous bordez donc un peu."
         },
         {
           "prompt": "Pourquoi un voilier de course efficace peut-il dépasser le vent réel au travers ?",
@@ -792,9 +792,9 @@
     "sail-18": {
       "title": "Prenez un ris avant d’y être contraint",
       "concepts": [
-        "Prendre un ris réduit la surface de voile pour améliorer le contrôle quand le vent augmente. La décision doit tenir compte des prévisions, des rafales, de l’état de la mer, de l’équipage et du comportement du bateau, pas d’une règle universelle de vitesse du vent.",
-        "Une gîte excessive, une barre lourde et un contrôle difficile justifient de réévaluer tôt la voilure. Attendre peut rendre le travail plus difficile lorsque les conditions se dégradent.",
-        "La commande Ris réduit la hauteur de grand-voile et la propulsion simulée. Elle n’enseigne pas la manipulation des bosses de ris, de l’œillet d’amure ou de la drisse."
+        "La force du vent augmente avec le carré de sa vitesse : 20 nœuds poussent environ quatre fois plus fort que 10 nœuds, pas deux fois. Une hausse modérée du vent produit donc une forte hausse de la force qui fait gîter le bateau et charge le gréement. Un ris rend la grand-voile plus petite et plus basse : la force est plus faible et s’exerce plus bas, ce qui réduit la gîte.",
+        "Trop de gîte ne rend pas le bateau plus rapide. La coque dérape davantage, le gouvernail accroche moins, et le bateau cherche sans cesse à remonter au vent (barre ardente). Signes qu’il est temps de prendre un ris : une barre lourde, le bateau qui part au lof dans les rafales, et de l’eau sur le passavant. « Prenez un ris dès que vous y pensez » : c’est bien plus facile avant que le vent forcisse que pendant.",
+        "Il n’existe pas de vitesse de vent unique pour prendre un ris : cela dépend du bateau, de l’équipage, des rafales et de la mer. Comparez la gîte et la barre avant et après un ris, au même cap. La commande Ris de l’application réduit la grand-voile en une seule étape ; sur un vrai bateau, il faut manœuvrer la drisse et les bosses de ris sous tension, avec un équipage qui travaille ensemble."
       ],
       "observe": [
         "Observez la gîte et la vitesse dans les 22 nœuds de vent de l’exercice.",
@@ -812,13 +812,13 @@
           "explanation": "La prise de ris est une décision de contrôle fondée sur le bateau, l’équipage et les conditions."
         },
         {
-          "prompt": "Quelle compétence réelle le bouton Ris n’évalue-t-il pas ?",
+          "prompt": "Le vent passe de 10 à 20 nœuds. À peu près combien de fois plus fort pousse-t-il sur les voiles ?",
           "options": [
-            "Reconnaître la réduction de surface de voile",
-            "Lire la vitesse du bateau",
-            "Manœuvrer les drisses et bosses de ris sous tension"
+            "Deux fois plus fort",
+            "Pareil",
+            "Environ quatre fois plus fort"
           ],
-          "explanation": "La commande unique représente plusieurs tâches physiques importantes de manière simplifiée."
+          "explanation": "La force du vent augmente avec le carré de sa vitesse : 2 × 2 = 4. C’est pourquoi il faut décider de prendre un ris plus tôt que beaucoup de débutants ne le pensent."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -834,9 +834,9 @@
     "sail-19": {
       "title": "Réduisez volontairement la puissance",
       "concepts": [
-        "Réduire la propulsion ralentit le bateau, mais l’erre demeure. Gardez de l’espace et ne traitez pas un voilier comme une voiture munie de freins immédiats.",
-        "Vous pouvez décharger une partie de la propulsion en choquant l’écoute de grand-voile. Affaler supprime la puissance simulée des voiles ; le bateau continue sur son erre et perd de la gouverne en ralentissant.",
-        "Dans cet exercice, réduisez la puissance, affalez et attendez de passer sous 1 nœud. L’ancre ne remplace pas une réduction de vitesse planifiée."
+        "Un voilier n’a pas de freins. Quand vous retirez la puissance des voiles, le bateau continue sur son erre et ne ralentit que sous l’effet du frottement de l’eau ; un bateau lourd peut glisser très loin. Prévoyez l’arrêt tôt et gardez de l’espace.",
+        "Façons de retirer la puissance, de la plus rapide à la plus complète : choquer les écoutes jusqu’à ce que les voiles faseyent, pour qu’elles ne travaillent plus comme des ailes ; lofer vers le vent, ce qui réduit l’angle et la propulsion ; affaler les voiles, ce qui supprime toute propulsion. En ralentissant, le gouvernail accroche moins : la barre devient lente et molle.",
+        "Sur un vrai voilier, vous pouvez aussi vous mettre à la cape : régler les voiles pour qu’elles s’opposent, afin que le bateau s’arrête presque et reste calme. Ce n’est pas modélisé ici. Dans cet exercice, affalez les voiles et attendez de passer sous 1 nœud. L’ancre n’est pas un frein."
       ],
       "observe": [
         "Comparez la vitesse avant et après l’affalage.",
@@ -880,8 +880,8 @@
       "title": "Fixez une limite météo",
       "concepts": [
         "Consultez une prévision marine couvrant toute la sortie et une marge au-delà. Considérez le vent moyen, les rafales, les changements de direction, l’état de la mer, la visibilité, la température, les marées et les effets locaux.",
-        "Le vent contre le courant peut rendre les vagues plus raides. Un vent de terre peut compliquer le retour ; une côte exposée sous le vent peut laisser peu d’espace pour gérer une avarie.",
-        "Décidez avant le départ des conditions de départ ou de renoncement et des solutions de repli. La simulation permet de régler un vent constant, mais ne représente ni fronts de rafales, ni dangers de déferlantes, ni prévisions, ni courants de marée variables ; le courant réglable est une approximation constante."
+        "Le vent contre le courant crée des vagues courtes et raides : le courant resserre les vagues, qui deviennent plus hautes, plus rapprochées et peuvent déferler. Une côte sous le vent est une côte vers laquelle souffle le vent. Elle est dangereuse car, en cas d’avarie (moteur, voile ou gouvernail), le vent vous pousse dessus. Un vent de terre semble calme près de la côte, mais peut rendre le retour difficile.",
+        "Fixez vos limites de départ ou de renoncement et vos solutions de repli avant de partir : quel changement vous ferait écourter la sortie, et où iriez-vous à la place. Dans le simulateur, le vent est constant et le courant ne change pas : entraînez ce jugement ici sous forme de préparation ; la vraie météo, elle, évolue."
       ],
       "observe": [
         "Avec un équipage débutant, décidez quel changement vous ferait raccourcir ou annuler la sortie.",
@@ -899,13 +899,13 @@
           "explanation": "C’est l’ensemble de la prévision et son évolution qui comptent, pas un seul chiffre."
         },
         {
-          "prompt": "Cette simulation peut-elle évaluer la conduite dans les déferlantes ou par vent contre marée ?",
+          "prompt": "Un vent fort est prévu, soufflant vers la côte que vous comptez longer. Pourquoi est-ce inquiétant ?",
           "options": [
-            "Non",
-            "Oui, avec l’afficheur de vitesse",
-            "Seulement avec un ris"
+            "Il fausse le compas",
+            "C’est une côte sous le vent : en cas d’avarie, le vent vous pousse vers la terre",
+            "Il calme toujours la mer"
           ],
-          "explanation": "Ces dynamiques environnementales ne sont pas implémentées et nécessitent un enseignement distinct."
+          "explanation": "Avec un vent qui souffle vers la côte, vous avez peu d’espace pour gérer une avarie. Choisissez une route avec plus d’eau à courir ou changez de plan."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
@@ -914,8 +914,8 @@
       "title": "Lisez une carte d’entraînement",
       "concepts": [
         "Une carte est un outil de préparation, pas une image à suivre aveuglément. Vérifiez l’échelle, l’orientation, les profondeurs, les dangers, les marques, la source et l’actualité de la carte.",
-        "Notre carte fictive montre les îles, votre voilier et des bouées ambrées. Ces marques sont des cibles d’exercice, pas une représentation complète du balisage AISM/IALA.",
-        "Avant une vraie traversée, apprenez les symboles, le zéro hydrographique, le balisage local, les hauteurs de marée et le pied de pilote. Rien de cela ne doit être déduit de cette carte simplifiée."
+        "Les profondeurs sont des chiffres, généralement en mètres, et des lignes appelées isobathes relient les points de même profondeur. Les petits fonds sont en général teintés de bleu, les zones qui découvrent à marée basse en vert, et la terre en beige ou jaune. Mesurez les distances sur l’échelle des latitudes, sur le bord de la carte : une minute de latitude vaut un mille nautique.",
+        "Les bouées vous indiquent quoi faire. Les marques latérales signalent les deux côtés d’un chenal, et chacune se laisse d’un côté défini ; les marques cardinales indiquent de quel côté d’un danger se trouvent les eaux sûres. Quelle couleur va de quel côté dépend de la région (AISM/IALA A ou B) : vérifiez avant de partir. Dans cette application, les bouées ambrées ne sont que des cibles d’exercice."
       ],
       "observe": [
         "Ouvrez la carte. Repérez le nord, votre position et la prochaine marque.",
@@ -924,13 +924,13 @@
       "mistake": "Supposer qu’un écran affichant votre position est une carte marine complète et à jour.",
       "quiz": [
         {
-          "prompt": "Que représentent les trois bouées ambrées de l’application ?",
+          "prompt": "Sur une carte, que mesure une minute de latitude sur l’échelle latérale ?",
           "options": [
-            "L’ensemble du système international de balisage",
-            "Les cibles du parcours d’entraînement",
-            "Des marques garantissant des eaux sûres sur une vraie carte"
+            "Un kilomètre",
+            "Un mille nautique",
+            "Un nœud"
           ],
-          "explanation": "Elles servent à s’exercer à naviguer, pas à enseigner toutes les marques réelles."
+          "explanation": "On mesure les distances sur l’échelle des latitudes, sur le bord de la carte, à la hauteur de votre position. L’échelle des longitudes, en haut et en bas, varie avec la latitude : on ne l’utilise pas pour les distances."
         },
         {
           "prompt": "Que doit comprendre la vérification d’une vraie carte ?",
@@ -949,7 +949,7 @@
       "concepts": [
         "Un relèvement est la direction entre votre position et une cible. Avant de le suivre, déterminez si la route directe est sûre et praticable à la voile.",
         "Un relèvement direct peut mener dans la zone non navigable face au vent ou traverser une terre. Dans ce cas, préparez une autre route plutôt que de forcer l’étrave vers la cible.",
-        "L’exercice commence au sud de la bouée 1. Utilisez la carte, gouvernez vers la marque et passez à moins de 35 mètres en maîtrisant la vitesse."
+        "L’endroit où pointe l’étrave n’est pas toujours celui où va le bateau. Le courant et la dérive vous poussent de côté : visez un peu en amont du courant par rapport à la marque. Vérifiez de temps en temps le relèvement de la marque : s’il change sans cesse alors que vous tenez votre cap, vous êtes déporté de la route. Dans cet exercice, passez à moins de 35 mètres de la bouée 1."
       ],
       "observe": [
         "Ouvrez la carte avant de changer de cap.",
@@ -1072,7 +1072,7 @@
       "title": "Assurez une veille efficace",
       "concepts": [
         "Une bonne veille utilise la vue, l’ouïe et les moyens appropriés disponibles. Balayez l’avant, l’arrière et les deux côtés ; voiles et structures peuvent cacher d’autres bateaux.",
-        "Un navire dont le relèvement reste presque constant alors que la distance diminue signale un risque d’abordage. Réévaluez tôt plutôt que d’attendre une certitude à courte distance.",
+        "Pourquoi un relèvement constant signale un danger : deux bateaux sur des routes droites qui vont se rencontrer gardent le même angle l’un par rapport à l’autre jusqu’au point de rencontre. Si un autre navire reste au même relèvement au compas, ou reste aligné avec la même partie de votre bateau, alors qu’il se rapproche, vous êtes en route de collision. Vérifiez tôt et à plusieurs reprises, et agissez plutôt que d’attendre une certitude.",
         "Les aides électroniques complètent la veille ; elles ne la remplacent pas. Ce monde contient des voiliers amarrés immobiles et n’évalue pas la détection réaliste du trafic."
       ],
       "observe": [
@@ -1105,7 +1105,7 @@
     "sail-26": {
       "title": "Raisonnez face aux rencontres",
       "concepts": [
-        "Dans les cas simples de croisement entre deux voiliers : sous des amures différentes, le voilier bâbord amures s’écarte généralement du voilier tribord amures ; sous la même amure, celui au vent s’écarte généralement de celui sous le vent.",
+        "Les règles décident à l’avance qui s’écarte (navire non privilégié) et qui maintient son cap (navire privilégié), pour que deux bateaux ne tournent pas tous les deux du même côté. Entre deux voiliers : sous des amures différentes, le voilier bâbord amures s’écarte ; sous la même amure, celui au vent s’écarte, car il peut en général abattre plus facilement. La leçon 46 traite cela en détail.",
         "Le navire rattrapant s’écarte. Les responsabilités entre navires, les chenaux étroits, les dispositifs de circulation, la visibilité réduite et les règles locales peuvent modifier l’analyse. Ne résumez pas les règles à « la voile gagne toujours ».",
         "Le navire qui doit maintenir cap et vitesse conserve des responsabilités et doit agir si nécessaire pour éviter l’abordage. Apprenez l’ensemble des règles anticollision applicables et les exigences locales avant de naviguer."
       ],
@@ -1139,9 +1139,9 @@
     "sail-27": {
       "title": "Feux, marques et signaux",
       "concepts": [
-        "Les feux de navigation et marques de jour indiquent le type et l’activité d’un navire, pas seulement sa direction. Les feux de côté rouge et vert aident à identifier l’aspect présenté.",
+        "Les feux de navigation montrent la direction d’un navire et ce qu’il fait. Le rouge est à bâbord, le vert à tribord et le blanc à l’arrière. Si vous voyez à la fois le rouge et le vert, le navire vient droit sur vous ; le rouge seul, vous voyez son côté bâbord ; le vert seul, son côté tribord ; le blanc seul, vous voyez son arrière.",
         "Dans le contexte international des signaux de manœuvre, un son bref signifie une modification du cap à tribord, deux à bâbord et trois la marche arrière de la propulsion. Les signaux de visibilité réduite constituent un autre système ; les règles locales ou fluviales peuvent différer.",
-        "Cette introduction ne couvre pas tout le programme de reconnaissance. Avant de naviguer de nuit ou par visibilité réduite, étudiez et pratiquez l’ensemble des règles applicables aux feux, marques et signaux sonores."
+        "La leçon 50 couvre l’ensemble des feux, marques et signaux sonores. Les règles peuvent différer dans les eaux intérieures ou locales : vérifiez celles qui s’appliquent là où vous naviguez avant de sortir de nuit ou par visibilité réduite."
       ],
       "observe": [
         "Identifiez le feu rouge de bâbord et le feu vert de tribord du voilier.",
@@ -1208,8 +1208,8 @@
       "title": "Préparez votre accostage",
       "concepts": [
         "Accoster combine vent, courant, effets de l’hélice, erre et coordination de l’équipage. Préparez pare-battages et amarres, répartissez les rôles, choisissez l’approche et gardez une issue de repli.",
-        "Approchez à la vitesse la plus faible permettant le contrôle nécessaire. N’utilisez jamais le corps d’une personne pour arrêter le bateau et ne placez ni mains ni pieds entre le bateau et le quai.",
-        "Systèmes du bateau comprend la poussée avant et arrière, et le modèle estime le courant. L’effet transversal de l’hélice, les efforts des gardes d’amarrage et le contact avec le quai ne sont pas modélisés. L’accostage est enseigné ici comme préparation et prise de décision ; toucher le quai représenté ne constitue pas une compétence d’accostage évaluée."
+        "Approchez face au vent ou au courant quand c’est possible : cela vous freine, vous pouvez donc arriver lentement tout en gardant de l’eau sur le gouvernail pour barrer. Arrivez à la vitesse la plus faible qui permet encore de gouverner, celle à laquelle vous accepteriez de toucher le quai. N’utilisez jamais une main ou un pied pour arrêter le bateau.",
+        "Deux effets surprennent les débutants. En marche arrière, l’hélice tire l’arrière d’un côté (effet transversal de l’hélice), donc le bateau ne recule pas droit au début. Et à faible vitesse, le vent repousse l’étrave, haute, loin du quai. Prévoyez les deux et gardez une porte de sortie. L’effet transversal de l’hélice et les amarres ne sont pas modélisés dans l’application : l’accostage est donc enseigné ici comme préparation."
       ],
       "observe": [
         "Décrivez l’approche, les tâches de l’équipage et le plan de nouvelle présentation avant de bouger.",
@@ -1227,13 +1227,13 @@
           "explanation": "Le plan de repli fait partie de la préparation ; évitez de piéger bateau et équipage dans une manœuvre irrécupérable."
         },
         {
-          "prompt": "Arriver à côté du ponton représenté prouve-t-il ici la maîtrise de l’accostage ?",
+          "prompt": "Pourquoi approcher une place face au vent ou au courant quand c’est possible ?",
           "options": [
-            "Non ; le contact, les gardes et les tâches de l’équipage ne sont pas évalués",
-            "Oui, si le bateau semble aligné",
-            "Oui, à n’importe quelle vitesse"
+            "Cela fait aller le bateau plus vite",
+            "Cela supprime l’effet transversal de l’hélice",
+            "Cela ralentit le bateau tout en gardant de l’eau sur le gouvernail"
           ],
-          "explanation": "Un résultat visuel sans les dynamiques correspondantes n’est pas une évaluation valable de la compétence."
+          "explanation": "Le vent ou le courant agit comme un frein : vous pouvez arriver lentement et gouverner quand même. S’ils sont derrière vous, le bateau continue d’être poussé."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
@@ -1242,7 +1242,7 @@
       "title": "Choisissez un mouillage",
       "concepts": [
         "Choisissez un abri, un fond de bonne tenue, une profondeur suffisante sur toute la marée et de l’espace pour éviter sans atteindre les dangers ou les bateaux voisins.",
-        "Le rapport de mouillage compare la longueur filée à la distance verticale entre le davier et le fond. Le rapport nécessaire dépend de la ligne, de l’ancre, des conditions, du bateau et des recommandations ; aucun rapport ne garantit à lui seul la tenue.",
+        "Une ancre tient le mieux quand elle est tirée à plat le long du fond, car elle s’enfonce alors. Avec une ligne trop courte, la traction vient d’en haut et arrache l’ancre. C’est pourquoi on file plusieurs fois la profondeur : la longueur supplémentaire et le poids de la chaîne gardent la traction à plat et amortissent les à-coups des vagues. Filez davantage par vent fort. Le rapport de mouillage est la longueur filée divisée par la hauteur entre le davier et le fond.",
         "Exemple uniquement arithmétique : avec 5 m d’eau et un davier à 1 m au-dessus, un rapport supposé de 5:1 donne 30 m de ligne. Ce calcul n’est pas une prescription de mouillage. Ajoutez les variations de marée et évaluez l’espace d’évitage."
       ],
       "observe": [
@@ -1275,10 +1275,9 @@
     "sail-31": {
       "title": "Ralentissez, puis mouillez",
       "concepts": [
-        "Une vraie approche de mouillage est lente et contrôlée. L’équipage descend l’ancre et file la ligne volontairement, puis vérifie que l’ancre a croché et continue de surveiller la position.",
-        "La longueur cible du mouillage est une consigne, pas la longueur dans l’eau. Vérifiez la longueur réellement filée dans Systèmes. Le modèle file à 24 mètres par minute et reprend à 15 mètres par minute ; ces vitesses motorisées sont illustratives.",
-        "Affalez les voiles et laissez la vitesse fond descendre sous 0.8 nœud, ancre rangée. Réglez ensuite une longueur cible de 45 m et actionnez le guindeau. Il file progressivement et s’arrête à la cible. Utilisez « Arrêter le guindeau » pour l’arrêter et « Atteindre la longueur cible » pour reprendre. Attendez que 45 m soient réellement filés, que le guindeau soit arrêté et que la vitesse fond soit inférieure à 0.2 nœud. Mouiller trop tôt invalide la tentative.",
-        "La cible de 45 m appartient à cet exercice préparé en eau peu profonde. Planifiez un vrai mouillage selon la profondeur, la marée, l’abri, la tenue du fond et l’espace d’évitage. Le modèle ne valide pas la tenue de l’ancre dans un fond particulier et ne représente pas toute la chaînette de la ligne."
+        "Approchez lentement, face au vent (ou au courant, selon ce qui agit le plus sur le bateau), pour que le bateau s’arrête de lui-même. Descendez l’ancre jusqu’au fond une fois le bateau arrêté. Laissez ensuite le vent faire reculer le bateau pendant que vous filez la ligne, pour que la chaîne s’allonge sur le fond au lieu de s’entasser sur l’ancre.",
+        "Quand assez de ligne est filée, faites crocher l’ancre en tirant doucement dessus, souvent avec un peu de marche arrière au moteur. Vérifiez qu’elle tient : choisissez deux repères à terre alignés et observez s’ils restent alignés. Continuez à vérifier dans le temps, surtout quand le vent change.",
+        "Dans cet exercice : affalez les voiles et laissez la vitesse descendre sous 0.8 nœud, ancre rangée. Réglez une longueur cible de 45 m et actionnez le guindeau ; il file progressivement et s’arrête à la cible. Attendez que 45 m soient réellement filés, que le guindeau soit arrêté et que la vitesse fond soit inférieure à 0.2 nœud. Mouiller trop tôt met fin à la tentative."
       ],
       "observe": [
         "Réduisez la puissance des voiles bien avant le point d’arrêt prévu.",
@@ -1296,13 +1295,13 @@
           "explanation": "L’exercice vérifie l’anticipation et l’ordre des actions, pas la capacité de tenue de l’ancre."
         },
         {
-          "prompt": "L’arrêt du bateau démontre-t-il qu’une vraie ancre est correctement accrochée ?",
+          "prompt": "Pourquoi laisser le bateau reculer pendant qu’on file la ligne ?",
           "options": [
-            "Oui",
-            "Seulement après 5 secondes",
-            "Non ; la tenue simulée ne prouve pas l’accrochage réel"
+            "Pour que la ligne s’allonge sur le fond au lieu de s’entasser sur l’ancre",
+            "Pour accélérer le guindeau",
+            "Pour que l’ancre reste décollée du fond"
           ],
-          "explanation": "Le mouillage réel exige des vérifications de tenue et une surveillance continue."
+          "explanation": "Une ligne entassée sur l’ancre peut l’engager. En laissant le bateau reculer, la ligne s’étend et la traction sur l’ancre reste à plat."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -1322,9 +1321,8 @@
       "title": "Préparez le départ",
       "concepts": [
         "Avant de partir, vérifiez à nouveau les alentours, la route prévue, les conditions et la préparation de l’équipage. Assurez-vous que cordages et matériel sont rangés et que chacun connaît la suite.",
-        "Cet exercice commence avec 45 m de ligne déjà filés et l’étrave au-dessus de l’ancre. Sélectionnez « Lever l’ancre » et observez la longueur réelle diminuer. L’ancre reste déployée pendant la remontée. Attendez qu’elle soit entièrement rangée avant de hisser les voiles, puis stabilisez une allure au travers.",
-        "Si la ligne se tend alors que le bateau est éloigné de l’ancre, la remontée s’interrompt. En navigation libre, avancez lentement vers l’ancre pour détendre la ligne, puis poursuivez la remontée. Le guindeau ne doit pas servir à tirer le bateau vers l’ancre.",
-        "Dans un vrai port, lever l’ancre et hisser se préparent selon l’abri, l’espace, le trafic, le vent, le moteur disponible et le bateau. La configuration pratique du simulateur n’est pas une procédure universelle de départ."
+        "Pour lever l’ancre, amenez le bateau jusqu’à elle plutôt que de tirer le bateau avec la ligne. Avancez lentement au moteur ou à la voile vers l’ancre pendant que l’équipage reprend le mou. Quand la ligne est à pic, la traction est verticale et l’ancre se décroche facilement du fond. Le guindeau sert à remonter la ligne, pas à tirer le bateau.",
+        "Dès que l’ancre quitte le fond, vous dérivez : retrouvez vite de la gouverne au moteur ou à la voile. Dans cet exercice, l’étrave commence au-dessus de l’ancre. Sélectionnez « Lever l’ancre » et attendez qu’elle soit entièrement rangée, puis hissez les voiles et stabilisez une allure au travers. Si la ligne se tend, la remontée s’interrompt."
       ],
       "observe": [
         "Confirmez le vent et le cap prévu avant de libérer le bateau.",
@@ -1342,13 +1340,13 @@
           "explanation": "La préparation doit précéder le moment où le bateau devient libre de se déplacer."
         },
         {
-          "prompt": "Ce départ sous voiles en eau libre convient-il à tous les vrais mouillages ?",
+          "prompt": "Quand une ancre se décroche-t-elle le plus facilement du fond ?",
           "options": [
-            "Oui",
-            "Non ; adaptez le plan au bateau, à l’espace et aux conditions",
-            "Seulement avec un traceur de cartes"
+            "Quand la ligne est tirée à plat le long du fond",
+            "Quand la ligne est à pic au-dessus d’elle",
+            "Quand le bateau s’éloigne vite"
           ],
-          "explanation": "L’exercice omet de nombreuses contraintes des mouillages et ports réels."
+          "explanation": "Une traction verticale soulève la pointe de l’ancre. C’est la traction à plat qui la fait s’enfoncer : voilà pourquoi on amène d’abord le bateau au-dessus de l’ancre."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -1371,8 +1369,8 @@
       "title": "Priorités pour une personne à la mer",
       "concepts": [
         "Donnez l’alerte, gardez un contact visuel continu, pointez vers la personne et lancez les moyens de flottabilité et de repérage appropriés. Répartissez les rôles et demandez de l’aide selon la situation.",
-        "Une récupération réussie implique de revenir sûrement auprès de la victime, de s’arrêter au bon endroit, d’éviter les blessures par hélice et de la remonter à bord. La manœuvre précise dépend du bateau, de la voilure, des conditions et de la formation.",
-        "Il n’y a ici ni dynamique de personne à la mer ni modèle de récupération. Cette leçon vérifie uniquement les priorités. Pratiquez une manœuvre et un système adaptés au bateau avec un moniteur, en utilisant un objet d’entraînement plutôt qu’en mettant une personne en danger."
+        "Reprenez ensuite le contrôle du bateau et revenez. Restez près : beaucoup de récupérations échouent parce que le bateau s’éloigne trop et perd la personne de vue. Prévoyez l’approche finale au près bon plein, pour pouvoir ralentir en choquant les voiles et vous arrêter à côté de la personne. Gardez l’hélice au point mort ou arrêtée près d’elle.",
+        "Remonter la personne à bord est souvent le plus difficile : un adulte mouillé est lourd et le franc-bord est haut. Connaissez la méthode de votre bateau (sangle, drisse sur un winch ou échelle) avant d’en avoir besoin. Cette application n’a pas de modèle de personne à la mer : cette leçon vérifie donc les priorités ; pratiquez la manœuvre avec un moniteur et un objet d’entraînement."
       ],
       "observe": [
         "Désignez une personne chargée de pointer sans jamais perdre la victime de vue.",
@@ -1440,8 +1438,7 @@
       "concepts": [
         "Combinez les compétences sans précipitation : tenez un cap stable, réglez efficacement, changez d’amure en passant l’étrave face au vent, reprenez le contrôle et ralentissez jusqu’à un arrêt prévu.",
         "Le simulateur donne des cibles mesurables, mais ne gouverne pas automatiquement. Chaque étape doit être accomplie dans l’ordre. Un échouement ou l’utilisation de l’ancre avant l’étape finale d’arrêt invalide la tentative.",
-        "La dernière étape utilise un mouillage préparé en eau profonde et une longueur cible de 180 m. Attendez que les 180 m soient filés, que le guindeau s’arrête et que la vitesse fond descende sous 0.2 nœud. Prévoyez environ 15 minutes pour l’exercice complet. Cette cible est propre à ces conditions d’entraînement.",
-        "La réussite démontre les tâches simulées sélectionnées, par vent constant et en eau libre. Elle ne prouve pas la compétence réelle en navigation, accostage, récupération d’urgence ou commandement."
+        "La dernière étape utilise un mouillage préparé en eau profonde et une longueur cible de 180 m. Attendez que les 180 m soient filés, que le guindeau s’arrête et que la vitesse fond descende sous 0.2 nœud. Prévoyez environ 15 minutes pour l’exercice complet. Cette cible est propre à ces conditions d’entraînement."
       ],
       "observe": [
         "Revoyez la séquence avant de sélectionner Commencer la pratique.",
@@ -1562,9 +1559,9 @@
     "sail-38": {
       "title": "Marée, profondeur et pied de pilote",
       "concepts": [
-        "Les sondes de carte se rapportent à un zéro défini. On ne peut ajouter une hauteur de marée que si référence, lieu, date et heure sont compatibles. La profondeur n’est pas la hauteur d’eau sous la quille. Vérifiez la référence et le décalage du sondeur réel.",
+        "Les sondes de carte sont mesurées à partir d’un niveau de basse mer défini, appelé zéro hydrographique : la plupart du temps, il y a donc plus d’eau que ce qu’indique la carte. N’ajoutez une hauteur de marée prédite que si elle utilise la même référence, le même lieu, la même date et la même heure. La profondeur n’est pas la hauteur d’eau sous la quille, et un sondeur peut mesurer depuis la flottaison ou depuis la quille : vérifiez son décalage.",
         "Exemple statique fictif : sonde de carte 2,4 m + marée 1,1 m = profondeur 3,5 m. Moins un tirant d’eau de 1,8 m, il reste 1,7 m sous la quille. Avec une réserve demandée de 0,8 m, il reste 0,9 m au-delà de cette réserve. Ce calcul n’autorise pas à franchir un haut-fond.",
-        "Un passage réel exige aussi la marée minimale pendant le transit, les incertitudes des levés et prévisions, les vagues, le squat, la gîte et les consignes propres au bateau. N’ajoutez pas à nouveau la marée à une mesure donnant déjà la profondeur. Une lecture favorable ne prouve pas la sécurité d’une route."
+        "Une vraie préparation tient aussi compte de la marée la plus basse pendant le passage, des erreurs des levés et des prévisions, des vagues, de la gîte, et de l’enfoncement du bateau quand il va vite en eau peu profonde (squat). N’ajoutez pas à nouveau la marée à une mesure du sondeur : elle donne déjà la profondeur réelle. Une seule bonne mesure ne prouve pas qu’une route est sûre."
       ],
       "observe": [
         "Distinguez zéro de carte, hauteur de marée, profondeur et tirant d’eau sur le schéma.",
@@ -1698,7 +1695,8 @@
     "sail-42": {
       "title": "Pilotage nocturne et recoupements",
       "concepts": [
-        "Préparez l’approche avant la nuit : feux et caractéristiques attendus, eaux sûres, dangers, relèvements de garde, profondeurs prévues, points de décision et repli. Utilisez cartes et publications à jour. La couleur seule n’identifie pas un feu ; l’éclairage terrestre peut tromper.",
+        "Préparez l’approche de nuit de jour : listez les feux attendus, dans l’ordre, et comment vous reconnaîtrez chacun, ainsi que les dangers, les eaux sûres, les profondeurs prévues et une solution de repli sûre. Un feu s’identifie par sa couleur, son rythme et sa période : « Fl W 6s » signifie un éclat blanc toutes les 6 secondes. Chronométrez plusieurs cycles complets ; la couleur seule ne suffit pas, et l’éclairage à terre peut tromper.",
+        "Un alignement de feux se compose de deux feux, l’arrière plus haut et plus éloigné. Quand le feu arrière est exactement au-dessus du feu avant, vous êtes sur la route sûre. Si le feu arrière apparaît à droite du feu avant, vous êtes à droite de la route : décalez-vous vers la gauche jusqu’à ce qu’ils soient de nouveau alignés. De jour, deux repères à terre utilisés de la même façon forment un alignement (amer).",
         "Recoupez la position électronique avec feux identifiés, relèvements, alignements et évolution des fonds, en tenant compte de marée et décalages instrumentaux. Deux écrans utilisant le même GPS ne donnent pas des positions indépendantes. Vérifiez échelle, référence et mises à jour : un symbole précis peut être erroné.",
         "Approche fictive : le traceur vous place sur la route, mais l’alignement lumineux attendu et l’évolution des fonds le contredisent. N’avancez pas vers une zone moins profonde ou resserrée pour résoudre le doute. Réduisez le risque, restez dans des eaux sûres vérifiées ou regagnez-les si possible, recoupez les observations et révisez le plan."
       ],
@@ -1732,9 +1730,9 @@
     "sail-43": {
       "title": "Entrer au port au moteur",
       "concepts": [
-        "Commencez à l’extérieur de Haven, les deux voiles affalées. Utilisez la marche avant et de petites corrections de barre pour suivre l’approche balisée. La carte et les repères sur l’eau indiquent la cible actuelle.",
-        "Rejoignez le premier repère au 090°, tournez vers le deuxième au 135°, puis stabilisez-vous au 180° dans le chenal. Restez sous 2,5 nœuds ; chaque repère a ses propres cibles de cap et de vitesse.",
-        "Anticipez l’inertie. Passez au point mort, puis donnez une brève impulsion arrière pour vous arrêter dans le cercle final. Restez au point mort sous 0,15 nœud pendant cinq secondes, sans toucher pontons ni bateaux."
+        "Un bateau au moteur n’a pas de freins : le seul moyen rapide de ralentir est la marche arrière, et même cela prend du temps. Marche avant et marche arrière désignent la poussée de l’hélice, pas le sens dans lequel vous avancez ; au point mort, la poussée s’arrête mais le bateau continue sur son erre. Prévoyez donc chaque arrêt bien avant d’en avoir besoin.",
+        "À faible vitesse, peu d’eau passe sur le gouvernail : il gouverne mal. Une brève impulsion en avant envoie le flux de l’hélice directement sur le gouvernail et vous donne de la gouverne même quand le bateau avance à peine, sans ajouter beaucoup de vitesse. Un bateau pivote autour d’un point situé vers l’avant : quand vous tournez, l’arrière part dans l’autre sens. Surveillez-le près des pontons et des autres bateaux.",
+        "Dans cet exercice : suivez les repères au 090°, 135° et 180° jusque dans le chenal, en restant sous 2,5 nœuds. Passez ensuite au point mort et donnez une brève impulsion arrière pour vous arrêter dans le cercle final, puis restez au point mort sous 0,15 nœud pendant cinq secondes, sans toucher pontons ni bateaux."
       ],
       "observe": [
         "Utilisez le curseur moteur ou W/S ; N sélectionne le point mort. Recentrez la barre avant de dépasser le cap.",
@@ -1783,9 +1781,9 @@
     "sail-44": {
       "title": "Accoster dans une place au port",
       "concepts": [
-        "La place nord de Haven est libre pour l’exercice. Vous commencez dans le chenal au 090°, vers l’est, aligné avec l’espace entre les deux pontons nord.",
-        "Approchez le repère ambre à 0,3–1 nœud. Entrez dans la place et arrêtez le centre du bateau à moins de 2 mètres de la cible verte, au 090° ±10°. Gardez les voiles affalées et l’ancre rangée.",
-        "Utilisez de brèves impulsions avant et arrière en passant par le point mort. Finissez au point mort sous 0,15 nœud pendant cinq secondes. Tout contact termine l’essai ; la manipulation des amarres n’est pas évaluée."
+        "Entrez dans une place à la vitesse à laquelle vous accepteriez de toucher le quai, en général au pas ou moins. Utilisez de brèves impulsions en passant par le point mort entre elles : chaque impulsion donne un peu de gouverne et de vitesse, et le point mort vous laisse juger de la dérive. Il est plus facile d’ajouter un peu de puissance que d’en retirer trop.",
+        "À faible vitesse, le vent pousse le bateau de côté, et l’étrave, haute et légère, part la première. En marche arrière, la plupart des hélices tirent aussi l’arrière d’un côté (effet transversal de l’hélice) : battre en arrière pour s’arrêter peut donc faire pivoter l’arrière. Préparez l’approche pour que ces effets vous poussent vers la place, pas à l’opposé, et gardez une porte de sortie si cela tourne mal.",
+        "Dans cet exercice : approchez le repère ambre à 0,3–1 nœud, entrez dans la place nord et arrêtez le centre du bateau à moins de 2 mètres de la cible verte, au 090° ±10°. Finissez au point mort sous 0,15 nœud pendant cinq secondes. Tout contact termine l’essai. L’effet transversal de l’hélice et les amarres ne font pas partie de ce modèle."
       ],
       "observe": [
         "Le cercle vert indique le centre du bateau, pas l’étrave. Gardez une marge devant et sur les côtés.",
@@ -1830,9 +1828,9 @@
     "sail-45": {
       "title": "Quitter la place et sortir du port",
       "concepts": [
-        "Vous commencez arrêté dans la place nord, étrave vers l’est. Les amarres sont déjà larguées. Gardez les voiles affalées et reculez droit dans le chenal.",
-        "Reculez vers le premier repère au 090° à 0,3–1,2 nœud arrière. L’effet de la barre s’inverse en marche arrière. Arrêtez-vous à la deuxième cible et passez au point mort avant de tourner.",
-        "Une fois dégagé des pontons, mettez en avant et la barre à bâbord pour tourner au nord. Suivez les deux repères au 000° avec une vitesse avant contrôlée. Restez sous 2,5 nœuds et évitez les autres bateaux."
+        "En marche arrière, le gouvernail se trouve à l’extrémité qui avance : il gouverne faiblement et à l’envers, le même coup de barre fait tourner l’étrave dans l’autre sens qu’en marche avant. Gardez une vitesse arrière faible et régulière, de petits coups de barre, et regardez où vous allez.",
+        "Reculez assez loin pour dégager les pontons avant de tourner. Quand le bateau tourne, les deux extrémités pivotent : tourner entre les pontons peut les heurter. Arrêtez-vous, passez au point mort, puis tournez en marche avant, où la barre est plus efficace et agit normalement.",
+        "Dans cet exercice, les amarres sont déjà larguées. Reculez vers le premier repère au 090° à 0,3–1,2 nœud arrière, arrêtez-vous à la deuxième cible, puis mettez en avant avec la barre à bâbord pour tourner au nord et suivre les repères de départ au 000°. Restez sous 2,5 nœuds et à l’écart des autres bateaux."
       ],
       "observe": [
         "Regardez derrière avant de reculer. Gardez la barre centrée pendant le recul rectiligne.",
@@ -1887,7 +1885,7 @@
       "concepts": [
         "Vérifiez d’abord la visibilité mutuelle, le risque d’abordage et l’existence d’un rattrapage, d’un chenal étroit ou d’un statut particulier. Ces exemples appliquent les règles internationales, en vue, en eau libre et sans statut particulier. Les deux navires restent tenus de veiller et d’éviter l’abordage.",
         "Bâbord et tribord se définissent en regardant vers l’avant. Le vent reçu à bâbord signifie bâbord amures ; à tribord, tribord amures. Selon la Règle 12, le côté au vent est opposé à celui où se trouve la grand-voile. Observez celle-ci, pas seulement le foc ou la position du navire à l’écran.",
-        "En cas de risque avec des amures différentes, le voilier bâbord amures s’écarte. Avec les mêmes amures, celui au vent s’écarte de celui sous le vent. Si vous êtes bâbord amures et voyez au vent un voilier dont l’amure est incertaine, écartez-vous. Cela ne donne pas priorité à tout voilier aperçu sur votre droite.",
+        "En cas de risque avec des amures différentes, le voilier bâbord amures s’écarte. Avec les mêmes amures, celui au vent s’écarte de celui sous le vent, car il peut en général abattre plus facilement. Si vous êtes bâbord amures et voyez au vent un voilier dont l’amure est incertaine, écartez-vous. Cela ne donne pas priorité à tout voilier aperçu sur votre droite.",
         "Vérifiez le rattrapage avant les amures. Vous rattrapez en arrivant de plus de 22,5° sur l’arrière du travers de l’autre navire, dans le secteur de 135° autour de sa poupe. De nuit, vous y verriez son feu de poupe sans ses feux de côté. Tout rattrapant s’écarte, même un voilier rattrapant un navire à moteur.",
         "En cas de doute sur un rattrapage, considérez que vous rattrapez. L’obligation demeure jusqu’à être définitivement paré et clair. Arriver au travers ou changer de relèvement relatif ne transforme pas un rattrapage établi en croisement."
       ],
@@ -1923,7 +1921,7 @@
       "concepts": [
         "Au sens de la Règle 3, un voilier navigue à la voile sans utiliser sa machine propulsive. Un yacht propulsé au moteur est un navire à propulsion mécanique même voiles hissées. Un moteur utilisé seulement pour charger les batteries ne suffit pas à établir cette propulsion. Identifiez la propulsion réelle.",
         "Entre deux navires à moteur en vue qui se croisent avec risque, celui qui voit l’autre sur tribord s’écarte et, si possible, évite de passer sur son avant. L’autre maintient initialement cap et vitesse selon la Règle 17. Changez de point de vue : le navire à tribord de A peut voir A sur bâbord.",
-        "Deux navires à moteur sur des routes opposées ou presque opposées avec risque viennent tous deux sur tribord pour passer bâbord sur bâbord. En cas de doute sur cette situation, considérez qu’elle existe. Cette règle ne s’applique pas automatiquement à deux voiliers.",
+        "Deux navires à moteur sur des routes opposées ou presque opposées avec risque viennent tous deux sur tribord pour passer bâbord sur bâbord. Si les deux tournent à droite, ils s’éloignent toujours l’un de l’autre. En cas de doute sur cette situation, considérez qu’elle existe. Cette règle ne s’applique pas automatiquement à deux voiliers.",
         "Dans une rencontre ordinaire en vue, un navire à moteur faisant route s’écarte d’un voilier. Vérifiez d’abord les exceptions des Règles 9, 10 et 13 et les statuts particuliers. Un voilier rattrapant un bateau à moteur s’écarte toujours ; un yacht propulsé au moteur ne revendique pas le statut de voilier. La taille seule ne décide pas."
       ],
       "observe": [
@@ -1957,7 +1955,7 @@
       "title": "S’écarter ou maintenir : agir quand le risque évolue",
       "concepts": [
         "Veillez par la vue, l’ouïe et tous les moyens appropriés. Adaptez la vitesse à la visibilité, au trafic et à la manœuvrabilité. Un rapprochement à relèvement presque constant indique un risque ; un relèvement changeant ne l’exclut pas toujours, notamment près d’un grand navire ou d’un remorquage. Dans le doute, retenez le risque.",
-        "Le navire qui s’écarte agit tôt et franchement pour passer largement à distance. Rendez les changements de cap ou vitesse perceptibles si possible ; évitez les petites modifications successives. Vérifiez l’espace et le trafic. Ralentissez, stoppez ou battez en arrière si nécessaire pour éviter l’abordage ou gagner du temps, puis surveillez jusqu’à être paré et clair.",
+        "Le navire qui s’écarte agit tôt et franchement pour passer largement à distance. Rendez les changements de cap ou vitesse perceptibles si possible ; évitez les petites modifications successives : l’autre navire doit pouvoir voir que vous agissez, et de petits changements ressemblent à une absence de changement. Vérifiez l’espace et le trafic. Ralentissez, stoppez ou battez en arrière si nécessaire pour éviter l’abordage ou gagner du temps, puis surveillez jusqu’à être paré et clair.",
         "La Règle 17 comporte trois phases. Initialement, le navire privilégié maintient cap et vitesse. Il peut agir seul dès qu’il devient évident que l’autre n’agit pas convenablement. Quand les navires sont si proches que l’action du seul navire non privilégié ne suffit plus, il doit prendre la meilleure mesure pour éviter l’abordage. Évaluez les options avant ce dernier stade.",
         "Lors d’un croisement entre navires à moteur, celui qui maintient et agit selon 17(a)(ii) ne doit pas, si possible, venir sur bâbord pour un navire situé sur son bâbord. Cette restriction n’impose pas de tourner toujours à droite en urgence. Le navire non privilégié reste tenu de s’écarter même si l’autre agit.",
         "Il n’existe ni distance universelle de passage ni point fixe de manœuvre de dernière seconde. Réévaluez la situation. La Règle 2 maintient la responsabilité de la pratique maritime et des circonstances particulières ; une dérogation n’est justifiée que si nécessaire pour éviter un danger immédiat. Le statut privilégié ne donne aucun droit inconditionnel à l’abordage."
@@ -1993,7 +1991,7 @@
       "title": "Navires particuliers, chenaux étroits et voies de circulation",
       "concepts": [
         "Identifiez le statut réel, pas l’apparence ou la taille. « Non maître de sa manœuvre » implique des circonstances exceptionnelles empêchant de manœuvrer selon les règles. « Capacité de manœuvre restreinte » résulte du travail, tel le dragage. La pêche doit utiliser des engins limitant la manœuvre ; une simple ligne traînante sans restriction ne suffit pas. Vérifiez feux, marques et situation.",
-        "Sous réserve des Règles 9, 10 et 13, un voilier ordinaire faisant route s’écarte des navires non maîtres de leur manœuvre, à capacité restreinte et en pêche. Un navire à moteur ordinaire s’écarte aussi des voiliers. Selon 18(d), les navires autres que les deux premières catégories évitent, si possible, de gêner un navire handicapé par son tirant d’eau montrant les signaux requis. Celui-ci reste particulièrement prudent.",
+        "Le principe : les navires qui ne peuvent pas facilement tourner ou s’arrêter reçoivent de la place de ceux qui le peuvent. Sous réserve des Règles 9, 10 et 13, un voilier ordinaire faisant route s’écarte des navires non maîtres de leur manœuvre, à capacité restreinte et en pêche. Un navire à moteur ordinaire s’écarte aussi des voiliers. Selon 18(d), les navires autres que les deux premières catégories évitent, si possible, de gêner un navire handicapé par son tirant d’eau montrant les signaux requis. Celui-ci reste particulièrement prudent.",
         "Dans un chenal étroit, serrez la limite extérieure à tribord autant que possible et sans danger. Un voilier ou navire de moins de 20 m ne gêne pas celui qui ne peut naviguer en sécurité que dans le chenal. Ne traversez pas si cela le gêne. Les pêcheurs ne gênent pas les autres navires du chenal. Anticipez les coudes et évitez d’y mouiller si possible.",
         "Dans un dispositif adopté par l’OMI, suivez le sens du trafic ; entrez ou sortez latéralement sous un petit angle. Évitez de traverser si possible ; sinon, prenez un cap aussi perpendiculaire que possible au trafic. Il s’agit du cap, pas de la route fond corrigée du courant. Les voiliers et moins de 20 m ne gênent pas les navires à moteur suivant la voie. Évitez les zones de séparation sauf autorisation des règles.",
         "« Ne pas gêner » exige une action précoce pour laisser assez d’espace avant l’apparition d’un risque. Cette obligation subsiste ensuite et les deux navires restent soumis aux règles anticollision. Une voie ne confère pas de priorité inconditionnelle. Consultez aussi les instructions portuaires, cartes et avis locaux."
@@ -2101,7 +2099,7 @@
       "title": "Manœuvrer un catamaran à deux moteurs",
       "concepts": [
         "Un catamaran de croisière possède deux coques et deux moteurs espacés. Prévoyez sa largeur pour choisir une place et tourner. Un faible tirant d’eau ne garantit pas le passage : vérifiez le bateau, la profondeur et les marges. Les hauts francs-bords et la large cabine prennent le vent à faible vitesse.",
-        "Des commandes identiques donnent surtout de la marche avant ou arrière. Barre au centre, bâbord en avant et tribord en arrière font tourner l’étrave à tribord ; inversez pour tourner à bâbord. Utilisez de petites impulsions séparées par le point mort. Des positions égales ne garantissent pas des poussées égales en avant et en arrière : surveillez cap et dérive.",
+        "Les moteurs sont très écartés, chacun pousse donc avec un long bras de levier : des poussées opposées font pivoter le bateau presque sur place. Des commandes identiques donnent surtout de la marche avant ou arrière. Barre au centre, bâbord en avant et tribord en arrière font tourner l’étrave à tribord ; inversez pour tourner à bâbord. Utilisez de petites impulsions séparées par le point mort. Des positions égales ne garantissent pas des poussées égales en avant et en arrière : surveillez cap et dérive.",
         "Vous partez en eau libre, voiles baissées. Utilisez les commandes séparées bâbord et tribord pour passer du 000° au 090° dans le cercle initial. Arrêtez la rotation et gardez les deux moteurs au point mort cinq secondes. Utilisez ensuite la commande couplée pour rejoindre la marque puis vous arrêter dans le dernier cercle. Restez sous 2,5 nœuds et à l’écart du trafic.",
         "Sous voile, un catamaran peut peu gîter alors que les charges augmentent. Prenez des ris tôt selon le constructeur, les prévisions, la mer et l’équipage. La largeur apporte de la stabilité initiale, pas une protection absolue contre le chavirage. Une faible gîte ne justifie pas davantage de toile."
       ],
@@ -2152,9 +2150,9 @@
     "sail-53": {
       "title": "Effectuer une approche de nuit",
       "concepts": [
-        "Commencez à Haven de nuit, voiles affalées et moteur au point mort. Ouvrez la carte avant de partir. Le phare émet un éclat blanc toutes les 6 secondes ; la bouée 1, un éclat jaune toutes les 4 secondes. Observez des cycles complets et comparez couleur et période avec la carte.",
-        "Mettez doucement en avant et suivez le 000° vers le premier point, en passant à l’est de la bouée 1. Tournez vers 027° pour le deuxième. Les deux feux blancs fixes de North Head forment un alignement : le feu arrière, plus haut, doit apparaître au-dessus du feu avant. Recoupez avec le cap, la position sur la carte et une profondeur d’au moins 3 mètres.",
-        "Restez sous 3 nœuds. Ralentissez avant le cercle final, donnez un bref coup en arrière pour freiner, puis revenez au point mort. Tenez le 027° à moins de 0,15 nœud pendant cinq secondes. Si les repères se contredisent, restez dans des eaux sûres vérifiées. Le parcours et les caractéristiques des feux sont fictifs."
+        "De nuit, on reconnaît un feu à sa couleur, son rythme et sa période, c’est-à-dire la durée d’un cycle complet. Observez deux ou trois cycles complets en comptant, puis comparez avec la carte. La couleur seule ne suffit pas : il y a beaucoup de feux blancs à terre. Protégez votre vision de nuit : baissez la luminosité des écrans et utilisez une lumière rouge dans le cockpit.",
+        "Un alignement de feux se compose de deux feux, l’arrière plus haut et plus éloigné. Quand le feu arrière est exactement au-dessus du feu avant, vous êtes sur l’alignement. Si le feu arrière apparaît à droite, vous êtes à droite de l’alignement : décalez-vous vers la gauche jusqu’à ce qu’ils soient de nouveau alignés. Recoupez avec le cap, la position sur la carte et la profondeur.",
+        "Dans cet exercice (feux fictifs), le phare émet un éclat blanc toutes les 6 secondes et la bouée 1 un éclat jaune toutes les 4 secondes. Suivez le 000° en marche avant douce, en passant à l’est de la bouée 1, puis prenez l’alignement au 027°. Restez sous 3 nœuds et dans au moins 3 mètres d’eau ; ensuite ralentissez, donnez un bref coup en arrière, et tenez moins de 0,15 nœud au point mort au 027° pendant cinq secondes."
       ],
       "observe": [
         "Observez deux cycles complets de 6 secondes du phare avant le départ. Les feux se figent lorsque la simulation est en pause.",

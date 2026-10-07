@@ -16,10 +16,10 @@ export const nightLessons = [
     minutes: 10,
     type: 'Guided practice',
     concepts: [
-      'Start in Haven after dark, with sails lowered and the engine in neutral. Open the chart before moving. The lighthouse flashes white once every 6 seconds; buoy 1 flashes yellow every 4 seconds. Observe complete cycles and match both color and period to the chart.',
-      'Use gentle ahead thrust and steer 000° toward the first checkpoint, passing east of buoy 1. Turn toward 027° for the second checkpoint. The two steady white lights on North Head form the leading line: the higher rear light should sit above the front light. Cross-check the alignment with heading, chart position and at least 3 metres of water depth.',
-      'Keep below 3 knots throughout. Slow before the final circle and use a brief astern input to check momentum, then neutral. Hold below 0.15 knots on 027° for five seconds. If references disagree, remain in verified safe water. The route and light characteristics are fictional training aids.',
-    ],
+   'At night you recognize a light by its color, its pattern and its period, the time for one full cycle. Watch two or three complete cycles and count, then match them with the chart. Color alone is not enough: there are many white lights ashore. Protect your night vision: dim the screens and use red light in the cockpit.',
+   'Leading lights are two lights, the rear one higher and farther away. When the rear light is straight above the front one, you are on the line. If the rear light appears to the right, you are right of the line: move left until they line up again. Cross-check with heading, chart position and depth.',
+   'In this exercise (fictional lights) the lighthouse flashes white every 6 seconds and buoy 1 flashes yellow every 4 seconds. Steer 000° with gentle ahead thrust, passing east of buoy 1, then turn onto the leading line on 027°. Stay below 3 knots and in at least 3 metres of water; then slow, use a brief astern input, and hold below 0.15 knots in neutral on 027° for five seconds.'
+  ],
     observe: [
       'Watch the white lighthouse for two complete 6-second cycles before setting off. The beacons pause when the simulation is paused.',
       'Use W/S or the engine slider for thrust and N for neutral. Make small helm corrections; the chart and goal panel show the next checkpoint.',

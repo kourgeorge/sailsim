@@ -25,9 +25,9 @@ const content=[
  {
  title:'Tidal depth and clearance',
  concepts:[
-  'Charted depths refer to a stated chart datum. A predicted tidal height can be added only when its datum, location, date and time are compatible with that chart. Water depth is not the same as clearance beneath the keel. Confirm what a real depth instrument measures and its offset.',
+  'Chart depths are measured from a stated low water level called chart datum, so most of the time there is more water than the chart shows. Add a predicted tide height only if it uses the same datum, place, date and time. Water depth is not the space under your keel, and a depth sounder may measure from the waterline or from the keel, so check its offset.',
   'Fictional static example: charted depth 2.4 m plus tidal height 1.1 m gives water depth 3.5 m. Subtract a 1.8 m draft to get 1.7 m static under-keel clearance. If the exercise requires a 0.8 m allowance, 0.9 m remains above that allowance. This is arithmetic, not permission to cross a shoal.',
-  'Real clearance planning also considers the lowest tide during passage, survey and forecast uncertainty, waves, squat, heel and vessel/operator guidance. Do not add tidal height again to an instrument reading that already represents water depth. A favorable single reading cannot establish a safe route.'
+  'Real planning also allows for the lowest tide during the passage, errors in the survey and forecast, waves, heel, and the boat sitting lower when moving fast in shallow water (squat). Do not add the tide again to a depth-sounder reading: it already shows the real water depth. One good reading cannot prove a safe route.'
  ],
  observe:['Label chart datum, tidal height, water depth and draft separately in the example.','List information missing before you could approve a real shallow-water passage.'],
  mistake:'Treating charted depth or a depth-display number as guaranteed under-keel clearance.',
@@ -89,10 +89,11 @@ const content=[
  {
  title:'Night pilotage and cross-checks',
  concepts:[
-  'Plan a night approach before darkness: identify expected lights and their characteristics, safe water, hazards, clearing bearings, depth expectations, decision points and a safe alternative. Use current charts and publications. A light’s color alone cannot identify it; background lights can confuse the picture.',
-  'Cross-check electronic position with independent evidence such as identified lights, bearings, transits and depth trends, allowing for tide and instrument offsets. Two displays using the same GPS source are not independent fixes. Confirm chart scale, datum and updates; a precise-looking symbol can still be wrong.',
-  'Fictional approach: the plotter suggests you are on track, but an expected leading-light alignment and the depth trend disagree. Do not continue into shallower or confined water merely to resolve the puzzle. Reduce risk, remain in or return to verified safe water if feasible, cross-check the observations and revise the plan.'
- ],
+   'Plan a night approach in daylight: list the lights you expect, in order, and how you will recognize each one, plus hazards, safe water, expected depths and a safe alternative. A light is identified by its color, pattern and period: “Fl W 6s” is one white flash every 6 seconds. Time several full cycles; color alone is not enough, and lights ashore can confuse the picture.',
+   'Leading lights are two lights, the rear one higher and farther away. When the rear light is straight above the front one, you are on the safe line. If the rear light appears to the right of the front one, you are right of the line: move left until they line up again. Two marks ashore used the same way by day are called a transit.',
+   'Cross-check electronic position with independent evidence such as identified lights, bearings, transits and depth trends, allowing for tide and instrument offsets. Two displays using the same GPS source are not independent fixes. Confirm chart scale, datum and updates; a precise-looking symbol can still be wrong.',
+   'Fictional approach: the plotter suggests you are on track, but an expected leading-light alignment and the depth trend disagree. Do not continue into shallower or confined water merely to resolve the puzzle. Reduce risk, remain in or return to verified safe water if feasible, cross-check the observations and revise the plan.'
+  ],
  observe:['List the expected navigation references in their approach order and explain how each will be identified.','Choose an abort point that leaves adequate sea room before the difficult section.'],
  mistake:'Trusting a bright plotter symbol over conflicting observations or treating two screens sharing one sensor as independent confirmation.',
  quiz:[

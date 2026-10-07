@@ -8,9 +8,9 @@ export const marinaLessons=[
  {
   id:'sail-43',title:'Enter the marina under engine',
   concepts:[
-   'Start outside Haven marina with both sails lowered. Use ahead thrust and small helm corrections to follow the marked approach into the fairway. The chart and water markers show the current target.',
-   'Reach the first marker on 090°, turn toward the second on 135°, then settle on 180° in the fairway. Keep below 2.5 knots throughout; each marker also has its own heading and speed targets.',
-   'Anticipate momentum. Use neutral, then a short burst of astern to stop in the final circle. Finish in neutral below 0.15 knots for five seconds, clear of the docks and other boats.'
+   'A boat under engine has no brakes: the only quick way to slow down is reverse thrust, and even that takes time. Ahead and astern describe the push from the propeller, not which way you are moving; in neutral the push stops but the boat keeps moving. So plan every stop well before you need it.',
+   'At low speed little water flows past the rudder, so it steers poorly. A short burst of ahead thrust pushes propeller water straight over the rudder and gives you steering even when the boat is barely moving, without adding much speed. A boat turns around a point near its front, so when you turn, the stern swings out the other way: watch it near pontoons and other boats.',
+   'In this exercise: follow the markers on 090°, 135° and 180° into the fairway, staying below 2.5 knots. Then use neutral and a short burst of astern to stop in the final circle, and finish in neutral below 0.15 knots for five seconds, clear of docks and boats.'
   ],
   observe:['Use the engine slider or W/S; N selects neutral. Center the helm before overshooting.','Follow the current marker on the chart. The goal panel shows distance, heading, and speed.'],
   mistake:'Entering too fast and waiting until the stopping circle to reduce power.',
@@ -24,9 +24,9 @@ export const marinaLessons=[
  {
   id:'sail-44',title:'Dock in a marina berth',
   concepts:[
-   'The northern berth at Haven marina is empty for practice. Start in the fairway facing east on 090°, aligned with the space between the two northern dock fingers.',
-   'Approach the amber marker at 0.3–1 knot. Continue into the berth and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Keep both sails lowered and the anchor stowed.',
-   'Use brief ahead and astern inputs with neutral between them. Finish below 0.15 knots in neutral for five seconds. Contact with any dock or boat ends the attempt; mooring-line handling is not part of this exercise.'
+   'Come into a berth at the speed you would be willing to touch the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.',
+   'At low speed the wind pushes the boat sideways, and the bow, which is high and light, blows off first. In reverse, most propellers also pull the stern to one side (prop walk), so going astern to stop can swing the stern. Plan the approach so these effects push you toward the berth, not away, and keep a way out if it goes wrong.',
+   'In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. Prop walk and mooring lines are not part of this model.'
   ],
   observe:['The green circle marks the boat center, not the bow. Leave clearance ahead and on both sides.','Watch ground speed and reduce power before reaching the berth.'],
   mistake:'Using the dock to stop the boat or leaving the engine engaged after reaching the target.',
@@ -39,9 +39,9 @@ export const marinaLessons=[
  {
   id:'sail-45',title:'Leave the berth and exit the marina',
   concepts:[
-   'Start stopped in the northern berth, bow facing east. The boat is free to move; this exercise begins after mooring lines have been released. Keep sails lowered and use astern thrust to back straight into the fairway.',
-   'Reverse to the first marker on 090° at 0.3–1.2 knots astern. Steering response reverses while backing. Stop at the second target and select neutral before making the departure turn.',
-   'Once clear of the dock fingers, use ahead thrust and port helm to turn north. Follow the two departure markers on 000° and establish controlled ahead speed in open water. Keep below 2.5 knots and clear of other boats.'
+   'Going backward, the rudder is at the leading end of the boat, so it steers weakly and the opposite way: the same helm turns the bow the other way from going forward. Keep reversing speed low and steady, keep the helm small, and look where you are going.',
+   'Back far enough to clear the dock fingers before you turn. When the boat turns, both ends swing, so turning between the fingers can hit them. Stop, select neutral, then turn under ahead power, where steering is stronger and works the normal way.',
+   'In this exercise the lines are already released. Reverse to the first marker on 090° at 0.3–1.2 knots astern, stop at the second target, then use ahead thrust and port helm to turn north and follow the departure markers on 000°. Stay below 2.5 knots and clear of other boats.'
   ],
   observe:['Look astern before backing out. Keep the helm centered for the straight reverse leg.','Back far enough to leave turning room, stop, then turn under ahead power.'],
   mistake:'Turning while still between the dock fingers or accelerating before there is room.',

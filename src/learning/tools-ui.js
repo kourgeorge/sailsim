@@ -4,7 +4,7 @@ import {lessons} from './curriculum.js';
 import './tools-ui.css';
 import {renderTeachingFigure,getTeachingFigureCaption} from './teaching-figures.js';
 const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
-const lessonTopics=['lookout','sheets','sheets','heading','wind','sheets','speed','helm','wind','wind','wind','sheets','helm','helm','helm','sheets','wind','reef','sheets','weather','depth','heading','speed','heading','lookout','lookout','lookout','weather','engine','anchor','anchor','anchor','emergency','emergency','helm','lookout','weather','depth','current','weather','lookout','heading'];
+const lessonTopics=['emergency','helm','sheets','heading','wind','sheets','speed','helm','wind','wind','wind','sheets','helm','helm','helm','helm','wind','reef','sheets','weather','depth','heading','speed','heading','lookout','lookout','lookout','weather','engine','anchor','anchor','anchor','emergency','emergency','helm','lookout','weather','depth','current','weather','lookout','heading','engine','engine','helm','lookout','lookout','lookout','lookout','lookout','lookout','engine','heading'];
 export function topicFor(lesson){return lessonTopics[Number(lesson?.id?.split('-')[1])-1]||'lookout';}
 export function createLearningTools({openModal,onLesson}){
  function guide(id){
