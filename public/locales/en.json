@@ -222,11 +222,10 @@
     "sail-05": {
       "title": "Where the wind comes from",
       "concepts": [
-        "A northwesterly wind comes from the northwest and blows toward the southeast. Windward is toward the source of the wind; leeward is away from it.",
-        "Weather settings describe wind relative to fixed ground. Subtract the current vector to obtain wind relative to moving water: the reference for points of sail here. Apparent wind is airflow relative to the moving yacht. Always check which reference an instrument uses for “true wind.”",
-        "The no-go zone is the sector too close to the wind for the sails to drive the boat. Its limit varies with boat and conditions; this simulator uses 38° on either side of wind over water. In calm relative to water, its direction and angle are undefined.",
-        "Read the app’s gold wind pointer like a weather vane: its arrowhead faces the wind’s source. The airflow arrows in the general teaching diagrams show air moving away from its source, so they point the opposite way. For wind from northwest, the compass pointer faces 315° while the air moves toward 135°. The shaded no-go sector stays on the source side.",
-        "In the illustrated compass, wind over water from 315° and a boat heading of 045° are 90° apart: a beam reach. Turning the bow toward 315° would put it inside the shaded no-go sector. With steady wind over water, turning the boat changes the white boat symbol; the gold arrow and sector stay on the same compass bearing."
+        "Wind is named for where it comes from. A northwesterly wind comes from the northwest (315°) and blows toward the southeast (135°). Windward is the side the wind comes from; leeward is the side it blows toward. Sailors name the source because that is where the wind’s force, the waves and any approaching weather come from.",
+        "A sail is a flexible wing: it only works when air flows across it at an angle. Point the bow straight into the wind and the sail lines up with the airflow and just flaps like a flag, so it makes no driving force. The no-go zone is the range of headings too close to the wind for the sail to work: about 40–45° on either side for most cruising yachts, and 38° in this simulator. To reach a place upwind, you sail a zigzag outside it.",
+        "The wind you sail by is the wind over the water. If the water itself is moving (a current), that wind differs from the weather report, which describes wind over the land. Once the boat moves, it also feels its own airflow, called apparent wind (Lesson 17). With no current, the forecast wind is the one that matters.",
+        "The app’s compass shows the wind like a weather vane: the gold arrowhead points to where the wind comes from, and the shaded no-go sector sits around it. Diagrams of moving air point the other way, toward where the air goes. In the example, wind from 315° and a heading of 045° are 90° apart: a beam reach. When the boat turns, only the white boat symbol moves; the gold arrow and the sector stay where the wind is."
       ],
       "observe": [
         "With no current and wind from 315°, compare headings 315°, 045°, and 135° on the compass.",
@@ -245,13 +244,13 @@
           "explanation": "315° is northwest. Wind direction is conventionally named for its source."
         },
         {
-          "prompt": "Why can a yacht not make useful progress aimed directly into the wind?",
+          "prompt": "Why can a yacht not sail straight into the wind?",
           "options": [
             "The compass stops working",
             "The keel becomes too heavy",
-            "The sails cannot generate effective driving force in that direction"
+            "The sail lines up with the airflow and just flaps, so it makes no driving force"
           ],
-          "explanation": "You must sail outside the no-go zone and tack to make progress upwind."
+          "explanation": "A sail needs air flowing across it at an angle. Outside the no-go zone it works like a wing; to go upwind you zigzag by tacking."
         },
         {
           "prompt": "Why do the app’s gold arrow and shaded no-go sector both face 315° in this example?",
@@ -268,9 +267,9 @@
     "sail-06": {
       "title": "Raise the sails",
       "concepts": [
-        "In practice, prepare halyards and sheets, check for fouled lines, and ensure sea room before hoisting. A mainsail is commonly hoisted with the boat pointing into the wind and the sheet eased so it does not fill unexpectedly.",
-        "The Raise sails shortcut moves both sails; Boat systems provides separate main and headsail hoist controls. These controls do not assess the real sequence of topping lift, clutches, sail slides, or furling-line handling.",
-        "Once set, bear away far enough to fill the sails. A raised sail alone does not guarantee boat speed."
+        "Hoist the mainsail with the bow pointing into the wind. The sail then lines up with the airflow and flaps with almost no load (it luffs), so it slides up easily and the boom cannot swing hard. With the sheet eased, the sail cannot fill by surprise.",
+        "Before hoisting, check that halyards and sheets are clear and not twisted, that you have room to drift, and that the crew is clear of the boom. The mainsail usually goes up first: it sits at the back of the boat, so like the tail of a weather vane it helps hold the bow toward the wind while you work. The headsail follows. In the app, Raise sails hoists both at once; Boat systems hoists each one separately.",
+        "A raised sail facing the wind still makes no drive. To get moving, bear away until the wind is well to one side, then sheet in until the sails stop flapping. Only then do they work as wings."
       ],
       "observe": [
         "Start the exercise facing into the wind with sails lowered.",
@@ -288,13 +287,13 @@
           "explanation": "Preparation prevents jams and unexpected sail loading."
         },
         {
-          "prompt": "Does the Raise sails control teach the full real hoisting procedure?",
+          "prompt": "Why is the mainsail hoisted with the bow pointing into the wind?",
           "options": [
-            "No; it is a simplified combined control",
-            "Yes; there are no additional steps",
-            "Only when the wind exceeds 20 knots"
+            "The sail flaps with almost no load, so it goes up easily and the boom stays quiet",
+            "It makes the boat go fastest",
+            "The compass needs it"
           ],
-          "explanation": "You still need supervised practice with halyards, clutches, sail slides, and the vessel’s equipment."
+          "explanation": "Pointing into the wind, the sail lines up with the airflow and carries little load. Across the wind it would fill, pull hard and swing the boom while you are still hoisting."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",
@@ -310,9 +309,9 @@
     "sail-07": {
       "title": "Feel the boat accelerate",
       "concepts": [
-        "A beam reach puts the wind approximately at right angles to the yacht. It is a useful starting point because the sails can drive the boat without pointing close to the no-go zone.",
-        "The yacht accelerates gradually. Watch speed build before applying a large helm angle: steering authority increases with water flow over the rudder.",
-        "Start with small adjustments. Centering the helm stops the turn; it does not automatically restore your previous heading."
+        "A beam reach puts the wind at about 90° to the boat. It is the easiest point of sail to start on: you are far from the no-go zone, and the sail can be set at a clear angle to the wind, so it makes plenty of forward drive.",
+        "A yacht weighs several tonnes, so it speeds up slowly. Water drag also grows quickly with speed. The boat accelerates until the push from the sails equals the drag from the water, then settles at a steady speed. Change the wind or the trim and it finds a new balance, again gradually.",
+        "The rudder is a small underwater wing. It only steers when water flows past it, so it does little at rest and grips better as speed builds; use small helm movements. A wheel steers like a car: turn it to port and the bow goes to port. A tiller works the opposite way: push it to starboard to turn the bow to port. If the boat ever moves backward, water reaches the rudder from behind and the same helm turns the bow the other way."
       ],
       "observe": [
         "Begin on 045° with a northwesterly wind, sails lowered, and anchor up.",
@@ -352,9 +351,9 @@
     "sail-08": {
       "title": "Hold a steady course",
       "concepts": [
-        "Steering a course is a cycle: choose a distant reference, compare the compass, make a small correction, then center the helm before overshooting.",
-        "Keep a lookout beyond the instruments. A course that is accurately steered can still lead into danger.",
-        "Hold 045° within 5° for ten continuous seconds, with speed above 2 knots. The timer restarts when you leave the tolerance."
+        "Steer by something far away, such as a headland or a cloud, and use the compass to check it. A distant mark shows a turn at once; the compass number lags behind and swings in waves.",
+        "A turning boat keeps turning after you center the helm, because it carries turning momentum, like a revolving door. So center the helm before you reach the new heading and let the boat glide onto it. If you wait until you are on the heading, you overshoot, correct back and zigzag. Small, early corrections give a straight track.",
+        "If you keep needing helm just to hold a straight course, the boat is telling you something. A yacht that keeps trying to turn toward the wind (weather helm) usually has too much sail up or is heeling too far; easing the mainsheet or reefing fixes it (Lesson 18). Keep a lookout as well: an accurately steered course can still lead into danger."
       ],
       "observe": [
         "Use short port or starboard inputs, then select Center.",
@@ -395,9 +394,9 @@
     "sail-09": {
       "title": "Find a beam reach",
       "concepts": [
-        "Point of sail describes your heading relative to wind over water, not relative to north. On a beam reach that wind is about 90° off the bow.",
-        "The boat can be on a beam reach on either tack. With no current and wind from 315°, headings near 045° and 225° are beam reaches.",
-        "Steer until the wind angle over water is between 80° and 105° and maintain useful speed. Apparent wind guides sail trim."
+        "A point of sail is the angle between the bow and the wind, not a compass heading. Moving away from the wind: close hauled (about 40–50° off the wind, sails pulled in tight), close reach (about 60°), beam reach (90°, wind across the side), broad reach (about 135°, wind from behind the side) and run (about 180°, wind from behind).",
+        "Each point of sail has its own sail setting. A rough guide is that the sail sits at about half the wind angle: close hauled the boom is near the centerline, on a beam reach it is about halfway out, and on a run it is far out. You can be on any point of sail on either side of the wind: with wind from 315°, both 045° and 225° are beam reaches.",
+        "As the boat speeds up, the wind it feels swings forward, because its own motion adds a breeze from ahead (Lesson 17 explains this). So trim in a little as you accelerate. If the wind shifts, your point of sail changes even when your heading does not."
       ],
       "observe": [
         "Compare the bow marker with the direction of wind over water on the onboard display.",
@@ -437,9 +436,9 @@
     "sail-10": {
       "title": "Sail close hauled",
       "concepts": [
-        "Close hauled means sailing near the upwind limit with the sails relatively close to the centerline. Do not point so high that the sails luff and speed disappears.",
-        "In this simplified model, a wind angle over water of 45°–58° is a useful close-hauled exercise. Real yachts need assessment of apparent wind, sail shape, telltales, sea state, and leeway.",
-        "As you head up, trim in gradually. Watch whether speed remains healthy instead of chasing the smallest possible wind angle."
+        "How can a boat sail toward the wind? Air flowing around the curved sail makes a force, like the lift on an aircraft wing. Close hauled, that force points mostly sideways and only a little forward. The keel grips the water and resists the sideways part, so what is left drives the boat forward. That is why close hauled feels heeled and slower than a reach, and why the boat slides sideways a little (leeway).",
+        "Pointing higher is not always better. Steer too close to the wind (pinching) and the front of the sail starts to flap, drive drops and the boat slows; a slower keel grips less, so the boat also slips sideways more. A few degrees lower with good speed usually gets you upwind sooner. As you head up, trim in; if speed fades, bear away a little.",
+        "Telltales are short ribbons on both sides of the sail near its front edge. When both stream straight back, the air is flowing well. If the windward one (on the side the wind comes from) lifts or spins, you are too close to the wind or the sail is too far out: bear away a little or trim in. If the leeward one droops or spins, the sail is pulled in too far: ease it or head up a little."
       ],
       "observe": [
         "Start on a reach and steer nearer to the wind.",
@@ -479,9 +478,9 @@
     "sail-11": {
       "title": "Bear away to a broad reach",
       "concepts": [
-        "Bearing away turns the bow away from the wind. The wind angle increases and the sails generally need easing.",
-        "On a broad reach the wind comes from aft of the beam. As you approach dead downwind, watch for an unintended gybe when the wind crosses the stern.",
-        "Find an angle of 120°–150°, ease the mainsheet, and keep the helm controlled."
+        "Bearing away turns the bow away from the wind and makes the wind angle larger. Ease the sheets as you turn, so each sail keeps its angle to the wind. If you leave them tight, the sail stalls: it heels the boat and pushes it sideways without making much speed.",
+        "As you turn downwind, the sail works less like a wing and more like a parachute: the wind mostly pushes on it from behind. The sideways force fades, so the boat heels less and feels calmer. On a broad reach, with the wind from behind the side, many boats are fast and comfortable.",
+        "Near dead downwind, watch the boom. If the wind comes round to the same side the boom is on (sailing by the lee), it can get behind the sail and throw the boom across in an accidental gybe. While learning, stay at about 150° off the wind or less and know which side the boom would swing to."
       ],
       "observe": [
         "Increase your angle to the wind, then ease the sheet.",
@@ -521,9 +520,9 @@
     "sail-12": {
       "title": "Trim with feedback",
       "concepts": [
-        "Trim means adjusting the sail to the airflow. A mainsheet pulled in too far can stall the sail; too far out can leave it luffing. Real trimming depends on telltales, sail shape, and feel.",
-        "Here the suggested mainsheet angle is a teaching aid calculated from apparent wind angle. Match it, then observe boat speed. It is a model-specific guide, not a universal sail-trim formula.",
-        "The trim assessment needs an angle within 6° of the model target and boat speed above 2 knots for ten seconds."
+        "Trim means setting the sail at the right angle to the wind. Too far out and the front edge flaps (luffing): air is not flowing across the sail properly, so it makes little drive. Too far in and the air breaks away from the back of the sail (stalling): the boat heels and slows but does not speed up. The best setting is just inside the point where luffing starts.",
+        "The classic method: ease the sheet slowly until the front of the sail starts to flap, then pull it in just until the flapping stops. Telltales make this easier to see. Repeat it after every course change or wind shift. “When in doubt, let it out”: a slightly eased sail costs little speed; an over-tight one costs a lot.",
+        "Change one thing at a time and give the boat time. Speed changes slowly (Lesson 7), so wait several seconds to see whether a change helped. In this app, a suggested sheet angle calculated from the apparent wind lets you check your result; on a real boat you trim by watching the sail’s front edge and the telltales."
       ],
       "observe": [
         "Leave the helm centered and change only the sheet.",
@@ -541,13 +540,13 @@
           "explanation": "A stable course makes the effects of sheet changes easier to observe."
         },
         {
-          "prompt": "Is the suggested angle a valid rule for all real yachts?",
+          "prompt": "Both telltales are streaming. You pull the sheet in further and the leeward telltale starts to spin. What happened?",
           "options": [
-            "Yes",
-            "Only at night",
-            "No; it belongs to this simplified model"
+            "The sail is now luffing",
+            "The wind dropped to zero",
+            "The sail is pulled in too far and starting to stall"
           ],
-          "explanation": "Real trim requires observation of the particular sail, boat, and conditions."
+          "explanation": "Pulling in too far makes the airflow break away on the back (leeward) side. Ease the sheet until the leeward telltale streams again."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",
@@ -564,7 +563,7 @@
       "title": "Head up and bear away",
       "concepts": [
         "Heading up turns toward the source of the wind; bearing away turns away from it. Port and starboard name turn direction relative to the boat, not whether you are heading up.",
-        "On one tack, a port turn may head up; on the opposite tack it may bear away. Always reason from the current wind direction.",
+        "On one tack, a port turn may head up; on the opposite tack it may bear away. Always reason from the current wind direction, and trim to match: heading up means sheet in, bearing away means sheet out.",
         "First sail at 50° off the wind, then at 110°. Settle each course before making the next change."
       ],
       "observe": [
@@ -608,9 +607,9 @@
     "sail-14": {
       "title": "Make a controlled tack",
       "concepts": [
-        "A tack takes the bow through the wind, changing which side receives the wind. Check for traffic and sea room, prepare the crew and sheets, then make the turn with sufficient boat speed.",
-        "Expect a short loss of drive through the no-go zone. Keep the turn purposeful, then center the helm on the new close-hauled course and trim.",
-        "The simulator shifts the sails automatically. This exercise assesses the bow crossing and recovery of control, not real jib-sheet handling or crew calls."
+        "A tack turns the bow through the wind, so the wind moves to the other side of the boat and the sails swap sides. From close hauled to close hauled, it is a turn of about 90°. Before you start, look for traffic, check sea room and warn the crew (“Ready about”).",
+        "Speed is what gets you through. Inside the no-go zone the sails flap and make no drive, so only the boat’s momentum carries the bow across. Start with good speed and turn steadily. Too slow, and the boat stops head to wind (in irons, Lesson 16). Too sharp, and the rudder, turned hard over, acts as a brake.",
+        "On a real yacht: put the helm over and call the turn (for example “Lee-ho”); as the headsail starts to flap, release its old sheet; as the bow passes the wind, pull in the new sheet on the other side; then center the helm on the new close-hauled course and retrim. Expect to lose some speed, and rebuild it before pointing high. In the app the sails swap sides automatically."
       ],
       "observe": [
         "Start with wind over the starboard side, then turn starboard through 315°.",
@@ -651,9 +650,9 @@
     "sail-15": {
       "title": "Make a planned gybe",
       "concepts": [
-        "A gybe takes the stern through the wind. The boom can cross the cockpit forcefully, so check the area, warn the crew, and control the mainsheet according to your instructor’s procedure.",
-        "Approach deliberately on a broad reach and make a small controlled stern crossing. Avoid a large uncontrolled boom swing or an unnecessary turn into a reach on the other side.",
-        "Our boom is animated but does not simulate impact forces or crew injury. The assessment recognizes a stern crossing and a stable new broad reach."
+        "A gybe turns the stern through the wind. It is more dangerous than a tack because the sails stay full the whole time. In a tack the sails go slack as the bow passes the wind; in a gybe the wind gets behind the mainsail and throws the boom across the cockpit with force.",
+        "So you control the boom. Warn the crew (“Stand by to gybe”) and keep heads clear. Before the stern crosses the wind, pull the mainsheet in so the boom is near the center and has only a short distance to swing. Turn slowly; as the boom crosses, ease the sheet out smoothly on the new side and steady the helm so the boat does not swing up toward the wind.",
+        "Make it a small, deliberate turn from a broad reach on one side to a broad reach on the other. An accidental gybe, usually caused by sailing by the lee, is the dangerous version because nobody is ready. In the app the boom is animated, but its impact force is not modeled."
       ],
       "observe": [
         "Start at 160° with wind from 315°. Turn port toward and through 135°.",

@@ -222,11 +222,10 @@
     "sail-05": {
       "title": "D’où vient le vent ?",
       "concepts": [
-        "Un vent de nord-ouest vient du nord-ouest et souffle vers le sud-est. Le côté au vent est vers sa provenance ; le côté sous le vent est à l’opposé.",
-        "Les réglages météo décrivent le vent par rapport au sol fixe. Soustrayez le vecteur courant pour obtenir le vent relatif à l’eau en mouvement : c’est ici la référence des allures. Le vent apparent est l’écoulement d’air relatif au voilier en mouvement. Vérifiez toujours la référence utilisée par un instrument pour le « vent réel ».",
-        "La zone interdite est le secteur trop proche du vent pour que les voiles propulsent le bateau. Sa limite dépend du bateau et des conditions ; ce simulateur utilise 38° de chaque côté du vent relatif à l’eau. En cas de calme relatif à l’eau, sa direction et son angle sont indéfinis.",
-        "Lisez l’indicateur doré de l’application comme une girouette : sa pointe indique la provenance du vent. Les flèches d’écoulement des schémas généraux montrent l’air s’éloignant de sa provenance ; elles pointent donc dans le sens opposé. Avec un vent du nord-ouest, l’indicateur du compas pointe vers le 315° et l’air se déplace vers le 135°. Le secteur ombré non navigable reste du côté d’où vient le vent.",
-        "Sur le compas illustré, le vent relatif à l’eau vient du 315° et le bateau suit le cap 045°. L’écart est de 90° : c’est le vent de travers. Tourner l’étrave vers le 315° la placerait dans le secteur ombré non navigable. Si le vent relatif à l’eau reste constant, tourner le bateau fait pivoter son symbole blanc ; la flèche dorée et le secteur gardent la même direction sur le compas."
+        "Le vent porte le nom de sa provenance. Un vent de nord-ouest vient du nord-ouest (315°) et souffle vers le sud-est (135°). Le côté au vent est celui d’où vient le vent ; le côté sous le vent est celui vers lequel il souffle. Les marins nomment la provenance, car c’est de là qu’arrivent la force du vent, les vagues et le mauvais temps qui approche.",
+        "Une voile est une aile souple : elle ne fonctionne que si l’air la traverse en biais. Pointez l’étrave droit dans le vent et la voile s’aligne sur l’écoulement d’air : elle faseye comme un drapeau et ne produit aucune propulsion. La zone non navigable est l’ensemble des caps trop proches du vent pour que la voile fonctionne : environ 40–45° de chaque côté pour la plupart des voiliers de croisière, et 38° dans ce simulateur. Pour rejoindre un point au vent, on navigue en zigzag en dehors de cette zone.",
+        "Le vent qui compte pour naviguer est le vent au-dessus de l’eau. Si l’eau elle-même se déplace (un courant), ce vent diffère de celui du bulletin météo, qui décrit le vent au-dessus de la terre. Dès que le bateau avance, il ressent aussi son propre déplacement d’air : c’est le vent apparent (leçon 17). Sans courant, c’est le vent annoncé par la météo qui compte.",
+        "Le compas de l’application montre le vent comme une girouette : la pointe de la flèche dorée indique d’où vient le vent, et le secteur ombré non navigable l’entoure. Les schémas d’écoulement d’air pointent dans l’autre sens, vers où va l’air. Dans l’exemple, un vent du 315° et un cap au 045° sont séparés de 90° : c’est le travers. Quand le bateau tourne, seul le symbole blanc du bateau bouge ; la flèche dorée et le secteur restent du côté du vent."
       ],
       "observe": [
         "Sans courant et avec un vent venant du 315°, comparez les caps 315°, 045° et 135° au compas.",
@@ -245,13 +244,13 @@
           "explanation": "315° correspond au nord-ouest. La direction du vent est traditionnellement nommée selon sa provenance."
         },
         {
-          "prompt": "Pourquoi un voilier ne peut-il pas avancer utilement en pointant directement face au vent ?",
+          "prompt": "Pourquoi un voilier ne peut-il pas naviguer droit face au vent ?",
           "options": [
             "Le compas cesse de fonctionner",
             "La quille devient trop lourde",
-            "Les voiles ne peuvent pas produire une propulsion efficace dans cette direction"
+            "La voile s’aligne sur l’écoulement d’air et faseye, elle ne produit donc aucune propulsion"
           ],
-          "explanation": "Il faut naviguer hors de la zone non navigable et virer de bord pour progresser au vent."
+          "explanation": "Une voile a besoin d’un écoulement d’air qui la traverse en biais. Hors de la zone non navigable, elle fonctionne comme une aile ; pour remonter au vent, on tire des bords en virant de bord."
         },
         {
           "prompt": "Pourquoi la flèche dorée et le secteur ombré non navigable de l’application indiquent-ils tous deux le 315° dans cet exemple ?",
@@ -268,9 +267,9 @@
     "sail-06": {
       "title": "Hissez les voiles",
       "concepts": [
-        "En pratique, préparez drisses et écoutes, vérifiez qu’aucun cordage n’est engagé et disposez d’espace avant de hisser. On hisse généralement la grand-voile face au vent, écoute choquée, pour éviter qu’elle se remplisse sans prévenir.",
-        "Le raccourci Hisser les voiles agit sur les deux ; Systèmes du bateau propose des commandes séparées pour la grand-voile et la voile d’avant. Elles n’évaluent pas l’enchaînement réel de la balancine, des bloqueurs, des coulisseaux ou de la manipulation du bout d’enrouleur.",
-        "Une fois les voiles établies, abattez suffisamment pour qu’elles portent. Une voile hissée ne garantit pas à elle seule la vitesse."
+        "Hissez la grand-voile l’étrave face au vent. La voile s’aligne alors sur l’écoulement d’air et faseye presque sans effort : elle monte facilement et la bôme ne peut pas balayer violemment. Avec l’écoute choquée, la voile ne peut pas se remplir par surprise.",
+        "Avant de hisser, vérifiez que les drisses et les écoutes sont libres et non vrillées, que vous avez de l’espace pour dériver et que l’équipage se tient à l’écart de la bôme. On hisse généralement la grand-voile en premier : placée à l’arrière du bateau, elle agit comme la queue d’une girouette et aide à garder l’étrave face au vent pendant la manœuvre. La voile d’avant suit. Dans l’application, Hisser les voiles hisse les deux en même temps ; Systèmes du bateau permet de les hisser séparément.",
+        "Une voile hissée face au vent ne propulse toujours pas le bateau. Pour avancer, abattez jusqu’à ce que le vent arrive nettement sur le côté, puis bordez jusqu’à ce que les voiles cessent de faseyer. Ce n’est qu’alors qu’elles fonctionnent comme des ailes."
       ],
       "observe": [
         "Commencez l’exercice face au vent, voiles affalées.",
@@ -288,13 +287,13 @@
           "explanation": "La préparation évite les blocages et les mises en charge inattendues."
         },
         {
-          "prompt": "La commande Hisser les voiles enseigne-t-elle toute la procédure réelle de hissage ?",
+          "prompt": "Pourquoi hisse-t-on la grand-voile l’étrave face au vent ?",
           "options": [
-            "Non ; c’est une commande groupée simplifiée",
-            "Oui ; aucune autre étape n’existe",
-            "Seulement lorsque le vent dépasse 20 nœuds"
+            "La voile faseye presque sans effort : elle monte facilement et la bôme reste calme",
+            "C’est là que le bateau va le plus vite",
+            "Le compas l’exige"
           ],
-          "explanation": "Il faut encore pratiquer sous supervision avec les drisses, bloqueurs, coulisseaux et équipements du bateau."
+          "explanation": "Face au vent, la voile s’aligne sur l’écoulement d’air et reste peu chargée. Vent de travers, elle se remplirait, tirerait fort et ferait balayer la bôme pendant que vous hissez encore."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -310,9 +309,9 @@
     "sail-07": {
       "title": "Sentez le bateau accélérer",
       "concepts": [
-        "Au travers, le vent arrive à peu près perpendiculairement au voilier. C’est une bonne allure pour débuter : les voiles propulsent sans se rapprocher de la zone non navigable face au vent.",
-        "Le voilier accélère progressivement. Regardez la vitesse augmenter avant d’appliquer beaucoup de barre : le gouvernail gagne en efficacité avec l’écoulement d’eau sur le safran.",
-        "Commencez par de petits réglages. Centrer la barre arrête le virage ; cela ne ramène pas automatiquement au cap précédent."
+        "Au travers, le vent arrive à environ 90° du bateau. C’est l’allure la plus facile pour débuter : vous êtes loin de la zone non navigable, et la voile peut être réglée avec un angle franc par rapport au vent, ce qui donne beaucoup de propulsion vers l’avant.",
+        "Un voilier pèse plusieurs tonnes, il accélère donc lentement. La résistance de l’eau augmente aussi rapidement avec la vitesse. Le bateau accélère jusqu’à ce que la poussée des voiles égale la résistance de l’eau, puis se stabilise à une vitesse constante. Si le vent ou le réglage change, il trouve un nouvel équilibre, là encore progressivement.",
+        "Le safran est une petite aile sous l’eau. Il ne dirige le bateau que si l’eau s’écoule le long de lui : il agit peu à l’arrêt et devient plus efficace à mesure que la vitesse augmente ; faites de petits mouvements de barre. Une barre à roue se manœuvre comme un volant de voiture : tournez-la à bâbord et l’étrave part à bâbord. Une barre franche fonctionne à l’inverse : poussez-la vers tribord pour faire tourner l’étrave à bâbord. Si le bateau recule, l’eau arrive sur le safran par l’arrière et la même action fait tourner l’étrave dans l’autre sens."
       ],
       "observe": [
         "Commencez au 045° avec un vent de nord-ouest, les voiles affalées et l’ancre relevée.",
@@ -352,9 +351,9 @@
     "sail-08": {
       "title": "Tenez un cap stable",
       "concepts": [
-        "Tenir un cap suit un cycle : choisissez un repère lointain, vérifiez le compas, corrigez légèrement, puis centrez la barre avant de dépasser le cap.",
-        "Assurez la veille au-delà des instruments. Un cap tenu avec précision peut tout de même mener au danger.",
-        "Tenez le 045° à 5° près pendant dix secondes consécutives, à plus de 2 nœuds. Le compteur repart de zéro si vous sortez de la tolérance."
+        "Barrez sur un repère lointain, comme un cap ou un nuage, et utilisez le compas pour vérifier. Un repère lointain montre tout de suite un écart ; le chiffre du compas réagit avec retard et oscille dans les vagues.",
+        "Un bateau qui tourne continue de tourner après que vous avez centré la barre, car il garde son élan, comme une porte tambour. Centrez donc la barre avant d’atteindre le nouveau cap et laissez le bateau glisser jusqu’à lui. Si vous attendez d’être sur le cap, vous le dépassez, vous corrigez en sens inverse et vous zigzaguez. De petites corrections faites tôt donnent une trajectoire droite.",
+        "Si vous devez sans cesse tenir de la barre simplement pour aller droit, le bateau vous signale quelque chose. Un voilier qui cherche constamment à remonter vers le vent (il est ardent) porte généralement trop de toile ou gîte trop ; choquer l’écoute de grand-voile ou prendre un ris règle le problème (leçon 18). Assurez aussi la veille : un cap tenu avec précision peut tout de même mener au danger."
       ],
       "observe": [
         "Donnez de brèves corrections à bâbord ou tribord, puis sélectionnez Centrer.",
@@ -395,9 +394,9 @@
     "sail-09": {
       "title": "Trouvez le travers",
       "concepts": [
-        "L’allure décrit le cap par rapport au vent relatif à l’eau, et non au nord. Au travers, ce vent arrive à environ 90° de l’étrave.",
-        "Le bateau peut être au travers sur les deux amures. Sans courant et avec un vent venant du 315°, les caps proches de 045° et 225° sont des allures de travers.",
-        "Barrez jusqu’à obtenir un angle au vent relatif à l’eau compris entre 80° et 105° et conservez une vitesse utile. Le vent apparent guide le réglage des voiles."
+        "Une allure est l’angle entre l’étrave et le vent, pas un cap au compas. En s’éloignant du vent : le près (environ 40–50° du vent, voiles bordées serrées), le bon plein (environ 60°), le travers (90°, vent sur le côté), le grand largue (environ 135°, vent venant de l’arrière du travers) et le vent arrière (environ 180°, vent venant de derrière).",
+        "Chaque allure a son propre réglage de voile. Repère simple : la voile forme environ la moitié de l’angle du vent. Au près, la bôme est proche de l’axe ; au travers, elle est à peu près à mi-course ; au vent arrière, elle est très ouverte. On peut naviguer à chaque allure des deux côtés du vent : avec un vent du 315°, les caps 045° et 225° sont tous deux au travers.",
+        "Quand le bateau accélère, le vent qu’il ressent remonte vers l’avant, car son propre déplacement ajoute une brise venant de face (la leçon 17 l’explique). Bordez donc un peu en prenant de la vitesse. Si le vent tourne, votre allure change même si votre cap reste le même."
       ],
       "observe": [
         "Comparez le repère d’étrave à la direction du vent relatif à l’eau sur l’écran de bord.",
@@ -437,9 +436,9 @@
     "sail-10": {
       "title": "Naviguez au près serré",
       "concepts": [
-        "Le près serré consiste à naviguer près de la limite de remontée au vent, avec les voiles relativement proches de l’axe. Ne lofez pas au point de les faire faseyer et de perdre votre vitesse.",
-        "Dans ce modèle simplifié, un angle au vent relatif à l’eau de 45°–58° constitue un exercice utile de près. Sur un vrai voilier, il faut évaluer le vent apparent, la forme des voiles, les penons, l’état de la mer et la dérive.",
-        "En lofant, bordez progressivement. Vérifiez que la vitesse reste suffisante plutôt que de rechercher l’angle au vent le plus petit possible."
+        "Comment un bateau peut-il remonter au vent ? L’air qui contourne la voile incurvée crée une force, comme la portance d’une aile d’avion. Au près, cette force est surtout dirigée sur le côté et un peu seulement vers l’avant. La quille accroche l’eau et résiste à la partie latérale, ce qui reste fait avancer le bateau. C’est pourquoi, au près, le bateau gîte et va moins vite qu’au travers, et pourquoi il glisse un peu de côté (la dérive).",
+        "Serrer davantage le vent n’est pas toujours mieux. Si vous barrez trop près du vent (vous pincez), l’avant de la voile commence à faseyer, la propulsion baisse et le bateau ralentit ; une quille plus lente accroche moins l’eau, le bateau dérive donc aussi davantage. Quelques degrés plus abattu avec une bonne vitesse permettent généralement d’arriver plus vite au vent. En lofant, bordez ; si la vitesse diminue, abattez un peu.",
+        "Les penons sont de petits rubans fixés des deux côtés de la voile, près de son bord avant. Quand les deux filent droit vers l’arrière, l’air s’écoule bien. Si celui au vent (du côté d’où vient le vent) se soulève ou tourne, vous êtes trop près du vent ou la voile est trop choquée : abattez un peu ou bordez. Si celui sous le vent retombe ou tourne, la voile est trop bordée : choquez-la ou lofez un peu."
       ],
       "observe": [
         "Partez d’une allure de travers et rapprochez le cap du vent.",
@@ -479,9 +478,9 @@
     "sail-11": {
       "title": "Abattez jusqu’au grand largue",
       "concepts": [
-        "Abattre, c’est éloigner l’étrave du vent. L’angle au vent augmente et il faut généralement choquer les voiles.",
-        "Au grand largue, le vent vient de l’arrière du travers. En approchant du vent arrière, surveillez le risque d’empannage involontaire lorsque le vent passe derrière la poupe.",
-        "Trouvez un angle de 120°–150°, choquez l’écoute de grand-voile et gardez la barre sous contrôle."
+        "Abattre fait tourner l’étrave en s’éloignant du vent et augmente l’angle au vent. Choquez les écoutes pendant le virage pour que chaque voile garde son angle par rapport au vent. Si vous les laissez bordées, la voile décroche : elle fait gîter le bateau et le pousse de côté sans lui donner beaucoup de vitesse.",
+        "En descendant vers le vent arrière, la voile fonctionne moins comme une aile et davantage comme un parachute : le vent la pousse surtout par l’arrière. La force latérale diminue, le bateau gîte donc moins et paraît plus calme. Au grand largue, avec le vent venant de l’arrière du travers, beaucoup de bateaux sont rapides et confortables.",
+        "Près du plein vent arrière, surveillez la bôme. Si le vent passe du même côté que la bôme (on navigue sous le vent arrière, « à la fausse panne »), il peut passer derrière la voile et faire traverser la bôme d’un coup : c’est un empannage involontaire. Pendant l’apprentissage, restez à environ 150° du vent ou moins, et sachez de quel côté la bôme basculerait."
       ],
       "observe": [
         "Augmentez l’angle au vent, puis choquez l’écoute.",
@@ -521,9 +520,9 @@
     "sail-12": {
       "title": "Réglez en observant la réponse",
       "concepts": [
-        "Régler la voile, c’est l’adapter à l’écoulement d’air. Une écoute de grand-voile trop bordée peut faire décrocher la voile ; trop choquée, elle peut la laisser faseyer. Le réglage réel dépend des penons, de la forme et des sensations.",
-        "Ici, l’angle d’écoute conseillé est une aide pédagogique calculée à partir de l’angle de vent apparent. Appliquez-le, puis observez la vitesse. C’est un repère propre au modèle, pas une formule universelle de réglage.",
-        "L’évaluation exige un angle à moins de 6° de la cible du modèle et une vitesse supérieure à 2 nœuds pendant dix secondes."
+        "Régler la voile, c’est lui donner le bon angle par rapport au vent. Trop choquée, son bord avant faseye : l’air ne s’écoule pas correctement sur la voile, elle propulse donc peu. Trop bordée, l’air se décolle de l’arrière de la voile (elle décroche) : le bateau gîte et ralentit au lieu d’accélérer. Le meilleur réglage se situe juste en dedans du point où le faseyement commence.",
+        "La méthode classique : choquez lentement l’écoute jusqu’à ce que l’avant de la voile commence à faseyer, puis bordez juste assez pour que le faseyement cesse. Les penons rendent cela plus facile à voir. Recommencez après chaque changement de cap ou rotation du vent. « Dans le doute, choque » : une voile un peu trop choquée coûte peu de vitesse ; une voile trop bordée en coûte beaucoup.",
+        "Ne changez qu’une chose à la fois et laissez du temps au bateau. La vitesse évolue lentement (leçon 7) : attendez plusieurs secondes pour voir si un réglage a aidé. Dans cette application, un angle d’écoute conseillé, calculé à partir du vent apparent, vous permet de vérifier votre résultat ; sur un vrai bateau, on règle en observant le bord avant de la voile et les penons."
       ],
       "observe": [
         "Gardez la barre centrée et ne modifiez que l’écoute.",
@@ -541,13 +540,13 @@
           "explanation": "Un cap stable permet de mieux observer l’effet des changements d’écoute."
         },
         {
-          "prompt": "L’angle conseillé est-il une règle valable pour tous les vrais voiliers ?",
+          "prompt": "Les deux penons filent bien. Vous bordez encore l’écoute et le penon sous le vent se met à tourner. Que s’est-il passé ?",
           "options": [
-            "Oui",
-            "Seulement la nuit",
-            "Non ; il appartient à ce modèle simplifié"
+            "La voile faseye maintenant",
+            "Le vent est tombé à zéro",
+            "La voile est trop bordée et commence à décrocher"
           ],
-          "explanation": "Le réglage réel nécessite l’observation de la voile, du bateau et des conditions du moment."
+          "explanation": "Une voile trop bordée fait décoller l’écoulement d’air sur sa face arrière (sous le vent). Choquez l’écoute jusqu’à ce que le penon sous le vent file de nouveau."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
@@ -564,7 +563,7 @@
       "title": "Lofez et abattez",
       "concepts": [
         "Lofer consiste à tourner vers la provenance du vent ; abattre consiste à s’en éloigner. Bâbord et tribord nomment le sens du virage par rapport au bateau, pas le fait de lofer ou d’abattre.",
-        "Sous une amure, tourner à bâbord peut faire lofer ; sous l’autre, cela peut faire abattre. Raisonnez toujours à partir de la direction actuelle du vent.",
+        "Sous une amure, tourner à bâbord peut faire lofer ; sous l’autre amure, cela peut faire abattre. Raisonnez toujours à partir de la direction actuelle du vent, et réglez en conséquence : lofer veut dire border, abattre veut dire choquer.",
         "Naviguez d’abord à 50° du vent, puis à 110°. Stabilisez chaque cap avant le changement suivant."
       ],
       "observe": [
@@ -608,9 +607,9 @@
     "sail-14": {
       "title": "Effectuez un virement contrôlé",
       "concepts": [
-        "Virer de bord fait passer l’étrave face au vent et change le côté qui reçoit le vent. Vérifiez le trafic et l’espace disponible, préparez l’équipage et les écoutes, puis engagez le virage avec assez de vitesse.",
-        "Attendez-vous à une brève perte de propulsion dans la zone non navigable. Poursuivez franchement le virage, puis centrez la barre sur le nouveau près et réglez les voiles.",
-        "Le simulateur fait passer les voiles automatiquement. Cet exercice évalue le passage de l’étrave et la reprise du contrôle, pas la manipulation réelle de l’écoute de foc ni les annonces à l’équipage."
+        "Un virement de bord fait passer l’étrave par le vent : le vent passe de l’autre côté du bateau et les voiles changent de bord. D’un près à l’autre, c’est un virage d’environ 90°. Avant de commencer, surveillez le trafic, vérifiez que vous avez de l’espace et prévenez l’équipage (« Paré à virer ? »).",
+        "C’est la vitesse qui vous fait passer. Dans la zone non navigable, les voiles faseyent et ne propulsent plus : seul l’élan du bateau fait passer l’étrave de l’autre côté. Partez avec une bonne vitesse et tournez régulièrement. Trop lent, le bateau s’arrête face au vent (il est « vent debout », leçon 16). Trop brusque, le safran, braqué à fond, agit comme un frein.",
+        "Sur un vrai voilier : mettez la barre et annoncez la manœuvre (par exemple « Envoyez ! ») ; quand la voile d’avant commence à faseyer, larguez l’ancienne écoute ; quand l’étrave passe le vent, bordez la nouvelle écoute de l’autre côté ; puis centrez la barre sur le nouveau près et réglez les voiles. Attendez-vous à perdre un peu de vitesse et reprenez-la avant de serrer le vent. Dans l’application, les voiles changent de bord automatiquement."
       ],
       "observe": [
         "Commencez avec le vent à tribord, puis tournez à tribord en passant par le 315°.",
@@ -651,9 +650,9 @@
     "sail-15": {
       "title": "Préparez votre empannage",
       "concepts": [
-        "Un empannage fait passer la poupe dans la direction du vent. La bôme peut traverser violemment le cockpit : vérifiez la zone, prévenez l’équipage et maîtrisez l’écoute de grand-voile selon la procédure de votre moniteur.",
-        "Approchez volontairement au grand largue et effectuez un petit passage contrôlé du vent derrière la poupe. Évitez un grand mouvement de bôme incontrôlé ou un virage inutile jusqu’au travers de l’autre côté.",
-        "La bôme est animée, mais les forces d’impact et les blessures de l’équipage ne sont pas simulées. L’évaluation reconnaît un passage par la poupe et une nouvelle allure stable au grand largue."
+        "Un empannage fait passer la poupe par le vent. Il est plus dangereux qu’un virement de bord, car les voiles restent pleines du début à la fin. Lors d’un virement, les voiles se dégonflent quand l’étrave passe le vent ; lors d’un empannage, le vent passe derrière la grand-voile et fait traverser la bôme dans le cockpit avec force.",
+        "Il faut donc maîtriser la bôme. Prévenez l’équipage (« Paré à empanner ! ») et faites baisser les têtes. Avant que la poupe passe le vent, bordez l’écoute de grand-voile pour amener la bôme près de l’axe : elle n’aura qu’une courte distance à parcourir. Tournez lentement ; quand la bôme passe, choquez l’écoute en douceur du nouveau côté et stabilisez la barre pour que le bateau ne remonte pas vers le vent.",
+        "Faites-en un petit virage volontaire, d’un grand largue d’un côté à un grand largue de l’autre. L’empannage involontaire, souvent causé par une navigation à la fausse panne, est la version dangereuse, car personne n’y est préparé. Dans l’application, la bôme est animée, mais la force de son impact n’est pas simulée."
       ],
       "observe": [
         "Commencez au 160° avec un vent venant du 315°. Tournez à bâbord vers le 135° et franchissez-le.",

@@ -222,11 +222,10 @@
     "sail-05": {
       "title": "De dónde viene el viento",
       "concepts": [
-        "Un viento del noroeste viene del noroeste y sopla hacia el sureste. Barlovento es hacia el origen del viento; sotavento, en sentido contrario.",
-        "Los ajustes meteorológicos describen el viento respecto al suelo fijo. Resta el vector de corriente para obtener el viento respecto al agua en movimiento: aquí es la referencia para los rumbos respecto al viento. El viento aparente es el flujo de aire relativo al velero en movimiento. Comprueba siempre qué referencia usa el instrumento para «viento real».",
-        "La zona muerta es el sector demasiado próximo al viento para que las velas impulsen el barco. Su límite depende del barco y las condiciones; este simulador usa 38° a cada lado del viento respecto al agua. En calma respecto al agua, su dirección y su ángulo no están definidos.",
-        "Lee el indicador dorado de viento de la app como una veleta: la punta señala el origen del viento. Las flechas de flujo de aire de los esquemas generales muestran el aire alejándose de su origen, por lo que apuntan en sentido opuesto. Con viento del noroeste, el indicador del compás señala 315° y el aire se mueve hacia 135°. El sector sombreado no navegable permanece del lado del origen.",
-        "En el compás ilustrado, el viento respecto al agua viene de 315° y el barco lleva rumbo 045°. La diferencia es de 90°: navega de través. Girar la proa hacia 315° la situaría dentro del sector sombreado no navegable. Con viento constante respecto al agua, al girar el barco cambia el símbolo blanco; la flecha dorada y el sector mantienen la misma dirección en el compás."
+        "El viento se nombra por el lugar del que viene. Un viento del noroeste viene del noroeste (315°) y sopla hacia el sureste (135°). Barlovento es el lado por el que llega el viento; sotavento, el lado hacia el que sopla. Los navegantes nombran el origen porque de ahí vienen la fuerza del viento, las olas y el mal tiempo que se acerque.",
+        "Una vela es un ala flexible: solo funciona cuando el aire la recorre con cierto ángulo. Si apuntas la proa directamente al viento, la vela se alinea con el aire y flamea como una bandera, así que no impulsa el barco. La zona muerta es el conjunto de rumbos demasiado cercanos al viento para que la vela funcione: unos 40–45° a cada lado en la mayoría de los veleros de crucero, y 38° en este simulador. Para llegar a un punto situado contra el viento, navegas en zigzag por fuera de ella.",
+        "El viento que usas para navegar es el viento sobre el agua. Si el agua se mueve (una corriente), ese viento no coincide con el del parte meteorológico, que describe el viento sobre tierra. Cuando el barco avanza, además siente su propio flujo de aire, llamado viento aparente (lección 17). Sin corriente, lo que cuenta es el viento previsto.",
+        "El compás de la app muestra el viento como una veleta: la punta dorada señala de dónde viene el viento y el sector sombreado de la zona muerta queda a su alrededor. Los esquemas de aire en movimiento apuntan al revés, hacia donde va el aire. En el ejemplo, un viento de 315° y un rumbo de 045° están separados 90°: navegas de través. Cuando el barco gira, solo se mueve el símbolo blanco del barco; la flecha dorada y el sector se quedan donde está el viento."
       ],
       "observe": [
         "Sin corriente y con viento de 315°, compara los rumbos 315°, 045° y 135° en el compás.",
@@ -245,13 +244,13 @@
           "explanation": "315° corresponde al noroeste. La dirección del viento se nombra convencionalmente por su procedencia."
         },
         {
-          "prompt": "¿Por qué un velero no puede avanzar de forma útil apuntando directamente al viento?",
+          "prompt": "¿Por qué un velero no puede navegar directamente contra el viento?",
           "options": [
             "La brújula deja de funcionar",
             "La quilla pesa demasiado",
-            "Las velas no pueden generar una fuerza propulsora eficaz en esa dirección"
+            "La vela se alinea con el aire y flamea, así que no impulsa el barco"
           ],
-          "explanation": "Debes navegar fuera de la zona muerta y virar por avante para progresar contra el viento."
+          "explanation": "Una vela necesita que el aire la recorra con cierto ángulo. Fuera de la zona muerta funciona como un ala; para avanzar contra el viento haces zigzag virando por avante."
         },
         {
           "prompt": "¿Por qué la flecha dorada y el sector sombreado no navegable de la app señalan ambos 315° en este ejemplo?",
@@ -268,9 +267,9 @@
     "sail-06": {
       "title": "Iza las velas",
       "concepts": [
-        "En la práctica, prepara drizas y escotas, comprueba que los cabos estén libres y dispón de espacio de maniobra antes de izar. La mayor suele izarse con el barco aproado al viento y la escota largada para que no se llene inesperadamente.",
-        "El acceso rápido Izar velas mueve ambas; Sistemas del barco ofrece controles separados para mayor y proa. Estos controles no evalúan la secuencia real del amantillo, las mordazas, los patines ni el manejo del cabo del enrollador.",
-        "Una vez izadas, arriba lo suficiente para que las velas porten. Una vela izada no garantiza por sí sola velocidad."
+        "Iza la mayor con la proa apuntando al viento. Así la vela se alinea con el aire y flamea casi sin carga, por lo que sube con facilidad y la botavara no puede moverse con fuerza. Con la escota largada, la vela no se llenará por sorpresa.",
+        "Antes de izar, comprueba que drizas y escotas están libres y sin vueltas, que tienes espacio para derivar y que nadie está en el recorrido de la botavara. La mayor suele izarse primero: va en la parte de atrás del barco y, como la cola de una veleta, ayuda a mantener la proa al viento mientras trabajas. Después se iza la vela de proa. En la app, Izar velas sube las dos a la vez; Sistemas del barco permite izar cada una por separado.",
+        "Una vela izada mirando al viento sigue sin impulsar el barco. Para empezar a moverte, arriba hasta que el viento entre bien por un costado y caza hasta que las velas dejen de flamear. Solo entonces funcionan como alas."
       ],
       "observe": [
         "Comienza el ejercicio aproado al viento y con las velas arriadas.",
@@ -288,13 +287,13 @@
           "explanation": "Prepararse evita atascos y cargas inesperadas en la vela."
         },
         {
-          "prompt": "¿El control Izar velas enseña todo el procedimiento real de izado?",
+          "prompt": "¿Por qué se iza la mayor con la proa apuntando al viento?",
           "options": [
-            "No; es un control combinado simplificado",
-            "Sí; no hay más pasos",
-            "Solo cuando el viento supera 20 nudos"
+            "La vela flamea casi sin carga, así que sube con facilidad y la botavara se queda tranquila",
+            "Así el barco va más rápido",
+            "La brújula lo necesita"
           ],
-          "explanation": "Aún necesitas práctica supervisada con drizas, mordazas, patines y el equipo del barco."
+          "explanation": "Con la proa al viento, la vela se alinea con el aire y apenas tiene carga. Con el viento de costado se llenaría, tiraría con fuerza y movería la botavara mientras aún la estás izando."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -310,9 +309,9 @@
     "sail-07": {
       "title": "Siente cómo acelera el barco",
       "concepts": [
-        "Al través, el viento llega aproximadamente perpendicular al barco. Es un buen punto de partida porque las velas pueden impulsar sin acercarse a la zona muerta.",
-        "El velero acelera gradualmente. Observa cómo aumenta la velocidad antes de aplicar mucho timón: el gobierno mejora al aumentar el flujo de agua sobre él.",
-        "Empieza con pequeños ajustes. Centrar el timón detiene el giro; no recupera automáticamente el rumbo anterior."
+        "Navegando de través, el viento llega a unos 90° del barco. Es el rumbo más fácil para empezar: estás lejos de la zona muerta y la vela puede colocarse con un ángulo claro respecto al viento, así que impulsa bien el barco hacia delante.",
+        "Un velero pesa varias toneladas, así que acelera despacio. Además, la resistencia del agua crece rápidamente con la velocidad. El barco acelera hasta que el empuje de las velas iguala la resistencia del agua y luego se mantiene a una velocidad estable. Si cambian el viento o el ajuste de las velas, encuentra un nuevo equilibrio, también poco a poco.",
+        "El timón es una pequeña ala bajo el agua. Solo gobierna cuando el agua pasa por él, así que apenas actúa con el barco parado y responde mejor al ganar velocidad; haz movimientos pequeños. Una rueda funciona como el volante de un coche: gírala a babor y la proa va a babor. Una caña funciona al revés: empújala a estribor para llevar la proa a babor. Si el barco llega a moverse hacia atrás, el agua llega al timón por detrás y el mismo movimiento gira la proa hacia el otro lado."
       ],
       "observe": [
         "Comienza a 045° con viento del noroeste, las velas arriadas y el ancla izada.",
@@ -352,9 +351,9 @@
     "sail-08": {
       "title": "Mantén un rumbo estable",
       "concepts": [
-        "Gobernar un rumbo es un ciclo: elige una referencia lejana, comprueba la brújula, corrige ligeramente y centra el timón antes de pasarte.",
-        "Vigila más allá de los instrumentos. Un rumbo mantenido con precisión también puede conducir al peligro.",
-        "Mantén 045° con una tolerancia de 5° durante diez segundos seguidos, por encima de 2 nudos. El contador se reinicia si sales de la tolerancia."
+        "Gobierna mirando una referencia lejana, como un cabo o una nube, y usa la brújula para comprobarlo. Una referencia lejana muestra un giro al instante; el número de la brújula va con retraso y oscila con las olas.",
+        "Un barco que gira sigue girando después de centrar el timón, porque lleva inercia de giro, como una puerta giratoria. Por eso, centra el timón antes de llegar al nuevo rumbo y deja que el barco se deslice hasta él. Si esperas a estar en el rumbo, te pasas, corriges hacia atrás y vas en zigzag. Correcciones pequeñas y tempranas dan una trayectoria recta.",
+        "Si necesitas timón constantemente solo para ir recto, el barco te está diciendo algo. Un velero que tiende todo el rato a girar hacia el viento (barco ardiente) suele llevar demasiada vela o escorar demasiado; largar la escota de mayor o tomar rizos lo soluciona (lección 18). Mantén también la vigilancia: un rumbo bien gobernado puede llevarte igualmente hacia un peligro."
       ],
       "observe": [
         "Aplica breves correcciones a babor o estribor y después selecciona Centrar.",
@@ -395,9 +394,9 @@
     "sail-09": {
       "title": "Encuentra el través",
       "concepts": [
-        "El rumbo respecto al viento describe la orientación de la proa frente al viento respecto al agua, no frente al norte. Navegando al través, ese viento llega a unos 90° de la proa.",
-        "El barco puede navegar al través con cualquiera de las dos amuras. Sin corriente y con viento de 315°, los rumbos cercanos a 045° y 225° son de través.",
-        "Gobierna hasta que el ángulo del viento respecto al agua esté entre 80° y 105° y mantén una velocidad útil. El viento aparente orienta el trimado de las velas."
+        "Un rumbo respecto al viento es el ángulo entre la proa y el viento, no un rumbo de brújula. De más cerca a más lejos del viento: ceñida (unos 40–50° del viento, velas muy cazadas), descuartelar (unos 60°), través (90°, viento por el costado), largo (unos 135°, viento por detrás del costado) y popa (unos 180°, viento por detrás).",
+        "Cada rumbo tiene su propio ajuste de velas. Como guía aproximada, la vela se coloca a la mitad del ángulo del viento: en ceñida la botavara va cerca de crujía, de través va más o menos a medio camino y en popa va muy abierta. Puedes navegar en cualquier rumbo por ambos lados del viento: con viento de 315°, tanto 045° como 225° son rumbos de través.",
+        "Al acelerar, el viento que siente el barco se adelanta, porque su propio movimiento añade una brisa que llega de proa (la lección 17 lo explica). Por eso conviene cazar un poco a medida que ganas velocidad. Si el viento rola, tu rumbo respecto al viento cambia aunque el rumbo de brújula sea el mismo."
       ],
       "observe": [
         "Compara la marca de proa con la dirección del viento respecto al agua en la pantalla de a bordo.",
@@ -437,9 +436,9 @@
     "sail-10": {
       "title": "Navega de ceñida",
       "concepts": [
-        "Ceñir es navegar cerca del límite contra el viento, con las velas relativamente próximas a crujía. No orces tanto que flameen y se pierda la velocidad.",
-        "En este modelo simplificado, un ángulo del viento respecto al agua de 45°–58° sirve para practicar la ceñida. En un velero real hay que valorar el viento aparente, la forma de las velas, los catavientos, el estado de la mar y el abatimiento.",
-        "Al orzar, caza gradualmente. Comprueba que mantienes una buena velocidad en vez de perseguir el menor ángulo posible al viento."
+        "¿Cómo puede un barco navegar hacia el viento? El aire que rodea la vela curva crea una fuerza, como la sustentación del ala de un avión. En ceñida, esa fuerza apunta sobre todo hacia el costado y solo un poco hacia delante. La quilla se agarra al agua y resiste la parte lateral, así que lo que queda empuja el barco hacia delante. Por eso en ceñida el barco escora más y va más lento que de través, y se desplaza un poco de lado (abatimiento).",
+        "Apuntar más cerca del viento no siempre es mejor. Si gobiernas demasiado cerca (orzar en exceso), la parte delantera de la vela empieza a flamear, el empuje cae y el barco se frena; con menos velocidad la quilla agarra menos y el barco abate más. Unos grados más abierto y con buena velocidad suele llevarte antes contra el viento. Al orzar, caza; si pierdes velocidad, arriba un poco.",
+        "Los catavientos son cintas cortas colocadas a ambos lados de la vela, cerca de su borde delantero. Cuando las dos van rectas hacia atrás, el aire fluye bien. Si se levanta o gira la de barlovento (el lado por el que llega el viento), estás demasiado cerca del viento o la vela está demasiado abierta: arriba un poco o caza. Si cae o gira la de sotavento, la vela está demasiado cazada: lárgala u orza un poco."
       ],
       "observe": [
         "Empieza de través y gobierna más cerca del viento.",
@@ -479,9 +478,9 @@
     "sail-11": {
       "title": "Arriba hasta un largo",
       "concepts": [
-        "Arribar es alejar la proa del viento. El ángulo al viento aumenta y, normalmente, hay que largar las velas.",
-        "Al largo, el viento entra por detrás del través. Al acercarte a popa redonda, vigila la posibilidad de una trasluchada involuntaria cuando el viento cruce la popa.",
-        "Busca un ángulo de 120°–150°, larga la escota de mayor y mantén el gobierno controlado."
+        "Arribar es alejar la proa del viento, con lo que aumenta el ángulo al viento. Larga las escotas mientras giras para que cada vela mantenga su ángulo con el viento. Si las dejas cazadas, la vela entra en pérdida: escora el barco y lo empuja de lado sin darle mucha velocidad.",
+        "Al girar hacia la popa, la vela funciona menos como un ala y más como un paracaídas: el viento la empuja sobre todo desde atrás. La fuerza lateral disminuye, así que el barco escora menos y se nota más tranquilo. A un largo, con el viento entrando por detrás del costado, muchos barcos van rápidos y cómodos.",
+        "Cerca de la popa redonda, vigila la botavara. Si el viento pasa a entrar por el mismo lado en el que está la botavara (navegar con el viento por la aleta equivocada), puede meterse detrás de la vela y lanzar la botavara al otro lado en una trasluchada involuntaria. Mientras aprendes, quédate a unos 150° del viento o menos y ten claro hacia qué lado se movería la botavara."
       ],
       "observe": [
         "Aumenta el ángulo al viento y después larga la escota.",
@@ -521,9 +520,9 @@
     "sail-12": {
       "title": "Ajusta las velas observando la respuesta",
       "concepts": [
-        "Ajustar una vela consiste en adaptarla al flujo de aire. Una mayor demasiado cazada puede entrar en pérdida; demasiado largada puede flamear. El ajuste real depende de los catavientos, la forma de la vela y las sensaciones.",
-        "Aquí, el ángulo sugerido de la escota de mayor es una ayuda didáctica calculada a partir del viento aparente. Aplícalo y observa la velocidad. Es una guía propia del modelo, no una fórmula universal de ajuste.",
-        "La evaluación exige mantener la escota a menos de 6° del objetivo del modelo y superar 2 nudos durante diez segundos."
+        "Ajustar las velas es colocarlas con el ángulo correcto respecto al viento. Demasiado abierta, el borde delantero flamea: el aire no recorre bien la vela, así que empuja poco. Demasiado cazada, el aire se separa de la parte de atrás de la vela (entra en pérdida): el barco escora y se frena en vez de acelerar. El mejor ajuste está justo antes del punto en que empieza a flamear.",
+        "El método clásico: larga la escota despacio hasta que la parte delantera de la vela empiece a flamear y luego cázala justo hasta que deje de flamear. Los catavientos lo hacen más fácil de ver. Repítelo después de cada cambio de rumbo o rolada. «En caso de duda, larga»: una vela algo abierta cuesta poca velocidad; una demasiado cazada cuesta mucha.",
+        "Cambia una sola cosa cada vez y dale tiempo al barco. La velocidad cambia despacio (lección 7), así que espera varios segundos para ver si el cambio ayudó. En esta app, un ángulo de escota sugerido, calculado a partir del viento aparente, te permite comprobar el resultado; en un barco real ajustas mirando el borde delantero de la vela y los catavientos."
       ],
       "observe": [
         "Deja el timón centrado y modifica solo la escota.",
@@ -541,13 +540,13 @@
           "explanation": "Un rumbo estable permite observar mejor el efecto de los cambios de escota."
         },
         {
-          "prompt": "¿El ángulo sugerido es una regla válida para todos los veleros reales?",
+          "prompt": "Los dos catavientos van rectos. Cazas más la escota y el de sotavento empieza a girar. ¿Qué ha pasado?",
           "options": [
-            "Sí",
-            "Solo de noche",
-            "No; pertenece a este modelo simplificado"
+            "Ahora la vela está flameando",
+            "El viento ha bajado a cero",
+            "La vela está demasiado cazada y empieza a entrar en pérdida"
           ],
-          "explanation": "El ajuste real exige observar la vela, el barco y las condiciones concretas."
+          "explanation": "Cazar demasiado hace que el aire se separe por la cara de atrás (sotavento) de la vela. Larga la escota hasta que el cataviento de sotavento vuelva a ir recto."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
@@ -563,8 +562,8 @@
     "sail-13": {
       "title": "Orza y arriba",
       "concepts": [
-        "Orzar es girar hacia la procedencia del viento; arribar es alejarse de ella. Babor y estribor indican la dirección del giro respecto al barco, no si estás orzando.",
-        "En una amura, girar a babor puede ser orzar; en la contraria, puede ser arribar. Razona siempre a partir de la dirección actual del viento.",
+        "Orzar es girar hacia el lugar del que viene el viento; arribar es girar alejándose de él. Babor y estribor indican la dirección del giro respecto al barco, no si estás orzando.",
+        "Con una amura, girar a babor puede ser orzar; con la contraria, puede ser arribar. Razona siempre a partir de la dirección actual del viento y ajusta las velas en consecuencia: si orzas, caza; si arribas, larga.",
         "Navega primero a 50° del viento y después a 110°. Estabiliza cada rumbo antes del siguiente cambio."
       ],
       "observe": [
@@ -608,9 +607,9 @@
     "sail-14": {
       "title": "Haz una virada por avante controlada",
       "concepts": [
-        "Virar por avante lleva la proa a través del viento y cambia de amura. Prepara a la tripulación y las escotas, comprueba que hay espacio y tráfico despejado y empieza con velocidad suficiente.",
-        "Es normal perder propulsión brevemente al atravesar la zona muerta. Mantén el giro decidido y luego centra el timón en la nueva ceñida y ajusta las velas.",
-        "El simulador cambia las velas de lado automáticamente. Este ejercicio evalúa el cruce por proa y la recuperación del control, no el manejo real de la escota de proa ni las voces de la tripulación."
+        "Una virada por avante hace pasar la proa por el viento, de modo que el viento cambia al otro lado del barco y las velas cambian de banda. De ceñida a ceñida, es un giro de unos 90°. Antes de empezar, busca tráfico, comprueba que tienes espacio y avisa a la tripulación («¡Listos para virar!»).",
+        "La velocidad es lo que te hace pasar. Dentro de la zona muerta las velas flamean y no empujan, así que solo la inercia del barco lleva la proa al otro lado. Empieza con buena velocidad y gira de forma constante. Si vas demasiado lento, el barco se queda parado proa al viento (aproado, lección 16). Si giras demasiado bruscamente, el timón metido a tope actúa como freno.",
+        "En un velero real: mete el timón y anuncia el giro (por ejemplo, «¡Viramos!»); cuando la vela de proa empiece a flamear, suelta su escota antigua; cuando la proa pase el viento, caza la nueva escota en el otro lado; después centra el timón en la nueva ceñida y vuelve a ajustar las velas. Es normal perder algo de velocidad; recupérala antes de apuntar muy cerca del viento. En la app las velas cambian de banda automáticamente."
       ],
       "observe": [
         "Empieza con el viento por estribor y gira a estribor pasando por 315°.",
@@ -651,9 +650,9 @@
     "sail-15": {
       "title": "Haz una trasluchada planificada",
       "concepts": [
-        "Una trasluchada lleva la popa a través del viento. La botavara puede cruzar la bañera con fuerza: comprueba la zona, avisa a la tripulación y controla la escota de mayor según el procedimiento de tu instructor.",
-        "Aproxímate de forma deliberada al largo y haz un pequeño cruce controlado por popa. Evita que la botavara cruce sin control o girar innecesariamente hasta el través en la otra amura.",
-        "La botavara está animada, pero no simula fuerzas de impacto ni lesiones. La evaluación reconoce un cruce por popa y un nuevo largo estable."
+        "Una trasluchada hace pasar la popa por el viento. Es más peligrosa que una virada por avante porque las velas van llenas todo el tiempo. En la virada, las velas se quedan sin carga cuando la proa pasa el viento; en la trasluchada, el viento se mete detrás de la mayor y lanza la botavara de un lado a otro de la bañera con fuerza.",
+        "Por eso tienes que controlar la botavara. Avisa a la tripulación («¡Listos para trasluchar!») y que nadie tenga la cabeza en su recorrido. Antes de que la popa cruce el viento, caza la escota de mayor para que la botavara quede cerca de crujía y tenga poco recorrido. Gira despacio; cuando la botavara cruce, larga la escota con suavidad en la nueva banda y estabiliza el timón para que el barco no se vaya hacia el viento.",
+        "Hazla como un giro pequeño y deliberado, de un largo por un lado a un largo por el otro. Una trasluchada involuntaria, normalmente causada por navegar con el viento por la aleta equivocada, es la versión peligrosa porque nadie está preparado. En la app la botavara está animada, pero no se simula la fuerza de su golpe."
       ],
       "observe": [
         "Empieza al 160° con viento de 315°. Gira a babor hacia 135° y continúa cruzándolo.",
