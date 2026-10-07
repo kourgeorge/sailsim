@@ -378,6 +378,7 @@ export function createScene(
     });
     nightLights.update(state, time, camera);
     container.dataset.timeOfDay = state.timeOfDay || 'day';
+    container.dataset.sky = state.sky || 'fair';
     container.dataset.litBeacons = String(
       nightLights.group.children.filter(
         (child) => child.isSprite && child.visible && nightLights.group.visible,

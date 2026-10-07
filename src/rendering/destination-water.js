@@ -15,12 +15,12 @@ export function installDestinationWater(material,location) {
     pixels.set([color.r*255*patch,color.g*255*patch,color.b*255*patch,255],i*4);
   }
   const texture=new THREE.DataTexture(pixels,r.cols,r.rows,THREE.RGBAFormat);texture.magFilter=texture.minFilter=THREE.LinearFilter;texture.needsUpdate=true;
-  Object.assign(material.uniforms,{destinationWater:{value:texture},destinationOrigin:{value:new THREE.Vector2(land.x-r.width/2,land.z-r.length/2)},destinationSize:{value:new THREE.Vector2(r.width,r.length)},destinationDay:{value:1}});
-  material.fragmentShader='uniform sampler2D destinationWater; uniform vec2 destinationOrigin; uniform vec2 destinationSize; uniform float destinationDay;\n'+material.fragmentShader;
+  Object.assign(material.uniforms,{destinationWater:{value:texture},destinationOrigin:{value:new THREE.Vector2(land.x-r.width/2,land.z-r.length/2)},destinationSize:{value:new THREE.Vector2(r.width,r.length)},destinationDay:{value:1},destinationLight:{value:1}});
+  material.fragmentShader='uniform sampler2D destinationWater; uniform vec2 destinationOrigin; uniform vec2 destinationSize; uniform float destinationDay; uniform float destinationLight;\n'+material.fragmentShader;
   material.fragmentShader=material.fragmentShader.replace('void main() {',`void main() {
     vec2 destinationUV=(worldPosition.xz-destinationOrigin)/destinationSize;
     float withinSurvey=step(0.0,destinationUV.x)*step(0.0,destinationUV.y)*step(destinationUV.x,1.0)*step(destinationUV.y,1.0);
-    vec3 destinationColor=mix(waterColor,texture2D(destinationWater,destinationUV).rgb,withinSurvey*destinationDay);
+    vec3 destinationColor=mix(waterColor,texture2D(destinationWater,destinationUV).rgb*destinationLight,withinSurvey*destinationDay);
   `).replace('vec3 body = waterColor','vec3 body = destinationColor');
   return texture;
 }

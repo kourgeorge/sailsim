@@ -4,6 +4,7 @@ import { translate, getLanguage } from '../i18n/runtime.js';
 import { sectionUI } from '../i18n/sections.js';
 import './section-covers.css';
 import { mountVesselPicker } from './vessel-picker.js';
+import { SKY_LABELS, TIME_OF_DAY_LABELS } from '../sky-conditions.js';
 import { mountCoverPager } from './cover-pager.js';
 import { worldAtlas, syncWorldAtlas } from './world-atlas.js';
 
@@ -43,6 +44,7 @@ export function mountSectionCovers({
   onLocation,
   getSelectedVessel = () => getState().vesselId,
   getChangingWeather = () => true,
+  getSkyChoice = () => ({ timeOfDay: 'day', sky: 'fair' }),
   onVessel = () => {},
   onConditions,
   mountSound,
@@ -50,6 +52,10 @@ export function mountSectionCovers({
   mountDrills,
   onReview,
 }) {
+  const skySummary = () => {
+    const { timeOfDay, sky } = getSkyChoice();
+    return ` · ${t(TIME_OF_DAY_LABELS[timeOfDay])} · ${t(SKY_LABELS[sky])}`;
+  };
   const sidebar = document.querySelector('.sidebar');
   const lessonSidebarNodes = [...sidebar.children];
   const sectionSidebar = document.createElement('div');
@@ -132,7 +138,7 @@ export function mountSectionCovers({
           waterDescription(location.id),
         );
         copy.querySelector('#cover-conditions').textContent =
-          `${t('Wind')} · ${windSpeed} kn · ${windDirection}°  /  ${t('Current')} · ${currentSpeed} kn · ${currentDirection}° · ${t(getChangingWeather() ? 'Changing weather' : 'Fixed weather')}`;
+          `${t('Wind')} · ${windSpeed} kn · ${windDirection}°  /  ${t('Current')} · ${currentSpeed} kn · ${currentDirection}° · ${t(getChangingWeather() ? 'Changing weather' : 'Fixed weather')}${skySummary()}`;
         copy.querySelector('#cover-vessel').setAttribute('aria-expanded', 'false');
         copy.querySelector('[role="listbox"]').hidden = true;
       } else
@@ -337,6 +343,8 @@ export function mountSectionCovers({
         state.currentSpeed,
         state.currentDirection,
         getChangingWeather(),
+        getSkyChoice().timeOfDay,
+        getSkyChoice().sky,
       ].join(':');
       if (key === previousConditions) return;
       previousConditions = key;
@@ -349,7 +357,7 @@ export function mountSectionCovers({
         waterDescription(state.locationId),
       );
       root.querySelector('#cover-conditions').textContent =
-        `${t('Wind')} · ${+state.windSpeed.toFixed(1)} kn · ${Math.round(state.windDirection) % 360}°  /  ${t('Current')} · ${+state.currentSpeed.toFixed(1)} kn · ${Math.round(state.currentDirection) % 360}° · ${t(getChangingWeather() ? 'Changing weather' : 'Fixed weather')}`;
+        `${t('Wind')} · ${+state.windSpeed.toFixed(1)} kn · ${Math.round(state.windDirection) % 360}°  /  ${t('Current')} · ${+state.currentSpeed.toFixed(1)} kn · ${Math.round(state.currentDirection) % 360}° · ${t(getChangingWeather() ? 'Changing weather' : 'Fixed weather')}${skySummary()}`;
       sectionSidebar.querySelectorAll('[data-cover-location]').forEach((button) => {
         const selected = button.dataset.coverLocation === state.locationId;
         button.setAttribute('aria-pressed', String(selected));

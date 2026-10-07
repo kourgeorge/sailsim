@@ -1,6 +1,7 @@
 import * as THREE from 'three';
 import { navigationLights, lightIsOn, vesselLightVisible } from '../navigation/lights.js';
 import { canvasTexture } from './materials.js';
+import { navigationLightsLit } from '../sky-conditions.js';
 
 export function createNightLights(scene, yacht, locationId) {
   const group = new THREE.Group();
@@ -66,9 +67,11 @@ export function createNightLights(scene, yacht, locationId) {
   return {
     group,
     update(state, time, camera) {
-      const night = state.timeOfDay === 'night';
-      group.visible = boat.visible = night;
-      if (!night) {
+      // Lit from sunset to sunrise, and by day in fog, rain or storms.
+      const lit = navigationLightsLit(state);
+      group.visible = boat.visible = lit;
+      cockpit.visible = state.timeOfDay === 'night';
+      if (!lit) {
         for (const { fitting } of lamps) if (fitting) fitting.material.emissiveIntensity = 0.35;
         return;
       }

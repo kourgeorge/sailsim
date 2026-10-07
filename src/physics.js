@@ -22,7 +22,7 @@ export function pointOfSail(angle,vesselId='monohull') {
 export function initialState(locationId = DEFAULT_LOCATION_ID, vesselId = 'monohull') {
   const location=getLocation(locationId);
   const waterWind=windOverWater({...location.conditions,heading:location.start.heading});
-  return {locationId:location.id,vesselId:getVessel(vesselId).id,timeOfDay:'day',...location.start,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
+  return {locationId:location.id,vesselId:getVessel(vesselId).id,timeOfDay:'day',sky:'fair',...location.start,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
     mainHoist:1,jibHoist:1,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
     anchor:false,anchorRode:180,anchorPaidRode:0,anchorWinchRunning:false,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
     ...location.conditions,heel:0,leeway:0,yawRate:0,rollRate:0,capsized:false,

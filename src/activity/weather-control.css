@@ -7,3 +7,6 @@
   font-size: calc(13px * var(--text-scale, 1));
 }
 .weather-choice select{max-width:100%;min-width:0}
+.sky-choices{display:flex;flex-wrap:wrap;gap:0 28px}
+.sky-choices .weather-choice{margin-block:12px}
+.sky-note{margin-top:4px}

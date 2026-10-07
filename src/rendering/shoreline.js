@@ -182,6 +182,9 @@ export function createShoreline(scene, location, waterNormals, { vesselId = 'mon
       }
     `,
   });
+  const base = Object.fromEntries(
+    ['shallowColor', 'sandColor', 'foamColor'].map((key) => [key, material.uniforms[key].value.clone()]),
+  );
   const mesh = new THREE.Mesh(geometry, material);
   mesh.name = 'Coastal shallows';
   scene.add(mesh);
@@ -189,6 +192,11 @@ export function createShoreline(scene, location, waterNormals, { vesselId = 'mon
   return {
     mesh,
     excludeHullWater,
+    // Dims sand, shallows and surf for low sun, night and grey weather.
+    setLight(light) {
+      for (const key of ['shallowColor', 'sandColor', 'foamColor'])
+        material.uniforms[key].value.copy(base[key]).multiplyScalar(light);
+    },
     update(state, time) {
       material.uniforms.time.value = time;
       material.uniforms.wind.value = state.windSpeed;

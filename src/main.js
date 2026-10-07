@@ -6,7 +6,7 @@ import { mountSimulationControls } from './activity/ui.js';
 import { playbackIcon } from './activity/playback-icon.js';
 import { mountSimulationSession } from './activity/session.js';
 import { createActivityController } from './activity/controller.js';
-import { mountAppShell } from './app-shell.js';
+import { mountAppShell, weatherIcon } from './app-shell.js';
 import { initializeTextSize, mountTextSize } from './accessibility/text-size.js';
 import { createManeuverLab } from './learning/maneuver-ui.js';
 import { lessons, modules } from './learning/curriculum.js';
@@ -50,7 +50,13 @@ import { mountSectionCovers, sectionForMode } from './activity/section-covers.js
 import { getVessel } from './vessels.js';
 import { addFreeSailingTraffic } from './world/free-sailing-traffic.js';
 import { createWeather, advanceWeather, weatherConditions } from './weather.js';
-import { weatherControl } from './activity/weather-control.js';
+import { weatherControl, skyControls, bindSkyControls } from './activity/weather-control.js';
+import {
+  skyChoice,
+  DEFAULT_SKY_CHOICE,
+  SKY_SHORT_LABELS,
+  TIME_OF_DAY_LABELS,
+} from './sky-conditions.js';
 import { mountSceneCapture } from './activity/scene-capture.js';
 import './ui/dropdown.css';
 
@@ -70,6 +76,12 @@ async function startApp() {
   let selectedVessel = 'monohull';
   try {
     selectedVessel = getVessel(localStorage.getItem('sail-vessel')).id;
+  } catch {}
+  // Free sailing and challenges share one remembered time of day and sky.
+  // Lessons keep their own prescribed conditions.
+  let selectedSky = { ...DEFAULT_SKY_CHOICE };
+  try {
+    selectedSky = skyChoice(JSON.parse(localStorage.getItem('sail-sky')));
   } catch {}
   let lesson = 0,
     state = initialState(),
@@ -139,6 +151,32 @@ async function startApp() {
       seed: Math.floor(Math.random() * 4294967296),
     });
     voyageWeatherState = state;
+  }
+  function withSelectedSky(target) {
+    return Object.assign(target, selectedSky);
+  }
+  function selectSky(choice) {
+    selectedSky = skyChoice(choice);
+    try {
+      localStorage.setItem('sail-sky', JSON.stringify(selectedSky));
+    } catch {}
+    if (['explore', 'challenge', 'race', 'adventure'].includes(mode) && !learning?.active)
+      withSelectedSky(state);
+    scene?.invalidate();
+    syncControls();
+  }
+  let skyLabel = '';
+  function syncSkyLabel() {
+    const { timeOfDay, sky } = skyChoice(state),
+      key = `${timeOfDay}:${sky}`;
+    if (key === skyLabel) return;
+    skyLabel = key;
+    const fine = sky === 'clear' || sky === 'fair';
+    $('#weather-sky-icon').innerHTML = weatherIcon(
+      fine ? (timeOfDay === 'night' ? 'moon' : 'sun') : sky === 'overcast' ? 'cloud' : sky,
+    );
+    $('#weather-sky').textContent =
+      `${t(TIME_OF_DAY_LABELS[timeOfDay])} · ${t(SKY_SHORT_LABELS[sky])}`;
   }
   function selectedConditions() {
     return voyageWeatherState === state ? { ...voyageWeather.base } : weatherConditions(state);
@@ -338,6 +376,7 @@ async function startApp() {
     $('#heading').textContent = String(Math.round(state.heading) % 360).padStart(3, '0');
     $('#weather-wind').textContent =
       `${+state.windSpeed.toFixed(1)} kn ${compass(state.windDirection)}`;
+    syncSkyLabel();
     $('#scene').dataset.visualTime = sceneTime.toFixed(5);
     $('#rudder').value = state.rudder;
     $('#trim').value = state.trim;
@@ -455,6 +494,7 @@ async function startApp() {
     lab?.cancel();
     learning?.cancel('Boat reset. Restart the assessed practice to record a new attempt.');
     state = initialState(state.locationId, state.vesselId);
+    if (['explore', 'maneuver', 'challenge'].includes(mode)) withSelectedSky(state);
     lastCollisionSequence = 0;
     playback.pause();
     challengeIndex = 0;
@@ -472,6 +512,15 @@ async function startApp() {
     keys?.clear();
   }
   function openChallengeBriefing(content) {
+    if (/class="(race|challenge)-briefing"/.test(content))
+      content = content.replace(
+        '<div class="training-actions">',
+        `${skyControls(selectedSky)}<div class="training-actions">`,
+      );
+    showChallengeBriefing(content);
+    bindSkyControls(document, selectSky);
+  }
+  function showChallengeBriefing(content) {
     if (sessionStarted()) {
       openModal(content);
       return;
@@ -522,8 +571,9 @@ async function startApp() {
       return;
     }
     openModal(
-      `<div class="eyebrow">MAKE IT YOUR OWN</div><h2>A change in the weather.</h2>${mode === 'explore' ? `${weatherControl('weather-mode', changingWeather)}<p>${t('Wind shifts gradually around the starting conditions. Current changes more slowly.')}</p>` : '<p>A steady breeze is a good place to start.</p>'}<label class="setting-label" for="wind-speed">Wind speed over ground <strong id="wind-speed-value">${+state.windSpeed.toFixed(1)} kn</strong></label><input id="wind-speed" type="range" min="3" max="35" step="0.1" value="${state.windSpeed.toFixed(1)}"><label class="setting-label" for="wind-direction">Wind over ground from <strong id="wind-direction-value">${Math.round(state.windDirection) % 360}°</strong></label><input id="wind-direction" type="range" min="0" max="359" value="${Math.round(state.windDirection) % 360}"><label class="setting-label" for="current-speed">Current speed <strong id="current-speed-value">${state.currentSpeed.toFixed(1)} kn</strong></label><input id="current-speed" type="range" min="0" max="4" step="0.1" value="${state.currentSpeed.toFixed(1)}"><label class="setting-label" for="current-direction">Current flowing toward <strong id="current-direction-value">${Math.round(state.currentDirection) % 360}°</strong></label><input id="current-direction" type="range" min="0" max="359" value="${Math.round(state.currentDirection) % 360}"><p class="modal-note">Weather wind is relative to the ground. The onboard display shows wind relative to moving water. Apparent wind is the air felt aboard. Wind names its source; current names where it flows. Conditions are fixed during assessed practice.</p>`,
+      `<div class="eyebrow">MAKE IT YOUR OWN</div><h2>A change in the weather.</h2>${skyControls(selectedSky)}${mode === 'explore' ? `${weatherControl('weather-mode', changingWeather)}<p>${t('Wind shifts gradually around the starting conditions. Current changes more slowly.')}</p>` : '<p>A steady breeze is a good place to start.</p>'}<label class="setting-label" for="wind-speed">Wind speed over ground <strong id="wind-speed-value">${+state.windSpeed.toFixed(1)} kn</strong></label><input id="wind-speed" type="range" min="3" max="35" step="0.1" value="${state.windSpeed.toFixed(1)}"><label class="setting-label" for="wind-direction">Wind over ground from <strong id="wind-direction-value">${Math.round(state.windDirection) % 360}°</strong></label><input id="wind-direction" type="range" min="0" max="359" value="${Math.round(state.windDirection) % 360}"><label class="setting-label" for="current-speed">Current speed <strong id="current-speed-value">${state.currentSpeed.toFixed(1)} kn</strong></label><input id="current-speed" type="range" min="0" max="4" step="0.1" value="${state.currentSpeed.toFixed(1)}"><label class="setting-label" for="current-direction">Current flowing toward <strong id="current-direction-value">${Math.round(state.currentDirection) % 360}°</strong></label><input id="current-direction" type="range" min="0" max="359" value="${Math.round(state.currentDirection) % 360}"><p class="modal-note">Weather wind is relative to the ground. The onboard display shows wind relative to moving water. Apparent wind is the air felt aboard. Wind names its source; current names where it flows. Conditions are fixed during assessed practice.</p>`,
     );
+    bindSkyControls($('#modal'), selectSky);
     const weatherMode = $('#weather-mode');
     if (weatherMode)
       weatherMode.onchange = (event) => {
@@ -569,7 +619,7 @@ async function startApp() {
       onSelect: (id) => {
         lab?.leave();
         learning.cancel('Location changed. Restart practice when you return.');
-        state = initialState(id, selectedVessel);
+        state = withSelectedSky(initialState(id, selectedVessel));
         lastCollisionSequence = 0;
         playback.pause();
         challengeIndex = 0;
@@ -889,7 +939,7 @@ async function startApp() {
     setCues: setSceneCues,
     onBuoyCourse: () => {
       setMode('challenge');
-      state = initialState('haven');
+      state = withSelectedSky(initialState('haven'));
       lastCollisionSequence = 0;
       updateLocation();
       freeSailingStarted = true;
@@ -905,7 +955,7 @@ async function startApp() {
     openBriefing: openChallengeBriefing,
     onStart: (newState) => {
       setMode('race');
-      state = newState;
+      state = withSelectedSky(newState);
       lastCollisionSequence = 0;
       updateLocation();
       playback.resume();
@@ -929,7 +979,7 @@ async function startApp() {
     openBriefing: openChallengeBriefing,
     onStart: (newState, definition) => {
       setMode('adventure');
-      state = newState;
+      state = withSelectedSky(newState);
       $('.simulator').dataset.challengeEngine = String(definition.engine);
       lastCollisionSequence = 0;
       updateLocation();
@@ -1019,6 +1069,7 @@ async function startApp() {
         mode === 'explore' ? selectedConditions() : state;
       state = initialState(state.locationId, state.vesselId);
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
+      if (mode === 'explore' || mode === 'challenge') withSelectedSky(state);
       if (mode === 'explore') addFreeSailingTraffic(state);
       lastCollisionSequence = 0;
       challengeIndex = 0;
@@ -1071,13 +1122,14 @@ async function startApp() {
     onLesson: (index) => learning.select(index),
     getSelectedVessel: () => selectedVessel,
     getChangingWeather: () => changingWeather,
+    getSkyChoice: () => selectedSky,
     onVessel: (id) => {
       selectedVessel = getVessel(id).id;
       try {
         localStorage.setItem('sail-vessel', selectedVessel);
       } catch {}
       const { windSpeed, windDirection, currentSpeed, currentDirection } = selectedConditions();
-      state = initialState(state.locationId, selectedVessel);
+      state = withSelectedSky(initialState(state.locationId, selectedVessel));
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       lastCollisionSequence = 0;
       syncControls();
@@ -1088,7 +1140,7 @@ async function startApp() {
       closeOverlays();
       // Every entry begins a fresh voyage with the selected location and weather.
       const { windSpeed, windDirection, currentSpeed, currentDirection } = selectedConditions();
-      state = initialState(state.locationId, selectedVessel);
+      state = withSelectedSky(initialState(state.locationId, selectedVessel));
       Object.assign(state, { windSpeed, windDirection, currentSpeed, currentDirection });
       addFreeSailingTraffic(state);
       lastCollisionSequence = 0;
@@ -1100,7 +1152,7 @@ async function startApp() {
       syncControls();
     },
     onLocation: (id) => {
-      state = initialState(id, selectedVessel);
+      state = withSelectedSky(initialState(id, selectedVessel));
       lastCollisionSequence = 0;
       updateLocation();
       syncControls();

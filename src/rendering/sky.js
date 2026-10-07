@@ -85,6 +85,12 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
         sunDirection: { value: sunDirection.clone() },
         coverage: { value: location.character?.cloudCoverage??(fjord ? 0.46 : 0.5) },
         haze: { value: new THREE.Color(location.character?.haze??(fjord ? '#bacfdf' : '#c7dce8')) },
+        // Raw shader colours: the time of day and weather retint the clouds.
+        litColor: { value: new THREE.Vector3(1.2, 1.22, 1.25) },
+        sunLitColor: { value: new THREE.Vector3(1.42, 1.29, 1.06) },
+        shadeColor: { value: new THREE.Vector3(0.36, 0.46, 0.59) },
+        rimColor: { value: new THREE.Vector3(1.0, 0.86, 0.61) },
+        flash: { value: 0 },
       },
       vertexShader: `
         varying vec3 ray;
@@ -100,6 +106,11 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
         uniform vec3 sunDirection;
         uniform vec3 haze;
         uniform float coverage;
+        uniform vec3 litColor;
+        uniform vec3 sunLitColor;
+        uniform vec3 shadeColor;
+        uniform vec3 rimColor;
+        uniform float flash;
         void main() {
           vec3 d = normalize(ray);
           if (d.y < 0.005) discard;
@@ -112,11 +123,10 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
           float relief = clamp((shape - sunward) * 6.0, -0.3, 0.35);
           float facingSun = pow(max(dot(d, sunDirection), 0.0), 12.0);
           float lighting = clamp(0.8 + relief - density * 0.26, 0.2, 1.0);
-          vec3 shade = vec3(0.36, 0.46, 0.59);
-          vec3 lit = mix(vec3(1.2, 1.22, 1.25), vec3(1.42, 1.29, 1.06), facingSun);
-          vec3 color = mix(shade, lit, lighting);
+          vec3 lit = mix(litColor, sunLitColor, facingSun);
+          vec3 color = mix(shadeColor, lit, lighting);
           float rim = max(relief, 0.0) * (1.0 - density) * facingSun;
-          color += vec3(1.0, 0.86, 0.61) * rim * 1.4;
+          color += rimColor * rim * 1.4;
 
           // A faint, higher layer of wind-stretched cirrus uses one texture tap.
           vec3 high = texture2D(cloudNoise, p * vec2(0.65, 3.6) + vec2(0.37, 0.12) - drift * 0.4).rgb;
@@ -124,7 +134,8 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
           wisps *= smoothstep(0.15, 0.5, d.y) * 0.22;
           float bodyAlpha = density * 0.94;
           float alpha = bodyAlpha + wisps * (1.0 - bodyAlpha);
-          color = (color * bodyAlpha + vec3(1.1, 1.16, 1.23) * wisps * (1.0 - bodyAlpha)) / max(alpha, 0.001);
+          color = (color * bodyAlpha + litColor * 0.93 * wisps * (1.0 - bodyAlpha)) / max(alpha, 0.001);
+          color += vec3(0.75, 0.8, 0.95) * flash;
           float horizon = smoothstep(0.005, 0.18, d.y);
           color = mix(haze, color, smoothstep(0.02, 0.35, d.y));
           gl_FragColor = vec4(color, alpha * horizon);
@@ -138,21 +149,29 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
   if (location.coordinates) clouds.scale.setScalar(14);
   clouds.visible = quality.clouds;
   scene.add(clouds);
+  // One plain gradient dome serves the moonlit night sky and grey weather.
   const night = new THREE.Mesh(
     new THREE.SphereGeometry(4300, 32, 16),
     new THREE.ShaderMaterial({
       side: THREE.BackSide,
       depthWrite: false,
-      uniforms: { moonDirection: { value: sunDirection.clone() } },
+      uniforms: {
+        moonDirection: { value: sunDirection.clone() },
+        moon: { value: 1 },
+        zenith: { value: new THREE.Color('#061025') },
+        horizon: { value: new THREE.Color('#2c3d52') },
+        flash: { value: 0 },
+      },
       vertexShader:
         'varying vec3 ray; void main(){ ray=position; gl_Position=projectionMatrix*modelViewMatrix*vec4(position,1.0); }',
-      fragmentShader: `varying vec3 ray; uniform vec3 moonDirection;
+      fragmentShader: `varying vec3 ray; uniform vec3 moonDirection; uniform float moon; uniform vec3 zenith; uniform vec3 horizon; uniform float flash;
       void main(){
         vec3 d=normalize(ray);
-        vec3 color=mix(vec3(0.025,0.047,0.085),vec3(0.002,0.005,0.018),smoothstep(0.0,0.7,d.y));
-        float moon=dot(d,moonDirection);
-        color+=vec3(0.18,0.23,0.32)*pow(max(moon,0.0),160.0);
-        color+=vec3(1.2,1.3,1.4)*smoothstep(0.99987,0.9999,moon);
+        vec3 color=mix(horizon,zenith,smoothstep(0.0,0.7,d.y));
+        float facing=dot(d,moonDirection);
+        color+=vec3(0.18,0.23,0.32)*pow(max(facing,0.0),160.0)*moon;
+        color+=vec3(1.2,1.3,1.4)*smoothstep(0.99987,0.9999,facing)*moon;
+        color+=vec3(0.55,0.6,0.75)*flash;
         gl_FragColor=vec4(color,1.0);
         #include <tonemapping_fragment>
         #include <colorspace_fragment>
@@ -193,21 +212,45 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
   stars.name = 'Night stars';
   stars.visible = false;
   scene.add(stars);
-  let nightMode = false,
+  let cloudsWanted = true,
     cloudsEnabled = quality.clouds;
   let previousTime = null;
   return {
     sky,
     clouds,
-    setNight(value) {
-      nightMode = value;
-      sky.visible = !value;
-      night.visible = stars.visible = value;
-      clouds.visible = cloudsEnabled && !value;
+    dome: night,
+    // Shows the backdrop for a sky preset: blue sky, stars, or a grey dome.
+    apply(preset) {
+      const cu = clouds.material.uniforms,
+        du = night.material.uniforms;
+      sky.visible = preset.backdrop === 'sky';
+      night.visible = preset.backdrop !== 'sky';
+      stars.visible = preset.backdrop === 'stars';
+      u.sunPosition.value.fromArray(preset.sunDirection).multiplyScalar(4500);
+      u.turbidity.value = preset.turbidity;
+      u.rayleigh.value = preset.rayleigh;
+      u.skyExposure.value = preset.skyExposure;
+      du.moonDirection.value.fromArray(preset.moonDirection);
+      du.moon.value = preset.dome.moon;
+      du.zenith.value.set(preset.dome.zenith);
+      du.horizon.value.set(preset.dome.horizon);
+      cu.sunDirection.value.fromArray(preset.sunDirection);
+      cu.coverage.value = preset.clouds.coverage;
+      cu.haze.value.set(preset.clouds.haze);
+      cu.litColor.value.fromArray(preset.clouds.lit);
+      cu.sunLitColor.value.fromArray(preset.clouds.sunLit);
+      cu.shadeColor.value.fromArray(preset.clouds.shade);
+      cu.rimColor.value.fromArray(preset.clouds.rim);
+      cloudsWanted = preset.clouds.visible;
+      clouds.visible = cloudsEnabled && cloudsWanted;
+    },
+    setFlash(value) {
+      clouds.material.uniforms.flash.value = value * 0.6;
+      night.material.uniforms.flash.value = value * 0.35;
     },
     setQuality(next) {
       cloudsEnabled = next.clouds;
-      clouds.visible = cloudsEnabled && !nightMode;
+      clouds.visible = cloudsEnabled && cloudsWanted;
     },
     update(state, time, view) {
       const position = view?.position || state;

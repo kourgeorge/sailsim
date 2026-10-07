@@ -19,6 +19,8 @@ import { createLandAnimals } from './land-animals.js';
 import { createCruiseShip } from './cruise-ship.js';
 import { createBoatWake } from './boat-wake.js';
 import { createAtmosphere } from './sky.js';
+import { createPrecipitation } from './precipitation.js';
+import { skyPreset, lightningFlash } from '../sky-conditions.js';
 import { createDestinationScenery, createDestinationTrees } from './destination-scenery.js';
 import { installDestinationWater } from './destination-water.js';
 import { createDestinationNature } from './destination-nature.js';
@@ -36,7 +38,14 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const definitions=getWorldBodyDefinitions(location.id),buoys=definitions.filter(body=>body.visual.type==='buoy');
  const random=seededRandom(83),sunDirection=new THREE.Vector3(-.8,location.character?.sunHeight??.64,-1.1).normalize();
  const atmosphere=createAtmosphere(scene,sunDirection,location,quality),{sky}=atmosphere;
- const generator=new THREE.PMREMGenerator(renderer),environmentScene=new THREE.Scene();environmentScene.add(sky.clone());const environmentMap=generator.fromScene(environmentScene,.03);scene.environment=environmentMap.texture;scene.environmentIntensity=.55;generator.dispose();
+ // Boat reflections are baked from the visible backdrop, again whenever the time of day or weather changes.
+ let environmentMap=null;const ownedEnvironmentTextures=new Set();
+ function bakeEnvironment(){
+  const generator=new THREE.PMREMGenerator(renderer),environmentScene=new THREE.Scene(),backdrop=(sky.visible?sky:atmosphere.dome).clone();
+  backdrop.position.set(0,0,0);backdrop.visible=true;environmentScene.add(backdrop);
+  if(environmentMap){ownedEnvironmentTextures.delete(environmentMap.texture);environmentMap.dispose();}environmentMap=generator.fromScene(environmentScene,.03);scene.environment=environmentMap.texture;ownedEnvironmentTextures.add(environmentMap.texture);generator.dispose();
+ }
+ bakeEnvironment();scene.environmentIntensity=.55;
  const ambient=new THREE.HemisphereLight('#cde9ff','#53503f',1.25);scene.add(ambient);
  const sun=new THREE.DirectionalLight('#fff0d5',3.1);sun.castShadow=true;sun.shadow.mapSize.set(quality.shadowSize||512,quality.shadowSize||512);sun.shadow.camera.left=-22;sun.shadow.camera.right=22;sun.shadow.camera.top=22;sun.shadow.camera.bottom=-22;sun.shadow.camera.near=1;sun.shadow.camera.far=130;sun.shadow.normalBias=.015;sun.shadow.bias=-.0002;sun.shadow.radius=3;scene.add(sun,sun.target);
  const waterSpan=location.coordinates?Math.max(120000,location.chart.span*6):12000;
@@ -49,6 +58,9 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  if(location.character)installDestinationWater(water.material,location);
  const excludeWater=installHullWaterExclusion(water.material,{vesselId:vessel.id});
  scene.add(water);
+ const rain=createPrecipitation(scene);
+ const southern=(location.coordinates?.lat??1)<0;
+ const place={sun:location.character?.sun,haze:location.character?.haze??'#b7c7ce',cloudHaze:location.character?.haze??(location.biome==='fjord'?'#bacfdf':'#c7dce8'),fog:location.character?.fog??.00031,sunHeight:location.character?.sunHeight??.64,turbidity:location.character?.turbidity??(location.biome==='fjord'?2:1.8),rayleigh:location.biome==='fjord'?2.5:2.8,cloudCoverage:location.character?.cloudCoverage??(location.biome==='fjord'?.46:.5),water:waterColor,southern};
  const shoreline=createShoreline(scene,location,waterOptions.waterNormals,{vesselId:vessel.id});
  const excludeHullWater=boat=>{excludeWater(boat);shoreline.excludeHullWater(boat);};
  // Water keeps its reflection target in a closure and exposes no dispose method.
@@ -59,13 +71,14 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
   if(environmentDisposed || reflectionFrame++%quality.reflectionInterval!==0)return;
   // Foam belongs to the surface itself. Reflecting it doubles the trail and
   // makes the duplicate jump whenever this lower-rate capture is refreshed.
-  const wakeVisibility=wakes.map(wake=>{const visible=wake.visible;wake.visible=false;return visible;});
+  // Rain streaks are drawn around the viewer; reflecting them only costs time.
+  const hidden=[...wakes,rain.mesh],wakeVisibility=hidden.map(wake=>{const visible=wake.visible;wake.visible=false;return visible;});
   const drawingRenderer=args[0],setTarget=drawingRenderer.setRenderTarget;
   if(!reflectionTarget)drawingRenderer.setRenderTarget=function(target,...rest){
    if(target?.texture===water.material.uniforms.mirrorSampler.value){reflectionTarget=target;target.setSize(quality.reflectionSize,quality.reflectionSize);}
    return setTarget.call(this,target,...rest);
   };
-  try{reflect.apply(this,args);}finally{drawingRenderer.setRenderTarget=setTarget;wakes.forEach((wake,i)=>{wake.visible=wakeVisibility[i];});}
+  try{reflect.apply(this,args);}finally{drawingRenderer.setRenderTarget=setTarget;hidden.forEach((wake,i)=>{wake.visible=wakeVisibility[i];});}
  };
  function setQuality(next){
   const shadowSize=next.shadowSize||512;
@@ -138,30 +151,37 @@ export function createEnvironment(scene,renderer,mat,{quality,locationId='haven'
  const landDetails=createLandDetails(scene,location);landDetails.setQuality(quality);
  const landAnimals=createLandAnimals(scene,location.id,quality,{obstacles:[...treePoints.map(t=>({x:t.x,z:t.z,radius:t.scale*.4})),...rockPoints.map(r=>({x:r.x,z:r.z,radius:r.scale}))]});
  const cruiseShip=createCruiseShip(scene,location.id,quality);
- let secretPending=false,nightMode=null;
+ let secretPending=false,skyKey=null,preset=null;
+ function applySky(next){
+  preset=next;atmosphere.apply(next);
+  sunDirection.fromArray(next.sunDirection);
+  ambient.color.set(next.ambientSky);ambient.groundColor.set(next.ambientGround);ambient.intensity=next.ambientIntensity;
+  sun.color.set(next.sunColor);sun.intensity=next.sunIntensity;
+  scene.environmentIntensity=next.environmentIntensity;
+  scene.fog.color.set(next.haze);scene.fog.density=next.fogDensity;scene.background.set(next.haze);
+  const u=water.material.uniforms;
+  u.sunDirection.value.copy(sunDirection);u.sunColor.value.set(next.water.sunColor);u.waterColor.value.set(next.water.color);
+  if(u.destinationDay){u.destinationDay.value=next.water.destination;u.destinationLight.value=next.water.destinationLight;}shoreline.setLight(next.water.shoreLight);
+  u.skyColor?.value.set(next.water.sky);u.horizonColor?.value.set(next.water.horizon);
+  rain.set(next.rain,next.timeOfDay==='night');
+  bakeEnvironment();
+ }
  return {water,excludeHullWater,setQuality,marineLife,birdLife,landDetails,landAnimals,cruiseShip,summonAnimal(){secretPending=true;},update(state,time,view){
-  const night=state.timeOfDay==='night';
-  if(night!==nightMode){
-   nightMode=night;atmosphere.setNight(night);
-   ambient.color.set(night?'#90b4e8':'#cde9ff');ambient.groundColor.set(night?'#182c43':'#53503f');ambient.intensity=night?.24:1.25;
-   sun.color.set(night?'#a6c5f2':location.character?.sun??'#fff0d5');sun.intensity=night?.32:3.1;
-   scene.environmentIntensity=night?.055:.55;
-   scene.fog.color.set(night?'#101c30':location.character?.haze??'#b7c7ce');scene.background.set(night?'#101c30':location.character?.haze??'#b5c9d2');
-   water.material.uniforms.sunColor.value.set(night?'#738fba':'#fff4dd');
-   water.material.uniforms.waterColor.value.set(night?'#071727':waterColor);
-   if(water.material.uniforms.destinationDay)water.material.uniforms.destinationDay.value=night?0:1;
-   water.material.uniforms.skyColor?.value.set(night?'#0b1630':'#6da8d5');
-   water.material.uniforms.horizonColor?.value.set(night?'#101c30':'#b7c7ce');
-  }
+  const key=`${state.timeOfDay}:${state.sky}`;
+  if(key!==skyKey){skyKey=key;applySky(skyPreset(state,place));}
+  const night=preset.timeOfDay==='night',flash=preset.lightning?lightningFlash(time):0;
+  ambient.intensity=preset.ambientIntensity+flash*(night?1.6:2.4);atmosphere.setFlash(flash);
+  rain.update(state,time,view);
   destinationNature?.update(time);destinationScenery?.update(time);shoreline.update(state,time);marineLife.update(state,time,view);birdLife.update(state,time,view);landDetails.update(time);landAnimals.update(state,time,view);cruiseShip.update(state,time,view,view?.freeSailing);
   if(secretPending){secretPending=false;if(marineLife.encounters.summon(state,time,view))marineLife.update(state,time,view);else{birdLife.encounters.summon(state,time,view);birdLife.update(state,time,view);}}
   water.material.uniforms.time.value=time*.45;water.material.uniforms.distortionScale.value=1.8+state.windSpeed*.07;atmosphere.update(state,time,view);
-  sun.position.set(state.x+sunDirection.x*65,45,state.z+sunDirection.z*65);sun.target.position.set(state.x,4,state.z);
+  // A low sun casts long shadows; keep the light above the water at sunrise and sunset.
+  sun.position.set(state.x+sunDirection.x*70,Math.max(3,sunDirection.y*70),state.z+sunDirection.z*70);sun.target.position.set(state.x,4,state.z);
   const bodies=new Map((state.worldBodies||[]).map(body=>[body.id,body]));
   navigation.forEach((g,i)=>syncBodyTransform(g,bodies.get(g.userData.bodyId)||buoys[i],state.elapsed||0,time,i));
   for(const wake of wakes)wake.update(state,time,night);
  },dispose(){
-  const ownedTextures=new Set([environmentMap.texture]);
+  const ownedTextures=new Set(ownedEnvironmentTextures);
   if(reflectionTexture)ownedTextures.add(reflectionTexture);
   if(environmentDisposed)return ownedTextures;
   environmentDisposed=true;cruiseShip.dispose();water.onBeforeRender=()=>{};
