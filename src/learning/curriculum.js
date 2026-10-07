@@ -21,10 +21,11 @@ export const modules=[
 const q=(prompt,options,correct,explanation)=>({prompt,options,correct,explanation});
 const step=(label,kind,value,duration=0,hint='')=>({label,kind,value,duration,hint});
 const lessons=[];
-function lesson(module,title,concepts,observe,mistake,quiz,practice=null,transfer='Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.'){
+const GENERIC_TRANSFER='Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.';
+function lesson(module,title,concepts,observe,mistake,quiz,practice=null,transfer=GENERIC_TRANSFER){
  const index=lessons.length;
  lessons.push({id:`sail-${String(index+1).padStart(2,'0')}`,module,title,sub:modules.find(m=>m.id===module).outcome,
-  concepts,observe,mistake,quiz,practice,transfer,minutes:practice?10:6,prerequisite:index?lessons[index-1].id:null,
+  concepts,observe,mistake,quiz,practice,transfer,genericTransfer:transfer===GENERIC_TRANSFER,minutes:practice?10:6,prerequisite:index?lessons[index-1].id:null,
   type:practice?'Guided practice':'Theory & decisions',body:concepts[0],goal:practice?practice.steps[0].label:'Read the briefing and check your understanding',tip:observe[0]});
 }
 lesson('aboard','Safety before speed',[

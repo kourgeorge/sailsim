@@ -60,6 +60,7 @@ const rows=[
  ['Research notes (English)','Notas de investigación (inglés)','ملاحظات البحث (بالإنجليزية)','סיכומי מחקר (אנגלית)','Исследовательские заметки (английский)','Notes de recherche (anglais)'],
  ['No matching references.','No hay referencias coincidentes.','لا توجد مراجع مطابقة.','לא נמצאו מקורות תואמים.','Источники не найдены.','Aucune référence correspondante.'],
  ['The reference library could not be loaded. Please try again.','No se pudo cargar la biblioteca. Inténtalo de nuevo.','تعذر تحميل المكتبة المرجعية. حاول مجددًا.','לא ניתן לטעון את ספריית המקורות. נסו שוב.','Не удалось загрузить библиотеку. Попробуйте снова.','La bibliothèque n’a pas pu être chargée. Réessayez.'],
+ ['What you learned','Lo que has aprendido','ما تعلّمته','מה למדתם','Что вы узнали','Ce que vous avez appris'],
  ['All topics','Todos los temas','جميع الموضوعات','כל הנושאים','Все темы','Tous les sujets'],
  ['Fictional training chart','Carta ficticia de entrenamiento','خريطة تدريب خيالية','מפת אימון דמיונית','Вымышленная учебная карта','Carte fictive d’entraînement'],
 ];
