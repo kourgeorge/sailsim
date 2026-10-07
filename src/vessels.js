@@ -23,6 +23,13 @@ export const MONOHULL = freeze({
   fairlead: { x: 0, y: 1.2, z: -6.6 },
   helmEye: [0, 3.65, 6.7],
   helmTargetHeight: 1.7,
+  // Right-handed propeller: in reverse it walks the stern to port. Yaw rate in
+  // degrees per second at full astern from rest, fading out by fadeSpeed (m/s).
+  propWalk: { astern: 2.2, fadeSpeed: 1.6 },
+  // Hull, deck and rig above water (m²). At low speed the high, light bow blows
+  // off first: bowOff is the yaw rate in °/s per newton of side force from rest.
+  // Used only when a state opts in with hullWindage (the docking lab).
+  windage: { frontal: 7, lateral: 15, height: 1.4, coefficient: 0.9, bowOff: 0.0025, fadeSpeed: 1.6 },
 });
 export const CATAMARAN = freeze({
   id: 'catamaran',

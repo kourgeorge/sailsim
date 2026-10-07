@@ -1209,7 +1209,7 @@
       "concepts": [
         "Accoster combine vent, courant, effets de l’hélice, erre et coordination de l’équipage. Préparez pare-battages et amarres, répartissez les rôles, choisissez l’approche et gardez une issue de repli.",
         "Approchez face au vent ou au courant quand c’est possible : cela vous freine, vous pouvez donc arriver lentement tout en gardant de l’eau sur le gouvernail pour barrer. Arrivez à la vitesse la plus faible qui permet encore de gouverner, celle à laquelle vous accepteriez de toucher le quai. N’utilisez jamais une main ou un pied pour arrêter le bateau.",
-        "Deux effets surprennent les débutants. En marche arrière, l’hélice tire l’arrière d’un côté (effet transversal de l’hélice), donc le bateau ne recule pas droit au début. Et à faible vitesse, le vent repousse l’étrave, haute, loin du quai. Prévoyez les deux et gardez une porte de sortie. L’effet transversal de l’hélice et les amarres ne sont pas modélisés dans l’application : l’accostage est donc enseigné ici comme préparation."
+        "Deux effets surprennent les débutants. En marche arrière, l’hélice tire l’arrière d’un côté (effet transversal de l’hélice), donc le bateau ne recule pas droit au début. Et à faible vitesse, le vent repousse l’étrave, haute, loin du quai. Prévoyez les deux et gardez une porte de sortie. L’application modélise l’effet transversal de l’hélice (essayez le labo de cette page), mais pas le vent sur la coque ni les amarres : l’accostage est donc enseigné ici comme préparation."
       ],
       "observe": [
         "Décrivez l’approche, les tâches de l’équipage et le plan de nouvelle présentation avant de bouger.",
@@ -1783,7 +1783,7 @@
       "concepts": [
         "Entrez dans une place à la vitesse à laquelle vous accepteriez de toucher le quai, en général au pas ou moins. Utilisez de brèves impulsions en passant par le point mort entre elles : chaque impulsion donne un peu de gouverne et de vitesse, et le point mort vous laisse juger de la dérive. Il est plus facile d’ajouter un peu de puissance que d’en retirer trop.",
         "À faible vitesse, le vent pousse le bateau de côté, et l’étrave, haute et légère, part la première. En marche arrière, la plupart des hélices tirent aussi l’arrière d’un côté (effet transversal de l’hélice) : battre en arrière pour s’arrêter peut donc faire pivoter l’arrière. Préparez l’approche pour que ces effets vous poussent vers la place, pas à l’opposé, et gardez une porte de sortie si cela tourne mal.",
-        "Dans cet exercice : approchez le repère ambre à 0,3–1 nœud, entrez dans la place nord et arrêtez le centre du bateau à moins de 2 mètres de la cible verte, au 090° ±10°. Finissez au point mort sous 0,15 nœud pendant cinq secondes. Tout contact termine l’essai. L’effet transversal de l’hélice et les amarres ne font pas partie de ce modèle."
+        "Dans cet exercice : approchez le repère ambre à 0,3–1 nœud, entrez dans la place nord et arrêtez le centre du bateau à moins de 2 mètres de la cible verte, au 090° ±10°. Finissez au point mort sous 0,15 nœud pendant cinq secondes. Tout contact termine l’essai. En marche arrière, l’effet transversal de l’hélice porte la poupe vers bâbord ; les amarres ne font pas partie de ce modèle."
       ],
       "observe": [
         "Le cercle vert indique le centre du bateau, pas l’étrave. Gardez une marge devant et sur les côtés.",

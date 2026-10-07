@@ -1209,7 +1209,7 @@
       "concepts": [
         "Docking combines wind, current, propeller effects, boat momentum, and crew coordination. Prepare fenders and lines, assign roles, choose an approach, and keep an escape route.",
         "Approach into the wind or the current where you can: it slows you down, so you can arrive slowly while water still flows past the rudder for steering. Arrive at the slowest speed that still lets you steer, the speed you would be willing to touch the dock at. Never use a hand or foot to stop the boat.",
-        "Two effects catch beginners. In reverse, the propeller pulls the stern to one side (prop walk), so the boat will not back straight at first. And at low speed the wind pushes the high bow away from the dock. Plan for both, and keep a way out. Prop walk and dock lines are not modeled in the app, so docking is taught here as planning."
+        "Two effects catch beginners. In reverse, the propeller pulls the stern to one side (prop walk), so the boat will not back straight at first. And at low speed the wind pushes the high bow away from the dock. Plan for both, and keep a way out. The app models prop walk (try the lab on this page) but not the wind on the hull or dock lines, so docking is taught here as planning."
       ],
       "observe": [
         "Describe your approach, crew jobs, and go-around plan before moving.",
@@ -1783,7 +1783,7 @@
       "concepts": [
         "Come into a berth at the speed you would be willing to touch the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.",
         "At low speed the wind pushes the boat sideways, and the bow, which is high and light, blows off first. In reverse, most propellers also pull the stern to one side (prop walk), so going astern to stop can swing the stern. Plan the approach so these effects push you toward the berth, not away, and keep a way out if it goes wrong.",
-        "In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. Prop walk and mooring lines are not part of this model."
+        "In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. In reverse, prop walk swings the stern to port; mooring lines are not part of this model."
       ],
       "observe": [
         "The green circle marks the boat center, not the bow. Leave clearance ahead and on both sides.",

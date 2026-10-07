@@ -45,6 +45,16 @@ test('catamaran lesson launches twin-engine controls and preserves a real pivot 
   await page.setViewportSize({ width: 1440, height: 1000 });
   await page.locator('#practice-end').click();
   await expect(page.locator('.practice-debrief')).toBeVisible();
+  // Progress saves under an async storage lock; wait for the debrief's record to land.
+  await expect
+    .poll(() =>
+      page.evaluate(
+        () =>
+          JSON.parse(localStorage.getItem('sail-training-v1')).records['sail-52'].lastPracticeResult
+            ?.status,
+      ),
+    )
+    .toBe('failed');
   const record = await page.evaluate(
     () => JSON.parse(localStorage.getItem('sail-training-v1')).records['sail-52'],
   );

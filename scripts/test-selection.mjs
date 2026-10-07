@@ -19,7 +19,7 @@ export const areas = {
   physics: {
     source:
       /^src\/(?:physics|catamaran-physics|collisions|anchor|vessel-controls|vessels|water-depth|weather)\.|^src\/cockpit\//,
-    unit: /physics|wind-reference|anchor|collision|buoy-contacts|catamaran|rig-state|practice|maneuvers|weather/,
+    unit: /physics|wind-reference|anchor|collision|buoy-contacts|catamaran|rig-state|practice|maneuvers|weather|labs/,
     browser: /apparent-wind|weather|catamaran-learning|marina/,
   },
   scenery: {
@@ -36,12 +36,12 @@ export const areas = {
   learning: {
     source:
       /^src\/learning\/|^reference\/sailing\/|^public\/learning-library|^scripts\/build-learning-library/,
-    unit: /learning|practice|decision|scenario|teaching|maneuver|marina|colregs|progress|night-navigation/,
-    browser: /activity|debrief-track|colregs|catamaran-learning|marina/,
+    unit: /learning|practice|decision|scenario|teaching|maneuver|marina|colregs|progress|night-navigation|labs/,
+    browser: /activity|debrief-track|colregs|catamaran-learning|marina|labs/,
   },
   localization: {
     source: /^src\/i18n\/|^public\/locales\//,
-    unit: /locales|localization|language-preference|learning-library/,
+    unit: /locales|localization|language-preference|learning-library|labs/,
     browser: /language-picker|language-preference/,
   },
   audio: {

@@ -84,7 +84,8 @@ function reconcile(s) {
   reconcileAnchorControls(s);
 }
 // Empirical sail coefficients; not a measured polar or CFD solution.
-function coefficients(angle,sheet) {
+// Exported so lesson mini-labs draw the same forces the simulator sails with.
+export function sailCoefficients(angle,sheet) {
   const alpha=clamp(angle-sheet,0,180), a=alpha*RAD;
   const lift=alpha<90?1.15*Math.exp(-(((alpha-18)/25)**2))*Math.min(1,alpha/8):0;
   const drag=.035+1.3*Math.sin(a)**2;
@@ -93,11 +94,17 @@ function coefficients(angle,sheet) {
 }
 export function suggestedSheet(angle) {
   let best=0,power=-1;
-  for(let sheet=0;sheet<=85;sheet++){const p=coefficients(Math.abs(angle),sheet).drive;if(p>power){power=p;best=sheet;}}
+  for(let sheet=0;sheet<=85;sheet++){const p=sailCoefficients(Math.abs(angle),sheet).drive;if(p>power){power=p;best=sheet;}}
   return best;
 }
+// Share of drive left near the wind: 0 inside the no-go zone, 1 once clear of it.
+export function noGoFactor(waterAngle,vessel='monohull') {
+  if(waterAngle===null||waterAngle===undefined)return 0;
+  const type=vessel?.type??getVessel(vessel).type;
+  return clamp((Math.abs(waterAngle)-(type==='catamaran'?43:38))/9,0,1);
+}
 function sailForce(angle,sheet,area,pressure,noGo,shape=1) {
-  const c=coefficients(Math.abs(angle),sheet), best=coefficients(Math.abs(angle),suggestedSheet(angle)).drive;
+  const c=sailCoefficients(Math.abs(angle),sheet), best=sailCoefficients(Math.abs(angle),suggestedSheet(angle)).drive;
   return {drive:pressure*area*c.drive*noGo*shape,side:-Math.sign(angle)*pressure*area*c.side*noGo*shape,
     efficiency:area>0&&best>0?clamp(c.drive/best,0,1)*noGo:0,
     flow:area===0?'Lowered':noGo<.1||c.alpha<5?'Luffing':c.alpha>40&&Math.abs(angle)<120?'Stalled':'Drawing'};
@@ -105,7 +112,7 @@ function sailForce(angle,sheet,area,pressure,noGo,shape=1) {
 function sailDynamics(s) {
   const vessel=getVessel(s);
   const aw=apparentWind(s),water=windOverWater(s),a=Math.abs(aw.angle);
-  const noGo=water.angle===null||s.capsized?0:clamp((Math.abs(water.angle)-(vessel.type==='catamaran'?43:38))/9,0,1), pressure=.5*vessel.airDensity*(aw.speed*KNOT)**2;
+  const noGo=s.capsized?0:noGoFactor(water.angle,vessel), pressure=.5*vessel.airDensity*(aw.speed*KNOT)**2;
   const reefArea=[1,.72,.48][s.reefLevel];
   const shape=1-.18*Math.abs(s.outhaul-clamp(water.speed/25,0,1))-.12*Math.abs(s.vang-clamp(a/140,.2,.85));
   const main=sailForce(aw.angle,clamp(s.mainSheet+s.traveler,0,90),vessel.mainArea*s.mainHoist*reefArea,pressure,noGo,shape);
@@ -147,6 +154,18 @@ export function vesselWaterClearance(s,x=s.x,z=s.z){
   }
   return {depth:Math.min(...depths),grounded};
 }
+// Wind on the monohull's hull and rig: newtons along and across the boat (side
+// positive to starboard) and a low-speed bow-off yaw rate in °/s. Off unless the
+// state sets hullWindage: the course exercises are tuned without it.
+const NO_WINDAGE=Object.freeze({surge:0,side:0,yaw:0});
+export function hullWindage(vessel,aw,u){
+  const w=vessel.windage;
+  if(!w||vessel.type==='catamaran'||!aw.speed)return NO_WINDAGE;
+  const q=.5*vessel.airDensity*(aw.speed*KNOT)**2,a=aw.angle*RAD;
+  const side=-q*w.lateral*w.coefficient*Math.sin(a)*Math.abs(Math.sin(a));
+  const surge=-q*w.frontal*w.coefficient*Math.cos(a)*Math.abs(Math.cos(a));
+  return {surge,side,yaw:side*w.bowOff*clamp(1-Math.abs(u)/w.fadeSpeed,0,1)};
+}
 function integrate(s,dt) {
   const vessel=getVessel(s),yawInertia=vesselYawInertia(vessel);
   advanceAnchorWinch(s,dt);
@@ -162,12 +181,15 @@ function integrate(s,dt) {
   let nextU;
   if(vessel.type==='catamaran')nextU=advanceCatamaran(s,{u,main,jib,aw},dt);
   else{
-  nextU=u+(main.drive*heelLoss+jib.drive*heelLoss+engine-drag-rudderDrag)/VESSEL.mass*dt;
+  const hull=s.hullWindage?hullWindage(vessel,aw,u):NO_WINDAGE;
+  nextU=u+(main.drive*heelLoss+jib.drive*heelLoss+engine+hull.surge-drag-rudderDrag)/VESSEL.mass*dt;
   const lateral=main.side+jib.side;
-  s.leeway+=(lateral-(900+1700*Math.abs(u))*s.leeway)/VESSEL.mass*dt;
+  s.leeway+=(lateral+hull.side-(900+1700*Math.abs(u))*s.leeway)/VESSEL.mass*dt;
   // Signed speed reverses rudder effect astern. Forward propwash grants limited authority at rest.
   const flow=u+(s.throttle>0?.35*s.throttle:0);
-  const targetYaw=(flow/VESSEL.waterline)*Math.tan(s.rudder*RAD)/RAD;
+  // Prop walk: astern thrust swings the stern to port (bow to starboard) until water flows past the rudder.
+  const walk=s.throttle<0&&vessel.propWalk?-s.throttle*vessel.propWalk.astern*clamp(1-Math.abs(u)/vessel.propWalk.fadeSpeed,0,1):0;
+  const targetYaw=(flow/VESSEL.waterline)*Math.tan(s.rudder*RAD)/RAD+walk+hull.yaw;
   s.yawRate+=(targetYaw-s.yawRate)*(1-Math.exp(-dt/1.6));
   const targetHeel=clamp(-lateral*.011*reefArea,-38,38);
   s.heel+=(targetHeel-s.heel)*(1-Math.exp(-dt/2));

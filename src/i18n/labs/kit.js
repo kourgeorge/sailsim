@@ -1,0 +1,20 @@
+// Shared mini-lab labels. Columns: key, en, es, ar, he, ru, fr.
+export const rows=[
+ ['try','Try this','Prueba esto','جرّب هذا','נסו את זה','Попробуйте','Essayez'],
+ ['done','Done','Hecho','تم','בוצע','Готово','Fait'],
+ ['notYet','Not yet','Todavía no','ليس بعد','עדיין לא','Пока нет','Pas encore'],
+ ['taskDone','Done: {task}','Hecho: {task}','تم: {task}','בוצע: {task}','Готово: {task}','Fait : {task}'],
+ ['noCredit','For study only. These tasks do not count toward course credit.','Solo para estudiar. Estas tareas no cuentan para el curso.','للدراسة فقط. لا تُحتسب هذه المهام في رصيد الدورة.','ללימוד בלבד. המשימות האלה אינן נספרות להשלמת הקורס.','Только для изучения. Эти задания не засчитываются в курс.','Pour l’étude seulement. Ces tâches ne comptent pas pour le cours.'],
+ ['model','Shows this simulator’s model, simplified for learning.','Muestra el modelo de este simulador, simplificado para aprender.','يعرض نموذج هذا المحاكي، مبسطًا للتعلم.','מציג את המודל של הסימולטור הזה, בפישוט לצורכי לימוד.','Показывает модель этого симулятора в упрощённом виде.','Montre le modèle de ce simulateur, simplifié pour apprendre.'],
+ ['play','Play','Reproducir','تشغيل','הפעלה','Пуск','Lecture'],
+ ['pause','Pause','Pausa','إيقاف مؤقت','השהיה','Пауза','Pause'],
+ ['step','Step','Paso','خطوة','צעד','Шаг','Pas à pas'],
+ ['restart','Restart','Reiniciar','إعادة البدء','התחלה מחדש','Сначала','Recommencer'],
+ ['time','Time','Tiempo','الزمن','זמן','Время','Temps'],
+ ['seconds','{value} s','{value} s','{value} ث','{value} ש׳','{value} с','{value} s'],
+ ['knots','{value} kn','{value} nudos','{value} عقدة','{value} קשר','{value} уз','{value} nœuds'],
+ ['degrees','{value}°','{value}°','{value}°','{value}°','{value}°','{value}°'],
+ ['metres','{value} m','{value} m','{value} م','{value} מ׳','{value} м','{value} m'],
+ ['controls','Lab controls','Controles del laboratorio','أدوات التحكم في المختبر','בקרי המעבדה','Управление лабораторией','Commandes du labo'],
+ ['interactive','Interactive lab','Laboratorio interactivo','مختبر تفاعلي','מעבדה אינטראקטיבית','Интерактивная лаборатория','Labo interactif'],
+];

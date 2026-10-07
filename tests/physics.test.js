@@ -88,3 +88,14 @@ test('paying out target alone does not clear a dragging warning before rode is a
  assert.equal(s.anchorDragging,true);near(s.anchorPaidRode,paid);assert.equal(s.x,position.x);assert.equal(s.z,position.z);
  applyControlPatch(s,{anchorWinchRunning:true});run(s,10);assert.ok(s.anchorPaidRode>paid);assert.equal(s.anchorDragging,false);
 });
+test('prop walk: astern thrust from rest swings the stern to port, ahead thrust does not, and it fades with speed',()=>{
+ const calm={sails:0,mainHoist:0,jibHoist:0,windSpeed:0,currentSpeed:0,heading:90,rudder:0,worldBodies:[]};
+ const astern=run(ocean({...calm,throttle:-1}),4);
+ assert.ok(angleDifference(astern.heading,90)>2,'bow swings to starboard, stern to port');
+ const ahead=run(ocean({...calm,throttle:1}),4);near(ahead.heading,90);
+ const neutral=run(ocean({...calm,throttle:0}),4);near(neutral.heading,90);
+ // Already moving fast astern: water flow past the rudder masks the walk.
+ const moving=ocean({...calm,throttle:-1,speed:-3.2});const start=moving.heading;run(moving,1);
+ assert.ok(Math.abs(angleDifference(moving.heading,start))<Math.abs(angleDifference(run(ocean({...calm,throttle:-1}),1).heading,90)));
+ const cat=run(Object.assign(initialState(undefined,'catamaran'),{x:3000,z:3000},calm,{throttle:-1}),4);near(cat.heading,90);
+});

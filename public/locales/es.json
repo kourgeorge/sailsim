@@ -1209,7 +1209,7 @@
       "concepts": [
         "Atracar combina viento, corriente, efectos de la hélice, arrancada y coordinación de la tripulación. Prepara defensas y cabos, asigna funciones, elige una aproximación y conserva una vía de escape.",
         "Siempre que puedas, aproxímate contra el viento o la corriente: te frenan, así que puedes llegar despacio mientras el agua sigue pasando por el timón para gobernar. Llega a la menor velocidad que todavía te permita gobernar, la velocidad a la que aceptarías tocar el muelle. Nunca uses una mano o un pie para frenar el barco.",
-        "Hay dos efectos que sorprenden a los principiantes. En marcha atrás, la hélice tira de la popa hacia un lado (efecto lateral de la hélice), así que al principio el barco no retrocede recto. Y a poca velocidad el viento aparta del muelle la proa, que es alta. Ten en cuenta los dos y guarda siempre una salida. El efecto lateral de la hélice y las amarras no están modelados en la aplicación, así que aquí el atraque se enseña como planificación."
+        "Hay dos efectos que sorprenden a los principiantes. En marcha atrás, la hélice tira de la popa hacia un lado (efecto lateral de la hélice), así que al principio el barco no retrocede recto. Y a poca velocidad el viento aparta del muelle la proa, que es alta. Ten en cuenta los dos y guarda siempre una salida. La aplicación modela el efecto lateral de la hélice (pruébalo en el laboratorio de esta página), pero no el viento sobre el casco ni las amarras, así que aquí el atraque se enseña como planificación."
       ],
       "observe": [
         "Describe la aproximación, las tareas de la tripulación y el plan para repetirla antes de moverte.",
@@ -1783,7 +1783,7 @@
       "concepts": [
         "Entra en un atraque a la velocidad a la que aceptarías tocar el muelle, normalmente al paso de una persona o menos. Usa impulsos breves de motor con punto muerto entre ellos: cada impulso da un poco de gobierno y velocidad, y el punto muerto te deja valorar la deriva. Es más fácil añadir un poco de potencia que quitar demasiada.",
         "A poca velocidad el viento empuja el barco de lado, y la proa, alta y ligera, es la primera en desviarse. En marcha atrás, la mayoría de las hélices también tiran de la popa hacia un lado (efecto lateral de la hélice), así que dar atrás para frenar puede desviar la popa. Planifica la aproximación para que estos efectos te acerquen al atraque y no te alejen, y guarda una salida por si sale mal.",
-        "En este ejercicio: acércate a la marca ámbar a 0,3–1 nudo, entra en la plaza norte y detén el centro del barco a menos de 2 metros del objetivo verde, al 090° ±10°. Termina en punto muerto por debajo de 0,15 nudos durante cinco segundos. Cualquier contacto termina el intento. El efecto lateral de la hélice y las amarras no forman parte de este modelo."
+        "En este ejercicio: acércate a la marca ámbar a 0,3–1 nudo, entra en la plaza norte y detén el centro del barco a menos de 2 metros del objetivo verde, al 090° ±10°. Termina en punto muerto por debajo de 0,15 nudos durante cinco segundos. Cualquier contacto termina el intento. En marcha atrás, el efecto lateral de la hélice lleva la popa a babor; las amarras no forman parte de este modelo."
       ],
       "observe": [
         "El círculo verde marca el centro del barco, no la proa. Deja espacio delante y a ambos lados.",

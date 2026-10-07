@@ -26,7 +26,7 @@ export const marinaLessons=[
   concepts:[
    'Come into a berth at the speed you would be willing to touch the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.',
    'At low speed the wind pushes the boat sideways, and the bow, which is high and light, blows off first. In reverse, most propellers also pull the stern to one side (prop walk), so going astern to stop can swing the stern. Plan the approach so these effects push you toward the berth, not away, and keep a way out if it goes wrong.',
-   'In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. Prop walk and mooring lines are not part of this model.'
+   'In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. In reverse, prop walk swings the stern to port; mooring lines are not part of this model.'
   ],
   observe:['The green circle marks the boat center, not the bow. Leave clearance ahead and on both sides.','Watch ground speed and reduce power before reaching the berth.'],
   mistake:'Using the dock to stop the boat or leaving the engine engaged after reaching the target.',

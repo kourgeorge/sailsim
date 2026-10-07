@@ -4,6 +4,7 @@ import {marinaModule,marinaLessons} from './marina-course.js';
 import {colregsModule,colregsLessons} from './colregs-course.js';
 import {catamaranModule,catamaranLessons} from './catamaran-course.js';
 import {nightModule,nightLessons} from './night-course.js';
+import {lessonLabs,quizLabs} from './lesson-labs.js';
 // A module groups related lessons. Each lesson contains teaching pages, questions,
 // and its assessed training. Practical assessments only use simulated capabilities.
 export const modules=[
@@ -238,7 +239,7 @@ lesson('seamanship','Make a passage decision',[
 lesson('harbor','Plan a docking approach',[
  'Docking combines wind, current, propeller effects, boat momentum, and crew coordination. Prepare fenders and lines, assign roles, choose an approach, and keep an escape route.',
  'Approach into the wind or the current where you can: it slows you down, so you can arrive slowly while water still flows past the rudder for steering. Arrive at the slowest speed that still lets you steer, the speed you would be willing to touch the dock at. Never use a hand or foot to stop the boat.',
- 'Two effects catch beginners. In reverse, the propeller pulls the stern to one side (prop walk), so the boat will not back straight at first. And at low speed the wind pushes the high bow away from the dock. Plan for both, and keep a way out. Prop walk and dock lines are not modeled in the app, so docking is taught here as planning.'
+ 'Two effects catch beginners. In reverse, the propeller pulls the stern to one side (prop walk), so the boat will not back straight at first. And at low speed the wind pushes the high bow away from the dock. Plan for both, and keep a way out. The app models prop walk (try the lab on this page) but not the wind on the hull or dock lines, so docking is taught here as planning.'
 ],['Describe your approach, crew jobs, and go-around plan before moving.','Explain why wind and current change a safe approach.'], 'Relying on crew to jump ashore or physically catch the yacht.',[
  q('If the approach becomes unstable, what should the preplanned option be?',['Ask someone to fend off with a foot','Abort and make a controlled new approach if safe','Add speed to get it over with'],1,'An escape plan is part of preparation; avoid trapping the boat or crew in an unrecoverable maneuver.'),
  q('Why approach a berth heading into the wind or current when you can?',['It makes the boat go faster','It stops prop walk','It slows the boat while water still flows past the rudder'],2,'The wind or current acts as a brake, so you can come in slowly and still steer. With them behind you, the boat keeps being pushed on.')]);
@@ -310,4 +311,5 @@ apparentWindLesson.conceptFigures={5:'faster-than-wind'};
 apparentWindLesson.quiz[3].figure='faster-than-wind';
 apparentWindLesson.minutes=10;
 apparentWindLesson.challengeId='apparent-wind-lab';
+for(const lesson of lessons){if(lessonLabs[lesson.id])lesson.conceptLabs=lessonLabs[lesson.id];for(const [i,lab] of Object.entries(quizLabs[lesson.id]||{}))lesson.quiz[i].lab=lab;}
 export {lessons};

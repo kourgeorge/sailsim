@@ -1,6 +1,15 @@
 # Mini-labs plan: interactive physics inside the lessons
 
-Status: plan only, not implemented. Written October 2026, after the lesson text rewrite (see `docs/LESSON_REVIEW.md`).
+Status: all eleven labs built (October 2026). Prop walk was added to the model for Lab 11. Written October 2026, after the lesson text rewrite (see `docs/LESSON_REVIEW.md`).
+
+## What was built
+
+- Kit and registry: `src/learning/labs/kit.js`, `src/learning/labs/index.js`, styles in `labs.css`. Lesson placement: `src/learning/lesson-labs.js` (applied in `curriculum.js` as `lesson.conceptLabs`). Strings: `src/i18n/labs.js` plus one row file per lab in `src/i18n/labs/`.
+- Prop walk (`src/physics.js`, constants in `MONOHULL.propWalk` in `src/vessels.js`): astern thrust swings the monohull's stern to port, up to 2.2°/s at full astern from rest, fading out by about 3 knots. Lab 11 (`docking`) is on Lesson 29 page 3 and Lesson 44 page 2; tests in `tests/labs-docking.test.js` and `tests/physics.test.js`.
+- Physics exports used by the labs: `sailCoefficients()` and `noGoFactor()` in `src/physics.js` (the simulator now calls the same functions).
+- Lab 10 is three lab ids: `lights-aspect`, `lights-leading`, `lights-flash`, so no page shows more than two controls.
+- Tests: `tests/labs.test.js` (all labs: strings, placement, fallback, Labs 1–2), `tests/labs-motion.test.js` (Labs 3, 5), `tests/labs-steady.test.js` (Labs 4, 6, 8), `tests/labs-navigation.test.js` (Labs 7, 9, 10), `tests/browser/labs.spec.js`.
+- Known gaps: the simulator has no weather-helm model, so Lab 4 shows no helm-pull indicator; hull windage (`hullWindage()` in `src/physics.js`) is switched on only in Lab 11 through `state.hullWindage`, because with it on everywhere a bare boat drifts and the course's stopping and low-speed exercises can no longer be passed — turning it on for the whole simulator needs those exercises re-tuned first; rudder drag is small, so a sharp tack in Lab 3 barely loses extra speed; no catamaran view in Lab 4 yet (Lesson 52 has no lab); Lab 8 draws the rode as a straight line, as the simulator treats it. The yacht's bow roller is 1.2 m, not the 1 m in Lesson 30's worked example, so that page starts the lab at 31 m (5:1).
 
 ## Goal
 
