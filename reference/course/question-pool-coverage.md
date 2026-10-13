@@ -13,6 +13,7 @@ A question is **covered** when the course states the fact needed to pick the rig
 | 2026-10-13, first review | 91 (25%) | 121 (33%) | 150 (41%) |
 | 2026-10-13, after batch 1 (lights, shapes, signals) | 146 (40%) | 69 (19%) | 147 (41%) |
 | 2026-10-13, after batch 2 (buoys and harbor entrances) | 153 (42%) | 62 (17%) | 147 (41%) |
+| 2026-10-13, after batch 3 (distress, grounding, flooding, fire) | 175 (48%) | 47 (13%) | 140 (39%) |
 
 ## By topic
 
@@ -22,11 +23,11 @@ A question is **covered** when the course states the fact needed to pick the rig
 | Lights and day shapes | 60 | 53 | 4 | 3 | 218, 345, 354 |
 | Right-of-way rules | 44 | 41 | 3 | 0 |  |
 | Sailing theory and trim | 40 | 27 | 12 | 1 | 285 |
-| Emergencies and distress | 28 | 2 | 14 | 12 | 83, 91, 110, 151, 208, 219, 224, 228, 229, 231, 272, 316 |
+| Emergencies and distress | 28 | 23 | 0 | 5 | 83, 91, 110, 151, 272 |
 | Safety equipment | 25 | 2 | 1 | 22 | 41, 43, 48, 52, 53, 75, 87, 93, 102, 109, 111, 165, 230, 232, 246, 248, 263, 267, 281, 299, 355, 359 |
 | Boat handling under engine | 20 | 2 | 9 | 9 | 79, 84, 100, 146, 149, 159, 161, 183, 304 |
 | Anchoring and mooring | 18 | 2 | 10 | 6 | 94, 95, 105, 138, 247, 360 |
-| Sound signals | 16 | 15 | 1 | 0 |  |
+| Sound signals | 16 | 16 | 0 | 0 |  |
 | Israeli law and regulations | 15 | 0 | 1 | 14 | 37, 38, 39, 40, 42, 45, 49, 51, 152, 252, 301, 312, 352, 353 |
 | Ropes and knots | 11 | 0 | 0 | 11 | 76, 90, 99, 101, 107, 108, 118, 132, 266, 280, 300 |
 | Other (mostly signal flags) | 10 | 1 | 0 | 9 | 60, 63, 64, 65, 66, 67, 68, 148, 273 |
@@ -38,10 +39,9 @@ A question is **covered** when the course states the fact needed to pick the rig
 ## Biggest remaining gaps
 
 1. **Weather:** pressure systems, fronts, isobars, clouds, barometer trends, the Beaufort scale, and local winds (Sharqiya, Meltemi).
-2. **Safety equipment:** life rafts and their automatic release, fire extinguishers, flares, harnesses.
+2. **Safety equipment:** life rafts and their automatic release, fire extinguisher types, flare types and storage, harnesses, sea anchors.
 3. **Israeli law and regulations** and **ropes and knots:** not taught at all.
 4. **Signal flags** other than A (B, O, Q, quarantine/health, flags for entering a foreign port).
-5. **Distress signals:** the full list, including sound signals (batch 3 of the plan).
 
 ## Strong areas
 

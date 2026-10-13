@@ -1385,6 +1385,7 @@
       "concepts": [
         "Raise the alarm, maintain continuous visual contact, point to the person, and deploy appropriate flotation and marking equipment. Assign roles and call for help as the situation requires.",
         "Then bring the boat back under control and return. Stay close: many recoveries fail because the boat gets too far away and loses sight of the person. Plan the final approach on a close reach, so you can slow down by easing the sails and stop beside the person. Keep the propeller in neutral or stopped near them.",
+        "A lifebuoy light switches itself on when the buoy floats upright in the water, so throw the buoy with its light attached; do not wait to test it. In strong wind and big waves, a return under sail can be hard to control: once the buoy is thrown and someone is pointing, roll away the headsail, check that no lines are in the water, start the engine and approach slowly, with the propeller stopped near the person.",
         "Lifting a person aboard is often the hardest part: a wet adult is heavy and the side of the boat is high. Know your boat’s method, such as a sling, a halyard on a winch or a ladder, before you need it. This app has no person-overboard model, so this lesson checks priorities; practice the maneuver with an instructor and a training object."
       ],
       "observe": [
@@ -1419,7 +1420,13 @@
       "concepts": [
         "Distress means grave and imminent danger requiring immediate assistance. Know the vessel’s communications equipment, local procedures, and how to give identity, position, nature of the emergency, and assistance needed.",
         "For an immediate life-threatening situation, use the appropriate distress facilities, such as DSC distress and a MAYDAY call on VHF channel 16 where applicable and available. Learn the equipment before departure and never transmit a real distress alert for practice.",
-        "After a grounding, flooding, or fire, protect people, assess the situation, call for help as needed, and follow vessel-specific emergency procedures. Blindly applying power after grounding may worsen damage."
+        "Any one of these signals means a vessel needs immediate help. You may see a red hand flare, a red parachute rocket, orange smoke, flames on the vessel, the code flags N over C, a square flag with a ball above or below it, and a person slowly and repeatedly raising and lowering outstretched arms. Use them only in real distress, and know where your own flares are and how they fire.",
+        "Distress can also be heard, or received by radio. The signals are a gun or other explosion about once a minute, a continuous sound on a horn or fog signal, SOS in any signalling method (three short, three long, three short), MAYDAY by radio, a DSC distress alert and an emergency beacon (EPIRB or PLB). A single code flag on its own is not a distress signal, and other horn patterns, such as six short, three long, six short, mean nothing.",
+        "Receiving a distress call obliges you to go and help. Go as fast as you can, unless that would put your own vessel and crew in serious danger, and tell the rescue service what you are doing. Distress means a risk to life. A boat that only wants a tow, with nobody in danger, is not in distress: you may help if your boat, fuel, lines and crew make it safe, but you are not obliged to.",
+        "After a grounding, flooding, or fire, protect people, assess the situation, call for help as needed, and follow vessel-specific emergency procedures. Blindly applying power after grounding may worsen damage.",
+        "After running aground, first put the engine in neutral. Driving ahead pushes the keel further in and can suck sand into the engine’s cooling water. Check that everyone is unhurt, then check the hull and bilge for water. If the boat is sound, try to come off the way you came: lower or ease the sails so they stop pushing you on, and use reverse gently. If that fails, wait for help or a rising tide rather than forcing it.",
+        "When you find water aboard, act at once: start the pumps, then find where the water comes in. Tasting it helps: fresh water points to a tank or pipe, salt water to a hull fitting, hose or damage. Close the seacocks you can reach, and plug or cover the opening with a bung, cloth or cushion held in place. If the water keeps rising, call for help early.",
+        "A fire needs fuel, air and heat, so take away any one of them. Turn the boat so the wind carries smoke and flames away from the crew and the rest of the boat; with a fire forward, put the stern to the wind, and with a fire aft, the bow. For an engine fire, stop the engine, shut off the fuel, and discharge the extinguisher through a small opening rather than opening the hatch wide, which feeds the fire with air. Get gas bottles near the fire overboard first."
       ],
       "observe": [
         "Rehearse the information you would provide without transmitting.",
@@ -1444,6 +1451,24 @@
             "Rehearse without transmitting, or use an authorized training setting"
           ],
           "explanation": "False distress alerts can divert real emergency resources."
+        },
+        {
+          "prompt": "Which of these is a distress signal?",
+          "options": [
+            "A square flag with a ball above it",
+            "A single international code flag",
+            "Five short horn blasts"
+          ],
+          "explanation": "A square flag with a ball above or below it is a distress signal. A single code flag is not, and five short blasts mean doubt about another vessel’s intentions."
+        },
+        {
+          "prompt": "Your motorboat runs onto a sandbank. What do you do first?",
+          "options": [
+            "Put the engine in neutral",
+            "Apply full power ahead",
+            "Jump over the side to push"
+          ],
+          "explanation": "Driving ahead pushes you further on and can suck sand into the cooling water. Stop, check people and the hull, then try to back off gently."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."

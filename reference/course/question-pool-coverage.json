@@ -677,11 +677,11 @@
   "answer": "c",
   "answer_text": "A red rocket, a constant long horn blow, slow waving of the hands up and down on the side of the body.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress and MAYDAY are taught, but the list of visual and sound distress signals is not.",
+  "note": "Red rocket, continuous horn and raising/lowering arms are all listed distress signals.",
   "needs_picture": false
  },
  {
@@ -690,11 +690,11 @@
   "answer": "c",
   "answer_text": "Raising of one flag from the international code.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress is taught in general, but the official distress signal list is not.",
+  "note": "A single code flag on its own is stated not to be a distress signal.",
   "needs_picture": false
  },
  {
@@ -703,11 +703,11 @@
   "answer": "b",
   "answer_text": "A square flag and above it a black ball, sounding of explosive sounds every minute, a non-ceasing horn blast, red rockets.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress signals such as flag over ball, explosions and continuous horn are not listed.",
+  "note": "Square flag with a ball, explosions about once a minute, continuous horn and red rockets are listed.",
   "needs_picture": false
  },
  {
@@ -885,12 +885,11 @@
   "answer": "c",
   "answer_text": "That the vessel is in distress and needs help.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-50",
    "sail-34"
   ],
-  "note": "Sound signals are taught, but not the sound distress signal.",
+  "note": "Answer is distress; the sound distress signals (SOS, continuous horn) are taught. Judged from the answer.",
   "needs_picture": true
  },
  {
@@ -899,11 +898,11 @@
   "answer": "b",
   "answer_text": "This is a vessel indicating that it is in distress.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress is taught, but SOS in horn blasts is not.",
+  "note": "SOS as three short, three long, three short is taught.",
   "needs_picture": false
  },
  {
@@ -925,12 +924,11 @@
   "answer": "c",
   "answer_text": "There is no meaning to these horn blasts.",
   "topic": "sound_signals",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-50",
    "sail-34"
   ],
-  "note": "Sound signals are taught, but not the distress sound signals needed to see this pattern means nothing.",
+  "note": "Six short, three long, six short is stated to mean nothing.",
   "needs_picture": false
  },
  {
@@ -1025,11 +1023,11 @@
   "answer": "b",
   "answer_text": "The light will turn on when the life ring turns over and starts floating on the water.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-33"
   ],
-  "note": "Throwing flotation for a person overboard is taught, but how the lifebuoy light switches on is not.",
+  "note": "The lifebuoy light switches itself on when the buoy floats upright.",
   "needs_picture": false
  },
  {
@@ -1073,11 +1071,11 @@
   "answer": "d",
   "answer_text": "Put the engine into neutral.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Course warns not to blindly apply power after grounding, but does not say to put the engine in neutral first.",
+  "note": "After running aground, first put the engine in neutral.",
   "needs_picture": false
  },
  {
@@ -1529,11 +1527,11 @@
   "answer": "a",
   "answer_text": "Taste the water, activate pumps, seal openings.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Flooding is named as an emergency, but tasting the water, pumping and sealing openings are not taught.",
+  "note": "Start the pumps, taste the water, close seacocks and plug the opening.",
   "needs_picture": false
  },
  {
@@ -1584,11 +1582,11 @@
   "answer": "c",
   "answer_text": "I will engage neutral or lower the sails and conduct damage assessment, and if possible I will try to free the boat by engaging reverse.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Assessing damage after grounding is taught, but freeing the boat by lowering sails and reversing is not.",
+  "note": "Neutral or ease the sails, check for damage, then try reverse gently.",
   "needs_picture": false
  },
  {
@@ -1767,11 +1765,11 @@
   "answer": "c",
   "answer_text": "Toss a life preserver, roll in the foresail, start the engine and approach the person in the water.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-33"
   ],
-  "note": "Flotation and returning to the person are taught, but rolling in the headsail and using the engine are not.",
+  "note": "Under sail in rough water: throw the buoy, roll away the headsail, start the engine, approach.",
   "needs_picture": false
  },
  {
@@ -1780,11 +1778,11 @@
   "answer": "c",
   "answer_text": "Check if I am able to perform the tow (fuel status, appropriate ropes, etc.), I have no obligation to assist the boat since it is not in distress.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress is defined, but the lack of a duty to tow a boat that is not in distress is not taught.",
+  "note": "No duty to tow a boat that is not in distress; check boat, fuel and lines first.",
   "needs_picture": false
  },
  {
@@ -2060,11 +2058,11 @@
   "answer": "d",
   "answer_text": "Go and rescue human life unless you have considered it and have concluded that the risk to the life of your crew is too high.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress and channel 16 are taught, but the duty to go and help is not.",
+  "note": "Duty to go and help unless it puts your own crew in serious danger.",
   "needs_picture": false
  },
  {
@@ -2597,9 +2595,11 @@
   "answer": "d",
   "answer_text": "It is a vessel in distress, I approach to offer assistance.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The flag-and-ball distress signal is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "A square flag with a ball above it is a distress signal; go and help.",
   "needs_picture": false
  },
  {
@@ -2744,9 +2744,11 @@
   "answer": "a",
   "answer_text": "B is in distress so J must approach and assist it.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Flames on deck as a distress signal are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "Flames on the vessel are a distress signal, and you must go and help.",
   "needs_picture": true
  },
  {
@@ -2810,9 +2812,11 @@
   "answer": "d",
   "answer_text": "J is in distress and one must go and provide assistance.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Flag-with-ball distress signal is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "A flag with a ball below it is a distress signal; go and help. Judged from the answer.",
   "needs_picture": true
  },
  {
@@ -2862,9 +2866,11 @@
   "answer": "c",
   "answer_text": "Shut off the engine, cut off the fuel flow if possible and spray fire extinguishing powder through a narrow opening.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Engine fire procedure is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "Engine fire: stop the engine, shut off fuel, discharge through a small opening.",
   "needs_picture": false
  },
  {
@@ -2873,9 +2879,11 @@
   "answer": "d",
   "answer_text": "Turn the stern of the boat to the wind, and use all available means to immediately extinguish thefire.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Fire-fighting procedure aboard is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "Fire forward: put the stern to the wind and fight the fire.",
   "needs_picture": false
  },
  {
@@ -2895,9 +2903,11 @@
   "answer": "c",
   "answer_text": "Toss the gas balloons located in the stern to sea.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Fire response and gas bottles are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "Get gas bottles near the fire overboard first.",
   "needs_picture": false
  },
  {
@@ -3821,11 +3831,11 @@
   "answer": "c",
   "answer_text": "K is in distress and needs assistance.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress is taught via radio, but distress sound signals are not.",
+  "note": "Answer is distress; the sound distress signals are taught. Judged from the answer.",
   "needs_picture": true
  },
  {
@@ -3911,9 +3921,11 @@
   "answer": "b",
   "answer_text": "I am in distress and need assistance.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Visual distress signals such as flag with ball are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-34"
+  ],
+  "note": "A flag with a ball above it is a distress signal. Judged from the answer.",
   "needs_picture": true
  },
  {
@@ -4004,11 +4016,11 @@
   "answer": "a",
   "answer_text": "L is in distress, H must go offer assistance.",
   "topic": "emergency_distress",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress is taught via radio, but distress sound signals are not.",
+  "note": "Distress sound signals and the duty to go and help are taught. Judged from the answer.",
   "needs_picture": true
  },
  {

@@ -5,6 +5,7 @@ import {advancedLessons} from '../src/learning/advanced-course.js';
 import {renderTeachingFigure,getTeachingFigureCaption} from '../src/learning/teaching-figures.js';
 import {isStatusLightsFigure,statusLightVariants} from '../src/learning/status-lights-figure.js';
 import {isBuoyageFigure} from '../src/learning/buoyage-figure.js';
+import {isDistressFigure} from '../src/learning/distress-figure.js';
 import {apparentWind} from '../src/physics.js';
 
 const course=[...new Map([...lessons,...advancedLessons].map(lesson=>[lesson.id,lesson])).values()];
@@ -139,4 +140,21 @@ test('buoyage card renders both variants with translated titles and captions',()
   // Each cardinal top mark: North both up, South both down, East apart, West together.
   const svg=renderTeachingFigure({figure:'buoyage:cardinal'},'en');
   for(const mark of ['N','E','S','W'])assert.match(svg,new RegExp(`data-cardinal="${mark}"`));
+});
+
+test('distress card shows the signals seen and heard, translated in every language',()=>{
+  const used=course.flatMap(lesson=>Object.values(lesson.conceptFigures??{})).filter(isDistressFigure);
+  assert.deepEqual(used.sort(),['distress:heard','distress:seen']);
+  for(const figure of used) for(const lang of languages) {
+    const svg=renderTeachingFigure({figure},lang);
+    assert.match(svg,new RegExp(`data-variant="${figure.split(':')[1]}"`));
+    assert.doesNotMatch(svg,/undefined|NaN/);
+    if(lang!=='en') {
+      assert.notEqual(title(svg),title(renderTeachingFigure({figure},'en')));
+      assert.notEqual(getTeachingFigureCaption({figure},lang),getTeachingFigureCaption({figure},'en'));
+    }
+  }
+  const seen=renderTeachingFigure({figure:'distress:seen'},'en'),heard=renderTeachingFigure({figure:'distress:heard'},'en');
+  for(const key of ['handFlare','rocket','smoke','flames','nc','flagBall','arms'])assert.match(seen,new RegExp(`data-distress="${key}"`));
+  for(const key of ['explosion','horn','sos','mayday','dsc','beacon'])assert.match(heard,new RegExp(`data-distress="${key}"`));
 });

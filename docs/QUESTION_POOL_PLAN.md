@@ -83,6 +83,8 @@ Reuse the existing `lights-flash` lab (lessons 42 and 53) with cardinal patterns
 
 ### Batch 3: Emergencies and distress (lessons 34, 33), 15 questions
 
+**Status: done (2026-10-13).** Lesson 34 now has 9 pages and 4 questions. The new pages cover distress signals you can see, distress signals you can hear or receive, the duty to help, running aground, flooding and fire. A new distress-signals card (`src/learning/distress-figure.js`, variants `seen` and `heard`) illustrates the two signal pages. Lesson 33 gained one page on the lifebuoy light and a rough-weather return under engine. Fire and "square flag with a ball" also closed 7 questions that were marked not covered (208, 219, 224, 228, 229, 231, 316), so batch 3 covered 22 questions in total.
+
 **Lesson 34, "Distress and urgent action"** gets about 4 pages:
 - **The full list of distress signals** (COLREG Annex IV): red flares and rockets, orange smoke, flames on the vessel, a gun or explosion about once a minute, a continuous foghorn, SOS (··· ––– ···) in light or sound, MAYDAY by voice, code flags N over C, a square flag with a ball, slowly raising and lowering outstretched arms, DSC, and an EPIRB. (Questions 54, 55, 56, 71, 72, 74, 309, 323.)
 - **The duty to help:** you must go to people in distress unless doing so seriously endangers your own crew. You have no duty to tow a boat that isn't in distress, though you may choose to. (Questions 142, 164.)

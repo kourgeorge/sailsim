@@ -1385,6 +1385,7 @@
       "concepts": [
         "Da la alarma, mantén contacto visual continuo, señala a la persona y lanza los medios de flotación y señalización adecuados. Asigna funciones y pide ayuda según la situación.",
         "Después, recupera el control del barco y vuelve. Mantente cerca: muchas recuperaciones fracasan porque el barco se aleja demasiado y se pierde de vista a la persona. Planifica la aproximación final de ceñida abierta, para poder frenar largando las velas y detenerte junto a la persona. Mantén la hélice en punto muerto o parada cerca de ella.",
+        "La luz de un aro salvavidas se enciende sola cuando el aro flota derecho en el agua, así que lánzalo con la luz unida; no esperes a probarla. Con viento fuerte y mar gruesa, volver a vela puede ser difícil de controlar: con el aro lanzado y alguien señalando, enrolla el foque, comprueba que no hay cabos en el agua, arranca el motor y acércate despacio, con la hélice parada cerca de la persona.",
         "Subir a la persona a bordo suele ser lo más difícil: un adulto mojado pesa mucho y el costado del barco es alto. Conoce el método de tu barco, como un arnés de izado, una driza en un winche o una escalera, antes de necesitarlo. Esta aplicación no tiene un modelo de persona al agua, así que la lección comprueba prioridades; practica la maniobra con un instructor y un objeto de entrenamiento."
       ],
       "observe": [
@@ -1419,7 +1420,13 @@
       "concepts": [
         "El socorro corresponde a un peligro grave e inminente que exige ayuda inmediata. Conoce los equipos de comunicación del barco, los procedimientos locales y cómo dar identidad, posición, naturaleza de la emergencia y ayuda necesaria.",
         "Ante un peligro inmediato para la vida, usa los medios de socorro apropiados, como la alerta DSC y una llamada MAYDAY por el canal 16 de VHF donde corresponda y estén disponibles. Aprende el equipo antes de salir y nunca emitas una alerta real para practicar.",
-        "Tras una varada, entrada de agua o incendio, protege a las personas, evalúa la situación, pide ayuda cuando sea necesario y sigue los procedimientos de emergencia del barco. Aplicar potencia a ciegas tras una varada puede agravar los daños."
+        "Cualquiera de estas señales significa que un buque necesita ayuda inmediata. Puedes ver una bengala roja de mano, un cohete rojo con paracaídas, humo naranja, llamas a bordo, las banderas N sobre C del código, una bandera cuadrada con una bola encima o debajo, y una persona que sube y baja los brazos extendidos, despacio y repetidamente. Úsalas solo en un peligro real, y sabe dónde están tus bengalas y cómo se disparan.",
+        "El socorro también se oye o se recibe por radio. Las señales son un cañonazo u otra explosión cada minuto aproximadamente, un sonido continuo de bocina o señal de niebla, SOS por cualquier medio (tres cortas, tres largas, tres cortas), MAYDAY por radio, una alerta de socorro DSC y una radiobaliza (EPIRB o PLB). Una sola bandera del código no es una señal de socorro, y otros patrones de bocina, como seis cortas, tres largas, seis cortas, no significan nada.",
+        "Recibir una llamada de socorro te obliga a ir a ayudar. Ve lo más rápido que puedas, salvo que eso ponga en grave peligro a tu barco y tu tripulación, e informa al servicio de salvamento de lo que haces. Socorro significa riesgo para la vida. Un barco que solo quiere un remolque, sin nadie en peligro, no está en situación de socorro: puedes ayudar si tu barco, combustible, cabos y tripulación lo permiten con seguridad, pero no estás obligado.",
+        "Tras una varada, entrada de agua o incendio, protege a las personas, evalúa la situación, pide ayuda cuando sea necesario y sigue los procedimientos de emergencia del barco. Aplicar potencia a ciegas tras una varada puede agravar los daños.",
+        "Tras una varada, pon primero el motor en punto muerto. Dar avante empuja la quilla más adentro y puede aspirar arena al agua de refrigeración del motor. Comprueba que nadie está herido y después revisa el casco y la sentina por si entra agua. Si el barco está bien, intenta salir por donde entraste: arría o filtra las velas para que dejen de empujarte y da atrás con suavidad. Si no funciona, espera ayuda o la subida de la marea en lugar de forzarlo.",
+        "Cuando encuentres agua a bordo, actúa de inmediato: pon en marcha las bombas y busca por dónde entra. Probarla ayuda: el agua dulce apunta a un tanque o una tubería, la salada a un pasacascos, una manguera o una avería. Cierra los grifos de fondo a tu alcance y tapona o cubre la entrada con un espiche, un trapo o un cojín bien sujeto. Si el agua sigue subiendo, pide ayuda pronto.",
+        "Un fuego necesita combustible, aire y calor, así que elimina cualquiera de los tres. Gira el barco para que el viento aleje el humo y las llamas de la tripulación y del resto del barco: con fuego a proa, pon la popa al viento; con fuego a popa, la proa. Ante un fuego en el motor, páralo, corta el combustible y descarga el extintor por una abertura pequeña en lugar de abrir del todo la tapa, que aviva el fuego con aire. Echa primero al agua las bombonas de gas cercanas al fuego."
       ],
       "observe": [
         "Ensaya la información que proporcionarías sin transmitir.",
@@ -1444,6 +1451,24 @@
             "Ensayar sin transmitir o en un entorno de formación autorizado"
           ],
           "explanation": "Las falsas alertas pueden desviar recursos de emergencias reales."
+        },
+        {
+          "prompt": "¿Cuál de estas es una señal de socorro?",
+          "options": [
+            "Una bandera cuadrada con una bola encima",
+            "Una sola bandera del código internacional",
+            "Cinco pitadas cortas"
+          ],
+          "explanation": "Una bandera cuadrada con una bola encima o debajo es una señal de socorro. Una sola bandera del código no lo es, y cinco pitadas cortas indican duda sobre las intenciones de otro buque."
+        },
+        {
+          "prompt": "Tu lancha a motor queda varada en un banco de arena. ¿Qué haces primero?",
+          "options": [
+            "Poner el motor en punto muerto",
+            "Dar toda avante",
+            "Saltar al agua para empujar"
+          ],
+          "explanation": "Dar avante te empuja más adentro y puede aspirar arena al agua de refrigeración. Para, comprueba a las personas y el casco, y luego intenta salir atrás con suavidad."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."

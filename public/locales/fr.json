@@ -1385,6 +1385,7 @@
       "concepts": [
         "Donnez l’alerte, gardez un contact visuel continu, pointez vers la personne et lancez les moyens de flottabilité et de repérage appropriés. Répartissez les rôles et demandez de l’aide selon la situation.",
         "Reprenez ensuite le contrôle du bateau et revenez. Restez près : beaucoup de récupérations échouent parce que le bateau s’éloigne trop et perd la personne de vue. Prévoyez l’approche finale au près bon plein, pour pouvoir ralentir en choquant les voiles et vous arrêter à côté de la personne. Gardez l’hélice au point mort ou arrêtée près d’elle.",
+        "Le feu d’une bouée couronne s’allume tout seul quand la bouée flotte droite dans l’eau : lancez la bouée avec son feu, sans attendre de le tester. Par vent fort et grosse mer, un retour à la voile peut être difficile à maîtriser : une fois la bouée lancée et quelqu’un en train de montrer la personne du doigt, enroulez le génois, vérifiez qu’aucun bout ne traîne dans l’eau, démarrez le moteur et approchez lentement, hélice arrêtée près de la personne.",
         "Remonter la personne à bord est souvent le plus difficile : un adulte mouillé est lourd et le franc-bord est haut. Connaissez la méthode de votre bateau (sangle, drisse sur un winch ou échelle) avant d’en avoir besoin. Cette application n’a pas de modèle de personne à la mer : cette leçon vérifie donc les priorités ; pratiquez la manœuvre avec un moniteur et un objet d’entraînement."
       ],
       "observe": [
@@ -1419,7 +1420,13 @@
       "concepts": [
         "La détresse correspond à un danger grave et imminent exigeant une assistance immédiate. Connaissez les équipements de communication, les procédures locales et la façon de donner identité, position, nature de l’urgence et aide demandée.",
         "Face à un danger immédiat pour la vie, utilisez les moyens de détresse appropriés, comme l’alerte ASN/DSC et un appel MAYDAY sur le canal VHF 16 lorsqu’ils sont applicables et disponibles. Apprenez l’équipement avant le départ et n’émettez jamais de véritable alerte pour vous entraîner.",
-        "Après un échouement, une voie d’eau ou un incendie, protégez les personnes, évaluez la situation, appelez à l’aide si nécessaire et suivez les procédures propres au bateau. Mettre aveuglément de la puissance après un échouement peut aggraver les dégâts."
+        "Chacun de ces signaux signifie qu’un navire a besoin d’aide immédiate. Vous pouvez voir un feu à main rouge, une fusée parachute rouge, une fumée orange, des flammes à bord, les pavillons N sur C du code, un pavillon carré avec une boule au-dessus ou au-dessous, et une personne qui lève et baisse lentement et à plusieurs reprises les bras tendus. Ne les utilisez qu’en cas de détresse réelle, et sachez où sont vos feux de détresse et comment ils se déclenchent.",
+        "La détresse peut aussi s’entendre ou se recevoir par radio. Les signaux sont un coup de canon ou une autre explosion environ chaque minute, un son continu de corne ou de signal de brume, SOS par tout moyen de signalisation (trois brèves, trois longues, trois brèves), MAYDAY à la radio, une alerte de détresse ASN (DSC) et une balise de détresse (EPIRB ou PLB). Un seul pavillon du code n’est pas un signal de détresse, et les autres séquences de corne, comme six brèves, trois longues, six brèves, ne signifient rien.",
+        "Recevoir un appel de détresse vous oblige à aller porter secours. Allez-y aussi vite que possible, sauf si cela met gravement en danger votre navire et votre équipage, et informez le service de sauvetage de ce que vous faites. Détresse signifie danger pour la vie. Un bateau qui demande seulement un remorquage, sans personne en danger, n’est pas en détresse : vous pouvez aider si votre bateau, votre carburant, vos amarres et votre équipage le permettent en sécurité, mais vous n’y êtes pas obligé.",
+        "Après un échouement, une voie d’eau ou un incendie, protégez les personnes, évaluez la situation, appelez à l’aide si nécessaire et suivez les procédures propres au bateau. Mettre aveuglément de la puissance après un échouement peut aggraver les dégâts.",
+        "Après un échouement, mettez d’abord le moteur au point mort. Marcher avant enfonce la quille davantage et peut aspirer du sable dans l’eau de refroidissement du moteur. Vérifiez que personne n’est blessé, puis contrôlez la coque et les fonds. Si le bateau est sain, essayez de repartir par où vous êtes venu : affalez ou choquez les voiles pour qu’elles cessent de vous pousser, et battez en arrière doucement. Si cela échoue, attendez de l’aide ou la marée montante plutôt que de forcer.",
+        "Quand vous trouvez de l’eau à bord, agissez aussitôt : mettez les pompes en marche, puis cherchez par où l’eau entre. La goûter aide : de l’eau douce indique un réservoir ou un tuyau, de l’eau salée un passe-coque, une durite ou une avarie. Fermez les vannes que vous pouvez atteindre et bouchez ou couvrez l’ouverture avec une pinoche, un chiffon ou un coussin maintenu en place. Si l’eau continue de monter, appelez à l’aide tôt.",
+        "Un feu a besoin de combustible, d’air et de chaleur : supprimez l’un des trois. Orientez le bateau pour que le vent éloigne fumée et flammes de l’équipage et du reste du bateau : feu à l’avant, mettez l’arrière au vent ; feu à l’arrière, l’avant. Pour un feu moteur, arrêtez le moteur, coupez le carburant et videz l’extincteur par une petite ouverture plutôt que d’ouvrir grand le capot, ce qui alimente le feu en air. Jetez d’abord à l’eau les bouteilles de gaz proches du feu."
       ],
       "observe": [
         "Répétez les informations que vous donneriez sans émettre.",
@@ -1444,6 +1451,24 @@
             "Répéter sans émettre ou dans un cadre de formation autorisé"
           ],
           "explanation": "Les fausses alertes peuvent détourner des moyens de secours réels."
+        },
+        {
+          "prompt": "Lequel de ces signaux est un signal de détresse ?",
+          "options": [
+            "Un pavillon carré surmonté d’une boule",
+            "Un seul pavillon du code international",
+            "Cinq sons brefs à la corne"
+          ],
+          "explanation": "Un pavillon carré avec une boule au-dessus ou au-dessous est un signal de détresse. Un seul pavillon du code ne l’est pas, et cinq sons brefs expriment un doute sur les intentions d’un autre navire."
+        },
+        {
+          "prompt": "Votre bateau à moteur s’échoue sur un banc de sable. Que faites-vous d’abord ?",
+          "options": [
+            "Mettre le moteur au point mort",
+            "Mettre plein gaz en avant",
+            "Sauter à l’eau pour pousser"
+          ],
+          "explanation": "Marcher avant vous enfonce davantage et peut aspirer du sable dans l’eau de refroidissement. Arrêtez-vous, vérifiez les personnes et la coque, puis essayez de vous dégager doucement en arrière."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
