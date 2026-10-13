@@ -1322,7 +1322,7 @@
    "sail-37",
    "sail-40"
   ],
-  "note": "Diverting to shelter when wind rises is taught, but not the local Israeli harbours.",
+  "note": "Diverting to a downwind harbor with a safe entrance is taught; choosing Herzliya over Tel Aviv needs local knowledge.",
   "needs_picture": false
  },
  {
@@ -1428,11 +1428,11 @@
   "answer": "b",
   "answer_text": "To sail with the wind and waves.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-09"
   ],
-  "note": "Running with the wind from behind is taught, but the term 'run before' and handling waves are not.",
+  "note": "Running before the wind means sailing with the wind and waves from behind.",
   "needs_picture": false
  },
  {
@@ -1491,12 +1491,11 @@
   "answer": "d",
   "answer_text": "Answers “b” and “c” are correct.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-08",
    "sail-18"
   ],
-  "note": "Weather helm and easing the main are taught, but sail balance on two-masted boats is not.",
+  "note": "Headsail alone bears away; with all sails balanced there are no steering issues.",
   "needs_picture": false
  },
  {
@@ -1516,11 +1515,11 @@
   "answer": "d",
   "answer_text": "Change to a broad reach wind and make sure the helmsman maintains course.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-11"
   ],
-  "note": "Course says a broad reach is calmer with less heel, but not crew safety for foredeck work.",
+  "note": "Bear away to a broad reach for foredeck work in strong wind and big waves.",
   "needs_picture": false
  },
  {
@@ -1611,12 +1610,11 @@
   "answer": "b",
   "answer_text": "I will turn the steering wheel to starboard and perform a turn.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-14",
    "sail-15"
   ],
-  "note": "Gybe danger and tacking are taught, but choosing to turn the long way round in strong wind is not stated.",
+  "note": "In strong wind, go the long way round with a tack instead of gybing.",
   "needs_picture": false
  },
  {
@@ -1638,11 +1636,11 @@
   "answer": "b",
   "answer_text": "I will explain about the dangers of going overboard, the assistance I will need during the sailing, ask them to alert me to anything they think is out of the ordinary, advise them to be careful with fire, the actions when abandoning ship and the workings of the toilet.",
   "topic": "safety_equipment",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-01"
   ],
-  "note": "A crew briefing is taught, but not the multi-day items like fire, toilet and abandoning ship.",
+  "note": "Multi-day briefing: going overboard, help needed, report anything unusual, fire, abandoning ship, toilet.",
   "needs_picture": false
  },
  {
@@ -1701,11 +1699,11 @@
   "answer": "a",
   "answer_text": "In the pilot book, sea charts and information from friends who have sailed in the area.",
   "topic": "navigation_charts",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-37"
   ],
-  "note": "Checking charts and notices is taught, but pilot books are not mentioned.",
+  "note": "Use the pilot book with charts and recent reports from sailors.",
   "needs_picture": false
  },
  {
@@ -1821,12 +1819,11 @@
   "answer": "b",
   "answer_text": "Lowering the foresail will cause the boat to turn windward.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-08",
    "sail-18"
   ],
-  "note": "Weather helm is taught, but sail balance on two-masted boats is not.",
+  "note": "Lowering the headsail makes the boat head up.",
   "needs_picture": false
  },
  {
@@ -1881,11 +1878,11 @@
   "answer": "b",
   "answer_text": "About 60° from the real wind direction.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-19"
   ],
-  "note": "Heaving to is mentioned but its angle to the wind is not given.",
+  "note": "Hove to, the boat lies about 60° off the true wind.",
   "needs_picture": false
  },
  {
@@ -1916,12 +1913,11 @@
   "answer": "c",
   "answer_text": "You must reduce sails, but not lower them fully, so you have some means of propulsion.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-18",
-   "sail-40"
+   "sail-18"
   ],
-  "note": "Reducing sail early is taught, but keeping some sail for drive in a storm is not stated.",
+  "note": "In a storm, reduce sail but keep some up for drive and steering.",
   "needs_picture": false
  },
  {
@@ -1930,11 +1926,11 @@
   "answer": "d",
   "answer_text": "When the boat is sailing against the waves.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-07"
   ],
-  "note": "Rudder needing water flow is taught, but steering against or with waves is not.",
+  "note": "Steering works best heading into the waves.",
   "needs_picture": false
  },
  {
@@ -1957,12 +1953,11 @@
   "answer": "b",
   "answer_text": "I will reduce the aft sail.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-08",
    "sail-18"
   ],
-  "note": "Easing or reefing the main to cure weather helm is taught, not two-masted rigs.",
+  "note": "On a two-masted boat with weather helm, reduce the mizzen first.",
   "needs_picture": false
  },
  {
@@ -2046,12 +2041,11 @@
   "answer": "d",
   "answer_text": "Answers “b” and “c” are correct.",
   "topic": "weather",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-20",
-   "sail-40"
+   "sail-20"
   ],
-  "note": "Acting on a strong-wind forecast is taught, but preparing the boat in harbour is not.",
+  "note": "Before strong wind in harbor: lower and stow the sails, double the mooring lines.",
   "needs_picture": false
  },
  {
@@ -2262,12 +2256,11 @@
   "answer": "b",
   "answer_text": "I will delay my departure until after the passing of the low, as it will catch me on the way.",
   "topic": "weather",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-20",
-   "sail-40"
+   "sail-20"
   ],
-  "note": "Waiting for a better forecast is taught, but what an approaching low means is not.",
+  "note": "Wait until an approaching low has passed.",
   "needs_picture": false
  },
  {
@@ -2287,13 +2280,11 @@
   "answer": "a",
   "answer_text": "I will prepare the boat for stormy weather, prepare a life harness and return to Cyprus.",
   "topic": "weather",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-20",
-   "sail-28",
-   "sail-40"
+   "sail-20"
   ],
-  "note": "Turning back when the forecast worsens is taught, but falling barometer meaning and safety harnesses are not.",
+  "note": "Worsening forecast early in a passage: prepare for heavy weather and turn back to the port you left.",
   "needs_picture": false
  },
  {
@@ -2854,12 +2845,11 @@
   "answer": "d",
   "answer_text": "Based on the rules of the sea both vessels must do their utmost to avoid a collision.",
   "topic": "colregs_rules",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-48",
    "sail-49"
   ],
-  "note": "NUC and RAM are taught, but not that neither has priority over the other.",
+  "note": "Between two special-status vessels the rules give neither priority; both act to avoid collision.",
   "needs_picture": true
  },
  {
@@ -3157,12 +3147,11 @@
   "answer": "b",
   "answer_text": "Spread one of the sails so as not to remain without propulsion.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-06",
-   "sail-20"
+   "sail-06"
   ],
-  "note": "Lee-shore danger after engine failure is taught, but hoisting a sail as the fix is not stated.",
+  "note": "If the engine stops between the breakwaters, set a sail at once.",
   "needs_picture": false
  },
  {
@@ -3406,11 +3395,11 @@
   "answer": "d",
   "answer_text": "Lower the aft sail, and reduce the mainsail.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-18"
   ],
-  "note": "Reefing early is taught, but ketch rigs and lowering the mizzen first are not.",
+  "note": "On a ketch in rising wind, reduce the mizzen first, then reef the main.",
   "needs_picture": false
  },
  {
@@ -3658,11 +3647,11 @@
   "answer": "c",
   "answer_text": "To secure the boom so it does not rise in broad winds.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-03"
   ],
-  "note": "The vang is mentioned as controlling twist, but not as stopping the boom lifting.",
+  "note": "The vang stops the boom rising on a reach or run.",
   "needs_picture": false
  },
  {
@@ -3750,11 +3739,11 @@
   "answer": "b",
   "answer_text": "a, h, d, f.",
   "topic": "navigation_charts",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-23"
   ],
-  "note": "Dead reckoning is taught, but not logbook entries.",
+  "note": "The log records distance run, wind speed and direction, and position, for dead reckoning.",
   "needs_picture": false
  },
  {
@@ -4513,12 +4502,11 @@
   "answer": "a",
   "answer_text": "When it is taut to windward.",
   "topic": "sailing_theory_trim",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-16",
    "sail-19"
   ],
-  "note": "Heaving to is mentioned, but the backed foresail position is not stated.",
+  "note": "Hove to, the headsail is held tight on the windward side.",
   "needs_picture": false
  },
  {

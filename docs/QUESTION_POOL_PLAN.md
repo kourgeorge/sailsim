@@ -115,6 +115,10 @@ Add one quiz question to lesson 29 (which way the stern walks).
 
 ### Batch 5: Sail handling and weather decisions (lessons 01–23, 37), 22 questions
 
+**Status: done (2026-10-13).** Each addition became its own page, not a sentence inside an existing page, so existing translations stay untouched: 14 new pages across lessons 01, 03, 06, 07, 09, 11, 15, 18 (2 pages), 19, 20 (2 pages), 23 and 37. Lesson 49 page 2 gained one sentence: two special-status vessels have no priority over each other (Q227). The low-pressure, falling-barometer and turn-back material went into lesson 20 here rather than waiting for the weather module. 20 questions are covered. Q106 stays partial because choosing Herzliya over Tel Aviv needs local harbor knowledge.
+
+**Where this leaves the pool:** 216 covered, 12 partial, 134 not covered. The 12 partial questions are the 3 left out on purpose (Q147, Q286, Q288), 7 that depend on the missing picture booklet, and 2 that need Israeli local rules (Q24, Q47). The 134 not covered need new modules: weather, safety equipment, ropes and knots, signal flags and Israeli law.
+
 These are small additions, mostly one sentence added to an existing page:
 
 | Lesson | Addition | Questions |

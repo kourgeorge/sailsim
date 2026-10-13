@@ -11,7 +11,8 @@ const content=[
  concepts:[
   'A passage plan connects preparation, route, execution and monitoring. Check current charts and notices, forecast, tide and current, daylight, boat readiness, crew capability, fuel and communications. Mark hazards, safe water, alternatives and points where choices become limited.',
   'Choose decision points before departure. In this fictional exercise, the exposed headland is acceptable only if the agreed weather and daylight margins remain available. A sheltered alternative is available before the headland; after passing it, returning may be difficult.',
-  'A route is a proposal to keep checking. Compare actual progress and conditions with the plan. A pre-agreed diversion trigger helps avoid continuing simply because the destination is close. Share the route, crew roles and contingency plan.'
+  'A route is a proposal to keep checking. Compare actual progress and conditions with the plan. A pre-agreed diversion trigger helps avoid continuing simply because the destination is close. Share the route, crew roles and contingency plan.',
+  'For a harbor you do not know, read the pilot book, a cruising guide for the area, alongside the official charts. Pilot books describe approaches, anchorages, berthing and mooring arrangements, hazards and local rules. Recent reports from sailors who know the area help too.'
  ],
  observe:['Write a primary route, one sheltered alternative and one clear diversion trigger.','Identify the last safe decision point before the exposed section.'],
  mistake:'Selecting a destination and following its waypoint without checking hazards or preserving an escape option.',
