@@ -7,6 +7,7 @@ import {playbackIcon} from '../activity/playback-icon.js';
 import {splitLead,summaryPoints} from './lesson-text.js';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const label=s=>esc(t(s));
+const LOCAL_RULES={israel:'Local rules: Israel'};
 
 // Navigation is study progress only. The existing assessment engine owns credit.
 export function lessonPages(lesson){
@@ -32,6 +33,8 @@ export function createLessonReader({onCheck,onPractice,onCourse,onRecord,onNext,
    const {lead,rest}=splitLead(p.text);kicker=`${label('Understand')} · <bdi dir="ltr">${p.index+1} / ${lesson.concepts.length}</bdi>`;
    if(lead)title=esc(lead);
    content=rest||!lead?`<p class="reader-body">${esc(rest||p.text)}</p>`:'';
+   // Local rules sit beside the international rule, never inside it.
+   content+=(lesson.localNotes||[]).filter(n=>n.page===p.index).map(n=>`<aside class="reader-local-note" data-region="${esc(n.region)}"><strong>${label(LOCAL_RULES[n.region])}</strong><p>${esc(n.text)}</p></aside>`).join('');
   }
   else if(q)kicker=label('Question {number} of {total}').replace('{number}',p.index+1).replace('{total}',lesson.quiz.length);
   else kicker=label(sections.find(([kind])=>kind===p.kind)[1]);

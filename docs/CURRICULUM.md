@@ -1,6 +1,6 @@
 # Sailing school curriculum
 
-The course contains 53 authored lessons and 110 explained knowledge questions across fourteen modules. Every lesson has assessed training: 24 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–53. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
+The course contains 53 authored lessons and 114 explained knowledge questions across fourteen modules. Every lesson has assessed training: 24 live boat-handling exercises and 29 interactive seamanship scenarios with 87 decision stages. Basic covers lessons 01–16, Intermediate 17–36, and Advanced 37–53. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
 
 ## Learning sequence
 
@@ -27,6 +27,8 @@ Each lesson has **training goals → performed tasks → judged evidence → deb
 ## Assessment contract
 
 Lessons 43–45 add practical marina entry, docking, and departure. Lessons 46–51 cover collision avoidance; large-vessel status and channels are in 49, sound signals (including the five-short-blast warning) in 50, and restricted visibility in 51. Their existing decision exercises already assess the relevant choices, so ambient free-sailing horns do not introduce a duplicate signals lesson.
+
+Lesson 50 also covers lights for large, anchored, aground, towing, pushing, pilot and diving vessels, when lights and shapes are shown, and the towed-vessel fog signal. Lesson 49 adds narrow-channel overtaking signals, a dredger's blocked and passing sides, and fishing gear reaching over 150 m. Lesson 47 defines "underway" and covers hovercraft and rowing boats. These pages use a lights-and-day-shapes card (`src/learning/status-lights-figure.js`): schematic night and day views, in six languages, standing in for a picture booklet. Israeli specifics sit in a separate "Local rules: Israel" note on the page (`localNotes` on the lesson, translated in each language pack), never in the international rule text. This content closes gaps found against the Israeli Boat Operator seamanship question pool; see [the question pool plan](QUESTION_POOL_PLAN.md).
 
 Lesson 52 adds catamaran handling: beam and draft margins, windage, finite stability and early reefing, plus independent twin-engine thrust. Its live exercise starts the actual catamaran in Haven open water, pivots from 000° to 090°, proceeds to a marker, and stops. Both stops require five seconds below 0.15 knots with both engines neutral; opposing commands cannot satisfy neutral through a zero average. The real-physics verifier completes the three checkpoints in approximately 185 seconds without contact or grounding. All six languages include the lesson, quizzes, hints, and accessible thrust diagram.
 

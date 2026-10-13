@@ -1922,7 +1922,9 @@
         "A sailing vessel under Rule 3 is under sail with propelling machinery, if fitted, not being used. A yacht propelled by its engine is power-driven even with sails raised. An engine merely running to charge batteries does not alone establish propulsion by machinery. State the actual propulsion before choosing a rule.",
         "For two power-driven vessels in sight crossing with collision risk, the vessel with the other on her starboard side keeps out of the way and, if circumstances admit, avoids crossing ahead. The other vessel initially keeps course and speed under Rule 17. Reverse the viewpoint: a contact on A’s starboard can see A on its port side.",
         "For two power-driven vessels meeting on reciprocal or nearly reciprocal courses with collision risk, both alter to starboard so they pass port-to-port. If both turn right, they always turn away from each other. If in doubt whether this head-on situation exists, assume it does and act accordingly. This is the power-driven head-on rule; do not apply it automatically to two sailing vessels.",
-        "In an ordinary in-sight encounter, a power-driven vessel underway keeps out of the way of a sailing vessel. First check the exceptions in Rules 9, 10 and 13 and any special vessel status. A sailing yacht overtaking a motorboat still keeps clear; a yacht using engine propulsion does not claim sailing-vessel status. Vessel size alone does not decide these ordinary encounters."
+        "In an ordinary in-sight encounter, a power-driven vessel underway keeps out of the way of a sailing vessel. First check the exceptions in Rules 9, 10 and 13 and any special vessel status. A sailing yacht overtaking a motorboat still keeps clear; a yacht using engine propulsion does not claim sailing-vessel status. Vessel size alone does not decide these ordinary encounters.",
+        "“Underway” means not at anchor, not made fast to the shore and not aground; a vessel drifting with her engine stopped is still underway. Status matters more than motion: a stopped power-driven vessel that is underway keeps her give-way duties.",
+        "Two less common vessels need a second look. A hovercraft running on its air cushion shows an all-round flashing yellow light as well as power-driven lights, and it can be fast. A rowing boat may show sailing-vessel lights or keep a white torch ready to show in time. The International Rules give rowing boats no place of their own in the give-way order, but they are slow and low in the water, so keep clear of them early."
       ],
       "observe": [
         "Describe the same crossing from A and B before choosing who acts.",
@@ -1947,9 +1949,21 @@
             "Both to starboard"
           ],
           "explanation": "Rule 14 requires both to alter to starboard for a port-to-port passing."
+        },
+        {
+          "prompt": "Above a power-driven vessel’s lights you see an all-round flashing yellow light. What is it?",
+          "options": [
+            "A pilot vessel on duty",
+            "A hovercraft on its air cushion",
+            "A sailing yacht under engine"
+          ],
+          "explanation": "Rule 23 gives an air-cushion vessel in non-displacement mode an all-round flashing yellow light. Treat it as a fast power-driven vessel."
         }
       ],
-      "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence."
+      "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence.",
+      "localNotes": [
+        "The Israeli boat operator licence material expects motorboats and sailing boats alike to give way to rowing boats. Check the current Israeli regulations."
+      ]
     },
     "sail-48": {
       "title": "Give-way and stand-on: act as risk develops",
@@ -1993,8 +2007,11 @@
         "Identify actual status, not appearance or size. “Not under command” means exceptional circumstances prevent maneuvering as the rules require. “Restricted in ability to maneuver” concerns the nature of work, such as dredging, that limits compliance. “Engaged in fishing” means gear restricts maneuverability; recreational trolling that does not restrict it does not qualify. Confirm the appropriate lights, shapes and situation.",
         "The idea: vessels that cannot easily turn or stop get room from vessels that can. Subject to Rules 9, 10 and 13, an ordinary sailing vessel underway keeps clear of vessels not under command, restricted in ability to maneuver, and engaged in fishing. An ordinary power-driven vessel also keeps clear of sailing vessels. Under International Rule 18(d), vessels other than the first two categories shall, if circumstances admit, avoid impeding a vessel constrained by her draught displaying the required signals. That vessel still navigates with particular caution.",
         "In a narrow channel, keep as near the starboard outer limit as is safe and practicable. A sailing vessel or a vessel under 20 m must not impede a vessel that can safely navigate only within the channel. Do not cross if doing so impedes such a vessel. Fishing vessels must not impede other vessels navigating the channel. Approach obscured bends with particular alertness and caution, and avoid anchoring in the channel when circumstances admit.",
-        "In an IMO-adopted traffic separation scheme, follow the lane’s traffic direction; join or leave from the side at a small angle. Avoid crossing if practicable; if obliged to cross, use a heading as nearly as practicable at right angles to the traffic flow. This means heading, not a ground track corrected for current. Sailing vessels and vessels under 20 m must not impede power-driven vessels following a lane. Stay clear of separation zones except as the rules allow.",
-        "“Do not impede” requires early action to leave sufficient sea room, before a collision-risk encounter develops. That obligation continues if risk develops, and both vessels then still comply with the collision-avoidance rules. A traffic lane does not confer an unconditional right of way. Check local harbor directions, charts and notices as well as the International Rules."
+        "In a traffic separation scheme adopted by the International Maritime Organization (IMO), follow the lane’s traffic direction; join or leave from the side at a small angle. Avoid crossing if practicable; if obliged to cross, use a heading as nearly as practicable at right angles to the traffic flow. This means heading, not a ground track corrected for current. Sailing vessels and vessels under 20 m must not impede power-driven vessels following a lane. Stay clear of separation zones except as the rules allow.",
+        "“Do not impede” requires early action to leave sufficient sea room, before a collision-risk encounter develops. That obligation continues if risk develops, and both vessels then still comply with the collision-avoidance rules. A traffic lane does not confer an unconditional right of way. Check local harbor directions, charts and notices as well as the International Rules.",
+        "A narrow channel has its own overtaking signals. A vessel that can only pass safely if the one ahead moves over asks by whistle: two prolonged and one short mean “I intend to overtake you on your starboard side”; two prolonged and two short, “on your port side.” The vessel ahead agrees with prolonged, short, prolonged, short and makes room. If she doubts it is safe, she sounds at least five short rapid blasts.",
+        "A dredger or a vessel working underwater may be blocked on one side by her work. She then shows two all-round red lights, or two black balls by day, on the blocked side, and two all-round green lights, or two black diamonds, on the side where you may pass. These come with her red-white-red or ball-diamond-ball.",
+        "Fishing gear reaching more than 150 m out is marked on the side it extends. As well as her fishing lights, the vessel shows an all-round white light, or by day a cone point up, in the direction of the gear. Pass on the other side, well clear of the gear."
       ],
       "observe": [
         "Distinguish a work-related maneuvering restriction from simply being a large boat.",
@@ -2019,6 +2036,15 @@
             "The boom"
           ],
           "explanation": "Rule 10(c) specifies heading. Current can make the ground track differ."
+        },
+        {
+          "prompt": "In a narrow channel, the vessel ahead hears two prolonged and two short blasts from astern. What do they mean?",
+          "options": [
+            "The vessel astern intends to overtake on the port side",
+            "The vessel astern is in distress",
+            "The vessel astern intends to overtake on the starboard side"
+          ],
+          "explanation": "Under Rule 34(c), two prolonged and one short ask to pass on the starboard side; two prolonged and two short, on the port side. Agree with prolonged-short-prolonged-short, or sound five short blasts if in doubt."
         }
       ],
       "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence."
@@ -2027,10 +2053,18 @@
       "title": "Read lights, shapes and sound signals",
       "concepts": [
         "Red is the port sidelight and green is starboard, each covering 112.5° from ahead to 22.5° abaft the beam. A white sternlight covers the remaining 135° astern; a white masthead light covers 225° ahead. Identify the complete pattern and observed aspect. One white light alone might be a sternlight, anchor light or another permitted light: it does not prove vessel type or absence of risk.",
-        "A sailing vessel normally shows sidelights and a sternlight; permitted small-vessel combinations and exceptions depend on length. A power-driven vessel normally adds the required masthead light or lights. A yacht proceeding under sail while also propelled by machinery displays a black cone, point down, by day. A vessel at anchor shows the required all-round white light or lights and a black ball by day, subject to length and location exceptions. Study the complete arrangements before night operation.",
-        "Useful status patterns, read vertically: not under command, two all-round red lights or two black balls; restricted ability to maneuver, red-white-red or ball-diamond-ball; fishing other than trawling, red over white; trawling, green over white. Fishing day shapes are two cones with points together. A vessel constrained by draught may show three all-round red lights or a cylinder. These are status signals; additional navigation lights may be required. Towing, pilotage, dredging and aground vessels have further arrangements: use the full rules, not color mnemonics alone.",
+        "A sailing vessel normally shows sidelights and a sternlight; permitted small-vessel combinations and exceptions depend on length. A power-driven vessel normally adds the required masthead light or lights. A yacht proceeding under sail while also propelled by machinery displays a black cone, point down, by day. A vessel at anchor shows the required all-round white light or lights and a black ball by day, subject to length and location exceptions. A sailing vessel may also show an optional pair of all-round lights at the masthead, red over green, but not together with a combined masthead lantern. Study the complete arrangements before night operation.",
+        "Useful status patterns, read vertically: not under command, two all-round red lights or two black balls; restricted ability to maneuver, red-white-red or ball-diamond-ball; fishing other than trawling, red over white; trawling, green over white. Fishing day shapes are two cones with points together. A vessel constrained by draught may show three all-round red lights or a cylinder. These are status signals; additional navigation lights may be required. The next pages add the patterns for large, anchored, aground, towing, pilot and diving vessels.",
+        "Lights are shown from sunset to sunrise and whenever visibility is restricted. That includes daytime fog or heavy rain; shapes are shown by day. During those hours, show no other lights that could be mistaken for navigation lights or spoil the lookout. An ordinary yacht or motorboat with no special status has no day shape to show.",
+        "A power-driven vessel 50 m or longer shows two masthead lights, the after one higher than the forward one. The pair also shows her heading: when the two lights line up vertically, she is pointing toward you or away from you. A vessel under 50 m may show only one. A vessel restricted in ability to maneuver adds masthead lights, sidelights and a sternlight to her red-white-red only while making way through the water.",
+        "At anchor, a vessel under 50 m shows one all-round white light where it can best be seen. A vessel of 50 m or more shows two: one forward and a lower one at or near the stern. By day she shows one black ball forward. A vessel of 100 m or more also lights her decks, so a brightly lit ship that is not moving may well be at anchor.",
+        "A vessel aground shows her anchor lights plus two all-round red lights in a vertical line; by day, three black balls in a vertical line. Treat the signal as a warning about the water as well as the vessel: the depth there was too little for her, and may be too little for you.",
+        "A towing vessel adds masthead lights and a yellow towing light. A power-driven vessel towing astern shows two masthead lights in a vertical line, or three when the tow, measured from her stern to the end of the tow, is longer than 200 m. She also shows sidelights, a sternlight and a yellow towing light above the sternlight; the towed vessel shows sidelights and a sternlight. Only when the tow is longer than 200 m do both show a black diamond by day. Never pass between a tug and its tow.",
+        "An ordinary tug and tow is a power-driven vessel. It keeps out of the way of a sailing vessel and follows the normal crossing and head-on rules. A vessel pushing ahead or towing alongside shows two masthead lights, sidelights and a sternlight but no yellow towing light. If towing work severely restricts her ability to change course, the tug also shows red-white-red, or ball-diamond-ball by day, and then other vessels, including sailing vessels, keep out of her way.",
+        "A pilot vessel on duty shows two all-round lights at the masthead, white over red; a memory aid is “white over red, pilot ahead.” Underway she adds sidelights and a sternlight, and at anchor her anchor lights. Ships slow down and maneuver near a pilot station to take on a pilot, so expect sudden changes there.",
+        "A vessel supporting divers shows code flag A by day. The flag is a rigid copy at least 1 m high, white and blue with a swallow-tailed end. At night she shows the restricted-in-ability-to-maneuver lights, red-white-red. Divers may be in the water anywhere around her, so keep well clear and slow down.",
         "Under International Rule 34, a power-driven vessel underway, maneuvering with vessels in sight, gives one short blast for altering to starboard, two for port, and three for operating astern propulsion. Three blasts do not necessarily mean the vessel is already moving backward. When in-sight vessels approach and intentions or sufficient action are in doubt, sound at least five short rapid blasts. Near an obscured channel bend, sound one prolonged blast; an approaching vessel within hearing answers with one prolonged blast.",
-        "Fog signals use a different system. At intervals of no more than two minutes: a power-driven vessel making way sounds one prolonged blast; underway but stopped and making no way, two prolonged blasts about two seconds apart; a sailing vessel, one prolonged then two short. That last pattern is shared with several special categories, so it does not identify a sailing vessel alone. A short blast lasts about one second; prolonged means four to six seconds. Rule 35 specifies other cases and small-vessel exceptions; International and inland signals can differ."
+        "Fog signals use a different system. At intervals of no more than two minutes: a power-driven vessel making way sounds one prolonged blast; underway but stopped and making no way, two prolonged blasts about two seconds apart; a sailing vessel, one prolonged then two short. That last pattern is also sounded by vessels not under command, restricted in ability to maneuver, constrained by draught, engaged in fishing, or towing or pushing, so it does not identify a sailing vessel alone. A manned towed vessel, the last of the tow, sounds one prolonged and three short right after the tug’s signal. A short blast lasts about one second; prolonged means four to six seconds. Rule 35 specifies other cases and small-vessel exceptions; International and inland signals can differ."
       ],
       "observe": [
         "Name the full observed light pattern before inferring vessel status.",
@@ -2055,9 +2089,30 @@
             "Several categories use this signal; identity remains uncertain"
           ],
           "explanation": "Rule 35 shares this pattern among sailing and several special vessel categories. Keep assessing risk."
+        },
+        {
+          "prompt": "At night you see white anchor lights and two all-round red lights in a vertical line. What is it?",
+          "options": [
+            "A vessel not under command making way",
+            "A vessel aground",
+            "A vessel towing"
+          ],
+          "explanation": "Anchor lights plus two vertical reds mean aground; by day she shows three black balls. Expect shallow water nearby."
+        },
+        {
+          "prompt": "A tug and the vessel she tows both show a black diamond by day. What does the diamond tell you?",
+          "options": [
+            "The tow is longer than 200 m",
+            "The tug is restricted in ability to maneuver",
+            "Both vessels are at anchor"
+          ],
+          "explanation": "Rule 24 adds the diamond, and a third masthead light at night, only when the tow is longer than 200 m. A shorter tow needs no day shape."
         }
       ],
-      "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence."
+      "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence.",
+      "localNotes": [
+        "The Israeli boat operator licence material expects you to keep at least 200 m from a vessel showing the diving flag. Check the current Israeli regulations before you rely on a distance."
+      ]
     },
     "sail-51": {
       "title": "Restricted visibility and a complete encounter plan",
@@ -2181,7 +2236,6 @@
       ],
       "transfer": "Practice real night pilotage with an instructor using current charts and light lists. This exercise does not reproduce dark adaptation, visibility limits or every vessel-light configuration.",
       "practice": {
-        "debrief": "You reviewed the light list, steered a night approach, joined the leading line and stopped in safe water.",
         "steps": [
           {
             "label": "Review the chart and light characteristics",
@@ -2199,7 +2253,8 @@
             "label": "Stop on 027°, neutral, below 0.15 knots",
             "hint": "Slow early. Use a short astern input, then neutral in the final circle. Hold position and heading for five seconds."
           }
-        ]
+        ],
+        "debrief": "You reviewed the light list, steered a night approach, joined the leading line and stopped in safe water."
       }
     }
   }

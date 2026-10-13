@@ -3,6 +3,7 @@ import assert from 'node:assert/strict';
 import {lessons} from '../src/learning/curriculum.js';
 import {advancedLessons} from '../src/learning/advanced-course.js';
 import {renderTeachingFigure,getTeachingFigureCaption} from '../src/learning/teaching-figures.js';
+import {isStatusLightsFigure,statusLightVariants} from '../src/learning/status-lights-figure.js';
 import {apparentWind} from '../src/physics.js';
 
 const course=[...new Map([...lessons,...advancedLessons].map(lesson=>[lesson.id,lesson])).values()];
@@ -101,5 +102,22 @@ test('the racing example subtracts boat velocity, keeps proportional arrows, and
     assert.equal(Math.hypot(...vectors.boat)/Math.hypot(...vectors.true),30/20);
     assert.doesNotMatch(svg,/undefined|NaN/);
     if(lang!=='en')assert.notEqual(getTeachingFigureCaption(figure,lang),getTeachingFigureCaption(figure,'en'));
+  }
+});
+
+test('lights-and-shapes card renders every variant used by a lesson page, in all six languages',()=>{
+  const used=course.flatMap(lesson=>Object.values(lesson.conceptFigures??{})).filter(isStatusLightsFigure);
+  assert.ok(used.length>=10);
+  for(const figure of used) assert.ok(statusLightVariants.includes(figure.split(':')[1]),figure);
+  for(const variant of statusLightVariants) for(const lang of languages) {
+    const figure={figure:`status-lights:${variant}`},svg=renderTeachingFigure(figure,lang);
+    assert.match(svg,new RegExp(`data-variant="${variant}"`));
+    assert.match(svg,new RegExp(`lang="${lang}"`));
+    assert.ok(description(svg)?.length>35);
+    assert.doesNotMatch(svg,/undefined|NaN/);
+    if(lang!=='en') {
+      assert.notEqual(title(svg),title(renderTeachingFigure(figure,'en')));
+      assert.notEqual(getTeachingFigureCaption(figure,lang),getTeachingFigureCaption(figure,'en'));
+    }
   }
 });

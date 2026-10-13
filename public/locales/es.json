@@ -1922,7 +1922,9 @@
         "Según la Regla 3, un velero navega a vela sin utilizar su maquinaria propulsora. Un yate propulsado por motor es de propulsión mecánica aunque lleve velas izadas. Un motor usado solo para cargar baterías no establece por sí mismo propulsión mecánica. Identifica la propulsión real.",
         "Entre dos buques de motor a la vista que cruzan con riesgo, se aparta quien ve al otro por estribor y, si las circunstancias lo permiten, evita cortarle la proa. El otro mantiene inicialmente rumbo y velocidad según la Regla 17. Cambia de perspectiva: quien está a estribor de A puede ver a A por babor.",
         "Dos buques de motor en rumbos opuestos o casi opuestos con riesgo caen ambos a estribor para pasar babor con babor. Si los dos giran a la derecha, siempre se alejan el uno del otro. Si dudas de si existe vuelta encontrada, considérala existente. Esta regla es para buques de motor; no la apliques automáticamente a dos veleros.",
-        "En un encuentro ordinario a la vista, un motor en navegación se aparta de un velero. Comprueba antes las excepciones de las Reglas 9, 10 y 13 y los estados especiales. Un velero que alcanza a un motor sigue apartándose; un yate propulsado por motor no reclama condición de velero. El tamaño por sí solo no decide."
+        "En un encuentro ordinario a la vista, un motor en navegación se aparta de un velero. Comprueba antes las excepciones de las Reglas 9, 10 y 13 y los estados especiales. Un velero que alcanza a un motor sigue apartándose; un yate propulsado por motor no reclama condición de velero. El tamaño por sí solo no decide.",
+        "«En navegación» significa no fondeado, no amarrado a tierra y no varado; un buque a la deriva con el motor parado sigue en navegación. Importa más el estado que el movimiento: un buque de propulsión mecánica parado pero en navegación conserva su obligación de apartarse.",
+        "Dos buques menos habituales merecen una segunda mirada. Un aerodeslizador sobre su colchón de aire muestra una luz amarilla centelleante todo horizonte además de las luces de propulsión mecánica, y puede ser rápido. Un bote de remos puede mostrar las luces de un velero o tener lista una linterna blanca para mostrarla a tiempo. El Reglamento internacional no da a los botes de remos un lugar propio en el orden de preferencia, pero son lentos y bajos sobre el agua, así que apártate de ellos pronto."
       ],
       "observe": [
         "Describe el mismo cruce desde A y B antes de decidir quién actúa.",
@@ -1947,9 +1949,21 @@
             "Ambos a estribor"
           ],
           "explanation": "La Regla 14 exige que ambos caigan a estribor para pasar babor con babor."
+        },
+        {
+          "prompt": "Por encima de las luces de un buque de propulsión mecánica ves una luz amarilla centelleante todo horizonte. ¿Qué es?",
+          "options": [
+            "Un buque de práctico en servicio",
+            "Un aerodeslizador sobre su colchón de aire",
+            "Un yate de vela navegando a motor"
+          ],
+          "explanation": "La Regla 23 asigna a un aerodeslizador en modo sin desplazamiento una luz amarilla centelleante todo horizonte. Trátalo como un buque de propulsión mecánica rápido."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
+      "localNotes": [
+        "El material del título de patrón de embarcación de Israel espera que tanto las lanchas a motor como los veleros cedan el paso a los botes de remos. Comprueba la normativa israelí vigente."
+      ]
     },
     "sail-48": {
       "title": "Ceder y mantener: actuar mientras evoluciona el riesgo",
@@ -1993,8 +2007,11 @@
         "Identifica el estado real, no la apariencia o tamaño. «Sin gobierno» significa que circunstancias excepcionales impiden maniobrar según las reglas. «Maniobra restringida» depende del trabajo, como dragado. «Dedicado a la pesca» exige artes que restrinjan la maniobrabilidad; el curricán que no la limita no basta. Confirma luces, marcas y situación.",
         "La idea: los buques que no pueden girar o detenerse con facilidad reciben espacio de los que sí pueden. Salvo lo dispuesto en las Reglas 9, 10 y 13, un velero ordinario en navegación se aparta de buques sin gobierno, de maniobra restringida y dedicados a la pesca. Un motor ordinario también se aparta de veleros. Según la Regla internacional 18(d), los buques salvo las dos primeras categorías evitarán, si las circunstancias lo permiten, estorbar a uno restringido por su calado con las señales requeridas. Este conserva especial cautela.",
         "En un canal angosto, navega cerca del límite exterior de estribor cuando sea seguro y practicable. Un velero o buque menor de 20 m no estorbará al que solo puede navegar seguro dentro del canal. No cruces si lo estorbas. Los pesqueros no estorban a otros buques que navegan por el canal. Prevé recodos y evita fondear cuando sea posible.",
-        "En un dispositivo aprobado por la OMI, sigue el sentido de la vía e incorpórate o sal por el costado con un ángulo pequeño. Evita cruzar si es posible; si debes hacerlo, lleva rumbo lo más perpendicular posible al flujo. Es el rumbo de proa, no la trayectoria corregida por corriente. Veleros y menores de 20 m no estorban a motores que siguen la vía. Evita zonas de separación salvo permiso reglamentario.",
-        "«No estorbar» exige actuar pronto para dejar espacio suficiente antes de que aparezca riesgo de abordaje. La obligación continúa si surge riesgo y ambos siguen sujetos a las reglas de prevención. Una vía de circulación no concede preferencia incondicional. Consulta también instrucciones portuarias, cartas y avisos locales."
+        "En un dispositivo aprobado por la Organización Marítima Internacional (OMI), sigue el sentido de la vía e incorpórate o sal por el costado con un ángulo pequeño. Evita cruzar si es posible; si debes hacerlo, lleva rumbo lo más perpendicular posible al flujo. Es el rumbo de proa, no la trayectoria corregida por corriente. Veleros y menores de 20 m no estorban a motores que siguen la vía. Evita zonas de separación salvo permiso reglamentario.",
+        "«No estorbar» exige actuar pronto para dejar espacio suficiente antes de que aparezca riesgo de abordaje. La obligación continúa si surge riesgo y ambos siguen sujetos a las reglas de prevención. Una vía de circulación no concede preferencia incondicional. Consulta también instrucciones portuarias, cartas y avisos locales.",
+        "Un paso estrecho tiene sus propias señales para adelantar. El buque que solo puede adelantar con seguridad si el de delante se aparta lo pide con el pito: dos prolongadas y una corta significan «tengo intención de alcanzarle por su costado de estribor»; dos prolongadas y dos cortas, «por su costado de babor». El de delante da su conformidad con prolongada, corta, prolongada, corta y le deja sitio. Si duda de que sea seguro, emite al menos cinco pitadas cortas y rápidas.",
+        "Una draga o un buque que trabaja bajo el agua puede tener un costado obstruido por su trabajo. Muestra entonces dos rojas todo horizonte, o dos bolas negras de día, en el costado obstruido, y dos verdes todo horizonte, o dos marcas bicónicas negras, en el costado por el que se puede pasar. Se suman a su roja-blanca-roja o bola-bicónica-bola.",
+        "Un aparejo de pesca que se extiende más de 150 m se señala por el lado hacia el que se extiende. Además de sus luces de pesca, el buque muestra una luz blanca todo horizonte, o de día un cono con el vértice hacia arriba, en la dirección del aparejo. Pasa por el otro lado, bien lejos del aparejo."
       ],
       "observe": [
         "Distingue una restricción por trabajo del mero tamaño.",
@@ -2019,6 +2036,15 @@
             "La botavara"
           ],
           "explanation": "La Regla 10(c) especifica rumbo. La corriente puede cambiar la trayectoria sobre el fondo."
+        },
+        {
+          "prompt": "En un paso estrecho, el buque de delante oye desde popa dos pitadas prolongadas y dos cortas. ¿Qué significan?",
+          "options": [
+            "El buque de popa quiere alcanzarle por babor",
+            "El buque de popa está en peligro",
+            "El buque de popa quiere alcanzarle por estribor"
+          ],
+          "explanation": "Según la Regla 34(c), dos prolongadas y una corta piden pasar por estribor; dos prolongadas y dos cortas, por babor. Da conformidad con prolongada-corta-prolongada-corta, o emite cinco cortas si dudas."
         }
       ],
       "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
@@ -2027,10 +2053,18 @@
       "title": "Interpretar luces, marcas y señales acústicas",
       "concepts": [
         "La luz roja es de babor y la verde de estribor, cada una de 112,5° desde proa hasta 22,5° a popa del través. La luz blanca de alcance cubre 135° a popa y la de tope 225° a proa. Identifica el conjunto y el aspecto observado. Una blanca sola puede ser de alcance, fondeo u otra permitida: no demuestra tipo ni ausencia de riesgo.",
-        "Un velero normalmente muestra luces de costado y alcance; combinaciones y excepciones de pequeños buques dependen de la eslora. Un motor añade normalmente la luz o luces de tope requeridas. Un yate a vela y propulsado también por máquina muestra de día un cono negro con el vértice abajo. Al fondeo se muestran las blancas todo horizonte y bola negra diurna requeridas, con excepciones por eslora y lugar. Estudia los montajes completos antes de navegar de noche.",
-        "Patrones verticales útiles: sin gobierno, dos rojas todo horizonte o dos bolas negras; maniobra restringida, roja-blanca-roja o bola-bicónica-bola; pesca no de arrastre, roja sobre blanca; arrastre, verde sobre blanca. La marca de pesca son dos conos unidos por los vértices. Un buque restringido por calado puede mostrar tres rojas o un cilindro. Son señales de estado; pueden requerirse otras luces de navegación. Remolque, practicaje, dragado y varada tienen más disposiciones: consulta las reglas completas.",
+        "Un velero normalmente muestra luces de costado y alcance; combinaciones y excepciones de pequeños buques dependen de la eslora. Un motor añade normalmente la luz o luces de tope requeridas. Un yate a vela y propulsado también por máquina muestra de día un cono negro con el vértice abajo. Al fondeo se muestran las blancas todo horizonte y bola negra diurna requeridas, con excepciones por eslora y lugar. Un velero puede mostrar además, en el tope del palo, un par opcional de luces todo horizonte, roja sobre verde, pero no junto con un farol combinado de tope. Estudia los montajes completos antes de navegar de noche.",
+        "Patrones verticales útiles: sin gobierno, dos rojas todo horizonte o dos bolas negras; maniobra restringida, roja-blanca-roja o bola-bicónica-bola; pesca no de arrastre, roja sobre blanca; arrastre, verde sobre blanca. La marca de pesca son dos conos unidos por los vértices. Un buque restringido por calado puede mostrar tres rojas o un cilindro. Son señales de estado; pueden requerirse otras luces de navegación. Las páginas siguientes añaden los patrones de buques grandes, fondeados, varados, remolcando, de práctico y con buceadores.",
+        "Las luces se muestran desde la puesta hasta la salida del sol y siempre que la visibilidad esté reducida. Eso incluye la niebla o la lluvia intensa de día; las marcas se muestran de día. En esas horas no muestres otras luces que puedan confundirse con luces de navegación o dificultar la vigilancia. Un yate o una lancha corriente, sin un estado especial, no tiene marca diurna que mostrar.",
+        "Un buque de propulsión mecánica de 50 m o más muestra dos luces de tope, la de popa más alta que la de proa. El par indica además su rumbo: cuando las dos luces quedan en vertical, apunta hacia ti o se aleja de ti. Un buque de menos de 50 m puede mostrar solo una. Un buque con maniobrabilidad restringida añade luces de tope, de costado y de alcance a su roja-blanca-roja solo mientras tiene arrancada.",
+        "Fondeado, un buque de menos de 50 m muestra una luz blanca todo horizonte donde mejor se vea. Uno de 50 m o más muestra dos: una a proa y otra más baja en la popa o cerca de ella. De día muestra una bola negra a proa. Un buque de 100 m o más ilumina además sus cubiertas, así que un barco muy iluminado que no se mueve bien puede estar fondeado.",
+        "Un buque varado muestra sus luces de fondeo y además dos rojas todo horizonte en línea vertical; de día, tres bolas negras en línea vertical. Tómalo también como un aviso sobre el agua: allí la profundidad no le bastó a él y puede no bastarte a ti.",
+        "Un buque que remolca añade luces de tope y una luz amarilla de remolque. Un buque de propulsión mecánica que remolca por la popa muestra dos luces de tope en línea vertical, o tres cuando el remolque, medido desde su popa hasta el final del remolque, supera los 200 m. Muestra también luces de costado, luz de alcance y una luz amarilla de remolque sobre la de alcance; el buque remolcado muestra luces de costado y de alcance. Solo cuando el remolque supera los 200 m muestran ambos una marca bicónica negra de día. Nunca pases entre un remolcador y su remolque.",
+        "Un remolcador corriente con su remolque es un buque de propulsión mecánica. Se mantiene apartado de un velero y sigue las reglas normales de cruce y de vuelta encontrada. Un buque que empuja o remolca abarloado muestra dos luces de tope, luces de costado y de alcance, pero no luz amarilla de remolque. Si el trabajo de remolque le impide gravemente cambiar de rumbo, el remolcador muestra además roja-blanca-roja, o bola-bicónica-bola de día, y entonces los demás buques, incluidos los veleros, se mantienen apartados de él.",
+        "Un buque de práctico en servicio muestra en el tope dos luces todo horizonte, blanca sobre roja; para recordarlo: «blanco sobre rojo, práctico». Navegando añade luces de costado y de alcance, y fondeado sus luces de fondeo. Los buques reducen velocidad y maniobran cerca de la estación de prácticos para embarcarlo, así que espera cambios bruscos allí.",
+        "Un buque que apoya a buceadores muestra de día la bandera A del código internacional. Es una réplica rígida de al menos 1 m de altura, blanca y azul, con el extremo en cola de golondrina. De noche muestra las luces de maniobrabilidad restringida, roja-blanca-roja. Puede haber buceadores en el agua en cualquier punto a su alrededor, así que mantente bien apartado y reduce la velocidad.",
         "Según la Regla internacional 34, un motor en navegación que maniobra con buques a la vista da una corta al caer a estribor, dos a babor y tres al dar atrás con la máquina. Tres no significa necesariamente que ya tenga arrancada atrás. Ante dudas sobre intenciones o actuación suficiente de buques que se acercan a la vista, da al menos cinco cortas rápidas. En un recodo oculto, una prolongada; el buque que se aproxima y oye responde con otra prolongada.",
-        "Las señales de niebla son otro sistema. A intervalos máximos de dos minutos: motor con arrancada, una prolongada; en navegación parado sin arrancada, dos prolongadas separadas unos dos segundos; velero, una prolongada y dos cortas. Esta última se comparte con categorías especiales y no identifica solo a un velero. Una corta dura aproximadamente un segundo; una prolongada, cuatro a seis. La Regla 35 incluye otros casos y excepciones para pequeños buques; las señales interiores pueden diferir."
+        "Las señales de niebla son otro sistema. A intervalos máximos de dos minutos: motor con arrancada, una prolongada; en navegación parado sin arrancada, dos prolongadas separadas unos dos segundos; velero, una prolongada y dos cortas. Esta última la emiten también los buques sin gobierno, con maniobrabilidad restringida, restringidos por su calado, pescando, o remolcando o empujando, así que no identifica solo a un velero. Un buque remolcado con tripulación, el último del remolque, emite una prolongada y tres cortas justo después de la señal del remolcador. Una corta dura aproximadamente un segundo; una prolongada, cuatro a seis. La Regla 35 incluye otros casos y excepciones para pequeños buques; las señales interiores pueden diferir."
       ],
       "observe": [
         "Nombra todo el patrón observado antes de deducir la condición.",
@@ -2055,9 +2089,30 @@
             "Lo usan varias categorías; la identidad sigue incierta"
           ],
           "explanation": "La Regla 35 comparte este patrón entre vela y categorías especiales. Sigue evaluando el riesgo."
+        },
+        {
+          "prompt": "De noche ves luces blancas de fondeo y dos rojas todo horizonte en línea vertical. ¿Qué es?",
+          "options": [
+            "Un buque sin gobierno con arrancada",
+            "Un buque varado",
+            "Un buque remolcando"
+          ],
+          "explanation": "Las luces de fondeo más dos rojas en vertical indican varada; de día muestra tres bolas negras. Espera poca profundidad cerca."
+        },
+        {
+          "prompt": "Un remolcador y el buque que remolca muestran ambos de día una marca bicónica negra. ¿Qué te indica?",
+          "options": [
+            "El remolque supera los 200 m",
+            "El remolcador tiene la maniobrabilidad restringida",
+            "Ambos buques están fondeados"
+          ],
+          "explanation": "La Regla 24 añade la marca bicónica, y de noche una tercera luz de tope, solo cuando el remolque supera los 200 m. Un remolque más corto no lleva marca diurna."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
+      "localNotes": [
+        "El material del título de patrón de embarcación de Israel exige mantenerse al menos a 200 m de un buque que muestre la bandera de buceo. Comprueba la normativa israelí vigente antes de fiarte de una distancia."
+      ]
     },
     "sail-51": {
       "title": "Visibilidad restringida y plan completo de encuentro",

@@ -24,3 +24,9 @@ test('maneuvering and text-size controls are complete in all six languages',()=>
 test('localized payload cannot replace the numerical assessment specification',()=>{for(const code of languages){const pack=read(`public/locales/${code}.json`);for(const l of lessons){const translated=pack.lessons[l.id];assert.equal('prerequisite' in translated,false);for(const q of translated.quiz)assert.equal('correct' in q,false);for(const s of translated.practice?.steps||[]){for(const key of ['kind','value','duration'])assert.equal(key in s,false,`${code}/${l.id}/${key}`);}}}});
 
 test('reader, locations and learning library labels cover six languages with intact placeholders',()=>{for(const code of languages){assert.deepEqual(Object.keys(learningUI[code]).sort(),Object.keys(learningUI.en).sort());for(const [key,value] of Object.entries(learningUI[code])){assert.ok(value?.trim(),`${code}: ${key}`);assert.deepEqual(placeholders(value),placeholders(key));if(code!=='en'&&key.length>65)assert.notEqual(value,key);}}});
+test('local-rules notes need a translation for every note and point at a real page',()=>{
+ const noted=lessons.filter(l=>l.localNotes);assert.ok(noted.length);
+ for(const l of noted)for(const n of l.localNotes){assert.equal(n.region,'israel');assert.ok(Number.isInteger(n.page)&&n.page>=0&&n.page<l.concepts.length,l.id);}
+ const missing=structuredClone(english);delete missing.lessons[noted[0].id].localNotes;assert.throws(()=>validateCourseLocale(missing,lessons,modules),/localNotes/);
+ const extra=structuredClone(english);extra.lessons[noted[0].id].localNotes.push('One more note');assert.throws(()=>validateCourseLocale(extra,lessons,modules),/localNotes/);
+});

@@ -52,6 +52,7 @@ const rows=[
  ['Learn more','Saber más','اعرف المزيد','למידע נוסף','Узнать больше','En savoir plus'],
  ['Try it aboard','Pruébalo a bordo','جرّبه على متن القارب','נסו בסירה','Попробуйте на борту','Essayez à bord'],
  ['Related lessons','Lecciones relacionadas','دروس ذات صلة','שיעורים קשורים','Связанные уроки','Leçons associées'],
+ ['Local rules: Israel','Normas locales: Israel','القواعد المحلية: إسرائيل','כללים מקומיים: ישראל','Местные правила: Израиль','Règles locales : Israël'],
  ['Source material','Fuentes de consulta','المواد المرجعية','חומרי מקור','Источники','Sources documentaires'],
  ['Verified references','Referencias verificadas','مراجع تم التحقق منها','מקורות שנבדקו','Проверенные источники','Références vérifiées'],
  ['Search references','Buscar referencias','ابحث في المراجع','חיפוש מקורות','Поиск источников','Rechercher des références'],
