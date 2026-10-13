@@ -97,6 +97,10 @@ Add one quiz question to lesson 34 (pick the distress signal from a list).
 
 ### Batch 4: Docking and anchoring (lessons 29–32), 16 questions
 
+**Status: done (2026-10-13).** Lesson 29 gained pages on prop walk with a right-hand propeller, spring lines (with a new spring-lines figure, `src/learning/spring-lines-figure.js`) and Mediterranean mooring. Lesson 30 gained pages on anchor and rode types and on using two anchors. Lesson 31 gained pages on feeling a dragging anchor and on snubbers, and anchoring to hold the bow seaward. Each of the three lessons has one new quiz question. 21 questions are now covered, including 6 that were marked not covered (94, 95, 138, 247, 304, 360). The snubber went into lesson 31, not lesson 32.
+
+**Left out:** Q288 says a right-hand propeller in reverse swings the bow to port. That contradicts Q78 and how propellers behave, so it is treated like Q147 and Q286.
+
 **Lesson 29, "Plan a docking approach"** gets about 3 pages:
 - **Prop walk:** a right-hand propeller pulls the stern to port in reverse. You can use this on purpose to turn in a tight space. This matches what the existing `docking` lab already shows. (Questions 78, 134, 288.)
 - **Spring lines:** motoring gently against a spring line holds the boat against the dock and swings one end out. To leave a dock when the wind pushes you onto it, motor forward against a bow spring with a fender at the bow so the stern swings out. (Questions 113, 135, 249, 290.)
@@ -133,7 +137,7 @@ Questions 106, 182 and 184 (local Israeli harbours, barometer trends, safety har
 
 ## Decisions (2026-10-13)
 
-1. **Exam answers we think are wrong (Q286, Q147) are left out.** They stay uncovered.
+1. **Exam answers we think are wrong (Q286, Q147, and later Q288) are left out.** They stay uncovered.
 2. **Quizzes may grow to 4 questions per lesson.** Backward compatibility of saved progress is not a concern.
 3. **Israel-specific rules go in a separate "Local rules: Israel" note** on the page they belong to, not in the main text. A lesson can carry `localNotes: [{page, region, text}]`; translation packs carry the matching `localNotes` texts in the same order.
 

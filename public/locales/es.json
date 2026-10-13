@@ -1224,7 +1224,10 @@
       "concepts": [
         "Atracar combina viento, corriente, efectos de la hélice, arrancada y coordinación de la tripulación. Prepara defensas y cabos, asigna funciones, elige una aproximación y conserva una vía de escape.",
         "Siempre que puedas, aproxímate contra el viento o la corriente: te frenan, así que puedes llegar despacio mientras el agua sigue pasando por el timón para gobernar. Llega a la menor velocidad que todavía te permita gobernar, la velocidad a la que aceptarías tocar el muelle. Nunca uses una mano o un pie para frenar el barco.",
-        "Hay dos efectos que sorprenden a los principiantes. En marcha atrás, la hélice tira de la popa hacia un lado (efecto lateral de la hélice), así que al principio el barco no retrocede recto. Y a poca velocidad el viento aparta del muelle la proa, que es alta. Ten en cuenta los dos y guarda siempre una salida. La aplicación modela el efecto lateral de la hélice (pruébalo en el laboratorio de esta página), pero no el viento sobre el casco ni las amarras, así que aquí el atraque se enseña como planificación."
+        "Hay dos efectos que sorprenden a los principiantes. En marcha atrás, la hélice tira de la popa hacia un lado (efecto lateral de la hélice), así que al principio el barco no retrocede recto. Y a poca velocidad el viento aparta del muelle la proa, que es alta. Ten en cuenta los dos y guarda siempre una salida. La aplicación modela el efecto lateral de la hélice (pruébalo en el laboratorio de esta página), pero no el viento sobre el casco ni las amarras, así que aquí el atraque se enseña como planificación.",
+        "La mayoría de los veleros de un motor tienen una hélice dextrógira: vista desde popa, gira en el sentido de las agujas del reloj al ir avante. Atrás, hace caminar la popa a babor, de modo que la proa cae a estribor; avante, el efecto es más débil y al revés. Aprovéchalo en vez de luchar contra él: en un espacio estrecho, gira a estribor, porque cada golpe atrás lleva la popa a babor y mantiene el giro. Compruébalo en tu barco en aguas abiertas, porque algunas hélices giran al revés.",
+        "Los esprines van en diagonal e impiden que el barco se desplace a lo largo del muelle. Uno va de la proa hacia popa y el otro de la popa hacia proa; las amarras de proa y popa mantienen el barco pegado. Dar máquina suave contra un esprín hace pivotar el barco: avante contra el esprín de proa, la proa queda pegada y la popa se abre; atrás contra el esprín de popa, la popa queda pegada y la proa se abre. Para salir de un muelle al que te empuja el viento, pon una defensa a proa, da avante despacio sobre el esprín de proa hasta que la popa se abra bien y sal dando atrás. Abarloado a otro barco del mismo tamaño, colócate proa con popa para que los palos y las crucetas no se toquen.",
+        "En el amarre mediterráneo, la popa o la proa se amarra al muelle y un ancla o un muerto sujeta el otro extremo, así caben muchos barcos uno junto a otro. Al entrar de popa, fondea bien separado, perpendicular al muelle y tan lejos como permita la cadena, y entra dando atrás mientras la largas. Entra de proa si el fondo sube cerca del muelle y podría golpear el timón, o para tener intimidad. Algunas marinas tienen una amarra fija de un muerto en el fondo: llévala a proa y, al salir, suéltala y deja que se hunda antes de usar el motor, o puede enredarse en la hélice."
       ],
       "observe": [
         "Describe la aproximación, las tareas de la tripulación y el plan para repetirla antes de moverte.",
@@ -1249,6 +1252,15 @@
             "Frena el barco mientras el agua sigue pasando por el timón"
           ],
           "explanation": "El viento o la corriente actúan como freno, así que puedes entrar despacio y seguir gobernando. Si los tienes por detrás, siguen empujando el barco."
+        },
+        {
+          "prompt": "Con una hélice dextrógira, ¿hacia dónde camina la popa al dar atrás?",
+          "options": [
+            "A babor",
+            "A estribor",
+            "Se mantiene recta"
+          ],
+          "explanation": "Una hélice dextrógira lleva la popa a babor al dar atrás, y la proa cae a estribor. En un espacio estrecho, gira a estribor para aprovecharlo."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
@@ -1258,7 +1270,9 @@
       "concepts": [
         "Busca abrigo, fondo con buen agarre, profundidad suficiente durante toda la marea y espacio de borneo sin alcanzar peligros ni otros barcos.",
         "Un ancla agarra mejor cuando se tira de ella en horizontal, a lo largo del fondo, porque así se clava. Con poca línea largada, el tirón llega desde arriba y levanta el ancla. Por eso se larga varias veces la profundidad: la longitud extra y el peso de la cadena mantienen el tirón horizontal y suavizan los tirones de las olas. Larga más con viento fuerte. La relación de fondeo es la longitud de línea dividida entre la altura desde la roldana de proa hasta el fondo.",
-        "Ejemplo solo aritmético: con 5 m de agua y una roldana a 1 m sobre ella, una relación supuesta de 5:1 da 30 m de línea. El cálculo no prescribe cuánto largar. Añade los cambios de marea y evalúa el espacio de borneo."
+        "Ejemplo solo aritmético: con 5 m de agua y una roldana a 1 m sobre ella, una relación supuesta de 5:1 da 30 m de línea. El cálculo no prescribe cuánto largar. Añade los cambios de marea y evalúa el espacio de borneo.",
+        "Cada tipo de fondo pide un ancla distinta. Las anclas de garra y de arado, como la Bruce, la Delta y la CQR, se clavan bien en arena y fango; un rezón plegable sirve para roca o para un bote pequeño, y un ancla de seta es para fondeos permanentes en fango blando. La cadena pesa y mantiene el tiro bajo y a lo largo del fondo. Si usas cabo, elige uno que se hunda y estire, como el nailon: absorbe los tirones y no se acerca a las hélices. Muchos yates usan cadena con un tramo de cabo.",
+        "A veces una sola ancla no basta para sujetar el barco. Usa dos cuando una no aguanta con viento fuerte, cuando el viento y la corriente tiran en direcciones distintas, o en un río donde la corriente se invierte. Sepáralas bien, unos 45° a cada lado de la proa con viento fuerte, o una a proa y otra a popa en un río estrecho, y procura que los fondeos no se enreden al bornear."
       ],
       "observe": [
         "Dibuja el círculo de borneo esperado y los peligros cercanos.",
@@ -1283,6 +1297,15 @@
             "Abrigo, tipo de fondo, marea, espacio de borneo y peligros"
           ],
           "explanation": "La profundidad por sí sola no determina si un fondeadero es adecuado o seguro."
+        },
+        {
+          "prompt": "¿Qué cabo es bueno como línea de fondeo?",
+          "options": [
+            "Uno que se hunda y estire",
+            "Uno que flote",
+            "Uno que no estire nada"
+          ],
+          "explanation": "Un cabo que se hunde no se acerca a las hélices, y su elasticidad absorbe los tirones del barco en las olas."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
@@ -1292,6 +1315,8 @@
       "concepts": [
         "Aproxímate despacio, contra el viento (o contra la corriente, lo que más afecte al barco), para que el barco se detenga por sí solo. Baja el ancla hasta el fondo cuando el barco se haya parado. Después deja que el viento empuje el barco hacia atrás mientras largas línea, para que la cadena quede tendida sobre el fondo en vez de amontonarse encima del ancla.",
         "Cuando hayas largado suficiente línea, haz que el ancla agarre tirando suavemente de ella, a menudo con un poco de motor atrás. Comprueba que aguanta: elige dos objetos en tierra que estén alineados y observa si siguen alineados. Sigue comprobándolo con el tiempo, sobre todo cuando cambie el viento.",
+        "También puedes notar si el ancla agarra apoyando la mano en la línea de fondeo. Un tiro firme indica que agarra; una vibración a tirones indica que garrea por el fondo, y la proa deja de apuntar al viento. Si garrea, larga primero más cadena, que a menudo la deja clavarse. Si sigue garreando, levántala y vuelve a fondear.",
+        "No dejes la carga del ancla sobre el molinete. Una vez fondeado, pon un cabo de amarre (snubber) desde la cadena a una cornamusa de proa, para que la cornamusa soporte el esfuerzo y el cabo absorba los tirones. Un ancla también ayuda a acercarse a tierra con la proa hacia el mar: fondéala mientras aún te acercas y controla la cadena mientras sale, para que el ancla detenga el barco de forma controlada.",
         "En este ejercicio: arría y deja que la velocidad baje de 0,8 nudos con el ancla estibada. Fija un objetivo de 45 m y pon en marcha el molinete; larga poco a poco y se detiene al llegar al objetivo. Espera hasta que haya 45 m realmente largados, el molinete esté detenido y la velocidad sobre el fondo sea inferior a 0,2 nudos. Fondear antes de tiempo invalida el intento."
       ],
       "observe": [
@@ -1317,6 +1342,15 @@
             "Para que el ancla no toque el fondo"
           ],
           "explanation": "La línea amontonada sobre el ancla puede enredarla. Al dejar caer el barco hacia atrás, la línea se extiende y el tirón sobre el ancla sigue siendo horizontal."
+        },
+        {
+          "prompt": "Con la mano en la línea de fondeo notas una vibración a tirones y la proa cae del viento. ¿Qué haces primero?",
+          "options": [
+            "Largar más cadena",
+            "Dar toda avante",
+            "Nada; es normal"
+          ],
+          "explanation": "La vibración indica que el ancla garrea. Más cadena suele dejarla clavarse; si no, levántala y vuelve a fondear."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",

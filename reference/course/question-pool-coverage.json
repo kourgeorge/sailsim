@@ -972,12 +972,11 @@
   "answer": "c",
   "answer_text": "The bow of the boat will veer to starboard.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-29",
-   "sail-44"
+   "sail-29"
   ],
-  "note": "Prop walk in reverse is taught (stern swings to port in the model), but the link to a right-hand propeller is not stated.",
+  "note": "Right-hand propeller in reverse: stern walks to port, bow swings to starboard.",
   "needs_picture": false
  },
  {
@@ -1145,11 +1144,11 @@
   "answer": "b",
   "answer_text": "Checking “vibrations” on the anchor line.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-31"
   ],
-  "note": "Course teaches checking anchor hold with shore transits, not by feeling the anchor line.",
+  "note": "Feeling the rode: a steady pull holds, juddering means dragging.",
   "needs_picture": false
  },
  {
@@ -1169,9 +1168,11 @@
   "answer": "a",
   "answer_text": "An anchor permanently affixed to the sea bottom.",
   "topic": "anchoring_mooring",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Permanent moorings ('dead anchors') are not described.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-29"
+  ],
+  "note": "A permanent sinker on the seabed is sometimes called a dead anchor.",
   "needs_picture": false
  },
  {
@@ -1180,9 +1181,11 @@
   "answer": "c",
   "answer_text": "I will tie in parallel “bow to stern”.",
   "topic": "anchoring_mooring",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Rafting up alongside another boat is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-29"
+  ],
+  "note": "Alongside a boat of the same size, lie bow to stern.",
   "needs_picture": false
  },
  {
@@ -1217,11 +1220,11 @@
   "answer": "a",
   "answer_text": "You can use a rope that will tie to the winch chain and tie it to the bow deck cleat, and so divide the load between them and create an additional safety aspect.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-32"
+   "sail-31"
   ],
-  "note": "Windlass is mentioned, but using a snubber line to a cleat to take load off it is not.",
+  "note": "A snubber from the chain to a bow cleat takes the load off the windlass.",
   "needs_picture": false
  },
  {
@@ -1398,12 +1401,11 @@
   "answer": "c",
   "answer_text": "The bow will veer to port.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-29",
-   "sail-44"
+   "sail-29"
   ],
-  "note": "Docking and prop walk are taught, but motoring against a spring line is not.",
+  "note": "Astern against the stern spring holds the stern in and swings the bow out.",
   "needs_picture": false
  },
  {
@@ -1454,11 +1456,11 @@
   "answer": "b",
   "answer_text": "I will release more anchor rope or chain.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-30"
+   "sail-31"
   ],
-  "note": "Course says more rode gives better hold, but not what to do when the anchor drags.",
+  "note": "If the anchor drags, first let out more rode.",
   "needs_picture": false
  },
  {
@@ -1660,11 +1662,11 @@
   "answer": "d",
   "answer_text": "A stretchable and sinking (non-floating) rope.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-30"
   ],
-  "note": "Course says chain weight keeps the pull flat and softens jerks, but not rope stretch or sinking.",
+  "note": "An anchor rope should sink and stretch, such as nylon.",
   "needs_picture": false
  },
  {
@@ -1673,12 +1675,11 @@
   "answer": "a",
   "answer_text": "I would prefer to turn through the starboard side so I can use the prop work when moving backwards.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-29",
-   "sail-44"
+   "sail-29"
   ],
-  "note": "Prop walk is explained, but using it to turn in a tight channel is not.",
+  "note": "With a right-hand propeller, turn tight spaces to starboard to use prop walk.",
   "needs_picture": false
  },
  {
@@ -1687,12 +1688,11 @@
   "answer": "c",
   "answer_text": "I will use a bow brake (spring) and fender in the bow and engage engine forward.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-29",
-   "sail-45"
+   "sail-29"
   ],
-  "note": "Leaving a berth is taught, but springing off with a bow spring and fender is not.",
+  "note": "Fender at the bow, ahead on the bow spring to swing the stern out, then astern clear.",
   "needs_picture": false
  },
  {
@@ -1714,11 +1714,11 @@
   "answer": "d",
   "answer_text": "Answers “b” and “c” are correct.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-29"
   ],
-  "note": "Docking is taught, but choosing bow-to or stern-to berthing is not.",
+  "note": "Go bow-to when the water shoals near the quay and could hit the rudder, or for privacy.",
   "needs_picture": false
  },
  {
@@ -1727,9 +1727,11 @@
   "answer": "c",
   "answer_text": "That it is not possible to engage the engine until the rope has sunk.",
   "topic": "anchoring_mooring",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Leaving a mooring buoy and fouling the propeller on its line are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-29"
+  ],
+  "note": "Let a laid mooring line sink before using the engine, or it can wrap the propeller.",
   "needs_picture": false
  },
  {
@@ -1738,11 +1740,11 @@
   "answer": "d",
   "answer_text": "There will be vibrations on the anchor line and the boat will not maintain its bow to the wind.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-31"
   ],
-  "note": "Checking anchor hold with transits is taught, not line vibrations or the bow falling off the wind.",
+  "note": "Juddering on the rode and the bow falling off the wind mean the anchor drags.",
   "needs_picture": false
  },
  {
@@ -2082,11 +2084,11 @@
   "answer": "a",
   "answer_text": "Bruce anchor.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-30"
   ],
-  "note": "Holding ground is mentioned, but anchor types are not.",
+  "note": "Claw and plough anchors such as the Bruce dig well into sand.",
   "needs_picture": false
  },
  {
@@ -3081,9 +3083,11 @@
   "answer": "c",
   "answer_text": "An anchor or buoy at the bow and the stern to the dock.",
   "topic": "anchoring_mooring",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Mediterranean (stern-to) mooring is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-29"
+  ],
+  "note": "Mediterranean mooring: stern to the quay, anchor or mooring line at the other end.",
   "needs_picture": false
  },
  {
@@ -3103,12 +3107,11 @@
   "answer": "b",
   "answer_text": "The bow will veer to starboard.",
   "topic": "boat_handling_engine",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-29",
-   "sail-44"
+   "sail-29"
   ],
-  "note": "Docking is taught and spring lines are mentioned, but the effect of motoring against a spring is not.",
+  "note": "Ahead against the bow spring holds the bow in toward the dock.",
   "needs_picture": false
  },
  {
@@ -3346,12 +3349,11 @@
   "answer": "c",
   "answer_text": "Monitor the lowering of the chain or rope, so that the anchor stops your boat with full control over the process.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-30",
    "sail-31"
   ],
-  "note": "Controlled anchoring and paying out rode are taught, but anchoring to hold the bow seaward near shore is not.",
+  "note": "Drop the anchor while approaching and control the rode so it stops the boat under control.",
   "needs_picture": false
  },
  {
@@ -3499,12 +3501,11 @@
   "answer": "b",
   "answer_text": "I will cast the anchor perpendicular to the tie point, as far as possible from the dock.",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-29",
-   "sail-30"
+   "sail-29"
   ],
-  "note": "Anchoring and docking are taught, but Mediterranean (stern-to) mooring with a side wind is not.",
+  "note": "Drop the anchor at right angles to the quay and as far out as the rode allows.",
   "needs_picture": false
  },
  {
@@ -3581,7 +3582,7 @@
    "sail-29",
    "sail-44"
   ],
-  "note": "Prop walk in reverse is taught, but not tied to a right-hand propeller's direction.",
+  "note": "Prop walk is taught, but this answer (bow to port in reverse) contradicts Q78 and is left out by decision.",
   "needs_picture": false
  },
  {
@@ -3603,11 +3604,11 @@
   "answer": "a",
   "answer_text": "These are ropes that prevent boat movement along and in parallel to the dock (after the boat is tied).",
   "topic": "anchoring_mooring",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-29"
   ],
-  "note": "Spring lines are named in a scenario but their job is not explained.",
+  "note": "Springs run diagonally and stop the boat moving along the dock.",
   "needs_picture": false
  },
  {
@@ -3776,9 +3777,11 @@
   "answer": "c",
   "answer_text": "The bow of the boat will veer sharply to port.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Propeller side effect in forward gear is not taught; only prop walk in reverse.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-29"
+  ],
+  "note": "Going ahead, prop walk is weaker and the other way: stern to starboard, bow to port.",
   "needs_picture": false
  },
  {
@@ -4497,9 +4500,11 @@
   "answer": "d",
   "answer_text": "All the above answers are correct.",
   "topic": "anchoring_mooring",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Anchoring with two anchors is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-30"
+  ],
+  "note": "Two anchors: one cannot hold, wind and current differ, or a reversing river current.",
   "needs_picture": false
  },
  {

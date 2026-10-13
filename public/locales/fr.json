@@ -1224,7 +1224,10 @@
       "concepts": [
         "Accoster combine vent, courant, effets de l’hélice, erre et coordination de l’équipage. Préparez pare-battages et amarres, répartissez les rôles, choisissez l’approche et gardez une issue de repli.",
         "Approchez face au vent ou au courant quand c’est possible : cela vous freine, vous pouvez donc arriver lentement tout en gardant de l’eau sur le gouvernail pour barrer. Arrivez à la vitesse la plus faible qui permet encore de gouverner, celle à laquelle vous accepteriez de toucher le quai. N’utilisez jamais une main ou un pied pour arrêter le bateau.",
-        "Deux effets surprennent les débutants. En marche arrière, l’hélice tire l’arrière d’un côté (effet transversal de l’hélice), donc le bateau ne recule pas droit au début. Et à faible vitesse, le vent repousse l’étrave, haute, loin du quai. Prévoyez les deux et gardez une porte de sortie. L’application modélise l’effet transversal de l’hélice (essayez le labo de cette page), mais pas le vent sur la coque ni les amarres : l’accostage est donc enseigné ici comme préparation."
+        "Deux effets surprennent les débutants. En marche arrière, l’hélice tire l’arrière d’un côté (effet transversal de l’hélice), donc le bateau ne recule pas droit au début. Et à faible vitesse, le vent repousse l’étrave, haute, loin du quai. Prévoyez les deux et gardez une porte de sortie. L’application modélise l’effet transversal de l’hélice (essayez le labo de cette page), mais pas le vent sur la coque ni les amarres : l’accostage est donc enseigné ici comme préparation.",
+        "La plupart des voiliers à un moteur ont une hélice à pas à droite : vue de l’arrière, elle tourne dans le sens des aiguilles d’une montre en marche avant. En arrière, elle fait chasser l’arrière sur bâbord, si bien que l’avant part sur tribord ; en avant, l’effet est plus faible et inverse. Utilisez-le au lieu de le combattre : dans un espace étroit, tournez sur tribord, car chaque coup de marche arrière ramène l’arrière sur bâbord et entretient le virage. Vérifiez sur votre bateau en eau libre, car certaines hélices tournent dans l’autre sens.",
+        "Les gardes partent en diagonale et empêchent le bateau de glisser le long du quai. L’une va de l’avant vers l’arrière, l’autre de l’arrière vers l’avant ; les amarres avant et arrière tiennent le bateau plaqué. Donner doucement du moteur contre une garde fait pivoter le bateau : en avant sur la garde avant, l’avant reste plaqué et l’arrière s’écarte ; en arrière sur la garde arrière, l’arrière reste plaqué et l’avant s’écarte. Pour quitter un quai sur lequel le vent vous plaque, mettez un pare-battage à l’avant, avancez doucement sur la garde avant jusqu’à ce que l’arrière soit bien écarté, puis dégagez en arrière. À couple d’un bateau de même taille, placez-vous tête-bêche pour que les mâts et les barres de flèche ne se touchent pas.",
+        "Au mouillage à la méditerranéenne, l’arrière ou l’avant est amarré au quai. Une ancre ou une pendille tient l’autre extrémité, ce qui permet de serrer beaucoup de bateaux côte à côte. En entrant par l’arrière, mouillez l’ancre loin, perpendiculairement au quai et aussi loin que le permet la ligne, puis reculez en filant. Entrez par l’avant si le fond remonte près du quai et risque de toucher le safran, ou pour l’intimité. Certaines marinas posent une pendille fixée à un corps-mort sur le fond : prenez-la à l’avant et, au départ, larguez-la et laissez-la couler avant d’utiliser le moteur, sinon elle peut se prendre dans l’hélice."
       ],
       "observe": [
         "Décrivez l’approche, les tâches de l’équipage et le plan de nouvelle présentation avant de bouger.",
@@ -1249,6 +1252,15 @@
             "Cela ralentit le bateau tout en gardant de l’eau sur le gouvernail"
           ],
           "explanation": "Le vent ou le courant agit comme un frein : vous pouvez arriver lentement et gouverner quand même. S’ils sont derrière vous, le bateau continue d’être poussé."
+        },
+        {
+          "prompt": "Avec une hélice à pas à droite, de quel côté l’arrière chasse-t-il en marche arrière ?",
+          "options": [
+            "Sur bâbord",
+            "Sur tribord",
+            "Il reste droit"
+          ],
+          "explanation": "Une hélice à pas à droite fait chasser l’arrière sur bâbord en marche arrière, et l’avant part sur tribord. Dans un espace étroit, tournez sur tribord pour en profiter."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
@@ -1258,7 +1270,9 @@
       "concepts": [
         "Choisissez un abri, un fond de bonne tenue, une profondeur suffisante sur toute la marée et de l’espace pour éviter sans atteindre les dangers ou les bateaux voisins.",
         "Une ancre tient le mieux quand elle est tirée à plat le long du fond, car elle s’enfonce alors. Avec une ligne trop courte, la traction vient d’en haut et arrache l’ancre. C’est pourquoi on file plusieurs fois la profondeur : la longueur supplémentaire et le poids de la chaîne gardent la traction à plat et amortissent les à-coups des vagues. Filez davantage par vent fort. Le rapport de mouillage est la longueur filée divisée par la hauteur entre le davier et le fond.",
-        "Exemple uniquement arithmétique : avec 5 m d’eau et un davier à 1 m au-dessus, un rapport supposé de 5:1 donne 30 m de ligne. Ce calcul n’est pas une prescription de mouillage. Ajoutez les variations de marée et évaluez l’espace d’évitage."
+        "Exemple uniquement arithmétique : avec 5 m d’eau et un davier à 1 m au-dessus, un rapport supposé de 5:1 donne 30 m de ligne. Ce calcul n’est pas une prescription de mouillage. Ajoutez les variations de marée et évaluez l’espace d’évitage.",
+        "Chaque type de fond demande une ancre adaptée. Les ancres à griffes et à soc, comme la Bruce, la Delta et la CQR, s’enfoncent bien dans le sable et la vase ; un grappin pliant convient à la roche ou à une petite embarcation, et une ancre champignon sert aux corps-morts dans la vase molle. La chaîne est lourde et garde la traction basse le long du fond. Avec un cordage, choisissez-en un qui coule et s’étire, comme le nylon : il amortit les à-coups et reste loin des hélices. Beaucoup de voiliers utilisent une chaîne prolongée par un cordage.",
+        "Parfois, une seule ancre ne suffit pas à tenir le bateau. Utilisez-en deux quand une seule ne tient pas par vent fort, quand le vent et le courant tirent dans des directions différentes, ou dans une rivière où le courant s’inverse. Écartez-les bien, environ 45° de part et d’autre de l’avant par vent fort, ou l’une devant et l’autre derrière dans une rivière étroite, et veillez à ce que les lignes ne s’emmêlent pas quand le bateau évite."
       ],
       "observe": [
         "Dessinez le cercle d’évitage prévu et les dangers proches.",
@@ -1283,6 +1297,15 @@
             "L’abri, la tenue du fond, la marée, l’espace d’évitage et les dangers"
           ],
           "explanation": "La profondeur seule ne suffit pas à établir qu’un mouillage est adapté ou sûr."
+        },
+        {
+          "prompt": "Quel cordage fait une bonne ligne de mouillage ?",
+          "options": [
+            "Un cordage qui coule et s’étire",
+            "Un cordage qui flotte",
+            "Un cordage qui ne s’étire pas du tout"
+          ],
+          "explanation": "Un cordage qui coule reste loin des hélices, et son élasticité amortit les à-coups du bateau dans les vagues."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
@@ -1292,6 +1315,8 @@
       "concepts": [
         "Approchez lentement, face au vent (ou au courant, selon ce qui agit le plus sur le bateau), pour que le bateau s’arrête de lui-même. Descendez l’ancre jusqu’au fond une fois le bateau arrêté. Laissez ensuite le vent faire reculer le bateau pendant que vous filez la ligne, pour que la chaîne s’allonge sur le fond au lieu de s’entasser sur l’ancre.",
         "Quand assez de ligne est filée, faites crocher l’ancre en tirant doucement dessus, souvent avec un peu de marche arrière au moteur. Vérifiez qu’elle tient : choisissez deux repères à terre alignés et observez s’ils restent alignés. Continuez à vérifier dans le temps, surtout quand le vent change.",
+        "Vous pouvez aussi sentir si l’ancre tient en posant la main sur la ligne. Une traction régulière signifie qu’elle tient ; des vibrations saccadées signifient qu’elle chasse sur le fond, et l’avant ne reste plus face au vent. Si elle chasse, filez d’abord plus de ligne, ce qui lui permet souvent de crocher. Si elle chasse encore, relevez-la et mouillez de nouveau.",
+        "Ne laissez pas la traction de l’ancre sur le guindeau. Une fois mouillé, frappez une main de fer, un court cordage de la chaîne à un taquet avant, pour que le taquet prenne l’effort et que le cordage amortisse les à-coups. Une ancre aide aussi à approcher d’une côte l’avant tourné vers le large : mouillez-la pendant l’approche et contrôlez la ligne qui file, pour que l’ancre arrête le bateau en douceur.",
         "Dans cet exercice : affalez les voiles et laissez la vitesse descendre sous 0.8 nœud, ancre rangée. Réglez une longueur cible de 45 m et actionnez le guindeau ; il file progressivement et s’arrête à la cible. Attendez que 45 m soient réellement filés, que le guindeau soit arrêté et que la vitesse fond soit inférieure à 0.2 nœud. Mouiller trop tôt met fin à la tentative."
       ],
       "observe": [
@@ -1317,6 +1342,15 @@
             "Pour que l’ancre reste décollée du fond"
           ],
           "explanation": "Une ligne entassée sur l’ancre peut l’engager. En laissant le bateau reculer, la ligne s’étend et la traction sur l’ancre reste à plat."
+        },
+        {
+          "prompt": "La main sur la ligne de mouillage, vous sentez des vibrations saccadées et l’avant abat. Que faites-vous d’abord ?",
+          "options": [
+            "Filer plus de ligne",
+            "Mettre plein gaz en avant",
+            "Rien, c’est normal"
+          ],
+          "explanation": "Les vibrations signifient que l’ancre chasse. Plus de ligne lui permet souvent de crocher ; sinon, relevez-la et mouillez de nouveau."
         }
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",

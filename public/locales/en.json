@@ -1224,7 +1224,10 @@
       "concepts": [
         "Docking combines wind, current, propeller effects, boat momentum, and crew coordination. Prepare fenders and lines, assign roles, choose an approach, and keep an escape route.",
         "Approach into the wind or the current where you can: it slows you down, so you can arrive slowly while water still flows past the rudder for steering. Arrive at the slowest speed that still lets you steer, the speed you would be willing to touch the dock at. Never use a hand or foot to stop the boat.",
-        "Two effects catch beginners. In reverse, the propeller pulls the stern to one side (prop walk), so the boat will not back straight at first. And at low speed the wind pushes the high bow away from the dock. Plan for both, and keep a way out. The app models prop walk (try the lab on this page) but not the wind on the hull or dock lines, so docking is taught here as planning."
+        "Two effects catch beginners. In reverse, the propeller pulls the stern to one side (prop walk), so the boat will not back straight at first. And at low speed the wind pushes the high bow away from the dock. Plan for both, and keep a way out. The app models prop walk (try the lab on this page) but not the wind on the hull or dock lines, so docking is taught here as planning.",
+        "Most single-engine yachts have a right-hand propeller: seen from astern, it turns clockwise when going ahead. In reverse it walks the stern to port, so the bow swings to starboard; ahead, the effect is weaker and the other way. Use it rather than fight it: in a tight space, turn to starboard, because each burst astern pulls the stern to port and keeps the turn going. Check your own boat in open water, because some propellers turn the other way.",
+        "Spring lines run diagonally and stop the boat moving along the dock. One runs from the bow aft, the other from the stern forward; bow and stern lines hold the boat in. Motoring gently against a spring makes the boat pivot: ahead against the bow spring holds the bow in and swings the stern out, and astern against the stern spring holds the stern in and swings the bow out. To leave a dock the wind pushes you onto, put a fender at the bow, motor ahead slowly on the bow spring until the stern is well out, then go astern clear. Alongside another boat of the same size, lie bow to stern so the masts and spreaders cannot touch.",
+        "In Mediterranean mooring, the stern or bow is tied to the quay and an anchor or mooring line holds the other end, so many boats fit side by side. Going in stern-to, drop the anchor well out, at right angles to the quay and as far from it as the rode allows, then reverse in while paying out. Go in bow-to if the water shoals near the quay and could hit the rudder, or for privacy. Some marinas lay a permanent mooring line from a sinker on the seabed, sometimes called a dead anchor: take it to the bow, and when leaving, drop it and let it sink before you use the engine, or it can wrap the propeller."
       ],
       "observe": [
         "Describe your approach, crew jobs, and go-around plan before moving.",
@@ -1249,6 +1252,15 @@
             "It slows the boat while water still flows past the rudder"
           ],
           "explanation": "The wind or current acts as a brake, so you can come in slowly and still steer. With them behind you, the boat keeps being pushed on."
+        },
+        {
+          "prompt": "With a right-hand propeller, which way does the stern walk when you go astern?",
+          "options": [
+            "To port",
+            "To starboard",
+            "It stays straight"
+          ],
+          "explanation": "A right-hand propeller walks the stern to port in reverse, so the bow swings to starboard. In a tight space, turn to starboard to use it."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
@@ -1258,7 +1270,9 @@
       "concepts": [
         "Choose shelter, suitable holding ground, adequate depth throughout the tidal range, and room to swing without reaching hazards or neighboring vessels.",
         "An anchor holds best when it is pulled flat along the seabed, because then it digs in. With a short rode the pull comes from above and lifts the anchor out. That is why you let out several times the depth: the extra length, and the weight of chain, keep the pull flat and soften jerks from waves. Use more in strong wind. Scope is rode length divided by the height from bow roller to seabed.",
-        "Example for arithmetic only: at 5 m water depth and a roller 1 m above water, an assumed 5:1 ratio gives 30 m of rode. This calculation is not a deployment prescription. Add tidal changes and assess swing room."
+        "Example for arithmetic only: at 5 m water depth and a roller 1 m above water, an assumed 5:1 ratio gives 30 m of rode. This calculation is not a deployment prescription. Add tidal changes and assess swing room.",
+        "Different anchors suit different seabeds. Claw and plough anchors, such as the Bruce, Delta and CQR, dig well into sand and mud; a folding grapnel suits rock or a small boat, and a mushroom anchor is meant for permanent moorings in soft mud. Chain is heavy and keeps the pull low along the bottom. If you use rope, choose one that sinks and stretches, such as nylon: it absorbs jerks and stays clear of propellers. Many yachts use chain with a rope tail.",
+        "Sometimes a single anchor is not enough to hold the boat. Use two when one cannot hold in strong wind, when wind and current pull from different directions, or in a river where the current reverses. Lay them well apart, about 45° on either side of the bow in strong wind, or one ahead and one astern in a narrow river, and make sure the rodes cannot tangle as the boat swings."
       ],
       "observe": [
         "Sketch the expected swing circle and nearby hazards.",
@@ -1283,6 +1297,15 @@
             "Shelter, holding ground, tide, swing room, and hazards"
           ],
           "explanation": "Depth alone does not establish a suitable or safe anchorage."
+        },
+        {
+          "prompt": "Which rope makes a good anchor rode?",
+          "options": [
+            "One that sinks and stretches",
+            "One that floats",
+            "One that does not stretch at all"
+          ],
+          "explanation": "A sinking rope stays clear of propellers, and its stretch absorbs the jerks of a boat moving in waves."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
@@ -1292,6 +1315,8 @@
       "concepts": [
         "Approach slowly, heading into the wind (or the current, whichever affects the boat more), so the boat comes to a stop on its own. Lower the anchor to the seabed once the boat has stopped. Then let the wind push the boat backward as you pay out rode, so the chain lies along the bottom instead of piling on top of the anchor.",
         "When enough rode is out, set the anchor by pulling on it gently, often with a little engine astern. Check that it holds: pick two objects ashore that line up, and watch whether they stay lined up. Keep checking over time, especially when the wind changes.",
+        "You can also feel whether the anchor holds by resting a hand on the rode. A steady pull means it is holding; a juddering vibration means it is dragging across the bottom, and the bow no longer stays pointed into the wind. If it drags, first let out more rode, which often lets it dig in. If it still drags, lift it and anchor again.",
+        "Do not leave the anchor’s load on the windlass. Once anchored, tie a snubber, a short rope from the chain to a bow cleat, so the cleat takes the strain and the rope absorbs jerks. An anchor can also help you come close to a shore with the bow facing seaward: drop it while still approaching and control the rode as it runs out, so the anchor stops the boat under control.",
         "In this exercise: lower the sails and coast below 0.8 knots with the anchor up. Set a 45 m rode target and run the windlass; it pays out over time and stops at the target. Wait for 45 m actually paid out, the windlass stopped, and ground speed below 0.2 knots. Deploying early ends the attempt."
       ],
       "observe": [
@@ -1317,6 +1342,15 @@
             "So the anchor stays off the bottom"
           ],
           "explanation": "Rode piled on top of the anchor can foul it. Letting the boat fall back lays the rode out, so the pull on the anchor stays flat."
+        },
+        {
+          "prompt": "Your hand on the anchor line feels a juddering vibration and the bow falls off the wind. What do you do first?",
+          "options": [
+            "Let out more rode",
+            "Motor ahead hard",
+            "Nothing; that is normal"
+          ],
+          "explanation": "Juddering means the anchor is dragging. More rode often lets it dig in; if it does not, lift the anchor and anchor again."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",

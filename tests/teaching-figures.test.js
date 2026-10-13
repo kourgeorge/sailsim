@@ -158,3 +158,13 @@ test('distress card shows the signals seen and heard, translated in every langua
   for(const key of ['handFlare','rocket','smoke','flames','nc','flagBall','arms'])assert.match(seen,new RegExp(`data-distress="${key}"`));
   for(const key of ['explosion','horn','sos','mayday','dsc','beacon'])assert.match(heard,new RegExp(`data-distress="${key}"`));
 });
+
+test('spring-lines figure shows both springs and is translated',()=>{
+  assert.ok(course.some(lesson=>Object.values(lesson.conceptFigures??{}).includes('spring-lines')));
+  for(const lang of languages) {
+    const svg=renderTeachingFigure({figure:'spring-lines'},lang);
+    assert.match(svg,/data-spring="bow"/); assert.match(svg,/data-spring="stern"/);
+    assert.doesNotMatch(svg,/undefined|NaN/);
+    if(lang!=='en') assert.notEqual(getTeachingFigureCaption({figure:'spring-lines'},lang),getTeachingFigureCaption({figure:'spring-lines'},'en'));
+  }
+});
