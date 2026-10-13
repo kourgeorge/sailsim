@@ -9,6 +9,7 @@ import {isStatusLightsFigure,renderStatusLightsFigure,statusLightsCaption} from 
 import {isBuoyageFigure,renderBuoyageFigure,buoyageCaption} from './buoyage-figure.js';
 import {isDistressFigure,renderDistressFigure,distressCaption} from './distress-figure.js';
 import {isSpringLinesFigure,renderSpringLinesFigure,springLinesCaption} from './spring-lines-figure.js';
+import {isWeatherFigure,renderWeatherFigure,weatherCaption} from './weather-figure.js';
 const LANGS = ['en', 'es', 'fr', 'ru', 'he', 'ar'];
 const WORDS = {
   schematic: ['Learning diagram · not to scale', 'Esquema didáctico · sin escala', 'Schéma pédagogique · non à l’échelle', 'Учебная схема · не в масштабе', 'תרשים לימודי · לא בקנה מידה', 'رسم تعليمي · ليس بمقياس رسم'],
@@ -173,6 +174,7 @@ export function renderTeachingFigure(lesson, lang='en') {
   if(isBuoyageFigure(lesson?.figure)) return renderBuoyageFigure(lesson.figure,lang);
   if(isDistressFigure(lesson?.figure)) return renderDistressFigure(lesson.figure,lang);
   if(isSpringLinesFigure(lesson?.figure)) return renderSpringLinesFigure(lang);
+  if(isWeatherFigure(lesson?.figure)) return renderWeatherFigure(lesson.figure,lang);
   if(isColregsLesson(lesson)) return renderColregsFigure(lesson,lang);
   const code=String(lang).toLowerCase().split(/[-_]/)[0];
   const locale=LANGS.includes(code)?code:'en', index=LANGS.indexOf(locale);
@@ -372,6 +374,7 @@ export function getTeachingFigureCaption(lesson,lang='en') {
   if(isBuoyageFigure(lesson?.figure)) return buoyageCaption(lesson.figure,lang);
   if(isDistressFigure(lesson?.figure)) return distressCaption(lesson.figure,lang);
   if(isSpringLinesFigure(lesson?.figure)) return springLinesCaption(lang);
+  if(isWeatherFigure(lesson?.figure)) return weatherCaption(lesson.figure,lang);
   if(isColregsLesson(lesson)) return colregsFigureCaption(lesson,lang);
   const number=/^sail-(\d{2})$/.exec(String(lesson?.id??''))?.[1];
   const topic=TOPICS[Number(number)-1];

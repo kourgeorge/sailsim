@@ -226,7 +226,7 @@
       "concepts": [
         "El viento se nombra por el lugar del que viene. Un viento del noroeste viene del noroeste (315°) y sopla hacia el sureste (135°). Barlovento es el lado por el que llega el viento; sotavento, el lado hacia el que sopla. Los navegantes nombran el origen porque de ahí vienen la fuerza del viento, las olas y el mal tiempo que se acerque.",
         "Una vela es un ala flexible: solo funciona cuando el aire la recorre con cierto ángulo. Si apuntas la proa directamente al viento, la vela se alinea con el aire y flamea como una bandera, así que no impulsa el barco. La zona muerta es el conjunto de rumbos demasiado cercanos al viento para que la vela funcione: unos 40–45° a cada lado en la mayoría de los veleros de crucero, y 38° en este simulador. Para llegar a un punto situado contra el viento, navegas en zigzag por fuera de ella.",
-        "El viento que usas para navegar es el viento sobre el agua. Si el agua se mueve (una corriente), ese viento no coincide con el del parte meteorológico, que describe el viento sobre tierra. Cuando el barco avanza, además siente su propio flujo de aire, llamado viento aparente (lección 17). Sin corriente, lo que cuenta es el viento previsto.",
+        "El viento que usas para navegar es el viento sobre el agua. Si el agua se mueve (una corriente), ese viento no coincide con el del parte meteorológico, que describe el viento sobre tierra. Cuando el barco avanza, además siente su propio flujo de aire, llamado viento aparente (lección {lesson:sail-17}). Sin corriente, lo que cuenta es el viento previsto.",
         "El compás de la app muestra el viento como una veleta: la punta dorada señala de dónde viene el viento y el sector sombreado de la zona muerta queda a su alrededor. Los esquemas de aire en movimiento apuntan al revés, hacia donde va el aire. En el ejemplo, un viento de 315° y un rumbo de 045° están separados 90°: navegas de través. Cuando el barco gira, solo se mueve el símbolo blanco del barco; la flecha dorada y el sector se quedan donde está el viento."
       ],
       "observe": [
@@ -357,7 +357,7 @@
       "concepts": [
         "Gobierna mirando una referencia lejana, como un cabo o una nube, y usa la brújula para comprobarlo. Una referencia lejana muestra un giro al instante; el número de la brújula va con retraso y oscila con las olas.",
         "Un barco que gira sigue girando después de centrar el timón, porque lleva inercia de giro, como una puerta giratoria. Por eso, centra el timón antes de llegar al nuevo rumbo y deja que el barco se deslice hasta él. Si esperas a estar en el rumbo, te pasas, corriges hacia atrás y vas en zigzag. Correcciones pequeñas y tempranas dan una trayectoria recta.",
-        "Si necesitas timón constantemente solo para ir recto, el barco te está diciendo algo. Un velero que tiende todo el rato a girar hacia el viento (barco ardiente) suele llevar demasiada vela o escorar demasiado; largar la escota de mayor o tomar rizos lo soluciona (lección 18). Mantén también la vigilancia: un rumbo bien gobernado puede llevarte igualmente hacia un peligro."
+        "Si necesitas timón constantemente solo para ir recto, el barco te está diciendo algo. Un velero que tiende todo el rato a girar hacia el viento (barco ardiente) suele llevar demasiada vela o escorar demasiado; largar la escota de mayor o tomar rizos lo soluciona (lección {lesson:sail-18}). Mantén también la vigilancia: un rumbo bien gobernado puede llevarte igualmente hacia un peligro."
       ],
       "observe": [
         "Aplica breves correcciones a babor o estribor y después selecciona Centrar.",
@@ -400,7 +400,7 @@
       "concepts": [
         "Un rumbo respecto al viento es el ángulo entre la proa y el viento, no un rumbo de brújula. De más cerca a más lejos del viento: ceñida (unos 40–50° del viento, velas muy cazadas), descuartelar (unos 60°), través (90°, viento por el costado), largo (unos 135°, viento por detrás del costado) y popa (unos 180°, viento por detrás).",
         "Cada rumbo tiene su propio ajuste de velas. Como guía aproximada, la vela se coloca a la mitad del ángulo del viento: en ceñida la botavara va cerca de crujía, de través va más o menos a medio camino y en popa va muy abierta. Puedes navegar en cualquier rumbo por ambos lados del viento: con viento de 315°, tanto 045° como 225° son rumbos de través.",
-        "Al acelerar, el viento que siente el barco se adelanta, porque su propio movimiento añade una brisa que llega de proa (la lección 17 lo explica). Por eso conviene cazar un poco a medida que ganas velocidad. Si el viento rola, tu rumbo respecto al viento cambia aunque el rumbo de brújula sea el mismo.",
+        "Al acelerar, el viento que siente el barco se adelanta, porque su propio movimiento añade una brisa que llega de proa (la lección {lesson:sail-17} lo explica). Por eso conviene cazar un poco a medida que ganas velocidad. Si el viento rola, tu rumbo respecto al viento cambia aunque el rumbo de brújula sea el mismo.",
         "Navegar en popa significa navegar con el viento y las olas por detrás. Parece tranquilo porque el viento aparente es pequeño y el barco apenas escora, pero las olas levantan la popa y el riesgo de una trasluchada accidental es máximo."
       ],
       "observe": [
@@ -528,7 +528,7 @@
       "concepts": [
         "Ajustar las velas es colocarlas con el ángulo correcto respecto al viento. Demasiado abierta, el borde delantero flamea: el aire no recorre bien la vela, así que empuja poco. Demasiado cazada, el aire se separa de la parte de atrás de la vela (entra en pérdida): el barco escora y se frena en vez de acelerar. El mejor ajuste está justo antes del punto en que empieza a flamear.",
         "El método clásico: larga la escota despacio hasta que la parte delantera de la vela empiece a flamear y luego cázala justo hasta que deje de flamear. Los catavientos lo hacen más fácil de ver. Repítelo después de cada cambio de rumbo o rolada. «En caso de duda, larga»: una vela algo abierta cuesta poca velocidad; una demasiado cazada cuesta mucha.",
-        "Cambia una sola cosa cada vez y dale tiempo al barco. La velocidad cambia despacio (lección 7), así que espera varios segundos para ver si el cambio ayudó. En esta app, un ángulo de escota sugerido, calculado a partir del viento aparente, te permite comprobar el resultado; en un barco real ajustas mirando el borde delantero de la vela y los catavientos."
+        "Cambia una sola cosa cada vez y dale tiempo al barco. La velocidad cambia despacio (lección {lesson:sail-07}), así que espera varios segundos para ver si el cambio ayudó. En esta app, un ángulo de escota sugerido, calculado a partir del viento aparente, te permite comprobar el resultado; en un barco real ajustas mirando el borde delantero de la vela y los catavientos."
       ],
       "observe": [
         "Deja el timón centrado y modifica solo la escota.",
@@ -614,7 +614,7 @@
       "title": "Haz una virada por avante controlada",
       "concepts": [
         "Una virada por avante hace pasar la proa por el viento, de modo que el viento cambia al otro lado del barco y las velas cambian de banda. De ceñida a ceñida, es un giro de unos 90°. Antes de empezar, busca tráfico, comprueba que tienes espacio y avisa a la tripulación («¡Listos para virar!»).",
-        "La velocidad es lo que te hace pasar. Dentro de la zona muerta las velas flamean y no empujan, así que solo la inercia del barco lleva la proa al otro lado. Empieza con buena velocidad y gira de forma constante. Si vas demasiado lento, el barco se queda parado proa al viento (aproado, lección 16). Si giras demasiado bruscamente, el timón metido a tope actúa como freno.",
+        "La velocidad es lo que te hace pasar. Dentro de la zona muerta las velas flamean y no empujan, así que solo la inercia del barco lleva la proa al otro lado. Empieza con buena velocidad y gira de forma constante. Si vas demasiado lento, el barco se queda parado proa al viento (aproado, lección {lesson:sail-16}). Si giras demasiado bruscamente, el timón metido a tope actúa como freno.",
         "En un velero real: mete el timón y anuncia el giro (por ejemplo, «¡Viramos!»); cuando la vela de proa empiece a flamear, suelta su escota antigua; cuando la proa pase el viento, caza la nueva escota en el otro lado; después centra el timón en la nueva ceñida y vuelve a ajustar las velas. Es normal perder algo de velocidad; recupérala antes de apuntar muy cerca del viento. En la app las velas cambian de banda automáticamente."
       ],
       "observe": [
@@ -1133,7 +1133,7 @@
     "sail-26": {
       "title": "Razona los encuentros",
       "concepts": [
-        "Las reglas deciden de antemano quién se aparta (cede el paso) y quién mantiene el rumbo (sigue a rumbo), para que los dos barcos no giren hacia el mismo lado. Entre dos veleros: con amuras distintas, se mantiene apartado el amurado a babor; con la misma amura, se mantiene apartado el de barlovento, porque normalmente puede arribar con más facilidad. La lección 46 lo trata en detalle.",
+        "Las reglas deciden de antemano quién se aparta (cede el paso) y quién mantiene el rumbo (sigue a rumbo), para que los dos barcos no giren hacia el mismo lado. Entre dos veleros: con amuras distintas, se mantiene apartado el amurado a babor; con la misma amura, se mantiene apartado el de barlovento, porque normalmente puede arribar con más facilidad. La lección {lesson:sail-46} lo trata en detalle.",
         "El barco que alcanza se mantiene apartado. Las responsabilidades entre buques, los canales estrechos, los dispositivos de tráfico, la visibilidad reducida y las normas locales pueden cambiar el análisis. No reduzcas las reglas a «la vela siempre tiene prioridad».",
         "El barco que debe mantener rumbo y velocidad sigue teniendo responsabilidades y debe actuar cuando sea necesario para evitar un abordaje. Aprende el reglamento completo aplicable y las exigencias locales antes de navegar."
       ],
@@ -1169,7 +1169,7 @@
       "concepts": [
         "Las luces de navegación muestran la dirección de un buque y lo que está haciendo. La roja va en el costado de babor, la verde en estribor y la blanca en la popa. Si ves la roja y la verde a la vez, el buque viene directo hacia ti; solo la roja, ves su costado de babor; solo la verde, su costado de estribor; solo la blanca, estás mirando su popa.",
         "En el contexto internacional de señales de maniobra, una pitada corta significa cambiar a estribor; dos, a babor; tres, dar propulsión atrás. Las señales de visibilidad reducida son otro sistema; las normas locales o de aguas interiores pueden diferir.",
-        "La lección 50 trata todas las luces, marcas y señales acústicas. Las reglas pueden variar en aguas interiores o locales, así que comprueba las que se aplican donde navegas antes de salir de noche o con visibilidad reducida."
+        "La lección {lesson:sail-50} trata todas las luces, marcas y señales acústicas. Las reglas pueden variar en aguas interiores o locales, así que comprueba las que se aplican donde navegas antes de salir de noche o con visibilidad reducida."
       ],
       "observe": [
         "Identifica la luz roja de babor y la verde de estribor del velero.",
@@ -2344,6 +2344,184 @@
           }
         ]
       }
+    },
+    "sail-54": {
+      "title": "Leer un mapa del tiempo",
+      "concepts": [
+        "Un mapa del tiempo, o mapa sinóptico, muestra la presión del aire al nivel del mar. Las líneas llamadas isobaras unen lugares con la misma presión, normalmente cada 4 hectopascales (hPa, lo mismo que milibares). Una alta (A) suele traer tiempo estable; una baja (B) trae nubes, lluvia y viento más fuerte.",
+        "Cuanto más juntas están las isobaras, más fuerte es el viento. Isobaras muy separadas indican viento flojo; isobaras apretadas indican viento duro. Sobre el mar, el viento sopla más o menos a lo largo de las isobaras, algo desviado hacia la presión más baja.",
+        "En el hemisferio norte, el viento gira alrededor de una baja en sentido antihorario y entra en espiral hacia su centro. Alrededor de una alta gira en sentido horario y sale en espiral. Si te pones de espaldas al viento, la baja queda a tu izquierda. Una vaguada es una baja alargada, una dorsal es una alta alargada, y un collado, o pantano barométrico, queda entre dos altas y dos bajas, con viento flojo y variable.",
+        "Para estimar el viento en un punto del mapa, busca allí las isobaras. Mira a qué lado está la baja y traza el viento a lo largo de las isobaras, algo desviado hacia la baja. Por ejemplo, con una baja al oeste, el viento sopla del sur; cuando la baja ya ha pasado al este, sopla del norte.",
+        "El barómetro muestra la tendencia, que importa más que la cifra. Una presión que baja sin parar, por ejemplo de 1000 a 992 hPa en ocho horas, indica que se acerca una baja y que el viento va a aumentar; una caída de 3 hPa o más en tres horas es un aviso. La presión que sube después de una baja suele traer cielos despejados y un cambio de viento. Anota la lectura en el cuaderno de bitácora cada pocas horas."
+      ],
+      "observe": [
+        "Mira un mapa sinóptico real, busca la baja más cercana y fíjate si sus isobaras están juntas o separadas.",
+        "Anota la lectura del barómetro y la hora, y compárala tres horas después."
+      ],
+      "mistake": "Leer un solo valor del barómetro en lugar de su tendencia, u olvidar que en el hemisferio norte el viento gira alrededor de una baja en sentido antihorario.",
+      "quiz": [
+        {
+          "prompt": "En el mapa del tiempo, las isobaras están muy juntas sobre tu zona. ¿Qué esperas?",
+          "options": [
+            "Viento fuerte",
+            "Calma",
+            "Niebla"
+          ],
+          "explanation": "Cuanto más juntas están las isobaras, más fuerte es el viento."
+        },
+        {
+          "prompt": "En el hemisferio norte, ¿cómo sopla el viento alrededor de una baja?",
+          "options": [
+            "En sentido antihorario, entrando en espiral",
+            "En sentido horario, saliendo en espiral",
+            "Directo hacia el centro"
+          ],
+          "explanation": "Alrededor de una baja el viento gira en sentido antihorario y entra en espiral; alrededor de una alta gira en sentido horario y sale en espiral."
+        },
+        {
+          "prompt": "Tu barómetro marca 1000, 996 y luego 992 hPa, a intervalos de cuatro horas. ¿Qué te indica?",
+          "options": [
+            "Se acerca una baja y el viento va a aumentar",
+            "Se está formando una alta",
+            "Nada; solo importa la cifra"
+          ],
+          "explanation": "Una caída continua indica que se acerca una baja. Vigila la tendencia y espera más viento."
+        }
+      ],
+      "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía."
+    },
+    "sail-55": {
+      "title": "Frentes y nubes",
+      "concepts": [
+        "La mayoría de las bajas que cruzan el Mediterráneo son bajas frontales. En el hemisferio norte suele llegar primero un frente cálido, luego un sector cálido y después un frente frío, avanzando más o menos de oeste a este. En el mapa, el frente cálido se dibuja con semicírculos y el frente frío con triángulos.",
+        "Cuando se acerca un frente cálido, las nubes altas y finas se espesan y bajan hasta formar una capa gris. Llega lluvia continua, mala visibilidad y la presión baja. Al pasar el frente, el viento rola a la derecha, por ejemplo de sur a suroeste. En el sector cálido de detrás, las isobaras son casi rectas, la presión se mantiene y el aire es cálido y húmedo, a menudo con neblina o llovizna.",
+        "El frente frío trae el peor tiempo, con cúmulos de gran desarrollo, cumulonimbos y chubascos fuertes. A veces también trae tormentas y granizo. El viento cambia de golpe y con rachas al oeste o al noroeste. Detrás del frente la presión sube, el aire es más fresco y la visibilidad mejora mucho, aunque pueden seguir los chubascos con rachas.",
+        "El cumulonimbo es una nube de gran desarrollo vertical, a menudo con la cima plana en forma de yunque. Puede traer turbonadas, lluvia fuerte, granizo y rayos. Las nubes se forman cuando el aire que sube se enfría hasta su punto de rocío, y la base de la nube es la altura donde eso ocurre. Cuando el aire que sube se ha enfriado hasta la temperatura del aire que lo rodea, deja de subir: los meteorólogos dicen que el aire es estable a esa altura.",
+        "Durante una tormenta eléctrica, aléjate del mástil, los obenques y otros herrajes metálicos. Mantén a la tripulación agachada en el centro del barco y apaga los aparatos electrónicos que no necesites. Toma rizos pronto, porque la turbonada bajo un cumulonimbo puede llegar casi sin aviso. La niebla marina se forma cuando aire cálido y húmedo pasa sobre agua más fría; cerca de la costa puede aparecer y desaparecer rápidamente."
+      ],
+      "observe": [
+        "Observa cómo cambian las nubes a lo largo del día: nubes altas y finas que se espesan y bajan suelen anunciar un frente cálido.",
+        "Fíjate en la base de los cúmulos: es plana porque es la altura donde el aire que sube alcanza su punto de rocío."
+      ],
+      "mistake": "Creer que el fin de la lluvia continua del frente cálido es el fin del mal tiempo, cuando aún faltan el frente frío y sus turbonadas.",
+      "quiz": [
+        {
+          "prompt": "¿Qué nubes acompañan a un frente frío?",
+          "options": [
+            "Cúmulos y cumulonimbos",
+            "Solo nubes altas y finas",
+            "Ninguna nube"
+          ],
+          "explanation": "El frente frío levanta el aire con rapidez y forma cúmulos altos y cumulonimbos, con chubascos y turbonadas."
+        },
+        {
+          "prompt": "Después de pasar un frente frío, ¿qué suele ocurrir con la visibilidad?",
+          "options": [
+            "Mejora",
+            "Empeora",
+            "Sigue igual"
+          ],
+          "explanation": "Detrás del frente frío llega aire más fresco y seco, y la visibilidad mejora."
+        },
+        {
+          "prompt": "Durante una tormenta eléctrica a bordo, ¿qué debes evitar?",
+          "options": [
+            "Estar cerca del mástil y de otros herrajes metálicos",
+            "Tomar rizos",
+            "Llevar el chaleco salvavidas"
+          ],
+          "explanation": "Los rayos siguen el mástil y la jarcia. Aléjate de los herrajes metálicos y quédate agachado en el centro del barco."
+        }
+      ],
+      "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía."
+    },
+    "sail-56": {
+      "title": "Viento y olas",
+      "concepts": [
+        "La escala de Beaufort describe el viento por su efecto sobre el mar. Fuerza 4 (11–16 nudos) trae muchos borreguillos; fuerza 5 (17–21), olas moderadas y rociones; fuerza 6 (22–27), olas grandes con crestas de espuma blanca por todas partes; fuerza 7 (28–33), mar gruesa con la espuma arrastrada en franjas; y fuerza 8 (34–40) es un temporal. Las previsiones suelen dar la fuerza Beaufort junto con las rachas esperadas.",
+        "La brisa marina se debe a la diferencia de temperatura entre la tierra y el mar. En un día de sol la tierra se calienta más rápido, el aire caliente sube sobre ella y el aire más fresco del mar entra hacia la costa, normalmente desde media mañana hasta la tarde. Por la noche la tierra se enfría y puede soplar hacia el mar un terral más flojo. Un viento catabático es aire frío que baja por la ladera de una montaña, a menudo fuerte y seco al pie de las montañas.",
+        "Las olas de viento las levanta el viento local. El mar de fondo está formado por olas que levantó un viento fuerte en una tormenta lejana y que han viajado mucho desde allí. Son largas, suaves y regulares, y pueden llegar antes o después de la propia tormenta. Cuando el viento local sopla contra el mar de fondo, este se hace más bajo; el viento contra la corriente, como explica la lección {lesson:sail-20}, hace las olas cortas y empinadas.",
+        "Las olas se hacen más altas y empinadas al llegar a aguas poco profundas, y con mar de fondo pueden romper en la bocana de un puerto. Antes de entrar, observa las olas desde fuera: suelen llegar en series, con calmas entre ellas. Entra durante una calma y con velocidad suficiente para gobernar."
+      ],
+      "observe": [
+        "Compara el instrumento de viento con el mar que te rodea y di la fuerza Beaufort según lo que ves.",
+        "En un día de sol, anota cuándo empieza la brisa marina y qué fuerza alcanza a media tarde."
+      ],
+      "mistake": "Planificar el regreso por la tarde en un día caluroso sin contar con la brisa marina, o entrar con prisa en un puerto con mar de fondo.",
+      "quiz": [
+        {
+          "prompt": "El anemómetro marca 25 nudos y la espuma blanca cubre las crestas. ¿Qué fuerza Beaufort es?",
+          "options": [
+            "Fuerza 6",
+            "Fuerza 3",
+            "Fuerza 9"
+          ],
+          "explanation": "Fuerza 6 son 22–27 nudos, con olas grandes y crestas de espuma blanca por todas partes."
+        },
+        {
+          "prompt": "¿Qué causa la brisa marina de verano?",
+          "options": [
+            "La diferencia de temperatura entre la tierra y el mar",
+            "La marea",
+            "Una tormenta lejana"
+          ],
+          "explanation": "La tierra se calienta más rápido que el mar; el aire sube sobre la tierra y el aire del mar entra hacia ella."
+        },
+        {
+          "prompt": "¿Qué es el mar de fondo?",
+          "options": [
+            "Olas levantadas por un viento fuerte en una tormenta lejana",
+            "Olas levantadas por el viento local de hoy",
+            "Olas que hacen los barcos al pasar"
+          ],
+          "explanation": "El mar de fondo viaja lejos de la tormenta que lo formó, así que puede llegar aunque el viento local sea flojo."
+        }
+      ],
+      "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía."
+    },
+    "sail-57": {
+      "title": "El tiempo en el Mediterráneo oriental",
+      "concepts": [
+        "En invierno, las bajas cruzan el Mediterráneo oriental desde el oeste, y algunas se profundizan cerca de Chipre. En la costa de Israel suelen traer primero un frente cálido, con viento del sur al suroeste, y después un frente frío con viento duro del suroeste al oeste, mar creciente y chubascos. Si la previsión anuncia un frente frío que llega desde el mar, espera mal tiempo y olas altas.",
+        "La Sharqiya es un viento del este fuerte y seco que sopla desde tierra. Aparece sobre todo en las estaciones de transición, primavera y otoño, y se nota más en el norte del país. Cerca de la costa el mar sigue llano porque el viento sopla desde tierra, pero más lejos levanta olas y puede dificultar el regreso a puerto. Los vientos del este fríos y fuertes del invierno suelen venir de una alta al nordeste, sobre Rusia, no de una baja.",
+        "En primavera, una baja cálida puede avanzar a lo largo del norte de África o subir desde el sur. Delante de ella el viento es del sur, cálido y seco, el polvo reduce la visibilidad en la costa mediterránea y en Eilat sopla viento del sur. Cuando pasa, el viento rola al oeste y baja la temperatura.",
+        "El verano suele ser estable, y por la tarde se levanta una brisa marina del noroeste en la costa de Israel, que se apaga por la noche. En el Egeo, el Meltemi es un viento del norte fuerte y seco en julio y agosto, a menudo de fuerza 6 a 7 durante días. En el Adriático, el Bora es un viento del nordeste frío, seco y muy racheado que baja de las montañas en invierno."
+      ],
+      "observe": [
+        "Antes de una travesía, lee la previsión de toda la región, no solo la de tu puerto, y busca la baja más cercana.",
+        "En una mañana tranquila con viento del este, mira mar adentro: más lejos el mar puede estar ya agitado."
+      ],
+      "mistake": "Salir una mañana de Sharqiya con el mar como un plato, o planificar una travesía de verano por el Egeo sin contar con el Meltemi.",
+      "quiz": [
+        {
+          "prompt": "¿Qué es el Meltemi?",
+          "options": [
+            "Un viento fuerte del norte en el Egeo en julio y agosto",
+            "Un viento cálido del sur en Israel en invierno",
+            "Una brisa marina en Eilat"
+          ],
+          "explanation": "El Meltemi sopla del norte sobre el Egeo en pleno verano, a menudo de fuerza 6 a 7 durante días."
+        },
+        {
+          "prompt": "¿Qué es la Sharqiya?",
+          "options": [
+            "Un viento seco del este que sopla desde tierra, sobre todo en primavera y otoño",
+            "Un temporal del oeste en invierno",
+            "Un frente frío"
+          ],
+          "explanation": "Sopla desde tierra, así que cerca de la costa el mar está llano mientras las olas crecen más lejos."
+        },
+        {
+          "prompt": "Una baja de invierno se acerca a Israel desde el oeste. ¿Qué suele llegar primero?",
+          "options": [
+            "Un frente cálido",
+            "Un frente frío",
+            "Una alta"
+          ],
+          "explanation": "Primero llega el frente cálido, luego el sector cálido y después el frente frío, con el viento y la mar más fuertes."
+        }
+      ],
+      "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía."
     }
   }
 }

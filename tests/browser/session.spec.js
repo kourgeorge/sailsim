@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { sessionUI } from '../../src/i18n/session.js';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 async function selectLesson(page, index) {
   await page.locator('button[data-mode=learn]').click();
@@ -44,7 +47,7 @@ test.describe('session lifecycle', () => {
     const errors = [];
     page.on('pageerror', (error) => errors.push(error.message));
     await page.goto('./');
-    await selectLesson(page, 8);
+    await selectLesson(page, positionOf('sail-09'));
     await expect(page.locator('#lesson-cover .scene-title')).toBeVisible();
     await expect(page.locator('.simulation-console')).toBeHidden();
     await expect(page.locator('#course-library')).toHaveCount(0);
@@ -260,7 +263,7 @@ test('the rendered scene fills the session and restores the lesson cover after f
   page.on('pageerror', (error) => errors.push(error.message));
   await page.goto('./');
   await expect(page.locator('#scene > canvas')).toHaveCount(0);
-  await selectLesson(page, 3);
+  await selectLesson(page, positionOf('sail-04'));
   await expect(page.locator('#scene > canvas')).toHaveCount(0);
   await page.screenshot({ path: 'artifacts/session/lesson-cover.png', timeout: 90000 });
   await page.locator('#practice-start').click();

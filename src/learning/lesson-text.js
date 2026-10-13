@@ -36,3 +36,9 @@ export function summaryPoints(lesson){
   return '';
  }).filter(Boolean);
 }
+
+// Cross-references name a lesson by id ("Lesson {lesson:sail-17}") so the shown
+// number follows the lesson when lessons are added or moved.
+export function withLessonNumbers(text,numberOf){
+ return String(text).replace(/\{lesson:([\w-]+)\}/g,(token,id)=>String(numberOf(id)??token));
+}

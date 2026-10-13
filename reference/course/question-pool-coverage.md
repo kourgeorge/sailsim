@@ -18,12 +18,13 @@ A question is **covered** when the course states the fact needed to pick the rig
 | 2026-10-13, after batch 3 (distress, grounding, flooding, fire) | 175 (48%) | 47 (13%) | 140 (39%) |
 | 2026-10-13, after batch 4 (docking and anchoring) | 196 (54%) | 32 (9%) | 134 (37%) |
 | 2026-10-13, after batch 5 (sail handling and weather decisions) | 216 (60%) | 12 (3%) | 134 (37%) |
+| 2026-10-14, after the weather lessons | 255 (70%) | 29 (8%) | 78 (22%) |
 
 ## By topic
 
 | Topic | Questions | Covered | Partial | Not covered | Not-covered question numbers |
 | --- | --- | --- | --- | --- | --- |
-| Weather | 61 | 4 | 1 | 56 | 80, 121, 167, 168, 169, 170, 171, 172, 173, 174, 175, 176, 177, 178, 179, 180, 181, 189, 190, 191, 192, 193, 194, 195, 196, 233, 234, 235, 236, 237, 238, 239, 240, 241, 242, 243, 244, 245, 250, 257, 258, 259, 264, 268, 270, 271, 275, 276, 277, 296, 297, 298, 305, 306, 307, 308 |
+| Weather | 61 | 43 | 18 | 0 |  |
 | Lights and day shapes | 60 | 53 | 4 | 3 | 218, 345, 354 |
 | Right-of-way rules | 44 | 42 | 2 | 0 |  |
 | Sailing theory and trim | 40 | 38 | 1 | 1 | 285 |
@@ -42,7 +43,7 @@ A question is **covered** when the course states the fact needed to pick the rig
 
 ## Biggest remaining gaps
 
-1. **Weather:** pressure systems, fronts, isobars, clouds, barometer trends, the Beaufort scale, and local winds (Sharqiya, Meltemi).
+1. **Weather (mostly done):** 16 remaining questions depend on chart pictures that are not in the PDF.
 2. **Safety equipment:** life rafts and their automatic release, fire extinguisher types, flare types and storage, harnesses, sea anchors.
 3. **Israeli law and regulations** and **ropes and knots:** not taught at all.
 4. **Signal flags** other than A (B, O, Q, quarantine/health, flags for entering a foreign port).

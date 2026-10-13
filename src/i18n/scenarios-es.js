@@ -2350,5 +2350,396 @@ export default {
         }
       }
     }
-  }
+  },
+  "decision-sail-54": {
+    "title": "Lee el mapa antes de salir",
+    "brief": "Usa un mapa del tiempo simplificado y un registro del barómetro para valorar el viento en una travesía costera corta.",
+    "limitations": "El mapa y las lecturas son datos simplificados del ejercicio, no una previsión. Para travesías reales, usa las previsiones marítimas oficiales.",
+    "stages": {
+      "direction": {
+        "title": "Calcula la dirección del viento",
+        "brief": "Hay una baja centrada unas 150 NM al oeste de tu posición, en el hemisferio norte.",
+        "goal": "Elige la dirección del viento en tu posición.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "low": {
+            "label": "Mapa",
+            "text": "La baja está centrada al oeste. Cerca de ti, sus isobaras van más o menos de norte a sur."
+          },
+          "rule": {
+            "label": "Regla práctica",
+            "text": "En el hemisferio norte el viento gira alrededor de una baja en sentido antihorario, algo desviado hacia el centro."
+          }
+        },
+        "fields": {
+          "windFrom": {
+            "label": "El viento sopla del",
+            "options": {
+              "east": "Este",
+              "north": "Norte",
+              "south": "Sur",
+              "west": "Oeste"
+            }
+          }
+        }
+      },
+      "spacing": {
+        "title": "Compara las isobaras",
+        "brief": "El mapa muestra dos zonas a lo largo de tu ruta prevista.",
+        "goal": "Identifica dónde será más fuerte el viento.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "north": {
+            "label": "Zona norte",
+            "text": "Las isobaras, cada 4 hPa, están separadas unas 120 NM."
+          },
+          "south": {
+            "label": "Zona sur",
+            "text": "Las isobaras, cada 4 hPa, están separadas unas 30 NM."
+          }
+        },
+        "fields": {
+          "stronger": {
+            "label": "¿Dónde será más fuerte el viento?",
+            "options": {
+              "north": "En la zona norte",
+              "same": "Igual en las dos",
+              "south": "En la zona sur"
+            }
+          }
+        }
+      },
+      "trend": {
+        "title": "Actúa según el barómetro",
+        "brief": "Antes de salir, revisas el registro del barómetro.",
+        "goal": "Decide si sales y qué anotas.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "log": {
+            "label": "Registro del barómetro",
+            "text": "06:00 1012 hPa; 09:00 1008 hPa; 12:00 1004 hPa."
+          },
+          "plan": {
+            "label": "Plan de travesía",
+            "text": "La travesía dura seis horas por una costa expuesta, sin ningún puerto a mitad de camino."
+          }
+        },
+        "fields": {
+          "decision": {
+            "label": "Decisión de salida",
+            "options": {
+              "go": "Salir ya, antes de que empeore",
+              "ignore": "Salir: 1004 hPa sigue siendo una lectura normal",
+              "wait": "Esperar: la presión baja rápido y el viento va a subir"
+            }
+          },
+          "record": {
+            "label": "Anotar en el plan",
+            "options": {
+              "forecast": "Consultar la última previsión marítima",
+              "stop": "Dejar de anotar el barómetro",
+              "trend": "La caída de 4 hPa en tres horas"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-55": {
+    "title": "Navega a través de un frente",
+    "brief": "Reconoce las fases de una baja frontal y prepara el barco para el frente frío.",
+    "limitations": "Un modelo de frente simplificado. Los frentes reales varían en velocidad, fuerza y momento de llegada.",
+    "stages": {
+      "after": {
+        "title": "Después del frente",
+        "brief": "La línea de turbonadas ya ha pasado por encima.",
+        "goal": "Elige lo que esperas a continuación.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "now": {
+            "label": "Condiciones ahora",
+            "text": "El viento ha rolado al noroeste y viene con rachas; la visibilidad es muy buena; la presión sube."
+          }
+        },
+        "fields": {
+          "expect": {
+            "label": "¿Qué esperas a continuación?",
+            "options": {
+              "drizzle": "Calma inmediata y llovizna cálida",
+              "fog": "Niebla espesa el resto del día",
+              "showers": "Aire más fresco y despejado, con chubascos con rachas que van amainando"
+            }
+          }
+        }
+      },
+      "cold": {
+        "title": "Prepárate para el frente frío",
+        "brief": "Horas después la lluvia ha amainado y la presión se mantiene. Entonces cambia el cielo al oeste.",
+        "goal": "Di qué se acerca y prepara el barco.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "pressure": {
+            "label": "Barómetro",
+            "text": "Estable durante las últimas tres horas."
+          },
+          "west": {
+            "label": "Cielo al oeste",
+            "text": "Se acercan cumulonimbos muy altos con una línea oscura de turbonadas."
+          }
+        },
+        "fields": {
+          "event": {
+            "label": "¿Qué se acerca?",
+            "options": {
+              "coldFront": "El frente frío",
+              "high": "Una alta",
+              "warmFront": "Un segundo frente cálido"
+            }
+          },
+          "prepare": {
+            "label": "Prepara el barco",
+            "options": {
+              "hoist": "Izar más vela para llegar antes",
+              "metal": "Mantener a la tripulación lejos del mástil y de los herrajes metálicos",
+              "reef": "Tomar rizos antes de que llegue la turbonada",
+              "stow": "Estibar lo que esté suelto y cerrar las escotillas"
+            }
+          }
+        }
+      },
+      "sequence": {
+        "title": "Ordena las fases del frente",
+        "brief": "Una baja frontal cruza tu zona de oeste a este, en el hemisferio norte.",
+        "goal": "Ordena lo que vas a encontrar, del primero al último.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "chart": {
+            "label": "Mapa",
+            "text": "El mapa muestra una baja al noroeste, con un frente cálido delante y un frente frío detrás."
+          },
+          "sky": {
+            "label": "Cielo ahora",
+            "text": "Nubes altas y finas se extienden y se van espesando poco a poco desde el oeste."
+          }
+        },
+        "fields": {
+          "order": {
+            "label": "Orden de llegada",
+            "options": {
+              "coldFront": "Frente frío",
+              "warmFront": "Frente cálido",
+              "warmSector": "Sector cálido"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-56": {
+    "title": "Valora el estado de la mar",
+    "brief": "Di la fuerza del viento, planifica en torno a la brisa marina y entra en un puerto con mar de fondo.",
+    "limitations": "Las cifras de olas y viento son datos del ejercicio. Las entradas reales exigen conocimiento local y las condiciones del momento.",
+    "stages": {
+      "breeze": {
+        "title": "Planifica en torno a la brisa marina",
+        "brief": "Un día de verano caluroso y soleado, con viento flojo por la mañana.",
+        "goal": "Elige el momento más suave para una salida de un día.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "forecast": {
+            "label": "Previsión",
+            "text": "La brisa marina aumenta desde media mañana hasta 15–18 nudos por la tarde y se apaga después de la puesta de sol."
+          }
+        },
+        "fields": {
+          "when": {
+            "label": "¿Cuándo serán más suaves las condiciones?",
+            "options": {
+              "afternoon": "Salir a las 14:00, con la brisa más fuerte",
+              "early": "Salir temprano y volver antes del mediodía",
+              "night": "La brisa es más fuerte por la noche"
+            }
+          }
+        }
+      },
+      "entrance": {
+        "title": "Entra con mar de fondo",
+        "brief": "Llegas al puerto por la tarde.",
+        "goal": "Elige cómo entrar con seguridad.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "sets": {
+            "label": "Patrón de las olas",
+            "text": "Cada pocos minutos llegan series de olas más grandes, con calmas entre ellas."
+          },
+          "swell": {
+            "label": "Bocana del puerto",
+            "text": "Un mar de fondo de 2 m del oeste rompe a ratos en la bocana."
+          }
+        },
+        "fields": {
+          "entry": {
+            "label": "¿Cómo entras?",
+            "options": {
+              "anchor": "Fondear en la bocana y esperar",
+              "lull": "Esperar fuera, observar las series y entrar en una calma con velocidad para gobernar",
+              "now": "Entrar ya directamente, muy despacio"
+            }
+          },
+          "prepare": {
+            "label": "Antes de entrar",
+            "options": {
+              "crew": "Chalecos puestos y tripulación enganchada",
+              "engine": "Motor en marcha y listo",
+              "foredeck": "Mandar a alguien a la proa a vigilar",
+              "hatches": "Escotillas cerradas"
+            }
+          }
+        }
+      },
+      "force": {
+        "title": "Di la fuerza Beaufort",
+        "brief": "Compara el instrumento con el mar que te rodea.",
+        "goal": "Anota la fuerza Beaufort y compárala con el límite de la tripulación.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "gauge": {
+            "label": "Instrumento de viento",
+            "text": "25 nudos constantes de viento real."
+          },
+          "limit": {
+            "label": "Límite de la tripulación",
+            "text": "En este ejercicio, la tripulación acordó navegar hasta fuerza 5."
+          },
+          "sea": {
+            "label": "Mar",
+            "text": "Olas grandes; crestas de espuma blanca por todas partes y algunos rociones."
+          }
+        },
+        "fields": {
+          "force": {
+            "label": "Fuerza Beaufort",
+            "options": {}
+          },
+          "within": {
+            "label": "¿Está dentro del límite de la tripulación?",
+            "options": {
+              "no": "No",
+              "yes": "Sí"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-57": {
+    "title": "Planifica una travesía por el Mediterráneo oriental",
+    "brief": "Aplica los patrones meteorológicos de la región a una travesía, una mañana de Sharqiya y un tramo de verano en el Egeo.",
+    "limitations": "Los patrones regionales son generales. Usa siempre la previsión marítima oficial vigente para la zona.",
+    "stages": {
+      "aegean": {
+        "title": "Planifica un tramo de verano en el Egeo",
+        "brief": "Un chárter en julio por las Cícladas.",
+        "goal": "Planifica el próximo tramo según la previsión.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "forecast": {
+            "label": "Previsión",
+            "text": "Meltemi del norte, fuerza 6 a 7, durante los próximos tres días."
+          }
+        },
+        "fields": {
+          "prepare": {
+            "label": "Preparación",
+            "options": {
+              "exposed": "Fondear en el lado norte de las islas",
+              "lee": "Fondear en el lado sur de las islas, a su abrigo",
+              "reef": "Tomar rizos antes de salir de puerto",
+              "shelter": "Elegir puertos abrigados del norte"
+            }
+          },
+          "route": {
+            "label": "Próximo tramo",
+            "options": {
+              "ignore": "Ignorarlo: parará por la tarde",
+              "north": "Ceñir hacia el norte por mar abierto a mediodía",
+              "south": "Navegar al sur con el viento por popa, en saltos cortos y abrigados"
+            }
+          }
+        }
+      },
+      "sharqiya": {
+        "title": "Interpreta una mañana de Sharqiya",
+        "brief": "Una mañana de otoño en un puerto deportivo del norte de Israel.",
+        "goal": "Interpreta el agua en calma y elige un plan.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "offshore": {
+            "label": "Previsión mar adentro",
+            "text": "A diez millas: viento del este fuerza 6 y olas en aumento."
+          },
+          "wind": {
+            "label": "Viento",
+            "text": "Sopla desde tierra un viento del este fuerte y seco. Dentro del puerto deportivo y cerca de él, el mar está llano."
+          }
+        },
+        "fields": {
+          "meaning": {
+            "label": "¿Qué te dice el agua llana cerca de la costa?",
+            "options": {
+              "calm": "Toda la ruta estará en calma",
+              "offshore": "Poco: el viento sopla desde tierra y las olas crecen más lejos",
+              "onshore": "El viento sopla hacia la costa"
+            }
+          },
+          "plan": {
+            "label": "Tu plan",
+            "options": {
+              "night": "Salir de noche y esperar que amaine",
+              "out": "Alejarse diez millas para una navegación rápida",
+              "stay": "Quedarse cerca de la costa, o esperar a que amaine el viento del este"
+            }
+          }
+        }
+      },
+      "winter": {
+        "title": "Planifica la travesía de invierno",
+        "brief": "Planeas navegar de Israel a Chipre, unas 24 horas.",
+        "goal": "Decide cuándo salir.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "forecast": {
+            "label": "Previsión",
+            "text": "Una baja sobre Grecia avanza hacia el este, hacia Chipre, en los próximos dos días."
+          },
+          "pattern": {
+            "label": "Patrón",
+            "text": "Su frente frío traerá viento fuerte del suroeste al oeste y mar gruesa a lo largo de la ruta."
+          }
+        },
+        "fields": {
+          "decision": {
+            "label": "Decisión de salida",
+            "options": {
+              "early": "Salir ya para adelantarse",
+              "ignore": "Salir según lo previsto",
+              "wait": "Esperar a que pasen la baja y su frente frío"
+            }
+          }
+        }
+      }
+    }
+  },
 };

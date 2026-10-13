@@ -1,6 +1,9 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
 import { colregsScenarios } from '../../src/learning/colregs-scenarios.js';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 test.beforeEach(async ({ context }) => {
   // These checks exercise learning UI, independently of the 3D renderer.
@@ -38,11 +41,11 @@ test('colregs lessons load in every language with diagrams and official rule ref
       readFileSync(new URL(`../../public/locales/${lang}.json`, import.meta.url), 'utf8'),
     );
     await expect(page.locator('html')).toHaveAttribute('lang', lang);
-    for (let index = 45; index < 51; index++) {
-      await selectLesson(page, index);
+    for (const id of ['sail-46', 'sail-47', 'sail-48', 'sail-49', 'sail-50', 'sail-51']) {
+      await selectLesson(page, positionOf(id));
       await openBriefing(page);
       await expect(page.locator('.reader-heading h1')).toHaveText(
-        pack.lessons[`sail-${index + 1}`].title,
+        pack.lessons[id].title,
       );
       await expect(page.locator('.reader-figure svg')).toHaveAttribute('lang', lang);
       await expect(page.locator('.reader-rule-source a')).toHaveAttribute(
@@ -54,7 +57,7 @@ test('colregs lessons load in every language with diagrams and official rule ref
       ).toBe(true);
       if (lang === 'he')
         await page.screenshot({
-          path: testInfo.outputPath(`lesson-${index + 1}-he.png`),
+          path: testInfo.outputPath(`lesson-${id}-he.png`),
           fullPage: true,
         });
       await page.locator('#reader-close').click();
@@ -69,7 +72,7 @@ test('colregs decisions require observation and preserve completed Hebrew eviden
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('./?lang=he');
   for (const scenario of colregsScenarios) {
-    await selectLesson(page, Number(scenario.lessonId.split('-')[1]) - 1);
+    await selectLesson(page, positionOf(scenario.lessonId));
     await openBriefing(page);
     await page.locator('#reader-start-training').click();
     await page.locator('#practice-launch').click();

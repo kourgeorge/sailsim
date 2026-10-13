@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { practiceFlowUI } from '../../src/i18n/practice-flow.js';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 // Exercise the production UI with its supported WebGL fallback. The separate
 // rendering suite uses the real GPU pipeline; these tests stay fast and isolated.
@@ -33,7 +36,7 @@ test('lesson briefing owns launch and displays the setup that will actually be a
   await expect(page.locator('#activity-status')).toHaveCount(0);
   await expect(page.locator('#play')).toBeHidden();
   await expect(page.locator('#conditions')).toBeHidden();
-  await selectLesson(page, 8);
+  await selectLesson(page, positionOf('sail-09'));
   await page.locator('#practice-start').click();
   const briefing = page.locator('#practice-briefing');
   await expect(briefing.locator('.practice-kind')).toContainText('Lesson 09');
@@ -102,7 +105,7 @@ test('lesson conditions and start remain reachable in every language at 200% mob
     await page.setViewportSize({ width: 1440, height: 1000 });
     await page.goto(`./?lang=${language}`);
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'ready');
-    await selectLesson(page, 8);
+    await selectLesson(page, positionOf('sail-09'));
     await page.locator('.text-size-control summary').click();
     await page.locator('#sail-text-size-range').fill('200');
     await page.locator('.text-size-control summary').click();
@@ -157,7 +160,7 @@ test('simultaneous quiz submissions in two tabs count each answer exactly once',
   );
   await expect.poll(async () => (await record(page)).records?.['sail-01']?.wrongAnswers).toBe(2);
   await second.locator('#reader-close').click();
-  await selectLesson(second, 1);
+  await selectLesson(second, positionOf('sail-02'));
   await expect.poll(async () => (await record(second)).selected).toBe('sail-02');
   expect((await record(page)).records['sail-01'].wrongAnswers).toBe(2);
 });
@@ -166,7 +169,7 @@ test('leaving simulation before changing language preserves the ended attempt', 
   page,
 }) => {
   await open(page);
-  await selectLesson(page, 8);
+  await selectLesson(page, positionOf('sail-09'));
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
@@ -197,7 +200,7 @@ test('two tabs retain quiz evidence and independent navigation after reload', as
   await page.locator('input[name="q1"][value="1"]').check();
   await page.locator('#knowledge-form button[type="submit"]').click();
   await expect.poll(async () => (await record(page)).records?.['sail-01']?.knowledge).toBe(true);
-  await selectLesson(second, 1);
+  await selectLesson(second, positionOf('sail-02'));
   await expect.poll(async () => (await record(second)).selected).toBe('sail-02');
   await expect.poll(async () => (await record(second)).records?.['sail-01']?.knowledge).toBe(true);
   await expect(page.locator('#lesson-reader h1')).toHaveText('Safety before speed');
@@ -232,7 +235,7 @@ test('decision training has working navigation without an inert playback button'
 
 test('mobile sheets, resizing and study preserve the same physical attempt', async ({ page }) => {
   await open(page);
-  await selectLesson(page, 8);
+  await selectLesson(page, positionOf('sail-09'));
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
@@ -263,7 +266,7 @@ test('actual instrument checkpoints still complete and save a physical assessmen
   page,
 }) => {
   await open(page);
-  await selectLesson(page, 3);
+  await selectLesson(page, positionOf('sail-04'));
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await page.locator('[data-camera="deck"]').click();

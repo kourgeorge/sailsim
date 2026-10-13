@@ -226,7 +226,7 @@
       "concepts": [
         "Le vent porte le nom de sa provenance. Un vent de nord-ouest vient du nord-ouest (315°) et souffle vers le sud-est (135°). Le côté au vent est celui d’où vient le vent ; le côté sous le vent est celui vers lequel il souffle. Les marins nomment la provenance, car c’est de là qu’arrivent la force du vent, les vagues et le mauvais temps qui approche.",
         "Une voile est une aile souple : elle ne fonctionne que si l’air la traverse en biais. Pointez l’étrave droit dans le vent et la voile s’aligne sur l’écoulement d’air : elle faseye comme un drapeau et ne produit aucune propulsion. La zone non navigable est l’ensemble des caps trop proches du vent pour que la voile fonctionne : environ 40–45° de chaque côté pour la plupart des voiliers de croisière, et 38° dans ce simulateur. Pour rejoindre un point au vent, on navigue en zigzag en dehors de cette zone.",
-        "Le vent qui compte pour naviguer est le vent au-dessus de l’eau. Si l’eau elle-même se déplace (un courant), ce vent diffère de celui du bulletin météo, qui décrit le vent au-dessus de la terre. Dès que le bateau avance, il ressent aussi son propre déplacement d’air : c’est le vent apparent (leçon 17). Sans courant, c’est le vent annoncé par la météo qui compte.",
+        "Le vent qui compte pour naviguer est le vent au-dessus de l’eau. Si l’eau elle-même se déplace (un courant), ce vent diffère de celui du bulletin météo, qui décrit le vent au-dessus de la terre. Dès que le bateau avance, il ressent aussi son propre déplacement d’air : c’est le vent apparent (leçon {lesson:sail-17}). Sans courant, c’est le vent annoncé par la météo qui compte.",
         "Le compas de l’application montre le vent comme une girouette : la pointe de la flèche dorée indique d’où vient le vent, et le secteur ombré non navigable l’entoure. Les schémas d’écoulement d’air pointent dans l’autre sens, vers où va l’air. Dans l’exemple, un vent du 315° et un cap au 045° sont séparés de 90° : c’est le travers. Quand le bateau tourne, seul le symbole blanc du bateau bouge ; la flèche dorée et le secteur restent du côté du vent."
       ],
       "observe": [
@@ -357,7 +357,7 @@
       "concepts": [
         "Barrez sur un repère lointain, comme un cap ou un nuage, et utilisez le compas pour vérifier. Un repère lointain montre tout de suite un écart ; le chiffre du compas réagit avec retard et oscille dans les vagues.",
         "Un bateau qui tourne continue de tourner après que vous avez centré la barre, car il garde son élan, comme une porte tambour. Centrez donc la barre avant d’atteindre le nouveau cap et laissez le bateau glisser jusqu’à lui. Si vous attendez d’être sur le cap, vous le dépassez, vous corrigez en sens inverse et vous zigzaguez. De petites corrections faites tôt donnent une trajectoire droite.",
-        "Si vous devez sans cesse tenir de la barre simplement pour aller droit, le bateau vous signale quelque chose. Un voilier qui cherche constamment à remonter vers le vent (il est ardent) porte généralement trop de toile ou gîte trop ; choquer l’écoute de grand-voile ou prendre un ris règle le problème (leçon 18). Assurez aussi la veille : un cap tenu avec précision peut tout de même mener au danger."
+        "Si vous devez sans cesse tenir de la barre simplement pour aller droit, le bateau vous signale quelque chose. Un voilier qui cherche constamment à remonter vers le vent (il est ardent) porte généralement trop de toile ou gîte trop ; choquer l’écoute de grand-voile ou prendre un ris règle le problème (leçon {lesson:sail-18}). Assurez aussi la veille : un cap tenu avec précision peut tout de même mener au danger."
       ],
       "observe": [
         "Donnez de brèves corrections à bâbord ou tribord, puis sélectionnez Centrer.",
@@ -400,7 +400,7 @@
       "concepts": [
         "Une allure est l’angle entre l’étrave et le vent, pas un cap au compas. En s’éloignant du vent : le près (environ 40–50° du vent, voiles bordées serrées), le bon plein (environ 60°), le travers (90°, vent sur le côté), le grand largue (environ 135°, vent venant de l’arrière du travers) et le vent arrière (environ 180°, vent venant de derrière).",
         "Chaque allure a son propre réglage de voile. Repère simple : la voile forme environ la moitié de l’angle du vent. Au près, la bôme est proche de l’axe ; au travers, elle est à peu près à mi-course ; au vent arrière, elle est très ouverte. On peut naviguer à chaque allure des deux côtés du vent : avec un vent du 315°, les caps 045° et 225° sont tous deux au travers.",
-        "Quand le bateau accélère, le vent qu’il ressent remonte vers l’avant, car son propre déplacement ajoute une brise venant de face (la leçon 17 l’explique). Bordez donc un peu en prenant de la vitesse. Si le vent tourne, votre allure change même si votre cap reste le même.",
+        "Quand le bateau accélère, le vent qu’il ressent remonte vers l’avant, car son propre déplacement ajoute une brise venant de face (la leçon {lesson:sail-17} l’explique). Bordez donc un peu en prenant de la vitesse. Si le vent tourne, votre allure change même si votre cap reste le même.",
         "Courir vent arrière, c’est naviguer avec le vent et les vagues qui arrivent par l’arrière. Cela paraît calme parce que le vent apparent est faible et que le bateau gîte à peine, mais les vagues soulèvent l’arrière et le risque d’empannage accidentel est maximal."
       ],
       "observe": [
@@ -528,7 +528,7 @@
       "concepts": [
         "Régler la voile, c’est lui donner le bon angle par rapport au vent. Trop choquée, son bord avant faseye : l’air ne s’écoule pas correctement sur la voile, elle propulse donc peu. Trop bordée, l’air se décolle de l’arrière de la voile (elle décroche) : le bateau gîte et ralentit au lieu d’accélérer. Le meilleur réglage se situe juste en dedans du point où le faseyement commence.",
         "La méthode classique : choquez lentement l’écoute jusqu’à ce que l’avant de la voile commence à faseyer, puis bordez juste assez pour que le faseyement cesse. Les penons rendent cela plus facile à voir. Recommencez après chaque changement de cap ou rotation du vent. « Dans le doute, choque » : une voile un peu trop choquée coûte peu de vitesse ; une voile trop bordée en coûte beaucoup.",
-        "Ne changez qu’une chose à la fois et laissez du temps au bateau. La vitesse évolue lentement (leçon 7) : attendez plusieurs secondes pour voir si un réglage a aidé. Dans cette application, un angle d’écoute conseillé, calculé à partir du vent apparent, vous permet de vérifier votre résultat ; sur un vrai bateau, on règle en observant le bord avant de la voile et les penons."
+        "Ne changez qu’une chose à la fois et laissez du temps au bateau. La vitesse évolue lentement (leçon {lesson:sail-07}) : attendez plusieurs secondes pour voir si un réglage a aidé. Dans cette application, un angle d’écoute conseillé, calculé à partir du vent apparent, vous permet de vérifier votre résultat ; sur un vrai bateau, on règle en observant le bord avant de la voile et les penons."
       ],
       "observe": [
         "Gardez la barre centrée et ne modifiez que l’écoute.",
@@ -614,7 +614,7 @@
       "title": "Effectuez un virement contrôlé",
       "concepts": [
         "Un virement de bord fait passer l’étrave par le vent : le vent passe de l’autre côté du bateau et les voiles changent de bord. D’un près à l’autre, c’est un virage d’environ 90°. Avant de commencer, surveillez le trafic, vérifiez que vous avez de l’espace et prévenez l’équipage (« Paré à virer ? »).",
-        "C’est la vitesse qui vous fait passer. Dans la zone non navigable, les voiles faseyent et ne propulsent plus : seul l’élan du bateau fait passer l’étrave de l’autre côté. Partez avec une bonne vitesse et tournez régulièrement. Trop lent, le bateau s’arrête face au vent (il est « vent debout », leçon 16). Trop brusque, le safran, braqué à fond, agit comme un frein.",
+        "C’est la vitesse qui vous fait passer. Dans la zone non navigable, les voiles faseyent et ne propulsent plus : seul l’élan du bateau fait passer l’étrave de l’autre côté. Partez avec une bonne vitesse et tournez régulièrement. Trop lent, le bateau s’arrête face au vent (il est « vent debout », leçon {lesson:sail-16}). Trop brusque, le safran, braqué à fond, agit comme un frein.",
         "Sur un vrai voilier : mettez la barre et annoncez la manœuvre (par exemple « Envoyez ! ») ; quand la voile d’avant commence à faseyer, larguez l’ancienne écoute ; quand l’étrave passe le vent, bordez la nouvelle écoute de l’autre côté ; puis centrez la barre sur le nouveau près et réglez les voiles. Attendez-vous à perdre un peu de vitesse et reprenez-la avant de serrer le vent. Dans l’application, les voiles changent de bord automatiquement."
       ],
       "observe": [
@@ -1133,7 +1133,7 @@
     "sail-26": {
       "title": "Raisonnez face aux rencontres",
       "concepts": [
-        "Les règles décident à l’avance qui s’écarte (navire non privilégié) et qui maintient son cap (navire privilégié), pour que deux bateaux ne tournent pas tous les deux du même côté. Entre deux voiliers : sous des amures différentes, le voilier bâbord amures s’écarte ; sous la même amure, celui au vent s’écarte, car il peut en général abattre plus facilement. La leçon 46 traite cela en détail.",
+        "Les règles décident à l’avance qui s’écarte (navire non privilégié) et qui maintient son cap (navire privilégié), pour que deux bateaux ne tournent pas tous les deux du même côté. Entre deux voiliers : sous des amures différentes, le voilier bâbord amures s’écarte ; sous la même amure, celui au vent s’écarte, car il peut en général abattre plus facilement. La leçon {lesson:sail-46} traite cela en détail.",
         "Le navire rattrapant s’écarte. Les responsabilités entre navires, les chenaux étroits, les dispositifs de circulation, la visibilité réduite et les règles locales peuvent modifier l’analyse. Ne résumez pas les règles à « la voile gagne toujours ».",
         "Le navire qui doit maintenir cap et vitesse conserve des responsabilités et doit agir si nécessaire pour éviter l’abordage. Apprenez l’ensemble des règles anticollision applicables et les exigences locales avant de naviguer."
       ],
@@ -1169,7 +1169,7 @@
       "concepts": [
         "Les feux de navigation montrent la direction d’un navire et ce qu’il fait. Le rouge est à bâbord, le vert à tribord et le blanc à l’arrière. Si vous voyez à la fois le rouge et le vert, le navire vient droit sur vous ; le rouge seul, vous voyez son côté bâbord ; le vert seul, son côté tribord ; le blanc seul, vous voyez son arrière.",
         "Dans le contexte international des signaux de manœuvre, un son bref signifie une modification du cap à tribord, deux à bâbord et trois la marche arrière de la propulsion. Les signaux de visibilité réduite constituent un autre système ; les règles locales ou fluviales peuvent différer.",
-        "La leçon 50 couvre l’ensemble des feux, marques et signaux sonores. Les règles peuvent différer dans les eaux intérieures ou locales : vérifiez celles qui s’appliquent là où vous naviguez avant de sortir de nuit ou par visibilité réduite."
+        "La leçon {lesson:sail-50} couvre l’ensemble des feux, marques et signaux sonores. Les règles peuvent différer dans les eaux intérieures ou locales : vérifiez celles qui s’appliquent là où vous naviguez avant de sortir de nuit ou par visibilité réduite."
       ],
       "observe": [
         "Identifiez le feu rouge de bâbord et le feu vert de tribord du voilier.",
@@ -2344,6 +2344,184 @@
           }
         ]
       }
+    },
+    "sail-54": {
+      "title": "Lire une carte météo",
+      "concepts": [
+        "Une carte météo, ou carte synoptique, représente la pression atmosphérique au niveau de la mer. Des lignes appelées isobares relient les lieux de même pression, en général tous les 4 hectopascals (hPa, l’équivalent des millibars). Un anticyclone (A, H en anglais) apporte en général un temps stable ; une dépression (D, L en anglais) apporte nuages, pluie et vent plus fort.",
+        "Plus les isobares sont serrées, plus le vent est fort. Des isobares espacées signifient un vent faible ; des isobares resserrées annoncent un vent fort. En mer, le vent souffle à peu près le long des isobares, légèrement dévié vers la pression la plus basse.",
+        "Dans l’hémisphère nord, le vent tourne autour d’une dépression dans le sens inverse des aiguilles d’une montre et converge en spirale vers son centre. Autour d’un anticyclone, il tourne dans le sens des aiguilles d’une montre et diverge vers l’extérieur. Dos au vent, la dépression est sur votre gauche. Un thalweg est une dépression allongée, une dorsale un anticyclone allongé, et un col, ou marais barométrique, se situe entre deux anticyclones et deux dépressions, avec un vent faible et variable.",
+        "Pour estimer le vent en un point de la carte, repérez les isobares, voyez de quel côté se trouve la dépression et tracez le vent le long des isobares. Inclinez-le légèrement vers la dépression. Par exemple, avec une dépression à votre ouest, le vent souffle du sud ; une fois la dépression passée à votre est, il souffle du nord.",
+        "Un baromètre indique la tendance, qui compte davantage que la valeur elle-même. Une pression en baisse régulière, par exemple de 1000 à 992 hPa en huit heures, signifie qu’une dépression approche et que le vent va forcir ; une baisse de 3 hPa ou plus en trois heures est un signal d’alerte. Une pression qui remonte après une dépression annonce en général une éclaircie et une rotation du vent. Notez la valeur dans le journal de bord toutes les quelques heures."
+      ],
+      "observe": [
+        "Regardez une vraie carte synoptique, trouvez la dépression la plus proche et voyez si ses isobares sont serrées ou espacées.",
+        "Notez la valeur du baromètre et l’heure, puis comparez trois heures plus tard."
+      ],
+      "mistake": "Lire une seule valeur du baromètre au lieu de sa tendance, ou oublier que, dans l’hémisphère nord, le vent tourne autour d’une dépression dans le sens inverse des aiguilles d’une montre.",
+      "quiz": [
+        {
+          "prompt": "Sur la carte météo, les isobares sont serrées au-dessus de votre zone. À quoi vous attendez-vous ?",
+          "options": [
+            "Un vent fort",
+            "Du calme",
+            "Du brouillard"
+          ],
+          "explanation": "Plus les isobares sont serrées, plus le vent est fort."
+        },
+        {
+          "prompt": "Dans l’hémisphère nord, comment le vent souffle-t-il autour d’une dépression ?",
+          "options": [
+            "Dans le sens inverse des aiguilles d’une montre, en convergeant vers le centre",
+            "Dans le sens des aiguilles d’une montre, en s’écartant du centre",
+            "Tout droit vers le centre"
+          ],
+          "explanation": "Autour d’une dépression, le vent tourne dans le sens inverse des aiguilles d’une montre et converge vers le centre ; autour d’un anticyclone, il tourne dans le sens des aiguilles d’une montre et s’en écarte."
+        },
+        {
+          "prompt": "Votre baromètre indique 1000, 996 puis 992 hPa à quatre heures d’intervalle. Qu’est-ce que cela vous dit ?",
+          "options": [
+            "Une dépression approche et le vent va forcir",
+            "La pression monte, un anticyclone s’installe",
+            "Rien : seule la valeur compte"
+          ],
+          "explanation": "Une baisse régulière signifie qu’une dépression se rapproche. Surveillez la tendance et attendez-vous à plus de vent."
+        }
+      ],
+      "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie."
+    },
+    "sail-55": {
+      "title": "Fronts et nuages",
+      "concepts": [
+        "La plupart des dépressions qui traversent la Méditerranée sont des dépressions frontales. Dans l’hémisphère nord, un front chaud arrive en général en premier, puis un secteur chaud, puis un front froid, le tout se déplaçant à peu près d’ouest en est. Sur une carte, un front chaud est dessiné avec des demi-cercles, un front froid avec des triangles.",
+        "À l’approche d’un front chaud, les nuages hauts et fins s’épaississent et s’abaissent en une couche grise. Ils apportent une pluie continue, une mauvaise visibilité et une pression en baisse. Au passage du front, le vent tourne vers la droite, par exemple du sud au sud-ouest. Dans le secteur chaud qui suit, les isobares sont presque droites, la pression est stable et l’air est chaud et humide, souvent avec de la brume ou de la bruine.",
+        "Le front froid apporte le temps le plus dur : cumulus bourgeonnants et cumulonimbus, fortes averses. Il amène parfois des orages et de la grêle, et une bascule soudaine et en rafales du vent à l’ouest ou au nord-ouest. Derrière lui, la pression remonte, l’air est plus frais et la visibilité s’améliore nettement, même si des averses en rafales peuvent continuer.",
+        "Le cumulonimbus est un nuage à très fort développement vertical, souvent surmonté d’un sommet plat en forme d’enclume. Il peut apporter grains, fortes pluies, grêle et foudre. Les nuages se forment quand l’air qui monte se refroidit jusqu’à son point de rosée, et la base du nuage est l’altitude où cela se produit. Quand l’air qui monte s’est refroidi jusqu’à la température de l’air qui l’entoure, il cesse de monter : les prévisionnistes disent que l’air est stable à cette altitude.",
+        "Pendant un orage, éloignez-vous du mât, des haubans et des autres pièces métalliques. Gardez l’équipage bas au centre du bateau et éteignez l’électronique inutile. Prenez un ris tôt, car le grain sous un cumulonimbus peut arriver presque sans prévenir. Le brouillard d’advection se forme quand de l’air chaud et humide passe au-dessus d’une eau plus froide ; près des côtes, il peut apparaître et disparaître rapidement."
+      ],
+      "observe": [
+        "Observez l’évolution des nuages sur une journée : des nuages hauts et fins qui s’épaississent et s’abaissent annoncent souvent un front chaud.",
+        "Remarquez la base des cumulus : elle est plate, car c’est l’altitude où l’air qui monte atteint son point de rosée."
+      ],
+      "mistake": "Croire que la fin de la pluie continue du front chaud marque la fin du mauvais temps, alors que le front froid et ses grains sont encore à venir.",
+      "quiz": [
+        {
+          "prompt": "Quels nuages accompagnent un front froid ?",
+          "options": [
+            "Des cumulus et des cumulonimbus",
+            "Seulement des nuages hauts et fins",
+            "Aucun nuage"
+          ],
+          "explanation": "Un front froid soulève l’air rapidement et forme de hauts cumulus et des cumulonimbus, avec averses et grains."
+        },
+        {
+          "prompt": "Après le passage d’un front froid, que devient en général la visibilité ?",
+          "options": [
+            "Elle s’améliore",
+            "Elle se dégrade",
+            "Elle reste la même"
+          ],
+          "explanation": "Un air plus frais et plus sec arrive derrière le front froid, et la visibilité s’améliore."
+        },
+        {
+          "prompt": "Pendant un orage à bord, que faut-il éviter ?",
+          "options": [
+            "Rester près du mât et des autres pièces métalliques",
+            "Prendre un ris",
+            "Porter un gilet de sauvetage"
+          ],
+          "explanation": "La foudre suit le mât et le gréement. Tenez-vous à l’écart des pièces métalliques et restez bas au centre du bateau."
+        }
+      ],
+      "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie."
+    },
+    "sail-56": {
+      "title": "Vent et vagues",
+      "concepts": [
+        "L’échelle de Beaufort décrit le vent par son effet sur la mer. Force 4 (11–16 nœuds) : nombreux moutons ; force 5 (17–21) : vagues modérées et embruns ; force 6 (22–27) : grosses vagues aux crêtes d’écume blanche partout ; force 7 (28–33) : mer qui grossit, écume soufflée en traînées ; force 8 (34–40) : coup de vent. Les prévisions donnent souvent la force Beaufort avec les rafales attendues.",
+        "La brise de mer naît de la différence de température entre la terre et la mer. Par une journée ensoleillée, la terre se réchauffe plus vite, l’air chaud s’élève au-dessus d’elle et l’air plus frais de la mer afflue vers la côte, en général de la fin de matinée au soir. La nuit, la terre se refroidit et une brise de terre plus faible peut souffler vers le large. Un vent catabatique est de l’air froid qui descend une pente de montagne, souvent fort et sec au pied des reliefs.",
+        "La mer du vent est formée par le vent local. La houle est faite de vagues levées par un vent fort dans une tempête lointaine et qui ont voyagé loin d’elle : longues, lisses et régulières, elles peuvent arriver avant ou après la tempête elle-même. Quand le vent local souffle contre la houle, celle-ci s’abaisse ; le vent contre le courant, comme l’explique la leçon {lesson:sail-20}, rend les vagues courtes et raides.",
+        "Les vagues deviennent plus hautes et plus raides en arrivant sur les petits fonds. Par houle, elles peuvent déferler en travers d’une entrée de port. Avant d’entrer, observez les vagues depuis l’extérieur : elles arrivent souvent en séries, séparées par des accalmies. Entrez pendant une accalmie, avec assez de vitesse pour gouverner."
+      ],
+      "observe": [
+        "Comparez l’anémomètre avec la mer autour de vous et nommez la force Beaufort d’après ce que vous voyez.",
+        "Par une journée ensoleillée, notez quand la brise de mer se lève et quelle force elle atteint en milieu d’après-midi."
+      ],
+      "mistake": "Prévoir un retour l’après-midi par une journée chaude sans tenir compte de la brise de mer, ou se précipiter dans une entrée de port par houle.",
+      "quiz": [
+        {
+          "prompt": "L’anémomètre indique 25 nœuds et l’écume blanche couvre les crêtes. Quelle est la force Beaufort ?",
+          "options": [
+            "Force 6",
+            "Force 3",
+            "Force 9"
+          ],
+          "explanation": "La force 6 correspond à 22–27 nœuds, avec de grosses vagues aux crêtes d’écume blanche partout."
+        },
+        {
+          "prompt": "Qu’est-ce qui provoque la brise de mer en été ?",
+          "options": [
+            "La différence de température entre la terre et la mer",
+            "La marée",
+            "Une tempête lointaine"
+          ],
+          "explanation": "La terre se réchauffe plus vite que la mer ; l’air s’élève au-dessus de la terre et l’air marin afflue."
+        },
+        {
+          "prompt": "Qu’est-ce que la houle ?",
+          "options": [
+            "Des vagues levées par un vent fort dans une tempête lointaine",
+            "Des vagues levées par le vent local du jour",
+            "Des vagues créées par les navires qui passent"
+          ],
+          "explanation": "La houle voyage loin de la tempête qui l’a formée ; elle peut donc arriver même par vent local faible."
+        }
+      ],
+      "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie."
+    },
+    "sail-57": {
+      "title": "La météo en Méditerranée orientale",
+      "concepts": [
+        "En hiver, des dépressions traversent la Méditerranée orientale depuis l’ouest, et certaines se creusent près de Chypre. Sur la côte israélienne, elles apportent en général d’abord un front chaud, avec un vent de sud à sud-ouest. Vient ensuite un front froid, avec un vent tempétueux de sud-ouest à ouest, une mer qui grossit et des averses. Une prévision annonçant un front froid arrivant de la mer signifie gros temps et fortes vagues.",
+        "La Charkiya est un vent d’est fort et sec qui souffle de la terre, surtout aux intersaisons. Elle se manifeste au printemps et en automne, et se fait surtout sentir dans le nord du pays. Près du rivage, la mer reste plate car le vent souffle de terre, mais plus au large il lève des vagues et peut rendre le retour au port difficile. En hiver, les vents d’est froids et forts viennent en général d’un anticyclone situé au nord-est, sur la Russie, et non d’une dépression.",
+        "Au printemps, une dépression chaude peut longer l’Afrique du Nord ou remonter du sud. À l’avant, le vent est de sud, chaud et sec, la poussière réduit la visibilité le long de la côte méditerranéenne, et Eilat reçoit un vent de sud. À son passage, le vent tourne à l’ouest et la température baisse.",
+        "L’été est en général stable : une brise de mer de nord-ouest se lève l’après-midi le long de la côte israélienne et tombe la nuit. En mer Égée, le Meltem est un vent du nord fort et sec en juillet et en août, souvent de force 6 à 7 pendant plusieurs jours. En Adriatique, la Bora est un vent de nord-est froid, sec et très rafaleux qui descend des montagnes en hiver."
+      ],
+      "observe": [
+        "Avant une traversée, lisez la prévision pour toute la région, pas seulement pour votre port, et repérez la dépression la plus proche.",
+        "Un matin calme par vent d’est, regardez vers le large : la mer plus loin est peut-être déjà agitée."
+      ],
+      "mistake": "Partir par un matin de Charkiya où la mer est d’huile, ou prévoir une traversée estivale en mer Égée sans tenir compte du Meltem.",
+      "quiz": [
+        {
+          "prompt": "Qu’est-ce que le Meltem ?",
+          "options": [
+            "Un vent du nord fort en mer Égée en juillet et en août",
+            "Un vent chaud du sud en Israël en hiver",
+            "Une brise de mer à Eilat"
+          ],
+          "explanation": "Le Meltem souffle du nord sur la mer Égée au cœur de l’été, souvent de force 6 à 7 pendant plusieurs jours."
+        },
+        {
+          "prompt": "Qu’est-ce que la Charkiya ?",
+          "options": [
+            "Un vent d’est sec venant de la terre, surtout au printemps et en automne",
+            "Un coup de vent d’ouest en hiver",
+            "Un front froid"
+          ],
+          "explanation": "Elle souffle de la terre : la mer est plate près du rivage, tandis que les vagues se forment plus au large."
+        },
+        {
+          "prompt": "Une dépression d’hiver approche d’Israël par l’ouest. Qu’arrive-t-il en général en premier ?",
+          "options": [
+            "Un front chaud",
+            "Un front froid",
+            "Un anticyclone"
+          ],
+          "explanation": "Le front chaud arrive en premier, puis le secteur chaud, puis le front froid avec le vent et la mer les plus forts."
+        }
+      ],
+      "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie."
     }
   }
 }

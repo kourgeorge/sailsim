@@ -165,3 +165,24 @@ Questions 106, 182 and 184 (local Israeli harbours, barometer trends, safety har
 | **Total** | **~30 pages + ~13 sentences** | **7** | **~110 of 121** |
 
 Each page and each quiz question has to be written in English plus five translations, so translation is the bulk of the work.
+
+# Phase 2: new topics
+
+The 134 questions still not covered need topics the course did not teach. Decisions (2026-10-14):
+
+- **Every new lesson gets a full three-stage decision scenario**, like lessons 1–53, in all six languages.
+- **New lessons go wherever they fit** in the existing modules and levels. Lesson ids (`sail-NN`) stay as stable record keys. Lessons are placed with `PLACEMENT` in `src/learning/curriculum.js`, numbered by course position, and get their level from their module (`src/learning/levels.js`). Text that mentions another lesson uses `{lesson:sail-NN}`, so the shown number follows the lesson. Browser tests find lessons by id, not position.
+
+| Step | Lessons | Where | Status |
+| --- | --- | --- | --- |
+| A. Groundwork | Placement, numbering, levels, cross-reference tokens | — | Done |
+| B. Weather | Read a weather chart; Fronts and clouds; Wind and waves; Eastern Mediterranean weather (`sail-54`–`57`) | "Stay in control", after "Choose a weather limit" | Done |
+| C. Safety equipment | Safety gear aboard; Life raft and abandoning ship | "Before you leave", after "Safety before speed" | Next |
+| D. Ropes and knots | Ropes, knots and pulleys | After "Lines, winches, and loads" | Planned |
+| E. Signal flags | Signal flags and flag etiquette | "Share the water", after "Lights, marks, and signals" | Planned |
+| F. Gear failures and towing | Steering failure, jammed furler, towing, drogues | "Respond and review" | Planned |
+| G. Israeli rules | To decide: a full lesson, or more "Local rules: Israel" notes | — | Open question |
+
+Translations for each step are written by one agent per language from an English source file and merged only if their structure matches the English exactly.
+
+Manual browser scripts in `scripts/check-*.mjs` still select lessons by position, so they may need their indexes updated after lessons are inserted before the lessons they test.

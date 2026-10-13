@@ -996,9 +996,11 @@
   "answer": "a",
   "answer_text": "From nearing any metal objects on board.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Lightning safety is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says keep away from the mast and metal fittings in a thunderstorm.",
   "needs_picture": false
  },
  {
@@ -1504,9 +1506,11 @@
   "answer": "c",
   "answer_text": "Very strong wind, 6 on the Beaufort scale.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The Beaufort scale is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "Lesson gives force 6 as 22-27 knots with white foam crests everywhere.",
   "needs_picture": false
  },
  {
@@ -2091,9 +2095,11 @@
   "answer": "c",
   "answer_text": "A strong north wind appearing primarily during the months of July and August in the Aegean Sea.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Meltemi winds are not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson defines the Meltemi as a strong north wind in the Aegean in July and August.",
   "needs_picture": false
  },
  {
@@ -2102,9 +2108,11 @@
   "answer": "c",
   "answer_text": "Stormy weather accompanied by lightning, rain and a strong wind.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cloud types are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says cumulonimbus brings squalls, heavy rain, hail and lightning.",
   "needs_picture": false
  },
  {
@@ -2113,9 +2121,11 @@
   "answer": "d",
   "answer_text": "Lines connecting the points where the pressure is the same.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Isobars and synoptic charts are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson defines isobars as lines joining places of equal pressure.",
   "needs_picture": false
  },
  {
@@ -2124,9 +2134,11 @@
   "answer": "c",
   "answer_text": "Counter clockwise.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wind circulation around pressure systems is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson says wind circles a low anticlockwise in the northern hemisphere.",
   "needs_picture": false
  },
  {
@@ -2135,9 +2147,11 @@
   "answer": "b",
   "answer_text": "Sharqiya is a strong dry east wind which blows primarily during the transition seasons and is felt primarily in the north of Israel.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Local winds such as Sharqiya are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson describes Sharqiya as a strong dry easterly in spring and autumn, felt most in the north.",
   "needs_picture": false
  },
  {
@@ -2146,9 +2160,11 @@
   "answer": "c",
   "answer_text": "A cold front in the Mediterranean Sea is accompanied by cumulous and cumulonimbus clouds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Weather fronts are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says a cold front builds cumulus and cumulonimbus.",
   "needs_picture": false
  },
  {
@@ -2157,9 +2173,11 @@
   "answer": "a",
   "answer_text": "In a warm front there are cumulous and cumulonimbus clouds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Weather fronts and their clouds are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson puts cumulonimbus with the cold front and a lowering grey layer with the warm front.",
   "needs_picture": false
  },
  {
@@ -2168,9 +2186,11 @@
   "answer": "c",
   "answer_text": "“Saddle” – is a meeting point of two highs and two lows.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pressure patterns like a saddle are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson defines a col or saddle as lying between two highs and two lows.",
   "needs_picture": false
  },
  {
@@ -2179,9 +2199,11 @@
   "answer": "c",
   "answer_text": "Wind created as a result of the temperature difference between the sea and the land.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Sea and land breezes are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "Lesson says the sea breeze comes from the land-sea temperature difference.",
   "needs_picture": false
  },
  {
@@ -2190,9 +2212,11 @@
   "answer": "b",
   "answer_text": "Stormy weather is expected with a rise in sea height.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cold fronts are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson says a cold front coming in from the sea means rough weather and high waves.",
   "needs_picture": false
  },
  {
@@ -2201,9 +2225,12 @@
   "answer": "b",
   "answer_text": "After the passing of a cold front on the shores of Israel, the barometric pressure will drop sharply.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Front and pressure behaviour is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55",
+   "sail-57"
+  ],
+  "note": "Lesson says pressure rises behind a cold front, so a sharp drop is the wrong statement.",
   "needs_picture": false
  },
  {
@@ -2212,9 +2239,11 @@
   "answer": "b",
   "answer_text": "Meltemi – strong north winds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Meltemi winds are not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson names the Meltemi as the strong north wind of the Aegean summer.",
   "needs_picture": false
  },
  {
@@ -2223,9 +2252,11 @@
   "answer": "a",
   "answer_text": "The tighter the isobars the stronger the wind.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Isobar spacing and wind strength are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson says the closer the isobars, the stronger the wind.",
   "needs_picture": false
  },
  {
@@ -2234,9 +2265,11 @@
   "answer": "b",
   "answer_text": "The wind around a low will be counterclockwise and converging.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wind around lows on a synoptic map is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson says wind circles a low anticlockwise and spirals in.",
   "needs_picture": false
  },
  {
@@ -2245,9 +2278,12 @@
   "answer": "d",
   "answer_text": "Picture 2 is prior to the passing of the cold front, the sea is high and the wind is strong from the south west.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading synoptic charts and fronts is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-55",
+   "sail-57"
+  ],
+  "note": "Front sequence is taught but the answer depends on which picture shows which stage.",
   "needs_picture": true
  },
  {
@@ -2349,9 +2385,11 @@
   "answer": "c",
   "answer_text": "Strong cold east winds blowing in the north of Israel in winter, are most likely the result of a barometric low in the south of Russia.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Regional meteorology of Israel is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson says cold winter easterlies come from a high over Russia, not a low.",
   "needs_picture": false
  },
  {
@@ -2360,9 +2398,11 @@
   "answer": "d",
   "answer_text": "South east.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Isobars and wind around pressure systems are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind rules are taught but the answer depends on where the low sits on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -2371,9 +2411,11 @@
   "answer": "b",
   "answer_text": "The barometric pressure will be steady.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Barometric pressure reading from a synoptic chart is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Pressure rules are taught but the steady reading depends on the route on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -2382,9 +2424,11 @@
   "answer": "a",
   "answer_text": "The wind at this point will be north to north east.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading wind direction from a weather chart is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind rules are taught but point C's position on the chart is unknown.",
   "needs_picture": false
  },
  {
@@ -2393,9 +2437,11 @@
   "answer": "b",
   "answer_text": "Swell waves were formed in a distant stormy region, which had sustained strong winds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Swell formation is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "Lesson says swell is raised by strong wind in a distant storm.",
   "needs_picture": false
  },
  {
@@ -2404,9 +2450,11 @@
   "answer": "a",
   "answer_text": "In a high or ridge in the northern hemisphere, the wind swings clockwise while diverging.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wind circulation around highs, lows and ridges is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson says wind circles a high clockwise and spirals out; a ridge is a stretched-out high.",
   "needs_picture": false
  },
  {
@@ -2415,9 +2463,12 @@
   "answer": "c",
   "answer_text": "A cold front in the Mediterranean Sea is usually accompanies by cumulous and cumulonimbus clouds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cold fronts and their clouds are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55",
+   "sail-57"
+  ],
+  "note": "Lesson says a cold front brings cumulus and cumulonimbus and lows come from the west.",
   "needs_picture": false
  },
  {
@@ -2426,9 +2477,11 @@
   "answer": "b",
   "answer_text": "West.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading wind direction from a synoptic chart is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind rules are taught but the Bosphorus answer depends on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -2919,9 +2972,11 @@
   "answer": "c",
   "answer_text": "Stable pressure.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Frontal lows and pressure changes are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says pressure is steady in the warm sector.",
   "needs_picture": false
  },
  {
@@ -2930,9 +2985,11 @@
   "answer": "c",
   "answer_text": "From south to south west.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wind shifts at a warm front are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says the wind veers from south to south-west as the warm front passes.",
   "needs_picture": false
  },
  {
@@ -2941,9 +2998,11 @@
   "answer": "c",
   "answer_text": "The visibility continuously improves.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Visibility changes behind a cold front are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says visibility improves greatly behind the cold front.",
   "needs_picture": false
  },
  {
@@ -2952,9 +3011,11 @@
   "answer": "c",
   "answer_text": "This is a hot low typical of spring, the winds in Eilat will be from the south at about 15 knots and the visibility along the Mediterranean coast of Israel will be poor.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Heat lows and Israeli regional weather are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Spring hot low, southerly at Eilat and dust are taught, but not 'poor' versus 'mediocre' visibility.",
   "needs_picture": false
  },
  {
@@ -2963,9 +3024,11 @@
   "answer": "c",
   "answer_text": "At point “A” the wind direction will be from the north west and the estimated pressure 1010.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading wind and pressure from a synoptic diagram is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind and isobar rules are taught but point A's wind and pressure depend on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -2974,9 +3037,11 @@
   "answer": "c",
   "answer_text": "The rising air mass has cooled and is equal to its surrounding.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Atmospheric stability is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says air is stable where rising air has cooled to the temperature around it.",
   "needs_picture": false
  },
  {
@@ -2985,9 +3050,11 @@
   "answer": "b",
   "answer_text": "Hot and humid air is passing over cold water.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Sea fog formation is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says sea fog forms when warm moist air flows over colder water.",
   "needs_picture": false
  },
  {
@@ -2996,9 +3063,11 @@
   "answer": "b",
   "answer_text": "This is a hot low (in the spring).",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Types of lows are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson's spring hot low with southerly at Eilat rules out the other options.",
   "needs_picture": false
  },
  {
@@ -3007,9 +3076,11 @@
   "answer": "a",
   "answer_text": "North.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading wind from a synoptic chart is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind rules are taught but Crete's wind depends on the low's position on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3018,9 +3089,11 @@
   "answer": "a",
   "answer_text": "South west.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading wind from a synoptic chart is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson says Eilat gets southerly wind ahead of a spring hot low; south-west is the only southerly option.",
   "needs_picture": false
  },
  {
@@ -3029,9 +3102,11 @@
   "answer": "d",
   "answer_text": "Between Cyprus and the Israel shoreline.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Isobar spacing and wind strength are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Tight isobars mean strong wind is taught, but where they are tight is on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3040,9 +3115,11 @@
   "answer": "b",
   "answer_text": "When the air mass temperature reaches the dew point and continues to rise.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Dew point and cloud formation are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says the cloud base is where rising air cools to its dew point.",
   "needs_picture": false
  },
  {
@@ -3051,9 +3128,11 @@
   "answer": "b",
   "answer_text": "Wind descending from the mountains and drying.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Katabatic winds are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "Lesson says a katabatic wind flows down a mountain slope and is dry.",
   "needs_picture": false
  },
  {
@@ -3110,9 +3189,11 @@
   "answer": "c",
   "answer_text": "Cold north wind in the Adriatic Sea.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The Bora wind is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson describes the Bora as a cold dry wind in the Adriatic.",
   "needs_picture": false
  },
  {
@@ -3197,9 +3278,11 @@
   "answer": "c",
   "answer_text": "When a wind is blowing opposite the direction of the swell waves, the height of the swell waves will decrease.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wind against swell is not taught (only wind against current).",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "Lesson says swell becomes lower when the local wind blows against it.",
   "needs_picture": false
  },
  {
@@ -3208,9 +3291,12 @@
   "answer": "c",
   "answer_text": "South west wind.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Israeli coastal wind patterns are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54",
+   "sail-57"
+  ],
+  "note": "Wind rules are taught but the answer depends on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3219,9 +3305,11 @@
   "answer": "a",
   "answer_text": "In the area of the cold front.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cumulonimbus at cold fronts is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says cumulonimbus builds at the cold front.",
   "needs_picture": false
  },
  {
@@ -3281,9 +3369,11 @@
   "answer": "a",
   "answer_text": "They are clouds with vertical development.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cloud types are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says cumulonimbus is a cloud of great vertical growth.",
   "needs_picture": false
  },
  {
@@ -3327,9 +3417,11 @@
   "answer": "d",
   "answer_text": "Showers and hail can develop in cumulonimbus clouds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cloud types and hail are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says cumulonimbus brings heavy rain and hail.",
   "needs_picture": false
  },
  {
@@ -3351,9 +3443,11 @@
   "answer": "a",
   "answer_text": "A warm front precedes the cold front.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Winter lows and fronts are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson says a warm front comes first, then the cold front.",
   "needs_picture": false
  },
  {
@@ -3362,9 +3456,11 @@
   "answer": "a",
   "answer_text": "The boat is nearing a low and the wind is strengthening.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Barometer trends are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Lesson uses this exact falling barometer example: a low is coming and the wind will strengthen.",
   "needs_picture": false
  },
  {
@@ -3408,9 +3504,11 @@
   "answer": "c",
   "answer_text": "South west.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Synoptic charts and wind around fronts are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Warm front wind shift is taught but the wind at that spot depends on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3419,9 +3517,11 @@
   "answer": "a",
   "answer_text": "Cumulonimbus clouds.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Cloud types on synoptic maps are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Cumulonimbus at the cold front is taught but where point F lies is unknown.",
   "needs_picture": false
  },
  {
@@ -3430,9 +3530,11 @@
   "answer": "a",
   "answer_text": "At point “A”",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading visibility from a synoptic map is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Best visibility behind the cold front is taught but whether that is A or B depends on the chart.",
   "needs_picture": false
  },
  {
@@ -3673,9 +3775,11 @@
   "answer": "b",
   "answer_text": "A “bora” is: a catabatic strong and dry north east wind in winter, occurring in the Adriatic Sea.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Regional winds such as the bora are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-57"
+  ],
+  "note": "Lesson describes the Bora as a cold, dry, gusty north-easterly falling from mountains in the Adriatic winter.",
   "needs_picture": false
  },
  {
@@ -3684,9 +3788,11 @@
   "answer": "a",
   "answer_text": "In the zone between a warm front and a cold front, the isobars are almost straight lines.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Fronts and isobars are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Lesson says isobars are almost straight in the warm sector.",
   "needs_picture": false
  },
  {
@@ -3695,9 +3801,11 @@
   "answer": "d",
   "answer_text": "None of the above answers is correct.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reading wind from a barometric chart is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind rules are taught but point B's wind depends on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3779,9 +3887,11 @@
   "answer": "a",
   "answer_text": "At point A the visibility is very limited.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Synoptic chart visibility is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Visibility near fronts is taught but point A's position is on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3790,9 +3900,11 @@
   "answer": "c",
   "answer_text": "Beam reach on a port tack.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Synoptic chart wind reading is not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-54"
+  ],
+  "note": "Wind rules are taught but the wind along the route depends on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3801,9 +3913,11 @@
   "answer": "c",
   "answer_text": "The cold zone of the winter low.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Winter lows and air masses are not taught.",
+  "coverage": "partial",
+  "lessons": [
+   "sail-55"
+  ],
+  "note": "Frontal zones are taught but which one covers Cyprus depends on the unseen chart.",
   "needs_picture": false
  },
  {
@@ -3812,9 +3926,11 @@
   "answer": "b",
   "answer_text": "The “breeze” typical of our area in the summer, is caused by the temperature difference between the sea and the land.",
   "topic": "weather",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Sea breeze causes are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "Lesson says the sea breeze comes from the land-sea temperature difference.",
   "needs_picture": false
  },
  {

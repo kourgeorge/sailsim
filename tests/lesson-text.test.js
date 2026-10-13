@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {splitLead,summaryPoints} from '../src/learning/lesson-text.js';
+import {splitLead,summaryPoints,withLessonNumbers} from '../src/learning/lesson-text.js';
 import {lessons} from '../src/learning/curriculum.js';
 
 test('the first sentence of a concept page becomes its headline',()=>{
@@ -19,4 +19,13 @@ test('the lesson summary skips opening questions and covers every lesson',()=>{
 
 test('a short first sentence stays the headline when the next one is long',()=>{
  assert.equal(splitLead(`Pointing higher is not always better. ${'y'.repeat(220)}.`).lead,'Pointing higher is not always better.');
+});
+
+test('lesson cross-references show the referenced lesson’s current number',()=>{
+ assert.equal(withLessonNumbers('See Lesson {lesson:sail-17}.',id=>id==='sail-17'?19:undefined),'See Lesson 19.');
+ assert.equal(withLessonNumbers('Unknown {lesson:sail-99}',()=>undefined),'Unknown {lesson:sail-99}');
+});
+
+test('every cross-reference in the course points at a real lesson',()=>{
+ for(const l of lessons)for(const text of l.concepts)for(const [,id] of text.matchAll(/\{lesson:([\w-]+)\}/g))assert.ok(lessons.some(x=>x.id===id),`${l.id} -> ${id}`);
 });

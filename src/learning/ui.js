@@ -25,7 +25,7 @@ import { translate as t, translatedScenario } from '../i18n/runtime.js';
 import { createLessonReader } from './reader.js';
 import { practiceRequirementsMarkup, updatePracticeRequirements } from './practice-requirements.js';
 import { createPracticeBriefing } from './practice-briefing.js';
-import { levelFor, COURSE_LEVELS } from './levels.js';
+import { levelFor, levelRange, COURSE_LEVELS } from './levels.js';
 import { marinaCues } from './marina-course.js';
 const $ = (s) => document.querySelector(s);
 const esc = (s) =>
@@ -403,7 +403,7 @@ export function createLearning({
     decision.close();
     const mastered = completed();
     openModal(
-      `<div class="eyebrow">YOUR SAILING SCHOOL</div><h2>From first principles to first passage.</h2><p>${lessons.length} lessons · ${modules.length} modules · ${lessons.filter((l) => l.practice).length} practical exercises. Study any lesson; earn mastery in sequence.</p><p>${t('{count} interactive seamanship scenarios').replace('{count}', decisionScenarios.length)}</p><div class="training-actions"><button id="resume-course" class="training-button primary">Resume next unmastered lesson</button><button id="view-record" class="training-button">My record</button><button id="open-maneuvers" class="training-button">Maneuvering lab</button></div><div class="course-levels">${COURSE_LEVELS.map((level) => `<button data-level="${level.id}" class="training-button"><strong>${level.title}</strong><span dir="ltr">${level.range}</span><small>${level.description}</small></button>`).join('')}</div><p class="training-notice">Study levels follow common training themes. Licensing and ICC requirements depend on the jurisdiction and vessel.</p><div class="course-library">${modules
+      `<div class="eyebrow">YOUR SAILING SCHOOL</div><h2>From first principles to first passage.</h2><p>${lessons.length} lessons · ${modules.length} modules · ${lessons.filter((l) => l.practice).length} practical exercises. Study any lesson; earn mastery in sequence.</p><p>${t('{count} interactive seamanship scenarios').replace('{count}', decisionScenarios.length)}</p><div class="training-actions"><button id="resume-course" class="training-button primary">Resume next unmastered lesson</button><button id="view-record" class="training-button">My record</button><button id="open-maneuvers" class="training-button">Maneuvering lab</button></div><div class="course-levels">${COURSE_LEVELS.map((level) => `<button data-level="${level.id}" class="training-button"><strong>${level.title}</strong><span dir="ltr">${levelRange(level, lessons)}</span><small>${level.description}</small></button>`).join('')}</div><p class="training-notice">Study levels follow common training themes. Licensing and ICC requirements depend on the jurisdiction and vessel.</p><div class="course-library">${modules
         .map(
           (m, mi) =>
             `<section data-course-level="${levelFor(lessons.find((l) => l.module === m.id)).id}"><div class="eyebrow">${levelFor(lessons.find((l) => l.module === m.id)).title}</div><h3>${mi + 1}. ${esc(m.title)}</h3><p>${esc(m.outcome)}</p>${lessons

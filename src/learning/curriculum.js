@@ -4,6 +4,7 @@ import {marinaModule,marinaLessons} from './marina-course.js';
 import {colregsModule,colregsLessons} from './colregs-course.js';
 import {catamaranModule,catamaranLessons} from './catamaran-course.js';
 import {nightModule,nightLessons} from './night-course.js';
+import {weatherLessons} from './weather-course.js';
 import {lessonLabs,quizLabs} from './lesson-labs.js';
 // A module groups related lessons. Each lesson contains teaching pages, questions,
 // and its assessed training. Practical assessments only use simulated capabilities.
@@ -66,7 +67,7 @@ lesson('aboard','Read the instruments',[
 lesson('wind','Where the wind comes from',[
  'Wind is named for where it comes from. A northwesterly wind comes from the northwest (315°) and blows toward the southeast (135°). Windward is the side the wind comes from; leeward is the side it blows toward. Sailors name the source because that is where the wind’s force, the waves and any approaching weather come from.',
  'A sail is a flexible wing: it only works when air flows across it at an angle. Point the bow straight into the wind and the sail lines up with the airflow and just flaps like a flag, so it makes no driving force. The no-go zone is the range of headings too close to the wind for the sail to work: about 40–45° on either side for most cruising yachts, and 38° in this simulator. To reach a place upwind, you sail a zigzag outside it.',
- 'The wind you sail by is the wind over the water. If the water itself is moving (a current), that wind differs from the weather report, which describes wind over the land. Once the boat moves, it also feels its own airflow, called apparent wind (Lesson 17). With no current, the forecast wind is the one that matters.',
+ 'The wind you sail by is the wind over the water. If the water itself is moving (a current), that wind differs from the weather report, which describes wind over the land. Once the boat moves, it also feels its own airflow, called apparent wind (Lesson {lesson:sail-17}). With no current, the forecast wind is the one that matters.',
  'The app’s compass shows the wind like a weather vane: the gold arrowhead points to where the wind comes from, and the shaded no-go sector sits around it. Diagrams of moving air point the other way, toward where the air goes. In the example, wind from 315° and a heading of 045° are 90° apart: a beam reach. When the boat turns, only the white boat symbol moves; the gold arrow and the sector stay where the wind is.'
 ],['With no current and wind from 315°, compare headings 315°, 045°, and 135° on the compass.','The 045° heading puts the wind approximately across the side.','On the app compass, compare the white bow with the shaded sector. Say where the wind comes from and where the air moves before choosing a heading.'], 'Interpreting the arrow as where the wind is going rather than where it comes from.',[
  q('A wind from 315° comes from which direction?',['Southeast','Northwest','Northeast'],1,'315° is northwest. Wind direction is conventionally named for its source.'),
@@ -91,14 +92,14 @@ lesson('wind','Feel the boat accelerate',[
 lesson('wind','Hold a steady course',[
  'Steer by something far away, such as a headland or a cloud, and use the compass to check it. A distant mark shows a turn at once; the compass number lags behind and swings in waves.',
  'A turning boat keeps turning after you center the helm, because it carries turning momentum, like a revolving door. So center the helm before you reach the new heading and let the boat glide onto it. If you wait until you are on the heading, you overshoot, correct back and zigzag. Small, early corrections give a straight track.',
- 'If you keep needing helm just to hold a straight course, the boat is telling you something. A yacht that keeps trying to turn toward the wind (weather helm) usually has too much sail up or is heeling too far; easing the mainsheet or reefing fixes it (Lesson 18). Keep a lookout as well: an accurately steered course can still lead into danger.'
+ 'If you keep needing helm just to hold a straight course, the boat is telling you something. A yacht that keeps trying to turn toward the wind (weather helm) usually has too much sail up or is heeling too far; easing the mainsheet or reefing fixes it (Lesson {lesson:sail-18}). Keep a lookout as well: an accurately steered course can still lead into danger.'
 ],['Use short port or starboard inputs, then select Center.','Watch heading settle rather than keeping the helm over.'], 'Holding a large correction too long and oscillating from one side of the target to the other.',[
  q('You are approaching your intended heading. What usually helps avoid overshoot?',['Center the helm in good time','Increase helm to maximum','Lower the anchor'],0,'The boat has rotational response; reducing the correction early helps the turn settle.'),
  q('Which is a complete steering routine?',['Watch the compass only','Look away until the boat drifts','Look out, check heading, make a small correction, reassess'],2,'Steering and lookout must happen together.')],{setup:{heading:60,speed:3,trim:34},steps:[step('Hold 045° ±5°, above 2 knots, for 10 seconds','heading',45,10,'Port brings 060° down toward 045°. Center before you reach the target.')],debrief:'A steady course requires small corrections and anticipation, not continuous large helm input.'});
 lesson('trim','Find a beam reach',[
  'A point of sail is the angle between the bow and the wind, not a compass heading. Moving away from the wind: close hauled (about 40–50° off the wind, sails pulled in tight), close reach (about 60°), beam reach (90°, wind across the side), broad reach (about 135°, wind from behind the side) and run (about 180°, wind from behind).',
  'Each point of sail has its own sail setting. A rough guide is that the sail sits at about half the wind angle: close hauled the boom is near the centerline, on a beam reach it is about halfway out, and on a run it is far out. You can be on any point of sail on either side of the wind: with wind from 315°, both 045° and 225° are beam reaches.',
- 'As the boat speeds up, the wind it feels swings forward, because its own motion adds a breeze from ahead (Lesson 17 explains this). So trim in a little as you accelerate. If the wind shifts, your point of sail changes even when your heading does not.',
+ 'As the boat speeds up, the wind it feels swings forward, because its own motion adds a breeze from ahead (Lesson {lesson:sail-17} explains this). So trim in a little as you accelerate. If the wind shifts, your point of sail changes even when your heading does not.',
  'Running before the wind, or simply running, means sailing with the wind and the waves coming from behind. It feels calm because the apparent wind is small and the boat barely heels, but the waves lift the stern and the risk of an accidental gybe is highest.'
 ],['Compare the bow marker with the direction of wind over water on the onboard display.','Notice that two different compass headings can give the same point of sail.'], 'Memorizing a compass heading as a point of sail when the wind direction may change.',[
  q('What defines a beam reach?',['Heading east','Wind about 90° off the bow','Sails completely lowered'],1,'Points of sail are relative to the wind.'),
@@ -121,7 +122,7 @@ lesson('trim','Bear away to a broad reach',[
 lesson('trim','Trim with feedback',[
  'Trim means setting the sail at the right angle to the wind. Too far out and the front edge flaps (luffing): air is not flowing across the sail properly, so it makes little drive. Too far in and the air breaks away from the back of the sail (stalling): the boat heels and slows but does not speed up. The best setting is just inside the point where luffing starts.',
  'The classic method: ease the sheet slowly until the front of the sail starts to flap, then pull it in just until the flapping stops. Telltales make this easier to see. Repeat it after every course change or wind shift. “When in doubt, let it out”: a slightly eased sail costs little speed; an over-tight one costs a lot.',
- 'Change one thing at a time and give the boat time. Speed changes slowly (Lesson 7), so wait several seconds to see whether a change helped. In this app, a suggested sheet angle calculated from the apparent wind lets you check your result; on a real boat you trim by watching the sail’s front edge and the telltales.'
+ 'Change one thing at a time and give the boat time. Speed changes slowly (Lesson {lesson:sail-07}), so wait several seconds to see whether a change helped. In this app, a suggested sheet angle calculated from the apparent wind lets you check your result; on a real boat you trim by watching the sail’s front edge and the telltales.'
 ],['Leave the helm centered and change only the sheet.','Wait for speed to respond instead of making constant large changes.'], 'Changing heading and sheet simultaneously so you cannot tell which adjustment improved the boat.',[
  q('For a useful trim comparison, which technique helps?',['Change all controls rapidly','Hold a steady course and adjust one thing at a time','Anchor while trimming'],1,'A stable course makes the effects of sheet changes easier to observe.'),
  q('Both telltales are streaming. You pull the sheet in further and the leeward telltale starts to spin. What happened?',['The sail is now luffing','The wind dropped to zero','The sail is pulled in too far and starting to stall'],2,'Pulling in too far makes the airflow break away on the back (leeward) side. Ease the sheet until the leeward telltale streams again.')],{setup:{heading:45,speed:3,trim:80},steps:[step('Hold efficient trim and speed for 10 seconds','trim',6,10)],debrief:'You used a controlled adjustment and allowed time for the speed response.'});
@@ -134,7 +135,7 @@ lesson('maneuvers','Head up and bear away',[
  q('What should follow a substantial course change?',['Reassess sail trim and lookout','Ignore the sails','Always drop anchor'],0,'The new heading changes airflow and the situation around the boat.')],{setup:{heading:45,speed:3,trim:30},steps:[step('Settle at 45°–55° off the wind','windAngle',[45,55],6),step('Bear away and settle at 105°–115°','windAngle',[105,115],6)],debrief:'You changed your relationship to the wind in both directions and stabilized between turns.'});
 lesson('maneuvers','Make a controlled tack',[
  'A tack turns the bow through the wind, so the wind moves to the other side of the boat and the sails swap sides. From close hauled to close hauled, it is a turn of about 90°. Before you start, look for traffic, check sea room and warn the crew (“Ready about”).',
- 'Speed is what gets you through. Inside the no-go zone the sails flap and make no drive, so only the boat’s momentum carries the bow across. Start with good speed and turn steadily. Too slow, and the boat stops head to wind (in irons, Lesson 16). Too sharp, and the rudder, turned hard over, acts as a brake.',
+ 'Speed is what gets you through. Inside the no-go zone the sails flap and make no drive, so only the boat’s momentum carries the bow across. Start with good speed and turn steadily. Too slow, and the boat stops head to wind (in irons, Lesson {lesson:sail-16}). Too sharp, and the rudder, turned hard over, acts as a brake.',
  'On a real yacht: put the helm over and call the turn (for example “Lee-ho”); as the headsail starts to flap, release its old sheet; as the bow passes the wind, pull in the new sheet on the other side; then center the helm on the new close-hauled course and retrim. Expect to lose some speed, and rebuild it before pointing high. In the app the sails swap sides automatically.'
 ],['Start with wind over the starboard side, then turn starboard through 315°.','Continue past the no-go zone, center the helm, and rebuild speed.'], 'Stopping the turn in the no-go zone, or calling a turn across the stern a tack.',[
  q('Which part of the yacht crosses the wind during a tack?',['The stern','The anchor','The bow'],2,'A tack takes the bow through the source of the wind; a gybe takes the stern through it.'),
@@ -234,7 +235,7 @@ lesson('seamanship','Keep an effective lookout',[
  q('A nearby vessel stays at a nearly constant bearing while the distance closes. What might that indicate?',['No risk because it is not changing direction on the window','Potential collision risk','A guarantee that it will pass astern'],1,'Constant bearing with decreasing range is a classic warning; act early based on the full situation.'),
  q('Can a chartplotter replace sight and hearing?',['Yes','Only in daylight','No'],2,'Use all appropriate available means and keep an outside lookout.')]);
 lesson('seamanship','Reason through encounters',[
- 'The rules decide in advance who turns away (gives way) and who holds course (stands on), so two boats do not both turn the same way. For two sailing vessels: on different tacks, the port-tack boat keeps clear; on the same tack, the windward boat keeps clear, because it can usually bear away more easily. Lesson 46 covers this in full.',
+ 'The rules decide in advance who turns away (gives way) and who holds course (stands on), so two boats do not both turn the same way. For two sailing vessels: on different tacks, the port-tack boat keeps clear; on the same tack, the windward boat keeps clear, because it can usually bear away more easily. Lesson {lesson:sail-46} covers this in full.',
  'An overtaking vessel keeps clear. Other vessel responsibilities, narrow channels, traffic schemes, restricted visibility, and local rules can change the analysis. Do not reduce the rules to “sail always wins.”',
  'A stand-on vessel still has responsibilities and must act when needed to avoid collision. Learn the full applicable collision regulations and local requirements before sailing.'
 ],['Identify the windward side of each vessel before deciding its tack.','State the assumptions before applying a simplified crossing rule.'], 'Treating stand-on status as permission to ignore developing collision risk.',[
@@ -243,7 +244,7 @@ lesson('seamanship','Reason through encounters',[
 lesson('seamanship','Lights, marks, and signals',[
  'Navigation lights show a vessel’s direction and what it is doing. Red is on the port side, green on starboard and white at the stern. See both red and green, and the vessel is heading straight at you; red only, you see its port side; green only, its starboard side; white only, you are looking at its stern.',
  'In the international maneuvering-signal context, one short blast means altering course to starboard, two to port, and three operating astern propulsion. Restricted-visibility signals are a different system; local or inland rules may differ.',
- 'Lesson 50 covers the full lights, shapes and sound signals. Rules can differ in inland or local waters, so check the rules for where you sail before night or restricted-visibility operation.'
+ 'Lesson {lesson:sail-50} covers the full lights, shapes and sound signals. Rules can differ in inland or local waters, so check the rules for where you sail before night or restricted-visibility operation.'
 ],['Identify the red port light and green starboard light on the yacht.','Distinguish an action signal from a signal used in restricted visibility.'], 'Assuming one memorized signal applies in every jurisdiction and situation.',[
  q('Which side normally carries the red sidelight?',['Starboard','Port','Both sides'],1,'The port sidelight is red; starboard is green.'),
  q('In the stated international maneuvering-signal context, two short blasts indicate…',['Turning to port','Turning to starboard','A complete fog-signal vocabulary'],0,'Two short blasts mean altering course to port in that context; do not generalize without checking the applicable rules.')]);
@@ -340,6 +341,7 @@ modules.push(catamaranModule);
 lessons.push(...catamaranLessons);
 modules.push(nightModule);
 lessons.push(...nightLessons);
+lessons.push(...weatherLessons.map(lesson=>({...lesson,sub:modules.find(m=>m.id===lesson.module).outcome})));
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 // Supplemental pages retain the original general-purpose lesson diagrams.
 for(const [id,pages] of [['sail-04',[3,4]],['sail-05',[3]]]){const lesson=lessons.find(l=>l.id===id);lesson.conceptFigures=Object.fromEntries(pages.map(i=>[i,'app-compass']));lesson.quiz[2].figure='app-compass';}
@@ -363,5 +365,10 @@ lessons.find(l=>l.id==='sail-29').conceptFigures={4:'spring-lines'};
 lessons.find(l=>l.id==='sail-29').minutes=12;
 lessons.find(l=>l.id==='sail-30').minutes=10;
 lessons.find(l=>l.id==='sail-31').minutes=12;
+// Lesson ids are stable record keys. A lesson added later is placed after the lesson
+// it builds on; numbers and the mastery chain then follow course order.
+const PLACEMENT={'sail-54':'sail-20','sail-55':'sail-54','sail-56':'sail-55','sail-57':'sail-56'};
+for(const [id,after] of Object.entries(PLACEMENT)){const from=lessons.findIndex(l=>l.id===id),[moved]=lessons.splice(from,1);lessons.splice(lessons.findIndex(l=>l.id===after)+1,0,moved);}
+lessons.forEach((lesson,i)=>{lesson.number=i+1;lesson.prerequisite=i?lessons[i-1].id:null;});
 for(const lesson of lessons){if(lessonLabs[lesson.id])lesson.conceptLabs=lessonLabs[lesson.id];for(const [i,lab] of Object.entries(quizLabs[lesson.id]||{}))lesson.quiz[i].lab=lab;}
 export {lessons};

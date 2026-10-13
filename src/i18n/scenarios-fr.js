@@ -2350,5 +2350,396 @@ export default {
         }
       }
     }
-  }
+  },
+  "decision-sail-54": {
+    "title": "Lire la carte avant de partir",
+    "brief": "Utilisez une carte météo simplifiée et un relevé barométrique pour évaluer le vent d’une courte navigation côtière.",
+    "limitations": "La carte et les relevés sont des données d’exercice simplifiées, pas une prévision. Pour de vraies navigations, utilisez les bulletins météo marins officiels.",
+    "stages": {
+      "spacing": {
+        "title": "Comparer les isobares",
+        "brief": "La carte montre deux zones le long de votre route prévue.",
+        "goal": "Identifier où le vent sera le plus fort.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "north": {
+            "label": "Zone nord",
+            "text": "Les isobares espacées de 4 hPa sont distantes d’environ 120 NM."
+          },
+          "south": {
+            "label": "Zone sud",
+            "text": "Les isobares espacées de 4 hPa sont distantes d’environ 30 NM."
+          }
+        },
+        "fields": {
+          "stronger": {
+            "label": "Où le vent sera-t-il le plus fort ?",
+            "options": {
+              "south": "Dans la zone sud",
+              "north": "Dans la zone nord",
+              "same": "Pareil dans les deux"
+            }
+          }
+        }
+      },
+      "direction": {
+        "title": "Déterminer la direction du vent",
+        "brief": "Une dépression est centrée à environ 150 NM à l’ouest de votre position, dans l’hémisphère nord.",
+        "goal": "Choisir la direction du vent à votre position.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "low": {
+            "label": "Carte",
+            "text": "La dépression est centrée à votre ouest. Près de vous, ses isobares sont orientées à peu près nord-sud."
+          },
+          "rule": {
+            "label": "Règle pratique",
+            "text": "Dans l’hémisphère nord, le vent tourne autour d’une dépression dans le sens inverse des aiguilles d’une montre, légèrement dévié vers le centre."
+          }
+        },
+        "fields": {
+          "windFrom": {
+            "label": "Le vent souffle du",
+            "options": {
+              "south": "Sud",
+              "north": "Nord",
+              "east": "Est",
+              "west": "Ouest"
+            }
+          }
+        }
+      },
+      "trend": {
+        "title": "Agir selon le baromètre",
+        "brief": "Avant de partir, vous consultez le relevé du baromètre.",
+        "goal": "Décider s’il faut partir, et quoi noter.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "log": {
+            "label": "Relevé du baromètre",
+            "text": "06:00 1012 hPa ; 09:00 1008 hPa ; 12:00 1004 hPa."
+          },
+          "plan": {
+            "label": "Plan de navigation",
+            "text": "La navigation dure six heures le long d’une côte exposée, sans port à mi-chemin."
+          }
+        },
+        "fields": {
+          "decision": {
+            "label": "Décision de départ",
+            "options": {
+              "wait": "Attendre : la pression baisse vite et le vent va forcir",
+              "go": "Partir tout de suite, avant que ça empire",
+              "ignore": "Partir : 1004 hPa reste une valeur normale"
+            }
+          },
+          "record": {
+            "label": "À noter dans le plan",
+            "options": {
+              "trend": "La baisse de 4 hPa en trois heures",
+              "forecast": "Consulter le dernier bulletin météo marin",
+              "stop": "Arrêter de relever le baromètre"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-55": {
+    "title": "Traverser le passage d’un front",
+    "brief": "Reconnaissez les étapes d’une dépression frontale et préparez le bateau pour le front froid.",
+    "limitations": "Un modèle frontal simplifié. Les vrais fronts varient en vitesse, en intensité et en horaire.",
+    "stages": {
+      "sequence": {
+        "title": "Remettre le front dans l’ordre",
+        "brief": "Une dépression frontale traverse votre zone d’ouest en est, dans l’hémisphère nord.",
+        "goal": "Classer ce que vous allez rencontrer, du premier au dernier.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "chart": {
+            "label": "Carte",
+            "text": "La carte montre une dépression au nord-ouest, avec un front chaud devant elle et un front froid derrière."
+          },
+          "sky": {
+            "label": "Ciel actuel",
+            "text": "Des nuages hauts et fins s’étendent et s’épaississent lentement depuis l’ouest."
+          }
+        },
+        "fields": {
+          "order": {
+            "label": "Ordre d’arrivée",
+            "options": {
+              "warmFront": "Front chaud",
+              "warmSector": "Secteur chaud",
+              "coldFront": "Front froid"
+            }
+          }
+        }
+      },
+      "cold": {
+        "title": "Se préparer au front froid",
+        "brief": "Quelques heures plus tard, la pluie a faibli et la pression est stable. Puis le ciel change à l’ouest.",
+        "goal": "Nommer ce qui arrive et préparer le bateau.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "west": {
+            "label": "Ciel à l’ouest",
+            "text": "De hauts cumulonimbus avec une ligne sombre de grains approchent."
+          },
+          "pressure": {
+            "label": "Baromètre",
+            "text": "Stable depuis trois heures."
+          }
+        },
+        "fields": {
+          "event": {
+            "label": "Qu’est-ce qui approche ?",
+            "options": {
+              "coldFront": "Le front froid",
+              "warmFront": "Un second front chaud",
+              "high": "Un anticyclone"
+            }
+          },
+          "prepare": {
+            "label": "Préparer le bateau",
+            "options": {
+              "reef": "Prendre un ris avant l’arrivée du grain",
+              "stow": "Ranger le matériel et fermer les panneaux",
+              "metal": "Éloigner l’équipage du mât et des pièces métalliques",
+              "hoist": "Envoyer plus de toile pour rentrer plus vite"
+            }
+          }
+        }
+      },
+      "after": {
+        "title": "Après le front",
+        "brief": "La ligne de grains est passée sur vous.",
+        "goal": "Choisir ce à quoi vous vous attendez ensuite.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "now": {
+            "label": "Conditions actuelles",
+            "text": "Le vent a tourné au nord-ouest et souffle en rafales ; la visibilité est très bonne ; la pression remonte."
+          }
+        },
+        "fields": {
+          "expect": {
+            "label": "À quoi vous attendez-vous ensuite ?",
+            "options": {
+              "showers": "Un air plus frais et plus clair, avec des averses en rafales qui s’atténuent peu à peu",
+              "drizzle": "Un calme immédiat et une bruine chaude",
+              "fog": "Un brouillard épais pour le reste de la journée"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-56": {
+    "title": "Évaluer l’état de la mer",
+    "brief": "Nommez la force du vent, organisez-vous autour d’une brise de mer et entrez dans un port par houle.",
+    "limitations": "Les valeurs de vent et de vagues sont des données d’exercice. Les vraies entrées de port exigent une connaissance locale et les conditions du moment.",
+    "stages": {
+      "force": {
+        "title": "Nommer la force Beaufort",
+        "brief": "Comparez l’instrument avec la mer autour de vous.",
+        "goal": "Noter la force Beaufort et la comparer à la limite de l’équipage.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "gauge": {
+            "label": "Anémomètre",
+            "text": "25 nœuds de vent réel, établis."
+          },
+          "sea": {
+            "label": "Mer",
+            "text": "Grosses vagues ; crêtes d’écume blanche partout et quelques embruns."
+          },
+          "limit": {
+            "label": "Limite de l’équipage",
+            "text": "Pour cet exercice, l’équipage a convenu de naviguer jusqu’à force 5."
+          }
+        },
+        "fields": {
+          "force": {
+            "label": "Force Beaufort",
+            "options": {}
+          },
+          "within": {
+            "label": "Est-ce dans la limite de l’équipage ?",
+            "options": {
+              "no": "Non",
+              "yes": "Oui"
+            }
+          }
+        }
+      },
+      "breeze": {
+        "title": "S’organiser autour de la brise de mer",
+        "brief": "Une journée d’été chaude et ensoleillée, avec un vent faible le matin.",
+        "goal": "Choisir le moment le plus calme pour une sortie à la journée.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "forecast": {
+            "label": "Prévision",
+            "text": "La brise de mer se lève en fin de matinée, atteint 15–18 nœuds l’après-midi et tombe après le coucher du soleil."
+          }
+        },
+        "fields": {
+          "when": {
+            "label": "Quand les conditions seront-elles les plus calmes ?",
+            "options": {
+              "early": "Partir tôt et rentrer avant midi",
+              "afternoon": "Partir à 14:00, au plus fort de la brise",
+              "night": "La brise est la plus forte la nuit"
+            }
+          }
+        }
+      },
+      "entrance": {
+        "title": "Entrer par houle",
+        "brief": "Vous arrivez au port dans l’après-midi.",
+        "goal": "Choisir comment entrer en sécurité.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "swell": {
+            "label": "Entrée du port",
+            "text": "Une houle d’ouest de 2 m déferle par moments en travers de l’entrée."
+          },
+          "sets": {
+            "label": "Rythme des vagues",
+            "text": "Des séries de vagues plus grosses arrivent toutes les quelques minutes, séparées par des accalmies."
+          }
+        },
+        "fields": {
+          "entry": {
+            "label": "Comment entrez-vous ?",
+            "options": {
+              "lull": "Attendre dehors, observer les séries et entrer pendant une accalmie avec assez de vitesse pour gouverner",
+              "now": "Entrer tout de suite, très lentement",
+              "anchor": "Mouiller dans l’entrée et attendre"
+            }
+          },
+          "prepare": {
+            "label": "Avant d’entrer",
+            "options": {
+              "crew": "Gilets de sauvetage portés et équipage attaché",
+              "hatches": "Panneaux fermés",
+              "engine": "Moteur en marche et prêt",
+              "foredeck": "Envoyer un équipier sur la plage avant pour surveiller"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-57": {
+    "title": "Préparer une traversée en Méditerranée orientale",
+    "brief": "Appliquez les régimes météo régionaux à une traversée, à un matin de Charkiya et à une étape estivale en mer Égée.",
+    "limitations": "Les régimes régionaux sont généralisés. Utilisez toujours le bulletin météo marin officiel en vigueur pour la zone.",
+    "stages": {
+      "winter": {
+        "title": "Préparer la traversée d’hiver",
+        "brief": "Vous prévoyez de naviguer d’Israël à Chypre, environ 24 heures.",
+        "goal": "Décider quand partir.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "forecast": {
+            "label": "Prévision",
+            "text": "Une dépression sur la Grèce se déplace vers l’est en direction de Chypre au cours des deux prochains jours."
+          },
+          "pattern": {
+            "label": "Régime",
+            "text": "Son front froid apportera un vent fort de sud-ouest à ouest et une mer forte sur la route."
+          }
+        },
+        "fields": {
+          "decision": {
+            "label": "Décision de départ",
+            "options": {
+              "wait": "Attendre que la dépression et son front froid soient passés",
+              "early": "Partir maintenant pour la devancer",
+              "ignore": "Partir comme prévu"
+            }
+          }
+        }
+      },
+      "sharqiya": {
+        "title": "Lire un matin de Charkiya",
+        "brief": "Un matin d’automne dans une marina du nord d’Israël.",
+        "goal": "Interpréter l’eau calme et choisir un plan.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "wind": {
+            "label": "Vent",
+            "text": "Un vent d’est fort et sec souffle de la terre. Dans la marina et à proximité, la mer est plate."
+          },
+          "offshore": {
+            "label": "Prévision au large",
+            "text": "À dix milles au large : vent d’est force 6 et mer qui se forme."
+          }
+        },
+        "fields": {
+          "meaning": {
+            "label": "Que vous dit l’eau plate près du rivage ?",
+            "options": {
+              "offshore": "Peu de chose : le vent souffle de la terre et les vagues se forment plus au large",
+              "calm": "Toute la route sera calme",
+              "onshore": "Le vent souffle vers la côte"
+            }
+          },
+          "plan": {
+            "label": "Votre plan",
+            "options": {
+              "stay": "Rester près de la côte, ou attendre que le vent d’est faiblisse",
+              "out": "Aller à dix milles au large pour une navigation rapide",
+              "night": "Partir de nuit en espérant que ça se calme"
+            }
+          }
+        }
+      },
+      "aegean": {
+        "title": "Préparer une étape estivale en mer Égée",
+        "brief": "Une location en juillet dans les Cyclades.",
+        "goal": "Préparer la prochaine étape en fonction de la prévision.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "forecast": {
+            "label": "Prévision",
+            "text": "Meltem de nord, force 6 à 7, pour les trois prochains jours."
+          }
+        },
+        "fields": {
+          "route": {
+            "label": "Prochaine étape",
+            "options": {
+              "south": "Descendre vers le sud au portant, par courtes étapes abritées",
+              "north": "Remonter au près vers le nord en pleine mer à midi",
+              "ignore": "L’ignorer : il s’arrêtera le soir"
+            }
+          },
+          "prepare": {
+            "label": "Préparation",
+            "options": {
+              "reef": "Prendre un ris avant de quitter le port",
+              "shelter": "Choisir des ports abrités du nord",
+              "lee": "Mouiller au sud des îles, sous leur abri",
+              "exposed": "Mouiller au nord des îles"
+            }
+          }
+        }
+      }
+    }
+  },
 };
