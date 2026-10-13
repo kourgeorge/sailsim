@@ -915,7 +915,10 @@
       "concepts": [
         "A chart is a planning tool, not a picture to follow blindly. Check scale, orientation, depth information, hazards, marks, and the source and currency of the chart.",
         "Depths are numbers, usually in metres, and lines called contours join places of equal depth. Shallower water is usually shaded blue, areas that dry at low tide are green, and land is buff or yellow. Measure distance on the latitude scale at the side of the chart: one minute of latitude is one nautical mile.",
-        "Buoys tell you what to do. Lateral marks show the two sides of a channel, and each is passed on a set side; cardinal marks show on which side of a danger the safe water lies. Which color goes on which side depends on the region (IALA A or B), so check before you sail. In this app the amber buoys are only practice targets."
+        "Buoys tell you what to do. Lateral marks show the two sides of a channel, and each is passed on a set side; cardinal marks show on which side of a danger the safe water lies. Which color goes on which side depends on the region (IALA A or B), so check before you sail. In this app the amber buoys are only practice targets.",
+        "In IALA Region A, red marks stay on your left and green marks on your right as you come in from sea. Region A covers Europe, Africa, the Mediterranean and most of Asia and Australia; most of the Americas, Japan, Korea and the Philippines use Region B, where the colors are reversed. Red port-hand marks are cans and green starboard-hand marks are cones, and their lights flash in the same color. A harbor entrance follows the same rule, so a red and a green light close together at night often mark the entrance itself.",
+        "Cardinal marks are named after the compass side of a danger where the safe water lies. Pass north of a North mark, east of an East mark, and so on. Each carries two black cones as a top mark: North points both up, South both down, East points apart and West points together. The cones point to the black parts: North is black over yellow, South yellow over black, East black with a yellow band and West yellow with a black band.",
+        "At night a cardinal mark shows a white quick-flashing light, timed like a clock face. North flashes without stopping; East gives three flashes, like 3 o’clock; South gives six and then one long flash, like 6 o’clock; West gives nine, like 9 o’clock. The long flash keeps a quick count of six from being mistaken for nine. Count a whole group before deciding which side to pass."
       ],
       "observe": [
         "Open the chart. Locate north, your position, and the next mark.",
@@ -940,9 +943,21 @@
             "Scale, source, currency, depths, hazards, and local conventions"
           ],
           "explanation": "Charts need interpretation and context to support safe navigation."
+        },
+        {
+          "prompt": "At night a mark shows nine quick white flashes, then darkness. Where is the safe water?",
+          "options": [
+            "To the west of the mark",
+            "To the east of the mark",
+            "All around the mark"
+          ],
+          "explanation": "Nine flashes, like 9 o’clock, mean a West cardinal mark: pass to the west of it."
         }
       ],
-      "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
+      "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",
+      "localNotes": [
+        "Israel uses IALA Region A. Coming into an Israeli harbor or marina from sea, the flashing green light is on your right and the flashing red light on your left."
+      ]
     },
     "sail-22": {
       "title": "Steer toward a waypoint",

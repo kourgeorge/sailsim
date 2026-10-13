@@ -6,6 +6,7 @@ import {isColregsLesson,renderColregsFigure,colregsFigureCaption} from './colreg
 import {getWorldBodyDefinitions} from '../world/bodies.js';
 import {renderAppCompassFigure,appCompassCaption} from './compass-figure.js';
 import {isStatusLightsFigure,renderStatusLightsFigure,statusLightsCaption} from './status-lights-figure.js';
+import {isBuoyageFigure,renderBuoyageFigure,buoyageCaption} from './buoyage-figure.js';
 const LANGS = ['en', 'es', 'fr', 'ru', 'he', 'ar'];
 const WORDS = {
   schematic: ['Learning diagram · not to scale', 'Esquema didáctico · sin escala', 'Schéma pédagogique · non à l’échelle', 'Учебная схема · не в масштабе', 'תרשים לימודי · לא בקנה מידה', 'رسم تعليمي · ليس بمقياس رسم'],
@@ -167,6 +168,7 @@ export function renderTeachingFigure(lesson, lang='en') {
   if(lesson?.figure==='faster-than-wind') return renderApparentWindFigure(lang);
   if(lesson?.figure==='app-compass') return renderAppCompassFigure(lang);
   if(isStatusLightsFigure(lesson?.figure)) return renderStatusLightsFigure(lesson.figure,lang);
+  if(isBuoyageFigure(lesson?.figure)) return renderBuoyageFigure(lesson.figure,lang);
   if(isColregsLesson(lesson)) return renderColregsFigure(lesson,lang);
   const code=String(lang).toLowerCase().split(/[-_]/)[0];
   const locale=LANGS.includes(code)?code:'en', index=LANGS.indexOf(locale);
@@ -363,6 +365,7 @@ export function getTeachingFigureCaption(lesson,lang='en') {
   if(lesson?.figure==='faster-than-wind') return apparentWindCaption(lang);
   if(lesson?.figure==='app-compass') return appCompassCaption(lang);
   if(isStatusLightsFigure(lesson?.figure)) return statusLightsCaption(lang);
+  if(isBuoyageFigure(lesson?.figure)) return buoyageCaption(lesson.figure,lang);
   if(isColregsLesson(lesson)) return colregsFigureCaption(lesson,lang);
   const number=/^sail-(\d{2})$/.exec(String(lesson?.id??''))?.[1];
   const topic=TOPICS[Number(number)-1];

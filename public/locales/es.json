@@ -915,7 +915,10 @@
       "concepts": [
         "Una carta es una herramienta de planificación, no una imagen que seguir a ciegas. Comprueba escala, orientación, profundidades, peligros, marcas, procedencia y actualidad.",
         "Las profundidades son números, normalmente en metros, y unas líneas llamadas veriles unen los puntos de igual profundidad. El agua más somera suele estar sombreada en azul, las zonas que quedan en seco con marea baja en verde y la tierra en color crema o amarillo. Mide las distancias en la escala de latitud del lateral de la carta: un minuto de latitud es una milla náutica.",
-        "Las boyas te indican qué hacer. Las marcas laterales señalan los dos lados de un canal y cada una se deja por un costado determinado; las marcas cardinales indican en qué lado de un peligro están las aguas seguras. Qué color va en cada lado depende de la región (IALA A o B), así que compruébalo antes de navegar. En esta aplicación, las boyas ámbar son solo objetivos de práctica."
+        "Las boyas te indican qué hacer. Las marcas laterales señalan los dos lados de un canal y cada una se deja por un costado determinado; las marcas cardinales indican en qué lado de un peligro están las aguas seguras. Qué color va en cada lado depende de la región (IALA A o B), así que compruébalo antes de navegar. En esta aplicación, las boyas ámbar son solo objetivos de práctica.",
+        "En la región A de IALA, las marcas rojas quedan a tu izquierda y las verdes a tu derecha cuando entras desde el mar. La región A abarca Europa, África, el Mediterráneo y la mayor parte de Asia y Australia; casi toda América, Japón, Corea y Filipinas usan la región B, con los colores invertidos. Las marcas rojas de babor son cilíndricas y las verdes de estribor cónicas, y sus luces destellan del mismo color. La entrada de un puerto sigue la misma regla, así que de noche una luz roja y otra verde muy juntas suelen señalar la propia entrada.",
+        "Las marcas cardinales llevan el nombre del lado de un peligro donde está el agua segura. Pasa al norte de una marca norte, al este de una marca este, y así sucesivamente. Cada una lleva como marca de tope dos conos negros: la norte con ambos vértices hacia arriba, la sur ambos hacia abajo, la este con los vértices hacia fuera y la oeste con los vértices unidos. Los conos apuntan a las partes negras: la norte es negra sobre amarilla, la sur amarilla sobre negra, la este negra con una franja amarilla y la oeste amarilla con una franja negra.",
+        "De noche, una marca cardinal muestra una luz blanca de destellos rápidos, organizada como la esfera de un reloj. La norte destella sin parar; la este da tres destellos, como las 3; la sur da seis y después un destello largo, como las 6; la oeste da nueve, como las 9. El destello largo evita confundir una cuenta rápida de seis con nueve. Cuenta un grupo completo antes de decidir por qué lado pasar."
       ],
       "observe": [
         "Abre la carta. Localiza el norte, tu posición y la siguiente marca.",
@@ -940,9 +943,21 @@
             "Escala, procedencia, actualidad, profundidades, peligros y convenciones locales"
           ],
           "explanation": "Las cartas necesitan interpretación y contexto para apoyar una navegación segura."
+        },
+        {
+          "prompt": "De noche, una marca muestra nueve destellos blancos rápidos y luego oscuridad. ¿Dónde está el agua segura?",
+          "options": [
+            "Al oeste de la marca",
+            "Al este de la marca",
+            "Alrededor de toda la marca"
+          ],
+          "explanation": "Nueve destellos, como las 9, indican una cardinal oeste: pasa por el oeste de ella."
         }
       ],
-      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "localNotes": [
+        "Israel usa la región A de IALA. Al entrar desde el mar en un puerto o marina israelí, la luz verde de destellos queda a tu derecha y la roja a tu izquierda."
+      ]
     },
     "sail-22": {
       "title": "Gobierna hacia un punto de paso",

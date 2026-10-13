@@ -12,6 +12,7 @@ A question is **covered** when the course states the fact needed to pick the rig
 | --- | --- | --- | --- |
 | 2026-10-13, first review | 91 (25%) | 121 (33%) | 150 (41%) |
 | 2026-10-13, after batch 1 (lights, shapes, signals) | 146 (40%) | 69 (19%) | 147 (41%) |
+| 2026-10-13, after batch 2 (buoys and harbor entrances) | 153 (42%) | 62 (17%) | 147 (41%) |
 
 ## By topic
 
@@ -29,7 +30,7 @@ A question is **covered** when the course states the fact needed to pick the rig
 | Israeli law and regulations | 15 | 0 | 1 | 14 | 37, 38, 39, 40, 42, 45, 49, 51, 152, 252, 301, 312, 352, 353 |
 | Ropes and knots | 11 | 0 | 0 | 11 | 76, 90, 99, 101, 107, 108, 118, 132, 266, 280, 300 |
 | Other (mostly signal flags) | 10 | 1 | 0 | 9 | 60, 63, 64, 65, 66, 67, 68, 148, 273 |
-| Buoys and marks | 8 | 0 | 8 | 0 |  |
+| Buoys and marks | 8 | 7 | 1 | 0 |  |
 | Charts and navigation | 3 | 0 | 2 | 1 | 284 |
 | Boat parts and terms | 2 | 0 | 0 | 2 | 119, 254 |
 | Radio | 1 | 0 | 0 | 1 | 50 |
@@ -39,7 +40,7 @@ A question is **covered** when the course states the fact needed to pick the rig
 1. **Weather:** pressure systems, fronts, isobars, clouds, barometer trends, the Beaufort scale, and local winds (Sharqiya, Meltemi).
 2. **Safety equipment:** life rafts and their automatic release, fire extinguishers, flares, harnesses.
 3. **Israeli law and regulations** and **ropes and knots:** not taught at all.
-4. **Signal flags** other than A (B, O, Q, quarantine/health, flags for entering a foreign port) and **cardinal buoys** (top marks and flash patterns).
+4. **Signal flags** other than A (B, O, Q, quarantine/health, flags for entering a foreign port).
 5. **Distress signals:** the full list, including sound signals (batch 3 of the plan).
 
 ## Strong areas

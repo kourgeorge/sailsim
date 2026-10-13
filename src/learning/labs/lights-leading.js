@@ -107,6 +107,10 @@ export const CHARACTERS=Object.freeze({
  'iso4':{label:'Iso W 4s',period:4,on:[[0,2]]},
  'oc5':{label:'Oc W 5s',period:5,on:[[0,4]]},
  'q':{label:'Q W',period:1,on:[[0,.4]]},
+ // Cardinal marks, read like a clock face: East 3, South 6 plus a long flash, West 9.
+ 'q3':{label:'Q(3) W 10s',period:10,on:[0,1,2].map(s=>[s,s+.4])},
+ 'q6lfl':{label:'Q(6)+LFl W 15s',period:15,on:[...[0,1,2,3,4,5].map(s=>[s,s+.4]),[6,8]]},
+ 'q9':{label:'Q(9) W 15s',period:15,on:[0,1,2,3,4,5,6,7,8].map(s=>[s,s+.4])},
 });
 export const lightOn=(character,time)=>{const c=CHARACTERS[character],phase=((time%c.period)+c.period)%c.period;return c.on.some(([a,b])=>phase>=a&&phase<b);};
 export function lightsFlashModel({character},sim={t:0}){
@@ -146,5 +150,7 @@ export const lightsFlashLab=defineLab({
   twoCycles:{label:'lights-flash.taskTwoCycles',check:m=>m.cycles>=2},
   group:{label:'lights-flash.taskGroup',check:m=>m.character==='fl2'&&m.cycles>=1},
   isoOc:{label:'lights-flash.taskIsoOc',check:m=>(m.character==='iso4'||m.character==='oc5')&&m.cycles>=1},
+  west:{label:'lights-flash.taskWest',check:m=>m.character==='q9'&&m.cycles>=1},
+  south:{label:'lights-flash.taskSouth',check:m=>m.character==='q6lfl'&&m.cycles>=1},
  },
 });

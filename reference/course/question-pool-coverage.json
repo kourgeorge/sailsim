@@ -58,11 +58,11 @@
   "answer": "c",
   "answer_text": "On the right a flashing green light and on the left a flashing red light.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Course mentions lateral marks and IALA A/B but says to check the region; it does not state green on the right, red on the left for Israeli marinas.",
+  "note": "Lesson 21 and its Israel note: green light on the right, red on the left coming in.",
   "needs_picture": false
  },
  {
@@ -123,11 +123,11 @@
   "answer": "a",
   "answer_text": "At the entrance to a marina, the green lighthouse is on the starboard of the vessel and the red on its port.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Lateral marks are introduced but the Israeli marina entrance light colors and sides are not stated.",
+  "note": "Region A harbor entrance: green on your right, red on your left coming in.",
   "needs_picture": false
  },
  {
@@ -150,12 +150,11 @@
   "answer": "c",
   "answer_text": "It is the entrance to a marina, you increase watch and awareness, maintain course and speed.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-21",
-   "sail-42"
+   "sail-21"
   ],
-  "note": "Light characteristics and lateral marks are introduced, but recognising red+green flashing lights as a marina entrance is not taught.",
+  "note": "A red and a green light close together at night often mark a harbor entrance.",
   "needs_picture": false
  },
  {
@@ -1809,11 +1808,11 @@
   "answer": "d",
   "answer_text": "You must pass the buoy to the west.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Cardinal marks are mentioned, but their topmarks and colours are not.",
+  "note": "Cardinal top marks and colors are taught; the pictured mark is judged from the answer.",
   "needs_picture": false
  },
  {
@@ -3291,11 +3290,11 @@
   "answer": "d",
   "answer_text": "Pass the buoy to the west.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Cardinal marks are mentioned, but their light codes and which side to pass are not.",
+  "note": "Nine quick flashes mean a West cardinal mark: pass west.",
   "needs_picture": false
  },
  {
@@ -3554,11 +3553,11 @@
   "answer": "c",
   "answer_text": "One must pass the buoy to the east.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Cardinal marks are only named; colors and topmarks are not taught.",
+  "note": "Cardinal top marks and colors are taught; the pictured mark is judged from the answer.",
   "needs_picture": false
  },
  {
@@ -4290,7 +4289,7 @@
   "lessons": [
    "sail-21"
   ],
-  "note": "Lateral marks are mentioned but harbor entrance light colors for Israel are not given.",
+  "note": "Region A is taught for coming in; the answer depends on a picture of lights seen when leaving.",
   "needs_picture": true
  },
  {
@@ -4462,11 +4461,11 @@
   "answer": "d",
   "answer_text": "West.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Cardinal marks are named but their light patterns are not taught.",
+  "note": "Nine quick flashes mean a West cardinal mark: pass west.",
   "needs_picture": false
  },
  {

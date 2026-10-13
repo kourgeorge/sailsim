@@ -72,6 +72,8 @@ Optionally, the `lights-aspect` mini-lab (`labs/lights-leading.js`) could gain `
 
 ### Batch 2: Buoys and harbour entrances (lesson 21), 8 questions
 
+**Status: done (2026-10-13).** Lesson 21 now has 6 pages and 3 questions. Pages 4–5 use a new buoyage card (`src/learning/buoyage-figure.js`, variants `lateral` and `cardinal`). Page 6 runs the `lights-flash` lab, which gained the Q(3), Q(6)+LFl and Q(9) cardinal patterns and two tasks. The Israel note says Israel uses Region A and where the marina entrance lights are. 7 of the 8 questions are covered; Q344 (lights seen when leaving a marina) depends on a missing picture.
+
 Lesson 21 names lateral and cardinal marks but tells learners to "check the region". Add about 3 pages:
 - **IALA Region A** (Europe, Africa and the Mediterranean, including Israel): coming in from sea, red marks and red lights are on your left and green ones on your right. A harbour or marina entrance shows a flashing green on the right and a flashing red on the left. (Questions 5, 10, 12, 344.)
 - **Cardinal marks:** colours, top marks, and which side to pass. You pass on the side the mark is named after, so you pass north of a North mark. (Questions 144, 287.)

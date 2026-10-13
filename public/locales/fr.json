@@ -915,7 +915,10 @@
       "concepts": [
         "Une carte est un outil de préparation, pas une image à suivre aveuglément. Vérifiez l’échelle, l’orientation, les profondeurs, les dangers, les marques, la source et l’actualité de la carte.",
         "Les profondeurs sont des chiffres, généralement en mètres, et des lignes appelées isobathes relient les points de même profondeur. Les petits fonds sont en général teintés de bleu, les zones qui découvrent à marée basse en vert, et la terre en beige ou jaune. Mesurez les distances sur l’échelle des latitudes, sur le bord de la carte : une minute de latitude vaut un mille nautique.",
-        "Les bouées vous indiquent quoi faire. Les marques latérales signalent les deux côtés d’un chenal, et chacune se laisse d’un côté défini ; les marques cardinales indiquent de quel côté d’un danger se trouvent les eaux sûres. Quelle couleur va de quel côté dépend de la région (AISM/IALA A ou B) : vérifiez avant de partir. Dans cette application, les bouées ambrées ne sont que des cibles d’exercice."
+        "Les bouées vous indiquent quoi faire. Les marques latérales signalent les deux côtés d’un chenal, et chacune se laisse d’un côté défini ; les marques cardinales indiquent de quel côté d’un danger se trouvent les eaux sûres. Quelle couleur va de quel côté dépend de la région (AISM/IALA A ou B) : vérifiez avant de partir. Dans cette application, les bouées ambrées ne sont que des cibles d’exercice.",
+        "Dans la région A de l’AISM, les marques rouges restent à gauche et les vertes à droite quand on vient du large. La région A couvre l’Europe, l’Afrique, la Méditerranée et la majeure partie de l’Asie et de l’Australie ; la plupart des Amériques, le Japon, la Corée et les Philippines utilisent la région B, où les couleurs sont inversées. Les marques bâbord rouges sont cylindriques et les marques tribord vertes coniques, et leurs feux sont de la même couleur. L’entrée d’un port suit la même règle : de nuit, un feu rouge et un feu vert proches marquent souvent l’entrée elle-même.",
+        "Les marques cardinales portent le nom du côté d’un danger où se trouvent les eaux saines. Passez au nord d’une marque nord, à l’est d’une marque est, et ainsi de suite. Chacune porte deux cônes noirs en voyant : nord pointes en haut, sud pointes en bas, est pointes opposées et ouest pointes réunies. Les cônes pointent vers les parties noires : nord noir sur jaune, sud jaune sur noir, est noir avec une bande jaune et ouest jaune avec une bande noire.",
+        "De nuit, une marque cardinale montre un feu blanc scintillant rythmé comme un cadran d’horloge. Nord scintille sans arrêt ; est donne trois éclats, comme 3 heures ; sud six puis un éclat long, comme 6 heures ; ouest neuf, comme 9 heures. L’éclat long évite de confondre un compte rapide de six avec neuf. Comptez un groupe entier avant de choisir le côté où passer."
       ],
       "observe": [
         "Ouvrez la carte. Repérez le nord, votre position et la prochaine marque.",
@@ -940,9 +943,21 @@
             "L’échelle, la source, l’actualité, les profondeurs, les dangers et les conventions locales"
           ],
           "explanation": "Les cartes nécessitent interprétation et contexte pour contribuer à une navigation sûre."
+        },
+        {
+          "prompt": "De nuit, une marque montre neuf éclats blancs rapides puis l’obscurité. Où sont les eaux saines ?",
+          "options": [
+            "À l’ouest de la marque",
+            "À l’est de la marque",
+            "Tout autour de la marque"
+          ],
+          "explanation": "Neuf éclats, comme 9 heures, signalent une cardinale ouest : passez à l’ouest de celle-ci."
         }
       ],
-      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "localNotes": [
+        "Israël utilise la région A de l’AISM. En entrant dans un port ou une marina israélienne depuis le large, le feu vert à éclats est à droite et le feu rouge à éclats à gauche."
+      ]
     },
     "sail-22": {
       "title": "Gouvernez vers un point de route",

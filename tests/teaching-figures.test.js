@@ -4,6 +4,7 @@ import {lessons} from '../src/learning/curriculum.js';
 import {advancedLessons} from '../src/learning/advanced-course.js';
 import {renderTeachingFigure,getTeachingFigureCaption} from '../src/learning/teaching-figures.js';
 import {isStatusLightsFigure,statusLightVariants} from '../src/learning/status-lights-figure.js';
+import {isBuoyageFigure} from '../src/learning/buoyage-figure.js';
 import {apparentWind} from '../src/physics.js';
 
 const course=[...new Map([...lessons,...advancedLessons].map(lesson=>[lesson.id,lesson])).values()];
@@ -120,4 +121,22 @@ test('lights-and-shapes card renders every variant used by a lesson page, in all
       assert.notEqual(getTeachingFigureCaption(figure,lang),getTeachingFigureCaption(figure,'en'));
     }
   }
+});
+
+test('buoyage card renders both variants with translated titles and captions',()=>{
+  const used=course.flatMap(lesson=>Object.values(lesson.conceptFigures??{})).filter(isBuoyageFigure);
+  assert.deepEqual(used.sort(),['buoyage:cardinal','buoyage:lateral']);
+  for(const figure of used) for(const lang of languages) {
+    const svg=renderTeachingFigure({figure},lang);
+    assert.match(svg,new RegExp(`data-variant="${figure.split(':')[1]}"`));
+    assert.ok(description(svg)?.length>35);
+    assert.doesNotMatch(svg,/undefined|NaN/);
+    if(lang!=='en') {
+      assert.notEqual(title(svg),title(renderTeachingFigure({figure},'en')));
+      assert.notEqual(getTeachingFigureCaption({figure},lang),getTeachingFigureCaption({figure},'en'));
+    }
+  }
+  // Each cardinal top mark: North both up, South both down, East apart, West together.
+  const svg=renderTeachingFigure({figure:'buoyage:cardinal'},'en');
+  for(const mark of ['N','E','S','W'])assert.match(svg,new RegExp(`data-cardinal="${mark}"`));
 });

@@ -184,10 +184,14 @@ lesson('conditions','Choose a weather limit',[
 lesson('navigation','Read a practice chart',[
  'A chart is a planning tool, not a picture to follow blindly. Check scale, orientation, depth information, hazards, marks, and the source and currency of the chart.',
  'Depths are numbers, usually in metres, and lines called contours join places of equal depth. Shallower water is usually shaded blue, areas that dry at low tide are green, and land is buff or yellow. Measure distance on the latitude scale at the side of the chart: one minute of latitude is one nautical mile.',
- 'Buoys tell you what to do. Lateral marks show the two sides of a channel, and each is passed on a set side; cardinal marks show on which side of a danger the safe water lies. Which color goes on which side depends on the region (IALA A or B), so check before you sail. In this app the amber buoys are only practice targets.'
+ 'Buoys tell you what to do. Lateral marks show the two sides of a channel, and each is passed on a set side; cardinal marks show on which side of a danger the safe water lies. Which color goes on which side depends on the region (IALA A or B), so check before you sail. In this app the amber buoys are only practice targets.',
+ 'In IALA Region A, red marks stay on your left and green marks on your right as you come in from sea. Region A covers Europe, Africa, the Mediterranean and most of Asia and Australia; most of the Americas, Japan, Korea and the Philippines use Region B, where the colors are reversed. Red port-hand marks are cans and green starboard-hand marks are cones, and their lights flash in the same color. A harbor entrance follows the same rule, so a red and a green light close together at night often mark the entrance itself.',
+ 'Cardinal marks are named after the compass side of a danger where the safe water lies. Pass north of a North mark, east of an East mark, and so on. Each carries two black cones as a top mark: North points both up, South both down, East points apart and West points together. The cones point to the black parts: North is black over yellow, South yellow over black, East black with a yellow band and West yellow with a black band.',
+ 'At night a cardinal mark shows a white quick-flashing light, timed like a clock face. North flashes without stopping; East gives three flashes, like 3 o’clock; South gives six and then one long flash, like 6 o’clock; West gives nine, like 9 o’clock. The long flash keeps a quick count of six from being mistaken for nine. Count a whole group before deciding which side to pass.'
 ],['Open the chart. Locate north, your position, and the next mark.','Identify land you must keep clear of along the intended route.'], 'Assuming a screen showing your position is a complete and current navigational chart.',[
  q('On a chart, what does one minute of latitude on the side scale measure?',['One kilometre','One nautical mile','One knot'],1,'Distance is measured on the latitude scale at the side of the chart, level with your position. The longitude scale along the top and bottom changes with latitude, so it is not used for distance.'),
- q('Which should a real chart check include?',['Only the screen brightness','Only the destination name','Scale, source, currency, depths, hazards, and local conventions'],2,'Charts need interpretation and context to support safe navigation.')]);
+ q('Which should a real chart check include?',['Only the screen brightness','Only the destination name','Scale, source, currency, depths, hazards, and local conventions'],2,'Charts need interpretation and context to support safe navigation.'),
+ q('At night a mark shows nine quick white flashes, then darkness. Where is the safe water?',['To the west of the mark','To the east of the mark','All around the mark'],0,'Nine flashes, like 9 o’clock, mean a West cardinal mark: pass to the west of it.')]);
 lesson('navigation','Steer toward a waypoint',[
  'A bearing is the direction from your position to a target. Decide whether the direct track is safe and sailable before following it.',
  'A direct bearing may point into the no-go zone or cross land. In those cases, plan a different route rather than forcing the bow toward the target.',
@@ -312,5 +316,10 @@ apparentWindLesson.conceptFigures={5:'faster-than-wind'};
 apparentWindLesson.quiz[3].figure='faster-than-wind';
 apparentWindLesson.minutes=10;
 apparentWindLesson.challengeId='apparent-wind-lab';
+// Buoyage pages: Region A lateral marks, cardinal marks, then their lights in a lab.
+const chartLesson=lessons.find(l=>l.id==='sail-21');
+chartLesson.conceptFigures={3:'buoyage:lateral',4:'buoyage:cardinal'};
+chartLesson.localNotes=[{page:3,region:'israel',text:'Israel uses IALA Region A. Coming into an Israeli harbor or marina from sea, the flashing green light is on your right and the flashing red light on your left.'}];
+chartLesson.minutes=10;
 for(const lesson of lessons){if(lessonLabs[lesson.id])lesson.conceptLabs=lessonLabs[lesson.id];for(const [i,lab] of Object.entries(quizLabs[lesson.id]||{}))lesson.quiz[i].lab=lab;}
 export {lessons};

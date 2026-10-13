@@ -18,6 +18,7 @@ export const lessonLabs={
  'sail-16':{0:{id:'tack-gybe',initial:{maneuver:'tack',rate:'slow'},tasks:['irons','tack']},2:{id:'rudder',initial:{speed:-1,helm:20},tasks:['astern']}},
  'sail-17':{1:{id:'apparent-wind',initial:{boatSpeed:6,trueAngle:90,trueSpeed:12},tasks:['speedUp','bearAway']}},
  'sail-18':{0:{id:'heel-reef',initial:{windSpeed:10,reef:0},tasks:['double','reefPoint']},1:{id:'heel-reef',initial:{windSpeed:20,reef:0},tasks:['reefPoint','compare']}},
+ 'sail-21':{5:{id:'lights-flash',initial:{character:'q9'},tasks:['west','south']}},
  'sail-22':{2:{id:'current-track',tasks:['cross']}},
  'sail-25':{1:{id:'collision-bearing',tasks:['spot','bigTurn','clear']}},
  'sail-26':{0:{id:'compass-wind',initial:{heading:90,windFrom:0},tasks:['beamPort','beamStarboard']}},
