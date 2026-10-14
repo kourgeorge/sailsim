@@ -133,39 +133,39 @@
     "sail-03": {
       "title": "Cordages, winchs et efforts",
       "concepts": [
-        "Une drisse hisse une voile. Une écoute règle son angle. Un ris réduit la surface de voile exposée. Un taquet ou un bloqueur retient un cordage ; un winch aide à maîtriser l’effort.",
-        "Sur ce voilier, les écoutes colorées rejoignent les winchs du cockpit vers l’arrière. Examinez les tours sur les winchs et les bloqueurs en vue Cockpit. Le panneau Systèmes du bateau commande séparément les deux drisses et écoutes, ainsi que le chariot, le hale-bas, la bordure, les ris, le moteur et la ligne de mouillage. Les curseurs représentent des réglages, pas la manipulation physique des cordages.",
-        "Les commandes de hissage de la grand-voile et de la voile d’avant déterminent la surface exposée. Les deux écoutes règlent séparément leurs angles. Le chariot déplace le point de tire de l’écoute de bôme ; la tension du hale-bas règle la torsion simulée, tandis que la bordure aplatit le bas de la voile. Modifiez une commande à la fois et comparez la réponse.",
-        "Le niveau de ris réduit la surface de la grand-voile. La commande moteur sélectionne marche arrière, point mort ou marche avant ; revenez au point mort pour les évaluations à la voile. Le curseur du mouillage fixe une longueur cible. Actionnez le guindeau pour filer ou reprendre progressivement la ligne ; surveillez la longueur réellement filée et arrêtez le guindeau si nécessaire.",
-        "Gardez les doigts, les vêtements amples et les cheveux loin des cordages sous tension. Apprenez avec un moniteur à charger un winch, manœuvrer les cordages, faire des nœuds et choquer progressivement ; une souris ne permet pas d’apprendre à sentir un cordage chargé.",
-        "Le hale-bas tire la bôme vers le bas. Au largue ou au vent arrière, l’écoute de grand-voile tire la bôme vers l’extérieur plus que vers le bas : sans hale-bas, la bôme monte et le haut de la voile vrille, s’ouvre et perd de la puissance. Choquer le hale-bas dans une forte rafale laisse le haut de la voile évacuer le vent."
+        "Une drisse hisse une voile, et une écoute règle l’angle de la voile par rapport au vent. Un ris réduit la surface de voile exposée. Un taquet (une pièce en forme de cornes) ou un bloqueur (un verrou à levier) retient un cordage. Un winch (un tambour qu’on tourne avec une manivelle) reprend l’effort, car une écoute chargée tire plus fort que des mains ne peuvent retenir.",
+        "Sur ce voilier, les écoutes colorées partent vers l’arrière jusqu’aux winchs du cockpit. Regardez les tours sur les winchs et les bloqueurs en vue Cockpit. Le panneau Systèmes du bateau règle séparément chacune des deux drisses et des deux écoutes, ainsi que d’autres commandes expliquées dans les pages suivantes. Dans l’application, les curseurs règlent les commandes ; ils ne montrent pas comment on manipule un vrai cordage.",
+        "Les commandes de hissage règlent la hauteur de la grand-voile et de la voile d’avant (la voile de devant). Chaque écoute règle l’angle d’une seule voile, indépendamment de l’autre. Trois autres commandes donnent sa forme à la grand-voile. Le chariot fait glisser le bas de l’écoute de grand-voile d’un bord à l’autre. Le hale-bas tire la bôme (l’espar sous la voile) vers le bas, pour que le haut de la voile ne vrille pas en s’ouvrant. La bordure tend le bas de la voile, ce qui l’aplatit. Changez une seule commande à la fois pour voir l’effet de chacune.",
+        "La commande de ris réduit la grand-voile, et la commande moteur choisit marche arrière, point mort ou marche avant. Revenez au point mort avant un exercice à la voile, pour que seules les voiles fassent avancer le bateau. Le curseur du mouillage (le cordage ou la chaîne de l’ancre) fixe une longueur cible. Le guindeau (le treuil motorisé à l’avant) file ou reprend la ligne peu à peu ; surveillez la longueur réellement filée et arrêtez-le si nécessaire.",
+        "Gardez les doigts, les vêtements amples et les cheveux loin des cordages sous tension, car ils peuvent être happés par un winch. Apprenez avec un moniteur le vrai travail au winch, la manœuvre des cordages et les nœuds, y compris comment choquer un cordage chargé en gardant le contrôle. Dans l’application, une souris ne peut pas vous apprendre à sentir un cordage chargé.",
+        "Le hale-bas maintient la bôme vers le bas pour que le haut de la voile garde sa puissance. Au largue (vent de côté) ou au vent arrière (vent venant de l’arrière), l’écoute de grand-voile tire la bôme vers l’extérieur plus que vers le bas. Sans hale-bas, la bôme monte, et le haut de la voile vrille, s’ouvre et perd de la puissance. Dans une forte rafale, choquer le hale-bas permet au haut de la voile de laisser échapper le vent."
       ],
       "observe": [
         "Suivez une écoute colorée du pont jusqu’à son winch.",
-        "Comparez le rôle de hissage de la drisse au rôle de réglage de l’écoute."
+        "Comparez le rôle d’une drisse (hisser la voile) à celui d’une écoute (régler son angle)."
       ],
-      "mistake": "Traiter une écoute très chargée comme un cordage sans tension, ou confondre écoute et drisse.",
+      "mistake": "Traiter une écoute très chargée comme un cordage mou, ou confondre l’écoute et la drisse.",
       "quiz": [
         {
-          "prompt": "Vous voulez régler l’angle de la grand-voile. Quel cordage remplit ce rôle ?",
+          "prompt": "Vous voulez changer l’angle de la grand-voile. Quel cordage fait cela ?",
           "options": [
             "L’écoute de grand-voile",
             "La drisse de grand-voile",
             "La ligne de mouillage"
           ],
-          "explanation": "L’écoute de grand-voile règle l’angle de la bôme et de la voile ; la drisse hisse la voile."
+          "explanation": "L’écoute de grand-voile règle la bôme, donc l’angle de la grand-voile ; la drisse hisse la voile."
         },
         {
-          "prompt": "Le modèle visuel du winch peut-il évaluer la manipulation sûre d’un cordage chargé ?",
+          "prompt": "Le modèle de winch de l’application peut-il vous apprendre à manipuler sans danger un cordage chargé ?",
           "options": [
             "Oui, entièrement",
             "Seulement au zoom maximal",
-            "Non ; la manipulation physique des cordages exige une pratique encadrée"
+            "Non ; manipuler de vrais cordages exige une pratique encadrée"
           ],
-          "explanation": "Le matériel représenté aide à se repérer, mais ne simule ni le placement des mains, ni le frottement, ni les efforts dans les cordages."
+          "explanation": "Le matériel dessiné vous montre où se trouvent les choses. Il ne simule ni la position des mains, ni le frottement, ni les efforts dans les cordages."
         }
       ],
-      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire ni la coordination de l’équipage, ni les efforts, ni tous les comportements du bateau."
     },
     "sail-04": {
       "title": "Lisez les instruments",
@@ -571,36 +571,36 @@
     "sail-13": {
       "title": "Lofez et abattez",
       "concepts": [
-        "Lofer consiste à tourner vers la provenance du vent ; abattre consiste à s’en éloigner. Bâbord et tribord nomment le sens du virage par rapport au bateau, pas le fait de lofer ou d’abattre.",
-        "Sous une amure, tourner à bâbord peut faire lofer ; sous l’autre amure, cela peut faire abattre. Raisonnez toujours à partir de la direction actuelle du vent, et réglez en conséquence : lofer veut dire border, abattre veut dire choquer.",
-        "Naviguez d’abord à 50° du vent, puis à 110°. Stabilisez chaque cap avant le changement suivant."
+        "Lofer, c’est tourner vers le vent ; abattre, c’est s’en éloigner. Bâbord (gauche) et tribord (droite) disent seulement de quel côté le bateau tourne. « Tourner à gauche » ne dit rien du vent : vous devez donc savoir de quel côté vient le vent.",
+        "Savoir si un virage à gauche fait lofer dépend de votre amure (le côté par où arrive le vent). Avec un vent du nord, en route vers l’est, tourner à gauche fait lofer ; en route vers l’ouest, le même virage à gauche fait abattre. Vérifiez donc d’abord le vent, puis réglez en conséquence : quand vous lofez, bordez les écoutes (les cordages des voiles) ; quand vous abattez, choquez-les.",
+        "Entraînez-vous aux deux virages : naviguez d’abord à 50° du vent, puis à 110°. À 110°, le vent vient un peu en arrière du travers (exactement sur le côté). Laissez chaque cap se stabiliser avant le changement suivant, pour voir l’effet du virage."
       ],
       "observe": [
-        "Observez si l’angle au vent augmente ou diminue avec chaque action sur la barre.",
-        "Centrez la barre à chaque cible et adaptez les voiles à la nouvelle allure."
+        "Observez si l’angle au vent augmente ou diminue à chaque action sur la barre.",
+        "Centrez la barre à chaque cible et adaptez le réglage à la nouvelle allure."
       ],
-      "mistake": "Supposer que « tourner à gauche » signifie toujours « lofer ».",
+      "mistake": "Supposer que « tourner à gauche » veut toujours dire « lofer ».",
       "quiz": [
         {
-          "prompt": "Tourner à bâbord rapproche-t-il toujours du vent ?",
+          "prompt": "Un virage à bâbord (à gauche) rapproche-t-il toujours du vent ?",
           "options": [
             "Oui",
             "Non ; cela dépend de l’amure et de la direction du vent",
             "Seulement au-dessus de 5 nœuds"
           ],
-          "explanation": "La même action sur la barre modifie différemment la relation au vent sous des amures opposées."
+          "explanation": "Le même mouvement de barre change votre angle au vent en sens inverse selon l’amure."
         },
         {
-          "prompt": "Que doit-on faire après un changement de cap important ?",
+          "prompt": "Que faut-il faire après un grand changement de cap ?",
           "options": [
-            "Réévaluer le réglage des voiles et la veille",
+            "Vérifier à nouveau le réglage des voiles et la veille",
             "Ignorer les voiles",
             "Toujours mouiller l’ancre"
           ],
-          "explanation": "Le nouveau cap modifie l’écoulement d’air et la situation autour du bateau."
+          "explanation": "Le nouveau cap change l’écoulement de l’air sur les voiles et ce qui se trouve autour du bateau."
         }
       ],
-      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire ni la coordination de l’équipage, ni les efforts, ni tous les comportements du bateau.",
       "practice": {
         "steps": [
           {
@@ -746,28 +746,28 @@
     "sail-17": {
       "title": "Vent réel et vent apparent",
       "concepts": [
-        "Le vent apparent est l’écoulement d’air relatif au voilier. Le vent météo est référencé au sol fixe ; le vent relatif à l’eau s’obtient en soustrayant le courant de cette vitesse de l’air. Le « vent réel » peut être référencé au sol ou à l’eau : vérifiez la convention de l’instrument.",
-        "Quand la vitesse surface augmente sur un travers stable, le vent apparent vient généralement davantage de l’avant que le vent relatif à l’eau. Au portant, se déplacer dans le sens du flux d’air peut réduire la vitesse apparente. Si le vent relatif à l’eau est nul, sa direction est indéfinie, mais un voilier avançant dans l’eau peut toujours ressentir un flux apparent.",
-        "Comparez Vent relatif à l’eau et Vent apparent sur l’écran de bord. Servez-vous du vent relatif à l’eau pour nommer votre allure et la zone interdite ; réglez les voiles sur le vent apparent, car c’est l’air qu’elles reçoivent réellement. Les penons et la forme des voiles montrent toujours directement le vent apparent.",
-        "Une voile peut fonctionner comme une aile d’avion : dévier l’air produit une force aérodynamique comportant une composante vers l’avant et une composante latérale. La quille, la dérive ou les foils immergés résistent au déplacement latéral. Au travers ou au largue, une voile bien réglée peut encore propulser le bateau quand sa vitesse dépasse celle du vent réel. L’accélération cesse lorsque la force propulsive équilibre la résistance.",
-        "Les voiliers de course efficaces peuvent donc dépasser le vent réel. Des coques légères et des voiles efficaces y contribuent ; les foils peuvent soulever la coque au-dessus de l’eau et réduire davantage la résistance. L’énergie vient du vent en mouvement par rapport à l’eau. Le vent apparent décrit l’air rencontré par la voile en mouvement ; le déplacement du bateau ne crée aucune énergie supplémentaire. Un voilier de croisière ordinaire peut avoir trop de résistance pour dépasser le vent.",
-        "Exemple sans courant ni dérive : un voilier de course va au nord à 30 nœuds tandis qu’un vent de 20 nœuds vient de l’ouest. Les vitesses sont perpendiculaires. Le vent apparent vaut √(20² + 30²) ≈ 36,1 nœuds et arrive à environ 34° sur bâbord avant. Le calcul suppose la vitesse du bateau ; il ne prouve pas que tout bateau puisse atteindre 30 nœuds. Au vent arrière exact, avancer à la vitesse du vent supprime au contraire le vent apparent dans ce cas simple.",
-        "Essayez-le dans Défis → Atelier du vent apparent : relevez le vent voiles affalées, puis au travers, puis au grand largue. Au travers, le vent apparent se renforce et revient vers l’avant à mesure que le bateau accélère ; au grand largue, il faiblit."
+        "Sur un bateau en mouvement, vous sentez le vent apparent, comme le vent de face que l’on sent à vélo dans un air immobile. C’est le vent réel plus la brise créée par votre propre déplacement. Le vent réel est celui que vous sentiriez à l’arrêt. Les instruments le mesurent par rapport au sol ou par rapport à l’eau (les deux diffèrent s’il y a du courant) : vérifiez lequel le vôtre affiche.",
+        "Quand le bateau accélère au travers (vent de côté), le vent apparent revient en général vers l’avant, vers l’étrave (l’avant du bateau). C’est parce que votre propre brise vient droit de l’avant. Au portant, vous avancez avec l’air, donc le vent apparent peut faiblir. Sans vent par rapport à l’eau, il n’y a pas de direction du vent, mais un voilier en mouvement sent toujours la brise de son propre déplacement.",
+        "Nommez votre allure d’après le vent relatif à l’eau, mais réglez les voiles sur le vent apparent. Dans l’application, comparez Vent relatif à l’eau et Vent apparent sur l’écran de bord. L’allure (votre angle au vent) et la zone interdite (trop près du vent pour avancer) se déduisent du vent relatif à l’eau. Réglez sur le vent apparent, car c’est l’air que les voiles reçoivent vraiment ; les penons (rubans sur la voile) et la forme des voiles le montrent toujours directement.",
+        "Une voile fonctionne comme une aile d’avion : elle dévie l’air et pousse le bateau en partie vers l’avant et en partie sur le côté. La quille (l’aileron sous la coque), la dérive ou les foils immergés (de petites ailes) résistent à la poussée latérale, si bien que la part vers l’avant fait avancer le bateau. Au travers ou au largue, une voile bien réglée peut continuer à propulser le bateau même au-dessus de la vitesse du vent réel. Le bateau cesse d’accélérer quand la poussée vers l’avant égale la résistance de l’eau.",
+        "Certains voiliers de course efficaces peuvent donc aller plus vite que le vent réel. Des coques légères et des voiles efficaces y aident. Les foils peuvent soulever la coque hors de l’eau, ce qui réduit encore la résistance. Toute l’énergie vient toujours du vent qui se déplace par rapport à l’eau. Un voilier de croisière ordinaire peut avoir trop de résistance pour dépasser la vitesse du vent.",
+        "Dans cet exemple, le vent apparent est plus fort que le vent réel et vient de plus en avant. On suppose qu’il n’y a ni courant ni dérive (glissement latéral). Un voilier de course va au nord à 30 nœuds (environ 55 km/h) tandis qu’un vent de 20 nœuds souffle de l’ouest, perpendiculairement à sa route. Le vent apparent vaut environ 36 nœuds et arrive à environ 34° sur bâbord (à gauche) de l’étrave. Remarque : comme les deux vitesses sont perpendiculaires, elles se combinent selon √(20² + 30²) ≈ 36,1 nœuds. Si le bateau allait au contraire droit au vent arrière à la vitesse du vent, il ne sentirait aucun vent dans ce cas simple.",
+        "Essayez-le dans Défis → Atelier du vent apparent : relevez le vent à trois moments :\n• Voiles affalées.\n• Au travers (vent exactement sur le côté).\n• Au grand largue (vent venant d’en arrière du travers).\nAu travers, le vent apparent se renforce et revient vers l’avant à mesure que la vitesse augmente ; au grand largue, il faiblit."
       ],
       "observe": [
         "Imaginez rouler à vélo dans un air immobile : vous sentez du vent de face.",
-        "Comparez l’affichage du vent apparent lorsque la vitesse augmente à cap constant."
+        "Comparez l’affichage du vent apparent quand la vitesse augmente à cap constant."
       ],
-      "mistake": "Supposer que vent réel et apparent ont la même direction et la même vitesse quand le bateau se déplace.",
+      "mistake": "Supposer que le vent réel et le vent apparent ont la même direction et la même vitesse quand le voilier avance.",
       "quiz": [
         {
-          "prompt": "Quel vent une voile en mouvement reçoit-elle réellement ?",
+          "prompt": "Quel vent une voile en mouvement reçoit-elle vraiment ?",
           "options": [
             "Uniquement le vent de la prévision météo",
             "Le vent apparent",
             "Un vent fixe de compas"
           ],
-          "explanation": "Les voiles interagissent avec l’écoulement d’air relatif au voilier en mouvement."
+          "explanation": "Les voiles travaillent avec l’air tel qu’il arrive sur le voilier en mouvement."
         },
         {
           "prompt": "Vous accélérez au travers, à cap constant. Que devient le vent apparent ?",
@@ -776,28 +776,28 @@
             "Il recule vers l’arrière et faiblit",
             "Il ne change pas"
           ],
-          "explanation": "Le mouvement du bateau ajoute une brise venant de l’avant. Combinée au vent réel, elle fait tourner le vent apparent vers l’étrave et le renforce : vous bordez donc un peu."
+          "explanation": "Le déplacement du bateau ajoute une brise venant de l’avant. Combinée au vent réel, elle fait tourner le vent apparent vers l’étrave et le renforce : vous bordez donc un peu."
         },
         {
-          "prompt": "Pourquoi un voilier de course efficace peut-il dépasser le vent réel au travers ?",
+          "prompt": "Pourquoi un voilier de course efficace peut-il aller plus vite que le vent réel au travers ?",
           "options": [
-            "Le mouvement du bateau crée une énergie illimitée",
-            "La portance des voiles peut encore fournir une force propulsive supérieure à la résistance",
+            "Le déplacement du bateau crée une réserve d’énergie illimitée",
+            "La portance de la voile peut encore pousser vers l’avant plus fort que l’eau ne résiste",
             "Tout voilier égale automatiquement la vitesse du vent apparent"
           ],
-          "explanation": "La voile interagit avec le flux apparent tandis que les surfaces immergées résistent au déplacement latéral. Si la résistance est assez faible, une force propulsive utile peut subsister au-delà de la vitesse du vent réel. L’énergie vient toujours du vent par rapport à l’eau."
+          "explanation": "La voile reçoit le vent apparent, tandis que la quille et les autres parties immergées résistent à la poussée latérale. Si la résistance est assez faible, la poussée vers l’avant peut rester plus grande que la résistance, même au-dessus de la vitesse du vent réel. L’énergie vient toujours du vent par rapport à l’eau."
         },
         {
-          "prompt": "Sans courant ni dérive, un bateau avance à 30 nœuds perpendiculairement à un vent réel de 20 nœuds. Quelle vitesse de vent apparent rencontre-t-il ?",
+          "prompt": "Sans courant ni dérive, un bateau avance à 30 nœuds perpendiculairement à un vent réel de 20 nœuds. Quelle vitesse de vent apparent ressent-il ?",
           "options": [
             "10 nœuds",
             "50 nœuds",
             "Environ 36,1 nœuds"
           ],
-          "explanation": "Les vitesses perpendiculaires se combinent selon √(20² + 30²) ≈ 36,1 nœuds. Additionner ou soustraire directement les vitesses ne convient qu’aux mouvements colinéaires ; l’exemple suppose le bateau déjà à 30 nœuds."
+          "explanation": "Des vitesses perpendiculaires se combinent selon √(20² + 30²) ≈ 36,1 nœuds. On n’additionne ou ne soustrait directement des vitesses que si elles sont sur la même ligne. L’exemple suppose que le bateau fait déjà 30 nœuds."
         }
       ],
-      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire ni la coordination de l’équipage, ni les efforts, ni tous les comportements du bateau."
     },
     "sail-18": {
       "title": "Prenez un ris avant d’y être contraint",
@@ -1687,104 +1687,104 @@
     "sail-39": {
       "title": "Vecteurs de courant et durée de traversée",
       "concepts": [
-        "Le cap indique où pointe l’étrave ; la route fond indique le déplacement par rapport au fond. Le courant ajoute un vecteur vitesse : vitesse surface et vitesse fond peuvent différer, avec aussi l’effet de la dérive due au vent. La direction du courant désigne le sens vers lequel il porte.",
-        "Exemple rectiligne fictif : 5 nœuds surface sur un trajet de 12 milles marins. Un courant constant de 1 nœud exactement contraire donne 4 nœuds fond, soit 3 heures. Exactement favorable, il donne 6 nœuds fond, soit 2 heures. Accélération et dérive sont négligées seulement dans cet exemple.",
-        "Un courant traversier se combine par vecteurs, pas par simple addition ou soustraction des vitesses. Il modifie la route fond et peut imposer un autre cap à suivre. En réalité, prévoyez courant variable, vent, bords, mer et réserve ; actualisez l’heure d’arrivée selon la progression observée."
+        "Le cap indique où pointe l’étrave ; la route fond indique où le bateau va vraiment au-dessus du fond. Les deux diffèrent parce qu’un courant emporte tout le bateau, comme un tapis roulant : la vitesse surface et la vitesse fond diffèrent donc aussi. La dérive (le glissement latéral dû au vent) ajoute une autre différence. La direction d’un courant est le sens vers lequel il porte (un courant qui porte à l’est vous emmène vers l’est) ; sa vitesse s’exprime en nœuds.",
+        "Exemple fictif : un courant exactement dans l’axe de votre route s’ajoute simplement à votre vitesse ou s’en retranche. Un voilier fait 5 nœuds surface tout droit sur un trajet de 12 milles marins. Un courant constant de 1 nœud exactement contraire laisse 4 nœuds fond : le trajet dure 3 heures. Un courant exactement favorable donne 6 nœuds et 2 heures. On néglige l’accélération et la dérive seulement pour cet exemple.",
+        "Un courant de côté vous écarte de votre ligne : on ne peut donc pas simplement l’ajouter ou le retrancher. Dessinez ensemble la flèche du bateau et celle du courant : le résultat est votre route fond, et vous devrez peut-être barrer un peu face au courant pour rester sur la ligne. Une vraie navigation demande aussi de prévoir :\n• un courant qui change avec le temps\n• le vent et les bords (le zigzag pour remonter au vent)\n• l’état de la mer et une réserve de temps\nRecalculez donc votre heure d’arrivée d’après la progression réellement obtenue."
       ],
       "observe": [
-        "Comparez cap et vitesse surface à route et vitesse fond dans Systèmes du bateau.",
-        "Dessinez les courants favorable, contraire et traversier avant de calculer."
+        "Dans Systèmes du bateau, comparez le cap et la vitesse surface avec la route fond et la vitesse fond.",
+        "Dessinez les flèches d’un courant venant de l’avant, de l’arrière et du côté avant de faire le moindre calcul."
       ],
-      "mistake": "Utiliser toujours la vitesse surface pour l’arrivée ou soustraire un courant traversier comme un courant exactement contraire.",
+      "mistake": "Utiliser la vitesse surface pour toutes les estimations d’arrivée, ou retrancher un courant traversier comme s’il suivait l’axe de la route.",
       "quiz": [
         {
-          "prompt": "À 5 nœuds surface avec 1 nœud exactement contraire, combien dure le trajet de 12 milles ?",
+          "prompt": "À 5 nœuds surface, avec un courant de 1 nœud exactement contraire, combien de temps dure le trajet de 12 milles marins ?",
           "options": [
             "2 heures",
             "3 heures",
             "2,4 heures"
           ],
-          "explanation": "La vitesse fond vaut 4 nœuds. Durée = 12 milles ÷ 4 nœuds = 3 heures."
+          "explanation": "L’exemple donne 4 nœuds fond. Durée = 12 milles marins ÷ 4 nœuds = 3 heures."
         },
         {
-          "prompt": "Que change un courant traversier de même vitesse ?",
+          "prompt": "Qu’est-ce qui change quand le même courant traverse la route ?",
           "options": [
-            "Il faut combiner les vecteurs et revoir route fond et cap à suivre",
-            "Il faut toujours retirer 1 nœud",
-            "Cap et route fond restent nécessairement identiques"
+            "Combiner les flèches du bateau et du courant (vitesse et direction), puis revérifier la route fond et le cap à suivre",
+            "Toujours retirer 1 nœud à la vitesse surface",
+            "Le cap et la route fond doivent rester identiques"
           ],
-          "explanation": "Le courant traversier modifie la direction du déplacement. L’arithmétique scalaire convient seulement aux vitesses colinéaires de ces exemples."
+          "explanation": "Un courant traversier change la direction de votre déplacement au-dessus du fond. On ne peut simplement additionner ou soustraire les vitesses que si le courant suit exactement votre route, dans un sens ou dans l’autre, comme dans les exemples simples."
         }
       ],
-      "transfer": "Avec un moniteur et des courants de marée réels, tracez un cap à suivre. Comparez progression prévue et observée ; le courant de l’app n’est pas une prévision locale."
+      "transfer": "Avec un moniteur de navigation et de vraies données de courants de marée, tracez un cap à suivre. Comparez la progression prévue et la progression réelle ; ne prenez pas le courant de cette application pour une prévision locale."
     },
     "sail-40": {
       "title": "Météo : partir, attendre ou se dérouter",
       "concepts": [
-        "Une limite météo dépend du bateau, de l’équipage, de la route et des conditions. Consultez bulletins et avertissements maritimes officiels, rafales, direction du vent, mer, visibilité, interaction marée/courant et refuges. Une seule vitesse de vent ne décrit pas le risque.",
-        "Décision fictive : l’équipage évite la partie exposée si les rafales dépassent sa capacité pratiquée ou si la visibilité supprime les repères de pilotage. L’un de ces seuils est prévu avant la fin du trajet. Attendre ou choisir une route abritée acceptable conserve la marge.",
-        "Vérifiez les mises à jour en route. Le vent contre courant peut raidir la mer ; le vent vers la terre augmente le danger d’une côte sous le vent. Réduisez la toile assez tôt selon les besoins, préservez l’équipage et changez de plan avant de manquer d’options. Prendre un ris ne rend pas toute prévision acceptable."
+        "Décidez avant de partir quelle météo vous ferait rester au port ou changer de plan. Cette limite dépend de votre bateau, de votre équipage, de votre route et des conditions : une seule vitesse de vent ne décrit donc pas le risque. Consultez les bulletins et avertissements maritimes officiels pour :\n• les rafales (les coups de vent les plus forts) et la direction du vent\n• l’état de la mer (la taille des vagues) et la visibilité\n• les endroits où la marée ou le courant rencontre le vent\n• une route de repli sûre",
+        "Décision fictive : si l’un des signaux d’alerte convenus est prévu, attendez ou prenez la route abritée. Votre équipage a convenu d’éviter une partie exposée si les rafales dépassent sa capacité pratiquée, ou si une mauvaise visibilité cache les repères de pilotage (les marques et amers qui guident près de la côte). L’un des deux est maintenant prévu avant la fin du trajet. Attendre, ou prendre une route abritée acceptable, conserve la marge convenue.",
+        "Continuez à vérifier la météo en route, et changez de plan tant qu’il vous reste des options. Le vent contre le courant peut raidir les vagues. Un vent vers la terre augmente le danger d’une côte sous le vent (une côte vers laquelle souffle le vent, où un bateau en panne irait dériver). Prenez un ris (réduisez la voile) assez tôt si nécessaire et ménagez l’énergie de l’équipage. Un ris ne rend pas toute prévision acceptable."
       ],
       "observe": [
-        "Définissez deux limites de départ et les endroits où les réexaminer.",
-        "Comparez route exposée et abritée selon vent, mer et visibilité."
+        "Énoncez deux limites de départ, et les points de la route où vous les vérifierez à nouveau.",
+        "Comparez la route exposée et sa variante abritée pour la direction du vent, l’état de la mer et la visibilité."
       ],
-      "mistake": "Prendre un seuil universel de vent ou la possibilité de réduire la toile pour une garantie de sécurité.",
+      "mistake": "Appliquer à tous une même limite de vent, ou croire que pouvoir prendre un ris prouve qu’une traversée est sûre.",
       "quiz": [
         {
-          "prompt": "La prévision dépasse la capacité convenue avant la fin du trajet exposé. Que décider ?",
+          "prompt": "La prévision dépasse les limites convenues par votre équipage avant la fin de la partie exposée. Quel est le plan raisonnable ?",
           "options": [
-            "Prendre un ris et supposer tout risque supprimé",
-            "Ignorer la prévision car le port est calme",
-            "Attendre ou choisir une alternative vérifiée dans les limites"
+            "Prendre un ris et supposer que tout risque a disparu",
+            "Ignorer la prévision si le port est calme",
+            "Attendre, ou choisir une alternative vérifiée qui respecte les limites"
           ],
-          "explanation": "Le départ doit conserver les marges de cet équipage, de ce bateau et de cette route. Le calme au port ne décrit pas le large."
+          "explanation": "La décision de partir doit conserver les marges convenues pour cet équipage, ce voilier et cette route. Une eau calme au port ne dit rien de sûr sur les conditions au large."
         },
         {
-          "prompt": "Pourquoi examiner courant et vent ensemble ?",
+          "prompt": "Pourquoi tenir compte du courant autant que du vent ?",
           "options": [
-            "Le vent contre courant peut raidir la mer et accroître le risque",
-            "Le courant ne touche que le compas",
-            "Le courant garantit un abri"
+            "Le vent contre le courant peut raidir la mer et changer le risque de la route",
+            "Le courant n’agit que sur l’affichage du compas",
+            "Le courant garantit une eau abritée"
           ],
-          "explanation": "Vent et courant opposés peuvent aggraver la mer. Examinez ensemble exposition et prévision."
+          "explanation": "Quand le vent et le courant vont en sens opposés, la mer peut se creuser. Examinez ensemble l’exposition de la route et la prévision."
         }
       ],
-      "transfer": "Analysez une vraie prévision avec un moniteur, effets locaux et incertitude compris. Fixez des limites adaptées et réévaluez-les ; ces exemples ne prescrivent aucune vitesse de vent universellement sûre."
+      "transfer": "Discutez d’une vraie prévision avec un moniteur, y compris des effets locaux et de son incertitude. Convenez de limites pour votre propre bateau et votre équipage, et continuez à les vérifier ; ces exemples ne donnent aucune vitesse de vent sûre pour tous."
     },
     "sail-41": {
       "title": "Risque d’abordage et visibilité réduite",
       "concepts": [
-        "Assurez une veille visuelle, auditive et par tous les moyens appropriés. Répétez les observations : un navire qui approche à relèvement compas presque constant présente un risque d’abordage. Un relèvement variable ne l’exclut pas toujours, notamment à courte distance ou près d’un grand navire ou remorqueur avec remorque. En cas de doute, considérez le risque présent.",
-        "La vitesse de sécurité permet une action efficace et un arrêt adaptés aux circonstances. Visibilité, trafic, manœuvrabilité, vent, mer, courant et dangers comptent. Agissez tôt conformément aux règles applicables et contrôlez l’effet jusqu’à être passé et paré. Un symbole AIS ne constitue pas une veille complète.",
-        "La règle internationale 19 s’applique différemment des règles voile/moteur à vue lorsque les navires ne sont pas en vue l’un de l’autre dans une zone de visibilité réduite ou à proximité. Adoptez une vitesse sûre, une veille, les signaux exigés et un usage correct des équipements. Un navire à propulsion mécanique doit tenir ses machines prêtes à manœuvrer immédiatement. Étudiez les règles complètes ; cet exercice ne prescrit aucun virage universel."
+        "Assurez une veille correcte, et considérez qu’un relèvement constant sur un bateau qui approche signale un risque d’abordage. Regardez, écoutez et utilisez tous les moyens appropriés disponibles. Si le relèvement compas d’un navire qui approche (sa direction vue de chez vous) change à peine au fil des observations, vous allez tous les deux vers le même point. Un relèvement qui change n’écarte pas toujours le risque, surtout de près, ou près d’un grand navire ou d’un remorqueur avec sa remorque (un bateau qui tire quelque chose au bout d’une longue ligne), dont la grande longueur peut encore vous toucher. En cas de doute, considérez que le risque existe.",
+        "Naviguez à une vitesse de sécurité : une vitesse qui vous permet de manœuvrer pour éviter ou de vous arrêter à temps. Elle dépend :\n• de la visibilité et du trafic\n• de la facilité avec laquelle votre bateau tourne et s’arrête\n• du vent, de la mer et du courant\n• des dangers proches\nAgissez tôt selon les règles et continuez à vérifier jusqu’à ce que l’autre navire soit passé et paré. Un seul symbole AIS (des navires affichés sur un écran grâce à la radio) ne remplace pas une veille complète, car beaucoup de petits bateaux n’émettent pas.",
+        "Si vous ne voyez pas l’autre bateau dans la brume ou la pluie, les règles de priorité à vue ne s’appliquent pas (règle internationale 19). Cela vaut dans une zone de visibilité réduite ou près d’elle, car aucun des deux bateaux ne peut voir quel type de navire est l’autre. À la place :\n• ralentissez à une vitesse sûre et gardez une veille\n• émettez les signaux exigés\n• utilisez correctement vos équipements\n• les navires à moteur gardent leurs machines prêtes à manœuvrer immédiatement\nApprenez les règles complètes avec un moniteur ; cet exercice ne prescrit aucun virage d’évitement universel."
       ],
       "observe": [
-        "Tracez des relèvements compas et distances successifs au lieu de vous fier à un aperçu.",
-        "Repérez ce qui manque lorsqu’un navire est entendu ou détecté électroniquement mais reste invisible."
+        "Notez plusieurs relèvements compas et distances au fil du temps, au lieu de vous fier à un seul coup d’œil.",
+        "Notez quelles informations manquent quand un navire est entendu ou affiché sur un écran sans être visible."
       ],
-      "mistake": "Revendiquer une priorité automatique dans le brouillard ou croire qu’aucune cible AIS signifie aucun navire.",
+      "mistake": "Revendiquer une priorité automatique dans la brume, ou supposer qu’aucune cible AIS signifie aucun navire.",
       "quiz": [
         {
-          "prompt": "La distance diminue tandis que le relèvement compas change à peine. Que conclure ?",
+          "prompt": "Un navire se rapproche alors que son relèvement compas change à peine. Que devez-vous en conclure ?",
           "options": [
-            "Un risque existe : évaluation continue et action à temps sont nécessaires",
-            "Le navire passera certainement derrière",
-            "Seuls les bateaux à moteur doivent agir"
+            "Il y a un risque d’abordage ; continuez à évaluer et agissez à temps",
+            "L’autre navire passera certainement derrière vous",
+            "Seuls les bateaux à moteur doivent réagir"
           ],
-          "explanation": "Un relèvement presque constant à l’approche indique un risque. Utilisez les informations adaptées et les règles applicables."
+          "explanation": "Un relèvement qui change à peine pendant qu’un navire approche signale un risque d’abordage. Utilisez toutes les informations utiles dont vous disposez et agissez selon les règles applicables."
         },
         {
-          "prompt": "En visibilité réduite, l’autre navire n’est pas en vue. Quelle affirmation respecte la règle internationale 19 ?",
+          "prompt": "En visibilité réduite, un autre navire n’est pas en vue. Quelle affirmation est juste selon la règle internationale 19 ?",
           "options": [
-            "Un voilier a toujours priorité sur un moteur invisible",
-            "Appliquer le régime de visibilité réduite, une vitesse sûre et une veille correcte",
-            "Garder la vitesse jusqu’au contact visuel"
+            "Un voilier a toujours priorité sur un bateau à moteur qu’on ne voit pas",
+            "Suivre les règles de visibilité réduite : vitesse de sécurité et veille correcte",
+            "Garder sa vitesse jusqu’à voir l’autre navire"
           ],
-          "explanation": "Les règles voile/moteur à vue ne se transposent pas simplement à une cible invisible. La règle 19 et les règles générales exigent une réponse adaptée."
+          "explanation": "Les règles voile/moteur à vue ne peuvent pas simplement s’appliquer à un navire que vous ne voyez pas. La règle 19 et les règles générales demandent une réponse adaptée à la situation."
         }
       ],
-      "transfer": "Étudiez les règles internationales et intérieures/locales applicables avec un moniteur. Pratiquez veille et équipements à bord ; cette leçon n’évalue pas l’évitement réel d’un abordage."
+      "transfer": "Étudiez les règles internationales complètes, ainsi que les règles intérieures ou locales applicables, avec un moniteur qualifié. Entraînez-vous à bord à une veille régulière et à l’usage des équipements ; cette leçon n’évalue pas un véritable évitement d’abordage."
     },
     "sail-42": {
       "title": "Pilotage nocturne et recoupements",
@@ -2062,86 +2062,86 @@
     "sail-48": {
       "title": "S’écarter ou maintenir : agir quand le risque évolue",
       "concepts": [
-        "Veillez par la vue, l’ouïe et tous les moyens appropriés. Adaptez la vitesse à la visibilité, au trafic et à la manœuvrabilité. Un rapprochement à relèvement presque constant indique un risque ; un relèvement changeant ne l’exclut pas toujours, notamment près d’un grand navire ou d’un remorquage. Dans le doute, retenez le risque.",
-        "Le navire qui s’écarte agit tôt et franchement pour passer largement à distance. Rendez les changements de cap ou vitesse perceptibles si possible ; évitez les petites modifications successives : l’autre navire doit pouvoir voir que vous agissez, et de petits changements ressemblent à une absence de changement. Vérifiez l’espace et le trafic. Ralentissez, stoppez ou battez en arrière si nécessaire pour éviter l’abordage ou gagner du temps, puis surveillez jusqu’à être paré et clair.",
-        "La Règle 17 comporte trois phases. Initialement, le navire privilégié maintient cap et vitesse. Il peut agir seul dès qu’il devient évident que l’autre n’agit pas convenablement. Quand les navires sont si proches que l’action du seul navire non privilégié ne suffit plus, il doit prendre la meilleure mesure pour éviter l’abordage. Évaluez les options avant ce dernier stade.",
-        "Lors d’un croisement entre navires à moteur, celui qui maintient et agit selon 17(a)(ii) ne doit pas, si possible, venir sur bâbord pour un navire situé sur son bâbord. Cette restriction n’impose pas de tourner toujours à droite en urgence. Le navire non privilégié reste tenu de s’écarter même si l’autre agit.",
-        "Il n’existe ni distance universelle de passage ni point fixe de manœuvre de dernière seconde. Réévaluez la situation. La Règle 2 maintient la responsabilité de la pratique maritime et des circonstances particulières ; une dérogation n’est justifiée que si nécessaire pour éviter un danger immédiat. Le statut privilégié ne donne aucun droit inconditionnel à l’abordage."
+        "Repérez tôt un risque d’abordage, pour savoir à temps si vous devez vous écarter ou maintenir votre route. Le navire non privilégié doit s’écarter de la route de l’autre ; le navire privilégié continue. Veillez par la vue, l’ouïe et tous les moyens appropriés disponibles, à une vitesse de sécurité adaptée à la visibilité, au trafic, à la manœuvrabilité et aux conditions. Un navire qui se rapproche à relèvement compas (la direction vers lui) presque constant signale un risque. Un relèvement qui change ne l’exclut pas toujours, surtout de près ou avec de grands navires ou des remorquages. Dans le doute, considérez que le risque existe.",
+        "Si vous êtes le navire non privilégié, agissez tôt et franchement pour que l’autre voie que vous vous écartez. Faites un changement de cap ou de vitesse large et bien visible, car de petits changements ressemblent, vus de l’autre bateau, à une absence de changement (Règle 8). Évitez une suite de petites modifications. Avant de tourner, vérifiez votre espace libre (l’eau dégagée autour de vous) et le reste du trafic. Si nécessaire, ralentissez, stoppez ou battez en arrière pour éviter l’abordage ou gagner du temps pour juger la situation. Puis continuez à surveiller jusqu’à être enfin passé et paré.",
+        "L’obligation du navire privilégié augmente en trois étapes à mesure que le danger grandit (Règle 17). Commencez tôt à peser vos options ; n’attendez pas la dernière étape. Les étapes :\n• D’abord, maintenez votre cap et votre vitesse, pour que l’autre bateau puisse prévoir vos mouvements.\n• Dès qu’il est clair que le navire non privilégié n’agit pas comme il faut, vous pouvez agir seul.\n• Quand vous êtes si proches que le navire non privilégié ne peut plus éviter seul l’abordage, vous devez agir de la façon qui aide le mieux à l’éviter.",
+        "Quand deux bateaux à moteur se croisent et que vous, privilégié, agissez, évitez de venir à gauche vers un bateau sur votre gauche. Cela s’applique quand deux navires à propulsion mécanique se croisent et que vous, le navire privilégié, agissez seul parce que l’autre ne s’écarte pas (Règle 17(a)(ii)). Si possible, ne venez pas sur bâbord pour un navire situé sur votre propre bâbord : s’il finit par venir sur tribord (à droite), comme les règles le prévoient, votre virage à bâbord vous mènerait droit sur lui. C’est une limite précise, pas un ordre de tourner à droite dans toute urgence. Le navire non privilégié doit toujours s’écarter, même quand vous agissez.",
+        "Il n’existe pas de distance de passage sûre fixe : jugez chaque situation et continuez à vérifier. Il n’existe pas non plus de moment de dernière seconde où un virage marche toujours. Vous restez responsable de la bonne pratique maritime ordinaire et des circonstances particulières (Règle 2). Vous ne pouvez déroger à une règle que si c’est nécessaire pour éviter un danger imminent (Règle 2). Être le navire privilégié ne donne jamais un droit inconditionnel d’aborder l’autre."
       ],
       "observe": [
-        "Expliquez le passage de « peut agir » à « doit agir ».",
-        "Après la manœuvre, contrôlez relèvement, distance et trafic environnant."
+        "Décrivez ce qui change pour le navire privilégié entre « peut agir » et « doit agir ».",
+        "Après une manœuvre, vérifiez le nouveau relèvement, la distance et le trafic alentour."
       ],
-      "mistake": "Maintenir cap et vitesse lorsque l’autre ne peut plus éviter seul l’abordage.",
+      "mistake": "Maintenir cap et vitesse en tant que navire privilégié alors que l’autre navire ne peut plus éviter seul l’abordage.",
       "quiz": [
         {
-          "prompt": "L’autre n’agit manifestement pas convenablement. Le navire privilégié peut-il agir avant que l’autre ne puisse plus éviter seul l’abordage?",
+          "prompt": "Le navire non privilégié n’agit manifestement pas comme il faut. Le navire privilégié peut-il agir avant que l’abordage ne puisse plus être évité par le seul navire non privilégié ?",
           "options": [
             "Oui, selon la Règle 17(a)(ii)",
             "Non, il doit toujours attendre",
-            "Seulement avec un accord radio"
+            "Seulement avec une autorisation radio"
           ],
-          "explanation": "La possibilité d’agir précède l’obligation finale. Continuez à apprécier toute la situation."
+          "explanation": "La permission d’agir arrive plus tôt que l’obligation finale d’agir. Continuez à juger l’ensemble de la situation."
         },
         {
-          "prompt": "Vous avez changé de cap pour éviter l’abordage. Que reste-t-il à faire?",
+          "prompt": "Vous avez viré pour éviter un autre navire. Qu’est-ce qui complète votre réaction ?",
           "options": [
-            "Cesser d’observer l’autre",
-            "Contrôler jusqu’à être paré et clair",
+            "Cesser de surveiller l’autre navire",
+            "Vérifier que la manœuvre fonctionne jusqu’à être passé et paré",
             "Supposer que le virage a supprimé tout risque"
           ],
-          "explanation": "La Règle 8 impose de vérifier l’effet et d’obtenir un passage sûr sans créer une autre situation rapprochée."
+          "explanation": "La Règle 8 vous demande de vérifier l’effet de votre manœuvre et de passer à une distance sûre, sans créer une autre situation rapprochée."
         }
       ],
-      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+      "transfer": "Étudiez les règles internationales du COLREG citées et les règles applicables dans vos eaux. Répétez ces décisions avec un moniteur ; les schémas évaluent le raisonnement, pas une vraie compétence d’évitement des abordages."
     },
     "sail-49": {
       "title": "Navires particuliers, chenaux étroits et voies de circulation",
       "concepts": [
-        "Identifiez le statut réel, pas l’apparence ou la taille. « Non maître de sa manœuvre » implique des circonstances exceptionnelles empêchant de manœuvrer selon les règles. « Capacité de manœuvre restreinte » résulte du travail, tel le dragage. La pêche doit utiliser des engins limitant la manœuvre ; une simple ligne traînante sans restriction ne suffit pas. Vérifiez feux, marques et situation.",
-        "Le principe : les navires qui ne peuvent pas facilement tourner ou s’arrêter reçoivent de la place de ceux qui le peuvent. Sous réserve des Règles 9, 10 et 13, un voilier ordinaire faisant route s’écarte des navires non maîtres de leur manœuvre, à capacité restreinte et en pêche. Un navire à moteur ordinaire s’écarte aussi des voiliers. Selon 18(d), les navires autres que les deux premières catégories évitent, si possible, de gêner un navire handicapé par son tirant d’eau montrant les signaux requis. Celui-ci reste particulièrement prudent. Quand les deux navires ont un statut particulier, par exemple l’un non maître de sa manœuvre et l’autre à capacité de manœuvre restreinte, les règles ne donnent la priorité à aucun : les deux agissent pour éviter l’abordage.",
-        "Dans un chenal étroit, serrez la limite extérieure à tribord autant que possible et sans danger. Un voilier ou navire de moins de 20 m ne gêne pas celui qui ne peut naviguer en sécurité que dans le chenal. Ne traversez pas si cela le gêne. Les pêcheurs ne gênent pas les autres navires du chenal. Anticipez les coudes et évitez d’y mouiller si possible.",
-        "Dans un dispositif adopté par l’Organisation maritime internationale (OMI), suivez le sens du trafic ; entrez ou sortez latéralement sous un petit angle. Évitez de traverser si possible ; sinon, prenez un cap aussi perpendiculaire que possible au trafic. Il s’agit du cap, pas de la route fond corrigée du courant. Les voiliers et moins de 20 m ne gênent pas les navires à moteur suivant la voie. Évitez les zones de séparation sauf autorisation des règles.",
-        "« Ne pas gêner » exige une action précoce pour laisser assez d’espace avant l’apparition d’un risque. Cette obligation subsiste ensuite et les deux navires restent soumis aux règles anticollision. Une voie ne confère pas de priorité inconditionnelle. Consultez aussi les instructions portuaires, cartes et avis locaux.",
-        "Un chenal étroit a ses propres signaux de dépassement. Le navire qui ne peut dépasser en sécurité que si celui de devant s’écarte le demande au sifflet : deux sons prolongés et un bref signifient « j’ai l’intention de vous dépasser sur tribord » ; deux prolongés et deux brefs, « sur bâbord ». Le navire de devant donne son accord par prolongé, bref, prolongé, bref et laisse de la place. S’il doute que ce soit sûr, il émet au moins cinq sons brefs et rapides.",
-        "Une drague ou un navire travaillant sous l’eau peut avoir un côté obstrué par son travail. Il montre alors deux feux rouges visibles sur tout l’horizon, ou deux boules noires de jour, du côté obstrué, et deux feux verts visibles sur tout l’horizon, ou deux bicônes noirs, du côté où l’on peut passer. Ils s’ajoutent à son rouge-blanc-rouge ou boule-bicône-boule.",
-        "Des engins de pêche qui s’étendent à plus de 150 m sont signalés du côté où ils s’étendent. En plus de ses feux de pêche, le navire montre un feu blanc visible sur tout l’horizon, ou de jour un cône pointe en haut, dans la direction des engins. Passez de l’autre côté, bien à l’écart des engins."
+        "Jugez un navire d’après ce qu’il peut vraiment faire, pas d’après sa taille apparente. Confirmez son statut grâce aux bons feux, aux marques et à la situation. Trois catégories particulières comptent ici :\n• Non maître de sa manœuvre : des circonstances exceptionnelles (comme une panne de barre) l’empêchent de manœuvrer comme les règles l’exigent.\n• À capacité de manœuvre restreinte : son travail, comme le dragage, limite sa capacité à suivre les règles.\n• En pêche : ses engins (filets ou lignes) limitent sa manœuvre ; une pêche de loisir à la traîne qui ne la limite pas ne compte pas.",
+        "Les navires qui ne peuvent pas facilement tourner ou s’arrêter reçoivent de la place de ceux qui le peuvent. Un voilier ordinaire faisant route (ni au mouillage, ni amarré, ni échoué) s’écarte des navires non maîtres de leur manœuvre, à capacité de manœuvre restreinte et en pêche. Un navire à moteur ordinaire (qui utilise un moteur) s’écarte aussi des voiliers. Les chenaux étroits, les voies de circulation et les dépassements peuvent changer cet ordre (Règles 9, 10 et 13). Un navire handicapé par son tirant d’eau (un navire profond qui doit rester en eau profonde) montre des signaux particuliers. Tous les navires, sauf ceux non maîtres de leur manœuvre ou à capacité de manœuvre restreinte, doivent si possible éviter de le gêner (de se mettre sur son chemin) en agissant tôt (règle internationale 18(d)). Lui-même navigue avec une prudence particulière. Quand les deux navires ont un statut particulier, par exemple l’un non maître de sa manœuvre et l’autre à capacité de manœuvre restreinte, les règles ne donnent la priorité à aucun : les deux agissent pour éviter l’abordage.",
+        "Dans un chenal étroit, restez aussi près que possible du bord tribord (à droite), tant que c’est sûr et faisable. Un voilier ou un navire de moins de 20 m (environ 65 pieds) ne doit pas gêner un navire qui ne peut naviguer en sécurité que dans le chenal, car le grand navire n’a pas d’autre endroit où aller (Règle 9). Ne traversez pas si cela gênerait un tel navire. Les navires de pêche ne doivent pas gêner les autres navires qui suivent le chenal. Abordez avec une vigilance et une prudence particulières les coudes derrière lesquels vous ne voyez rien. Si possible, ne mouillez pas dans le chenal.",
+        "Un dispositif de séparation du trafic est un ensemble de voies maritimes à sens unique, comme une autoroute : suivez donc le sens de votre voie. Ces dispositifs, adoptés par l’Organisation maritime internationale (OMI), ont une bande centrale entre les voies, la zone de séparation. Entrez dans une voie ou sortez-en par le côté, sous un petit angle. Évitez de traverser si vous le pouvez. Si vous devez traverser, gardez votre cap (là où pointe votre étrave) aussi perpendiculaire que possible au sens du trafic : vous quittez ainsi la voie au plus vite et les navires voient clairement ce que vous faites. Il s’agit du cap, pas d’une route fond corrigée du courant. Les voiliers et les navires de moins de 20 m ne doivent pas gêner les navires à moteur qui suivent une voie. Restez hors des zones de séparation, sauf dans les cas permis par les règles (Règle 10).",
+        "« Ne pas gêner » veut dire agir tôt pour laisser beaucoup d’espace, avant qu’un risque d’abordage n’apparaisse. Cette obligation continue si un risque apparaît, et les deux navires doivent alors aussi suivre les règles d’évitement des abordages. Une voie de circulation ne donne pas à un navire une priorité inconditionnelle. Consultez les instructions portuaires locales, les cartes et les avis, en plus des règles internationales.",
+        "Dans un chenal étroit, demandez au sifflet avant de dépasser (passer un navire plus lent devant vous). Vous le faites quand vous ne pouvez dépasser en sécurité que si le navire de devant s’écarte. Un son prolongé dure de 4 à 6 secondes ; un son bref environ 1 seconde. Les signaux (Règle 34(c)) :\n• Deux prolongés, un bref : « J’ai l’intention de vous dépasser sur votre tribord. »\n• Deux prolongés, deux brefs : « J’ai l’intention de vous dépasser sur votre bâbord (à gauche). »\n• Prolongé, bref, prolongé, bref : le navire de devant est d’accord et laisse de la place.\n• Au moins cinq sons brefs et rapides : le navire de devant doute que ce soit sûr.",
+        "Une drague ou un navire travaillant sous l’eau montre quel côté est obstrué et de quel côté vous pouvez passer. Son travail peut obstruer un côté. Du côté obstrué, il montre deux feux rouges visibles sur tout l’horizon (vus de toutes les directions), ou deux boules noires de jour. Du côté où vous pouvez passer, il montre deux feux verts visibles sur tout l’horizon, ou deux bicônes noirs de jour. Ils s’ajoutent à ses feux rouge-blanc-rouge ou à ses marques boule-bicône-boule, le signal de la capacité de manœuvre restreinte.",
+        "Des engins de pêche qui s’étendent à plus de 150 m sont signalés du côté où ils s’étendent. 150 m, c’est environ un terrain de football et demi. En plus de ses feux de pêche, le navire montre un feu blanc visible sur tout l’horizon, ou de jour un cône pointe en haut, dans la direction des engins. Passez de l’autre côté, bien à l’écart des engins, car les filets et les lignes peuvent accrocher votre quille ou votre hélice."
       ],
       "observe": [
-        "Distinguez une restriction liée au travail de la simple taille.",
-        "En traversant une voie, comparez cap et route fond."
+        "Distinguez un navire limité par son travail d’un navire simplement grand.",
+        "Pour traverser une voie de circulation, comparez votre cap avec votre route fond (votre trajet réel, que le courant peut décaler sur le côté)."
       ],
-      "mistake": "Invoquer la priorité à voile pour couper la route d’un navire limité au chenal.",
+      "mistake": "Invoquer « la voile est prioritaire » pour passer devant un navire qui ne peut naviguer en sécurité que dans le chenal.",
       "quiz": [
         {
-          "prompt": "Votre voilier gênerait un navire limité à ce chenal. Que faire?",
+          "prompt": "Votre voilier gênerait un navire qui ne peut naviguer en sécurité que dans ce chenal étroit. Qu’est-ce qui est exigé ?",
           "options": [
-            "Traverser parce que vous êtes à voile",
+            "Traverser parce que vous êtes à la voile",
             "Agir tôt pour ne pas gêner son passage",
-            "Attendre une demande radio"
+            "Attendre une demande par radio"
           ],
-          "explanation": "La Règle 9 impose au voilier de ne pas gêner ce navire, sans attendre d’appel radio."
+          "explanation": "La Règle 9 impose à un voilier de ne pas gêner un tel navire ; cette obligation ne dépend pas d’un appel radio."
         },
         {
-          "prompt": "En traversant obligatoirement une voie, que faut-il orienter presque perpendiculairement au trafic?",
+          "prompt": "Quand vous devez traverser une voie de circulation, qu’est-ce qui doit être presque perpendiculaire au sens du trafic ?",
           "options": [
             "Le cap",
             "La route fond, quel que soit le cap",
             "La bôme"
           ],
-          "explanation": "La Règle 10(c) précise le cap ; le courant peut modifier la route fond."
+          "explanation": "La Règle 10(c) précise le cap. Le courant peut rendre votre route fond différente."
         },
         {
           "prompt": "Dans un chenal étroit, le navire de devant entend de l’arrière deux sons prolongés et deux brefs. Que signifient-ils ?",
           "options": [
-            "Le navire de l’arrière veut dépasser sur bâbord",
+            "Le navire de l’arrière a l’intention de dépasser sur bâbord",
             "Le navire de l’arrière est en détresse",
-            "Le navire de l’arrière veut dépasser sur tribord"
+            "Le navire de l’arrière a l’intention de dépasser sur tribord"
           ],
-          "explanation": "Selon la Règle 34(c), deux prolongés et un bref demandent à passer sur tribord ; deux prolongés et deux brefs, sur bâbord. Donnez votre accord par prolongé-bref-prolongé-bref, ou émettez cinq brefs en cas de doute."
+          "explanation": "Selon la Règle 34(c), deux prolongés et un bref demandent à passer sur tribord ; deux prolongés et deux brefs, sur bâbord. Le navire de devant donne son accord par prolongé-bref-prolongé-bref, ou émet cinq sons brefs en cas de doute."
         }
       ],
-      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage.",
+      "transfer": "Étudiez les règles internationales du COLREG citées et les règles applicables dans vos eaux. Répétez ces décisions avec un moniteur ; les schémas évaluent le raisonnement, pas une vraie compétence d’évitement des abordages.",
       "localNotes": [
         "Dans l’étroit golfe d’Eilat, un voilier doit s’écarter d’un grand navire qui ne peut naviguer que dans le chenal, même si en haute mer le navire à propulsion mécanique s’écarte du voilier."
       ]
@@ -2149,43 +2149,43 @@
     "sail-50": {
       "title": "Lire les feux, marques et signaux sonores",
       "concepts": [
-        "Le feu rouge est à bâbord, le vert à tribord ; chacun couvre 112,5°, de l’avant à 22,5° sur l’arrière du travers. Le feu blanc de poupe couvre 135° à l’arrière ; le feu de tête de mât, 225° vers l’avant. Identifiez l’ensemble et l’aspect. Un blanc isolé peut être un feu de poupe, de mouillage ou autre : il ne prouve ni le type ni l’absence de risque.",
-        "Un voilier montre normalement feux de côté et de poupe ; les combinaisons et exceptions des petits navires dépendent de leur longueur. Un navire à moteur ajoute normalement les feux de tête de mât requis. Un yacht à voile aussi propulsé au moteur montre de jour un cône noir pointe en bas. Au mouillage, les feux blancs visibles sur tout l’horizon et une boule noire de jour sont requis sous réserve des exceptions. Un voilier peut aussi montrer en tête de mât deux feux facultatifs visibles sur tout l’horizon, rouge sur vert, mais pas en même temps qu’un fanal combiné de tête de mât. Étudiez les configurations complètes avant de naviguer de nuit.",
-        "Signaux verticaux utiles : non maître de sa manœuvre, deux rouges visibles sur tout l’horizon ou deux boules noires ; capacité restreinte, rouge-blanc-rouge ou boule-bicône-boule ; pêche hors chalutage, rouge sur blanc ; chalutage, vert sur blanc. La marque de pêche est deux cônes pointes jointes. Un navire handicapé par son tirant d’eau peut montrer trois rouges ou un cylindre. D’autres feux peuvent être requis. Les pages suivantes ajoutent les signaux des grands navires et des navires au mouillage, échoués, en remorquage, pilotes ou soutenant des plongeurs.",
-        "Les feux sont montrés du coucher au lever du soleil et chaque fois que la visibilité est réduite. Cela inclut la brume ou la forte pluie de jour ; les marques sont montrées de jour. Pendant ces périodes, ne montrez aucun autre feu qui puisse être confondu avec des feux de navigation ou gêner la veille. Un yacht ou un bateau à moteur ordinaire sans statut particulier n’a pas de marque de jour à montrer.",
-        "Un navire à propulsion mécanique de 50 m ou plus montre deux feux de tête de mât, celui de l’arrière plus haut que celui de l’avant. La paire indique aussi son cap : quand les deux feux sont alignés verticalement, il fait route vers vous ou s’éloigne de vous. Un navire de moins de 50 m peut n’en montrer qu’un. Un navire à capacité de manœuvre restreinte n’ajoute feux de tête de mât, de côté et de poupe à son rouge-blanc-rouge que lorsqu’il a de l’erre.",
-        "Au mouillage, un navire de moins de 50 m montre un feu blanc visible sur tout l’horizon, là où il se voit le mieux. Un navire de 50 m ou plus en montre deux : un à l’avant et un plus bas à l’arrière ou près de l’arrière. De jour, il montre une boule noire à l’avant. Un navire de 100 m ou plus éclaire aussi ses ponts : un navire très éclairé qui ne bouge pas peut fort bien être au mouillage.",
-        "Un navire échoué montre ses feux de mouillage et deux feux rouges visibles sur tout l’horizon disposés verticalement ; de jour, trois boules noires superposées. Lisez-y aussi un avertissement sur l’eau : la profondeur n’y a pas suffi pour lui et peut ne pas suffire pour vous.",
-        "Un navire en remorquage ajoute des feux de tête de mât et un feu jaune de remorquage. Un navire à propulsion mécanique qui remorque derrière lui montre deux feux de tête de mât superposés, ou trois lorsque la remorque, mesurée de son arrière à l’extrémité du convoi, dépasse 200 m. Il montre aussi feux de côté, feu de poupe et un feu jaune de remorquage au-dessus du feu de poupe ; le navire remorqué montre feux de côté et feu de poupe. Ce n’est que lorsque la remorque dépasse 200 m que les deux montrent un bicône noir de jour. Ne passez jamais entre un remorqueur et sa remorque.",
-        "Un remorqueur ordinaire avec sa remorque est un navire à propulsion mécanique. Il s’écarte de la route d’un voilier et suit les règles habituelles de croisement et de routes opposées. Un navire qui pousse en avant ou remorque à couple montre deux feux de tête de mât, des feux de côté et un feu de poupe, mais pas de feu jaune de remorquage. Si le remorquage l’empêche gravement de modifier sa route, le remorqueur montre aussi rouge-blanc-rouge, ou boule-bicône-boule de jour, et les autres navires, voiliers compris, s’écartent alors de sa route.",
-        "Un bateau pilote en service montre en tête de mât deux feux visibles sur tout l’horizon, blanc sur rouge ; pour s’en souvenir : « blanc sur rouge, le pilote ». En route, il ajoute feux de côté et feu de poupe, et au mouillage ses feux de mouillage. Les navires ralentissent et manœuvrent près d’une station de pilotage pour prendre leur pilote : attendez-vous à des changements soudains.",
-        "Un navire soutenant des plongeurs montre de jour le pavillon A du code international. C’est une reproduction rigide d’au moins 1 m de haut, blanche et bleue, à extrémité en queue d’hirondelle. De nuit, il montre les feux de capacité de manœuvre restreinte, rouge-blanc-rouge. Des plongeurs peuvent être dans l’eau n’importe où autour de lui : tenez-vous bien à l’écart et ralentissez.",
-        "Selon la Règle internationale 34, un navire à moteur faisant route et manœuvrant en vue émet un son bref pour venir sur tribord, deux sur bâbord, trois pour battre en arrière. Trois sons ne signifient pas forcément qu’il recule déjà. En cas de doute sur les intentions ou l’action suffisante de navires approchant en vue, émettez au moins cinq sons brefs rapides. À un coude masqué, un prolongé ; un navire approchant à portée répond par un prolongé.",
-        "Les signaux de brume sont différents. Toutes les deux minutes au plus : un navire à moteur ayant de l’erre émet un prolongé ; faisant route sans erre, deux prolongés espacés d’environ deux secondes ; un voilier, un prolongé puis deux brefs. Ce dernier signal est aussi émis par les navires non maîtres de leur manœuvre, à capacité de manœuvre restreinte, handicapés par leur tirant d’eau, en pêche, ou remorquant ou poussant : il n’identifie donc pas un voilier à lui seul. Un navire remorqué avec équipage, le dernier du convoi, émet un prolongé et trois brefs juste après le signal du remorqueur. Un bref dure environ une seconde ; un prolongé, quatre à six. La Règle 35 précise les autres cas et exceptions ; les signaux intérieurs peuvent différer."
+        "Chaque feu n’éclaire qu’une partie du cercle : les feux que vous voyez indiquent donc vers où un bateau est tourné. Le rouge est le feu de côté bâbord (à gauche) et le vert celui de tribord (à droite). Chacun couvre 112,5°, de l’avant jusqu’à 22,5° sur l’arrière du travers (juste en arrière du côté). Le feu blanc de poupe couvre les 135° restants vers l’arrière ; le feu blanc de tête de mât couvre 225° vers l’avant. Rouge et vert ensemble veulent dire qu’il vient droit sur vous. Un feu blanc isolé peut être un feu de poupe, un feu de mouillage ou un autre feu autorisé : il ne prouve ni le type de navire ni l’absence de risque.",
+        "Les feux et marques normaux d’un bateau dépendent de ce qu’il fait :\n• Voilier : feux de côté et feu de poupe (les options et exceptions des petits navires dépendent de leur longueur).\n• Navire à propulsion mécanique : il ajoute le ou les feux de tête de mât requis.\n• À la voile et au moteur en même temps : un cône noir pointe en bas, de jour.\n• Au mouillage : le ou les feux blancs requis visibles sur tout l’horizon (vus de toutes les directions), et une boule noire de jour, avec des exceptions selon la longueur et le lieu.\nUn voilier peut aussi montrer en tête de mât deux feux facultatifs visibles sur tout l’horizon, rouge sur vert (« rouge sur vert, voilier au vent »). Il ne peut pas les montrer en même temps qu’un fanal combiné de tête de mât (rouge, vert et blanc dans un seul fanal en haut du mât). Étudiez les configurations complètes avant de naviguer de nuit.",
+        "Certains feux et marques indiquent un statut particulier ; lisez-les de haut en bas :\n• Non maître de sa manœuvre (ne peut pas manœuvrer comme il le faudrait) : deux feux rouges visibles sur tout l’horizon, ou deux boules noires de jour.\n• À capacité de manœuvre restreinte (son travail limite ses mouvements) : rouge-blanc-rouge, ou boule-bicône-boule.\n• En pêche autre que le chalutage : rouge sur blanc.\n• En chalutage (traîne un filet) : vert sur blanc.\n• Handicapé par son tirant d’eau (trop profond pour quitter l’eau profonde) : trois feux rouges visibles sur tout l’horizon, ou un cylindre.\nLa marque de jour de pêche est formée de deux cônes pointes jointes. Ce sont des signaux de statut : des feux de navigation peuvent aussi être nécessaires. Les pages suivantes ajoutent les grands navires et les navires au mouillage, échoués, en remorquage, pilotes ou soutenant des plongeurs.",
+        "Les feux sont montrés du coucher au lever du soleil et chaque fois que la visibilité est réduite. Cela inclut la brume ou la forte pluie de jour. Les marques sont montrées de jour. Pendant ces périodes, ne montrez aucun autre feu qui puisse être confondu avec des feux de navigation ou gêner la veille, car il peut masquer la vraie configuration. Un yacht ou un bateau à moteur ordinaire sans statut particulier n’a pas de marque de jour à montrer.",
+        "Les grands navires à propulsion mécanique montrent deux feux de tête de mât, qui indiquent aussi vers où ils pointent. Un navire à propulsion mécanique de 50 m ou plus (environ la longueur d’une piscine olympique) en montre deux, celui de l’arrière plus haut que celui de l’avant. Quand les deux feux sont alignés verticalement, il pointe vers vous ou s’éloigne de vous. Un navire de moins de 50 m peut n’en montrer qu’un. Un navire à capacité de manœuvre restreinte n’ajoute feux de tête de mât, feux de côté et feu de poupe à son rouge-blanc-rouge que lorsqu’il a de l’erre (qu’il avance vraiment dans l’eau).",
+        "Les navires au mouillage montrent des feux blancs visibles sur tout l’horizon la nuit et une boule noire le jour. Un navire de moins de 50 m montre un feu blanc visible sur tout l’horizon, là où il se voit le mieux. Un navire de 50 m ou plus en montre deux : un à l’avant et un plus bas à l’arrière ou près de l’arrière. La boule noire est montrée à l’avant. Un navire de 100 m ou plus éclaire aussi ses ponts : un navire très éclairé qui ne bouge pas peut donc fort bien être au mouillage.",
+        "Un navire échoué vous avertit à la fois sur le navire et sur les petits fonds tout proches. Un navire échoué (posé sur le fond) montre ses feux de mouillage plus deux feux rouges visibles sur tout l’horizon disposés verticalement ; de jour, trois boules noires superposées. La profondeur n’y a pas suffi pour lui, elle peut donc ne pas suffire pour vous.",
+        "Un navire en remorquage ajoute des feux de tête de mât et un feu jaune de remorquage. Un navire à propulsion mécanique qui remorque derrière lui montre deux feux de tête de mât superposés. Il en montre trois quand la remorque dépasse 200 m (environ deux terrains de football), mesurée de son arrière à l’extrémité du convoi. Il montre aussi des feux de côté, un feu de poupe et un feu jaune de remorquage au-dessus du feu de poupe. Le navire remorqué montre des feux de côté et un feu de poupe. Ce n’est que lorsque la remorque dépasse 200 m que les deux montrent un bicône noir de jour. Ne passez jamais entre un remorqueur et sa remorque, car la remorque peut être cachée au ras de l’eau.",
+        "Un remorqueur ordinaire avec sa remorque est un navire à propulsion mécanique : il s’écarte donc de la route d’un voilier. Il suit les règles habituelles de croisement et de routes opposées. Un navire qui pousse en avant ou remorque à couple (la remorque amarrée contre son flanc) montre deux feux de tête de mât, des feux de côté et un feu de poupe, mais pas de feu jaune de remorquage. Si le remorquage l’empêche gravement de modifier sa route, le remorqueur montre aussi rouge-blanc-rouge, ou boule-bicône-boule de jour. Les autres navires, voiliers compris, s’écartent alors de sa route.",
+        "Un bateau pilote en service montre en tête de mât deux feux visibles sur tout l’horizon, blanc sur rouge. Un pilote est un spécialiste local qui monte à bord des navires pour les guider ; pour s’en souvenir : « blanc sur rouge, le pilote ». En route (ni au mouillage, ni amarré, ni échoué), il ajoute des feux de côté et un feu de poupe ; au mouillage, ses feux de mouillage. Les navires ralentissent et manœuvrent près d’une station de pilotage pour prendre leur pilote : attendez-vous à des changements soudains.",
+        "Un navire soutenant des plongeurs montre le pavillon A du code de jour, et rouge-blanc-rouge de nuit. Le pavillon est une reproduction rigide d’au moins 1 m de haut, blanche et bleue, à extrémité en queue d’hirondelle (une encoche en V au bout libre). De nuit, il montre les feux de capacité de manœuvre restreinte, rouge-blanc-rouge. Des plongeurs peuvent être dans l’eau n’importe où autour de lui : tenez-vous bien à l’écart et ralentissez.",
+        "Les navires à propulsion mécanique qui se voient signalent leurs manœuvres par des sons de sirène :\n• Un son bref : je viens sur tribord.\n• Deux sons brefs : je viens sur bâbord.\n• Trois sons brefs : je bats en arrière (moteur en marche arrière).\n• Au moins cinq sons brefs et rapides : doute sur les intentions de l’autre, ou sur le fait qu’il en fait assez.\nUn son bref dure environ une seconde ; un son prolongé, de quatre à six secondes. Ils viennent d’un navire à propulsion mécanique faisant route qui manœuvre en vue d’autres navires (règle internationale 34). Trois sons ne veulent pas forcément dire qu’il recule déjà. Près d’un coude masqué d’un chenal, émettez un son prolongé ; un navire qui approche et l’entend répond par un son prolongé.",
+        "Dans la brume, les navires émettent d’autres signaux, à des intervalles de deux minutes au plus. Un navire à propulsion mécanique ayant de l’erre émet un son prolongé. Faisant route mais stoppé et sans erre, il émet deux sons prolongés espacés d’environ deux secondes. Un navire remorqué avec équipage, le dernier du convoi, émet un prolongé et trois brefs juste après le signal du remorqueur. Un prolongé suivi de deux brefs est émis par :\n• un voilier\n• un navire non maître de sa manœuvre, ou à capacité de manœuvre restreinte\n• un navire handicapé par son tirant d’eau, ou en pêche\n• un navire qui remorque ou qui pousse\nCe signal n’identifie donc pas un voilier à lui seul. La Règle 35 précise les autres cas et les exceptions pour petits navires ; les signaux internationaux et intérieurs peuvent différer."
       ],
       "observe": [
-        "Nommez toute la configuration observée avant d’en déduire un statut.",
-        "Distinguez signaux de manœuvre en vue et signaux de brume."
+        "Nommez toute la configuration de feux observée avant d’en déduire le statut du navire.",
+        "Distinguez les signaux de manœuvre en vue des signaux de brume."
       ],
-      "mistake": "Identifier par une seule couleur ou prendre un signal de brume pour un virage.",
+      "mistake": "Identifier un navire d’après une seule couleur, ou prendre un signal de brume pour une indication de virage.",
       "quiz": [
         {
-          "prompt": "En vue selon la Règle internationale 34, trois sons brefs signifient…",
+          "prompt": "Deux navires se voient. Selon la règle internationale 34, trois sons brefs signifient…",
           "options": [
             "Je bats en arrière",
             "Je recule déjà",
             "Je revendique la priorité"
           ],
-          "explanation": "Le signal décrit la propulsion, pas un déplacement assuré sur l’eau."
+          "explanation": "Le signal dit que son moteur travaille en arrière (en marche arrière). Il ne garantit pas qu’il recule déjà dans l’eau."
         },
         {
-          "prompt": "Dans la brume, vous entendez un prolongé et deux brefs. Que conclure?",
+          "prompt": "Dans la brume, vous entendez un son prolongé et deux brefs. Que pouvez-vous en conclure ?",
           "options": [
             "C’est certainement un voilier",
             "Il vient sur bâbord",
-            "Plusieurs catégories l’utilisent ; l’identité reste incertaine"
+            "Plusieurs catégories utilisent ce signal ; l’identité reste incertaine"
           ],
-          "explanation": "La Règle 35 partage ce signal entre voiliers et catégories particulières. Continuez l’évaluation du risque."
+          "explanation": "Selon la Règle 35, les voiliers et plusieurs types de navires particuliers utilisent tous ce signal. Continuez à évaluer le risque."
         },
         {
           "prompt": "De nuit, vous voyez des feux blancs de mouillage et deux feux rouges visibles sur tout l’horizon superposés. De quoi s’agit-il ?",
@@ -2194,19 +2194,19 @@
             "Un navire échoué",
             "Un navire en remorquage"
           ],
-          "explanation": "Les feux de mouillage plus deux rouges superposés signifient échoué ; de jour, trois boules noires. Attendez-vous à des petits fonds à proximité."
+          "explanation": "Feux de mouillage plus deux rouges superposés signifient échoué ; de jour, il montre trois boules noires. Attendez-vous à des petits fonds tout près."
         },
         {
-          "prompt": "Un remorqueur et le navire qu’il remorque montrent tous deux un bicône noir de jour. Que vous indique-t-il ?",
+          "prompt": "Un remorqueur et le navire qu’il remorque montrent tous deux un bicône noir de jour. Que vous indique le bicône ?",
           "options": [
             "La remorque dépasse 200 m",
             "Le remorqueur est à capacité de manœuvre restreinte",
             "Les deux navires sont au mouillage"
           ],
-          "explanation": "La Règle 24 ajoute le bicône, et de nuit un troisième feu de tête de mât, seulement lorsque la remorque dépasse 200 m. Une remorque plus courte n’a pas de marque de jour."
+          "explanation": "La Règle 24 ajoute le bicône, et de nuit un troisième feu de tête de mât, seulement quand la remorque dépasse 200 m. Une remorque plus courte n’a pas besoin de marque de jour."
         }
       ],
-      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage.",
+      "transfer": "Étudiez les règles internationales du COLREG citées et les règles applicables dans vos eaux. Répétez ces décisions avec un moniteur ; les schémas évaluent le raisonnement, pas une vraie compétence d’évitement des abordages.",
       "localNotes": [
         "La documentation du permis de conducteur de bateau israélien demande de rester à au moins 200 m d’un navire qui montre le pavillon de plongée. Vérifiez la réglementation israélienne en vigueur avant de vous fier à une distance."
       ]
@@ -2214,38 +2214,38 @@
     "sail-51": {
       "title": "Visibilité réduite et plan complet de rencontre",
       "concepts": [
-        "Choisissez le cadre avant d’attribuer les rôles. La Règle internationale 19 concerne les navires qui ne sont pas en vue dans une zone de visibilité réduite ou à proximité. N’attribuez pas à un contact invisible les rôles ordinaires voile-moteur ou croisement. Si les navires sont visuellement en vue, appliquez les règles correspondantes en tenant compte de la visibilité et des devoirs généraux.",
-        "Adoptez une vitesse de sécurité adaptée. Un navire à moteur tient ses machines prêtes à manœuvrer immédiatement. Veillez, utilisez correctement signaux et équipements et évitez les conclusions sur de maigres données radar. L’AIS et une conversation radio ne remplacent pas la veille, ne donnent pas une image complète et n’annulent pas les règles.",
-        "Pour un contact détecté au radar seul, évaluez le rapprochement excessif ou le risque et agissez à temps. En changeant de cap, évitez autant que possible une venue sur bâbord pour un navire sur l’avant du travers, sauf celui que vous rattrapez, ainsi qu’une venue vers un navire au travers ou sur l’arrière. Aucun virage n’est universel : vérifiez contacts, espace et vitesse.",
-        "Sauf absence de risque établie, entendre un signal de brume apparemment sur l’avant du travers, ou ne pouvoir éviter un rapprochement excessif avec un navire dans ce secteur, impose de réduire à la vitesse minimale permettant de tenir le cap. Cassez toute erre si nécessaire et naviguez avec extrême prudence jusqu’à disparition du danger. N’attendez pas de voir le navire à vitesse de croisière.",
-        "Suivez la même séquence : observer et évaluer le risque ; établir visibilité, propulsion, statut et contraintes locales ; vérifier le rattrapage avant les rôles ordinaires ; agir à temps sans créer un autre danger ; vérifier jusqu’à être paré et clair. Réévaluez si les conditions changent. Ces leçons enseignent le raisonnement international essentiel, pas tout le programme des feux, le droit local ou une qualification pour naviguer seul."
+        "Décidez d’abord quel ensemble de règles s’applique ; c’est seulement ensuite que vous décidez qui s’écarte. Quand des navires ne se voient pas et se trouvent dans une zone de visibilité réduite ou à proximité (brume, forte pluie ou autre), la règle internationale 19 s’applique. N’attribuez alors pas à un contact invisible (un navire détecté mais pas vu) les rôles ordinaires en vue, comme la voile avant le moteur ou les règles de croisement. Si vous vous voyez, appliquez les règles en vue, en tenant toujours compte de la visibilité et de vos devoirs généraux.",
+        "Par mauvaise visibilité, naviguez à une vitesse de sécurité et gardez une veille, pour pouvoir vous arrêter ou tourner à temps. Un navire à propulsion mécanique garde ses machines prêtes à manœuvrer immédiatement. Utilisez correctement les signaux sonores exigés et vos équipements. Évitez de tirer des conclusions de maigres données radar : un ou deux aperçus ne peuvent pas montrer la route d’un autre bateau. L’AIS (des navires qui diffusent leur position et leur route) et la radio ne remplacent pas la veille, ne donnent pas une image complète du trafic et n’annulent pas les règles.",
+        "Si un navire n’apparaît qu’au radar, évaluez tôt le risque et agissez à temps. Déterminez si une situation très rapprochée (une approche dangereusement proche) ou un risque d’abordage se développe. Si vous changez de cap, évitez autant que possible de venir sur bâbord (à gauche) pour un navire sur l’avant du travers (devant votre côté), sauf si vous le rattrapez. Évitez aussi de venir vers un navire par le travers ou sur l’arrière du travers (à côté de vous ou derrière vous) (Règle 19(d)). Aucun virage n’est toujours sûr : vérifiez tous les contacts, l’espace libre (la place pour manœuvrer) et les options de vitesse.",
+        "Si un signal de brume semble venir de l’avant du travers, ralentissez fortement. Allez à la vitesse la plus faible qui permet encore de tenir votre cap. Faites de même si vous ne pouvez pas éviter de vous approcher trop près d’un navire sur l’avant du travers. Cela s’applique sauf si vous êtes déjà sûr qu’il n’y a pas de risque d’abordage. Cassez toute votre erre (arrêtez-vous dans l’eau) si nécessaire, et naviguez avec une extrême prudence jusqu’à ce que le danger soit passé (Règle 19(e)). Ne gardez pas votre vitesse de croisière en attendant de voir le navire, car vous ne pouvez pas encore savoir où il va.",
+        "Suivez les mêmes cinq étapes dans chaque exercice, dans cet ordre :\n• Observez et évaluez le risque.\n• Établissez la visibilité, le mode de propulsion de chaque navire, son statut et les contraintes locales.\n• Vérifiez s’il y a rattrapage avant les rôles ordinaires de rencontre.\n• Choisissez une action à temps qui ne crée pas un autre danger.\n• Continuez à vérifier le résultat jusqu’à être passé et paré.\nRecommencez l’évaluation chaque fois que les conditions changent. Ces leçons enseignent le raisonnement essentiel des règles internationales de rencontre, pas tout le programme des feux, le droit local ni une qualification pour naviguer sans encadrement."
       ],
       "observe": [
-        "Précisez si le contact est en vue ou détecté seulement aux instruments.",
-        "Réévaluez après chaque observation : un plan seul ne supprime pas le risque."
+        "Dites clairement si le contact est en vue ou seulement détecté par les instruments.",
+        "Réévaluez un contact qui se rapproche après chaque nouvelle observation ; un plan seul ne supprime pas le risque."
       ],
-      "mistake": "Attribuer une priorité automatique à la voile face à un contact invisible dans la brume.",
+      "mistake": "Donner automatiquement la priorité au voilier face à un contact qui n’est pas en vue dans la brume.",
       "quiz": [
         {
-          "prompt": "Dans la brume, un navire est détecté au radar sans être vu. Quel cadre s’applique?",
+          "prompt": "Dans la brume, un autre navire est détecté au radar mais pas vu. Quel cadre s’applique ?",
           "options": [
-            "Priorité automatique voile sur moteur",
-            "Règle 19 et devoirs généraux applicables",
-            "Aucune règle avant de le voir"
+            "La priorité automatique de la voile sur le moteur",
+            "La Règle 19 et les devoirs généraux applicables",
+            "Aucune règle tant que vous ne le voyez pas"
           ],
-          "explanation": "Le cadre de visibilité réduite hors vue s’applique, sans attribuer simplement les rôles ordinaires en vue."
+          "explanation": "Les règles pour les navires qui ne sont pas en vue en visibilité réduite s’appliquent ; vous ne pouvez pas simplement attribuer les rôles ordinaires en vue."
         },
         {
-          "prompt": "Un signal de brume paraît sur l’avant du travers, sans absence de risque établie. Que faire?",
+          "prompt": "Un signal de brume semble venir de l’avant de votre travers, et vous ne vous êtes pas assuré qu’il n’y a pas de risque. Que devez-vous faire ?",
           "options": [
-            "Maintenir la vitesse jusqu’à le voir",
-            "Toujours venir immédiatement sur bâbord",
-            "Réduire au minimum pour tenir le cap ; casser l’erre si nécessaire"
+            "Garder votre vitesse jusqu’à voir le navire",
+            "Venir immédiatement sur bâbord dans tous les cas",
+            "Réduire à la vitesse la plus faible qui permet de tenir le cap ; casser toute l’erre si nécessaire"
           ],
-          "explanation": "La Règle 19(e) exige cette réduction et une extrême prudence jusqu’à disparition du danger."
+          "explanation": "La Règle 19(e) exige ce ralentissement et une extrême prudence jusqu’à ce que le danger d’abordage soit passé."
         }
       ],
-      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+      "transfer": "Étudiez les règles internationales du COLREG citées et les règles applicables dans vos eaux. Répétez ces décisions avec un moniteur ; les schémas évaluent le raisonnement, pas une vraie compétence d’évitement des abordages."
     },
     "sail-52": {
       "title": "Manœuvrer un catamaran à deux moteurs",
@@ -2313,22 +2313,22 @@
       "mistake": "Identifier un feu uniquement par sa couleur ou atteindre le cercle d’arrêt avant de ralentir.",
       "quiz": [
         {
-          "prompt": "Quelle observation identifie le phare de Haven dans cet exercice ?",
+          "prompt": "Quelle observation identifie le phare dans cet exercice ?",
           "options": [
             "N’importe quel feu blanc",
             "Un éclat blanc toutes les 6 secondes",
             "Un éclat jaune toutes les 4 secondes"
           ],
-          "explanation": "Comparez la couleur et la période complète avec la liste des feux du parcours."
+          "explanation": "Comparez la couleur et la période complète des éclats avec la liste des feux de l’exercice."
         },
         {
-          "prompt": "Comment valider le dernier point ?",
+          "prompt": "Qu’est-ce qui valide le dernier point de contrôle ?",
           "options": [
             "Traverser le cercle à vitesse élevée",
             "Passer au point mort n’importe où",
             "Tenir la position et le cap indiqués à moins de 0,15 nœud au point mort"
           ],
-          "explanation": "Position, cap, vitesse et point mort doivent satisfaire les critères pendant cinq secondes consécutives."
+          "explanation": "La position, le cap, la vitesse et le point mort doivent atteindre les objectifs ensemble pendant cinq secondes consécutives."
         }
       ],
       "transfer": "Pratiquez la navigation nocturne réelle avec un instructeur et des cartes et listes de feux à jour. Cet exercice ne reproduit ni l’adaptation à l’obscurité, ni les limites de visibilité, ni toutes les configurations de feux.",

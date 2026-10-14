@@ -133,39 +133,39 @@
     "sail-03": {
       "title": "Cabos, winches y cargas",
       "concepts": [
-        "Una driza iza una vela. Una escota ajusta su ángulo. Un rizo reduce la superficie de vela expuesta. Una cornamusa o mordaza sujeta un cabo; un winch ayuda a manejar la carga.",
-        "En este velero, las escotas de colores van hacia popa hasta los winches de la bañera. Observa las vueltas y las mordazas en la vista Bañera. El panel Sistemas del barco controla las dos drizas y escotas de forma independiente, además del carro, la contra, el tensor del pujamen, los rizos, el motor y la línea de fondeo. Los deslizadores representan ajustes, no el manejo físico de los cabos.",
-        "Los controles de izado de mayor y proa determinan la cantidad de vela expuesta. Las dos escotas modifican sus ángulos por separado. El carro desplaza el punto de tiro de la escota de la botavara; la tensión de la contra regula la torsión simulada y el tensor del pujamen aplana la parte baja de la vela. Cambia un control cada vez y compara la respuesta.",
-        "El nivel de rizo reduce la superficie de la mayor. El acelerador selecciona marcha atrás, punto muerto o avante; vuelve a punto muerto para las evaluaciones a vela. El deslizador del fondeo fija una longitud objetivo. Pon en marcha el molinete para largar o recoger línea gradualmente; observa la longitud realmente largada y detén el molinete cuando sea necesario.",
-        "Mantén dedos, ropa suelta y pelo lejos de cabos en tensión. Aprende con un instructor a cargar un winch, manejar cabos, hacer nudos y largar con control; un ratón no enseña a sentir la carga de un cabo.",
-        "La contra, o trapa, tira de la botavara hacia abajo. A un largo o en popa, la escota tira de la botavara más hacia fuera que hacia abajo, así que sin contra la botavara sube y la parte alta de la vela se abre y pierde fuerza. Filar la contra en una racha fuerte deja que la parte alta de la vela descargue viento."
+        "Una driza iza una vela, y una escota ajusta el ángulo de la vela respecto al viento. Un rizo reduce la superficie de vela expuesta. Una cornamusa (una pieza en forma de cuernos) o una mordaza (un bloqueo de palanca) sujeta un cabo. Un winch (un tambor que se gira con una manivela) soporta la carga, porque una escota cargada tira más fuerte de lo que pueden sujetar las manos.",
+        "En este velero, las escotas de colores van hacia popa (hacia atrás) hasta los winches de la bañera. Observa las vueltas y las mordazas en la vista Bañera. El panel Sistemas del barco ajusta por separado cada una de las dos drizas y escotas, junto con otros controles que se explican en las páginas siguientes. En la app, los deslizadores ajustan los controles; no muestran cómo se maneja un cabo real.",
+        "Los controles de izado fijan cuánto se izan la mayor y la vela de proa (la vela delantera). Cada escota ajusta el ángulo de una vela, por separado de la otra. Otros tres controles dan forma a la mayor. El carro desplaza de un lado a otro del barco el extremo inferior de la escota de mayor. La contra tira de la botavara (la percha bajo la vela) hacia abajo, para que la parte alta de la vela no se abra por torsión. El tensor del pujamen estira el borde inferior, lo que aplana la vela. Cambia un control cada vez para ver qué hace cada uno.",
+        "El control de rizo reduce la mayor, y el control del motor selecciona marcha atrás, punto muerto o avante. Vuelve a punto muerto antes de una prueba a vela, para que solo las velas impulsen el barco. El deslizador de la línea de fondeo (el cabo o la cadena del ancla) fija una longitud objetivo. El molinete (el winch motorizado de proa) larga o recoge la línea poco a poco; observa cuánta hay realmente largada y detenlo cuando haga falta.",
+        "Mantén dedos, ropa suelta y pelo lejos de los cabos cargados, porque pueden quedar atrapados en un winch. Aprende con un instructor el trabajo real con winches, el manejo de cabos y los nudos, incluido cómo largar con control un cabo cargado. En la app, un ratón no puede enseñarte qué se siente con un cabo cargado.",
+        "La contra, o trapa, mantiene baja la botavara para que la parte alta de la vela conserve su fuerza. Navegando en un largo (viento de costado) o en popa (viento de atrás), la escota de mayor tira de la botavara más hacia fuera que hacia abajo. Sin la contra, la botavara sube y la parte alta de la vela se abre y pierde fuerza. En una racha fuerte, largar la contra deja que la parte alta de la vela suelte viento."
       ],
       "observe": [
         "Sigue una escota de color desde la cubierta hasta su winch.",
-        "Compara la función de izado de la driza con la función de ajuste de la escota."
+        "Compara la función de una driza (izar la vela) con la de una escota (ajustar su ángulo)."
       ],
-      "mistake": "Tratar una escota muy cargada como un cabo sin tensión o confundir la escota con la driza.",
+      "mistake": "Tratar una escota muy cargada como un cabo flojo, o confundir la escota con la driza.",
       "quiz": [
         {
-          "prompt": "Quieres ajustar el ángulo de la mayor. ¿Qué cabo lo hace?",
+          "prompt": "Quieres cambiar el ángulo de la mayor. ¿Qué cabo lo hace?",
           "options": [
             "Escota de mayor",
             "Driza de mayor",
             "Línea de fondeo"
           ],
-          "explanation": "La escota de mayor controla el ángulo de la botavara y de la vela; la driza iza la vela."
+          "explanation": "La escota de mayor controla la botavara y, por tanto, el ángulo de la mayor; la driza iza la vela."
         },
         {
-          "prompt": "¿Puede el modelo visual del winch evaluar el manejo seguro de un cabo cargado?",
+          "prompt": "¿Puede el modelo de winch de la app enseñarte a manejar con seguridad un cabo cargado?",
           "options": [
             "Sí, por completo",
             "Solo con el zoom al máximo",
-            "No; el manejo físico de cabos exige práctica supervisada"
+            "No; manejar cabos reales exige práctica supervisada"
           ],
-          "explanation": "El equipo representado permite orientarse, pero no simula la posición de las manos, la fricción ni las cargas en los cabos."
+          "explanation": "El equipo dibujado te muestra dónde están las cosas. No simula la posición de las manos, la fricción ni las cargas de los cabos."
         }
       ],
-      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+      "transfer": "Practica esto con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
     },
     "sail-04": {
       "title": "Lee los instrumentos",
@@ -571,36 +571,36 @@
     "sail-13": {
       "title": "Orza y arriba",
       "concepts": [
-        "Orzar es girar hacia el lugar del que viene el viento; arribar es girar alejándose de él. Babor y estribor indican la dirección del giro respecto al barco, no si estás orzando.",
-        "Con una amura, girar a babor puede ser orzar; con la contraria, puede ser arribar. Razona siempre a partir de la dirección actual del viento y ajusta las velas en consecuencia: si orzas, caza; si arribas, larga.",
-        "Navega primero a 50° del viento y después a 110°. Estabiliza cada rumbo antes del siguiente cambio."
+        "Orzar es girar hacia el viento; arribar es girar alejándose de él. Babor (izquierda) y estribor (derecha) solo indican hacia qué lado gira el barco. «Gira a la izquierda» no dice nada sobre el viento, así que debes saber por qué lado viene.",
+        "Que un giro a la izquierda sea orzar depende de tu amura (el costado por el que entra el viento). Con viento del norte y rumbo al este, girar a la izquierda es orzar; con rumbo al oeste, el mismo giro a la izquierda es arribar. Así que comprueba primero el viento y luego ajusta las velas: si orzas, caza las escotas (los cabos de las velas); si arribas, lárgalas.",
+        "Practica los dos giros: navega primero a 50° del viento y después a 110°. A 110°, el viento entra un poco por detrás del través (justo de costado). Deja que cada rumbo se estabilice antes del siguiente cambio, para ver qué ha hecho el giro."
       ],
       "observe": [
-        "Observa si el ángulo al viento aumenta o disminuye con cada acción del timón.",
-        "Centra el timón en cada objetivo y adapta las velas al nuevo rumbo respecto al viento."
+        "Fíjate si el ángulo al viento aumenta o disminuye con cada movimiento del timón.",
+        "Centra el timón en cada objetivo y ajusta las velas al nuevo rumbo respecto al viento."
       ],
       "mistake": "Suponer que «girar a la izquierda» siempre significa «orzar».",
       "quiz": [
         {
-          "prompt": "¿Girar a babor siempre acerca la proa al viento?",
+          "prompt": "¿Un giro a babor (izquierda) es siempre un giro hacia el viento?",
           "options": [
             "Sí",
             "No; depende de la amura y de la dirección del viento",
             "Solo por encima de 5 nudos"
           ],
-          "explanation": "El mismo giro cambia la relación con el viento de manera distinta en amuras opuestas."
+          "explanation": "El mismo movimiento del timón cambia tu ángulo al viento en sentidos opuestos con amuras opuestas."
         },
         {
-          "prompt": "¿Qué debe seguir a un cambio importante de rumbo?",
+          "prompt": "¿Qué debes hacer tras un cambio de rumbo grande?",
           "options": [
-            "Revisar el ajuste de velas y la vigilancia",
+            "Volver a revisar el ajuste de las velas y la vigilancia",
             "Ignorar las velas",
             "Fondear siempre"
           ],
-          "explanation": "El nuevo rumbo cambia el flujo de aire y la situación alrededor del barco."
+          "explanation": "El nuevo rumbo cambia el flujo de aire sobre las velas y lo que hay alrededor del barco."
         }
       ],
-      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "transfer": "Practica esto con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
       "practice": {
         "steps": [
           {
@@ -746,58 +746,58 @@
     "sail-17": {
       "title": "Viento real y aparente",
       "concepts": [
-        "El viento aparente es el flujo de aire relativo al velero. El viento meteorológico se refiere al suelo fijo; el viento respecto al agua se obtiene restando la corriente de esa velocidad del aire. «Viento real» puede tomar como referencia el suelo o el agua: comprueba la convención del instrumento.",
-        "Al aumentar la velocidad respecto al agua en un través estable, el viento aparente suele adelantarse respecto al viento relativo al agua. A favor del viento, moverse con el flujo de aire puede reducir la velocidad aparente. Cuando hay calma respecto al agua, su dirección no está definida, pero un velero que se mueve por el agua puede seguir sintiendo un flujo aparente.",
-        "Compara Viento respecto al agua con Viento aparente en la pantalla de a bordo. Usa el viento respecto al agua para saber en qué rumbo respecto al viento navegas y dónde está la zona muerta; ajusta las velas al viento aparente, porque es el aire que realmente reciben. Los catavientos y la forma de las velas siempre muestran directamente el viento aparente.",
-        "Una vela puede funcionar como el ala de un avión: al desviar el aire genera una fuerza aerodinámica con una componente hacia delante y otra lateral. La quilla, la orza o los perfiles sumergidos resisten el desplazamiento lateral. Navegando a un largo o de través, una vela bien ajustada puede seguir impulsando el barco aunque su velocidad supere la del viento real. La aceleración termina cuando el empuje equilibra la resistencia.",
-        "Por eso los barcos de regata eficientes pueden navegar más rápido que el viento real. Ayudan los cascos ligeros y las velas eficientes; los hidroalas pueden elevar el casco sobre el agua y reducir aún más la resistencia. La energía procede del viento que se mueve respecto al agua. El viento aparente describe el aire junto a la vela en movimiento; el movimiento del barco no crea energía adicional. Un velero de crucero normal puede tener demasiada resistencia para superar la velocidad del viento.",
-        "Ejemplo sin corriente ni abatimiento: un barco de regata navega al norte a 30 nudos y un viento de 20 nudos sopla desde el oeste. Las velocidades son perpendiculares. El viento aparente es √(20² + 30²) ≈ 36,1 nudos y llega unos 34° por babor de la proa. El cálculo supone una velocidad del barco; no demuestra que cualquier barco alcance 30 nudos. Navegar exactamente a favor del viento a su misma velocidad elimina el viento aparente en este caso sencillo.",
-        "Pruébalo en Desafíos → Laboratorio de viento aparente: registra el viento con las velas bajadas, luego navegando de través y después en un largo. De través, el viento aparente aumenta y se adelanta al ganar velocidad; en el largo, se debilita."
+        "En un barco en movimiento sientes el viento aparente, como el viento de cara que notas en bicicleta con el aire en calma. Es el viento real más la brisa de tu propio movimiento. El viento real es el que sentirías estando quieto. Los instrumentos lo miden respecto al fondo o respecto al agua (difieren si hay corriente), así que comprueba cuál muestra el tuyo.",
+        "Cuando el barco acelera en un largo (viento de costado), el viento aparente suele adelantarse, hacia la proa (la parte delantera). Se debe a que tu propia brisa viene justo de proa. Navegando a favor del viento te mueves con el aire, así que el viento aparente puede debilitarse. Sin viento sobre el agua no hay dirección del viento, pero un velero en movimiento sigue sintiendo la brisa de su propio movimiento.",
+        "Nombra tu rumbo a partir del viento respecto al agua, pero ajusta las velas al viento aparente. En la app, compara Viento respecto al agua con Viento aparente en la pantalla de a bordo. El rumbo respecto al viento (tu ángulo al viento) y la zona muerta (demasiado cerca del viento para navegar) se basan en el viento respecto al agua. Ajusta al viento aparente, porque es el aire que realmente reciben las velas; los catavientos (cintas en la vela) y la forma de la vela siempre lo muestran directamente.",
+        "Una vela funciona como el ala de un avión: desvía el flujo de aire y empuja el barco en parte hacia delante y en parte hacia el costado. La quilla (la aleta bajo el casco), la orza o los perfiles sumergidos (pequeñas alas) resisten el empuje lateral, así que la parte hacia delante impulsa el barco. En un largo, una vela bien ajustada puede seguir impulsando incluso por encima de la velocidad del viento real. El barco deja de acelerar cuando el empuje hacia delante iguala la resistencia del agua.",
+        "Por eso algunos barcos de regata eficientes pueden navegar más rápido que el viento real. Ayudan los cascos ligeros y las velas eficientes. Los hidroalas pueden levantar el casco fuera del agua, lo que reduce aún más la resistencia. Toda la energía sigue viniendo del viento que se mueve sobre el agua. Un velero de crucero corriente puede tener demasiada resistencia para superar la velocidad del viento.",
+        "En este ejemplo, el viento aparente es más fuerte que el real y viene más de proa. Supón que no hay corriente ni abatimiento (deriva lateral). Un barco de regata va al norte a 30 nudos (unos 55 km/h) mientras sopla un viento de 20 nudos del oeste, en ángulo recto con su trayectoria. El viento aparente es de unos 36 nudos y viene de unos 34° por babor (izquierda) de la proa. Nota: como las dos velocidades forman un ángulo recto, se combinan como √(20² + 30²) ≈ 36,1 nudos. Si el barco navegara en cambio justo a favor del viento a su misma velocidad, en este caso sencillo no sentiría ningún viento.",
+        "Pruébalo en Desafíos → Laboratorio de viento aparente y anota el viento en tres momentos:\n• Con las velas bajadas.\n• De través (viento justo de costado).\n• En un largo abierto (viento por detrás del costado).\nDe través, el viento aparente aumenta y se adelanta al ganar velocidad; en el largo abierto, se debilita."
       ],
       "observe": [
-        "Imagina ir en bicicleta con aire en calma: notas viento de frente.",
-        "Compara el indicador de viento aparente al aumentar la velocidad con rumbo estable."
+        "Imagina que vas en bicicleta con el aire en calma: sientes viento de cara.",
+        "Compara la indicación de viento aparente mientras aumenta la velocidad en un rumbo estable."
       ],
-      "mistake": "Suponer que el viento real y el aparente tienen idénticas dirección y velocidad mientras el barco se mueve.",
+      "mistake": "Suponer que el viento real y el aparente tienen la misma dirección y velocidad mientras el velero se mueve.",
       "quiz": [
         {
-          "prompt": "¿Qué viento recibe realmente una vela en movimiento?",
+          "prompt": "¿Qué viento siente realmente una vela en movimiento?",
           "options": [
-            "Solo el viento de la previsión",
+            "Solo el viento de la previsión meteorológica",
             "Viento aparente",
-            "Un viento fijo de brújula"
+            "Un viento fijo de compás"
           ],
-          "explanation": "Las velas interactúan con el flujo de aire relativo al velero en movimiento."
+          "explanation": "Las velas trabajan con el flujo de aire tal como llega al velero en movimiento."
         },
         {
-          "prompt": "Aceleras navegando de través con viento constante. ¿Qué le pasa al viento aparente?",
+          "prompt": "Aceleras navegando de través en un rumbo estable. ¿Qué le pasa al viento aparente?",
           "options": [
-            "Se adelanta y aumenta",
-            "Se retrasa y se debilita",
+            "Se adelanta y se refuerza",
+            "Se retrasa hacia popa y se debilita",
             "No cambia"
           ],
-          "explanation": "El propio movimiento del barco añade una brisa de proa. Sumada al viento real, hace que el viento aparente gire hacia la proa y aumente, así que cazas un poco las velas."
+          "explanation": "El propio movimiento del barco añade una brisa de proa. Combinado con el viento real, el viento aparente gira hacia la proa y se refuerza, así que cazas un poco."
         },
         {
-          "prompt": "¿Por qué un barco de regata eficiente puede superar al viento real navegando de través?",
+          "prompt": "¿Por qué un barco de regata eficiente puede navegar en un largo más rápido que el viento real?",
           "options": [
-            "El movimiento del barco crea energía ilimitada",
-            "La sustentación vélica puede seguir generando un empuje mayor que la resistencia",
+            "El movimiento del barco crea una fuente de energía ilimitada",
+            "La sustentación de la vela aún puede empujar hacia delante con más fuerza de la que resiste el agua",
             "Todo velero iguala automáticamente la velocidad del viento aparente"
           ],
-          "explanation": "La vela interactúa con el aire aparente y las superficies sumergidas resisten el movimiento lateral. Con resistencia suficientemente baja puede mantenerse un empuje útil por encima de la velocidad del viento real. La energía sigue procediendo del viento respecto al agua."
+          "explanation": "La vela siente el viento aparente, mientras la quilla y otras partes sumergidas resisten el empuje lateral. Si la resistencia es lo bastante baja, el empuje hacia delante puede seguir siendo mayor que la resistencia incluso por encima de la velocidad del viento real. La energía sigue viniendo del viento sobre el agua."
         },
         {
-          "prompt": "Sin corriente ni abatimiento, un barco navega a 30 nudos perpendicularmente a un viento real de 20 nudos. ¿Qué velocidad de viento aparente siente?",
+          "prompt": "Sin corriente ni abatimiento, un barco va a 30 nudos en ángulo recto con un viento real de 20 nudos. ¿Qué velocidad de viento aparente siente?",
           "options": [
             "10 nudos",
             "50 nudos",
             "Unos 36,1 nudos"
           ],
-          "explanation": "Las velocidades perpendiculares se combinan como √(20² + 30²) ≈ 36,1 nudos. Sumarlas o restarlas directamente solo sirve para movimientos en la misma línea; el ejemplo supone que el barco ya alcanza 30 nudos."
+          "explanation": "Las velocidades en ángulo recto se combinan como √(20² + 30²) ≈ 36,1 nudos. Solo se suman o restan directamente cuando van en la misma línea. El ejemplo supone que el barco ya va a 30 nudos."
         }
       ],
-      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+      "transfer": "Practica esto con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
     },
     "sail-18": {
       "title": "Toma rizos antes de necesitarlos",
@@ -1687,104 +1687,104 @@
     "sail-39": {
       "title": "Vectores de corriente y tiempo de travesía",
       "concepts": [
-        "El rumbo indica hacia dónde apunta la proa; el rumbo sobre el fondo indica el desplazamiento respecto al fondo. La corriente añade un vector de velocidad, por lo que velocidad en el agua y sobre el fondo difieren; el abatimiento también influye. La dirección de corriente indica hacia dónde fluye.",
-        "Ejemplo ficticio rectilíneo: 5 nudos en el agua sobre una ruta de 12 millas náuticas. Una corriente constante de 1 nudo directamente contraria deja 4 nudos sobre el fondo: 3 horas. Una corriente directamente favorable da 6 nudos: 2 horas. Solo aquí se omiten aceleración y abatimiento.",
-        "La corriente transversal se combina mediante vectores, no sumando o restando simplemente su velocidad. Cambia la derrota y puede exigir otro rumbo a gobernar. Una travesía real contempla corriente variable, viento, bordadas, mar y reserva; actualiza la llegada según el avance observado."
+        "El rumbo es hacia donde apunta la proa; el rumbo sobre el fondo es por donde va realmente el barco sobre el fondo marino. Difieren porque una corriente arrastra todo el barco, como una cinta transportadora, así que la velocidad en el agua y la velocidad sobre el fondo también difieren. El abatimiento (deriva lateral por el viento) añade otra diferencia. La dirección de una corriente es hacia donde fluye (una corriente hacia el este te lleva al este); su intensidad es su velocidad en nudos.",
+        "Ejemplo ficticio: una corriente justo a lo largo de tu ruta simplemente suma o resta a tu velocidad. Un velero va a 5 nudos en el agua directamente a lo largo de una ruta de 12 millas náuticas. Una corriente constante de 1 nudo directamente en contra deja 4 nudos sobre el fondo, así que el tramo dura 3 horas. Una corriente directamente a favor da 6 nudos y 2 horas. Ignora la aceleración y el abatimiento solo en este ejemplo.",
+        "Una corriente de costado te saca de tu línea, así que no basta con sumarla o restarla. Dibuja juntas las flechas del barco y de la corriente: el resultado es tu derrota sobre el fondo, y puede que tengas que gobernar un poco hacia la corriente para seguir en la línea. Las travesías reales también deben tener en cuenta:\n• una corriente que cambia con el tiempo\n• el viento y las bordadas (avanzar en zigzag contra el viento)\n• el estado del mar y una reserva de tiempo\nAsí que recalcula tu ETA (hora de llegada) según el avance que realmente logras."
       ],
       "observe": [
-        "Compara rumbo y velocidad en el agua con rumbo y velocidad sobre el fondo en Sistemas del barco.",
-        "Dibuja corrientes favorables, contrarias y transversales antes de calcular."
+        "En Sistemas del barco, compara el rumbo y la velocidad en el agua con el rumbo y la velocidad sobre el fondo.",
+        "Dibuja flechas para una corriente de proa, de popa y de costado antes de hacer cuentas."
       ],
-      "mistake": "Usar siempre velocidad en el agua para estimar llegada o restar una corriente transversal como si fuera contraria.",
+      "mistake": "Usar la velocidad en el agua para toda estimación de llegada, o restar una corriente transversal como si fluyera justo a lo largo de la ruta.",
       "quiz": [
         {
-          "prompt": "A 5 nudos en el agua con 1 nudo directamente contrario, ¿cuánto dura el tramo de 12 millas?",
+          "prompt": "A 5 nudos en el agua, con una corriente de 1 nudo directamente en contra, ¿cuánto dura el tramo de 12 millas náuticas?",
           "options": [
             "2 horas",
             "3 horas",
             "2,4 horas"
           ],
-          "explanation": "La velocidad sobre el fondo es 4 nudos. Tiempo = 12 millas náuticas ÷ 4 nudos = 3 horas."
+          "explanation": "El ejemplo da 4 nudos sobre el fondo. Tiempo = 12 millas náuticas ÷ 4 nudos = 3 horas."
         },
         {
-          "prompt": "¿Qué cambia si esa corriente cruza la ruta?",
+          "prompt": "¿Qué cambia cuando la misma corriente fluye de través a la ruta?",
           "options": [
-            "Hay que combinar vectores y revisar derrota y rumbo a gobernar",
-            "Siempre se resta 1 nudo",
-            "Rumbo y derrota deben seguir siendo idénticos"
+            "Combina las flechas del barco y de la corriente (velocidad y dirección) y vuelve a comprobar tu derrota y el rumbo a gobernar",
+            "Resta siempre 1 nudo a la velocidad en el agua",
+            "El rumbo y la derrota sobre el fondo deben seguir iguales"
           ],
-          "explanation": "La corriente transversal cambia la dirección del movimiento. La aritmética escalar solo sirve para velocidades colineales en estos ejemplos."
+          "explanation": "Una corriente transversal cambia la dirección en que te mueves sobre el fondo. Solo puedes sumar o restar velocidades sin más cuando la corriente va justo a favor o en contra de tu ruta, como en los ejemplos sencillos."
         }
       ],
-      "transfer": "Con un instructor y datos reales de corrientes, traza el rumbo a gobernar. Compara avance previsto y observado; la corriente de esta app no es una previsión local."
+      "transfer": "Con un instructor de navegación y datos reales de corrientes de marea, traza un rumbo a gobernar. Compara el avance previsto con el real; no tomes la corriente de esta app como una previsión local."
     },
     "sail-40": {
       "title": "Meteorología: salir, esperar o desviarse",
       "concepts": [
-        "Un límite meteorológico corresponde a un barco, una tripulación, una ruta y unas condiciones concretas. Revisa previsiones y avisos marinos oficiales, rachas, dirección del viento, mar, visibilidad, interacción con marea/corriente y alternativas. Una sola cifra de viento no describe el riesgo.",
-        "Decisión ficticia: la tripulación ha acordado evitar el tramo expuesto si las rachas superan su capacidad practicada o si la visibilidad elimina las referencias de pilotaje. Se prevé uno de esos cambios antes de terminar el tramo. Esperar o elegir una ruta abrigada aceptable conserva el margen.",
-        "Revisa actualizaciones durante la navegación. El viento contra corriente puede aumentar la pendiente de las olas; el viento hacia tierra aumenta el peligro de costa a sotavento. Reduce vela pronto cuando proceda, conserva energía y cambia el plan antes de perder opciones. Rizar no hace aceptable cualquier previsión."
+        "Decide antes de salir qué tiempo te haría quedarte en puerto o cambiar de plan. Ese límite depende de tu barco, tu tripulación, tu ruta y las condiciones, así que una sola cifra de viento no describe el riesgo. Revisa las previsiones y avisos marinos oficiales sobre:\n• las rachas (los golpes de viento más fuertes) y la dirección del viento\n• el estado del mar (tamaño de las olas) y la visibilidad\n• dónde la marea o la corriente se encuentran con el viento\n• una ruta alternativa segura",
+        "Decisión ficticia: si se prevé cualquiera de las señales de aviso acordadas, espera o toma la ruta abrigada. Tu tripulación acordó evitar un tramo expuesto si las rachas superan su capacidad practicada, o si la mala visibilidad oculta las referencias de pilotaje (las marcas y puntos de tierra por los que gobiernas cerca de la costa). Ahora se prevé cualquiera de las dos antes de que puedas terminar el tramo. Esperar, o una ruta abrigada aceptable, conserva el margen acordado.",
+        "Sigue revisando el tiempo durante la navegación y cambia el plan mientras aún tengas opciones. El viento contra corriente puede hacer las olas más empinadas. Un viento hacia tierra aumenta el peligro de costa a sotavento (una costa hacia la que sopla el viento, así que un barco averiado deriva hacia ella). Riza (reduce la vela) pronto cuando haga falta y ahorra energía de la tripulación. Un rizo no hace aceptable cualquier previsión."
       ],
       "observe": [
-        "Define dos límites de salida y dónde los revisarás en ruta.",
-        "Compara exposición y abrigo según viento, mar y visibilidad."
+        "Indica dos límites de salida y en qué punto de la ruta volverías a comprobarlos.",
+        "Compara la ruta expuesta con su alternativa abrigada en dirección del viento, estado del mar y visibilidad."
       ],
-      "mistake": "Creer que un umbral universal de viento o poder rizar demuestra seguridad.",
+      "mistake": "Tomar un único límite de viento válido para todos, o la posibilidad de rizar, como prueba de que una travesía es segura.",
       "quiz": [
         {
-          "prompt": "La previsión supera el límite de la tripulación antes de acabar el tramo expuesto. ¿Qué decisión es adecuada?",
+          "prompt": "La previsión supera los límites acordados por tu tripulación antes de que termine el tramo expuesto. ¿Cuál es el plan sensato?",
           "options": [
-            "Rizar y suponer eliminado todo riesgo",
-            "Ignorar la previsión porque el puerto está tranquilo",
+            "Rizar y suponer que todo riesgo ha desaparecido",
+            "Ignorar la previsión si el puerto está en calma",
             "Esperar o elegir una alternativa comprobada dentro de los límites"
           ],
-          "explanation": "La decisión debe conservar márgenes para esta tripulación, barco y ruta. El puerto no demuestra las condiciones exteriores."
+          "explanation": "La decisión de salir debe conservar los márgenes acordados para esta tripulación, este velero y esta ruta. El agua en calma del puerto no te dice nada seguro sobre las condiciones mar adentro."
         },
         {
-          "prompt": "¿Por qué considerar corriente y viento juntos?",
+          "prompt": "¿Por qué pensar en la corriente además de en el viento?",
           "options": [
-            "El viento contra corriente puede empeorar el oleaje y el riesgo",
-            "La corriente solo afecta a la brújula",
-            "La corriente garantiza abrigo"
+            "El viento contra corriente puede hacer el mar más empinado y cambiar el riesgo de la ruta",
+            "La corriente solo afecta a la indicación del compás",
+            "La corriente garantiza aguas abrigadas"
           ],
-          "explanation": "Viento y corriente opuestos pueden empeorar el mar. Considera exposición y previsión conjuntamente."
+          "explanation": "Cuando el viento y la corriente van en sentidos opuestos, el mar puede empeorar. Mira juntas la exposición de la ruta y la previsión."
         }
       ],
-      "transfer": "Comenta una previsión real con un instructor, incluidos efectos locales e incertidumbre. Acuerda límites específicos y revísalos; estos ejemplos no fijan una velocidad universal segura."
+      "transfer": "Comenta una previsión real con un instructor, incluidos los efectos locales y su grado de incertidumbre. Acuerda límites para tu propio barco y tripulación, y sigue comprobándolos; estos ejemplos no dan ninguna velocidad de viento que sea segura en todos los casos."
     },
     "sail-41": {
       "title": "Riesgo de abordaje y visibilidad reducida",
       "concepts": [
-        "Mantén vigilancia visual, auditiva y por todos los medios apropiados. Observa repetidamente: un buque que se acerca con demora de compás casi constante indica riesgo de abordaje. Una demora cambiante no siempre lo excluye, especialmente cerca de un buque grande o remolque. En caso de duda, considera que existe riesgo.",
-        "La velocidad de seguridad permite evitar eficazmente y detenerse en las circunstancias. Importan visibilidad, tráfico, maniobrabilidad, viento, mar, corriente y peligros. Actúa a tiempo según las reglas aplicables y verifica el efecto hasta estar pasado y franco. Un símbolo AIS no constituye toda la vigilancia.",
-        "La regla internacional 19 aplica otro marco cuando los buques no están a la vista en una zona de visibilidad reducida o cerca de ella. Usa velocidad segura, vigilancia, señales exigidas y equipos correctamente. Un buque de propulsión mecánica debe tener motores listos para maniobra inmediata. Estudia las reglas completas con un instructor; aquí no se prescribe un giro universal."
+        "Mantén una vigilancia adecuada y trata una demora constante de un barco que se acerca como riesgo de abordaje. Mira, escucha y usa todos los medios adecuados disponibles. Si la demora de compás de un buque que se acerca (su dirección desde ti) apenas cambia en observaciones repetidas, los dos os dirigís al mismo punto. Una demora que cambia no siempre elimina el riesgo, sobre todo de cerca, o junto a un buque grande o un remolque (un remolcador que tira de algo con un cabo largo), cuya gran longitud aún puede alcanzarte. En caso de duda, considera que existe riesgo.",
+        "Navega a una velocidad de seguridad: la que te permite maniobrar para evitar el abordaje o detenerte a tiempo. Depende de:\n• la visibilidad y el tráfico\n• la facilidad con que tu barco gira y se detiene\n• el viento, el mar y la corriente\n• los peligros cercanos\nActúa pronto según las reglas y sigue comprobando hasta que el otro buque esté pasado y franco. Un símbolo AIS (buques mostrados en una pantalla por radio) no es una vigilancia completa, porque muchas embarcaciones pequeñas no transmiten.",
+        "Si no ves al otro barco por niebla o lluvia, no se aplican las reglas habituales de paso a la vista (Regla internacional 19). Esto rige en visibilidad reducida o cerca de ella, porque ningún barco puede ver qué es el otro. En su lugar:\n• reduce a una velocidad de seguridad y mantén la vigilancia\n• emite las señales exigidas\n• usa tus equipos correctamente\n• los buques de propulsión mecánica mantienen las máquinas listas para maniobrar de inmediato\nAprende las reglas completas con un instructor; este ejercicio no elige ningún giro universal para evitar el abordaje."
       ],
       "observe": [
-        "Anota demoras de compás y distancias sucesivas en vez de confiar en una mirada.",
-        "Identifica datos faltantes sobre un buque oído o detectado electrónicamente pero no visto."
+        "Dibuja varias demoras de compás y distancias a lo largo del tiempo, en lugar de fiarte de un solo vistazo.",
+        "Anota qué información falta cuando un buque se oye o aparece en una pantalla pero no se ve."
       ],
-      "mistake": "Reclamar prioridad automática en niebla o creer que sin blanco AIS no hay buque.",
+      "mistake": "Reclamar una preferencia automática en niebla, o suponer que si no hay blanco AIS no hay buque.",
       "quiz": [
         {
-          "prompt": "Disminuye la distancia a un buque y su demora casi no cambia. ¿Qué concluyes?",
+          "prompt": "Un buque se acerca mientras su demora de compás apenas cambia. ¿Qué debes concluir?",
           "options": [
-            "Existe riesgo y exige evaluación continua y actuación oportuna",
-            "Seguro que pasará por popa",
-            "Solo responden los buques a motor"
+            "Existe riesgo de abordaje; sigue evaluando y actúa a tiempo",
+            "El otro buque pasará con seguridad por tu popa",
+            "Solo los buques a motor deben responder"
           ],
-          "explanation": "Una demora casi constante al acercarse indica riesgo. Usa información adecuada y las reglas aplicables."
+          "explanation": "Una demora que apenas cambia mientras un buque se acerca es señal de riesgo de abordaje. Usa toda la información adecuada que tengas y actúa según las reglas aplicables."
         },
         {
-          "prompt": "Con visibilidad reducida, otro buque no está a la vista. Según la regla internacional 19, ¿qué es correcto?",
+          "prompt": "En visibilidad reducida, otro buque no está a la vista. ¿Qué afirmación es correcta según la Regla internacional 19?",
           "options": [
-            "Un velero siempre tiene prioridad sobre un motor no visto",
-            "Aplicar el marco de visibilidad reducida, velocidad segura y vigilancia",
-            "Mantener velocidad hasta verlo"
+            "Un velero siempre tiene preferencia sobre un buque a motor que no ve",
+            "Seguir las reglas de visibilidad reducida: velocidad de seguridad y vigilancia adecuada",
+            "Mantener la velocidad hasta poder ver al otro buque"
           ],
-          "explanation": "Las reglas de vela/motor a la vista no se trasladan sin más a un contacto no visto. La regla 19 y las reglas generales exigen valorar la situación."
+          "explanation": "Las reglas de vela y motor a la vista no se pueden aplicar sin más a un buque que no ves. La Regla 19 y las reglas generales piden una respuesta adecuada a la situación."
         }
       ],
-      "transfer": "Estudia las reglas internacionales y locales aplicables con un instructor. Practica vigilancia y equipos a bordo; esta lección no evalúa la evasión real de abordajes."
+      "transfer": "Estudia con un instructor cualificado el Reglamento internacional completo y las reglas interiores o locales que se apliquen. Practica a bordo una rutina de vigilancia constante y el uso de los equipos; esta lección no evalúa la prevención real de abordajes."
     },
     "sail-42": {
       "title": "Pilotaje nocturno y comprobaciones cruzadas",
@@ -2062,86 +2062,86 @@
     "sail-48": {
       "title": "Ceder y mantener: actuar mientras evoluciona el riesgo",
       "concepts": [
-        "Vigila por vista, oído y todos los medios apropiados. Usa velocidad segura según visibilidad, tráfico, maniobrabilidad y condiciones. Una demora casi constante con distancia decreciente indica riesgo; una demora cambiante no siempre lo excluye, sobre todo cerca de buques grandes o remolques. Ante la duda, considera que existe riesgo.",
-        "El buque que cede actúa pronto y de forma decidida para quedar bien apartado. Haz cambios de rumbo o velocidad perceptibles cuando sea posible; evita sucesivos cambios pequeños: el otro buque debe poder ver que estás actuando, y los cambios pequeños parecen no ser ningún cambio. Comprueba espacio y tráfico. Reduce, detén o invierte la propulsión si hace falta para evitar el abordaje o evaluar, y vigila hasta quedar pasado y franco.",
-        "La Regla 17 tiene tres fases. Al principio, el buque que mantiene conserva rumbo y velocidad. Puede actuar por su propia maniobra cuando resulte evidente que el otro no actúa adecuadamente. Cuando estén tan cerca que la acción del que cede por sí sola no pueda evitar el abordaje, debe actuar como mejor ayude a evitarlo. Evalúa opciones antes de esa fase final.",
-        "En un cruce entre motores, el buque que mantiene y actúa según la Regla 17(a)(ii), si las circunstancias lo permiten, no debe caer a babor por otro situado a su babor. Es una restricción concreta, no una orden universal de girar a estribor. El buque que cede conserva su obligación aunque el otro actúe.",
-        "No hay una distancia segura universal ni un punto fijo para girar a última hora. Evalúa las circunstancias continuamente. La Regla 2 mantiene la responsabilidad por la buena práctica marinera y circunstancias especiales; apartarse de las reglas solo se justifica si es necesario para evitar peligro inmediato. Mantener no da derecho incondicional a colisionar."
+        "Detecta pronto el riesgo de abordaje, para saber a tiempo si debes ceder el paso o mantener rumbo. El buque que cede debe apartarse; el que mantiene sigue su camino. Vigila por vista, oído y todos los medios apropiados disponibles, a una velocidad de seguridad según la visibilidad, el tráfico, la maniobrabilidad y las condiciones. Un buque que se acerca con una demora de compás (la dirección hacia él) casi constante indica riesgo. Una demora que cambia no siempre lo descarta, sobre todo a corta distancia o con buques grandes o remolques. En caso de duda, considera que existe riesgo.",
+        "Si eres el barco que cede, actúa pronto y con decisión para que el otro vea que te apartas. Haz un cambio de rumbo o de velocidad grande y evidente, porque desde el otro barco los cambios pequeños parecen ningún cambio (Regla 8). Evita una serie de cambios pequeños. Antes de girar, comprueba tu espacio de mar (agua libre a tu alrededor) y el resto del tráfico. Si hace falta, reduce, detén o da atrás con el motor para evitar el abordaje o ganar tiempo para valorar la situación. Después sigue vigilando hasta quedar definitivamente pasado y franco.",
+        "La obligación del barco que mantiene crece en tres fases a medida que crece el peligro (Regla 17). Empieza a valorar tus opciones pronto; no esperes a la última fase. Las fases:\n• Al principio, mantén rumbo y velocidad, para que el otro barco pueda prever tu movimiento.\n• Cuando sea evidente que el barco que cede no actúa adecuadamente, puedes actuar por tu cuenta.\n• Cuando estéis tan cerca que el que cede ya no pueda evitar el abordaje por sí solo, debes actuar de la forma que mejor ayude a evitarlo.",
+        "Cuando dos barcos a motor se cruzan y tú mantienes pero actúas, evita girar a la izquierda (a babor) hacia un barco situado a tu izquierda. Se aplica cuando dos buques de propulsión mecánica se cruzan y tú, el que mantiene, actúas solo porque el otro no cede el paso (Regla 17(a)(ii)). Si es posible, no caigas a babor por un buque situado a tu babor, porque si al final cae a estribor (derecha), como esperan las reglas, tu giro a babor te llevaría contra él. Es un límite concreto, no una orden de girar a la derecha en toda emergencia. El buque que cede debe seguir apartándose aunque tú actúes.",
+        "No existe una distancia de paso segura fija, así que valora cada situación y sigue comprobando. Tampoco hay un punto de giro de último segundo que funcione siempre. Sigues siendo responsable de la buena práctica marinera ordinaria y de las circunstancias especiales (Regla 2). Solo puedes apartarte de una regla cuando sea necesario para evitar un peligro inmediato (Regla 2). Ser el barco que mantiene nunca te da un derecho incondicional a provocar un abordaje."
       ],
       "observe": [
-        "Explica qué cambia entre «puede actuar» y «debe actuar».",
-        "Tras maniobrar, comprueba demora, distancia y tráfico alrededor."
+        "Describe qué cambia para el barco que mantiene entre «puede actuar» y «debe actuar».",
+        "Tras una maniobra, comprueba la nueva demora, la distancia y el tráfico alrededor."
       ],
-      "mistake": "Mantener rumbo y velocidad cuando el otro ya no puede evitar el abordaje por sí solo.",
+      "mistake": "Mantener rumbo y velocidad como barco que mantiene cuando el otro buque ya no puede evitar el abordaje por sí solo.",
       "quiz": [
         {
-          "prompt": "El que cede claramente no actúa bien. ¿Puede actuar el que mantiene antes de que el otro ya no pueda evitar solo el abordaje?",
+          "prompt": "El buque que cede claramente no actúa adecuadamente. ¿Puede actuar el que mantiene antes de que el que cede ya no pueda evitar por sí solo el abordaje?",
           "options": [
             "Sí, según la Regla 17(a)(ii)",
             "No, siempre debe esperar",
             "Solo con permiso por radio"
           ],
-          "explanation": "La posibilidad de actuar precede al deber final. Sigue evaluando todas las circunstancias."
+          "explanation": "El permiso para actuar llega antes que el deber final de actuar. Sigue valorando toda la situación."
         },
         {
-          "prompt": "Has virado para evitar el abordaje. ¿Qué completa la respuesta?",
+          "prompt": "Has girado para evitar a otro buque. ¿Qué completa la respuesta?",
           "options": [
-            "Dejar de observar al otro",
-            "Comprobar hasta quedar pasado y franco",
+            "Dejar de vigilar al otro buque",
+            "Comprobar que funciona hasta quedar pasado y franco",
             "Suponer que el giro eliminó todo riesgo"
           ],
-          "explanation": "La Regla 8 exige comprobar el efecto y lograr un paso seguro sin crear otra aproximación peligrosa."
+          "explanation": "La Regla 8 exige comprobar el efecto de tu maniobra y pasar a una distancia segura, sin crear otra situación de aproximación excesiva."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Ensaya estas decisiones con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
     },
     "sail-49": {
       "title": "Buques especiales, canales angostos y vías de circulación",
       "concepts": [
-        "Identifica el estado real, no la apariencia o tamaño. «Sin gobierno» significa que circunstancias excepcionales impiden maniobrar según las reglas. «Maniobra restringida» depende del trabajo, como dragado. «Dedicado a la pesca» exige artes que restrinjan la maniobrabilidad; el curricán que no la limita no basta. Confirma luces, marcas y situación.",
-        "La idea: los buques que no pueden girar o detenerse con facilidad reciben espacio de los que sí pueden. Salvo lo dispuesto en las Reglas 9, 10 y 13, un velero ordinario en navegación se aparta de buques sin gobierno, de maniobra restringida y dedicados a la pesca. Un motor ordinario también se aparta de veleros. Según la Regla internacional 18(d), los buques salvo las dos primeras categorías evitarán, si las circunstancias lo permiten, estorbar a uno restringido por su calado con las señales requeridas. Este conserva especial cautela. Cuando ambos buques tienen un estado especial, por ejemplo uno sin gobierno y otro con maniobrabilidad restringida, el reglamento no da preferencia a ninguno: los dos actúan para evitar el abordaje.",
-        "En un canal angosto, navega cerca del límite exterior de estribor cuando sea seguro y practicable. Un velero o buque menor de 20 m no estorbará al que solo puede navegar seguro dentro del canal. No cruces si lo estorbas. Los pesqueros no estorban a otros buques que navegan por el canal. Prevé recodos y evita fondear cuando sea posible.",
-        "En un dispositivo aprobado por la Organización Marítima Internacional (OMI), sigue el sentido de la vía e incorpórate o sal por el costado con un ángulo pequeño. Evita cruzar si es posible; si debes hacerlo, lleva rumbo lo más perpendicular posible al flujo. Es el rumbo de proa, no la trayectoria corregida por corriente. Veleros y menores de 20 m no estorban a motores que siguen la vía. Evita zonas de separación salvo permiso reglamentario.",
-        "«No estorbar» exige actuar pronto para dejar espacio suficiente antes de que aparezca riesgo de abordaje. La obligación continúa si surge riesgo y ambos siguen sujetos a las reglas de prevención. Una vía de circulación no concede preferencia incondicional. Consulta también instrucciones portuarias, cartas y avisos locales.",
-        "Un paso estrecho tiene sus propias señales para adelantar. El buque que solo puede adelantar con seguridad si el de delante se aparta lo pide con el pito: dos prolongadas y una corta significan «tengo intención de alcanzarle por su costado de estribor»; dos prolongadas y dos cortas, «por su costado de babor». El de delante da su conformidad con prolongada, corta, prolongada, corta y le deja sitio. Si duda de que sea seguro, emite al menos cinco pitadas cortas y rápidas.",
-        "Una draga o un buque que trabaja bajo el agua puede tener un costado obstruido por su trabajo. Muestra entonces dos rojas todo horizonte, o dos bolas negras de día, en el costado obstruido, y dos verdes todo horizonte, o dos marcas bicónicas negras, en el costado por el que se puede pasar. Se suman a su roja-blanca-roja o bola-bicónica-bola.",
-        "Un aparejo de pesca que se extiende más de 150 m se señala por el lado hacia el que se extiende. Además de sus luces de pesca, el buque muestra una luz blanca todo horizonte, o de día un cono con el vértice hacia arriba, en la dirección del aparejo. Pasa por el otro lado, bien lejos del aparejo."
+        "Juzga un buque por lo que realmente puede hacer, no por lo grande que parece. Confirma su estado por las luces y marcas correctas y por la situación. Aquí importan tres tipos especiales:\n• Sin gobierno: circunstancias excepcionales (como una avería del timón) le impiden maniobrar como exigen las reglas.\n• Con maniobrabilidad restringida: su trabajo, como el dragado, limita cómo puede cumplir las reglas.\n• Dedicado a la pesca: sus artes (redes o líneas) limitan su maniobra; el curricán recreativo que no la limita no cuenta.",
+        "Los buques que no pueden girar o detenerse con facilidad reciben espacio de los que sí pueden. Un velero corriente en navegación (no fondeado, amarrado ni varado) se aparta de los buques sin gobierno, con maniobrabilidad restringida y dedicados a la pesca. Un buque de propulsión mecánica corriente (uno que usa motor) también se aparta de los veleros. Los canales angostos, las vías de circulación y los adelantamientos pueden cambiar este orden (Reglas 9, 10 y 13). Un buque restringido por su calado (un barco profundo que debe quedarse en aguas profundas) muestra señales especiales. Todos los buques, salvo los sin gobierno o con maniobrabilidad restringida, deben, si es posible, evitar estorbarle (ponerse en su camino) actuando pronto (Regla internacional 18(d)). Aun así, él navega con especial precaución. Cuando ambos buques tienen un estado especial, por ejemplo uno sin gobierno y otro con maniobrabilidad restringida, las reglas no dan preferencia a ninguno, así que los dos actúan para evitar el abordaje.",
+        "En un canal angosto, navega lo más cerca del borde de estribor (derecha) que sea seguro y factible. Un velero o un buque de menos de 20 m (unos 65 pies) no debe estorbar a un buque que solo puede navegar con seguridad dentro del canal, porque el barco grande no tiene otro sitio adonde ir (Regla 9). No cruces si eso estorbaría a ese buque. Los pesqueros no deben estorbar a otros buques que navegan por el canal. Acércate a los recodos sin visibilidad con especial atención y precaución. Si es posible, no fondees en el canal.",
+        "Un dispositivo de separación del tráfico son vías de sentido único, como una autopista: sigue el sentido de tu vía. Estos dispositivos, adoptados por la Organización Marítima Internacional (OMI), tienen una franja central entre las vías: la zona de separación. Incorpórate a una vía o sal de ella por el costado con un ángulo pequeño. Evita cruzar si puedes. Si debes cruzar, mantén tu rumbo (hacia donde apunta tu proa) lo más perpendicular posible al flujo del tráfico, para salir de la vía cuanto antes y que los buques vean claramente lo que haces. Se trata del rumbo, no de una derrota sobre el fondo corregida por la corriente. Los veleros y los buques de menos de 20 m no deben estorbar a los buques de propulsión mecánica que siguen una vía. Mantente fuera de las zonas de separación salvo en lo que permiten las reglas (Regla 10).",
+        "«No estorbar» significa actuar pronto para dejar mucho espacio de mar, antes de que surja cualquier riesgo de abordaje. La obligación continúa si surge riesgo, y entonces ambos buques deben seguir también las reglas para evitar abordajes. Una vía de circulación no da a un buque una preferencia incondicional. Consulta las instrucciones portuarias, cartas y avisos locales además del Reglamento internacional.",
+        "En un canal angosto, pide con el pito antes de adelantar (pasar a un buque más lento que va delante). Lo haces cuando solo puedes pasar con seguridad si el buque de delante se aparta. Una pitada prolongada dura de 4 a 6 segundos; una corta, alrededor de 1 segundo. Las señales (Regla 34(c)):\n• Dos prolongadas y una corta: «Tengo intención de alcanzarle por su costado de estribor».\n• Dos prolongadas y dos cortas: «Tengo intención de alcanzarle por su costado de babor (izquierda)».\n• Prolongada, corta, prolongada, corta: el buque de delante está de acuerdo y deja sitio.\n• Al menos cinco pitadas cortas y rápidas: el buque de delante duda de que sea seguro.",
+        "Una draga o un buque de trabajos submarinos indica qué costado está obstruido y por cuál puedes pasar. Su trabajo puede obstruir un costado. En el costado obstruido muestra dos luces rojas todo horizonte (visibles desde todas las direcciones), o dos bolas negras de día. En el costado por el que puedes pasar muestra dos luces verdes todo horizonte, o dos marcas bicónicas negras de día. Se suman a sus luces roja-blanca-roja o a sus marcas bola-bicónica-bola, la señal de maniobrabilidad restringida.",
+        "Un aparejo de pesca que se extiende más de 150 m se señala por el lado hacia el que se extiende. 150 m son aproximadamente un campo de fútbol y medio. Además de sus luces de pesca, el buque muestra una luz blanca todo horizonte, o de día un cono con el vértice hacia arriba, en la dirección del aparejo. Pasa por el otro lado, bien lejos del aparejo, porque las redes y líneas pueden enganchar tu quilla o tu hélice."
       ],
       "observe": [
-        "Distingue una restricción por trabajo del mero tamaño.",
-        "Al cruzar una vía, compara rumbo de proa y trayectoria sobre el fondo."
+        "Distingue un buque restringido por su trabajo de uno que simplemente es grande.",
+        "Para cruzar una vía de circulación, compara tu rumbo con tu rumbo sobre el fondo (tu trayectoria real, que la corriente puede desviar de lado)."
       ],
-      "mistake": "Invocar prioridad de vela para cruzar ante un buque limitado al canal.",
+      "mistake": "Usar «la vela tiene preferencia» como motivo para cruzar por la proa de un buque que solo puede navegar con seguridad dentro del canal.",
       "quiz": [
         {
-          "prompt": "Tu velero estorbaría a un buque que solo navega seguro en este canal. ¿Qué debes hacer?",
+          "prompt": "Tu velero estorbaría a un buque que solo puede navegar con seguridad en este canal angosto. ¿Qué se exige?",
           "options": [
-            "Cruzar porque vas a vela",
+            "Cruzar porque navegas a vela",
             "Actuar pronto para no estorbar su paso",
-            "Esperar una exigencia por radio"
+            "Esperar a que te lo pidan por radio"
           ],
-          "explanation": "La Regla 9 obliga al velero a no estorbar a ese buque, sin esperar llamada por radio."
+          "explanation": "La Regla 9 exige que un velero no estorbe a ese buque; esta obligación no depende de una llamada por radio."
         },
         {
-          "prompt": "Al tener que cruzar una vía, ¿qué debe ser casi perpendicular al tráfico?",
+          "prompt": "Cuando debes cruzar una vía de circulación, ¿qué debe ir casi perpendicular al flujo del tráfico?",
           "options": [
-            "El rumbo de proa",
-            "La derrota sobre el fondo, sin importar la proa",
+            "El rumbo",
+            "La derrota sobre el fondo, sea cual sea el rumbo",
             "La botavara"
           ],
-          "explanation": "La Regla 10(c) especifica rumbo. La corriente puede cambiar la trayectoria sobre el fondo."
+          "explanation": "La Regla 10(c) especifica el rumbo. La corriente puede hacer que tu derrota sobre el fondo sea distinta."
         },
         {
-          "prompt": "En un paso estrecho, el buque de delante oye desde popa dos pitadas prolongadas y dos cortas. ¿Qué significan?",
+          "prompt": "En un canal angosto, el buque de delante oye desde popa (detrás) dos pitadas prolongadas y dos cortas. ¿Qué significan?",
           "options": [
-            "El buque de popa quiere alcanzarle por babor",
+            "El buque de popa tiene intención de adelantar por el costado de babor",
             "El buque de popa está en peligro",
-            "El buque de popa quiere alcanzarle por estribor"
+            "El buque de popa tiene intención de adelantar por el costado de estribor"
           ],
-          "explanation": "Según la Regla 34(c), dos prolongadas y una corta piden pasar por estribor; dos prolongadas y dos cortas, por babor. Da conformidad con prolongada-corta-prolongada-corta, o emite cinco cortas si dudas."
+          "explanation": "Según la Regla 34(c), dos prolongadas y una corta piden pasar por el costado de estribor; dos prolongadas y dos cortas, por el de babor. El buque de delante da su conformidad con prolongada-corta-prolongada-corta, o emite cinco pitadas cortas si duda."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Ensaya estas decisiones con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
       "localNotes": [
         "En el estrecho golfo de Eilat, un velero debe apartarse de un buque grande que solo puede navegar dentro del canal, aunque en mar abierto el buque de propulsión mecánica cede el paso a la vela."
       ]
@@ -2149,46 +2149,46 @@
     "sail-50": {
       "title": "Interpretar luces, marcas y señales acústicas",
       "concepts": [
-        "La luz roja es de babor y la verde de estribor, cada una de 112,5° desde proa hasta 22,5° a popa del través. La luz blanca de alcance cubre 135° a popa y la de tope 225° a proa. Identifica el conjunto y el aspecto observado. Una blanca sola puede ser de alcance, fondeo u otra permitida: no demuestra tipo ni ausencia de riesgo.",
-        "Un velero normalmente muestra luces de costado y alcance; combinaciones y excepciones de pequeños buques dependen de la eslora. Un motor añade normalmente la luz o luces de tope requeridas. Un yate a vela y propulsado también por máquina muestra de día un cono negro con el vértice abajo. Al fondeo se muestran las blancas todo horizonte y bola negra diurna requeridas, con excepciones por eslora y lugar. Un velero puede mostrar además, en el tope del palo, un par opcional de luces todo horizonte, roja sobre verde, pero no junto con un farol combinado de tope. Estudia los montajes completos antes de navegar de noche.",
-        "Patrones verticales útiles: sin gobierno, dos rojas todo horizonte o dos bolas negras; maniobra restringida, roja-blanca-roja o bola-bicónica-bola; pesca no de arrastre, roja sobre blanca; arrastre, verde sobre blanca. La marca de pesca son dos conos unidos por los vértices. Un buque restringido por calado puede mostrar tres rojas o un cilindro. Son señales de estado; pueden requerirse otras luces de navegación. Las páginas siguientes añaden los patrones de buques grandes, fondeados, varados, remolcando, de práctico y con buceadores.",
-        "Las luces se muestran desde la puesta hasta la salida del sol y siempre que la visibilidad esté reducida. Eso incluye la niebla o la lluvia intensa de día; las marcas se muestran de día. En esas horas no muestres otras luces que puedan confundirse con luces de navegación o dificultar la vigilancia. Un yate o una lancha corriente, sin un estado especial, no tiene marca diurna que mostrar.",
-        "Un buque de propulsión mecánica de 50 m o más muestra dos luces de tope, la de popa más alta que la de proa. El par indica además su rumbo: cuando las dos luces quedan en vertical, apunta hacia ti o se aleja de ti. Un buque de menos de 50 m puede mostrar solo una. Un buque con maniobrabilidad restringida añade luces de tope, de costado y de alcance a su roja-blanca-roja solo mientras tiene arrancada.",
-        "Fondeado, un buque de menos de 50 m muestra una luz blanca todo horizonte donde mejor se vea. Uno de 50 m o más muestra dos: una a proa y otra más baja en la popa o cerca de ella. De día muestra una bola negra a proa. Un buque de 100 m o más ilumina además sus cubiertas, así que un barco muy iluminado que no se mueve bien puede estar fondeado.",
-        "Un buque varado muestra sus luces de fondeo y además dos rojas todo horizonte en línea vertical; de día, tres bolas negras en línea vertical. Tómalo también como un aviso sobre el agua: allí la profundidad no le bastó a él y puede no bastarte a ti.",
-        "Un buque que remolca añade luces de tope y una luz amarilla de remolque. Un buque de propulsión mecánica que remolca por la popa muestra dos luces de tope en línea vertical, o tres cuando el remolque, medido desde su popa hasta el final del remolque, supera los 200 m. Muestra también luces de costado, luz de alcance y una luz amarilla de remolque sobre la de alcance; el buque remolcado muestra luces de costado y de alcance. Solo cuando el remolque supera los 200 m muestran ambos una marca bicónica negra de día. Nunca pases entre un remolcador y su remolque.",
-        "Un remolcador corriente con su remolque es un buque de propulsión mecánica. Se mantiene apartado de un velero y sigue las reglas normales de cruce y de vuelta encontrada. Un buque que empuja o remolca abarloado muestra dos luces de tope, luces de costado y de alcance, pero no luz amarilla de remolque. Si el trabajo de remolque le impide gravemente cambiar de rumbo, el remolcador muestra además roja-blanca-roja, o bola-bicónica-bola de día, y entonces los demás buques, incluidos los veleros, se mantienen apartados de él.",
-        "Un buque de práctico en servicio muestra en el tope dos luces todo horizonte, blanca sobre roja; para recordarlo: «blanco sobre rojo, práctico». Navegando añade luces de costado y de alcance, y fondeado sus luces de fondeo. Los buques reducen velocidad y maniobran cerca de la estación de prácticos para embarcarlo, así que espera cambios bruscos allí.",
-        "Un buque que apoya a buceadores muestra de día la bandera A del código internacional. Es una réplica rígida de al menos 1 m de altura, blanca y azul, con el extremo en cola de golondrina. De noche muestra las luces de maniobrabilidad restringida, roja-blanca-roja. Puede haber buceadores en el agua en cualquier punto a su alrededor, así que mantente bien apartado y reduce la velocidad.",
-        "Según la Regla internacional 34, un motor en navegación que maniobra con buques a la vista da una corta al caer a estribor, dos a babor y tres al dar atrás con la máquina. Tres no significa necesariamente que ya tenga arrancada atrás. Ante dudas sobre intenciones o actuación suficiente de buques que se acercan a la vista, da al menos cinco cortas rápidas. En un recodo oculto, una prolongada; el buque que se aproxima y oye responde con otra prolongada.",
-        "Las señales de niebla son otro sistema. A intervalos máximos de dos minutos: motor con arrancada, una prolongada; en navegación parado sin arrancada, dos prolongadas separadas unos dos segundos; velero, una prolongada y dos cortas. Esta última la emiten también los buques sin gobierno, con maniobrabilidad restringida, restringidos por su calado, pescando, o remolcando o empujando, así que no identifica solo a un velero. Un buque remolcado con tripulación, el último del remolque, emite una prolongada y tres cortas justo después de la señal del remolcador. Una corta dura aproximadamente un segundo; una prolongada, cuatro a seis. La Regla 35 incluye otros casos y excepciones para pequeños buques; las señales interiores pueden diferir."
+        "Cada luz alumbra solo una parte del círculo, así que las luces que ves indican hacia dónde mira un barco. La roja es la luz de costado de babor (izquierda) y la verde, la de estribor (derecha). Cada una cubre 112,5°, desde la proa hasta 22,5° a popa del través (justo detrás del costado). La luz blanca de alcance cubre los 135° restantes hacia popa; la luz blanca de tope cubre 225° hacia proa. Roja y verde juntas significan que se dirige hacia ti. Una sola luz blanca puede ser de alcance, de fondeo u otra permitida: no prueba ni el tipo de buque ni la ausencia de riesgo.",
+        "Las luces y marcas normales de un barco dependen de lo que está haciendo:\n• Velero: luces de costado y luz de alcance (las opciones y excepciones para pequeños buques dependen de la eslora).\n• Buque de propulsión mecánica: añade la luz o luces de tope requeridas.\n• A vela y motor a la vez: de día, un cono negro con el vértice hacia abajo.\n• Fondeado: la luz o luces blancas todo horizonte requeridas (visibles desde todas las direcciones), y de día una bola negra, con excepciones según la eslora y el lugar.\nUn velero puede mostrar además, en el tope del palo, un par opcional de luces todo horizonte, roja sobre verde («rojo sobre verde, velero en movimiento»). No puede mostrarlas junto con un farol combinado de tope (roja, verde y blanca en un solo farol en lo alto del palo). Estudia los montajes completos antes de navegar de noche.",
+        "Algunas luces y marcas indican un estado especial; léelas de arriba abajo:\n• Sin gobierno (no puede maniobrar como debe): dos luces rojas todo horizonte, o dos bolas negras de día.\n• Con maniobrabilidad restringida (su trabajo limita su movimiento): roja-blanca-roja, o bola-bicónica-bola.\n• Pesca que no es de arrastre: roja sobre blanca.\n• Arrastre (remolcando una red): verde sobre blanca.\n• Restringido por su calado (demasiado profundo para salir de aguas profundas): tres luces rojas todo horizonte, o un cilindro.\nLa marca diurna de pesca son dos conos unidos por los vértices. Son señales de estado, así que también pueden hacer falta luces de navegación. Las páginas siguientes añaden buques grandes, fondeados, varados, remolcando, de práctico y de buceo.",
+        "Las luces se muestran desde la puesta hasta la salida del sol y siempre que la visibilidad esté reducida. Eso incluye la niebla o la lluvia intensa de día. Las marcas se muestran de día. En esas horas no muestres otras luces que puedan confundirse con luces de navegación o dificultar la vigilancia, porque pueden ocultar el patrón real. Un yate o una lancha corriente sin estado especial no tiene marca diurna que mostrar.",
+        "Los buques grandes de propulsión mecánica muestran dos luces de tope, que además indican hacia dónde apuntan. Un buque de propulsión mecánica de 50 m o más (más o menos la longitud de una piscina olímpica) muestra dos, la de popa más alta que la de proa. Cuando las dos luces quedan en vertical, apunta hacia ti o se aleja de ti. Un buque de menos de 50 m puede mostrar solo una. Un buque con maniobrabilidad restringida añade luces de tope, de costado y de alcance a su roja-blanca-roja solo mientras tiene arrancada (se mueve realmente por el agua).",
+        "Los buques fondeados muestran luces blancas todo horizonte de noche y una bola negra de día. Un buque de menos de 50 m muestra una luz blanca todo horizonte donde mejor se vea. Uno de 50 m o más muestra dos: una a proa y otra más baja en la popa o cerca de ella. La bola negra se muestra a proa. Un buque de 100 m o más ilumina además sus cubiertas, así que un barco muy iluminado que no se mueve bien puede estar fondeado.",
+        "Un buque varado te avisa sobre el propio barco y sobre el agua poco profunda cercana. Un buque varado (encallado en el fondo) muestra sus luces de fondeo y además dos luces rojas todo horizonte en línea vertical; de día, tres bolas negras en línea vertical. Allí la profundidad no le bastó a él, así que puede no bastarte a ti.",
+        "Un buque que remolca añade luces de tope y una luz amarilla de remolque. Un buque de propulsión mecánica que remolca por la popa (tirando del remolque detrás de él) muestra dos luces de tope en línea vertical. Muestra tres cuando el remolque supera los 200 m (unos dos campos de fútbol), medidos desde su popa hasta el final del remolque. También muestra luces de costado, luz de alcance y una luz amarilla de remolque sobre la de alcance. El buque remolcado muestra luces de costado y de alcance. Solo cuando el remolque supera los 200 m muestran ambos una marca bicónica negra de día. Nunca pases entre un remolcador y su remolque, porque el cabo de remolque puede ir oculto bajo el agua.",
+        "Un remolcador corriente con su remolque es un buque de propulsión mecánica, así que se aparta de un velero. Sigue las reglas normales de cruce y de vuelta encontrada. Un buque que empuja o remolca abarloado (con el remolque amarrado a su costado) muestra dos luces de tope, luces de costado y de alcance, pero no luz amarilla de remolque. Si el trabajo de remolque le impide gravemente cambiar de rumbo, el remolcador muestra además roja-blanca-roja, o bola-bicónica-bola de día. Entonces los demás buques, incluidos los veleros, se apartan de él.",
+        "Un buque de práctico en servicio muestra en el tope dos luces todo horizonte, blanca sobre roja. Un práctico es un experto local que sube a bordo de los buques para guiarlos a puerto; para recordarlo: «blanco sobre rojo, práctico a bordo». En navegación (no fondeado, amarrado ni varado) añade luces de costado y de alcance; fondeado, sus luces de fondeo. Los buques reducen velocidad y maniobran cerca de la estación de prácticos para embarcar uno, así que espera cambios bruscos allí.",
+        "Un buque que apoya a buceadores muestra de día la bandera A del código y de noche roja-blanca-roja. La bandera es una réplica rígida de al menos 1 m de altura, blanca y azul, con el extremo en cola de golondrina (una muesca en V en el extremo libre). De noche muestra las luces de maniobrabilidad restringida, roja-blanca-roja. Puede haber buceadores en el agua en cualquier punto a su alrededor, así que mantente bien apartado y reduce la velocidad.",
+        "Los buques de propulsión mecánica que se ven entre sí señalan sus maniobras con pitadas:\n• Una pitada corta: caigo a estribor.\n• Dos pitadas cortas: caigo a babor.\n• Tres pitadas cortas: estoy dando atrás (motor en marcha atrás).\n• Al menos cinco pitadas cortas y rápidas: duda sobre las intenciones del otro o sobre si hace lo suficiente.\nUna pitada corta dura alrededor de un segundo; una prolongada, de cuatro a seis segundos. Las da un buque de propulsión mecánica en navegación que maniobra con buques a la vista (Regla internacional 34). Tres pitadas no significan necesariamente que ya se mueva hacia atrás. Cerca de un recodo oculto de un canal, da una pitada prolongada; un buque que se acerque y la oiga responde con otra prolongada.",
+        "En niebla, los buques emiten otro conjunto de señales, a intervalos de no más de dos minutos. Un buque de propulsión mecánica con arrancada emite una pitada prolongada. En navegación pero parado y sin arrancada, emite dos prolongadas separadas unos dos segundos. Un buque remolcado con tripulación, el último del remolque, emite una prolongada y tres cortas justo después de la señal del remolcador. Una prolongada seguida de dos cortas la emiten:\n• un velero\n• un buque sin gobierno o con maniobrabilidad restringida\n• un buque restringido por su calado o dedicado a la pesca\n• un buque que remolca o empuja\nAsí que esa señal no identifica solo a un velero. La Regla 35 especifica otros casos y excepciones para pequeños buques; las señales internacionales e interiores pueden diferir."
       ],
       "observe": [
-        "Nombra todo el patrón observado antes de deducir la condición.",
-        "Separa señales de maniobra a la vista y señales de niebla."
+        "Nombra todo el patrón de luces observado antes de deducir el estado del buque.",
+        "Separa las señales de maniobra a la vista de las señales de niebla."
       ],
-      "mistake": "Identificar por un color o interpretar una señal de niebla como un giro.",
+      "mistake": "Identificar un buque por un solo color o tomar una señal de niebla como una indicación de giro.",
       "quiz": [
         {
-          "prompt": "A la vista, según la Regla internacional 34, tres cortas significan…",
+          "prompt": "Dos buques se ven entre sí. Según la Regla internacional 34, tres pitadas cortas significan…",
           "options": [
             "Dar atrás con la máquina",
             "Ya tener arrancada atrás",
             "Reclamar preferencia"
           ],
-          "explanation": "La señal describe la propulsión, no un movimiento garantizado por el agua."
+          "explanation": "La señal indica que su motor está dando atrás (en marcha atrás). No garantiza que ya se esté moviendo hacia atrás por el agua."
         },
         {
-          "prompt": "En niebla oyes una prolongada y dos cortas. ¿Qué puedes concluir?",
+          "prompt": "En niebla oyes una pitada prolongada y dos cortas. ¿Qué puedes concluir?",
           "options": [
             "Sin duda un velero",
             "Está cayendo a babor",
-            "Lo usan varias categorías; la identidad sigue incierta"
+            "Varias categorías usan esta señal; su identidad sigue siendo incierta"
           ],
-          "explanation": "La Regla 35 comparte este patrón entre vela y categorías especiales. Sigue evaluando el riesgo."
+          "explanation": "Según la Regla 35, los veleros y varios tipos de buques especiales usan este patrón. Sigue evaluando el riesgo."
         },
         {
-          "prompt": "De noche ves luces blancas de fondeo y dos rojas todo horizonte en línea vertical. ¿Qué es?",
+          "prompt": "De noche ves luces blancas de fondeo y dos luces rojas todo horizonte en línea vertical. ¿Qué es?",
           "options": [
             "Un buque sin gobierno con arrancada",
             "Un buque varado",
@@ -2206,7 +2206,7 @@
           "explanation": "La Regla 24 añade la marca bicónica, y de noche una tercera luz de tope, solo cuando el remolque supera los 200 m. Un remolque más corto no lleva marca diurna."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Ensaya estas decisiones con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
       "localNotes": [
         "El material del título de patrón de embarcación de Israel exige mantenerse al menos a 200 m de un buque que muestre la bandera de buceo. Comprueba la normativa israelí vigente antes de fiarte de una distancia."
       ]
@@ -2214,38 +2214,38 @@
     "sail-51": {
       "title": "Visibilidad restringida y plan completo de encuentro",
       "concepts": [
-        "Elige el marco antes de asignar quién cede y quién mantiene. La Regla internacional 19 se aplica a buques que no están a la vista en o cerca de visibilidad restringida. No asignes a un contacto no visto las funciones ordinarias de vela-motor o cruce. Si están visualmente a la vista, usa las reglas correspondientes sin olvidar visibilidad y deberes generales.",
-        "Navega a velocidad segura adaptada a las condiciones. Un motor mantiene máquinas listas para maniobra inmediata. Conserva vigilancia, usa señales y equipos correctamente y no concluyas con escasa información radar. AIS y una conversación por radio no sustituyen vigilancia, no dan una imagen completa ni cancelan las reglas.",
-        "Con un contacto detectado solo por radar, determina si se desarrolla aproximación excesiva o riesgo y actúa con tiempo. Al cambiar rumbo, evita en lo posible caer a babor por un buque a proa del través, salvo el alcanzado; evita también girar hacia uno por el través o a popa de él. No hay un giro universalmente seguro: revisa contactos, espacio y velocidad.",
-        "Salvo que se haya determinado que no hay riesgo, oír una señal de niebla aparentemente a proa del través o no poder evitar aproximación excesiva a un buque allí exige reducir a la mínima velocidad que permita mantener el rumbo. Suprime toda arrancada si es necesario y extrema la precaución hasta pasar el peligro. No mantengas velocidad de crucero esperando verlo.",
-        "Sigue la misma secuencia: observar y evaluar riesgo; establecer visibilidad, propulsión, estado y límites locales; comprobar alcance antes de funciones ordinarias; actuar a tiempo sin crear otro peligro; verificar hasta quedar pasado y franco. Reevalúa al cambiar condiciones. Estas lecciones enseñan el razonamiento internacional esencial, no todo el programa de luces, la ley local ni una titulación para navegar sin supervisión."
+        "Decide primero qué conjunto de reglas se aplica; solo después decide quién cede el paso. Cuando los buques no se ven entre sí y están en visibilidad reducida o cerca de ella (niebla, lluvia intensa o similar), se aplica la Regla internacional 19. Entonces no asignes a un contacto no visto (un buque detectado pero no visto) los papeles ordinarios a la vista, como vela antes que motor o las reglas de cruce. Si os veis, usa las reglas a la vista, teniendo en cuenta aún la visibilidad y tus deberes generales.",
+        "Con mala visibilidad, navega a velocidad de seguridad y mantén la vigilancia, para poder detenerte o girar a tiempo. Un buque de propulsión mecánica mantiene las máquinas listas para maniobrar de inmediato. Usa correctamente las señales acústicas exigidas y tus equipos. Evita sacar conclusiones de información de radar escasa: uno o dos vistazos no pueden mostrar el rumbo de otro barco. El AIS (buques que transmiten su posición y rumbo) y la radio no sustituyen la vigilancia, no dan una imagen completa del tráfico ni anulan las reglas.",
+        "Si un buque aparece solo en el radar, valora el riesgo pronto y actúa a tiempo. Determina si se está produciendo una aproximación excesiva (acercarse peligrosamente) o un riesgo de abordaje. Si cambias de rumbo, en lo posible no caigas a babor (izquierda) por un buque a proa del través (por delante de tu costado), salvo que lo estés alcanzando. Evita también girar hacia un buque por el través o a popa del través (a tu lado o detrás de ti) (Regla 19(d)). Ningún giro es siempre seguro, así que revisa todos los contactos, el espacio de mar (sitio para maniobrar) y las opciones de velocidad.",
+        "Si una señal de niebla parece venir de proa del través, reduce mucho la velocidad. Navega a la mínima velocidad que aún te permita mantener el rumbo. Haz lo mismo si no puedes evitar acercarte demasiado a un buque a proa del través. Esto se aplica salvo que ya estés seguro de que no hay riesgo de abordaje. Suprime toda arrancada (detente en el agua) si es necesario y navega con extrema precaución hasta que pase el peligro (Regla 19(e)). No mantengas la velocidad de crucero esperando ver el buque, porque aún no puedes saber hacia dónde va.",
+        "Usa los mismos cinco pasos en cada ejercicio, en este orden:\n• Observa y evalúa el riesgo.\n• Establece la visibilidad, cómo se propulsa cada buque, su estado y los límites locales.\n• Comprueba si hay un alcance antes de aplicar los papeles ordinarios del encuentro.\n• Elige una acción a tiempo que no cree otro peligro.\n• Sigue comprobando el resultado hasta quedar pasado y franco.\nVuelve a empezar la evaluación siempre que cambien las condiciones. Estas lecciones enseñan el razonamiento básico de los encuentros según el Reglamento internacional, no el temario completo de luces, la normativa local ni una cualificación para navegar sin supervisión."
       ],
       "observe": [
-        "Aclara si el contacto está a la vista o solo en instrumentos.",
-        "Reevalúa tras cada observación; un plan solo no elimina el riesgo."
+        "Indica de forma explícita si el contacto está a la vista o solo se detecta por instrumentos.",
+        "Reevalúa un contacto que se acerca tras cada nueva observación; un plan por sí solo no elimina el riesgo."
       ],
-      "mistake": "Asignar prioridad automática a vela ante un contacto no visible en niebla.",
+      "mistake": "Asignar preferencia automática a la vela ante un contacto que no está a la vista en niebla.",
       "quiz": [
         {
-          "prompt": "En niebla detectas un buque por radar sin verlo. ¿Qué marco se aplica?",
+          "prompt": "En niebla, se detecta otro buque por radar pero no se ve. ¿Qué marco se aplica?",
           "options": [
-            "Prioridad automática de vela sobre motor",
-            "Regla 19 y deberes generales aplicables",
-            "Ninguna regla hasta verlo"
+            "Preferencia automática de la vela sobre el motor",
+            "La Regla 19 más los deberes generales aplicables",
+            "Ninguna regla hasta que lo veas"
           ],
-          "explanation": "Se aplica el marco de visibilidad restringida sin contacto visual; no se asignan sin más roles ordinarios a la vista."
+          "explanation": "Se aplican las reglas para buques que no están a la vista en visibilidad reducida; no puedes asignar sin más los papeles ordinarios a la vista."
         },
         {
-          "prompt": "Oyes una señal de niebla a proa del través y no se ha descartado riesgo. ¿Qué debes hacer?",
+          "prompt": "Una señal de niebla parece venir de proa de tu través y no te has asegurado de que no haya riesgo. ¿Qué debes hacer?",
           "options": [
-            "Mantener velocidad hasta verlo",
-            "Girar siempre de inmediato a babor",
-            "Reducir al mínimo para gobernar; suprimir arrancada si hace falta"
+            "Mantener la velocidad hasta ver el buque",
+            "Caer a babor de inmediato en todos los casos",
+            "Reducir a la mínima velocidad que mantenga el rumbo; suprimir toda arrancada si hace falta"
           ],
-          "explanation": "La Regla 19(e) exige esa respuesta de velocidad y extrema cautela hasta pasar el peligro."
+          "explanation": "La Regla 19(e) exige esta reducción de velocidad y extrema precaución hasta que pase el peligro de abordaje."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Ensaya estas decisiones con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
     },
     "sail-52": {
       "title": "Manejar un catamarán con dos motores",
@@ -2313,22 +2313,22 @@
       "mistake": "Identificar una luz solo por su color o llegar al círculo de parada sin reducir la velocidad.",
       "quiz": [
         {
-          "prompt": "¿Qué identifica el faro de Haven en este ejercicio?",
+          "prompt": "¿Qué observación identifica el faro en este ejercicio?",
           "options": [
             "Cualquier luz blanca",
             "Un destello blanco cada 6 segundos",
             "Un destello amarillo cada 4 segundos"
           ],
-          "explanation": "Compara el color y el período completo con la lista de luces del ejercicio."
+          "explanation": "Compara el color y el período completo del destello con la lista de luces del ejercicio."
         },
         {
-          "prompt": "¿Qué completa el último punto?",
+          "prompt": "¿Qué completa el último punto de control?",
           "options": [
             "Cruzar el círculo a velocidad",
             "Seleccionar punto muerto en cualquier lugar",
             "Mantener la posición y el rumbo marcados a menos de 0,15 nudos en punto muerto"
           ],
-          "explanation": "Posición, rumbo, velocidad y punto muerto deben cumplir los objetivos durante cinco segundos seguidos."
+          "explanation": "Posición, rumbo, velocidad y punto muerto deben cumplir los objetivos a la vez durante cinco segundos seguidos."
         }
       ],
       "transfer": "Practica navegación nocturna real con un instructor y cartas y listas de luces actualizadas. El ejercicio no reproduce la adaptación a la oscuridad, los límites de visibilidad ni todas las configuraciones de luces.",

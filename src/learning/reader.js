@@ -4,7 +4,7 @@ import {renderLabFigure,labCaption,mountLab} from './labs/index.js';
 import './reader.css';
 import './labs/labs.css';
 import {playbackIcon} from '../activity/playback-icon.js';
-import {splitLead,summaryPoints,withLessonNumbers} from './lesson-text.js';
+import {splitLead,summaryPoints,withLessonNumbers,bodyBlocks} from './lesson-text.js';
 import {lessons as courseLessons} from './curriculum.js';
 const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 const label=s=>esc(t(s));
@@ -34,7 +34,7 @@ export function createLessonReader({onCheck,onPractice,onCourse,onRecord,onNext,
    // The page's first sentence is its headline, so each page leads with one idea.
    const {lead,rest}=splitLead(p.text);kicker=`${label('Understand')} · <bdi dir="ltr">${p.index+1} / ${lesson.concepts.length}</bdi>`;
    if(lead)title=esc(lead);
-   content=rest||!lead?`<p class="reader-body">${esc(rest||p.text)}</p>`:'';
+   content=rest||!lead?bodyBlocks(rest||p.text).map(b=>b.type==='list'?`<ul class="reader-list">${b.items.map(item=>`<li>${esc(item)}</li>`).join('')}</ul>`:`<p class="reader-body">${esc(b.text)}</p>`).join(''):'';
    // Local rules sit beside the international rule, never inside it.
    content+=(lesson.localNotes||[]).filter(n=>n.page===p.index).map(n=>`<aside class="reader-local-note" data-region="${esc(n.region)}"><strong>${label(LOCAL_RULES[n.region])}</strong><p>${esc(n.text)}</p></aside>`).join('');
   }

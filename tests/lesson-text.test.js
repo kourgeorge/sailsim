@@ -1,6 +1,6 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
-import {splitLead,summaryPoints,withLessonNumbers} from '../src/learning/lesson-text.js';
+import {splitLead,summaryPoints,withLessonNumbers,bodyBlocks} from '../src/learning/lesson-text.js';
 import {lessons} from '../src/learning/curriculum.js';
 
 test('the first sentence of a concept page becomes its headline',()=>{
@@ -28,4 +28,12 @@ test('lesson cross-references show the referenced lesson’s current number',()=
 
 test('every cross-reference in the course points at a real lesson',()=>{
  for(const l of lessons)for(const text of l.concepts)for(const [,id] of text.matchAll(/\{lesson:([\w-]+)\}/g))assert.ok(lessons.some(x=>x.id===id),`${l.id} -> ${id}`);
+});
+
+test('page bodies turn "• " lines into lists, and a list never joins the headline',()=>{
+ const text='Distress can be seen or heard.\n• A red hand flare\n• Orange smoke\nUse them only in real distress.';
+ assert.equal(splitLead(text).lead,'Distress can be seen or heard.');
+ assert.deepEqual(bodyBlocks(splitLead(text).rest),[{type:'list',items:['A red hand flare','Orange smoke']},{type:'text',text:'Use them only in real distress.'}]);
+ assert.equal(splitLead('Signals you can see:\n• A flare. Another sentence.').lead,'Signals you can see:');
+ assert.deepEqual(bodyBlocks('Plain text only.'),[{type:'text',text:'Plain text only.'}]);
 });

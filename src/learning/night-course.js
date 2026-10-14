@@ -28,7 +28,7 @@ export const nightLessons = [
       'Identifying a light by color alone or reaching the stopping circle before reducing speed.',
     quiz: [
       {
-        prompt: 'Which observation identifies the Haven lighthouse in this exercise?',
+        prompt: 'Which observation identifies the lighthouse in this exercise?',
         options: [
           'Any white light',
           'A white flash once every 6 seconds',

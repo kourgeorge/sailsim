@@ -18,7 +18,9 @@ const isQuestion=s=>/[?؟]["”»’)]?$/.test(s);
 // a long one stays in the body.
 export function splitLead(text){
  const value=String(text).trim();let end=sentenceEnd(value);
- if(end>0&&end<MIN_LEAD){const next=sentenceEnd(value,end),joined=next<0?value.length:next;if(joined<=MAX_LEAD)end=next;}
+ // A line break (before a list) always ends the headline.
+ const lineEnd=value.indexOf('\n');if(lineEnd>0&&(end<0||lineEnd<end))end=lineEnd;
+ if(end>0&&end<MIN_LEAD&&end!==lineEnd){let next=sentenceEnd(value,end);const joined=next<0?value.length:next;if(lineEnd>end&&(next<0||next>lineEnd))next=lineEnd;if(joined<=MAX_LEAD)end=next;}
  const lead=end<0?value:value.slice(0,end).trim(),rest=end<0?'':value.slice(end).trim();
  return lead.length>MAX_LEAD?{lead:'',rest:value}:{lead,rest};
 }
@@ -41,4 +43,16 @@ export function summaryPoints(lesson){
 // number follows the lesson when lessons are added or moved.
 export function withLessonNumbers(text,numberOf){
  return String(text).replace(/\{lesson:([\w-]+)\}/g,(token,id)=>String(numberOf(id)??token));
+}
+
+// A page body is paragraphs and, for lines starting with "• ", short lists.
+export function bodyBlocks(text){
+ const blocks=[];
+ for(const raw of String(text).split('\n')){
+  const line=raw.trim();if(!line)continue;
+  const item=/^[•·-]\s+(.*)$/.exec(line);
+  if(item){const last=blocks.at(-1);if(last?.type==='list')last.items.push(item[1]);else blocks.push({type:'list',items:[item[1]]});}
+  else blocks.push({type:'text',text:line});
+ }
+ return blocks;
 }
