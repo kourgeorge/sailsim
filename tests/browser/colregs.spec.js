@@ -44,9 +44,7 @@ test('colregs lessons load in every language with diagrams and official rule ref
     for (const id of ['sail-46', 'sail-47', 'sail-48', 'sail-49', 'sail-50', 'sail-51']) {
       await selectLesson(page, positionOf(id));
       await openBriefing(page);
-      await expect(page.locator('.reader-heading h1')).toHaveText(
-        pack.lessons[id].title,
-      );
+      await expect(page.locator('.reader-heading h1')).toHaveText(pack.lessons[id].title);
       await expect(page.locator('.reader-figure svg')).toHaveAttribute('lang', lang);
       await expect(page.locator('.reader-rule-source a')).toHaveAttribute(
         'href',
