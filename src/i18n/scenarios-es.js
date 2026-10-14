@@ -2594,11 +2594,20 @@ export default {
               "now": "Entrar ya directamente, muy despacio"
             }
           },
+          "caught": {
+            "label": "A mitad de la entrada, el tripulante que vigila a popa avisa de que se forma una nueva serie detrás. ¿Qué haces?",
+            "options": {
+              "face": "Girar la proa hacia la serie y mantenerte con el motor, y luego seguir entrando tras ella",
+              "run": "Reducir y dejar que las olas te lleven dentro",
+              "beam": "Ponerte de costado para que las olas pasen por debajo"
+            }
+          },
           "prepare": {
             "label": "Antes de entrar",
             "options": {
               "crew": "Chalecos puestos y tripulación enganchada",
               "engine": "Motor en marcha y listo",
+              "aft": "Un tripulante en la bañera vigilando las olas a popa",
               "foredeck": "Mandar a alguien a la proa a vigilar",
               "hatches": "Escotillas cerradas"
             }

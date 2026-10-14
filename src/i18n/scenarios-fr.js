@@ -2628,12 +2628,21 @@ export default {
               "anchor": "Mouiller dans l’entrée et attendre"
             }
           },
+          "caught": {
+            "label": "À mi-chemin de l’entrée, l’équipier qui surveille l’arrière annonce qu’une nouvelle série se forme derrière vous. Que faites-vous ?",
+            "options": {
+              "face": "Tourner l’étrave face à la série et tenir au moteur, puis continuer à entrer après elle",
+              "run": "Ralentir et laisser les vagues vous porter à l’intérieur",
+              "beam": "Se mettre en travers pour que les vagues passent sous le bateau"
+            }
+          },
           "prepare": {
             "label": "Avant d’entrer",
             "options": {
               "crew": "Gilets de sauvetage portés et équipage attaché",
               "hatches": "Panneaux fermés",
               "engine": "Moteur en marche et prêt",
+              "aft": "Un équipier dans le cockpit qui surveille les vagues à l’arrière",
               "foredeck": "Envoyer un équipier sur la plage avant pour surveiller"
             }
           }

@@ -96,3 +96,21 @@ test('Lab 2: point of sail and tack, and agreement with the simulator',()=>{
     assert.equal(names[compassWindModel({heading,windFrom}).status],pointOfSail(s.waterWindAngle),`${heading}/${windFrom}`);
   }
 });
+
+test('Lab 13: time the entry for a lull, face a set with power, never side-on',async()=>{
+  const {createSurfSim,stepSurfSim,surfDone,surfModel}=await import('../src/learning/labs/surf-entry.js');
+  const run=plan=>{const sim=createSurfSim();while(!surfDone(sim))stepSurfSim(sim,.1,plan(sim));return sim;};
+  const waitThen=(go,settings)=>sim=>sim.time<go?{engine:'neutral',heading:'in'}:settings;
+  // Right after the last wave of the first set passes, full power reaches the harbor before the next set.
+  assert.equal(run(waitThen(37,{engine:'full',heading:'in'})).result,'inside');
+  // The same timing at slow speed is caught from behind; so is going straight in, or drifting.
+  assert.equal(run(waitThen(37,{engine:'slow',heading:'in'})).result,'broached');
+  assert.equal(run(()=>({engine:'full',heading:'in'})).result,'broached');
+  assert.equal(run(sim=>sim.time<37?{engine:'neutral',heading:'in'}:sim.time<60?{engine:'full',heading:'in'}:{engine:'full',heading:'side'}).result,'rolled');
+  // Caught by a set: turning the bow to it with the engine on survives every wave, then the boat gets in.
+  let facing=false;
+  const faced=run(sim=>{if(sim.time<55)return {engine:'neutral',heading:'in'};if(surfModel({engine:'full',heading:'in'},sim).status==='setComing')facing=true;if(facing&&sim.faced>=4)facing=false;return facing?{engine:'slow',heading:'out'}:{engine:'full',heading:'in'};});
+  assert.equal(faced.result,'inside');assert.equal(faced.faced,4);
+  facing=false;
+  assert.equal(run(sim=>{if(sim.time<55)return {engine:'neutral',heading:'in'};if(surfModel({engine:'full',heading:'in'},sim).status==='setComing')facing=true;return facing?{engine:'neutral',heading:'out'}:{engine:'full',heading:'in'};}).result,'swung');
+});

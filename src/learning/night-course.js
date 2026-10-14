@@ -17,8 +17,8 @@ export const nightLessons = [
     type: 'Guided practice',
     concepts: [
    'At night you recognize a light by its color, its pattern and its period, the time for one full cycle. Watch two or three complete cycles and count, then match them with the chart. Color alone is not enough: there are many white lights ashore. Protect your night vision: dim the screens and use red light in the cockpit.',
-   'Leading lights are two lights, the rear one higher and farther away. When the rear light is straight above the front one, you are on the line. If the rear light appears to the right, you are right of the line: move left until they line up again. Cross-check with heading, chart position and depth.',
-   'In this exercise (fictional lights) the lighthouse flashes white every 6 seconds and buoy 1 flashes yellow every 4 seconds. Steer 000° with gentle ahead thrust, passing east of buoy 1, then turn onto the leading line on 027°. Stay below 3 knots and in at least 3 metres of water; then slow, use a brief astern input, and hold below 0.15 knots in neutral on 027° for five seconds.'
+   'Leading lights are two lights, the rear one higher and farther away, used as in Lesson {lesson:sail-42}. When the rear light is straight above the front one, you are on the line. If the rear light appears to the right, you are right of the line: move left until they line up again. If they never line up where you expect, slow down, stay in safe water and check you have the right lights. Cross-check with heading, chart position and depth.',
+   'In this exercise (fictional lights) the lighthouse flashes white every 6 seconds and buoy 1 flashes yellow every 4 seconds. Stay below 3 knots and in at least 3 metres of water:\n• steer 000° with gentle ahead thrust\n• pass east of buoy 1\n• turn onto the leading line on 027°\n• slow, use a brief astern input, and hold below 0.15 knots in neutral on 027° for five seconds'
   ],
     observe: [
       'Watch the white lighthouse for two complete 6-second cycles before setting off. The beacons pause when the simulation is paused.',

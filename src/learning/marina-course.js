@@ -8,9 +8,9 @@ export const marinaLessons=[
  {
   id:'sail-43',title:'Enter the marina under engine',
   concepts:[
-   'A boat under engine has no brakes: the only quick way to slow down is reverse thrust, and even that takes time. Ahead and astern describe the push from the propeller, not which way you are moving; in neutral the push stops but the boat keeps moving. So plan every stop well before you need it.',
+   'A boat under engine has no brakes: the only quick way to slow down is reverse thrust, and even that takes time. Ahead (forwards) and astern (backwards) describe the push from the propeller, not which way you are moving; in neutral the push stops but the boat keeps moving. So plan every stop well before you need it.',
    'At low speed little water flows past the rudder, so it steers poorly. A short burst of ahead thrust pushes propeller water straight over the rudder and gives you steering even when the boat is barely moving, without adding much speed. A boat turns around a point near its front, so when you turn, the stern swings out the other way: watch it near pontoons and other boats.',
-   'In this exercise: follow the markers on 090°, 135° and 180° into the fairway, staying below 2.5 knots. Then use neutral and a short burst of astern to stop in the final circle, and finish in neutral below 0.15 knots for five seconds, clear of docks and boats.'
+   'In this exercise: follow the markers on 090° (east), 135° and 180° (south) into the fairway, the open channel between the rows of berths. Stay below 2.5 knots, about walking pace. Then use neutral and a short burst of astern to stop in the final circle, and finish in neutral below 0.15 knots for five seconds, clear of docks and boats.'
   ],
   observe:['Use the engine slider or W/S; N selects neutral. Center the helm before overshooting.','Follow the current marker on the chart. The goal panel shows distance, heading, and speed.'],
   mistake:'Entering too fast and waiting until the stopping circle to reduce power.',
@@ -24,9 +24,9 @@ export const marinaLessons=[
  {
   id:'sail-44',title:'Dock in a marina berth',
   concepts:[
-   'Come into a berth at the speed you would be willing to touch the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.',
+   'Come into a berth (a boat’s parking space at a pontoon) at a speed you would accept touching the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.',
    'At low speed the wind pushes the boat sideways, and the bow, which is high and light, blows off first. In reverse, most propellers also pull the stern to one side (prop walk), so going astern to stop can swing the stern. Plan the approach so these effects push you toward the berth, not away, and keep a way out if it goes wrong.',
-   'In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. In reverse, prop walk swings the stern to port; mooring lines are not part of this model.'
+   'In this exercise, approach the amber marker at 0.3–1 knot and continue into the northern berth. To finish, you need:\n• position: boat center within 2 metres of the green target\n• direction: heading 090° ±10°\n• speed: in neutral, below 0.15 knots\n• time: held for five seconds\nAny contact ends the attempt. In reverse, prop walk swings the stern to port (to the left, looking forward); mooring lines are not part of this model.'
   ],
   observe:['The green circle marks the boat center, not the bow. Leave clearance ahead and on both sides.','Watch ground speed and reduce power before reaching the berth.'],
   mistake:'Using the dock to stop the boat or leaving the engine engaged after reaching the target.',
@@ -39,13 +39,13 @@ export const marinaLessons=[
  {
   id:'sail-45',title:'Leave the berth and exit the marina',
   concepts:[
-   'Going backward, the rudder is at the leading end of the boat, so it steers weakly and the opposite way: the same helm turns the bow the other way from going forward. Keep reversing speed low and steady, keep the helm small, and look where you are going.',
-   'Back far enough to clear the dock fingers before you turn. When the boat turns, both ends swing, so turning between the fingers can hit them. Stop, select neutral, then turn under ahead power, where steering is stronger and works the normal way.',
+   'Going backward, the rudder is at the leading end of the boat, so it steers weakly and the opposite way. The same helm turns the bow the other way from going forward. Keep reversing speed low and steady and the helm small, because faster water can force the rudder hard over and swing the bow suddenly. Look where you are going.',
+   'Back far enough to clear the dock fingers (the short, narrow pontoons between berths) before you turn. When the boat turns, both ends swing, so turning between the fingers can hit them. Stop, select neutral, then turn under ahead power, where steering is stronger and works the normal way.',
    'In this exercise the lines are already released. Reverse to the first marker on 090° at 0.3–1.2 knots astern, stop at the second target, then use ahead thrust and port helm to turn north and follow the departure markers on 000°. Stay below 2.5 knots and clear of other boats.'
   ],
   observe:['Look astern before backing out. Keep the helm centered for the straight reverse leg.','Back far enough to leave turning room, stop, then turn under ahead power.'],
   mistake:'Turning while still between the dock fingers or accelerating before there is room.',
-  quiz:[q('When should you start the departure turn?',['While still inside the berth','After backing clear and stopping in the fairway','As soon as astern is selected'],1,'Clear the dock fingers and establish control before turning.'),q('How does the rudder respond while moving astern?',['Exactly as when moving ahead','It cannot steer at all','Its turning effect reverses'],2,'Water flow reverses under sternway, so the same helm input turns the bow the opposite way.')],
+  quiz:[q('When should you start the departure turn?',['While still inside the berth','After backing clear and stopping in the fairway','As soon as astern is selected'],1,'Clear the dock fingers and establish control before turning.'),q('How does the rudder respond while moving astern?',['Exactly as when moving ahead','It cannot steer at all','Its turning effect reverses'],2,'Water flows the other way past the rudder when moving backwards, so the same helm turns the bow the opposite way.')],
   practice:{setup:setup(367,37,90),steps:[
    waypoint('Back clear on 090° at 0.3–1.2 knots astern',327,37,90,[-1.2,-.3],5,'Select gentle astern with the helm centered. Watch the space behind the boat.'),
    stop('Stop in the fairway on 090°, neutral, below 0.15 knots',317,37,90,6,'Use a short ahead input to stop sternway, then neutral. Leave room for the bow to turn.'),

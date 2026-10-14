@@ -23,10 +23,10 @@ export const catamaranLessons = [
     prerequisite: 'sail-51',
     type: 'Guided practice',
     concepts: [
-      'A cruising catamaran has two widely spaced hulls and engines. Allow for its beam when choosing a berth or turning space. Shallow draft does not guarantee clearance; check the actual vessel, depth, and margins. High topsides and a wide cabin can catch the wind at low speed.',
+      'A cruising catamaran has two widely spaced hulls and engines. Allow for its beam (its width, much wider than a monohull of the same length) when choosing a berth or turning space. Shallow draft does not guarantee clearance; check the actual vessel, depth, and margins. High topsides (the hull sides above the water) and a wide cabin can catch the wind at low speed.',
       'The engines are far apart, so each one pushes on a long lever: opposite thrust spins the boat almost on the spot. Equal engine commands give mainly ahead or astern motion. With the helm centered, port ahead and starboard astern turn the bow to starboard; reverse the commands to turn to port. Use gentle bursts with neutral between them. Equal lever settings need not produce equal ahead and astern thrust, so watch both heading and drift.',
       'This exercise starts in open water with sails lowered. Use the separate port and starboard engine controls to turn from 000° to 090° within the starting circle. Stop the rotation and select neutral on both engines for five seconds. Then use the linked engine control to reach the next marker and stop in the final circle. Stay below 2.5 knots and clear of traffic.',
-      'Under sail, a catamaran may heel little even as loads increase. Reef early using the boat maker’s guidance, forecast, sea state, and crew ability. Wide beam provides initial stability, not immunity from capsize; do not use low heel as permission to carry more sail.',
+      'Under sail, a catamaran may heel little even as loads increase. Reef early using the boat maker’s guidance, forecast, sea state, and crew ability. Wide beam gives initial stability, not immunity from capsize. Low heel is not permission to carry more sail: a monohull leans to warn you, but a catamaran gives little warning before a capsize, and then stays upside down.',
     ],
     observe: [
       'Keep the helm centered for the pivot; use opposing engines and ease before 090° to allow for momentum.',
@@ -43,7 +43,7 @@ export const catamaranLessons = [
         ],
         correct: 0,
         explanation:
-          'The separated thrust forces form a turning couple. Watch drift because ahead and astern thrust may differ.',
+          'One engine pushes forward and the other back, so the boat spins. Watch drift because ahead and astern thrust may differ.',
       },
       {
         prompt:

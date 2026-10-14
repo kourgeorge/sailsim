@@ -194,12 +194,12 @@
     "sail-02": {
       "title": "Know your yacht",
       "concepts": [
-        "Bow means the front; stern means the back. Port is the left side and starboard the right when facing the bow. These names stay with the boat when you turn around.",
-        "The mainsail is behind the mast; the headsail is forward. The boom supports the mainsail foot. The keel contributes stability and resists sideways motion; the rudder steers when water flows over it.",
+        "Bow means the front; stern means the back. Port is the left side and starboard the right when facing the bow. These names stay with the boat however you face, so “rock to port” means the same side to everyone aboard.",
+        "The mainsail is behind the mast; the headsail is forward. The boom is the pole along the mainsail’s foot (bottom edge). The keel, the heavy fin underneath, helps keep the boat upright and resists the wind pushing it sideways; the rudder steers when water flows over it.",
         "Use Chase for the whole boat, Helm for the sailing viewpoint, and Cockpit to inspect the wheel, winches, and screens."
       ],
       "observe": [
-        "Switch to Cockpit and locate the wheel, companionway, and sheet winches.",
+        "Switch to Cockpit and locate the wheel, the companionway (the steps down into the cabin), and the winches for pulling ropes.",
         "Switch to Chase and identify the bow, mast, boom, and two sails."
       ],
       "mistake": "Calling a side port or starboard from whichever direction you happen to be looking.",
@@ -267,11 +267,11 @@
       "concepts": [
         "Ropes are made from different fibres, and each suits a different job. Nylon stretches a lot, so it absorbs shocks: use it for anchor and mooring lines. Polyester stretches little, so the sail keeps its shape: use it for sheets and halyards. Polypropylene floats, which suits a rescue throwing line, but it chafes and weakens in sunlight. Aramid and similar fibres, such as Kevlar and Dyneema, are the strongest for their size and hardly stretch.",
         "A mooring or tow line needs a high breaking strength, and a tow line must also be long and able to stretch. One strong line is better than two weak ones, because a load rarely shares evenly between two lines. Every knot or splice weakens a rope: a knot can take away up to about half its strength, a splice much less. Chafe weakens it too, so protect lines where they pass through fairleads.",
-        "Look after your ropes: rinse the salt out with fresh water, dry them and store them coiled in the shade, because sunlight and salt crystals weaken the fibres. Check for chafe, cuts and stiff or glazed patches, and replace a rope before it fails.",
-        "Wire rope is described by its strands and wires. A marking such as 6/12 means 6 strands with 12 wires in each. 7×19 wire, 7 strands of 19 wires, is flexible and suits running rigging that bends round sheaves; 1×19 wire, a single strand of 19 wires, is stiff and stretches little, so it is used for standing rigging such as shrouds and for guardrails.",
-        "The topping lift is a line from the masthead to the end of the boom. It holds the boom up when the mainsail is lowered or reefed, so the boom does not drop into the cockpit or onto the crew.",
-        "A block and tackle multiplies your pull. Count the rope parts that hold up the moving block: with four parts, a 320 kg load needs about 80 kg of pull, ignoring friction. With two double blocks, if the rope leaves from the moving block there are five parts, a gain of 5 to 1; if it leaves from the fixed block, 4 to 1. You pull that much more rope for the same lift.",
-        "Know a few knots well enough to tie them in the dark. A bowline makes a loop that will not slip or jam; a cleat hitch makes a line fast to a cleat; a clove hitch quickly holds a fender on a rail; a figure-of-eight stops a line running out through a block; and a round turn and two half hitches ties a line to a ring or post under load."
+        "Look after your ropes, because sunlight and salt crystals weaken the fibres. Rinse the salt out with fresh water, dry them and store them coiled in the shade. Check for chafe, cuts and stiff or glazed patches, and replace a rope before it fails.",
+        "Wire rope is described by its strands and wires. A marking such as 6/12 means 6 strands with 12 wires in each. 7×19 wire, 7 strands of 19 wires, is flexible and suits running rigging (the lines you adjust) that bends round sheaves (pulley wheels). 1×19 wire, a single strand of 19 wires, is stiff and stretches little, so it suits standing rigging (the fixed wires holding up the mast), such as the shrouds at its sides, and guardrails.",
+        "One more line you will meet is the topping lift, from the masthead (the top of the mast) to the end of the boom. It holds the boom up when the mainsail is lowered or reefed, so the boom does not drop into the cockpit or onto the crew.",
+        "A block and tackle multiplies your pull; the mainsheet on the boom is one. A block is a pulley: one is fixed to the boat, the other moves with the load. Count the rope parts that hold up the moving block: with four parts, a 320 kg load needs about 80 kg of pull, ignoring friction. With two double blocks (two wheels each), if the rope leaves from the moving block there are five parts, a gain of 5 to 1; if it leaves from the fixed block, 4 to 1. You pull that much more rope for the same lift.",
+        "Know a few knots well enough to tie them in the dark:\n• Bowline: makes a loop that will not slip or jam.\n• Cleat hitch: makes a line fast to a cleat.\n• Clove hitch: quickly holds a fender on a rail.\n• Figure-of-eight: stops a line running out through a block.\n• Round turn and two half hitches: ties a line to a ring or post under load."
       ],
       "observe": [
         "Find the anchor line, a sheet and a halyard aboard and say which fibre each is made of, and why.",
@@ -313,10 +313,10 @@
       "title": "Read the instruments",
       "concepts": [
         "Heading is the direction the bow points, measured clockwise from north: 000° north, 090° east, 180° south, 270° west. Speed is shown in knots; one knot is one nautical mile per hour.",
-        "The multifunction display behind the wheel and the dashboard below the controls show the same live readings. Wind over water names where the wind comes from relative to moving water; its angle is measured from the bow. Depth estimates water depth, not clearance below the keel.",
-        "Current and leeway can make course over ground differ from heading, and speed over ground differ from speed through water. Compare these readings on the dashboard. You can enlarge the display for easier reading.",
+        "The multifunction display behind the wheel and the dashboard below the controls show the same live readings. Wind over water is the wind measured against the water rather than the land (Lesson {lesson:sail-05} explains it); its angle is measured from the bow. Depth estimates water depth, not clearance below the keel: subtract the keel’s depth, or you can run aground in water that looks deep enough.",
+        "Current and leeway (sideways slip from the wind) can push you off your heading. Course and speed over ground, from GPS, are your real track and speed over the seabed. Compare them with heading and speed through water on the dashboard. You can enlarge the display for easier reading.",
         "The app combines a compass and a wind indicator in one dial. North stays at the top, east at the right, south at the bottom, and west at the left, even when the boat or camera turns. Read the white boat symbol’s bow against the compass scale to find your heading.",
-        "The gold arrow identifies where wind over water comes from. The shaded no-go sector surrounds that source; it marks headings too close to the wind for sailing. In this example, the white boat points northeast at 045°, while the arrow and sector face northwest at 315°. The knots reading beneath the dial is wind speed."
+        "The gold arrow identifies where wind over water comes from. The shaded no-go sector surrounds that source; it marks headings too close to the wind for sailing (explained in Lesson {lesson:sail-05}). In this example, the white boat points northeast at 045°, while the arrow and sector face northwest at 315°. The knots reading beneath the dial is wind speed."
       ],
       "observe": [
         "Open Helm or Cockpit and compare the multifunction display behind the wheel with the dashboard below the controls.",
@@ -370,9 +370,9 @@
       "title": "Where the wind comes from",
       "concepts": [
         "Wind is named for where it comes from. A northwesterly wind comes from the northwest (315°) and blows toward the southeast (135°). Windward is the side the wind comes from; leeward is the side it blows toward. Sailors name the source because that is where the wind’s force, the waves and any approaching weather come from.",
-        "A sail is a flexible wing: it only works when air flows across it at an angle. Point the bow straight into the wind and the sail lines up with the airflow and just flaps like a flag, so it makes no driving force. The no-go zone is the range of headings too close to the wind for the sail to work: about 40–45° on either side for most cruising yachts, and 38° in this simulator. To reach a place upwind, you sail a zigzag outside it.",
-        "The wind you sail by is the wind over the water. If the water itself is moving (a current), that wind differs from the weather report, which describes wind over the land. Once the boat moves, it also feels its own airflow, called apparent wind (Lesson {lesson:sail-17}). With no current, the forecast wind is the one that matters.",
-        "The app’s compass shows the wind like a weather vane: the gold arrowhead points to where the wind comes from, and the shaded no-go sector sits around it. Diagrams of moving air point the other way, toward where the air goes. In the example, wind from 315° and a heading of 045° are 90° apart: a beam reach. When the boat turns, only the white boat symbol moves; the gold arrow and the sector stay where the wind is."
+        "A sail is a flexible wing: it only works when air flows across it at an angle. Point the bow straight into the wind and the sail lines up with the airflow and just flaps like a flag, so it makes no driving force. The no-go zone is the range of headings too close to the wind for the sail to work: about 40–45° on either side for most cruising yachts (on a clock face, from 12 round to between the 1 and the 2), and 38° in this simulator. To reach a place upwind, you sail a zigzag outside it.",
+        "The wind you sail by is the wind over the water. If the water itself is moving (a current), that wind differs from the forecast, which gives the wind over a fixed point: a current flowing with the wind makes the wind you feel weaker. Once the boat moves, it also feels its own airflow, called apparent wind (Lesson {lesson:sail-17}). With no current, the forecast wind is the one that matters.",
+        "The app’s compass shows the wind like a weather vane: the gold arrowhead points to where the wind comes from. The shaded no-go sector sits around it. Diagrams of moving air point the other way, toward where the air goes. In the example, wind from 315° and a heading of 045° are 90° apart: a beam reach, with the wind straight across the side (Lesson {lesson:sail-09}). When the boat turns, only the white boat symbol moves; the gold arrow and the sector stay where the wind is."
       ],
       "observe": [
         "With no current and wind from 315°, compare headings 315°, 045°, and 135° on the compass.",
@@ -397,7 +397,7 @@
             "The keel becomes too heavy",
             "The sail lines up with the airflow and just flaps, so it makes no driving force"
           ],
-          "explanation": "A sail needs air flowing across it at an angle. Outside the no-go zone it works like a wing; to go upwind you zigzag by tacking."
+          "explanation": "A sail needs air flowing across it at an angle. Outside the no-go zone it works like a wing; to go upwind you zigzag by tacking, turning the bow through the wind from one zigzag to the next."
         },
         {
           "prompt": "Why do the app’s gold arrow and shaded no-go sector both face 315° in this example?",
@@ -415,9 +415,9 @@
       "title": "Raise the sails",
       "concepts": [
         "Hoist the mainsail with the bow pointing into the wind. The sail then lines up with the airflow and flaps with almost no load (it luffs), so it slides up easily and the boom cannot swing hard. With the sheet eased, the sail cannot fill by surprise.",
-        "Before hoisting, check that halyards and sheets are clear and not twisted, that you have room to drift, and that the crew is clear of the boom. The mainsail usually goes up first: it sits at the back of the boat, so like the tail of a weather vane it helps hold the bow toward the wind while you work. The headsail follows. In the app, Raise sails hoists both at once; Boat systems hoists each one separately.",
-        "A raised sail facing the wind still makes no drive. To get moving, bear away until the wind is well to one side, then sheet in until the sails stop flapping. Only then do they work as wings.",
-        "Under engine near a harbor, keep a sail ready to set. If the engine stops between the breakwaters, unroll or hoist a sail at once so the boat keeps drive and steering and you can sail clear. Anchoring in the entrance blocks it, and the anchor may not hold before the boat reaches the rocks."
+        "Before hoisting, check the lines, the space and the crew. Halyards and sheets must be clear and not twisted, because a twisted line jams the sail half-way up. Make sure you have room to drift while you work. Keep the crew clear of the boom, which can swing. The mainsail usually goes up first: it sits at the back of the boat, so like the tail of a weather vane it helps hold the bow toward the wind while you work. The headsail follows. In the app, Raise sails hoists both at once; Boat systems hoists each one separately.",
+        "A raised sail facing the wind still makes no drive. To get moving, bear away (turn the bow away from the wind) until the wind is well to one side, then sheet in (pull the sheets in) until the sails stop flapping. Only then do they work as wings.",
+        "Sails are also your backup engine, so keep one ready to set when motoring near a harbor. If the engine stops between the breakwaters (the harbor walls), unroll or hoist a sail at once so the boat keeps drive and steering and you can sail clear. Anchoring in the entrance blocks it, and the anchor may not hold before the boat reaches the rocks."
       ],
       "observe": [
         "Start the exercise facing into the wind with sails lowered.",
@@ -459,12 +459,12 @@
       "concepts": [
         "A beam reach puts the wind at about 90° to the boat. It is the easiest point of sail to start on: you are far from the no-go zone, and the sail can be set at a clear angle to the wind, so it makes plenty of forward drive.",
         "A yacht weighs several tonnes, so it speeds up slowly. Water drag also grows quickly with speed. The boat accelerates until the push from the sails equals the drag from the water, then settles at a steady speed. Change the wind or the trim and it finds a new balance, again gradually.",
-        "The rudder is a small underwater wing. It only steers when water flows past it, so it does little at rest and grips better as speed builds; use small helm movements. A wheel steers like a car: turn it to port and the bow goes to port. A tiller works the opposite way: push it to starboard to turn the bow to port. If the boat ever moves backward, water reaches the rudder from behind and the same helm turns the bow the other way.",
-        "Steering works best when the boat heads into the waves: water flows quickly past the rudder and the bow meets each wave. Running with the waves, especially fast, each wave lifts the stern and the flow past the rudder drops, so the boat can swing off course. Steer actively, and slow down if the course becomes hard to hold."
+        "The rudder is a small underwater wing that only steers when water flows past it. So it does little at rest and grips better as speed builds; use small helm movements. Which way the bow turns:\n• Wheel: steers like a car; turn it to port and the bow goes to port.\n• Tiller: works the opposite way; push it to starboard to turn the bow to port.\n• Going backward: water reaches the rudder from behind, so the same helm turns the bow the other way.",
+        "Waves change how well the rudder grips, too: steering works best when the boat heads into them. Then water flows quickly past the rudder and the bow meets each wave. Running with the waves, especially fast, each wave lifts the stern and the flow past the rudder drops, so the boat can swing off course. Steer actively, and slow down if the course becomes hard to hold."
       ],
       "observe": [
         "Begin on 045° with a northwesterly wind, sails lowered, and anchor up.",
-        "Raise both sails, then watch speed increase. Keep the helm centered while the yacht builds steerage."
+        "Raise both sails, then watch speed increase. Keep the helm centered while the yacht builds enough speed to steer."
       ],
       "mistake": "Applying full helm while stationary and expecting the yacht to pivot instantly.",
       "quiz": [
@@ -502,7 +502,7 @@
       "concepts": [
         "Steer by something far away, such as a headland or a cloud, and use the compass to check it. A distant mark shows a turn at once; the compass number lags behind and swings in waves.",
         "A turning boat keeps turning after you center the helm, because it carries turning momentum, like a revolving door. So center the helm before you reach the new heading and let the boat glide onto it. If you wait until you are on the heading, you overshoot, correct back and zigzag. Small, early corrections give a straight track.",
-        "If you keep needing helm just to hold a straight course, the boat is telling you something. A yacht that keeps trying to turn toward the wind (weather helm) usually has too much sail up or is heeling too far; easing the mainsheet or reefing fixes it (Lesson {lesson:sail-18}). Keep a lookout as well: an accurately steered course can still lead into danger."
+        "If you keep needing helm just to hold a straight course, the boat is telling you something. A yacht that keeps trying to turn toward the wind (weather helm) usually has too much sail up or is heeling too far; easing the mainsheet (letting it out) or reefing (making the sail smaller) fixes it (Lesson {lesson:sail-18}). Keep a lookout too, because a well-steered course can still lead into danger."
       ],
       "observe": [
         "Use short port or starboard inputs, then select Center.",
@@ -517,7 +517,7 @@
             "Increase helm to maximum",
             "Lower the anchor"
           ],
-          "explanation": "The boat has rotational response; reducing the correction early helps the turn settle."
+          "explanation": "The boat keeps turning for a moment, like a revolving door, so reducing the correction early helps the turn settle."
         },
         {
           "prompt": "Which is a complete steering routine?",
@@ -586,9 +586,9 @@
     "sail-10": {
       "title": "Sail close hauled",
       "concepts": [
-        "How can a boat sail toward the wind? Air flowing around the curved sail makes a force, like the lift on an aircraft wing. Close hauled, that force points mostly sideways and only a little forward. The keel grips the water and resists the sideways part, so what is left drives the boat forward. That is why close hauled feels heeled and slower than a reach, and why the boat slides sideways a little (leeway).",
-        "Pointing higher is not always better. Steer too close to the wind (pinching) and the front of the sail starts to flap, drive drops and the boat slows; a slower keel grips less, so the boat also slips sideways more. A few degrees lower with good speed usually gets you upwind sooner. As you head up, trim in; if speed fades, bear away a little.",
-        "Telltales are short ribbons on both sides of the sail near its front edge. When both stream straight back, the air is flowing well. If the windward one (on the side the wind comes from) lifts or spins, you are too close to the wind or the sail is too far out: bear away a little or trim in. If the leeward one droops or spins, the sail is pulled in too far: ease it or head up a little."
+        "How can a boat sail toward the wind? Air flowing around the curved sail makes a force, like the lift on an aircraft wing. Close hauled, that force points mostly sideways and only a little forward. The keel grips the water and resists the sideways part, so what is left drives the boat forward. That is why close hauled feels heeled (leaning over) and slower than a reach, and why the boat slides sideways a little (leeway).",
+        "Pointing as close to the wind as you can is not always fastest upwind. Steer too close to the wind (pinching) and the front of the sail starts to flap, drive drops and the boat slows; a slower keel grips less, so the boat also slips sideways more. A few degrees lower with good speed usually gets you upwind sooner. As you head up (turn toward the wind), trim in; if speed fades, bear away (turn away from it) a little.",
+        "Telltales are short ribbons on both sides of the sail near its front edge. When both stream straight back, the air is flowing well. If one misbehaves:\n• Windward one (on the side the wind comes from) lifts or spins: you are too close to the wind or the sail is too far out. Bear away a little or trim in.\n• Leeward one droops or spins: the sail is pulled in too far. Ease it or head up a little."
       ],
       "observe": [
         "Start on a reach and steer nearer to the wind.",
@@ -630,8 +630,8 @@
       "concepts": [
         "Bearing away turns the bow away from the wind and makes the wind angle larger. Ease the sheets as you turn, so each sail keeps its angle to the wind. If you leave them tight, the sail stalls: it heels the boat and pushes it sideways without making much speed.",
         "As you turn downwind, the sail works less like a wing and more like a parachute: the wind mostly pushes on it from behind. The sideways force fades, so the boat heels less and feels calmer. On a broad reach, with the wind from behind the side, many boats are fast and comfortable.",
-        "Near dead downwind, watch the boom. If the wind comes round to the same side the boom is on (sailing by the lee), it can get behind the sail and throw the boom across in an accidental gybe. While learning, stay at about 150° off the wind or less and know which side the boom would swing to.",
-        "When someone must work on the foredeck in strong wind and big waves, bear away to a broad reach. The boat heels less, the bow slams less and the apparent wind drops, while you stay clear of the dead run where an accidental gybe is likely. Hold a steady course until the crew is back."
+        "Near dead downwind, watch the boom, because it can suddenly swing across. If the wind comes round to the boom’s side (sailing by the lee), it can cause an accidental gybe: the stern swings through the wind and the boom slams across, hitting heads and breaking gear. While learning, keep the wind over the back corner, about 150° off the wind or less, and know which side the boom would swing to.",
+        "When someone must work on the foredeck (the deck at the front) in strong wind and big waves, bear away to a broad reach. The boat heels less, the bow slams less and the apparent wind drops because you are moving with the wind, while you stay clear of the dead run where an accidental gybe is likely. Hold a steady course until the crew is back."
       ],
       "observe": [
         "Increase your angle to the wind, then ease the sheet.",
@@ -671,9 +671,9 @@
     "sail-12": {
       "title": "Trim with feedback",
       "concepts": [
-        "Trim means setting the sail at the right angle to the wind. Too far out and the front edge flaps (luffing): air is not flowing across the sail properly, so it makes little drive. Too far in and the air breaks away from the back of the sail (stalling): the boat heels and slows but does not speed up. The best setting is just inside the point where luffing starts.",
+        "Trim means setting the sail at the right angle to the wind. Too far out and the front edge flaps (luffing): air is not flowing across the sail properly, so it makes little drive. Too far in and the air breaks away from the back of the sail (stalling), like a wing tipped too steeply: the boat heels and slows but does not speed up. The best setting is just inside the point where luffing starts.",
         "The classic method: ease the sheet slowly until the front of the sail starts to flap, then pull it in just until the flapping stops. Telltales make this easier to see. Repeat it after every course change or wind shift. “When in doubt, let it out”: a slightly eased sail costs little speed; an over-tight one costs a lot.",
-        "Change one thing at a time and give the boat time. Speed changes slowly (Lesson {lesson:sail-07}), so wait several seconds to see whether a change helped. In this app, a suggested sheet angle calculated from the apparent wind lets you check your result; on a real boat you trim by watching the sail’s front edge and the telltales."
+        "Change one thing at a time and give the boat time. Speed changes slowly (Lesson {lesson:sail-07}), so wait several seconds to see whether a change helped. In this app, the “Suggested” value under the Mainsheet slider, worked out from the apparent wind (the wind the moving boat feels), lets you check your result; on a real boat you trim by watching the sail’s front edge and the telltales."
       ],
       "observe": [
         "Leave the helm centered and change only the sheet.",
@@ -758,12 +758,12 @@
     "sail-14": {
       "title": "Make a controlled tack",
       "concepts": [
-        "A tack turns the bow through the wind, so the wind moves to the other side of the boat and the sails swap sides. From close hauled to close hauled, it is a turn of about 90°. Before you start, look for traffic, check sea room and warn the crew (“Ready about”).",
+        "A tack turns the bow through the wind, so the wind moves to the other side of the boat and the sails swap sides. From close hauled to close hauled, it is a turn of about 90°. Before you start, look for traffic, check sea room (open water with no boats or shore to hit while you turn) and warn the crew with “Ready about”.",
         "Speed is what gets you through. Inside the no-go zone the sails flap and make no drive, so only the boat’s momentum carries the bow across. Start with good speed and turn steadily. Too slow, and the boat stops head to wind (in irons, Lesson {lesson:sail-16}). Too sharp, and the rudder, turned hard over, acts as a brake.",
-        "On a real yacht: put the helm over and call the turn (for example “Lee-ho”); as the headsail starts to flap, release its old sheet; as the bow passes the wind, pull in the new sheet on the other side; then center the helm on the new close-hauled course and retrim. Expect to lose some speed, and rebuild it before pointing high. In the app the sails swap sides automatically."
+        "On a real yacht, each step of the tack has its own moment:\n• Put the helm over and call the turn, for example “Lee-ho”, meaning the turn starts now.\n• As the headsail starts to flap, release its old sheet.\n• As the bow passes the wind, pull in the new sheet on the other side.\n• Center the helm on the new close-hauled course and retrim.\nExpect to lose some speed, and rebuild it before pointing high. In the app the sails swap sides automatically."
       ],
       "observe": [
-        "Start with wind over the starboard side, then turn starboard through 315°.",
+        "Start with wind over the starboard side, then turn to starboard so the bow swings past 315°, where the wind comes from.",
         "Continue past the no-go zone, center the helm, and rebuild speed."
       ],
       "mistake": "Stopping the turn in the no-go zone, or calling a turn across the stern a tack.",
@@ -802,12 +802,12 @@
       "title": "Make a planned gybe",
       "concepts": [
         "A gybe turns the stern through the wind. It is more dangerous than a tack because the sails stay full the whole time. In a tack the sails go slack as the bow passes the wind; in a gybe the wind gets behind the mainsail and throws the boom across the cockpit with force.",
-        "So you control the boom. Warn the crew (“Stand by to gybe”) and keep heads clear. Before the stern crosses the wind, pull the mainsheet in so the boom is near the center and has only a short distance to swing. Turn slowly; as the boom crosses, ease the sheet out smoothly on the new side and steady the helm so the boat does not swing up toward the wind.",
-        "Make it a small, deliberate turn from a broad reach on one side to a broad reach on the other. An accidental gybe, usually caused by sailing by the lee, is the dangerous version because nobody is ready. In the app the boom is animated, but its impact force is not modeled.",
+        "So you control the boom and warn the crew (“Stand by to gybe”) to keep heads clear. Before the stern crosses the wind, pull the mainsheet in so the boom is near the center and has only a short distance to swing. Turn slowly. As the boom crosses, ease the sheet out smoothly on the new side. Then steady the helm, because the boat tends to swing up into the wind.",
+        "Make it a small, deliberate turn from a broad reach on one side to a broad reach on the other. An accidental gybe is the dangerous version because nobody is ready. It usually comes from sailing by the lee (the wind coming over the same side the boom is on), when the boom can flip across without warning. In the app the boom is animated, but its impact force is not modeled.",
         "In strong wind a gybe can break gear or injure the crew. If you need to turn from one broad reach to the other, consider going the long way round: head up, tack through the wind, then bear away on the new side. It takes longer, but the boom never swings across with full force."
       ],
       "observe": [
-        "Start at 160° with wind from 315°. Turn port toward and through 135°.",
+        "Start at 160° with wind from 315°, so the wind is behind you on a broad reach. Turn port toward and through 135°.",
         "Settle near 110° and keep the wind well aft of the beam."
       ],
       "mistake": "Treating a gybe like an unannounced sharp turn with the mainsheet fully loose.",
@@ -846,11 +846,11 @@
       "title": "Recover from loss of drive",
       "concepts": [
         "In irons means stopped, or nearly stopped, pointing into the wind. The sails flap, so there is no drive, and as speed falls the rudder loses its grip on the water.",
-        "Avoid it by keeping speed through a tack and not pinching. If you notice it early, use the speed you still have: bear away promptly until the sails fill, then trim to rebuild drive.",
+        "Avoid it by keeping speed through a tack and not pinching (steering so close to the wind that the sails lose power). If you notice it early, use the speed you still have: bear away promptly until the sails fill, then trim to rebuild drive.",
         "A fully stopped boat needs another way to turn. On a real yacht the crew can hold the headsail out on one side (backing it) so the wind pushes the bow away, or let the boat drift backward and steer it round, remembering that steering works the opposite way going backward. Some crews use the engine. Backing sails is not modeled here, so this exercise starts with some speed left: use it before it runs out."
       ],
       "observe": [
-        "Use the remaining way to turn away from 315°.",
+        "Use the speed you still have to turn away from 315°, the direction the wind comes from.",
         "Do not wait until speed reaches zero before correcting."
       ],
       "mistake": "Expecting the rudder to rotate a fully stationary yacht without water flow.",
@@ -862,7 +862,7 @@
             "The chart will disappear",
             "The sails become too short"
           ],
-          "explanation": "Use the remaining steerage to get outside the no-go zone."
+          "explanation": "Water still flowing past the rudder lets you steer, so use it to get outside the no-go zone."
         },
         {
           "prompt": "The boat has stopped head to wind and starts to drift backward. What happens to the steering?",
@@ -944,10 +944,10 @@
     "sail-18": {
       "title": "Reef before you need to",
       "concepts": [
-        "Wind force grows with the square of wind speed: 20 knots pushes about four times as hard as 10 knots, not twice. So a moderate rise in wind makes a big rise in the force heeling the boat and loading the rig. A reef makes the mainsail smaller and lower, so the force is smaller and acts lower down, which means less heel.",
+        "A reef makes the mainsail smaller and lower, and it pays to do it early. Wind force grows with the square of wind speed: 20 knots pushes about four times as hard as 10 knots, not twice. So a moderate rise in wind makes a big rise in the force heeling the boat and loading the rig. A smaller, lower sail catches less of that force and holds it lower down, which means less heel.",
         "Too much heel does not make a boat faster. The hull slips sideways more, the rudder grips less, and the boat keeps trying to turn into the wind (weather helm). Signs that it is time to reef: heavy steering, the boat rounding up toward the wind in gusts, and water along the side deck. “Reef when you first think about it”: it is far easier before the wind builds than during it.",
-        "There is no single wind speed for reefing: it depends on the boat, the crew, the gusts and the sea. Compare the heel and the helm before and after a reef on the same course. The app’s Reef control shortens the main in one step; on a real boat it means handling the halyard and reefing lines under load, with the crew working together.",
-        "Sails behind the boat’s pivot point, such as the mainsail, turn the bow toward the wind; the headsail, in front, turns it away. Lower the headsail and the boat heads up; sail on the headsail alone and it bears away. On a boat with two masts, such as a ketch, the aft sail, called the mizzen, adds weather helm: when the helm gets heavy or the wind rises, reduce or lower the mizzen first, then reef the main.",
+        "There is no single wind speed for reefing: it depends on the boat, the crew, the gusts and the sea. Compare the heel and the helm before and after a reef on the same course. The app’s Reef control shortens the main in one step; on a real boat it means handling the halyard (the rope that raises and lowers the sail) and the reefing lines (which pull the lower part down) under load, with the crew working together.",
+        "Which sail you shrink also changes the steering. Sails behind the boat’s pivot point (the spot the boat turns around), such as the mainsail, turn the bow toward the wind; the headsail, in front, turns it away. Lower the headsail and the boat heads up; sail on the headsail alone and it bears away. On a boat with two masts, such as a ketch, the aft sail, called the mizzen, adds weather helm: when the helm gets heavy or the wind rises, reduce or lower the mizzen first, then reef the main.",
         "In a storm, reduce sail but do not take it all down. A small, well-set sail keeps the boat moving and steering and steadies the roll; a boat with no sail at all lies across the waves and cannot be steered."
       ],
       "observe": [
@@ -988,10 +988,10 @@
     "sail-19": {
       "title": "Reduce power deliberately",
       "concepts": [
-        "A sailing yacht has no brakes. When you take power out of the sails, the boat keeps moving on its momentum and slows only as water drag works on it; a heavy boat can glide a long way. Plan the stop early and leave sea room.",
-        "Ways to take power out, from quickest to most complete: ease the sheets until the sails flap, so they stop working as wings; head up toward the wind, which reduces the angle and the drive; lower the sails, which removes drive completely. As the boat slows, the rudder grips less, so steering becomes slow and weak.",
-        "On a real yacht you can also heave to: set the sails to work against each other so the boat almost stops and sits quietly. That is not modeled here. In this exercise, lower the sails and wait until speed is below 1 knot. The anchor is not a brake.",
-        "To heave to, tack without releasing the headsail, so it stays pulled tight on the windward side. Then put the helm to windward and ease the main. The backed headsail pushes the bow away from the wind while the main and rudder push it back, so the boat lies about 60° off the true wind and drifts slowly to leeward. It is a way to rest, reef or wait in strong wind."
+        "A sailing yacht has no brakes, so plan every stop early. When you take power out of the sails, the boat keeps moving on its momentum and slows only as water drag works on it. A heavy boat can glide a long way, so leave sea room.",
+        "Ways to take power out, from quickest to most complete:\n• Ease the sheets until the sails flap, so they stop working as wings.\n• Head up toward the wind, which reduces the angle and the drive.\n• Lower the sails, which removes drive completely.\nAs the boat slows, the rudder grips less, so steering becomes slow and weak.",
+        "In this exercise, lower the sails and wait until the speed is below 1 knot. Do not use the anchor as a brake: dropping it at speed can rip out the gear, damage the boat or snag the bottom.",
+        "On a real yacht you can also heave to: set the sails to work against each other so the boat almost stops. Tack without releasing the headsail, so it stays held on the wrong (windward) side; this is the backed headsail. Then steer as if to head up (tiller pushed away from the wind) and ease the main. The backed headsail pushes the bow away from the wind while the main and rudder push it back. The boat lies about 60° off the true wind, between close hauled and a beam reach, and drifts slowly to leeward. Use it to rest, reef or wait in strong wind; the app does not model it."
       ],
       "observe": [
         "Compare the speed before and after lowering sails.",
@@ -1070,10 +1070,10 @@
     "sail-54": {
       "title": "Read a weather chart",
       "concepts": [
-        "A weather chart, or synoptic chart, maps air pressure at sea level. Lines called isobars join places of equal pressure, usually every 4 hectopascals (hPa, the same as millibars). A high (H) usually brings settled weather; a low (L) brings cloud, rain and stronger wind.",
+        "A weather chart, or synoptic chart (a snapshot of the whole area at one time), maps air pressure at sea level. Lines called isobars join places of equal pressure, usually every 4 hectopascals (hPa, the same as millibars). A high (H) usually brings settled weather; a low (L) brings cloud, rain and stronger wind.",
         "The closer the isobars, the stronger the wind. Widely spaced isobars mean light wind; isobars bunched together mean a strong blow. Over the sea the wind blows roughly along the isobars, turned a little in toward the lower pressure.",
-        "In the northern hemisphere, wind circles a low anticlockwise and spirals in toward its centre, and circles a high clockwise and spirals out. Stand with your back to the wind and the low is on your left. A trough is a stretched-out low, a ridge a stretched-out high, and a col, or saddle, lies between two highs and two lows, with light and changeable wind.",
-        "To estimate the wind at a place on the chart, find the isobars there, see which side the low is on, and draw the wind along the isobars, turned slightly toward the low. With a low to your west, for example, the wind blows from the south; once the low has passed to your east, it blows from the north.",
+        "In the northern hemisphere, wind circles a low anticlockwise and spirals in toward its centre, and circles a high clockwise and spirals out. Stand with your back to the wind and the low is on your left. Three other shapes appear on charts:\n• A trough is a stretched-out low, bringing cloud and rain like a low.\n• A ridge is a stretched-out high, bringing settled weather like a high.\n• A col, or saddle, lies between two highs and two lows, with light and changeable wind.",
+        "To estimate the wind at a place on the chart, find the isobars there and see which side the low is on. Then draw the wind along the isobars, turned slightly toward the low. With a low to your west, for example, the wind blows from the south, because it circles the low anticlockwise. Once the low has passed to your east, it blows from the north.",
         "A barometer shows the trend, which matters more than the number. Pressure falling steadily, for example from 1000 to 992 hPa in eight hours, means a low is coming closer and the wind will strengthen; a fall of 3 hPa or more in three hours is a warning. Rising pressure after a low usually brings clearing skies and a wind shift. Record the reading in the log every few hours."
       ],
       "observe": [
@@ -1115,11 +1115,11 @@
     "sail-55": {
       "title": "Fronts and clouds",
       "concepts": [
-        "Most lows that cross the Mediterranean are frontal lows. In the northern hemisphere a warm front usually comes first, then a warm sector, then a cold front, moving roughly from west to east. On a chart a warm front is drawn with half circles, a cold front with triangles.",
-        "As a warm front approaches, high thin cloud thickens and lowers into a grey layer, with steady rain, poor visibility and falling pressure. As it passes, the wind veers, for example from south to south-west. In the warm sector behind it the isobars are almost straight, the pressure is steady and the air is warm and moist, often with mist or drizzle.",
+        "A front is the edge where a mass of warm air meets cold air. Most lows that cross the Mediterranean are frontal lows, carrying fronts with them. In the northern hemisphere a warm front usually comes first, then a warm sector, then a cold front, moving roughly from west to east. On a chart a warm front is drawn with half circles, a cold front with triangles.",
+        "As a warm front approaches, high thin cloud thickens and lowers into a grey layer, with steady rain, poor visibility and falling pressure. As it passes, the wind veers (shifts clockwise), for example from south to south-west. In the warm sector behind it the isobars are almost straight, the pressure is steady and the air is warm and moist, often with mist or drizzle. Sea fog forms when warm, moist air like this flows over colder water; near the coast it can come and go quickly.",
         "The cold front brings the roughest weather. It builds towering cumulus and cumulonimbus clouds, heavy showers, sometimes thunderstorms and hail, and a sudden, gusty shift of wind to the west or north-west. Behind it the pressure rises, the air is cooler and the visibility improves greatly, though gusty showers can continue.",
-        "Cumulonimbus is a cloud of great vertical growth, often with a flat, anvil-shaped top. It can bring squalls, heavy rain, hail and lightning. Clouds form when rising air cools to its dew point, and the cloud base is the height where that happens. When rising air has cooled to the temperature of the air around it, it stops rising: forecasters call the air stable at that height.",
-        "In a thunderstorm, stay away from the mast, shrouds and other metal fittings, keep the crew low in the middle of the boat, and switch off electronics you do not need. Reef early, because the squall under a cumulonimbus can arrive with little warning. Sea fog forms when warm, moist air flows over colder water; near the coast it can come and go quickly."
+        "Cumulonimbus is a cloud of great vertical growth, often with a flat, anvil-shaped top. It can bring squalls, heavy rain, hail and lightning. Clouds form when rising air cools to its dew point (the temperature at which its moisture turns into visible droplets). The cloud base is the height where that happens. Air stops rising once it is no longer warmer than the air around it; forecasters call the air stable at that height.",
+        "In a thunderstorm, stay away from the mast, shrouds and other metal fittings. Keep the crew low in the middle of the boat, and switch off electronics you do not need. Reef early, because the squall under a cumulonimbus can arrive with little warning."
       ],
       "observe": [
         "Watch how cloud changes over a day: thin high cloud thickening and lowering often means a warm front is coming.",
@@ -1160,14 +1160,18 @@
     "sail-56": {
       "title": "Wind and waves",
       "concepts": [
-        "The Beaufort scale describes wind by its effect on the sea. Force 4 (11–16 knots) brings many white horses; force 5 (17–21) moderate waves and spray; force 6 (22–27) large waves with white foam crests everywhere; force 7 (28–33) a heaped-up sea with foam blown in streaks; and force 8 (34–40) is a gale. Forecasts often give the Beaufort force together with the expected gusts.",
-        "A sea breeze is caused by the difference in temperature between land and sea. On a sunny day the land warms faster, warm air rises over it, and cooler sea air flows in toward the shore, usually from late morning to evening. At night the land cools and a lighter land breeze may blow out to sea. A katabatic wind is cold air flowing down a mountain slope, often strong and dry at the foot of the mountains.",
+        "The Beaufort scale describes wind by its effect on the sea. Forecasts often give the Beaufort force together with the expected gusts. What each force looks like:\n• Force 4 (11–16 knots): many white horses (small breaking crests with white foam).\n• Force 5 (17–21): moderate waves and spray.\n• Force 6 (22–27): large waves with white foam crests everywhere.\n• Force 7 (28–33): a heaped-up sea with foam blown in streaks.\n• Force 8 (34–40): a gale.",
+        "A sea breeze is caused by the difference in temperature between land and sea. On a sunny day the land warms faster, warm air rises over it, and cooler sea air flows in toward the shore, usually from late morning to evening. At night the land cools and a lighter land breeze may blow out to sea. Mountains make their own winds too: a katabatic wind is cold air flowing down a mountain slope, often strong and dry at the foot of the mountains.",
         "Wind waves are raised by the local wind. Swell is made of waves that were raised by strong wind in a distant storm and have travelled far from it: long, smooth and regular, and they can arrive before or after the storm itself. When the local wind blows against the swell, the swell becomes lower; wind against current, as Lesson {lesson:sail-20} explains, makes waves short and steep.",
-        "Waves grow higher and steeper as they reach shallow water, and in a swell they can break across a harbor entrance. Before entering, watch the waves from outside: they often come in sets, with lulls in between. Time your entry for a lull and go in with enough speed to steer."
+        "Waves grow higher and steeper as they reach shallow water, and in a swell they can break across a harbor entrance. Before entering, watch the waves from outside: they often come in sets, with lulls in between. Time your entry for a lull and go in with enough speed to steer.",
+        "Breaking waves near the shore can wreck a yacht. Swell from deep water slows and rises when it reaches shallow water, then breaks as a wall of white water. In breaking waves:\n• The boat can surf down a wave, dig its bow in and swing out of control (a broach).\n• A wave can throw the boat onto rocks, the breakwater or another boat.\n• A crew member can be washed overboard, and is very hard to reach in the surf.\nThe worst position is with the side of the boat to the waves, because a breaking wave can roll it over. Keep the bow or the stern toward them.",
+        "The best defence is to stay away from the shore. If the wind and waves are pushing you toward land, act early: set the sails properly or start the engine, and head out to deep water, not closer in. Do not stream a sea anchor near the coast: it holds the bow to the waves, but the boat still drifts onto the beach. If you must come in, choose a harbor that is safe to enter in high seas, even if it is farther away.",
+        "To enter through breaking waves:\n• Wait outside and watch the sets.\n• Approach the entrance head-on, from the direction the waves come from, not along the coast with your side to the waves.\n• Put a crew member in the cockpit facing back, to watch the sea behind and call out when a set is coming.\n• Right after the last wave of a set, go in with power and get behind the breakwater quickly.\n• If a set catches you on the way, turn the bow into the waves and hold there with the engine until it passes. Then turn back and continue in."
       ],
       "observe": [
         "Compare the wind instrument with the sea around you and name the Beaufort force from what you see.",
-        "On a sunny day, note when the sea breeze starts and how strong it gets by mid-afternoon."
+        "On a sunny day, note when the sea breeze starts and how strong it gets by mid-afternoon.",
+        "Before entering a harbor in a swell, stop outside and watch a few sets: count the waves in each set and how long the lulls last."
       ],
       "mistake": "Planning a return in the afternoon on a hot day without allowing for the sea breeze, or rushing a harbor entrance in a swell.",
       "quiz": [
@@ -1197,20 +1201,47 @@
             "Waves made by passing ships"
           ],
           "explanation": "Swell travels far from the storm that made it, so it can arrive even in light local wind."
+        },
+        {
+          "prompt": "You approach Herzliya marina from the west in a 2 m westerly swell. What is your plan?",
+          "options": [
+            "Expect bigger, breaking waves at the entrance; wait outside and time your entry for a lull",
+            "Come in from the north along the coast to check that the entrance is clear",
+            "Stream a sea anchor and let the boat drift in slowly"
+          ],
+          "explanation": "The swell grows and may break near the entrance. Coming along the coast puts your side to the waves, and with a sea anchor you still drift onto the shore."
+        },
+        {
+          "prompt": "Halfway into the entrance, the crew member watching astern calls out that a new set is coming. What do you do?",
+          "options": [
+            "Turn the bow into the waves and hold there with the engine until the set passes, then continue in",
+            "Slow down and let the waves carry you in",
+            "Turn side-on so the waves pass under you"
+          ],
+          "explanation": "A breaking wave from behind can make you surf and lose control, and side-on is the most dangerous position. Face the set, then go in after it."
+        },
+        {
+          "prompt": "You sail a 14 m yacht from Ashkelon to Haifa, 2 NM off the coast. Off Tel Aviv a 25-knot south-westerly wind starts. What do you do?",
+          "options": [
+            "Carry on north and shelter in Herzliya marina",
+            "Turn back to Ashkelon",
+            "Turn in to Tel Aviv marina"
+          ],
+          "explanation": "Herzliya is about 40 minutes away, large and easy to enter before the sea builds. Ashkelon is far away into the wind and waves, and Tel Aviv marina is small, with an entrance that becomes dangerous in a south-westerly sea."
         }
       ],
       "transfer": "Use official marine forecasts and charts for real decisions. These examples are simplified and fictional; real weather varies.",
       "localNotes": [
-        "The Israeli boat operator licence material advises that in a strong south-westerly wind and sea the Tel Aviv marina entrance is dangerous; carry on to Herzliya marina for shelter."
+        "Along the Israeli coast, Herzliya marina is usually the easiest to enter in high seas. Tel Aviv marina is smaller and waves break earlier near its entrance: the Israeli boat operator licence material advises that in a strong south-westerly wind and sea its entrance is dangerous, so carry on to Herzliya for shelter. Jaffa port is very hard to enter in big waves."
       ]
     },
     "sail-57": {
       "title": "Eastern Mediterranean weather",
       "concepts": [
-        "In winter, lows cross the eastern Mediterranean from the west, and some deepen near Cyprus. Along the Israeli coast they usually bring a warm front first, with southerly to south-westerly wind, then a cold front with stormy south-westerly to westerly wind, rising seas and showers. A forecast of a cold front coming in from the sea means rough weather and high waves.",
-        "Sharqiya is a strong, dry easterly wind that blows off the land, mainly in the transition seasons, spring and autumn, and is felt most in the north of the country. Near the shore the sea stays flat because the wind blows offshore, but farther out it raises waves and can make the return to harbor hard. Cold, strong easterly winds in winter usually come from a high pressure system to the north-east, over Russia, not from a low.",
-        "In spring, a hot low can move along North Africa or up from the south. Ahead of it the wind is southerly, hot and dry, dust lowers the visibility along the Mediterranean coast, and Eilat gets southerly wind. When it passes, the wind turns west and the temperature drops. Along the Mediterranean coast the visibility becomes poor while the dust lasts.",
-        "Summer is usually settled: a north-westerly sea breeze builds along the Israeli coast in the afternoon and dies at night. In the Aegean, the Meltemi is a strong, dry north wind in July and August, often force 6 to 7 for days. In the Adriatic, the Bora is a cold, dry, very gusty north-easterly wind that falls from the mountains in winter."
+        "In winter, lows cross the eastern Mediterranean from the west, and some deepen near Cyprus (their pressure drops further, so the wind gets stronger). Along the Israeli coast they usually bring a warm front first, with southerly to south-westerly wind, then a cold front with stormy south-westerly to westerly wind, rising seas and showers. A forecast of a cold front coming in from the sea means rough weather and high waves.",
+        "Sharqiya is a strong, dry easterly wind that blows off the land, mainly in spring and autumn. It is felt most in the north of the country. Near the shore the sea stays flat because the wind blows offshore, but farther out it raises waves and can make the return to harbor hard. Winter easterlies are a different case: cold, strong easterly winds in winter usually come from a high pressure system to the north-east, over Russia, not from a low.",
+        "In spring, a hot low can move along North Africa or up from the south. Ahead of it the wind is southerly, hot and dry, dust lowers the visibility along the Mediterranean coast, and Eilat gets southerly wind. When it passes, the wind turns west and the temperature drops.",
+        "Summer is usually settled: a north-westerly sea breeze builds along the Israeli coast in the afternoon and dies at night. In the Aegean, the Meltemi is a strong, dry north wind in July and August, often force 6 to 7 for days. Farther away, in the Adriatic, the Bora is a cold, dry, very gusty north-easterly wind that falls from the mountains in winter."
       ],
       "observe": [
         "Before a passage, read the forecast for the whole region, not just your harbor, and find the nearest low.",
@@ -1300,9 +1331,9 @@
     "sail-22": {
       "title": "Steer toward a waypoint",
       "concepts": [
-        "A bearing is the direction from your position to a target. Decide whether the direct track is safe and sailable before following it.",
-        "A direct bearing may point into the no-go zone or cross land. In those cases, plan a different route rather than forcing the bow toward the target.",
-        "Where the bow points is not always where the boat goes. Current and leeway push you sideways, so aim a little up-current of the mark. Check the bearing to the mark now and then: if it keeps changing while you hold your heading, you are being pushed off the line. In this exercise, pass within 35 metres of buoy 1."
+        "A bearing is the direction from your position to a target, such as a waypoint (a planned point you steer for). Check that the direct track, the line you would travel over the ground, is safe and sailable.",
+        "A direct bearing may point into the no-go zone (the arc near the wind where sails cannot drive) or cross land. Then plan a different route, such as tacking, rather than forcing the bow toward the target.",
+        "Where the bow points is not always where the boat goes. Current and leeway (the wind pushing the boat sideways through the water) push you off course. Aim a little up-current of the mark so the drift carries you onto it, not past it. Check the bearing to the mark now and then: if it keeps changing while you hold your heading, you are being pushed off the line. In this exercise, pass within 35 metres of buoy 1."
       ],
       "observe": [
         "Open the chart before changing course.",
@@ -1345,10 +1376,10 @@
     "sail-23": {
       "title": "Estimate distance and time",
       "concepts": [
-        "For a first estimate, distance equals speed multiplied by time. At 4 knots, a 3-nautical-mile leg takes 45 minutes if speed remains constant and there is no current.",
-        "Dead reckoning advances an earlier position using course, speed, and time. Real estimates also account for current, leeway, and uncertainty; a fix from observations checks the estimate.",
-        "Record assumptions and update the estimate as conditions change. Do not confuse a precise-looking number with an accurate prediction.",
-        "Keep a logbook, and fill it in regularly. Each entry records the time, position, course, speed, the log reading (distance run), wind speed and direction, sea and weather, and events. If the electronics fail, the last logged position, course, speed and distance let you work out where you are by dead reckoning."
+        "For a first estimate, distance equals speed multiplied by time. At 4 knots, a 3-nautical-mile leg takes 3 ÷ 4 = 0.75 hour, or 45 minutes, if speed remains constant and there is no current.",
+        "Dead reckoning advances an earlier position using course, speed, and time. Real estimates also account for current, leeway, and uncertainty; a fix (a position found from landmarks, bearings or GPS, not from your estimate) checks it.",
+        "Record assumptions and update the estimate as conditions change. A precise-looking number is not an accurate prediction: an arrival time of 14:37 is still a guess if the current changes.",
+        "Keep a logbook, and fill it in regularly. Each entry records:\n• where you are: the time, position and log reading (distance run)\n• how you move: course and speed\n• the weather: wind speed and direction, sea and weather\n• events.\nIf the electronics fail, the last logged position, course, speed and distance let you work out where you are by dead reckoning."
       ],
       "observe": [
         "Compute the time for 3 nautical miles at 4 knots before checking the answer.",
@@ -1380,9 +1411,9 @@
     "sail-24": {
       "title": "Sail a short passage",
       "concepts": [
-        "Break a route into manageable legs with clear targets, hazards, and a plan for the next turn. Keep a lookout before altering course at a mark.",
+        "Break a route into legs, the straight stretches between turning points, each with a target, hazards and a plan for the next turn. Look around before turning at a mark, because boats often gather there.",
         "This exercise runs from south of buoy 1 to buoy 1, then buoy 2. The wind makes both direct legs sailable, but you still need to turn and retrim.",
-        "Keep at least 3 metres of modeled water depth. Grounding invalidates the attempt and requires a restart; passing the marks alone is not sufficient."
+        "Keep at least 3 metres of modeled water depth, because the keel reaches well below the surface and needs a margin. If you run aground, the attempt fails and you start again; passing the marks alone is not enough."
       ],
       "observe": [
         "Study both legs before setting off.",
@@ -1425,9 +1456,9 @@
     "sail-25": {
       "title": "Keep an effective lookout",
       "concepts": [
-        "A proper lookout uses sight, hearing, and appropriate available means. Scan ahead, astern, and to both sides; the sails and structures can hide other craft.",
+        "A proper lookout uses your eyes, your ears and aids such as radar, AIS (ship tracking) and the radio. The collision rules call this “all available means”. Scan all round, because sails and cabin can hide other boats.",
         "Why a steady bearing means danger: two boats on straight courses that will meet stay at the same angle to each other all the way to the meeting point. So if another vessel stays on the same compass bearing, or stays lined up with the same part of your boat, while it gets closer, you are on a collision course. Check early and repeatedly, and act rather than wait for certainty.",
-        "Electronic aids support the lookout; they do not replace it. This world has static moored yachts and does not assess realistic traffic detection."
+        "Electronic aids support the lookout; they do not replace it. In the app the other yachts do not move, so it cannot test how well you spot real traffic."
       ],
       "observe": [
         "Use the camera to scan the side hidden by the headsail.",
@@ -1462,9 +1493,9 @@
     "sail-26": {
       "title": "Reason through encounters",
       "concepts": [
-        "The rules decide in advance who turns away (gives way) and who holds course (stands on), so two boats do not both turn the same way. For two sailing vessels: on different tacks, the port-tack boat keeps clear; on the same tack, the windward boat keeps clear, because it can usually bear away more easily. Lesson {lesson:sail-46} covers this in full.",
-        "An overtaking vessel keeps clear. Other vessel responsibilities, narrow channels, traffic schemes, restricted visibility, and local rules can change the analysis. Do not reduce the rules to “sail always wins.”",
-        "A stand-on vessel still has responsibilities and must act when needed to avoid collision. Learn the full applicable collision regulations and local requirements before sailing."
+        "The rules decide in advance who turns away (gives way) and who holds course (stands on), so two boats do not both turn the same way. For two sailing vessels: on different tacks, the port-tack boat (wind coming over its left, port, side) keeps clear; on the same tack, the windward boat keeps clear, because it can usually bear away more easily. Lesson {lesson:sail-46} covers this in full.",
+        "An overtaking vessel keeps clear, because the boat ahead may not see it. In a narrow channel, a sailing boat must not block a ship that can only navigate safely inside it; in a traffic lane, it must not block power-driven ships following the lane. Fog, special vessels and local rules can also change who keeps clear. Do not reduce the rules to “sail always wins.”",
+        "A stand-on vessel still has responsibilities and must act when needed to avoid collision. If the give-way boat is clearly not keeping clear, the stand-on boat may act on its own; if a collision can no longer be avoided by the give-way boat alone, it must act (Rule 17). A power-driven vessel doing this should, if it can, avoid turning to port for a vessel on its own port side. Learn the full collision rules and local requirements before sailing."
       ],
       "observe": [
         "Identify the windward side of each vessel before deciding its tack.",
@@ -1496,8 +1527,8 @@
     "sail-27": {
       "title": "Lights, marks, and signals",
       "concepts": [
-        "Navigation lights show a vessel’s direction and what it is doing. Red is on the port side, green on starboard and white at the stern. See both red and green, and the vessel is heading straight at you; red only, you see its port side; green only, its starboard side; white only, you are looking at its stern.",
-        "In the international maneuvering-signal context, one short blast means altering course to starboard, two to port, and three operating astern propulsion. Restricted-visibility signals are a different system; local or inland rules may differ.",
+        "Navigation lights show a vessel’s direction and what it is doing. Red is on the port side, green on starboard and white at the stern. See both red and green, and the vessel is heading straight at you, so act now: you may be on a collision course. Red only, you see its port side; green only, its starboard side; white only, you are looking at its stern.",
+        "When power-driven vessels can see each other, short horn blasts tell others how they are manoeuvring; these are the international manoeuvring signals. One short blast means “I am turning to starboard”, two mean “I am turning to port”, and three mean “I am running my engine astern (in reverse)”, which does not always mean the boat is already moving backwards. Fog signals are a different system; local or inland rules may differ.",
         "Lesson {lesson:sail-50} covers the full lights, shapes and sound signals. Rules can differ in inland or local waters, so check the rules for where you sail before night or restricted-visibility operation."
       ],
       "observe": [
@@ -1522,7 +1553,7 @@
             "Turning to starboard",
             "A complete fog-signal vocabulary"
           ],
-          "explanation": "Two short blasts mean altering course to port in that context; do not generalize without checking the applicable rules."
+          "explanation": "Two short blasts from a boat in sight mean “I am turning to port”. Check the rules where you sail before relying on it elsewhere."
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
@@ -1578,9 +1609,9 @@
     "sail-28": {
       "title": "Make a passage decision",
       "concepts": [
-        "A passage plan includes the crew, forecast, route, hazards, tidal constraints, daylight, safe havens, communications, and a latest turn-back time.",
-        "Good seamanship includes changing or abandoning the plan when its assumptions fail. Do not let a fixed arrival promise outweigh safety margins.",
-        "Scenario: you have a novice crew, fading daylight, a forecast wind increase, and an exposed destination. A nearby sheltered alternative is available."
+        "A passage plan answers three questions before you set off:\n• Who is going? The crew and their experience.\n• What will the weather and water do? The forecast, tides, daylight and the hazards on your route.\n• Where can we go if it goes wrong? Safe havens (nearby harbors or bays to shelter in), how you will call for help, and a latest turn-back time.",
+        "Good seamanship includes changing or abandoning the plan when its assumptions fail. Do not let an arrival promise outweigh safety, because people under pressure sail on past the easy turn-back point.",
+        "Here is how the plan helps you decide when conditions change. You have a novice crew, fading daylight, a forecast wind increase, and an exposed destination. A nearby sheltered alternative is available."
       ],
       "observe": [
         "Name the factors that make the original destination less suitable.",
@@ -1659,10 +1690,10 @@
     "sail-30": {
       "title": "Choose an anchorage",
       "concepts": [
-        "Choose shelter, suitable holding ground, adequate depth throughout the tidal range, and room to swing without reaching hazards or neighboring vessels.",
-        "An anchor holds best when it is pulled flat along the seabed, because then it digs in. With a short rode the pull comes from above and lifts the anchor out. That is why you let out several times the depth: the extra length, and the weight of chain, keep the pull flat and soften jerks from waves. Use more in strong wind. Scope is rode length divided by the height from bow roller to seabed.",
-        "Example for arithmetic only: at 5 m water depth and a roller 1 m above water, an assumed 5:1 ratio gives 30 m of rode. This calculation is not a deployment prescription. Add tidal changes and assess swing room.",
-        "Different anchors suit different seabeds. Claw and plough anchors, such as the Bruce, Delta and CQR, dig well into sand and mud; a folding grapnel suits rock or a small boat, and a mushroom anchor is meant for permanent moorings in soft mud. Chain is heavy and keeps the pull low along the bottom. If you use rope, choose one that sinks and stretches, such as nylon: it absorbs jerks and stays clear of propellers. Many yachts use chain with a rope tail.",
+        "Choose shelter, holding ground the anchor can dig into (such as sand or mud), and enough depth at every state of the tide. Leave room to swing clear of hazards and other boats.",
+        "An anchor holds best when it is pulled flat along the seabed, because then it digs in. With a short rode (the chain or rope between anchor and boat) the pull comes from above and lifts the anchor out. That is why you let out several times the depth: the extra length, and the weight of chain, keep the pull flat and soften jerks from waves. Use more in strong wind. Scope is rode length divided by the height from bow roller to seabed.",
+        "Worked example: in 5 m of water with the bow roller 1 m above the water, a 5:1 scope gives 30 m of rode. 5:1 is a common starting point in calm weather; use more in strong wind. Also allow for the tide and check your swing room.",
+        "Different anchors suit different seabeds:\n• Claw anchors, such as the Bruce, dig well into sand and mud.\n• Plough anchors, such as the Delta and CQR, also dig well into sand and mud.\n• A folding grapnel suits rock or a small boat.\n• A mushroom anchor is meant for permanent moorings in soft mud.\nChain is heavy and keeps the pull low along the bottom. If you use rope, choose one that sinks and stretches, such as nylon: it absorbs jerks and stays clear of propellers. Many yachts use chain with a rope tail.",
         "Sometimes a single anchor is not enough to hold the boat. Use two when one cannot hold in strong wind, when wind and current pull from different directions, or in a river where the current reverses. Lay them well apart, about 45° on either side of the bow in strong wind, or one ahead and one astern in a narrow river, and make sure the rodes cannot tangle as the boat swings."
       ],
       "observe": [
@@ -1705,10 +1736,10 @@
       "title": "Stop, then anchor",
       "concepts": [
         "Approach slowly, heading into the wind (or the current, whichever affects the boat more), so the boat comes to a stop on its own. Lower the anchor to the seabed once the boat has stopped. Then let the wind push the boat backward as you pay out rode, so the chain lies along the bottom instead of piling on top of the anchor.",
-        "When enough rode is out, set the anchor by pulling on it gently, often with a little engine astern. Check that it holds: pick two objects ashore that line up, and watch whether they stay lined up. Keep checking over time, especially when the wind changes.",
+        "When enough rode is out, set the anchor by pulling on it gently, often with a little engine astern. Check that it holds: pick two objects ashore that line up, such as a lamp post in front of a church tower, and watch whether they stay lined up. Keep checking over time, especially when the wind changes.",
         "You can also feel whether the anchor holds by resting a hand on the rode. A steady pull means it is holding; a juddering vibration means it is dragging across the bottom, and the bow no longer stays pointed into the wind. If it drags, first let out more rode, which often lets it dig in. If it still drags, lift it and anchor again.",
-        "Do not leave the anchor’s load on the windlass. Once anchored, tie a snubber, a short rope from the chain to a bow cleat, so the cleat takes the strain and the rope absorbs jerks. An anchor can also help you come close to a shore with the bow facing seaward: drop it while still approaching and control the rode as it runs out, so the anchor stops the boat under control.",
-        "In this exercise: lower the sails and coast below 0.8 knots with the anchor up. Set a 45 m rode target and run the windlass; it pays out over time and stops at the target. Wait for 45 m actually paid out, the windlass stopped, and ground speed below 0.2 knots. Deploying early ends the attempt."
+        "Do not leave the anchor’s load on the windlass (the winch that lifts the chain), because it is not built to take sudden jerks. Once anchored, tie a snubber, a short rope from the chain to a bow cleat, so the cleat takes the strain and the rope absorbs jerks. A different use of the anchor: it can help you come close to a shore with the bow facing seaward. Drop it while still approaching and control the rode as it runs out, so the anchor stops the boat under control.",
+        "In this exercise: lower the sails and coast below 0.8 knots (slower than walking pace) with the anchor up. Set a 45 m rode target and run the windlass; it pays out over time and stops at the target. Wait for 45 m actually paid out, the windlass stopped, and ground speed below 0.2 knots. Deploying early ends the attempt."
       ],
       "observe": [
         "Reduce sail power well before the intended stopping point.",
@@ -1760,9 +1791,9 @@
     "sail-32": {
       "title": "Prepare to leave",
       "concepts": [
-        "Before departure, recheck the surrounding area, intended route, conditions, and crew readiness. Make sure lines and equipment are secure and everyone knows what happens next.",
+        "Before departure, recheck everything, because things change while you are anchored. A new boat may lie close by, or the wind may shift. Check the route, conditions and crew, secure lines and equipment, and tell everyone what happens next.",
         "To lift the anchor, bring the boat to it rather than pulling the boat with the rode. Motor or sail slowly toward the anchor while the crew brings in the slack. When the rode is straight up and down, the pull is vertical and the anchor breaks out of the seabed easily. The windlass lifts the rode; it is not for towing the boat.",
-        "Once the anchor leaves the bottom you are drifting, so get steerage quickly by engine or sail. In this exercise the bow starts above the anchor. Select Weigh anchor and wait until it is fully stowed, then raise the sails and settle on a steady reach. If the rode goes tight, retrieval pauses."
+        "Once the anchor leaves the bottom you are drifting, so get steerage (enough speed for the rudder to work) quickly by engine or sail. Now try it in the app: the bow starts above the anchor. Select Weigh anchor and wait until it is fully stowed, then raise the sails and settle on a steady reach. If the rode goes tight, retrieval pauses."
       ],
       "observe": [
         "Confirm the wind and your intended course before releasing the hold.",
@@ -1808,9 +1839,9 @@
     "sail-33": {
       "title": "Person overboard priorities",
       "concepts": [
-        "Raise the alarm, maintain continuous visual contact, point to the person, and deploy appropriate flotation and marking equipment. Assign roles and call for help as the situation requires.",
-        "Then bring the boat back under control and return. Stay close: many recoveries fail because the boat gets too far away and loses sight of the person. Plan the final approach on a close reach, so you can slow down by easing the sails and stop beside the person. Keep the propeller in neutral or stopped near them.",
-        "A lifebuoy light switches itself on when the buoy floats upright in the water, so throw the buoy with its light attached; do not wait to test it. In strong wind and big waves, a return under sail can be hard to control: once the buoy is thrown and someone is pointing, roll away the headsail, check that no lines are in the water, start the engine and approach slowly, with the propeller stopped near the person.",
+        "When someone falls overboard, act at once, sharing the jobs:\n• Shout “person overboard!”\n• Throw a lifebuoy and a marker (a buoy with a flag or light) straight away.\n• Point at them nonstop: a head in waves vanishes within seconds.\n• Call for help and give everyone a job.",
+        "Then bring the boat back under control and return. Stay close: many recoveries fail because the boat gets too far away and loses sight of the person. Plan the final approach on a close reach (wind just forward of the side), so you can slow down by easing the sails or speed up by trimming, and stop beside the person. Keep the propeller in neutral or stopped near them.",
+        "A lifebuoy light switches itself on when the buoy floats upright in the water, so throw the buoy with its light attached; do not wait to test it. In strong wind and big waves, a return under sail can be hard to control. Once the buoy is thrown and someone is pointing:\n• Roll away the headsail.\n• Check that no lines are in the water, because a rope can wrap the propeller.\n• Start the engine and approach slowly, with the propeller stopped near the person.",
         "Lifting a person aboard is often the hardest part: a wet adult is heavy and the side of the boat is high. Know your boat’s method, such as a sling, a halyard on a winch or a ladder, before you need it. This app has no person-overboard model, so this lesson checks priorities; practice the maneuver with an instructor and a training object."
       ],
       "observe": [
@@ -1901,11 +1932,11 @@
     "sail-62": {
       "title": "When gear fails, and towing",
       "concepts": [
-        "If the wheel steering fails, fit the emergency tiller to the top of the rudder stock. It is the fix when a steering cable or the wheel’s shaft breaks, and it usually fits under a deck plate in the cockpit. Learn where it is stowed and practise fitting it in calm water. Near a harbor entrance, slow down, call for help early and keep well clear of the breakwater while you fit it.",
+        "If the wheel steering fails, fit the emergency tiller (a steering bar) to the top of the rudder stock, the post that turns the rudder. It is the fix when a steering cable or the wheel’s shaft breaks, and it usually fits under a deck plate in the cockpit. Learn where it is stowed and practise fitting it in calm water. Near a harbor entrance, slow down, call for help early and keep well clear of the breakwater while you fit it.",
         "If the roller furler jams as you roll the headsail away, first take the load off the sail. Bear away so the mainsail shelters it, or ease the sheet, and try again gently. Do not force it with a bigger winch, which can break the drum or the line. If it still will not turn, let the halyard go, pull the sail down onto the deck and tie it there.",
-        "If a loaded shroud breaks, act at once to take the strain off the mast. Tack or gybe so the broken side is to leeward and no longer carries the load, ease the sheets and reduce sail. Then rig a spare halyard to a strong point on that side as a temporary shroud before sailing on gently.",
-        "Before you take another boat in tow, check the sea state, your fuel and the strength of the points you will tie to on both boats. Use a long, strong line that can stretch, such as 50 m of thick nylon in a 2 m sea, made fast to strong points or to a bridle spread across both sides. In rough weather, lengthen the tow line and weight it so it does not snatch tight, and agree signals with the other crew.",
-        "Tow slowly and turn gently. With a short line, a sharp turn lets the line go slack; when it comes tight again, it jerks the towed boat’s bow round after you, so in a sharp turn to starboard her bow sheers hard to starboard and she can run into your stern. Turn wide and keep the line taut. In a harbor, towing alongside, lashed to your side, gives far better control."
+        "If a loaded shroud (a side wire holding up the mast) breaks, act at once to take the strain off the mast. The windward shroud carries the load, so tack or gybe until the broken side is to leeward, ease the sheets and reduce sail. Then rig a spare halyard to a strong point on that side as a temporary shroud before sailing on gently.",
+        "Before you take another boat in tow, check the sea state, your fuel and the strength of the points you will tie to on both boats. Use a long, strong line that can stretch, such as 50 m of thick nylon in a 2 m sea; as a rule of thumb, both boats should ride a wave at the same moment. Make it fast to strong points or to a bridle spread across both sides. In rough weather, lengthen the tow line and weight it so it does not snatch tight, and agree signals with the other crew.",
+        "Tow slowly and turn gently, because a sharp turn makes the towed boat swing about. With a short line, a sharp turn lets the line go slack. When it comes tight again, it jerks her bow round after you like the end of a whip, so in a sharp turn to starboard she swings hard to starboard and can hit your stern. Turn wide and keep the line taut. In a harbor, towing alongside, lashed to your side, gives far better control."
       ],
       "observe": [
         "Find the emergency tiller aboard and work out how it fits onto the rudder stock.",
@@ -1946,9 +1977,9 @@
     "sail-35": {
       "title": "Your assessed first passage",
       "concepts": [
-        "Combine the course skills without rushing: establish a steady course, trim effectively, change tack through the bow, recover control, and slow to a planned stop.",
-        "The simulator gives measured targets but no automatic steering. Each stage must be completed in order. Grounding or using the anchor before the final stopping stage invalidates the attempt.",
-        "The final stage uses a prepared deep-water anchorage and a 180 m rode target. Wait for all 180 m to be paid out, the windlass to stop, and ground speed to fall below 0.2 knots. Allow about 15 minutes for the complete exercise. This target is specific to these training conditions."
+        "Combine the course skills without rushing, one stage at a time:\n• Steer a steady course.\n• Trim the sails well.\n• Tack, then recover control.\n• Slow to a planned stop.",
+        "The simulator gives measured targets but no automatic steering. Each stage must be completed in order. Grounding or using the anchor before the final stopping stage invalidates the attempt, because the test checks your order of work, as at sea.",
+        "The final stage anchors in deep water, so the target is 180 m of rode. That is far more than the 45 m earlier, because deeper water needs more rode (Lesson {lesson:sail-30}). Wait for all 180 m to be paid out, the windlass to stop, and ground speed to fall below 0.2 knots. Allow about 15 minutes for the complete exercise."
       ],
       "observe": [
         "Brief yourself on the sequence before selecting Begin practice.",
@@ -2001,8 +2032,8 @@
     "sail-36": {
       "title": "From simulation to the sea",
       "concepts": [
-        "Review the difference between explaining a task, performing it in this model, and performing it aboard a real yacht. Your course record separates theory checks from simulated practice and records the use of hints.",
-        "The next step is supervised on-water training: preparation and equipment checks; knots and line handling; hoisting, trimming, reefing, tacking and gybing with crew; engine handling and docking; real anchoring; lookout and navigation; and person-overboard recovery.",
+        "Knowing, simulating and doing on a real boat are three different things. Explaining a task, doing it in this model and doing it aboard a real yacht each test something else. Your course record separates theory checks from simulated practice and records the use of hints.",
+        "The next step is supervised training on the water, covering:\n• preparation and equipment checks\n• knots and line handling\n• hoisting, trimming and reefing\n• tacking and gybing with crew\n• engine handling and docking\n• real anchoring\n• lookout and navigation\n• person-overboard recovery",
         "Choose an instructor and conditions appropriate to your experience. Bring your course record, explain the simulator’s limitations, and ask for an individual practical assessment. Course completion here is a learning milestone, not a license or safety certification."
       ],
       "observe": [
@@ -2035,9 +2066,9 @@
     "sail-37": {
       "title": "Plan the route and the escape",
       "concepts": [
-        "A passage plan connects preparation, route, execution and monitoring. Check current charts and notices, forecast, tide and current, daylight, boat readiness, crew capability, fuel and communications. Mark hazards, safe water, alternatives and points where choices become limited.",
-        "Choose decision points before departure. In this fictional exercise, the exposed headland is acceptable only if the agreed weather and daylight margins remain available. A sheltered alternative is available before the headland; after passing it, returning may be difficult.",
-        "A route is a proposal to keep checking. Compare actual progress and conditions with the plan. A pre-agreed diversion trigger helps avoid continuing simply because the destination is close. Share the route, crew roles and contingency plan.",
+        "A passage plan links preparing, choosing the route, sailing it and checking progress. Check:\n• the water: current charts, notices to mariners (official updates on new hazards or moved buoys), tide and current\n• the weather: forecast and daylight\n• the boat and crew: readiness, ability, fuel and communications\nMark hazards, safe water, alternatives and points where choices become limited.",
+        "Choose decision points before you leave, while you still have options. At a decision point you check conditions and choose to go on or divert. In this fictional exercise, the exposed headland is acceptable only if the agreed weather and daylight margins remain. A sheltered alternative is available before the headland; after passing it, returning may be difficult.",
+        "Treat the route as a plan you keep checking, not a promise. Compare actual progress and conditions with the plan. Agree a diversion trigger in advance, because it stops you pressing on just because the destination is close. Share the route, crew roles and backup plan.",
         "For a harbor you do not know, read the pilot book, a cruising guide for the area, alongside the official charts. Pilot books describe approaches, anchorages, berthing and mooring arrangements, hazards and local rules. Recent reports from sailors who know the area help too."
       ],
       "observe": [
@@ -2070,9 +2101,9 @@
     "sail-38": {
       "title": "Tidal depth and clearance",
       "concepts": [
-        "Chart depths are measured from a stated low water level called chart datum, so most of the time there is more water than the chart shows. Add a predicted tide height only if it uses the same datum, place, date and time. Water depth is not the space under your keel, and a depth sounder may measure from the waterline or from the keel, so check its offset.",
-        "Fictional static example: charted depth 2.4 m plus tidal height 1.1 m gives water depth 3.5 m. Subtract a 1.8 m draft to get 1.7 m static under-keel clearance. If the exercise requires a 0.8 m allowance, 0.9 m remains above that allowance. This is arithmetic, not permission to cross a shoal.",
-        "Real planning also allows for the lowest tide during the passage, errors in the survey and forecast, waves, heel, and the boat sitting lower when moving fast in shallow water (squat). Do not add the tide again to a depth-sounder reading: it already shows the real water depth. One good reading cannot prove a safe route."
+        "Chart depths are measured from a stated low water level called chart datum, so most of the time there is more water than the chart shows. Add the tide height for this place and this time, measured from the same level as the chart. Water depth is not the space under your keel. A depth sounder may measure from the waterline or from the keel, so check its offset (the distance from where it measures to the bottom of the keel).",
+        "Here is a worked example with made-up numbers, for a boat that is still and level:\n• Charted depth 2.4 m plus tidal height 1.1 m gives a water depth of 3.5 m.\n• Take away the 1.8 m draft: 1.7 m of static under-keel clearance (the water between keel and seabed).\n• Take away the exercise’s 0.8 m allowance: 0.9 m remains.\nThis is arithmetic, not permission to cross a shoal.",
+        "Real planning needs more margin than this simple sum, for these reasons:\n• the tide keeps changing, so use the lowest tide during the passage\n• surveys and forecasts are never exact\n• waves and heel can bring the keel closer to the bottom\n• squat: the boat sits lower when moving fast in shallow water\nDo not add the tide again to a depth-sounder reading: it already shows the real water depth. One good reading cannot prove a safe route."
       ],
       "observe": [
         "Label chart datum, tidal height, water depth and draft separately in the example.",
@@ -2206,10 +2237,10 @@
     "sail-42": {
       "title": "Night pilotage and cross-checks",
       "concepts": [
-        "Plan a night approach in daylight: list the lights you expect, in order, and how you will recognize each one, plus hazards, safe water, expected depths and a safe alternative. A light is identified by its color, pattern and period: “Fl W 6s” is one white flash every 6 seconds. Time several full cycles; color alone is not enough, and lights ashore can confuse the picture.",
+        "Plan a night approach in daylight: list the lights you expect, in order, and how you will recognize each one. Also mark hazards, safe water, expected depths and a safe alternative. A light is identified by its color, pattern and period: “Fl W 6s” is one white flash every 6 seconds. Time several full cycles; color alone is not enough, and lights ashore can confuse the picture.",
         "Leading lights are two lights, the rear one higher and farther away. When the rear light is straight above the front one, you are on the safe line. If the rear light appears to the right of the front one, you are right of the line: move left until they line up again. Two marks ashore used the same way by day are called a transit.",
-        "Cross-check electronic position with independent evidence such as identified lights, bearings, transits and depth trends, allowing for tide and instrument offsets. Two displays using the same GPS source are not independent fixes. Confirm chart scale, datum and updates; a precise-looking symbol can still be wrong.",
-        "Fictional approach: the plotter suggests you are on track, but an expected leading-light alignment and the depth trend disagree. Do not continue into shallower or confined water merely to resolve the puzzle. Reduce risk, remain in or return to verified safe water if feasible, cross-check the observations and revise the plan."
+        "Cross-check the electronic position with independent evidence such as identified lights, bearings, transits and depth trends. Allow for tide and instrument offsets: the depth sounder may read from the keel, not the surface. Two displays using the same GPS source are not independent fixes. Confirm chart scale, updates and datum (the chart’s reference grid; a mismatch shifts your position); a precise-looking symbol can still be wrong.",
+        "When the plotter and what you see disagree, stop and check. In this fictional approach the plotter suggests you are on track, but an expected leading-light alignment and the depth trend disagree. Do not continue into shallower or tighter water just to solve the puzzle. Reduce risk, stay in or return to safe water you have checked if you can, cross-check the observations and revise the plan."
       ],
       "observe": [
         "List the expected navigation references in their approach order and explain how each will be identified.",
@@ -2241,9 +2272,9 @@
     "sail-43": {
       "title": "Enter the marina under engine",
       "concepts": [
-        "A boat under engine has no brakes: the only quick way to slow down is reverse thrust, and even that takes time. Ahead and astern describe the push from the propeller, not which way you are moving; in neutral the push stops but the boat keeps moving. So plan every stop well before you need it.",
+        "A boat under engine has no brakes: the only quick way to slow down is reverse thrust, and even that takes time. Ahead (forwards) and astern (backwards) describe the push from the propeller, not which way you are moving; in neutral the push stops but the boat keeps moving. So plan every stop well before you need it.",
         "At low speed little water flows past the rudder, so it steers poorly. A short burst of ahead thrust pushes propeller water straight over the rudder and gives you steering even when the boat is barely moving, without adding much speed. A boat turns around a point near its front, so when you turn, the stern swings out the other way: watch it near pontoons and other boats.",
-        "In this exercise: follow the markers on 090°, 135° and 180° into the fairway, staying below 2.5 knots. Then use neutral and a short burst of astern to stop in the final circle, and finish in neutral below 0.15 knots for five seconds, clear of docks and boats."
+        "In this exercise: follow the markers on 090° (east), 135° and 180° (south) into the fairway, the open channel between the rows of berths. Stay below 2.5 knots, about walking pace. Then use neutral and a short burst of astern to stop in the final circle, and finish in neutral below 0.15 knots for five seconds, clear of docks and boats."
       ],
       "observe": [
         "Use the engine slider or W/S; N selects neutral. Center the helm before overshooting.",
@@ -2292,9 +2323,9 @@
     "sail-44": {
       "title": "Dock in a marina berth",
       "concepts": [
-        "Come into a berth at the speed you would be willing to touch the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.",
+        "Come into a berth (a boat’s parking space at a pontoon) at a speed you would accept touching the dock at, usually walking pace or less. Use short bursts of thrust with neutral between them: each burst gives a little steering and speed, and neutral lets you judge the drift. It is easier to add a little power than to take too much away.",
         "At low speed the wind pushes the boat sideways, and the bow, which is high and light, blows off first. In reverse, most propellers also pull the stern to one side (prop walk), so going astern to stop can swing the stern. Plan the approach so these effects push you toward the berth, not away, and keep a way out if it goes wrong.",
-        "In this exercise: approach the amber marker at 0.3–1 knot, continue into the northern berth, and stop with the boat center within 2 metres of the green target, heading 090° ±10°. Finish in neutral below 0.15 knots for five seconds. Any contact ends the attempt. In reverse, prop walk swings the stern to port; mooring lines are not part of this model."
+        "In this exercise, approach the amber marker at 0.3–1 knot and continue into the northern berth. To finish, you need:\n• position: boat center within 2 metres of the green target\n• direction: heading 090° ±10°\n• speed: in neutral, below 0.15 knots\n• time: held for five seconds\nAny contact ends the attempt. In reverse, prop walk swings the stern to port (to the left, looking forward); mooring lines are not part of this model."
       ],
       "observe": [
         "The green circle marks the boat center, not the bow. Leave clearance ahead and on both sides.",
@@ -2339,8 +2370,8 @@
     "sail-45": {
       "title": "Leave the berth and exit the marina",
       "concepts": [
-        "Going backward, the rudder is at the leading end of the boat, so it steers weakly and the opposite way: the same helm turns the bow the other way from going forward. Keep reversing speed low and steady, keep the helm small, and look where you are going.",
-        "Back far enough to clear the dock fingers before you turn. When the boat turns, both ends swing, so turning between the fingers can hit them. Stop, select neutral, then turn under ahead power, where steering is stronger and works the normal way.",
+        "Going backward, the rudder is at the leading end of the boat, so it steers weakly and the opposite way. The same helm turns the bow the other way from going forward. Keep reversing speed low and steady and the helm small, because faster water can force the rudder hard over and swing the bow suddenly. Look where you are going.",
+        "Back far enough to clear the dock fingers (the short, narrow pontoons between berths) before you turn. When the boat turns, both ends swing, so turning between the fingers can hit them. Stop, select neutral, then turn under ahead power, where steering is stronger and works the normal way.",
         "In this exercise the lines are already released. Reverse to the first marker on 090° at 0.3–1.2 knots astern, stop at the second target, then use ahead thrust and port helm to turn north and follow the departure markers on 000°. Stay below 2.5 knots and clear of other boats."
       ],
       "observe": [
@@ -2365,7 +2396,7 @@
             "It cannot steer at all",
             "Its turning effect reverses"
           ],
-          "explanation": "Water flow reverses under sternway, so the same helm input turns the bow the opposite way."
+          "explanation": "Water flows the other way past the rudder when moving backwards, so the same helm turns the bow the opposite way."
         }
       ],
       "transfer": "This exercise assesses engine maneuvering in the model. Practice real docking, propeller effects, and mooring lines with a qualified instructor.",
@@ -2394,10 +2425,10 @@
     "sail-46": {
       "title": "Sailing encounters: tack, windward and overtaking",
       "concepts": [
-        "First establish whether the vessels are in sight, whether collision risk exists, and whether overtaking, a narrow channel or special vessel status changes the case. These sailing examples use International Rules with vessels in sight, in open water, and no special status. Both vessels keep a lookout and remain responsible for avoiding collision.",
+        "Before using the sailing rules, first ask three questions:\n• Are the vessels in sight of each other?\n• Is there a risk of collision?\n• Does overtaking, a narrow channel or a special vessel status change the case?\nThese sailing examples use International Rules with vessels in sight, in open water, and no special status. Both vessels keep a lookout and remain responsible for avoiding collision.",
         "Port and starboard belong to the boat when facing its bow. A yacht with the wind on its port side is on port tack; wind on starboard means starboard tack. For Rule 12, the windward side is the side opposite the mainsail. Check the mainsail, not just the headsail or where the other yacht appears on your screen.",
-        "With collision risk on different tacks, the port-tack yacht keeps out of the way. On the same tack, the windward yacht keeps out of the way of the leeward yacht, because it can usually bear away more easily. If you are on port tack and see a vessel to windward whose tack you cannot determine with certainty, keep out of its way. This uncertainty rule is specific; it is not a rule that the yacht seen on your right always wins.",
-        "Check overtaking before applying tack rules. You are overtaking when coming up from more than 22.5° abaft the other vessel’s beam: the 135° sector around its stern. At night this corresponds to seeing its sternlight but neither sidelight. Any overtaking vessel keeps clear of the vessel being overtaken, including a sailing yacht overtaking a motor vessel.",
+        "With collision risk on different tacks, the port-tack yacht keeps out of the way. On the same tack, the windward yacht (closer to where the wind comes from) keeps out of the way of the leeward (downwind) yacht, because it can usually bear away (turn away from the wind) more easily. If you are on port tack and see a vessel to windward whose tack you cannot determine with certainty, keep out of its way. This uncertainty rule is specific; it is not a rule that the yacht seen on your right always wins.",
+        "Check overtaking before applying tack rules. You are overtaking when coming up from more than 22.5° abaft the other vessel’s beam (behind the line across its widest point): roughly from behind, in the 135° sector around its stern. At night this corresponds to seeing its sternlight but neither sidelight. Any overtaking vessel keeps clear of the vessel being overtaken, including a sailing yacht overtaking a motor vessel.",
         "If in doubt whether you are overtaking, assume that you are and act accordingly. The obligation continues until finally past and clear. Reaching abeam or changing relative bearing does not turn an established overtaking case into a crossing case."
       ],
       "observe": [
@@ -2430,10 +2461,10 @@
     "sail-47": {
       "title": "Under engine: head-on, crossing and mixed encounters",
       "concepts": [
-        "A sailing vessel under Rule 3 is under sail with propelling machinery, if fitted, not being used. A yacht propelled by its engine is power-driven even with sails raised. An engine merely running to charge batteries does not alone establish propulsion by machinery. State the actual propulsion before choosing a rule.",
-        "For two power-driven vessels in sight crossing with collision risk, the vessel with the other on her starboard side keeps out of the way and, if circumstances admit, avoids crossing ahead. The other vessel initially keeps course and speed under Rule 17. Reverse the viewpoint: a contact on A’s starboard can see A on its port side.",
-        "For two power-driven vessels meeting on reciprocal or nearly reciprocal courses with collision risk, both alter to starboard so they pass port-to-port. If both turn right, they always turn away from each other. If in doubt whether this head-on situation exists, assume it does and act accordingly. This is the power-driven head-on rule; do not apply it automatically to two sailing vessels.",
-        "In an ordinary in-sight encounter, a power-driven vessel underway keeps out of the way of a sailing vessel. First check the exceptions in Rules 9, 10 and 13 and any special vessel status. A sailing yacht overtaking a motorboat still keeps clear; a yacht using engine propulsion does not claim sailing-vessel status. Vessel size alone does not decide these ordinary encounters.",
+        "A boat counts as a sailing vessel only when it is under sail and its engine is not pushing it (Rule 3). A yacht driven by its engine is power-driven even with sails raised. An engine running only to charge batteries does not, on its own, mean the engine is driving the boat. State how the boat is actually being driven before choosing a rule.",
+        "When two power-driven vessels in sight cross with collision risk, the one with the other on its starboard side gives way. In plain words: if you see the other boat on your right, you give way, usually by turning right and passing behind it, not crossing ahead if you can avoid it. The other vessel at first keeps its course and speed (Rule 17). Reverse the viewpoint: a contact on A’s starboard can see A on its port side.",
+        "When two power-driven vessels with collision risk head straight at each other, bow to bow or nearly so, both turn to starboard. They then pass port-to-port. If both turn right, they always turn away from each other. If in doubt whether this head-on situation exists, assume it does and act accordingly. This is the power-driven head-on rule; do not apply it automatically to two sailing vessels.",
+        "In an ordinary in-sight encounter, a power-driven vessel underway keeps out of the way of a sailing vessel. First check the exceptions: narrow channels, traffic lanes and overtaking (Rules 9, 10 and 13), and any special vessel status. A sailing yacht overtaking a motorboat still keeps clear; a yacht using engine propulsion does not claim sailing-vessel status. Vessel size alone does not decide these ordinary encounters.",
         "“Underway” means not at anchor, not made fast to the shore and not aground; a vessel drifting with her engine stopped is still underway. Status matters more than motion: a stopped power-driven vessel that is underway keeps her give-way duties.",
         "Two less common vessels need a second look. A hovercraft running on its air cushion shows an all-round flashing yellow light as well as power-driven lights, and it can be fast. A rowing boat may show sailing-vessel lights or keep a white torch ready to show in time. The International Rules give rowing boats no place of their own in the give-way order, but they are slow and low in the water, so keep clear of them early."
       ],
@@ -2667,10 +2698,10 @@
     "sail-52": {
       "title": "Handle a catamaran with twin engines",
       "concepts": [
-        "A cruising catamaran has two widely spaced hulls and engines. Allow for its beam when choosing a berth or turning space. Shallow draft does not guarantee clearance; check the actual vessel, depth, and margins. High topsides and a wide cabin can catch the wind at low speed.",
+        "A cruising catamaran has two widely spaced hulls and engines. Allow for its beam (its width, much wider than a monohull of the same length) when choosing a berth or turning space. Shallow draft does not guarantee clearance; check the actual vessel, depth, and margins. High topsides (the hull sides above the water) and a wide cabin can catch the wind at low speed.",
         "The engines are far apart, so each one pushes on a long lever: opposite thrust spins the boat almost on the spot. Equal engine commands give mainly ahead or astern motion. With the helm centered, port ahead and starboard astern turn the bow to starboard; reverse the commands to turn to port. Use gentle bursts with neutral between them. Equal lever settings need not produce equal ahead and astern thrust, so watch both heading and drift.",
         "This exercise starts in open water with sails lowered. Use the separate port and starboard engine controls to turn from 000° to 090° within the starting circle. Stop the rotation and select neutral on both engines for five seconds. Then use the linked engine control to reach the next marker and stop in the final circle. Stay below 2.5 knots and clear of traffic.",
-        "Under sail, a catamaran may heel little even as loads increase. Reef early using the boat maker’s guidance, forecast, sea state, and crew ability. Wide beam provides initial stability, not immunity from capsize; do not use low heel as permission to carry more sail."
+        "Under sail, a catamaran may heel little even as loads increase. Reef early using the boat maker’s guidance, forecast, sea state, and crew ability. Wide beam gives initial stability, not immunity from capsize. Low heel is not permission to carry more sail: a monohull leans to warn you, but a catamaran gives little warning before a capsize, and then stays upside down."
       ],
       "observe": [
         "Keep the helm centered for the pivot; use opposing engines and ease before 090° to allow for momentum.",
@@ -2685,7 +2716,7 @@
             "Port astern and starboard ahead",
             "Both engines equally ahead"
           ],
-          "explanation": "The separated thrust forces form a turning couple. Watch drift because ahead and astern thrust may differ."
+          "explanation": "One engine pushes forward and the other back, so the boat spins. Watch drift because ahead and astern thrust may differ."
         },
         {
           "prompt": "The wind is increasing but the catamaran is hardly heeling. What should guide reefing?",
@@ -2720,8 +2751,8 @@
       "title": "Navigate a night approach",
       "concepts": [
         "At night you recognize a light by its color, its pattern and its period, the time for one full cycle. Watch two or three complete cycles and count, then match them with the chart. Color alone is not enough: there are many white lights ashore. Protect your night vision: dim the screens and use red light in the cockpit.",
-        "Leading lights are two lights, the rear one higher and farther away. When the rear light is straight above the front one, you are on the line. If the rear light appears to the right, you are right of the line: move left until they line up again. Cross-check with heading, chart position and depth.",
-        "In this exercise (fictional lights) the lighthouse flashes white every 6 seconds and buoy 1 flashes yellow every 4 seconds. Steer 000° with gentle ahead thrust, passing east of buoy 1, then turn onto the leading line on 027°. Stay below 3 knots and in at least 3 metres of water; then slow, use a brief astern input, and hold below 0.15 knots in neutral on 027° for five seconds."
+        "Leading lights are two lights, the rear one higher and farther away, used as in Lesson {lesson:sail-42}. When the rear light is straight above the front one, you are on the line. If the rear light appears to the right, you are right of the line: move left until they line up again. If they never line up where you expect, slow down, stay in safe water and check you have the right lights. Cross-check with heading, chart position and depth.",
+        "In this exercise (fictional lights) the lighthouse flashes white every 6 seconds and buoy 1 flashes yellow every 4 seconds. Stay below 3 knots and in at least 3 metres of water:\n• steer 000° with gentle ahead thrust\n• pass east of buoy 1\n• turn onto the leading line on 027°\n• slow, use a brief astern input, and hold below 0.15 knots in neutral on 027° for five seconds"
       ],
       "observe": [
         "Watch the white lighthouse for two complete 6-second cycles before setting off. The beacons pause when the simulation is paused.",

@@ -2451,11 +2451,15 @@
         "La escala de Beaufort describe el viento por su efecto sobre el mar. Fuerza 4 (11–16 nudos) trae muchos borreguillos; fuerza 5 (17–21), olas moderadas y rociones; fuerza 6 (22–27), olas grandes con crestas de espuma blanca por todas partes; fuerza 7 (28–33), mar gruesa con la espuma arrastrada en franjas; y fuerza 8 (34–40) es un temporal. Las previsiones suelen dar la fuerza Beaufort junto con las rachas esperadas.",
         "La brisa marina se debe a la diferencia de temperatura entre la tierra y el mar. En un día de sol la tierra se calienta más rápido, el aire caliente sube sobre ella y el aire más fresco del mar entra hacia la costa, normalmente desde media mañana hasta la tarde. Por la noche la tierra se enfría y puede soplar hacia el mar un terral más flojo. Un viento catabático es aire frío que baja por la ladera de una montaña, a menudo fuerte y seco al pie de las montañas.",
         "Las olas de viento las levanta el viento local. El mar de fondo está formado por olas que levantó un viento fuerte en una tormenta lejana y que han viajado mucho desde allí. Son largas, suaves y regulares, y pueden llegar antes o después de la propia tormenta. Cuando el viento local sopla contra el mar de fondo, este se hace más bajo; el viento contra la corriente, como explica la lección {lesson:sail-20}, hace las olas cortas y empinadas.",
-        "Las olas se hacen más altas y empinadas al llegar a aguas poco profundas, y con mar de fondo pueden romper en la bocana de un puerto. Antes de entrar, observa las olas desde fuera: suelen llegar en series, con calmas entre ellas. Entra durante una calma y con velocidad suficiente para gobernar."
+        "Las olas se hacen más altas y empinadas al llegar a aguas poco profundas, y con mar de fondo pueden romper en la bocana de un puerto. Antes de entrar, observa las olas desde fuera: suelen llegar en series, con calmas entre ellas. Entra durante una calma y con velocidad suficiente para gobernar.",
+        "Las olas que rompen cerca de la costa pueden destrozar un velero. El mar de fondo que llega de aguas profundas se frena y se levanta al llegar a poca profundidad, y luego rompe como un muro de agua blanca. En olas rompientes:\n• El barco puede surfear una ola, clavar la proa y atravesarse sin control (orzada o atravesada).\n• Una ola puede lanzar el barco contra las rocas, el rompeolas u otro barco.\n• Un tripulante puede caer al agua, y es muy difícil llegar hasta él entre las rompientes.\nLa peor posición es con el costado del barco a las olas, porque una ola rompiente puede volcarlo. Mantén la proa o la popa hacia ellas.",
+        "La mejor defensa es mantenerse lejos de la costa. Si el viento y las olas te empujan hacia tierra, actúa pronto: ajusta bien las velas o arranca el motor, y dirígete mar adentro, a aguas profundas, no más cerca de la costa. No largues un ancla flotante cerca de la costa: mantiene la proa a las olas, pero el barco sigue derivando hacia la playa. Si tienes que entrar, elige un puerto seguro para entrar con mar gruesa, aunque esté más lejos.",
+        "Para entrar entre olas rompientes:\n• Espera fuera y observa las series.\n• Acércate a la bocana de frente, desde la dirección de la que vienen las olas, no a lo largo de la costa con el costado a las olas.\n• Pon a un tripulante en la bañera mirando hacia atrás, que vigile el mar a popa y avise cuando venga una serie.\n• Justo después de la última ola de una serie, entra con motor y ponte rápido detrás del rompeolas.\n• Si una serie te sorprende por el camino, gira la proa hacia las olas y mantente ahí con el motor hasta que pase. Luego vuelve a girar y sigue entrando."
       ],
       "observe": [
         "Compara el instrumento de viento con el mar que te rodea y di la fuerza Beaufort según lo que ves.",
-        "En un día de sol, anota cuándo empieza la brisa marina y qué fuerza alcanza a media tarde."
+        "En un día de sol, anota cuándo empieza la brisa marina y qué fuerza alcanza a media tarde.",
+        "Antes de entrar en un puerto con mar de fondo, detente fuera y observa unas cuantas series: cuenta las olas de cada serie y cuánto duran las calmas."
       ],
       "mistake": "Planificar el regreso por la tarde en un día caluroso sin contar con la brisa marina, o entrar con prisa en un puerto con mar de fondo.",
       "quiz": [
@@ -2485,11 +2489,38 @@
             "Olas que hacen los barcos al pasar"
           ],
           "explanation": "El mar de fondo viaja lejos de la tormenta que lo formó, así que puede llegar aunque el viento local sea flojo."
+        },
+        {
+          "prompt": "Te acercas al puerto deportivo de Herzliya desde el oeste con un mar de fondo del oeste de 2 m. ¿Cuál es tu plan?",
+          "options": [
+            "Esperar olas más altas y rompientes en la bocana; aguardar fuera y entrar en una calma",
+            "Llegar desde el norte a lo largo de la costa para comprobar que la bocana está libre",
+            "Largar un ancla flotante y dejar que el barco entre despacio a la deriva"
+          ],
+          "explanation": "El mar de fondo crece y puede romper cerca de la bocana. Ir a lo largo de la costa pone tu costado a las olas, y con un ancla flotante sigues derivando hacia la costa."
+        },
+        {
+          "prompt": "A mitad de la entrada, el tripulante que vigila a popa avisa de que viene una nueva serie. ¿Qué haces?",
+          "options": [
+            "Girar la proa hacia las olas y mantenerte con el motor hasta que pase la serie, y luego seguir entrando",
+            "Reducir y dejar que las olas te lleven dentro",
+            "Ponerte de costado para que las olas pasen por debajo"
+          ],
+          "explanation": "Una ola rompiente por detrás puede hacerte surfear y perder el control, y de costado es la posición más peligrosa. Haz frente a la serie y entra después."
+        },
+        {
+          "prompt": "Navegas en un velero de 14 m de Ashkelon a Haifa, a 2 millas de la costa. Frente a Tel Aviv empieza a soplar un suroeste de 25 nudos. ¿Qué haces?",
+          "options": [
+            "Seguir al norte y refugiarte en el puerto deportivo de Herzliya",
+            "Volver a Ashkelon",
+            "Entrar en el puerto deportivo de Tel Aviv"
+          ],
+          "explanation": "Herzliya está a unos 40 minutos, es grande y fácil de entrar antes de que crezca el mar. Ashkelon queda lejos, contra el viento y las olas, y el puerto de Tel Aviv es pequeño y su bocana se vuelve peligrosa con mar del suroeste."
         }
       ],
       "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía.",
       "localNotes": [
-        "El material del título de patrón de embarcación de Israel indica que, con viento y mar fuertes del suroeste, la bocana del puerto deportivo de Tel Aviv es peligrosa; continúa hasta el puerto deportivo de Herzliya para refugiarte."
+        "En la costa israelí, el puerto deportivo de Herzliya suele ser el más fácil de entrar con mar gruesa. El de Tel Aviv es más pequeño y las olas rompen antes cerca de su bocana: el material del título de patrón de embarcación de Israel indica que, con viento y mar fuertes del suroeste, su bocana es peligrosa, así que continúa hasta Herzliya para refugiarte. El puerto de Jaffa es muy difícil de entrar con olas grandes."
       ]
     },
     "sail-57": {

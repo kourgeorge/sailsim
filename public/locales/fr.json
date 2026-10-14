@@ -2451,11 +2451,15 @@
         "L’échelle de Beaufort décrit le vent par son effet sur la mer. Force 4 (11–16 nœuds) : nombreux moutons ; force 5 (17–21) : vagues modérées et embruns ; force 6 (22–27) : grosses vagues aux crêtes d’écume blanche partout ; force 7 (28–33) : mer qui grossit, écume soufflée en traînées ; force 8 (34–40) : coup de vent. Les prévisions donnent souvent la force Beaufort avec les rafales attendues.",
         "La brise de mer naît de la différence de température entre la terre et la mer. Par une journée ensoleillée, la terre se réchauffe plus vite, l’air chaud s’élève au-dessus d’elle et l’air plus frais de la mer afflue vers la côte, en général de la fin de matinée au soir. La nuit, la terre se refroidit et une brise de terre plus faible peut souffler vers le large. Un vent catabatique est de l’air froid qui descend une pente de montagne, souvent fort et sec au pied des reliefs.",
         "La mer du vent est formée par le vent local. La houle est faite de vagues levées par un vent fort dans une tempête lointaine et qui ont voyagé loin d’elle : longues, lisses et régulières, elles peuvent arriver avant ou après la tempête elle-même. Quand le vent local souffle contre la houle, celle-ci s’abaisse ; le vent contre le courant, comme l’explique la leçon {lesson:sail-20}, rend les vagues courtes et raides.",
-        "Les vagues deviennent plus hautes et plus raides en arrivant sur les petits fonds. Par houle, elles peuvent déferler en travers d’une entrée de port. Avant d’entrer, observez les vagues depuis l’extérieur : elles arrivent souvent en séries, séparées par des accalmies. Entrez pendant une accalmie, avec assez de vitesse pour gouverner."
+        "Les vagues deviennent plus hautes et plus raides en arrivant sur les petits fonds. Par houle, elles peuvent déferler en travers d’une entrée de port. Avant d’entrer, observez les vagues depuis l’extérieur : elles arrivent souvent en séries, séparées par des accalmies. Entrez pendant une accalmie, avec assez de vitesse pour gouverner.",
+        "Les vagues qui déferlent près de la côte peuvent détruire un voilier. La houle venue du large ralentit et se lève en arrivant sur les petits fonds, puis déferle comme un mur d’eau blanche. Dans les déferlantes :\n• Le bateau peut surfer sur une vague, enfourner l’étrave et partir au lof sans contrôle (un départ au tas).\n• Une vague peut jeter le bateau sur les rochers, la digue ou un autre bateau.\n• Un équipier peut tomber à l’eau, et il est très difficile de le rejoindre dans les déferlantes.\nLa pire position est le travers aux vagues, car une déferlante peut retourner le bateau. Gardez l’étrave ou l’arrière face à elles.",
+        "La meilleure défense est de rester loin de la côte. Si le vent et les vagues vous poussent vers la terre, agissez tôt : réglez bien les voiles ou démarrez le moteur, et partez vers le large, en eau profonde, pas plus près de la côte. Ne mouillez pas d’ancre flottante près de la côte : elle tient l’étrave face aux vagues, mais le bateau dérive quand même vers la plage. Si vous devez rentrer, choisissez un port sûr à l’entrée par mer forte, même s’il est plus loin.",
+        "Pour entrer à travers des déferlantes :\n• Attendez dehors et observez les séries.\n• Approchez l’entrée de face, depuis la direction d’où viennent les vagues, pas le long de la côte avec le travers aux vagues.\n• Placez un équipier dans le cockpit, tourné vers l’arrière, pour surveiller la mer derrière et annoncer l’arrivée d’une série.\n• Juste après la dernière vague d’une série, entrez au moteur et passez vite derrière la digue.\n• Si une série vous surprend en route, tournez l’étrave face aux vagues et tenez-vous là au moteur jusqu’à ce qu’elle passe. Puis faites demi-tour et continuez à entrer."
       ],
       "observe": [
         "Comparez l’anémomètre avec la mer autour de vous et nommez la force Beaufort d’après ce que vous voyez.",
-        "Par une journée ensoleillée, notez quand la brise de mer se lève et quelle force elle atteint en milieu d’après-midi."
+        "Par une journée ensoleillée, notez quand la brise de mer se lève et quelle force elle atteint en milieu d’après-midi.",
+        "Avant d’entrer dans un port par houle, arrêtez-vous dehors et observez quelques séries : comptez les vagues de chaque série et la durée des accalmies."
       ],
       "mistake": "Prévoir un retour l’après-midi par une journée chaude sans tenir compte de la brise de mer, ou se précipiter dans une entrée de port par houle.",
       "quiz": [
@@ -2485,11 +2489,38 @@
             "Des vagues créées par les navires qui passent"
           ],
           "explanation": "La houle voyage loin de la tempête qui l’a formée ; elle peut donc arriver même par vent local faible."
+        },
+        {
+          "prompt": "Vous approchez de la marina d’Herzliya par l’ouest avec une houle d’ouest de 2 m. Quel est votre plan ?",
+          "options": [
+            "S’attendre à des vagues plus hautes et déferlantes à l’entrée ; attendre dehors et entrer pendant une accalmie",
+            "Arriver par le nord le long de la côte pour vérifier que l’entrée est libre",
+            "Mouiller une ancre flottante et laisser le bateau dériver lentement vers l’entrée"
+          ],
+          "explanation": "La houle grossit et peut déferler près de l’entrée. Longer la côte met votre travers aux vagues, et avec une ancre flottante vous dérivez quand même vers la côte."
+        },
+        {
+          "prompt": "À mi-chemin de l’entrée, l’équipier qui surveille l’arrière annonce une nouvelle série. Que faites-vous ?",
+          "options": [
+            "Tourner l’étrave face aux vagues et tenir au moteur jusqu’au passage de la série, puis continuer à entrer",
+            "Ralentir et laisser les vagues vous porter à l’intérieur",
+            "Se mettre en travers pour que les vagues passent sous le bateau"
+          ],
+          "explanation": "Une déferlante par l’arrière peut vous faire surfer et perdre le contrôle, et le travers est la position la plus dangereuse. Faites face à la série, puis entrez après elle."
+        },
+        {
+          "prompt": "Vous naviguez sur un voilier de 14 m d’Ashkelon à Haïfa, à 2 milles de la côte. Au large de Tel Aviv, un vent de sud-ouest de 25 nœuds se lève. Que faites-vous ?",
+          "options": [
+            "Continuer vers le nord et vous abriter à la marina d’Herzliya",
+            "Retourner à Ashkelon",
+            "Entrer à la marina de Tel Aviv"
+          ],
+          "explanation": "Herzliya est à environ 40 minutes ; la marina est grande et facile d’accès avant que la mer se lève. Ashkelon est loin, face au vent et aux vagues, et la marina de Tel Aviv est petite, avec une entrée qui devient dangereuse par mer de sud-ouest."
         }
       ],
       "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie.",
       "localNotes": [
-        "La documentation du permis de conducteur de bateau israélien indique que, par fort vent et mer de sud-ouest, l’entrée de la marina de Tel Aviv est dangereuse ; continuez jusqu’à la marina d’Herzliya pour vous abriter."
+        "Sur la côte israélienne, la marina d’Herzliya est généralement la plus facile d’accès par mer forte. Celle de Tel Aviv est plus petite et les vagues y déferlent plus tôt près de l’entrée : la documentation du permis de conducteur de bateau israélien indique que, par fort vent et mer de sud-ouest, son entrée est dangereuse ; continuez donc jusqu’à Herzliya pour vous abriter. Le port de Jaffa est très difficile d’accès par grosses vagues."
       ]
     },
     "sail-57": {
