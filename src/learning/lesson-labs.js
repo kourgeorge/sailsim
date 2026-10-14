@@ -36,7 +36,7 @@ export const lessonLabs={
  'sail-46':{1:{id:'compass-wind',initial:{heading:90,windFrom:0},tasks:['beamPort','beamStarboard']}},
  'sail-48':{1:{id:'collision-bearing',tasks:['bigTurn','clear']}},
  'sail-49':{3:{id:'current-track',initial:{heading:90,currentDirection:0,currentSpeed:1.5},tasks:['rightAngle']}},
- 'sail-50':{0:{id:'lights-aspect',initial:{vessel:'power'},tasks:['sternOnly','power']}},
+ 'sail-50':{0:{id:'lights-aspect',initial:{vessel:'power'},tasks:['sternOnly','power']},13:{id:'night-way',tasks:['special','own','day']}},
  'sail-53':{0:{id:'lights-flash',tasks:['twoCycles','isoOc']},1:{id:'lights-leading',tasks:['onLine','left']}},
  'sail-56':{6:{id:'surf-entry',tasks:['watch','face','enter']}},
 };

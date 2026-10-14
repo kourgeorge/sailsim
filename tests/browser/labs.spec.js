@@ -116,3 +116,33 @@ test('time-based labs play, step and stop their loop when the page changes', asy
   ]);
   expect(errors).toEqual([]);
 });
+
+test('who-keeps-clear cards judge the answer and clear it on the next card', async ({
+  page,
+}, testInfo) => {
+  const errors = [];
+  page.on('pageerror', (error) => errors.push(error.message));
+  await openLesson(page, positionOf('sail-50'), { lessonId: 'sail-50', readerPage: 13 });
+  const lab = page.locator('.reader-figure .lab[data-lab="night-way"]');
+  await expect(lab).toBeVisible();
+  await expect(lab).toHaveAttribute('data-lab-status', 'ask');
+  await expect(lab.locator('[data-control="card"] output')).toHaveText('1 of 17');
+  // Card 1: under engine, a lone green light is a sailing vessel, so you keep clear.
+  await lab.locator('[data-control="answer"] label').nth(1).click();
+  await expect(lab).toHaveAttribute('data-lab-status', 'wrong');
+  await lab.locator('[data-control="answer"] label').first().click();
+  await expect(lab).toHaveAttribute('data-lab-status', 'right');
+  await page.screenshot({ path: testInfo.outputPath('night-way-en.png') });
+  await lab.locator('[data-control="card"] [data-nudge="1"]').click();
+  await expect(lab.locator('[data-control="card"] output')).toHaveText('2 of 17');
+  await expect(lab).toHaveAttribute('data-lab-status', 'ask');
+  await expect(lab.locator('[data-control="answer"] input:checked')).toHaveCount(0);
+  // Card 13: you are not under command and she is restricted, so both act.
+  await lab.locator('[data-control="card"] input').fill('13');
+  await lab.locator('[data-control="answer"] label').nth(2).click();
+  await expect(lab).toHaveAttribute('data-lab-status', 'right');
+  await expect(lab.locator('[data-task="own"]')).toHaveAttribute('data-done', 'true');
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.screenshot({ path: testInfo.outputPath('night-way-phone.png'), fullPage: true });
+  expect(errors).toEqual([]);
+});

@@ -171,6 +171,8 @@ function mountLab(def,container,options,{settingsFor,picture}){
   let value=raw;
   if(control.kind!=='choice'&&control.kind!=='toggle'){value=Math.max(control.min,Math.min(control.max,Number(raw)));if(control.wrap)value=((value%control.wrap)+control.wrap)%control.wrap;}
   settings[control.key]=value;
+  // A control can clear others, e.g. a new quiz card clears the previous answer.
+  for(const key of control.resets||[]){settings[key]=def.initial[key];root.querySelectorAll(`[data-control="${key}"] input[type=radio]`).forEach(input=>{input.checked=false;});}
   const input=root.querySelector(`[data-control="${control.key}"] input[type=range]`);if(input&&Number(input.value)!==value)input.value=String(value);
   if(def.loop&&reset&&!control.live){const wasPlaying=playing;setPlaying(false);restart();if(wasPlaying)setPlaying(true);}
   ctx.events.add(`changed:${control.key}`);

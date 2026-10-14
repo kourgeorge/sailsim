@@ -114,3 +114,23 @@ test('Lab 13: time the entry for a lull, face a set with power, never side-on',a
   facing=false;
   assert.equal(run(sim=>{if(sim.time<55)return {engine:'neutral',heading:'in'};if(surfModel({engine:'full',heading:'in'},sim).status==='setComing')facing=true;return facing?{engine:'neutral',heading:'out'}:{engine:'full',heading:'in'};}).result,'swung');
 });
+
+test('Lab 14: every who-keeps-clear card has an answer and text in every language',async()=>{
+  const {CARDS,ANSWERS,nightWayModel,nightWayLab}=await import('../src/learning/labs/night-way.js');
+  const {LAB_LANGS}=await import('../src/i18n/labs.js');
+  assert.equal(new Set(CARDS.map(c=>c.id)).size,CARDS.length);
+  for(const [i,card] of CARDS.entries()){
+    assert.ok(ANSWERS.includes(card.answer),card.id);
+    assert.ok(Boolean(card.lights)!==Boolean(card.shapes),`${card.id}: night lights or day shapes`);
+    assert.equal(nightWayModel({card:i+1,answer:null}).status,'ask');
+    assert.equal(nightWayModel({card:i+1,answer:card.answer}).status,'right');
+    for(const other of ANSWERS.filter(a=>a!==card.answer))assert.equal(nightWayModel({card:i+1,answer:other}).status,'wrong');
+    for(const lang of LAB_LANGS)for(const answer of [null,card.answer])assert.ok(nightWayLab.readout({card:i+1,answer},lang).length>20,`${lang}/${card.id}`);
+  }
+  // Under engine you keep clear of sail; not under command yourself, others keep clear; two special statuses both act.
+  const answer=id=>CARDS.find(c=>c.id===id).answer;
+  assert.equal(answer('motorSail'),'you');assert.equal(answer('nucOwn'),'other');assert.equal(answer('nucRam'),'both');
+  assert.equal(answer('crossRed'),'you');assert.equal(answer('crossGreen'),'other');assert.equal(answer('headOn'),'both');
+  // A new card clears the previous answer.
+  assert.deepEqual(nightWayLab.def.controls.find(c=>c.key==='card').resets,['answer']);
+});

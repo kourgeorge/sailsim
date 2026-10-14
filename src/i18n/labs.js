@@ -13,10 +13,11 @@ import {rows as currentTrack} from './labs/current-track.js';
 import {rows as collisionBearing} from './labs/collision-bearing.js';
 import {rows as docking} from './labs/docking.js';
 import {rows as surfEntry} from './labs/surf-entry.js';
+import {rows as nightWay} from './labs/night-way.js';
 import {rows as lightsLeading,aspectRows as lightsAspect,flashRows as lightsFlash} from './labs/lights-leading.js';
 
 export const LAB_LANGS=['en','es','ar','he','ru','fr'];
-export const labRowSets={kit,'sail-force':sailForce,'compass-wind':compassWind,'tack-gybe':tackGybe,rudder,'heel-reef':heelReef,'apparent-wind':apparentWind,'anchor-scope':anchorScope,'current-track':currentTrack,'collision-bearing':collisionBearing,'lights-leading':lightsLeading,'lights-aspect':lightsAspect,'lights-flash':lightsFlash,docking,'surf-entry':surfEntry};
+export const labRowSets={kit,'sail-force':sailForce,'compass-wind':compassWind,'tack-gybe':tackGybe,rudder,'heel-reef':heelReef,'apparent-wind':apparentWind,'anchor-scope':anchorScope,'current-track':currentTrack,'collision-bearing':collisionBearing,'lights-leading':lightsLeading,'lights-aspect':lightsAspect,'lights-flash':lightsFlash,docking,'surf-entry':surfEntry,'night-way':nightWay};
 export const labStrings=Object.fromEntries(LAB_LANGS.map((code,index)=>[code,Object.fromEntries(
  Object.entries(labRowSets).flatMap(([lab,rows])=>rows.map(row=>[`${lab}.${row[0]}`,row[index+1]])))]));
 export const labLocale=lang=>{const code=String(lang||'en').toLowerCase().split(/[-_]/)[0];return LAB_LANGS.includes(code)?code:'en';};

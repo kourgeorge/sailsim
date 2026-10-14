@@ -12,9 +12,10 @@ import {currentTrackLab} from './current-track.js';
 import {collisionBearingLab} from './collision-bearing.js';
 import {dockingLab} from './docking.js';
 import {surfEntryLab} from './surf-entry.js';
+import {nightWayLab} from './night-way.js';
 import {lightsAspectLab,leadingLineLab,lightsFlashLab} from './lights-leading.js';
 
-export const LABS=Object.fromEntries([sailForceLab,compassWindLab,tackGybeLab,rudderLab,heelReefLab,apparentWindLab,anchorScopeLab,currentTrackLab,collisionBearingLab,lightsAspectLab,leadingLineLab,lightsFlashLab,dockingLab,surfEntryLab].map(lab=>[lab.id,lab]));
+export const LABS=Object.fromEntries([sailForceLab,compassWindLab,tackGybeLab,rudderLab,heelReefLab,apparentWindLab,anchorScopeLab,currentTrackLab,collisionBearingLab,lightsAspectLab,leadingLineLab,lightsFlashLab,dockingLab,surfEntryLab,nightWayLab].map(lab=>[lab.id,lab]));
 export const labSpec=value=>!value?null:typeof value==='string'?{id:value}:value;
 export function getLab(value){const spec=labSpec(value);return spec?LABS[spec.id]||null:null;}
 export const renderLabFigure=(value,lang='en')=>{const spec=labSpec(value);return getLab(spec).staticFigure(lang,spec.initial);};
