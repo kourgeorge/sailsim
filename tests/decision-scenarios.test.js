@@ -6,7 +6,7 @@ import {beginDecision,inspectDecision,setDecisionValue,submitDecision,decisionRe
 import {restoreProgress,recordDecisionResult,recordFor} from '../src/learning/engine.js';
 const prepare=(attempt,scenario,stage)=>{for(const fact of stage.requiredFacts)inspectDecision(attempt,scenario,fact);for(const field of stage.fields)setDecisionValue(attempt,scenario,field.id,field.expected);};
 test('every lesson has exactly one assessed training format; all29 decision scenarios have distinct staged tasks',()=>{
- assert.equal(decisionScenarios.length,38);assert.equal(new Set(decisionScenarios.map(s=>s.id)).size,38);
+ assert.equal(decisionScenarios.length,49);assert.equal(new Set(decisionScenarios.map(s=>s.id)).size,49);
  for(const lesson of lessons)assert.equal(Number(!!lesson.practice)+Number(!!lesson.decisionScenarioId),1,lesson.id);
  for(const scenario of decisionScenarios){assert.equal(scenario.stages.length,3);assert.equal(new Set(scenario.stages.map(s=>s.id)).size,3);for(const stage of scenario.stages){assert.ok(stage.fields.length);assert.ok(stage.facts.length);assert.ok(stage.goal);for(const id of stage.requiredFacts)assert.ok(stage.facts.some(f=>f.id===id));for(const field of stage.fields){assert.ok(['checks','order','route','number','select'].includes(field.type));if(field.type==='number')assert.ok(Number.isFinite(field.expected));else for(const id of Array.isArray(field.expected)?field.expected:[field.expected])assert.ok(field.options.some(o=>o.id===id),`${scenario.id} ${field.id} ${id}`);}}}
 });
@@ -22,9 +22,9 @@ test('numeric tasks reject empty/coercible values without credit or penalties',(
  const scenario=decisionScenarios.find(s=>s.stages[0].fields.some(f=>f.type==='number')),stage=scenario.stages[0],field=stage.fields.find(f=>f.type==='number');
  for(const value of [true,false,[],[field.expected],{},'   ',Infinity,NaN]){const a=beginDecision(scenario);prepare(a,scenario,stage);setDecisionValue(a,scenario,field.id,value);assert.equal(submitDecision(a,scenario).kind,'incomplete');assert.equal(a.mistakes,0);assert.equal(a.completed.length,0);}
 });
-test('all six authored compass-bearing fields declare circular comparison and canonical limits',()=>{
+test('all ten authored compass-bearing fields declare circular comparison and canonical limits',()=>{
  const bearings=decisionScenarios.flatMap(s=>s.stages.flatMap(stage=>stage.fields.filter(f=>f.unit==='°')));
- assert.equal(bearings.length,6);
+ assert.equal(bearings.length,10);
  for(const field of bearings){assert.equal(field.comparison,'bearing');assert.equal(field.type,'number');assert.equal(field.min,0);assert.equal(field.max,360);assert.equal(field.tolerance,1);assert.ok(field.expected>=0&&field.expected<360);}
 });
 test('sail-05 accepts 360 degrees for the shifted north wind without a revision deduction',()=>{

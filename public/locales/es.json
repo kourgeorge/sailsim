@@ -63,6 +63,14 @@
     "rigging": {
       "title": "Cabos y jarcia",
       "outcome": "Elegir el cabo o el cable adecuado para cada tarea, cuidarlo, hacer los nudos clave y calcular la fuerza que da un aparejo."
+    },
+    "chartwork": {
+      "title": "Trabajo en la carta",
+      "outcome": "Sitúa posiciones, convierte rumbos y demoras de compás, obtén la situación del barco, ten en cuenta la corriente y el abatimiento, y calcula distancias al horizonte, horas y mareas."
+    },
+    "skipper": {
+      "title": "Los conocimientos del patrón",
+      "outcome": "Elige las velas según el viento, mantén el barco estable, prepárate para el mal tiempo, organiza las guardias y el cuaderno de bitácora, y conoce los deberes de un patrón en el mar."
     }
   },
   "lessons": {
@@ -2548,7 +2556,9 @@
         "En invierno, las bajas cruzan el Mediterráneo oriental desde el oeste, y algunas se profundizan cerca de Chipre. Al profundizarse, su presión baja aún más y el viento se refuerza. En la costa de Israel suelen traer primero un frente cálido, con viento del sur al suroeste, y después un frente frío con viento duro del suroeste al oeste, mar creciente y chubascos. Si la previsión anuncia un frente frío que llega desde el mar, espera mal tiempo y olas altas.",
         "La Sharqiya es un viento del este fuerte y seco que sopla desde tierra, sobre todo en primavera y otoño. Se nota más en el norte del país. Cerca de la costa el mar sigue llano porque el viento sopla desde tierra, pero más lejos levanta olas y puede dificultar el regreso a puerto. Los vientos del este del invierno son otro caso: los vientos del este fríos y fuertes del invierno suelen venir de una alta al nordeste, sobre Rusia, no de una baja.",
         "En primavera, una baja cálida puede avanzar a lo largo del norte de África o subir desde el sur. Delante de ella el viento es del sur, cálido y seco, el polvo reduce la visibilidad en la costa mediterránea y en Eilat sopla viento del sur. Cuando pasa, el viento rola al oeste y baja la temperatura.",
-        "El verano suele ser estable: por la tarde se levanta una brisa marina del noroeste en la costa de Israel, que se apaga por la noche. En el Egeo, el Meltemi es un viento del norte fuerte y seco en julio y agosto, a menudo de fuerza 6 a 7 durante días. Más lejos, en el Adriático, el Bora es un viento del nordeste frío, seco y muy racheado que baja de las montañas en invierno."
+        "El verano suele ser estable: por la tarde se levanta una brisa marina del noroeste en la costa de Israel, que se apaga por la noche. En el Egeo, el Meltemi es un viento del norte fuerte y seco en julio y agosto, a menudo de fuerza 6 a 7 durante días. Más lejos, en el Adriático, el Bora es un viento del nordeste frío, seco y muy racheado que baja de las montañas en invierno.",
+        "Dos vaguadas estacionales, largas lenguas de bajas presiones, también influyen en el tiempo de Israel:\n• La vaguada pérsica, en verano, se extiende desde el golfo Pérsico. Trae el viento constante del noroeste y el calor húmedo de la mayoría de los días de verano, y refuerza la brisa marina de la tarde.\n• La vaguada del mar Rojo, sobre todo en otoño y primavera, se extiende hacia el norte desde el mar Rojo. Suele traer viento del este cálido y seco (Sharqiya) y calima. Cuando hay aire frío por encima, se vuelve «activa» y puede provocar tormentas repentinas y violentas sin ningún frente a la vista.\nLa baja cálida de primavera que llega del norte de África, descrita antes, se suele llamar baja libia.",
+        "Consulta el tiempo en más de una fuente:\n• La previsión marítima oficial, que divide el mar en zonas con nombre; con ella se publica un mapa de las zonas.\n• Los boletines meteorológicos por radio y VHF, y el NAVTEX en barcos más grandes.\n• Las aplicaciones y webs del tiempo. Muestran previsiones de modelos informáticos, así que compara más de un modelo.\n• Tu propio barómetro, el cielo y el mar.\nConoce las unidades: la presión en hectopascales (hPa), igual que los milibares, con 1013 hPa igual a 760 mmHg o 29,92 pulgadas; la temperatura en °C, donde °F = °C × 9 ÷ 5 + 32; y el viento en nudos, metros por segundo (1 m/s son unos 2 nudos) o fuerza Beaufort."
       ],
       "observe": [
         "Antes de una travesía, lee la previsión de toda la región, no solo la de tu puerto, y busca la baja más cercana.",
@@ -2820,6 +2830,518 @@
         }
       ],
       "transfer": "Monta la caña de emergencia y prepara un remolque con un instructor en aguas tranquilas antes de tener que hacerlo de verdad."
+    },
+    "sail-63": {
+      "title": "Latitud, longitud y la carta",
+      "concepts": [
+        "Cada posición en la Tierra tiene una latitud y una longitud:\n• La latitud es lo lejos que estás al norte o al sur del ecuador, desde 0° en el ecuador hasta 90° en los polos.\n• La longitud es lo lejos que estás al este o al oeste del meridiano de Greenwich (la línea norte–sur que pasa por Greenwich, cerca de Londres), desde 0° hasta 180°.\nCada grado tiene 60 minutos (′), y los minutos se escriben con decimales. La marina de Tel Aviv está en unos 32°05′ N, 034°46′ E: primero la latitud y después la longitud.",
+        "También puedes dar una posición como demora y distancia desde un objeto de la carta, por ejemplo «270° desde el faro de Jaffa, 3 NM». La demora se mide desde el objeto hacia el barco. Traza la línea desde el objeto en esa dirección y mide la distancia sobre ella.",
+        "La mayoría de las cartas náuticas usan la proyección Mercator. Los meridianos (líneas de longitud) se dibujan paralelos, así que una línea recta en la carta es una línea de rumbo constante. El precio es que la escala crece al alejarte del ecuador, de modo que una milla se ve más larga en la carta cuanto más al norte vas. Por eso mide las distancias solo en la escala de latitud del lateral de la carta, a la altura de tu posición: un minuto de latitud es una milla náutica. Nunca uses la escala de longitud de arriba o de abajo.",
+        "Para medir una distancia, abre el compás de puntas entre los dos puntos y léelo en la escala de latitud a la misma altura. Para medir una dirección, coloca el transportador o las reglas paralelas sobre la línea y lee el ángulo respecto al norte verdadero, o lleva la línea hasta la rosa impresa en la carta. Su anillo exterior muestra las direcciones verdaderas, y el interior las magnéticas.",
+        "Los símbolos y abreviaturas de las cartas se explican en el cuadernillo Chart 5011 (INT 1). Algunos los usarás siempre:\n• Sondas en metros por debajo del cero hidrográfico, el nivel de agua más bajo que tiene en cuenta la carta.\n• Cifras subrayadas: alturas que quedan en seco en bajamar.\n• Letras del fondo: S arena, M fango, R roca, Sh conchas, Wd algas. Te ayudan a elegir un fondeadero.\n• Una luz: «Fl(3) 10s 15m 12M» significa tres destellos cada 10 segundos, la luz está a 15 m sobre el agua y su alcance nominal es de 12 NM.",
+        "Una carta de escala grande muestra una zona pequeña con mucho detalle, como el plano de un puerto; una carta de escala pequeña muestra una zona grande con menos detalle. Cerca de la costa, usa la de mayor escala. Un catálogo de cartas enumera todas las cartas y la zona que cubre cada una, para que elijas las adecuadas antes de una travesía.",
+        "Una carta solo es tan buena como su última corrección. Los servicios hidrográficos publican Avisos a los Navegantes con los cambios: naufragios nuevos, boyas desplazadas, luces modificadas. Marca cada corrección en la carta y anota su número en la esquina inferior, para ver lo actualizada que está la carta."
+      ],
+      "observe": [
+        "Busca las escalas de latitud y de longitud en una carta, y mide una milla náutica en la escala de latitud.",
+        "Busca en Chart 5011 tres símbolos que no conozcas."
+      ],
+      "mistake": "Medir una distancia en la escala de longitud, o en la escala de latitud lejos de tu propia posición.",
+      "quiz": [
+        {
+          "prompt": "¿Dónde mides una distancia en una carta Mercator?",
+          "options": [
+            "En la escala de latitud del lateral, a la altura de tu posición",
+            "En la escala de longitud de arriba",
+            "En cualquier sitio, porque la escala es igual en todas partes"
+          ],
+          "explanation": "Un minuto de latitud es una milla náutica. La escala cambia con la latitud, así que usa la parte de la escala que está a la altura de tu posición."
+        },
+        {
+          "prompt": "Una luz aparece en la carta como «Fl(3) 10s 15m 12M». ¿Qué te dice «12M»?",
+          "options": [
+            "Da 12 destellos por minuto",
+            "Su alcance nominal es de 12 millas náuticas",
+            "Tiene 12 m de altura"
+          ],
+          "explanation": "Fl(3) son tres destellos, 10s el periodo, 15m la altura y 12M el alcance nominal en millas náuticas."
+        },
+        {
+          "prompt": "Tu posición se da como «090° desde el faro, 2 NM». ¿Dónde estás?",
+          "options": [
+            "2 NM al oeste del faro",
+            "2 NM al este del faro",
+            "2 NM al norte del faro"
+          ],
+          "explanation": "La demora se mide desde el objeto hacia el barco: 090° desde el faro te sitúa a su este."
+        }
+      ],
+      "transfer": "Practica el trabajo en la carta con una carta de papel real, un compás de puntas y un transportador, y comprueba cada cálculo con un instructor. Los ejemplos de aquí están simplificados."
+    },
+    "sail-64": {
+      "title": "Rumbos y demoras de compás",
+      "concepts": [
+        "Una dirección se puede dar de tres maneras, y siempre debes decir cuál:\n• Verdadera (V): medida desde el norte verdadero, como en la carta.\n• Magnética (M): medida desde el norte magnético, hacia donde apuntaría un compás sin error.\n• De compás (C): lo que marca realmente tu propio compás.\nLa declinación magnética convierte lo verdadero en magnético, y el desvío convierte lo magnético en compás. La lección {lesson:sail-22} da la regla: del compás al verdadero, suma los errores Este y resta los errores Oeste.",
+        "La declinación depende de dónde estés y cambia despacio con los años. La rosa de la carta la da con un año y un cambio anual, por ejemplo «3°30′ E 2015 (8′ E)». En 2025, diez años después, ha crecido 10 × 8′ = 80′, o 1°20′, hasta 4°50′ E. Redondéala a 5° E.",
+        "El desvío depende del rumbo del barco, no de la dirección hacia la que miras. Léelo en la tablilla de desvíos del barco para el rumbo que gobiernas. Un compás de marcación de mano, sostenido lejos del metal y de la electricidad del barco, se considera normalmente sin desvío: corrige sus demoras solo con la declinación.",
+        "Trabaja igual con rumbos y con demoras. Ejemplo, del compás al verdadero: gobiernas a 210° C, la tablilla de desvíos da 2° W y la declinación es 5° E. Magnético = 210 − 2 = 208° M; Verdadero = 208 + 5 = 213° V. Del verdadero al compás haces lo contrario: 213° V − 5° E = 208° M, y 208° M + 2° W = 210° C.",
+        "Una marcación (demora relativa) se mide desde la proa, en el sentido de las agujas del reloj, de 000° a 360°: 090° de marcación es de través por estribor y 270° de través por babor. Algunas tripulaciones usan en su lugar de 0° a 180° rojo (babor) o verde (estribor). Para convertir una marcación en demora verdadera, suma tu rumbo verdadero: rumbo 040° V y un objeto a 100° de marcación dan 140° V. Si la suma pasa de 360°, resta 360°.",
+        "Una enfilación son dos objetos de la carta en línea, y la carta da su demora verdadera. Es la mejor forma de comprobar el compás. Supón que la carta da una enfilación de 076° V y la declinación es 5° E, así que la demora magnética es 071° M. Cuando los objetos se ponen en línea, tu compás de gobierno marca 074° C. Marca 3° más que el magnético, así que el desvío a este rumbo es 3° W.",
+        "Encontrarás varios tipos de compás:\n• El compás de gobierno: una rosa magnética que flota en líquido, sobre un soporte cardán para mantenerse horizontal, montada donde el timonel la vea.\n• El compás de marcación de mano: para tomar demoras de objetos.\n• El compás electrónico (fluxgate): detecta el magnetismo de la Tierra y alimenta el piloto automático y los instrumentos. Sigue siendo magnético, así que también tiene declinación y desvío.\nUn GPS da tu rumbo sobre el fondo, no hacia dónde apunta la proa, y no muestra nada útil cuando el barco está parado."
+      ],
+      "observe": [
+        "Busca la rosa en una carta y calcula la declinación de este año a partir de su cambio anual.",
+        "Toma una demora con el compás de mano a un objeto fijo y conviértela en verdadera."
+      ],
+      "mistake": "Usar el desvío correspondiente a la dirección del objeto en lugar del correspondiente al rumbo del barco.",
+      "quiz": [
+        {
+          "prompt": "Gobiernas a 120° C. El desvío a este rumbo es 3° E y la declinación 5° E. ¿Cuál es tu rumbo verdadero?",
+          "options": [
+            "112° V",
+            "128° V",
+            "122° V"
+          ],
+          "explanation": "Del compás al verdadero, suma los errores Este: 120 + 3 = 123° M, y después 123 + 5 = 128° V."
+        },
+        {
+          "prompt": "Tu rumbo verdadero es 300° y una boya está a 090° de marcación. ¿Cuál es su demora verdadera?",
+          "options": [
+            "030° V",
+            "210° V",
+            "390° V"
+          ],
+          "explanation": "300 + 090 = 390; resta 360 y obtienes 030° V."
+        },
+        {
+          "prompt": "Una enfilación de la carta es 155° V, la declinación es 5° E y el compás de gobierno marca 152° C en la enfilación. ¿Cuál es el desvío?",
+          "options": [
+            "2° E",
+            "2° W",
+            "7° W"
+          ],
+          "explanation": "La demora magnética es 155 − 5 = 150° M. El compás marca 2° más que el magnético, así que el desvío es 2° W. Comprobación: 152 − 2 + 5 = 155° V."
+        }
+      ],
+      "transfer": "Practica el trabajo en la carta con una carta de papel real, un compás de puntas y un transportador, y comprueba cada cálculo con un instructor. Los ejemplos de aquí están simplificados."
+    },
+    "sail-65": {
+      "title": "Obtén tu situación",
+      "concepts": [
+        "Los navegantes usan tres tipos de posición, cada uno con su propio símbolo en la carta:\n• Estima (DR): calculada a partir de tu rumbo y la distancia recorrida en el agua. Márcala con una rayita que cruza la derrota.\n• Posición estimada (EP): la estima corregida por corriente y abatimiento. Márcala con un triángulo.\n• Situación: obtenida con referencias externas, como demoras, distancias o GPS. Márcala con un circulito alrededor de un punto.\nEscribe junto a cada posición la hora y la lectura de la corredera.",
+        "Una situación por demoras cruzadas usa demoras de compás de dos o, mejor, tres objetos de la carta. Convierte cada demora en verdadera y trázala en la carta como una línea que termina en el objeto: estás en algún punto de cada línea, así que estás donde se cruzan. Elige objetos bien identificados y bien separados en ángulo: dos demoras a unos 90° entre sí, o tres a unos 60°.",
+        "Toma las demoras deprisa, una tras otra. Toma primero el objeto por la proa o por la popa, porque su demora cambia despacio, y el objeto de través al final, porque su demora cambia más rápido. Tres líneas casi nunca se cortan en un punto; forman un pequeño triángulo, el «triángulo de error». Un triángulo pequeño significa una buena situación. Toma como posición el vértice más cercano al peligro hasta que puedas comprobarla.",
+        "Otras formas de situar el barco:\n• Demora y distancia a un objeto: la línea de demora y un círculo de esa distancia alrededor del objeto se cortan en un punto. El radar da las dos cosas a la vez.\n• Dos distancias: dos círculos alrededor de dos objetos se cortan en dos puntos; usa una demora o la profundidad para elegir entre ellos.\n• Distancia y profundidad: una posición aproximada donde el círculo corta el veril que coincide con la lectura de tu sonda, corregida por la marea.",
+        "Una situación por demoras no simultáneas usa un solo objeto en dos momentos, cuando no hay nada más a la vista. Toma una demora y anota la hora y la corredera. Mantén un rumbo constante y, cuando la demora haya cambiado al menos 30°, toma una segunda. Traslada la primera línea de demora a lo largo de tu rumbo la distancia recorrida entre las dos demoras: donde la línea trasladada corta la segunda demora está tu posición. Cualquier corriente que no hayas tenido en cuenta la hace menos precisa.",
+        "El GPS da una situación precisa casi en cualquier sitio, pero puede fallar, y una posición introducida en un datum equivocado o un punto de paso erróneo pueden llevarte a las rocas. Sitúa la posición del GPS en la carta y anótala con regularidad, al menos cada hora en travesía. Compárala de vez en cuando con una demora o con la profundidad: dos métodos independientes que coinciden valen mucho más que uno."
+      ],
+      "observe": [
+        "Elige tres objetos de la carta de tu costa que darían una buena situación por tres demoras.",
+        "Compara la lectura de tu sonda con la profundidad de la carta en tu posición GPS."
+      ],
+      "mistake": "Tomar demoras de objetos muy juntos en ángulo, o tomar primero la demora del objeto de través.",
+      "quiz": [
+        {
+          "prompt": "Tus tres líneas de demora forman un pequeño triángulo. ¿Qué posición usas?",
+          "options": [
+            "El centro del triángulo",
+            "El vértice más cercano al peligro",
+            "El vértice más alejado del peligro"
+          ],
+          "explanation": "Hasta que puedas comprobarlo, supón que estás en el lugar más peligroso que permite la situación."
+        },
+        {
+          "prompt": "En una situación por demoras cruzadas, ¿qué demora debes tomar al final?",
+          "options": [
+            "La del objeto por la proa",
+            "La del objeto de través",
+            "La del objeto por la popa"
+          ],
+          "explanation": "La demora de un objeto de través cambia más rápido, así que tómala la última, justo antes de situarla en la carta."
+        },
+        {
+          "prompt": "¿Qué es una situación por demoras no simultáneas?",
+          "options": [
+            "Una situación con demoras de dos objetos tomadas a la vez",
+            "Una situación con las demoras de un objeto en dos momentos, trasladando la primera línea la distancia recorrida",
+            "Una posición GPS tomada con el barco en movimiento"
+          ],
+          "explanation": "La primera línea de demora se traslada a lo largo del rumbo la distancia recorrida y se cruza con la segunda demora."
+        }
+      ],
+      "transfer": "Practica el trabajo en la carta con una carta de papel real, un compás de puntas y un transportador, y comprueba cada cálculo con un instructor. Los ejemplos de aquí están simplificados."
+    },
+    "sail-66": {
+      "title": "Horizonte, luces y distancia de paso",
+      "concepts": [
+        "Cuanto más alto estás, más lejos ves. La distancia al horizonte en millas náuticas es de unos 2,08 × √(altura del ojo en metros), o unos 1,15 × √(altura en pies). Algunas tablas usan 1,17 para pies; los resultados apenas difieren. Un metro son 3,28 pies. Sentado en la bañera con el ojo a 2,5 m sobre el agua, √2,5 ≈ 1,58, así que el horizonte está a unas 2,08 × 1,58 ≈ 3,3 NM.",
+        "Un objeto alto se ve desde más lejos, porque también tiene su propio horizonte. Suma las dos distancias: la mayor distancia a la que puedes ver un objeto = 2,08 × (√ altura del ojo + √ altura del objeto), con las dos alturas en metros. Un faro de 49 m de altura tiene un horizonte de 2,08 × 7 = 14,6 NM, así que, con el ojo a 2,5 m, su luz puede verse hasta a unas 14,6 + 3,3 = 17,9 NM.",
+        "Ves una luz a la menor de dos distancias: este alcance geográfico, y su alcance luminoso, hasta dónde llega su brillo. La carta da el alcance nominal, por ejemplo 12M. Una luz de 49 m de altura con un alcance de 12M se ve a unas 12 NM con tiempo claro, no a 17,9 NM. Cuando una luz potente aparece por primera vez sobre el horizonte, su orto, estás más o menos a su alcance geográfico: con su demora, eso da una situación aproximada. Las alturas de las luces en la carta se miden sobre la pleamar.",
+        "Para pasar un cabo o un peligro con seguridad, decide primero tu distancia de paso, por ejemplo 1 NM. Traza un círculo de ese radio alrededor del peligro y planifica tu derrota para que toque el exterior del círculo. Por el camino, comprueba tu distancia con la distancia del radar, con una demora y la carta, o con una demora de seguridad.",
+        "Una demora de seguridad es una demora a un objeto de la carta que te mantiene alejado de un peligro. Traza la línea desde el objeto pasando por el borde del peligro y lee su demora, por ejemplo 040° V. Después escribe qué lado es seguro: «no menos de 040°». Toma a menudo la demora del objeto; mientras quede en el lado seguro, estás libre del peligro.",
+        "Puedes hallar tu distancia a un solo objeto sin trabajo en la carta, duplicando el ángulo por la proa. Mantén un rumbo constante y anota el ángulo del objeto respecto a la proa y la corredera. Cuando el ángulo se haya duplicado, tu distancia al objeto es igual a la distancia que has recorrido. Un caso habitual es 45° y después 90° de través: a 6 nudos, si el ángulo pasa de 45° a 90° en 30 minutos, recorriste 3 NM, así que pasas a 3 NM. La corriente hace el resultado menos preciso."
+      ],
+      "observe": [
+        "Calcula la altura de tu ojo en la bañera y la distancia a tu horizonte.",
+        "Busca una luz en tu carta local y calcula dónde deberías verla por primera vez."
+      ],
+      "mistake": "Esperar ver una luz a su alcance geográfico cuando su alcance luminoso es menor, o al revés.",
+      "quiz": [
+        {
+          "prompt": "Tu ojo está a 4 m sobre el agua. ¿A qué distancia aproximada está tu horizonte?",
+          "options": [
+            "Unas 2 NM",
+            "Unas 4,2 NM",
+            "Unas 8,3 NM"
+          ],
+          "explanation": "√4 = 2, y 2,08 × 2 ≈ 4,2 NM."
+        },
+        {
+          "prompt": "La luz de un cabo está a 45° por la proa. A 5 nudos, queda de través (90°) 36 minutos después. ¿A qué distancia estás?",
+          "options": [
+            "3 NM",
+            "5 NM",
+            "1,5 NM"
+          ],
+          "explanation": "El ángulo se duplicó, así que la distancia al objeto es igual a la distancia recorrida: 5 nudos × 0,6 h = 3 NM."
+        },
+        {
+          "prompt": "Una demora de seguridad está marcada «no menos de 040°». El objeto demora ahora 035°. ¿Qué significa?",
+          "options": [
+            "Estás libre del peligro",
+            "Estás en el lado peligroso y debes apartarte",
+            "El compás está mal"
+          ],
+          "explanation": "La demora es menor que 040°, así que estás en el lado del peligro de la línea de seguridad."
+        }
+      ],
+      "transfer": "Practica el trabajo en la carta con una carta de papel real, un compás de puntas y un transportador, y comprueba cada cálculo con un instructor. Los ejemplos de aquí están simplificados."
+    },
+    "sail-67": {
+      "title": "Ten en cuenta la corriente y el abatimiento",
+      "concepts": [
+        "La lección {lesson:sail-39} mostró que el barco se mueve por el agua mientras el agua misma se mueve. Para llegar a un punto debes gobernar a un rumbo que compense la corriente y el abatimiento, el deslizamiento lateral que causa el viento. El trabajo en la carta para esto es el triángulo del rumbo a gobernar.",
+        "El abatimiento empuja el barco a sotavento de hacia donde apunta. Es mayor en ceñida con viento fuerte, a menudo 5° o más, y pequeño en popa. Estímalo por el ángulo entre la estela y la línea de crujía. Para corregirlo, gobierna hacia el viento el ángulo de abatimiento: para hacer 090° V con viento del norte y 5° de abatimiento, gobierna a 085° V.",
+        "Para dibujar el triángulo del rumbo a gobernar para una hora:\n1. Traza la derrota que quieres desde tu posición A hacia el destino B.\n2. Desde A traza la corriente de una hora: su rumbo (dirección) e intensidad (velocidad), por ejemplo 090° a 2 nudos.\n3. Desde el extremo de la línea de corriente, abre el compás de puntas a tu velocidad en el agua, por ejemplo 5 nudos, y marca dónde corta la línea de la derrota.\n4. La línea desde el extremo de la corriente hasta esa marca es el rumbo a gobernar. La distancia de A a la marca es tu velocidad sobre el fondo.",
+        "Ejemplo práctico: quieres hacer 000° V, la corriente lleva rumbo 090° a 2 nudos y navegas a 5 nudos. El triángulo da un rumbo a gobernar de unos 336° V, 24° hacia la corriente, y una velocidad sobre el fondo de unos 4,6 nudos. Un tramo de 12 NM tarda entonces 12 ÷ 4,6 ≈ 2,6 horas, unas 2 horas y 37 minutos.",
+        "El mismo triángulo sirve al revés para hallar tu posición estimada. Si gobiernas a 000° V a 5 nudos durante una hora y la corriente lleva rumbo 090° a 2 nudos, traza la derrota en el agua 5 NM al norte y después añade la corriente 2 NM al este. Tu EP está a unas 5,4 NM, en una derrota de unos 022° V.",
+        "Trabaja en este orden: resuelve el triángulo de corriente en verdadero, después corrige el abatimiento y después convierte el rumbo verdadero en rumbo de compás con la declinación y el desvío. La información sobre corrientes está en la carta, los derroteros y los atlas de corrientes. En la costa de Israel la corriente suele ser débil y a menudo va hacia el norte, pero varía, así que comprueba tu avance con situaciones y corrige el rumbo sobre la marcha."
+      ],
+      "observe": [
+        "La próxima vez que navegues en ceñida, estima tu abatimiento por el ángulo de la estela.",
+        "Dibuja un triángulo del rumbo a gobernar para un tramo corto en tu carta local."
+      ],
+      "mistake": "Gobernar directamente al destino y dejar que la corriente te desplace de lado, o aplicar el abatimiento en el sentido equivocado.",
+      "quiz": [
+        {
+          "prompt": "En el triángulo del rumbo a gobernar, ¿qué trazas primero desde tu posición?",
+          "options": [
+            "Tu velocidad en el agua",
+            "La corriente de una hora",
+            "El rumbo de compás"
+          ],
+          "explanation": "Traza primero la corriente; después abre la velocidad del barco desde su extremo hasta cortar la línea de la derrota."
+        },
+        {
+          "prompt": "Quieres hacer 180° V. El viento es del oeste y el abatimiento es de 6°. ¿Hacia dónde corriges?",
+          "options": [
+            "Gobierna a 174° V",
+            "Gobierna a 186° V, hacia el viento",
+            "Gobierna a 180° V; el abatimiento no importa"
+          ],
+          "explanation": "Con viento del oeste, el abatimiento te empuja al este. Gobierna 6° hacia el oeste: 186° V."
+        },
+        {
+          "prompt": "Haces 4,5 nudos sobre el fondo en un tramo de 9 NM. ¿Cuánto tardarás?",
+          "options": [
+            "1 hora",
+            "2 horas",
+            "2,5 horas"
+          ],
+          "explanation": "Tiempo = distancia ÷ velocidad sobre el fondo: 9 ÷ 4,5 = 2 horas."
+        }
+      ],
+      "transfer": "Practica el trabajo en la carta con una carta de papel real, un compás de puntas y un transportador, y comprueba cada cálculo con un instructor. Los ejemplos de aquí están simplificados."
+    },
+    "sail-68": {
+      "title": "Horas y mareas",
+      "concepts": [
+        "La navegación y la radio usan UTC (Tiempo Universal Coordinado), igual que la hora media de Greenwich. La hora local difiere según tu huso horario. Cada huso abarca 15° de longitud, una hora. Israel está a unos 34° E, en el huso que va dos horas por delante de UTC: la hora estándar de Israel es UTC+2 y, en verano, con la hora de verano de Israel, es UTC+3.",
+        "Para convertir, aplica la diferencia del huso. En verano, las 14:00 hora israelí son 14:00 − 3 = 11:00 UTC. En invierno, las 08:00 UTC son 08:00 + 2 = 10:00 hora israelí. Las previsiones del tiempo, las tablas de mareas y los avisos por radio dan a menudo UTC, así que comprueba qué hora usa una tabla y si incluye la hora de verano. Escribe el huso horario en el cuaderno de bitácora, por ejemplo «hora del barco UTC+3».",
+        "Las mareas las causa sobre todo la Luna, con ayuda del Sol. La mayoría de las costas tienen dos pleamares y dos bajamares al día: unas 6 horas y 12 minutos de pleamar a bajamar, así que cada marea llega unos 50 minutos más tarde que el día anterior. Las mareas vivas, con la mayor amplitud, llegan justo después de la luna nueva y la luna llena; las mareas muertas, con la menor amplitud, en cuarto creciente y menguante.",
+        "Las tablas de mareas dan las horas y alturas de la pleamar y la bajamar en un puerto, como alturas sobre el cero hidrográfico. La profundidad del agua en un lugar es la sonda de la carta más la altura de la marea. Sobre un bajo que queda en seco, la profundidad es la altura de la marea menos la altura de secado subrayada. La lección {lesson:sail-38} añade el resguardo bajo la quilla.",
+        "Para estimar la altura entre la pleamar y la bajamar, usa la regla de los doceavos. En las seis horas de bajamar a pleamar, la marea sube 1, 2, 3, 3, 2 y 1 doceavos de su amplitud. Ejemplo: bajamar de 0,3 m a las 08:00, pleamar de 1,5 m a las 14:00, una amplitud de 1,2 m. A las 10:00, tras dos horas, ha subido 1 + 2 = 3 doceavos: 3/12 × 1,2 = 0,3 m. La altura es 0,3 + 0,3 = 0,6 m.",
+        "En el Mediterráneo oriental la marea es pequeña, solo unas decenas de centímetros, y el viento y la presión cambian a menudo el nivel del agua más que la marea. En el golfo de Eilat la amplitud es mayor. Navegues donde navegues, la marea en movimiento también produce corrientes de marea, la entrante y la vaciante, que son más fuertes a mitad de camino entre la pleamar y la bajamar."
+      ],
+      "observe": [
+        "Convierte la hora de la próxima previsión marítima de UTC a hora local.",
+        "Busca la pleamar y la bajamar de hoy en un puerto que conozcas y anota la amplitud."
+      ],
+      "mistake": "Olvidar convertir las horas UTC de una tabla, o su hora de verano, a la hora del reloj del barco.",
+      "quiz": [
+        {
+          "prompt": "Son las 16:00 hora de verano de Israel. ¿Qué hora es en UTC?",
+          "options": [
+            "13:00 UTC",
+            "14:00 UTC",
+            "19:00 UTC"
+          ],
+          "explanation": "La hora de verano de Israel es UTC+3, así que resta 3 horas."
+        },
+        {
+          "prompt": "La bajamar es de 0,2 m a las 06:00 y la pleamar de 1,4 m a las 12:00. ¿Cuál es la altura a las 09:00?",
+          "options": [
+            "0,5 m",
+            "0,8 m",
+            "1,1 m"
+          ],
+          "explanation": "Tras tres horas la marea ha subido 1 + 2 + 3 = 6 doceavos, la mitad de la amplitud de 1,2 m: 0,2 + 0,6 = 0,8 m."
+        },
+        {
+          "prompt": "¿Cuándo se producen las mareas vivas, con la mayor amplitud?",
+          "options": [
+            "En cuarto creciente o menguante",
+            "Justo después de la luna nueva y la luna llena",
+            "Solo en primavera"
+          ],
+          "explanation": "Las mareas vivas llegan cuando el Sol y la Luna tiran en línea, en luna nueva y luna llena; no tienen nada que ver con la estación del año."
+        }
+      ],
+      "transfer": "Practica el trabajo en la carta con una carta de papel real, un compás de puntas y un transportador, y comprueba cada cálculo con un instructor. Los ejemplos de aquí están simplificados."
+    },
+    "sail-69": {
+      "title": "Velas y equilibrio",
+      "concepts": [
+        "Un velero de crucero lleva varias velas, cada una para un trabajo:\n• Mayor: detrás del palo, en la botavara. Se reduce tomando rizos.\n• Génova: una vela de proa grande que pasa por detrás del palo. Buena con viento flojo y moderado.\n• Foque: una vela de proa más pequeña que no llega más allá del palo. Más fácil de manejar con más viento.\n• Tormentín: una vela de proa muy pequeña de tela gruesa, a menudo naranja vivo, para viento de temporal.\n• Vela de capa: una vela de tormenta pequeña y fuerte que se iza en lugar de la mayor, sin la botavara.",
+        "En popa, con viento flojo y moderado, dos velas ligeras dan más potencia:\n• Spinnaker: una vela simétrica grande en forma de globo que se iza con un tangón. Rápida, pero necesita una tripulación entrenada.\n• Gennaker (spinnaker asimétrico): se amura en la proa sin tangón, más fácil para una tripulación pequeña.\nArríalas pronto cuando sube el viento, porque una vela grande de popa puede hacer que el barco se balancee y orce sin control (gire de golpe hacia el viento).",
+        "Elige las velas según el viento y la tripulación. Viento flojo: mayor completa y génova, quizá un gennaker en popa. Viento moderado: velas de trabajo, con rizos cuando el barco escora demasiado. Viento fuerte: mayor con rizos y una vela de proa pequeña, o la vela de proa parcialmente enrollada. Una génova enrollada pierde su forma, así que con viento realmente fuerte un tormentín de verdad funciona mejor. En un temporal: tormentín y vela de capa, o solo el tormentín.",
+        "Las velas empujan el barco en un punto, el centro vélico (CE). El agua resiste de lado contra el casco y la quilla en otro, el centro de resistencia lateral (CLR). El barco gira alrededor del CLR. Cuando el CE está detrás del CLR, el barco tiende a orzar hacia el viento: timón ardiente. Cuando está delante, el barco tiende a arribar: timón blando.",
+        "Un poco de timón ardiente es bueno: si sueltas la rueda, el barco orza y frena solo. Demasiado timón ardiente frena el barco y puede hacerlo orzar sin control. La escora desplaza el empuje de las velas a sotavento del casco, lo que añade timón ardiente, así que un barco que escora demasiado se vuelve más difícil de gobernar. Para reducir el timón ardiente, larga o toma rizos en la mayor, baja el carro a sotavento y reduce la escora.",
+        "Usa las velas para ayudar al timón (consulta la lección {lesson:sail-18}). La mayor sola lleva la proa hacia el viento, y la vela de proa sola la aparta. Para arribar con viento fuerte, larga primero la mayor; para orzar, larga la vela de proa. Con el equilibrio adecuado entre las dos velas, el barco se gobierna con facilidad y el timón apenas trabaja."
+      ],
+      "observe": [
+        "Fíjate en cómo se siente el timón en un descuartelar antes y después de largar la mayor.",
+        "Busca el tormentín a bordo y comprueba cómo se iza."
+      ],
+      "mistake": "Mantener una génova grande o un spinnaker cuando sube el viento, y luego luchar contra un fuerte timón ardiente con el timón.",
+      "quiz": [
+        {
+          "prompt": "El barco tiene mucho timón ardiente en un descuartelar. ¿Qué ayuda más?",
+          "options": [
+            "Largar o tomar rizos en la mayor y reducir la escora",
+            "Cazar más la mayor",
+            "Desenrollar más génova"
+          ],
+          "explanation": "El timón ardiente viene sobre todo de la mayor y de la escora. Largar o tomar rizos en la mayor lleva el empuje hacia proa y reduce la escora."
+        },
+        {
+          "prompt": "¿Qué vela se iza en un temporal en lugar de la mayor?",
+          "options": [
+            "Gennaker",
+            "Vela de capa",
+            "Génova"
+          ],
+          "explanation": "La vela de capa es una vela de tormenta pequeña y fuerte que se iza sin la botavara."
+        },
+        {
+          "prompt": "¿Por qué es bueno un poco de timón ardiente?",
+          "options": [
+            "El barco va más rápido con el timón metido a fondo",
+            "Si se suelta el timón, el barco orza y frena",
+            "Impide que el barco escore"
+          ],
+          "explanation": "Un barco que orza suavemente al soltarlo es más seguro que uno que arriba y gana velocidad."
+        }
+      ],
+      "transfer": "Comprueba estos puntos con tu propio barco, su documentación y la normativa vigente, y repásalos con un instructor antes de ejercer de patrón."
+    },
+    "sail-70": {
+      "title": "Estabilidad",
+      "concepts": [
+        "Dos fuerzas mantienen un barco adrizado. Su peso tira hacia abajo a través del centro de gravedad (G), y el agua empuja hacia arriba a través del centro de carena (B), el centro de la parte sumergida del casco. Con el barco adrizado, G y B están uno encima del otro.",
+        "Cuando el barco escora, la forma sumergida cambia y B se desplaza hacia el lado bajo. El peso y el empuje dejan de estar en línea y, juntos, devuelven el barco a la posición adrizada. La distancia horizontal entre ellos es el brazo adrizante (GZ). Cuanto más largo es el brazo, con más fuerza se endereza el barco.",
+        "Cuanto más bajo está el centro de gravedad, más estable es el barco. En un velero, la quilla pesada mantiene G bajo. El peso añadido arriba sube G y reduce la estabilidad: equipo pesado en cubierta, una auxiliar llena de agua en la proa o mucha gente de pie. Estiba las cosas pesadas abajo y cerca del centro del barco, y nunca cargues el barco por encima de los límites de su documentación.",
+        "Un barco ancho y plano, como un catamarán, es muy estable con ángulos pequeños: escora poco. Un monocasco de quilla profunda escora con más facilidad, pero sigue enderezándose hasta ángulos grandes, así que puede recuperarse de un tumbado. Todo barco tiene un ángulo en el que el brazo adrizante llega a cero; más allá, el barco sigue volcando y puede quedarse boca abajo. Un catamarán, una vez pasado su propio límite, se queda boca abajo.",
+        "La superficie libre es peligrosa. Cuando un tanque está parcialmente lleno, o hay agua en la sentina, el líquido corre hacia el lado bajo al escorar el barco. Su peso se mueve en el mismo sentido y actúa como si G estuviera más alto, así que el barco pierde estabilidad. Mantén los tanques llenos o vacíos cuando puedas, achica la sentina hasta dejarla seca y trata el agua que entra a bordo como un problema de estabilidad además de una vía de agua.",
+        "La estabilidad también depende de mantener el agua fuera. Cierra las escotillas y las tablas de la entrada de la cámara con mal tiempo, porque cuando el barco escora lo bastante para que entre agua, puede llenarse y hundirse deprisa. Un barco duro, con G bajo, vuelve rápido; un barco blando escora con facilidad y se balancea despacio. Un barco que de repente se nota blando puede tener agua dentro: revisa la sentina."
+      ],
+      "observe": [
+        "Haz una lista de los objetos pesados a bordo y comprueba que están estibados abajo y bien sujetos.",
+        "Busca en la documentación del barco el número máximo de personas y la carga máxima."
+      ],
+      "mistake": "Llevar equipo pesado o agua en cubierta, o dejar agua moviéndose en la sentina, y esperar que el barco siga igual de estable.",
+      "quiz": [
+        {
+          "prompt": "¿Qué hace más estable un velero?",
+          "options": [
+            "Un centro de gravedad más alto",
+            "Un centro de gravedad más bajo",
+            "Equipo pesado estibado en cubierta"
+          ],
+          "explanation": "Un G bajo da un brazo adrizante más largo cuando el barco escora."
+        },
+        {
+          "prompt": "¿Por qué son peligrosos los tanques a medio llenar y el agua en la sentina?",
+          "options": [
+            "Hacen el barco más pesado solo en la proa",
+            "El líquido corre hacia el lado bajo y reduce la estabilidad",
+            "Suben el centro de carena"
+          ],
+          "explanation": "Este efecto de superficie libre desplaza peso hacia el lado bajo y actúa como si el centro de gravedad estuviera más alto."
+        },
+        {
+          "prompt": "Cuando el barco escora, ¿qué se desplaza hacia el lado bajo?",
+          "options": [
+            "El centro de carena",
+            "El centro de gravedad",
+            "La carlinga del palo"
+          ],
+          "explanation": "La forma sumergida cambia, así que B se desplaza hacia el lado bajo; G se queda donde está el peso."
+        }
+      ],
+      "transfer": "Comprueba estos puntos con tu propio barco, su documentación y la normativa vigente, y repásalos con un instructor antes de ejercer de patrón."
+    },
+    "sail-71": {
+      "title": "Mal tiempo en el mar",
+      "concepts": [
+        "La mejor forma de afrontar un temporal es evitarlo. Lee la previsión y el barómetro (lección {lesson:sail-20}) y decide pronto: llega a un refugio antes de que llegue, o dirígete a aguas abiertas con mucho espacio, bien lejos de una costa a sotavento. No intentes entrar en un puerto cuya bocana tiene rompientes (lección {lesson:sail-56}).",
+        "Prepara el barco antes de que suba el viento, mientras todavía es fácil moverse:\n• Estiba y trinca todo abajo; asegura la auxiliar y todo lo suelto en cubierta.\n• Cierra las escotillas y los portillos; ten preparadas las tablas de la entrada.\n• Monta las líneas de vida; revisa las bombas de achique y los chalecos salvavidas.\n• Toma rizos pronto y ten listo el tormentín.\n• Sitúa tu posición y anótala en el cuaderno de bitácora.",
+        "Prepara también a la tripulación. Todos llevan chaleco salvavidas y arnés, y se enganchan antes de salir de la bañera. Cocina una comida caliente y llena los termos antes de que empeore. Da pronto las pastillas contra el mareo, porque solo funcionan antes de que empiece el mareo. Abrígate y mantente seco: el frío y el cansancio llevan a errores.",
+        "Organiza el barco para ahorrar las fuerzas de la tripulación. Acorta las guardias, deja que la tripulación libre descanse abajo y mantén a una persona de vigía. Explica cada tarea antes de que nadie se mueva: una mano para ti y otra para el barco. Evita ir a proa si puedes, y ten un plan claro para un hombre al agua.",
+        "Ponerse al pairo detiene el barco con mal tiempo, para descansar, tomar rizos o cocinar. Vira por avante sin soltar la vela de proa, para que quede acuartelada (sujeta en la banda de barlovento). Larga la mayor y trinca el timón para llevar el barco hacia el viento. Las dos fuerzas se equilibran: el barco queda a unos 50° del viento, deriva despacio a sotavento y aguanta las olas con tranquilidad.",
+        "En un temporal de verdad hay tres tácticas principales:\n• Seguir navegando despacio a barlovento con velas de tormenta, tomando las olas un poco abiertas por la proa.\n• Correr delante de las olas con muy poca vela, remolcando por la popa un drogue (un ancla de capa pequeña) para frenar el barco, de modo que no surfee demasiado rápido y orce sin control.\n• Quedarse aproado a un ancla de capa desde la proa (lección {lesson:sail-59}).\nNo te quedes atravesado a grandes olas rompientes sin vela: una ola rompiente puede volcar el barco."
+      ],
+      "observe": [
+        "Recorre tu barco y decide qué estibarías y trincarías antes de un temporal.",
+        "Practica ponerte al pairo con viento moderado y con un instructor."
+      ],
+      "mistake": "Esperar a que el viento ya sea fuerte para tomar rizos, estibar y engancharse.",
+      "quiz": [
+        {
+          "prompt": "¿Cómo te pones al pairo?",
+          "options": [
+            "Acuartela la vela de proa, larga la mayor y trinca el timón hacia el viento",
+            "Arría todas las velas y quédate atravesado",
+            "Corre en popa a toda velocidad"
+          ],
+          "explanation": "La vela de proa acuartelada y el timón se equilibran, y el barco queda tranquilo a unos 50° del viento."
+        },
+        {
+          "prompt": "¿Por qué remolcar un drogue por la popa al correr delante de un temporal?",
+          "options": [
+            "Para que el barco vaya más rápido",
+            "Para frenar el barco y que no surfee ni orce sin control",
+            "Para mantener la proa al viento"
+          ],
+          "explanation": "Un drogue frena el barco y mantiene su popa hacia las olas."
+        },
+        {
+          "prompt": "¿Cuándo debes tomar las pastillas contra el mareo?",
+          "options": [
+            "Cuando notes el primer mareo",
+            "Antes de que empiece el mal tiempo",
+            "Solo después de vomitar"
+          ],
+          "explanation": "Solo funcionan si se toman antes de que empiece el mareo."
+        }
+      ],
+      "transfer": "Comprueba estos puntos con tu propio barco, su documentación y la normativa vigente, y repásalos con un instructor antes de ejercer de patrón."
+    },
+    "sail-72": {
+      "title": "Guardias y cuaderno de bitácora",
+      "concepts": [
+        "En una travesía, alguien debe estar al mando en cubierta en todo momento. Un sistema de guardias reparte el trabajo para que la tripulación pueda descansar. Con poca tripulación es habitual tener dos guardias de 3 o 4 horas que se turnan; de noche y con frío o mal tiempo, las guardias más cortas mantienen a la gente alerta. El patrón se queda fuera del sistema o hace una guardia ligera, para que se le pueda llamar en cualquier momento.",
+        "El patrón escribe unas órdenes permanentes: cuándo debe llamarle la guardia. Motivos habituales son un buque que se acerca con demora constante, un cambio del viento o del tiempo, un barómetro que baja, cualquier duda sobre la posición, un cambio de rumbo o de velas, cualquier avería y, sin más, sentirse inseguro. Llamar demasiado nunca es un error.",
+        "En un cambio de guardia, la guardia entrante sube un poco antes para que sus ojos se acostumbren a la oscuridad, lo que tarda unos 20 minutos. La guardia saliente hace el relevo: el rumbo y la posición, los buques a la vista, el tiempo y el barómetro, las velas, todo lo que hay que vigilar y las órdenes del patrón. La guardia no se entrega hasta que la persona nueva entiende la situación.",
+        "La guardia mantiene una vigilancia en todo el horizonte, a la vista y con radar y AIS si los hay, y escucha el canal 16 de VHF. Comprueba el rumbo y la posición al menos cada hora y los anota en el cuaderno, vigila las velas, la sentina y cualquier roce, y se asegura de que todos los que están en cubierta de noche van enganchados.",
+        "Fondeado también necesitas una guardia de fondeo. En cuanto fondees, toma demoras de dos o tres objetos fijos o anota una enfilación, y activa la alarma de fondeo del GPS. Compruébalas con regularidad, y más a menudo cuando el viento sube o rola. Sabe cuánto puede bornear el barco, enciende la luz de fondeo de noche y, con viento fuerte, ten el motor listo y a alguien de guardia.",
+        "El cuaderno de bitácora es el registro oficial del barco. Escribe con bolígrafo, con regularidad, y nunca borres nada: tacha un error con una sola línea para que se pueda seguir leyendo. Anota la salida y la llegada, la tripulación, la posición, el rumbo, la velocidad y la lectura de la corredera (lección {lesson:sail-23}), el tiempo y el barómetro, las horas de motor y el combustible, y cada suceso: cambios de velas, tráfico, averías, lesiones y mensajes de radio. Después de un accidente, el cuaderno es la prueba de lo que pasó."
+      ],
+      "observe": [
+        "Escribe unas órdenes permanentes para una guardia nocturna en una travesía corta.",
+        "La próxima vez que fondees, toma demoras de dos objetos fijos y compruébalas una hora después."
+      ],
+      "mistake": "Entregar una guardia con un rápido «todo bien», o fondear para la noche sin demoras ni alarma.",
+      "quiz": [
+        {
+          "prompt": "¿Cuándo debe la guardia llamar al patrón?",
+          "options": [
+            "Solo en una emergencia",
+            "Siempre que ocurra algo de las órdenes permanentes, o ante cualquier duda",
+            "Solo al final de la guardia"
+          ],
+          "explanation": "Las órdenes permanentes enumeran los motivos; cualquier duda también es motivo para llamar."
+        },
+        {
+          "prompt": "¿Cómo corriges un error en el cuaderno de bitácora?",
+          "options": [
+            "Lo borras y lo vuelves a escribir",
+            "Lo tachas con una sola línea para que se pueda seguir leyendo",
+            "Arrancas la página"
+          ],
+          "explanation": "El cuaderno es un registro y una prueba; no se debe borrar nada."
+        },
+        {
+          "prompt": "Justo después de fondear, ¿qué debe preparar la guardia de fondeo?",
+          "options": [
+            "Demoras a objetos fijos o una enfilación, y la alarma de fondeo del GPS",
+            "Nada hasta que suba el viento",
+            "Solo las luces de cubierta"
+          ],
+          "explanation": "Con una referencia fijada desde el principio, sabrás enseguida si el ancla garrea."
+        }
+      ],
+      "transfer": "Comprueba estos puntos con tu propio barco, su documentación y la normativa vigente, y repásalos con un instructor antes de ejercer de patrón."
+    },
+    "sail-73": {
+      "title": "Los deberes del patrón y la ley",
+      "concepts": [
+        "El patrón es responsable de la seguridad del barco y de todos los que van a bordo, y de cumplir las normas. Nunca hagas de patrón después de beber alcohol o tomar drogas. Conoce lo que permite tu título: qué barcos, a qué distancia de la costa y si puedes llevar pasajeros que pagan.",
+        "Debes acudir en ayuda de las personas en peligro en el mar cuando puedas hacerlo sin un peligro grave para tu propio barco y tripulación. Responde a una llamada de socorro y, si no puedes ayudar, retransmítela. Después de un abordaje, quédate para ayudar al otro buque y da el nombre y el puerto de tu barco.",
+        "Lleva la documentación del barco y mantenla en vigor:\n• La licencia o el certificado de matrícula del barco.\n• El certificado de navegabilidad, con su lista del equipo obligatorio (lección {lesson:sail-58}).\n• La póliza de seguro.\n• El título de patrón.\nUn barco debe estar matriculado, con su nombre y número de matrícula marcados en el casco como exigen las normas.",
+        "Comprueba que el seguro corresponde al uso que se da al barco. Un barco privado, un barco alquilado sin patrón (chárter sin tripulación) y un barco que lleva pasajeros que pagan necesitan cada uno su propia licencia y su propio seguro. Un chárter sin tripulación debe tener licencia y seguro para alquiler, y llevar pasajeros que pagan exige una licencia especial tanto para el barco como para el patrón.",
+        "Antes de navegar, lee los Avisos a los Navegantes de tu zona. Avisan de cambios temporales: ejercicios de tiro, obras, boyas desplazadas, marcas apagadas y zonas cerradas. Mantente fuera de las zonas cerradas y restringidas que aparecen en la carta o en los avisos, como las zonas navales y las aguas cercanas a puertos, terminales petroleras y buques tanque. Mantente bien alejado de los buques y boyas que indican buzos sumergidos (bandera A, lección {lesson:sail-61}).",
+        "Protege el mar. No tires por la borda basura, comida, aceite, combustible ni productos químicos. Usa la estación de vaciado de la marina para el tanque del váter y reposta con cuidado para que no se derrame nada. En una reserva marina pueden estar prohibidos fondear, pescar y recoger cosas: fondea en arena, nunca sobre coral ni praderas marinas. Comunica cualquier accidente, lesión o avería grave a la autoridad marítima."
+      ],
+      "observe": [
+        "Comprueba que la licencia, el certificado de navegabilidad y el seguro de tu barco están en vigor y a bordo.",
+        "Lee los Avisos a los Navegantes vigentes de tu zona de navegación."
+      ],
+      "mistake": "Suponer que una licencia privada y un seguro privado cubren alquilar el barco o llevar pasajeros que pagan.",
+      "quiz": [
+        {
+          "prompt": "Oyes una llamada de socorro. ¿Qué debes hacer?",
+          "options": [
+            "Ignorarla si no eres el barco más cercano",
+            "Acudir a ayudar si puedes hacerlo con seguridad, y retransmitir la llamada si no puedes",
+            "Solo anotarla en el cuaderno"
+          ],
+          "explanation": "Ayudar a las personas en peligro es un deber en el mar, en la medida en que puedas hacerlo sin poner en grave peligro tu propio barco."
+        },
+        {
+          "prompt": "Un amigo quiere pagarte para llevar a un grupo a pasar el día. ¿Qué se aplica?",
+          "options": [
+            "Tu licencia privada lo cubre",
+            "Llevar pasajeros que pagan exige una licencia especial para el barco y el patrón",
+            "Está permitido si llevan chalecos salvavidas"
+          ],
+          "explanation": "Los pasajeros de pago necesitan una licencia comercial y un seguro acorde."
+        },
+        {
+          "prompt": "¿Dónde encuentras cambios temporales, como una boya desplazada o una zona de tiro?",
+          "options": [
+            "En los Avisos a los Navegantes",
+            "Solo en la carta original",
+            "En el cuaderno de bitácora del barco"
+          ],
+          "explanation": "Los Avisos a los Navegantes publican cambios y advertencias; consúltalos antes de navegar."
+        }
+      ],
+      "transfer": "Comprueba estos puntos con tu propio barco, su documentación y la normativa vigente, y repásalos con un instructor antes de ejercer de patrón.",
+      "localNotes": [
+        "El título de patrón costero (Skipper 30) en Israel permite gobernar embarcaciones a motor y a vela en aguas costeras, y barcos de cualquier potencia, pero no llevar pasajeros que pagan ni hacer viajes internacionales.",
+        "En Israel, comunica los accidentes a la Autoridad de Navegación y Puertos de Israel. Lee sus Avisos a los Navegantes antes de navegar, y no te acerques a los puertos israelíes, a los buques tanque de petróleo y productos químicos ni a las zonas navales cerradas salvo en lo que permita la normativa."
+      ]
     }
   }
 }

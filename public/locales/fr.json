@@ -63,6 +63,14 @@
     "rigging": {
       "title": "Cordages et gréement",
       "outcome": "Choisir le bon cordage ou câble pour chaque usage, l’entretenir, faire les nœuds essentiels et calculer la force que donne un palan."
+    },
+    "chartwork": {
+      "title": "Travailler sur la carte",
+      "outcome": "Placer des positions, convertir les caps et relèvements du compas, faire le point, tenir compte du courant et de la dérive, et calculer les distances d’horizon, les heures et les marées."
+    },
+    "skipper": {
+      "title": "Les connaissances du chef de bord",
+      "outcome": "Choisir les voiles selon le vent, garder le bateau stable, se préparer au gros temps, organiser les quarts et le livre de bord, et connaître les devoirs du chef de bord en mer."
     }
   },
   "lessons": {
@@ -2548,7 +2556,9 @@
         "En hiver, des dépressions traversent la Méditerranée orientale depuis l’ouest, et certaines se creusent près de Chypre. Leur pression baisse alors encore, donc le vent forcit. Sur la côte israélienne, elles apportent en général d’abord un front chaud, avec un vent de sud à sud-ouest, puis un front froid, avec un vent tempétueux de sud-ouest à ouest, une mer qui grossit et des averses. Une prévision annonçant un front froid arrivant de la mer signifie gros temps et fortes vagues.",
         "La Charkiya est un vent d’est fort et sec qui souffle de la terre, surtout au printemps et en automne. Elle se fait surtout sentir dans le nord du pays. Près du rivage, la mer reste plate car le vent souffle de terre, mais plus au large il lève des vagues et peut rendre le retour au port difficile. Les vents d’est d’hiver sont un cas différent : en hiver, les vents d’est froids et forts viennent en général d’un anticyclone situé au nord-est, sur la Russie, et non d’une dépression.",
         "Au printemps, une dépression chaude peut longer l’Afrique du Nord ou remonter du sud. À l’avant, le vent est de sud, chaud et sec, la poussière réduit la visibilité le long de la côte méditerranéenne, et Eilat reçoit un vent de sud. À son passage, le vent tourne à l’ouest et la température baisse.",
-        "L’été est en général stable : une brise de mer de nord-ouest se lève l’après-midi le long de la côte israélienne et tombe la nuit. En mer Égée, le Meltem est un vent du nord fort et sec en juillet et en août, souvent de force 6 à 7 pendant plusieurs jours. Plus loin, en Adriatique, la Bora est un vent de nord-est froid, sec et très rafaleux qui descend des montagnes en hiver."
+        "L’été est en général stable : une brise de mer de nord-ouest se lève l’après-midi le long de la côte israélienne et tombe la nuit. En mer Égée, le Meltem est un vent du nord fort et sec en juillet et en août, souvent de force 6 à 7 pendant plusieurs jours. Plus loin, en Adriatique, la Bora est un vent de nord-est froid, sec et très rafaleux qui descend des montagnes en hiver.",
+        "Deux creux saisonniers, de longs doigts de basse pression, façonnent aussi la météo autour d’Israël :\n• Le creux persique, en été, s’étend depuis le golfe Persique. Il apporte le vent régulier de nord-ouest et la chaleur humide de la plupart des journées d’été, et renforce la brise de mer de l’après-midi.\n• Le creux de la mer Rouge, surtout en automne et au printemps, remonte vers le nord depuis la mer Rouge. Il apporte en général un vent d’est chaud et sec (Charkiya) et de la brume sèche. Quand de l’air froid le surmonte, il devient « actif » et peut déclencher des orages soudains et violents sans aucun front en vue.\nLa dépression chaude de printemps venue d’Afrique du Nord, décrite plus haut, est souvent appelée dépression libyenne.",
+        "Prenez la météo à plus d’une source :\n• La prévision marine officielle, qui divise la mer en zones nommées ; une carte des zones est publiée avec elle.\n• Les bulletins météo à la radio et en VHF, et le NAVTEX sur les plus grands bateaux.\n• Les applications et sites météo. Ils montrent des prévisions de modèles numériques : comparez plus d’un modèle.\n• Votre propre baromètre, le ciel et la mer.\nConnaissez les unités : la pression en hectopascals (hPa), équivalents aux millibars, 1013 hPa valant 760 mmHg ou 29,92 pouces ; la température en °C, avec °F = °C × 9 ÷ 5 + 32 ; et le vent en nœuds, en mètres par seconde (1 m/s vaut environ 2 nœuds) ou en force Beaufort."
       ],
       "observe": [
         "Avant une traversée, lisez la prévision pour toute la région, pas seulement pour votre port, et repérez la dépression la plus proche.",
@@ -2820,6 +2830,518 @@
         }
       ],
       "transfer": "Montez la barre franche de secours et gréez un remorquage avec un moniteur par mer calme, avant d’avoir à le faire pour de vrai."
+    },
+    "sail-63": {
+      "title": "Latitude, longitude et carte marine",
+      "concepts": [
+        "Chaque position sur la Terre a une latitude et une longitude :\n• La latitude dit à quelle distance vous êtes au nord ou au sud de l’équateur, de 0° à l’équateur à 90° aux pôles.\n• La longitude dit à quelle distance vous êtes à l’est ou à l’ouest du méridien de Greenwich (la ligne nord–sud qui passe par Greenwich, près de Londres), de 0° à 180°.\nChaque degré compte 60 minutes (′), et les minutes s’écrivent avec des décimales. La marina de Tel-Aviv est à environ 32°05′ N, 034°46′ E : la latitude d’abord, puis la longitude.",
+        "Vous pouvez aussi donner une position par un relèvement et une distance à partir d’un objet porté sur la carte, par exemple « au 270° du phare de Jaffa, à 3 NM ». Le relèvement se mesure de l’objet vers le bateau. Tracez la ligne depuis l’objet dans cette direction et mesurez la distance le long de cette ligne.",
+        "La plupart des cartes marines utilisent la projection de Mercator. Les méridiens (lignes de longitude) y sont tracés parallèles, si bien qu’une ligne droite sur la carte est une route à cap constant. En contrepartie, l’échelle grandit quand on s’éloigne de l’équateur : un mille paraît plus long sur la carte à mesure que l’on monte vers le nord. Mesurez donc les distances uniquement sur l’échelle des latitudes, sur le bord de la carte, à hauteur de votre position : une minute de latitude vaut un mille marin. N’utilisez jamais l’échelle des longitudes, en haut ou en bas.",
+        "Pour mesurer une distance, ouvrez le compas à pointes sèches entre les deux points et lisez l’écart sur l’échelle des latitudes, à la même hauteur. Pour mesurer une direction, posez la règle Cras ou la règle parallèle le long de la ligne et lisez l’angle par rapport au nord vrai, ou reportez la ligne sur la rose imprimée sur la carte. Son anneau extérieur donne les directions vraies, et l’anneau intérieur les directions magnétiques.",
+        "Les symboles et abréviations des cartes sont expliqués dans la brochure Chart 5011 (INT 1). Vous en utiliserez certains tout le temps :\n• Les sondes, en mètres sous le zéro hydrographique, le niveau d’eau le plus bas prévu par la carte.\n• Les chiffres soulignés : des hauteurs qui découvrent à marée basse.\n• Les lettres de nature du fond : S sable, M vase, R roche, Sh coquillages, Wd algues. Elles aident à choisir un mouillage.\n• Un feu : « Fl(3) 10s 15m 12M » signifie trois éclats toutes les 10 secondes, le feu est à 15 m au-dessus de l’eau et sa portée nominale est de 12 NM.",
+        "Une carte à grande échelle montre une petite zone avec beaucoup de détails, comme le plan d’un port ; une carte à petite échelle montre une grande zone avec moins de détails. Près de la côte, utilisez la plus grande échelle. Un catalogue des cartes liste chaque carte et la zone qu’elle couvre, pour choisir les bonnes avant une traversée.",
+        "Une carte ne vaut que par sa dernière correction. Les services hydrographiques publient des avis aux navigateurs avec les changements : nouvelles épaves, bouées déplacées, feux modifiés. Reportez chaque correction sur la carte et notez son numéro dans le coin inférieur, pour voir à quel point la carte est à jour."
+      ],
+      "observe": [
+        "Trouvez les échelles des latitudes et des longitudes sur une carte, et mesurez un mille marin sur l’échelle des latitudes.",
+        "Cherchez dans Chart 5011 trois symboles que vous ne connaissez pas."
+      ],
+      "mistake": "Mesurer une distance sur l’échelle des longitudes, ou sur l’échelle des latitudes loin de votre propre position.",
+      "quiz": [
+        {
+          "prompt": "Où mesurez-vous une distance sur une carte Mercator ?",
+          "options": [
+            "Sur l’échelle des latitudes, sur le bord, à hauteur de votre position",
+            "Sur l’échelle des longitudes, en haut",
+            "N’importe où, car l’échelle est la même partout"
+          ],
+          "explanation": "Une minute de latitude vaut un mille marin. L’échelle change avec la latitude : utilisez donc la partie de l’échelle à hauteur de votre position."
+        },
+        {
+          "prompt": "Un feu est porté sur la carte « Fl(3) 10s 15m 12M ». Que vous dit « 12M » ?",
+          "options": [
+            "Il donne 12 éclats par minute",
+            "Sa portée nominale est de 12 milles marins",
+            "Il fait 12 m de haut"
+          ],
+          "explanation": "Fl(3) signifie trois éclats, 10s la période, 15m la hauteur et 12M la portée nominale en milles marins."
+        },
+        {
+          "prompt": "Votre position est donnée « au 090° du phare, à 2 NM ». Où êtes-vous ?",
+          "options": [
+            "À 2 NM à l’ouest du phare",
+            "À 2 NM à l’est du phare",
+            "À 2 NM au nord du phare"
+          ],
+          "explanation": "Le relèvement se mesure de l’objet vers le bateau : au 090° du phare, vous êtes à son est."
+        }
+      ],
+      "transfer": "Entraînez-vous sur une vraie carte papier avec un compas à pointes sèches et une règle Cras, et faites vérifier chaque calcul par un moniteur. Les exemples présentés ici sont simplifiés."
+    },
+    "sail-64": {
+      "title": "Caps et relèvements au compas",
+      "concepts": [
+        "Une direction peut se donner de trois façons, et il faut toujours dire laquelle :\n• Vrai (T) : mesurée à partir du nord vrai, comme sur la carte.\n• Magnétique (M) : mesurée à partir du nord magnétique, là où pointerait un compas sans erreur.\n• Compas (C) : ce que montre réellement votre propre compas.\nLa déclinaison fait passer du vrai au magnétique, et la déviation du magnétique au compas. La leçon {lesson:sail-22} donne la règle : du compas au vrai, ajoutez les erreurs Est et retranchez les erreurs Ouest.",
+        "La déclinaison dépend du lieu et change lentement au fil des années. La rose de la carte la donne avec une année et une variation annuelle, par exemple « 3°30′ E 2015 (8′ E) ». En 2025, dix ans plus tard, elle a augmenté de 10 × 8′ = 80′, soit 1°20′, et vaut 4°50′ E. Arrondissez à 5° E.",
+        "La déviation dépend du cap du bateau, et non de la direction dans laquelle vous regardez. Lisez-la sur la courbe de déviation du bateau, pour le cap que vous barrez. Un compas de relèvement, tenu bien à l’écart du métal et de l’électricité du bord, est en général considéré comme sans déviation : corrigez ses relèvements de la déclinaison seulement.",
+        "Procédez de la même façon pour les caps et les relèvements. Exemple, du compas au vrai : vous barrez au 210° C, la courbe de déviation donne 2° W et la déclinaison est de 5° E. Magnétique = 210 − 2 = 208° M ; Vrai = 208 + 5 = 213° T. Du vrai au compas, faites l’inverse : 213° T − 5° E = 208° M, et 208° M + 2° W = 210° C.",
+        "Un gisement (relèvement relatif) se mesure à partir de l’étrave, dans le sens des aiguilles d’une montre, de 000° à 360° : un gisement de 090° est par le travers tribord, et 270° par le travers bâbord. Certains équipages utilisent plutôt de 0° à 180° rouge (bâbord) ou vert (tribord). Pour passer d’un gisement à un relèvement vrai, ajoutez votre cap vrai : un cap de 040° T et un objet au gisement 100° donnent 140° T. Si la somme dépasse 360°, retranchez 360°.",
+        "Un alignement est formé de deux objets portés sur la carte qui se trouvent l’un derrière l’autre, et la carte donne son relèvement vrai. C’est le meilleur moyen de vérifier le compas. Supposons que la carte donne un alignement au 076° T et que la déclinaison soit de 5° E : le relèvement magnétique est donc 071° M. Quand les objets s’alignent, votre compas de route indique 074° C. Il indique 3° de plus que le magnétique : la déviation à ce cap est donc de 3° W.",
+        "Vous rencontrerez plusieurs sortes de compas :\n• Le compas de route : une rose magnétique qui flotte dans un liquide, montée sur cardan pour rester horizontale, placée là où le barreur la voit.\n• Le compas de relèvement : pour prendre des relèvements d’objets.\n• Le compas électronique (fluxgate) : il capte le magnétisme terrestre et alimente le pilote automatique et les instruments. Il reste magnétique : il a donc lui aussi une déclinaison et une déviation.\nUn GPS donne votre route fond, et non la direction où pointe l’étrave, et ne montre rien d’utile quand le bateau est arrêté."
+      ],
+      "observe": [
+        "Trouvez la rose sur une carte et calculez la déclinaison de cette année à partir de sa variation annuelle.",
+        "Prenez au compas de relèvement un relèvement d’un objet fixe et convertissez-le en vrai."
+      ],
+      "mistake": "Utiliser la déviation pour la direction de l’objet au lieu de celle du cap du bateau.",
+      "quiz": [
+        {
+          "prompt": "Vous barrez au 120° C. La déviation à ce cap est de 3° E et la déclinaison de 5° E. Quelle est votre route vraie ?",
+          "options": [
+            "112° T",
+            "128° T",
+            "122° T"
+          ],
+          "explanation": "Du compas au vrai, ajoutez les erreurs Est : 120 + 3 = 123° M, puis 123 + 5 = 128° T."
+        },
+        {
+          "prompt": "Votre cap vrai est 300° et une bouée est au gisement 090°. Quel est son relèvement vrai ?",
+          "options": [
+            "030° T",
+            "210° T",
+            "390° T"
+          ],
+          "explanation": "300 + 090 = 390 ; retranchez 360 pour obtenir 030° T."
+        },
+        {
+          "prompt": "Un alignement porté sur la carte est au 155° T, la déclinaison est de 5° E et le compas de route indique 152° C sur l’alignement. Quelle est la déviation ?",
+          "options": [
+            "2° E",
+            "2° W",
+            "7° W"
+          ],
+          "explanation": "Le relèvement magnétique est 155 − 5 = 150° M. Le compas indique 2° de plus que le magnétique : la déviation est donc de 2° W. Vérification : 152 − 2 + 5 = 155° T."
+        }
+      ],
+      "transfer": "Entraînez-vous sur une vraie carte papier avec un compas à pointes sèches et une règle Cras, et faites vérifier chaque calcul par un moniteur. Les exemples présentés ici sont simplifiés."
+    },
+    "sail-65": {
+      "title": "Faites le point",
+      "concepts": [
+        "Les navigateurs utilisent trois sortes de positions, chacune avec son symbole sur la carte :\n• L’estime (DR) : calculée d’après votre cap et la distance parcourue sur l’eau. Marquez-la d’un petit trait en travers de la route.\n• La position estimée (EP) : l’estime corrigée du courant et de la dérive. Marquez-la d’un triangle.\n• Le point : obtenu par des repères extérieurs comme des relèvements, des distances ou le GPS. Marquez-le d’un petit cercle autour d’un point.\nNotez l’heure et la lecture du loch à côté de chaque position.",
+        "Un point par relèvements croisés utilise les relèvements au compas de deux objets portés sur la carte, ou mieux de trois. Convertissez chaque relèvement en vrai et tracez-le sur la carte comme une ligne qui aboutit à l’objet : vous êtes quelque part sur chaque ligne, donc là où elles se croisent. Choisissez des objets bien identifiés et bien écartés en angle : deux relèvements à environ 90° l’un de l’autre, ou trois à environ 60°.",
+        "Prenez les relèvements vite, l’un après l’autre. Prenez d’abord l’objet devant ou derrière, car son relèvement change lentement, et l’objet par le travers en dernier, car son relèvement change le plus vite. Trois lignes se croisent rarement en un seul point ; elles forment un petit triangle, le « chapeau ». Un petit triangle donne un bon point. Prenez le coin le plus proche du danger comme position jusqu’à pouvoir la vérifier.",
+        "Autres moyens de faire le point :\n• Relèvement et distance d’un seul objet : la ligne de relèvement et un cercle de cette distance autour de l’objet se croisent en un point. Le radar donne les deux à la fois.\n• Deux distances : deux cercles autour de deux objets se croisent en deux points ; utilisez un relèvement ou la profondeur pour choisir entre eux.\n• Distance et profondeur : une position approximative là où le cercle croise l’isobathe qui correspond à la lecture du sondeur, corrigée de la marée.",
+        "Un point par relèvements successifs utilise un seul objet à deux moments, quand rien d’autre n’est en vue. Prenez un relèvement et notez l’heure et le loch. Gardez un cap constant et, quand le relèvement a changé d’au moins 30°, prenez-en un second. Déplacez la première ligne de relèvement le long de votre route de la distance parcourue entre les deux relèvements : là où la ligne déplacée croise le second relèvement, c’est votre position. Tout courant négligé la rend moins précise.",
+        "Le GPS donne un point précis presque partout, mais il peut tomber en panne, et une position saisie dans le mauvais système géodésique ou un mauvais point de route peuvent vous mettre sur les rochers. Reportez la position GPS sur la carte et notez-la régulièrement, au moins toutes les heures en navigation. Vérifiez-la de temps en temps avec un relèvement ou une profondeur : deux méthodes indépendantes qui concordent valent bien plus qu’une seule."
+      ],
+      "observe": [
+        "Choisissez le long de votre côte trois objets portés sur la carte qui donneraient un bon point par trois relèvements.",
+        "Comparez la lecture du sondeur avec la sonde de la carte à votre position GPS."
+      ],
+      "mistake": "Prendre des relèvements d’objets proches en angle, ou prendre en premier le relèvement par le travers.",
+      "quiz": [
+        {
+          "prompt": "Vos trois lignes de relèvement forment un petit triangle. Quelle position retenez-vous ?",
+          "options": [
+            "Le centre du triangle",
+            "Le coin le plus proche du danger",
+            "Le coin le plus éloigné du danger"
+          ],
+          "explanation": "Tant que vous ne pouvez pas vérifier, supposez que vous êtes à l’endroit le plus dangereux que permet le point."
+        },
+        {
+          "prompt": "Dans un point par relèvements croisés, quel relèvement faut-il prendre en dernier ?",
+          "options": [
+            "L’objet devant",
+            "L’objet par le travers",
+            "L’objet derrière"
+          ],
+          "explanation": "Le relèvement d’un objet par le travers change le plus vite : prenez-le en dernier, juste avant de tracer."
+        },
+        {
+          "prompt": "Qu’est-ce qu’un point par relèvements successifs ?",
+          "options": [
+            "Un point par les relèvements de deux objets pris au même moment",
+            "Un point par les relèvements d’un seul objet à deux moments, la première ligne étant déplacée de la distance parcourue",
+            "Une position GPS prise pendant que le bateau avance"
+          ],
+          "explanation": "La première ligne de relèvement est déplacée le long de la route de la distance parcourue, puis croisée avec le second relèvement."
+        }
+      ],
+      "transfer": "Entraînez-vous sur une vraie carte papier avec un compas à pointes sèches et une règle Cras, et faites vérifier chaque calcul par un moniteur. Les exemples présentés ici sont simplifiés."
+    },
+    "sail-66": {
+      "title": "Horizon, feux et distance de passage",
+      "concepts": [
+        "Plus vous êtes haut, plus vous voyez loin. La distance de l’horizon en milles marins vaut environ 2,08 × √(hauteur de l’œil en mètres), ou environ 1,15 × √(hauteur en pieds). Certaines tables utilisent 1,17 pour les pieds ; les résultats ne diffèrent que de peu. Un mètre vaut 3,28 pieds. Assis dans le cockpit, l’œil à 2,5 m au-dessus de l’eau, √2,5 ≈ 1,58 : l’horizon est donc à environ 2,08 × 1,58 ≈ 3,3 NM.",
+        "Un objet haut se voit de plus loin, car il a lui aussi son propre horizon. Additionnez les deux distances : la plus grande distance à laquelle vous pouvez voir un objet = 2,08 × (√ hauteur de l’œil + √ hauteur de l’objet), les deux hauteurs en mètres. Un phare de 49 m a un horizon de 2,08 × 7 = 14,6 NM : depuis un œil à 2,5 m, son feu peut donc apparaître jusqu’à environ 14,6 + 3,3 = 17,9 NM.",
+        "Vous voyez un feu à la plus courte de deux distances : cette portée géographique, et sa portée lumineuse, la distance jusqu’où porte son éclat. La carte donne la portée nominale, par exemple 12M. Un feu de 49 m avec une portée de 12M apparaît à environ 12 NM par temps clair, et non à 17,9 NM. Quand un feu puissant apparaît pour la première fois au-dessus de l’horizon (on dit qu’il « se lève »), vous êtes à peu près à sa portée géographique : avec son relèvement, cela donne un point approximatif. Les hauteurs des feux sur la carte sont mesurées au-dessus des pleines mers.",
+        "Pour passer un cap ou un danger en sécurité, décidez d’abord votre distance de passage, par exemple 1 NM. Tracez un cercle de ce rayon autour du danger et prévoyez votre route pour qu’elle touche l’extérieur du cercle. En chemin, vérifiez votre distance avec la distance radar, avec un relèvement et la carte, ou avec un relèvement de sécurité.",
+        "Un relèvement de sécurité est un relèvement d’un objet porté sur la carte qui vous garde à l’écart d’un danger. Tracez la ligne de l’objet qui passe par le bord du danger et lisez son relèvement, par exemple 040° T. Notez ensuite quel côté est sûr : « pas moins de 040° ». Prenez souvent le relèvement de l’objet ; tant qu’il reste du côté sûr, vous êtes à l’écart du danger.",
+        "Vous pouvez trouver votre distance à un seul objet sans tracé sur la carte, en doublant l’angle sur l’avant. Gardez un cap constant et notez l’angle de l’objet par rapport à l’étrave et le loch. Quand l’angle a doublé, votre distance à l’objet est égale à la distance parcourue. Un cas courant est 45°, puis 90° par le travers : à 6 nœuds, si l’angle passe de 45° à 90° en 30 minutes, vous avez parcouru 3 NM, donc vous passez à 3 NM. Le courant rend le résultat moins précis."
+      ],
+      "observe": [
+        "Estimez la hauteur de votre œil dans le cockpit et calculez la distance de votre horizon.",
+        "Trouvez un feu sur votre carte locale et calculez où vous devriez le voir apparaître."
+      ],
+      "mistake": "S’attendre à voir un feu à sa portée géographique alors que sa portée lumineuse est plus courte, ou l’inverse.",
+      "quiz": [
+        {
+          "prompt": "Votre œil est à 4 m au-dessus de l’eau. À quelle distance environ est votre horizon ?",
+          "options": [
+            "Environ 2 NM",
+            "Environ 4,2 NM",
+            "Environ 8,3 NM"
+          ],
+          "explanation": "√4 = 2, et 2,08 × 2 ≈ 4,2 NM."
+        },
+        {
+          "prompt": "Le feu d’un cap est à 45° sur votre avant. À 5 nœuds, il est par le travers (90°) 36 minutes plus tard. À quelle distance passez-vous ?",
+          "options": [
+            "3 NM",
+            "5 NM",
+            "1,5 NM"
+          ],
+          "explanation": "L’angle a doublé, donc la distance à l’objet égale la distance parcourue : 5 kn × 0,6 h = 3 NM."
+        },
+        {
+          "prompt": "Un relèvement de sécurité est noté « pas moins de 040° ». L’objet relève maintenant au 035°. Qu’est-ce que cela signifie ?",
+          "options": [
+            "Vous êtes à l’écart du danger",
+            "Vous êtes du côté dangereux et devez vous écarter",
+            "Le compas est faux"
+          ],
+          "explanation": "Le relèvement est inférieur à 040° : vous êtes du côté du danger par rapport à la ligne de sécurité."
+        }
+      ],
+      "transfer": "Entraînez-vous sur une vraie carte papier avec un compas à pointes sèches et une règle Cras, et faites vérifier chaque calcul par un moniteur. Les exemples présentés ici sont simplifiés."
+    },
+    "sail-67": {
+      "title": "Tenez compte du courant et de la dérive",
+      "concepts": [
+        "La leçon {lesson:sail-39} a montré que le bateau avance dans l’eau pendant que l’eau elle-même se déplace. Pour atteindre un point, il faut barrer un cap qui annule à la fois le courant et la dérive, le glissement latéral dû au vent. Le tracé sur la carte pour cela est le triangle du cap à suivre.",
+        "La dérive pousse le bateau sous le vent de l’endroit où il pointe. Elle est la plus forte au près par vent fort, souvent 5° ou plus, et faible au vent arrière. Estimez-la d’après l’angle entre votre sillage et l’axe du bateau. Pour la corriger, barrez vers le vent de la valeur de la dérive : pour faire une route de 090° T avec un vent du nord et 5° de dérive, barrez au 085° T.",
+        "Pour tracer le triangle du cap à suivre pour une heure :\n1. Tracez la route voulue depuis votre position A vers la destination B.\n2. Depuis A, tracez le courant pour une heure : sa direction (là où il porte) et sa vitesse, par exemple 090° à 2 nœuds.\n3. Depuis l’extrémité de la ligne du courant, ouvrez le compas à pointes sèches à votre vitesse surface, par exemple 5 nœuds, et marquez l’endroit où il coupe la ligne de route.\n4. La ligne qui va de l’extrémité du courant à cette marque est le cap à suivre. La distance de A à la marque est votre vitesse fond.",
+        "Exemple chiffré : vous voulez faire une route de 000° T, le courant porte au 090° à 2 nœuds et vous faites 5 nœuds. Le triangle donne un cap à suivre d’environ 336° T, soit 24° face au courant, et une vitesse fond d’environ 4,6 nœuds. Une étape de 12 NM prend alors 12 ÷ 4,6 ≈ 2,6 heures, soit environ 2 heures 37 minutes.",
+        "Le même triangle fonctionne à l’envers pour trouver votre position estimée. Si vous barrez au 000° T à 5 nœuds pendant une heure et que le courant porte au 090° à 2 nœuds, tracez la route surface sur 5 NM vers le nord, puis ajoutez le courant sur 2 NM vers l’est. Votre EP est à environ 5,4 NM, sur une route d’environ 022° T.",
+        "Procédez dans cet ordre : résolvez le triangle du courant en vrai, puis corrigez la dérive, puis transformez le cap vrai en cap compas avec la déclinaison et la déviation. Les informations sur les courants viennent de la carte, des instructions nautiques et des atlas de courants. Le long de la côte israélienne, le courant est en général faible et porte souvent vers le nord, mais il varie : vérifiez donc votre progression par des points et corrigez le cap en chemin."
+      ],
+      "observe": [
+        "La prochaine fois que vous naviguez au près, estimez votre dérive d’après l’angle du sillage.",
+        "Tracez un triangle du cap à suivre pour une courte étape sur votre carte locale."
+      ],
+      "mistake": "Barrer droit sur la destination et laisser le courant vous emporter de côté, ou corriger la dérive dans le mauvais sens.",
+      "quiz": [
+        {
+          "prompt": "Dans le triangle du cap à suivre, que tracez-vous d’abord depuis votre position ?",
+          "options": [
+            "Votre vitesse surface",
+            "Le courant pour une heure",
+            "Le cap compas"
+          ],
+          "explanation": "Tracez d’abord le courant ; puis, depuis son extrémité, reportez la vitesse du bateau jusqu’à couper la ligne de route."
+        },
+        {
+          "prompt": "Vous voulez faire une route de 180° T. Le vent vient de l’ouest et la dérive est de 6°. Dans quel sens corrigez-vous ?",
+          "options": [
+            "Barrer au 174° T",
+            "Barrer au 186° T, vers le vent",
+            "Barrer au 180° T ; la dérive n’a pas d’importance"
+          ],
+          "explanation": "Avec un vent d’ouest, la dérive vous pousse vers l’est. Barrez 6° vers l’ouest : 186° T."
+        },
+        {
+          "prompt": "Vous faites 4,5 nœuds fond sur une étape de 9 NM. Combien de temps faut-il ?",
+          "options": [
+            "1 heure",
+            "2 heures",
+            "2,5 heures"
+          ],
+          "explanation": "Durée = distance ÷ vitesse fond : 9 ÷ 4,5 = 2 heures."
+        }
+      ],
+      "transfer": "Entraînez-vous sur une vraie carte papier avec un compas à pointes sèches et une règle Cras, et faites vérifier chaque calcul par un moniteur. Les exemples présentés ici sont simplifiés."
+    },
+    "sail-68": {
+      "title": "L’heure et les marées",
+      "concepts": [
+        "La navigation et la radio utilisent l’UTC (temps universel coordonné), équivalent au temps moyen de Greenwich. L’heure locale en diffère selon votre fuseau horaire. Chaque fuseau couvre 15° de longitude, soit une heure. Israël est à environ 34° E, dans le fuseau en avance de deux heures sur l’UTC : l’heure normale d’Israël est UTC+2 et, en été, l’heure d’été d’Israël est UTC+3.",
+        "Pour convertir, appliquez l’écart du fuseau. En été, 14:00 heure israélienne correspond à 14:00 − 3 = 11:00 UTC. En hiver, 08:00 UTC correspond à 08:00 + 2 = 10:00 heure israélienne. Les prévisions météo, les annuaires des marées et les avis radio donnent souvent l’heure UTC : vérifiez donc quelle heure utilise un annuaire, et s’il tient compte de l’heure d’été. Notez le fuseau horaire dans le livre de bord, par exemple « heure du bord UTC+3 ».",
+        "Les marées sont dues surtout à la Lune, aidée par le Soleil. La plupart des côtes ont deux pleines mers et deux basses mers par jour : environ 6 heures 12 minutes de la pleine mer à la basse mer, si bien que chaque marée a lieu environ 50 minutes plus tard que la veille. Les vives-eaux, au plus grand marnage, arrivent juste après la nouvelle et la pleine lune ; les mortes-eaux, au plus petit marnage, arrivent aux quartiers de lune.",
+        "Les annuaires des marées donnent les heures et les hauteurs des pleines et basses mers dans un port, en hauteurs au-dessus du zéro hydrographique. La profondeur d’eau en un lieu est la sonde de la carte plus la hauteur de la marée. Sur un banc qui découvre, la profondeur est la hauteur de la marée moins la hauteur soulignée qui découvre. La leçon {lesson:sail-38} ajoute le pied de pilote sous la quille.",
+        "Pour estimer la hauteur entre la pleine mer et la basse mer, utilisez la règle des douzièmes. Pendant les six heures de la basse mer à la pleine mer, la marée monte de 1, 2, 3, 3, 2 et 1 douzièmes de son marnage. Exemple : basse mer 0,3 m à 08:00, pleine mer 1,5 m à 14:00, soit un marnage de 1,2 m. À 10:00, après deux heures, elle est montée de 1 + 2 = 3 douzièmes : 3/12 × 1,2 = 0,3 m. La hauteur est 0,3 + 0,3 = 0,6 m.",
+        "En Méditerranée orientale, la marée est faible, seulement quelques dizaines de centimètres, et le vent et la pression changent souvent le niveau de l’eau davantage que la marée. Dans le golfe d’Eilat, le marnage est plus grand. Où que vous naviguiez, la marée crée aussi des courants de marée, le flot et le jusant, qui sont les plus forts à mi-chemin entre la pleine mer et la basse mer."
+      ],
+      "observe": [
+        "Convertissez l’heure de la prochaine prévision marine de l’UTC en heure locale.",
+        "Cherchez les pleines et basses mers du jour pour un port que vous connaissez, et notez le marnage."
+      ],
+      "mistake": "Oublier de convertir les heures UTC d’un annuaire, ou son heure d’été, en heure de l’horloge du bord.",
+      "quiz": [
+        {
+          "prompt": "Il est 16:00, heure d’été israélienne. Quelle heure est-il en UTC ?",
+          "options": [
+            "13:00 UTC",
+            "14:00 UTC",
+            "19:00 UTC"
+          ],
+          "explanation": "L’heure d’été israélienne est UTC+3 : retranchez 3 heures."
+        },
+        {
+          "prompt": "La basse mer est de 0,2 m à 06:00 et la pleine mer de 1,4 m à 12:00. Quelle est la hauteur à 09:00 ?",
+          "options": [
+            "0,5 m",
+            "0,8 m",
+            "1,1 m"
+          ],
+          "explanation": "Après trois heures, la marée est montée de 1 + 2 + 3 = 6 douzièmes, soit la moitié du marnage de 1,2 m : 0,2 + 0,6 = 0,8 m."
+        },
+        {
+          "prompt": "Quand ont lieu les vives-eaux, au plus grand marnage ?",
+          "options": [
+            "Aux quartiers de lune",
+            "Juste après la nouvelle et la pleine lune",
+            "Seulement au printemps"
+          ],
+          "explanation": "Les vives-eaux arrivent quand le Soleil et la Lune tirent dans le même axe, à la nouvelle et à la pleine lune ; elles n’ont rien à voir avec la saison."
+        }
+      ],
+      "transfer": "Entraînez-vous sur une vraie carte papier avec un compas à pointes sèches et une règle Cras, et faites vérifier chaque calcul par un moniteur. Les exemples présentés ici sont simplifiés."
+    },
+    "sail-69": {
+      "title": "Voiles et équilibre",
+      "concepts": [
+        "Un voilier de croisière porte plusieurs voiles, chacune pour un usage :\n• Grand-voile : derrière le mât, sur la bôme. On la réduit en prenant des ris.\n• Génois : une grande voile d’avant qui recouvre le mât. Bien adapté au petit temps et au vent modéré.\n• Foc : une voile d’avant plus petite qui ne dépasse pas le mât. Plus facile à manier quand le vent forcit.\n• Tourmentin : une très petite voile d’avant en tissu épais, souvent orange vif, pour le coup de vent.\n• Voile de cape : une petite voile de tempête robuste, établie à la place de la grand-voile, sans la bôme.",
+        "Au portant, par vent faible à modéré, deux voiles légères ajoutent de la puissance :\n• Spinnaker : une grande voile symétrique en forme de ballon, établie sur un tangon. Rapide, mais il demande un équipage entraîné.\n• Gennaker (spinnaker asymétrique) : amuré à l’étrave sans tangon, plus facile pour un petit équipage.\nAffalez-les tôt quand le vent forcit, car une grande voile de portant peut faire rouler le bateau et le faire partir au lof (remonter au vent sans contrôle).",
+        "Choisissez les voiles selon le vent et l’équipage. Petit temps : grand-voile haute et génois, peut-être un gennaker au portant. Vent modéré : voiles de route, avec un ris quand le bateau gîte trop. Vent fort : grand-voile arisée et petite voile d’avant, ou voile d’avant en partie roulée. Un génois roulé perd sa forme : par vent vraiment fort, un vrai tourmentin porte mieux. Dans la tempête : tourmentin et voile de cape, ou le tourmentin seul.",
+        "Les voiles poussent le bateau en un point, le centre de voilure (CE). L’eau résiste latéralement à la coque et à la quille en un autre point, le centre de résistance latérale (CLR). Le bateau tourne autour du CLR. Quand le CE est derrière le CLR, le bateau cherche à remonter au vent : c’est la barre ardente. Quand il est devant, le bateau cherche à abattre : c’est la barre molle.",
+        "Un peu de barre ardente est une bonne chose : si vous lâchez la barre, le bateau remonte au vent et ralentit tout seul. Trop de barre ardente freine le bateau et peut le faire partir au lof. La gîte déplace la poussée des voiles sous le vent de la coque, ce qui augmente la barre ardente : un bateau qui gîte trop devient donc plus dur à barrer. Pour réduire la barre ardente, choquez la grand-voile ou prenez un ris, descendez le chariot sous le vent et réduisez la gîte.",
+        "Servez-vous des voiles pour aider le safran (voir la leçon {lesson:sail-18}). La grand-voile seule fait remonter l’étrave au vent, et la voile d’avant seule la fait abattre. Pour abattre par vent fort, choquez d’abord la grand-voile ; pour lofer, choquez la voile d’avant. Avec le bon équilibre entre les deux voiles, le bateau se barre facilement et le safran travaille à peine."
+      ],
+      "observe": [
+        "Notez la sensation de la barre au bon plein avant et après avoir choqué la grand-voile.",
+        "Trouvez le tourmentin à bord et vérifiez comment il s’établit."
+      ],
+      "mistake": "Garder un grand génois ou un spinnaker quand le vent forcit, puis lutter contre une forte barre ardente avec le safran.",
+      "quiz": [
+        {
+          "prompt": "Le bateau a une forte barre ardente au bon plein. Qu’est-ce qui aide le plus ?",
+          "options": [
+            "Choquer la grand-voile ou prendre un ris, et réduire la gîte",
+            "Border davantage la grand-voile",
+            "Dérouler plus de génois"
+          ],
+          "explanation": "La barre ardente vient surtout de la grand-voile et de la gîte. Choquer la grand-voile ou y prendre un ris avance la poussée et réduit la gîte."
+        },
+        {
+          "prompt": "Quelle voile établit-on dans la tempête à la place de la grand-voile ?",
+          "options": [
+            "Le gennaker",
+            "La voile de cape",
+            "Le génois"
+          ],
+          "explanation": "La voile de cape est une petite voile de tempête robuste, établie sans la bôme."
+        },
+        {
+          "prompt": "Pourquoi un peu de barre ardente est-il une bonne chose ?",
+          "options": [
+            "Le bateau va plus vite avec le safran très braqué",
+            "Si l’on lâche la barre, le bateau remonte au vent et ralentit",
+            "Elle empêche le bateau de gîter"
+          ],
+          "explanation": "Un bateau qui remonte doucement au vent quand on le lâche est plus sûr qu’un bateau qui abat et prend de la vitesse."
+        }
+      ],
+      "transfer": "Vérifiez ces points sur votre propre bateau, dans ses papiers et dans la réglementation en vigueur, et passez-les en revue avec un moniteur avant de prendre le commandement."
+    },
+    "sail-70": {
+      "title": "La stabilité",
+      "concepts": [
+        "Deux forces gardent un bateau droit. Son poids tire vers le bas en passant par le centre de gravité (G), et l’eau pousse vers le haut en passant par le centre de carène (B), le centre de la partie immergée de la coque. Quand le bateau est droit, G et B sont l’un au-dessus de l’autre.",
+        "Quand le bateau gîte, la forme immergée change et B se déplace vers le côté bas. Le poids et la poussée ne sont alors plus alignés et, ensemble, ils redressent le bateau. La distance horizontale entre eux est le bras de levier de redressement (GZ). Plus le bras est long, plus le bateau se redresse fort.",
+        "Plus le centre de gravité est bas, plus le bateau est stable. Sur un voilier, la lourde quille garde G bas. Un poids ajouté en hauteur élève G et réduit la stabilité : du matériel lourd sur le pont, une annexe pleine d’eau sur la plage avant, ou beaucoup de personnes debout. Rangez les objets lourds en bas et près du milieu du bateau, et ne chargez jamais le bateau au-delà des limites indiquées dans ses papiers.",
+        "Un bateau large et plat comme un catamaran est très stable aux petits angles : il gîte peu. Un monocoque à quille profonde gîte plus facilement mais continue à se redresser jusqu’à de grands angles : il peut donc se relever après avoir été couché. Chaque bateau a un angle auquel le bras de levier de redressement tombe à zéro ; au-delà, le bateau continue à se retourner et peut rester à l’envers. Un catamaran, une fois passé sa propre limite, reste à l’envers.",
+        "La carène liquide est dangereuse. Quand un réservoir est en partie plein, ou qu’il y a de l’eau dans les fonds, le liquide court vers le côté bas quand le bateau gîte. Son poids se déplace dans le même sens et agit comme si G était plus haut : le bateau perd de la stabilité. Gardez les réservoirs pleins ou vides quand c’est possible, asséchez les fonds, et traitez l’eau qui entre à bord comme un problème de stabilité autant que de voie d’eau.",
+        "La stabilité dépend aussi du fait de garder l’eau dehors. Par mer agitée, fermez les panneaux et les panneaux de descente (les planches qui ferment la descente), car une fois que le bateau gîte assez pour que l’eau s’y engouffre, il peut se remplir et couler vite. Un bateau raide, avec G bas, se redresse vite ; un bateau mou gîte facilement et roule lentement. Un bateau qui paraît soudain mou a peut-être de l’eau à l’intérieur : vérifiez les fonds."
+      ],
+      "observe": [
+        "Faites la liste des objets lourds à bord et vérifiez qu’ils sont rangés bas et bien saisis.",
+        "Cherchez dans les papiers du bateau le nombre maximal de personnes et la charge maximale."
+      ],
+      "mistake": "Transporter du matériel lourd ou de l’eau sur le pont, ou laisser de l’eau clapoter dans les fonds, en pensant que le bateau restera aussi stable.",
+      "quiz": [
+        {
+          "prompt": "Qu’est-ce qui rend un voilier plus stable ?",
+          "options": [
+            "Un centre de gravité plus haut",
+            "Un centre de gravité plus bas",
+            "Du matériel lourd rangé sur le pont"
+          ],
+          "explanation": "Un G bas donne un bras de levier de redressement plus long quand le bateau gîte."
+        },
+        {
+          "prompt": "Pourquoi les réservoirs en partie pleins et l’eau dans les fonds sont-ils dangereux ?",
+          "options": [
+            "Ils alourdissent seulement l’avant du bateau",
+            "Le liquide court vers le côté bas et réduit la stabilité",
+            "Ils font monter le centre de carène"
+          ],
+          "explanation": "Cet effet de carène liquide déplace du poids vers le côté bas et agit comme si le centre de gravité était plus haut."
+        },
+        {
+          "prompt": "Quand le bateau gîte, qu’est-ce qui se déplace vers le côté bas ?",
+          "options": [
+            "Le centre de carène",
+            "Le centre de gravité",
+            "Le pied de mât"
+          ],
+          "explanation": "La forme immergée change, donc B se déplace vers le côté bas ; G reste là où se trouve le poids."
+        }
+      ],
+      "transfer": "Vérifiez ces points sur votre propre bateau, dans ses papiers et dans la réglementation en vigueur, et passez-les en revue avec un moniteur avant de prendre le commandement."
+    },
+    "sail-71": {
+      "title": "Le gros temps en mer",
+      "concepts": [
+        "La meilleure façon de gérer un coup de vent est de l’éviter. Lisez la prévision et le baromètre (leçon {lesson:sail-20}) et décidez tôt : gagner un abri avant son arrivée, ou partir vers le large avec beaucoup d’eau à courir, bien loin d’une côte sous le vent. N’essayez pas d’entrer dans un port dont l’entrée déferle (leçon {lesson:sail-56}).",
+        "Préparez le bateau avant que le vent forcisse, tant qu’il est encore facile de se déplacer :\n• Rangez et saisissez tout à l’intérieur ; amarrez l’annexe et tout ce qui traîne sur le pont.\n• Fermez les panneaux et les hublots ; gardez les panneaux de descente à portée de main.\n• Installez les lignes de vie ; vérifiez les pompes de cale et les gilets de sauvetage.\n• Prenez un ris tôt et préparez le tourmentin.\n• Faites le point et notez-le dans le livre de bord.",
+        "Préparez aussi l’équipage. Chacun porte un gilet de sauvetage et un harnais, et s’attache avant de quitter le cockpit. Cuisinez un repas chaud et remplissez des thermos avant que la mer grossisse. Donnez tôt les comprimés contre le mal de mer, car ils n’agissent que s’ils sont pris avant qu’il commence. Habillez-vous chaudement et restez au sec : le froid et la fatigue mènent aux erreurs.",
+        "Menez le bateau de façon à ménager les forces de l’équipage. Raccourcissez les quarts, laissez les équipiers qui ne sont pas de quart se reposer à l’intérieur, et gardez une personne de veille. Expliquez chaque tâche avant que quiconque ne bouge : une main pour soi, une main pour le bateau. Évitez d’aller à l’avant si vous le pouvez, et gardez un plan clair en cas d’homme à la mer.",
+        "Se mettre à la cape arrête le bateau par mer forte, pour se reposer, prendre un ris ou cuisiner. Virez de bord sans larguer la voile d’avant, pour qu’elle soit à contre (tenue du côté au vent). Choquez la grand-voile et amarrez la barre pour faire remonter le bateau au vent. Les deux s’équilibrent : le bateau reste à environ 50° du vent, dérive lentement sous le vent et passe les vagues tranquillement.",
+        "Dans une vraie tempête, il existe trois tactiques principales :\n• Continuer à remonter lentement au vent sous voiles de tempête, en prenant les vagues juste à côté de l’étrave.\n• Fuir devant les vagues avec très peu de toile, en remorquant un traînard (une petite ancre flottante) à l’arrière pour freiner le bateau, afin qu’il ne surfe pas trop vite et ne parte pas au lof.\n• Rester sur une ancre flottante frappée à l’avant (leçon {lesson:sail-59}).\nNe restez pas travers à de grosses vagues déferlantes sans aucune voile : une déferlante peut retourner le bateau."
+      ],
+      "observe": [
+        "Faites le tour de votre bateau et décidez ce que vous rangeriez et saisiriez avant un coup de vent.",
+        "Entraînez-vous à vous mettre à la cape par vent modéré avec un moniteur."
+      ],
+      "mistake": "Attendre que le vent soit déjà fort pour prendre un ris, ranger et s’attacher.",
+      "quiz": [
+        {
+          "prompt": "Comment se met-on à la cape ?",
+          "options": [
+            "Voile d’avant à contre, grand-voile choquée et barre amarrée pour remonter au vent",
+            "Affaler toutes les voiles et rester travers à la mer",
+            "Fuir au vent arrière à pleine vitesse"
+          ],
+          "explanation": "La voile d’avant à contre et la barre s’équilibrent, et le bateau reste tranquille à environ 50° du vent."
+        },
+        {
+          "prompt": "Pourquoi remorquer un traînard à l’arrière quand on fuit devant une tempête ?",
+          "options": [
+            "Pour accélérer le bateau",
+            "Pour freiner le bateau afin qu’il ne surfe pas et ne parte pas au lof",
+            "Pour garder l’étrave face au vent"
+          ],
+          "explanation": "Un traînard freine le bateau et garde son arrière face aux vagues."
+        },
+        {
+          "prompt": "Quand faut-il prendre les comprimés contre le mal de mer ?",
+          "options": [
+            "Dès les premiers signes du mal de mer",
+            "Avant que le mauvais temps commence",
+            "Seulement après avoir vomi"
+          ],
+          "explanation": "Ils n’agissent que s’ils sont pris avant que le mal de mer commence."
+        }
+      ],
+      "transfer": "Vérifiez ces points sur votre propre bateau, dans ses papiers et dans la réglementation en vigueur, et passez-les en revue avec un moniteur avant de prendre le commandement."
+    },
+    "sail-72": {
+      "title": "Les quarts et le livre de bord",
+      "concepts": [
+        "En traversée, quelqu’un doit être responsable sur le pont à tout moment. Un système de quarts répartit le travail pour que l’équipage puisse se reposer. Avec un petit équipage, deux bordées qui alternent par 3 ou 4 heures sont courantes ; la nuit, par temps froid ou par mer agitée, des quarts plus courts gardent les gens vigilants. Le chef de bord reste hors du système ou prend un quart léger, pour pouvoir être appelé à tout moment.",
+        "Le chef de bord rédige des consignes permanentes : quand le quart doit l’appeler. Les raisons habituelles sont un navire qui se rapproche à relèvement constant, un changement de vent ou de temps, un baromètre qui baisse, un doute sur la position, un changement de cap ou de voilure, une avarie, et tout simplement un sentiment d’incertitude. Appeler trop souvent n’est jamais une erreur.",
+        "À la relève, le nouveau quart monte un peu en avance pour que ses yeux s’habituent à l’obscurité, ce qui prend environ 20 minutes. Le quart sortant transmet : le cap et la position, les navires en vue, la météo et le baromètre, les voiles, ce qu’il faut surveiller, et les consignes du chef de bord. Le quart n’est pas transmis tant que la nouvelle personne n’a pas compris la situation.",
+        "Le quart assure une veille tout autour, à l’œil et avec le radar et l’AIS quand le bateau en est équipé, et écoute la VHF sur le canal 16. Il vérifie le cap et la position au moins toutes les heures et les note dans le livre de bord, surveille les voiles, les fonds et tout ragage, et s’assure que chacun sur le pont la nuit est attaché.",
+        "Au mouillage, il faut aussi une veille au mouillage. Dès que vous êtes mouillé, prenez les relèvements de deux ou trois objets fixes ou notez un alignement, et réglez l’alarme de mouillage du GPS. Vérifiez-les régulièrement, et plus souvent quand le vent forcit ou tourne. Sachez jusqu’où le bateau peut éviter, allumez le feu de mouillage la nuit et, par vent fort, gardez le moteur prêt et quelqu’un de veille.",
+        "Le livre de bord est le registre officiel du bateau. Écrivez au stylo, régulièrement, et n’effacez jamais rien : barrez une erreur d’un seul trait pour qu’elle reste lisible. Notez le départ et l’arrivée, l’équipage, la position, le cap, la vitesse et la lecture du loch (leçon {lesson:sail-23}), la météo et le baromètre, les heures moteur et le carburant, et chaque événement : changements de voiles, trafic, avaries, blessures et messages radio. Après un accident, le livre de bord est la preuve de ce qui s’est passé."
+      ],
+      "observe": [
+        "Rédigez des consignes permanentes pour un quart de nuit lors d’une courte traversée.",
+        "La prochaine fois que vous mouillez, prenez les relèvements de deux objets fixes et vérifiez-les une heure plus tard."
+      ],
+      "mistake": "Transmettre le quart avec un rapide « tout va bien », ou mouiller pour la nuit sans relèvements ni alarme.",
+      "quiz": [
+        {
+          "prompt": "Quand le quart doit-il appeler le chef de bord ?",
+          "options": [
+            "Seulement en cas d’urgence",
+            "Chaque fois qu’arrive une situation prévue par les consignes permanentes, ou en cas de doute",
+            "Seulement à la fin du quart"
+          ],
+          "explanation": "Les consignes permanentes listent les raisons ; tout doute est aussi une raison d’appeler."
+        },
+        {
+          "prompt": "Comment corrige-t-on une erreur dans le livre de bord ?",
+          "options": [
+            "L’effacer et la réécrire",
+            "La barrer d’un seul trait pour qu’elle reste lisible",
+            "Arracher la page"
+          ],
+          "explanation": "Le livre de bord est un registre et une preuve ; rien ne doit être effacé."
+        },
+        {
+          "prompt": "Juste après avoir mouillé, que doit mettre en place la veille au mouillage ?",
+          "options": [
+            "Des relèvements d’objets fixes ou un alignement, et l’alarme de mouillage du GPS",
+            "Rien tant que le vent ne forcit pas",
+            "Seulement les feux de pont"
+          ],
+          "explanation": "Avec des repères pris dès le début, vous voyez tout de suite si l’ancre chasse."
+        }
+      ],
+      "transfer": "Vérifiez ces points sur votre propre bateau, dans ses papiers et dans la réglementation en vigueur, et passez-les en revue avec un moniteur avant de prendre le commandement."
+    },
+    "sail-73": {
+      "title": "Les devoirs du chef de bord et la loi",
+      "concepts": [
+        "Le chef de bord est responsable de la sécurité du bateau et de toutes les personnes à bord, et du respect des règles. Ne commandez jamais un bateau après avoir bu de l’alcool ou pris de la drogue. Sachez ce que votre permis autorise : quels bateaux, à quelle distance de la côte, et si vous pouvez transporter des passagers payants.",
+        "Vous devez porter assistance aux personnes en détresse en mer quand vous pouvez le faire sans danger grave pour votre propre bateau et votre équipage. Répondez à un appel de détresse et, si vous ne pouvez pas aider, relayez-le. Après un abordage, restez pour aider l’autre navire et donnez le nom et le port de votre bateau.",
+        "Gardez à bord les papiers du bateau, et valides :\n• La licence du bateau ou son certificat d’immatriculation.\n• Le certificat de navigabilité, avec sa liste d’équipement obligatoire (leçon {lesson:sail-58}).\n• La police d’assurance.\n• Le permis du chef de bord.\nUn bateau doit être immatriculé, et son nom et son numéro d’immatriculation marqués sur la coque comme l’exigent les règles.",
+        "Vérifiez que l’assurance correspond à l’usage du bateau. Un bateau privé, un bateau loué sans chef de bord (location coque nue) et un bateau qui transporte des passagers payants ont chacun besoin de leur propre licence et de leur propre assurance. Une location coque nue doit être autorisée et assurée pour la location, et transporter des passagers payants demande un permis spécial à la fois pour le bateau et pour le chef de bord.",
+        "Avant de partir, lisez les avis aux navigateurs pour votre zone. Ils signalent les changements temporaires : exercices de tir, travaux, bouées déplacées, marques éteintes et zones fermées. Restez hors des zones fermées et réglementées indiquées sur la carte ou dans les avis, comme les zones militaires et les eaux proches des ports, des terminaux pétroliers et des pétroliers. Restez bien à l’écart des navires et des bouées qui signalent des plongeurs en immersion (pavillon A, leçon {lesson:sail-61}).",
+        "Protégez la mer. Ne jetez par-dessus bord ni déchets, ni nourriture, ni huile, ni carburant, ni produits chimiques. Utilisez la station de pompage de la marina pour la cuve à eaux noires, et faites le plein avec soin pour ne rien renverser. Dans une réserve naturelle marine, le mouillage, la pêche et le ramassage peuvent être interdits : mouillez sur le sable, jamais sur le corail ni sur les herbiers marins. Déclarez tout accident, toute blessure ou toute avarie grave à l’autorité maritime."
+      ],
+      "observe": [
+        "Vérifiez que la licence, le certificat de navigabilité et l’assurance de votre bateau sont valides et à bord.",
+        "Lisez les avis aux navigateurs en vigueur pour votre zone de navigation."
+      ],
+      "mistake": "Croire qu’un permis privé et une assurance privée couvrent la location du bateau ou le transport de passagers payants.",
+      "quiz": [
+        {
+          "prompt": "Vous entendez un appel de détresse. Que devez-vous faire ?",
+          "options": [
+            "L’ignorer si vous n’êtes pas le bateau le plus proche",
+            "Aller porter assistance si vous pouvez le faire sans danger, et relayer l’appel sinon",
+            "Seulement le noter dans le livre de bord"
+          ],
+          "explanation": "Porter assistance aux personnes en détresse est un devoir en mer, dans la mesure où vous pouvez le faire sans mettre gravement en danger votre propre bateau."
+        },
+        {
+          "prompt": "Un ami veut vous payer pour emmener un groupe en mer pour la journée. Qu’est-ce qui s’applique ?",
+          "options": [
+            "Votre permis privé le couvre",
+            "Transporter des passagers payants demande un permis spécial pour le bateau et pour le chef de bord",
+            "C’est autorisé s’ils portent un gilet de sauvetage"
+          ],
+          "explanation": "Les passagers payants exigent une licence commerciale et une assurance adaptée."
+        },
+        {
+          "prompt": "Où trouve-t-on les changements temporaires, comme une bouée déplacée ou une zone de tir ?",
+          "options": [
+            "Dans les avis aux navigateurs",
+            "Seulement sur la carte d’origine",
+            "Dans le livre de bord du bateau"
+          ],
+          "explanation": "Les avis aux navigateurs publient les changements et les avertissements ; consultez-les avant de partir."
+        }
+      ],
+      "transfer": "Vérifiez ces points sur votre propre bateau, dans ses papiers et dans la réglementation en vigueur, et passez-les en revue avec un moniteur avant de prendre le commandement.",
+      "localNotes": [
+        "En Israël, le permis de chef de bord côtier (Skipper 30) autorise les bateaux à moteur et à voile dans les eaux côtières, et les bateaux de toute puissance, mais pas le transport de passagers payants ni les voyages internationaux.",
+        "En Israël, déclarez les accidents à l’Autorité israélienne de la navigation et des ports. Lisez ses avis aux navigateurs avant de partir, et n’approchez pas des ports israéliens, des pétroliers et chimiquiers, ni des zones militaires fermées, sauf dans la mesure où la réglementation le permet."
+      ]
     }
   }
 }

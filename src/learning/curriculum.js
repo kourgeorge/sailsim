@@ -9,6 +9,8 @@ import {safetyLessons} from './safety-course.js';
 import {ropesModule,ropesLessons} from './ropes-course.js';
 import {flagsLessons} from './flags-course.js';
 import {gearLessons} from './gear-course.js';
+import {chartworkModule,chartworkLessons} from './chartwork-course.js';
+import {skipperModule,skipperLessons} from './skipper-course.js';
 import {lessonLabs,quizLabs} from './lesson-labs.js';
 // A module groups related lessons. Each lesson contains teaching pages, questions,
 // and its assessed training. Practical assessments only use simulated capabilities.
@@ -348,8 +350,8 @@ modules.push(catamaranModule);
 lessons.push(...catamaranLessons);
 modules.push(nightModule);
 lessons.push(...nightLessons);
-modules.push(weatherModule,ropesModule);
-lessons.push(...[...weatherLessons,...safetyLessons,...ropesLessons,...flagsLessons,...gearLessons].map(lesson=>({...lesson,sub:modules.find(m=>m.id===lesson.module).outcome})));
+modules.push(weatherModule,ropesModule,chartworkModule,skipperModule);
+lessons.push(...[...weatherLessons,...safetyLessons,...ropesLessons,...flagsLessons,...gearLessons,...chartworkLessons,...skipperLessons].map(lesson=>({...lesson,sub:modules.find(m=>m.id===lesson.module).outcome})));
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 // Supplemental pages retain the original general-purpose lesson diagrams.
 for(const [id,pages] of [['sail-04',[3,4]],['sail-05',[3]]]){const lesson=lessons.find(l=>l.id===id);lesson.conceptFigures=Object.fromEntries(pages.map(i=>[i,'app-compass']));lesson.quiz[2].figure='app-compass';}
@@ -393,8 +395,10 @@ const COURSE_ORDER=[
  'sail-43','sail-44','sail-45', // marina
  'sail-58','sail-33','sail-34','sail-62','sail-59','sail-35','sail-36', // readiness
  'sail-54','sail-55','sail-56','sail-57', // weather
+ 'sail-63','sail-64','sail-65','sail-66','sail-67','sail-68', // chartwork
  'sail-46','sail-47','sail-48','sail-49','sail-50','sail-51', // colregs
  'sail-37','sail-38','sail-39','sail-40','sail-41','sail-42', // coastal-decisions
+ 'sail-69','sail-70','sail-71','sail-72','sail-73', // skipper
  'sail-53', // night-navigation
  'sail-60', // rigging
  'sail-52', // catamaran

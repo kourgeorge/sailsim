@@ -1,6 +1,6 @@
 # Sailing school curriculum
 
-The course contains 62 authored lessons and 147 explained knowledge questions across fourteen modules. Every lesson has assessed training: 24 live boat-handling exercises and 38 interactive seamanship scenarios with 114 decision stages. Basic covers lessons 01–19, Intermediate 20–45, and Advanced 46–62. A lesson’s level comes from its module, and lessons are numbered by their place in the course; lesson ids (`sail-NN`) are stable record keys, so a lesson added later can carry a higher id than its number. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
+The course contains 73 authored lessons and 184 explained knowledge questions across eighteen modules. Every lesson has assessed training: 24 live boat-handling exercises and 49 interactive seamanship scenarios with 147 decision stages. Basic covers lessons 01–16, Intermediate 17–43, and Advanced 44–73. A lesson’s level comes from its module, and lessons are numbered by their place in the course; lesson ids (`sail-NN`) are stable record keys, so a lesson added later can carry a higher id than its number. It prepares a learner for supervised on-water instruction; it does not confer a license, safety certification, or permission to skipper. No claim of endorsement by a sailing organization is made.
 
 ## Learning sequence
 
@@ -120,3 +120,13 @@ The capstone starts at `(100, 220)` so its complete deep-water anchorage envelop
 `tests/anchorage-sites.test.js` reruns the actual deployment scenarios and checks their completed swing envelopes against sampled bathymetry and fixed, moored-maximum, and initially positioned unpowered-craft footprints. It also checks the prepared departure envelope and complete recovery. The check protects against a deceptively clear boat track whose full rode swing could still cross land or obstacles. It does not forecast arbitrary future vessel traffic or certify a real anchorage.
 
 Regression tests run the complete 19-scenario loop, physical tacks through compass north in both directions, and true/apparent wind source conventions. The compass-north cases verify that 359°/000° wrapping is not mistaken for a gybe. Rerun the verifier after changes to drag, steering, sail forces, coastline, or assessment thresholds and refresh these observations when the model changes.
+
+## Israeli Skipper 30 syllabus
+
+Two advanced modules cover the written Skipper 30 (משיט 30) exams in the March 2025 syllabus (`reference/course/Syllabus March 2025.pdf`):
+
+- **Work on the chart** (Navigation A): latitude, longitude and the Mercator chart with Chart 5011 symbols and Notices to Mariners; compass courses and bearings, relative bearings and deviation from a transit; DR, EP, cross-bearing and running fixes; horizon and light ranges, clearing bearings and doubling the angle on the bow; the course-to-steer triangle with leeway; UTC and Israeli time, tides, tide tables and the rule of twelfths.
+- **The skipper’s knowledge** (the rest of Seamanship C): sail types and balance; stability and free surface; heavy-weather preparation, heaving to and storm tactics; watches, standing orders, anchor watch and the logbook; the duty to help, papers, insurance, charter and paid passengers, Notices to Mariners, closed areas and the environment.
+
+“Eastern Mediterranean weather” also covers the Persian and Red Sea troughs, the Libyan low, forecast sources and weather units. Navigation B (radar and electronics) and the engines and electricity exam are not yet covered.
+

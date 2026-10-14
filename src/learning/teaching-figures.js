@@ -14,6 +14,8 @@ import {isSafetyFigure,renderSafetyFigure,safetyCaption} from './safety-figure.j
 import {isRopesFigure,renderRopesFigure,ropesCaption} from './ropes-figure.js';
 import {isFlagsFigure,renderFlagsFigure,flagsCaption} from './flags-figure.js';
 import {isGearFigure,renderGearFigure,gearCaption} from './gear-figure.js';
+import {isChartworkFigure,renderChartworkFigure,chartworkCaption} from './chartwork-figure.js';
+import {isSkipperFigure,renderSkipperFigure,skipperCaption} from './skipper-figure.js';
 const LANGS = ['en', 'es', 'fr', 'ru', 'he', 'ar'];
 const WORDS = {
   schematic: ['Learning diagram · not to scale', 'Esquema didáctico · sin escala', 'Schéma pédagogique · non à l’échelle', 'Учебная схема · не в масштабе', 'תרשים לימודי · לא בקנה מידה', 'رسم تعليمي · ليس بمقياس رسم'],
@@ -183,6 +185,8 @@ export function renderTeachingFigure(lesson, lang='en') {
   if(isRopesFigure(lesson?.figure)) return renderRopesFigure(lesson.figure,lang);
   if(isFlagsFigure(lesson?.figure)) return renderFlagsFigure(lesson.figure,lang);
   if(isGearFigure(lesson?.figure)) return renderGearFigure(lesson.figure,lang);
+  if(isChartworkFigure(lesson?.figure)) return renderChartworkFigure(lesson.figure,lang);
+  if(isSkipperFigure(lesson?.figure)) return renderSkipperFigure(lesson.figure,lang);
   if(isColregsLesson(lesson)) return renderColregsFigure(lesson,lang);
   const code=String(lang).toLowerCase().split(/[-_]/)[0];
   const locale=LANGS.includes(code)?code:'en', index=LANGS.indexOf(locale);
@@ -387,6 +391,8 @@ export function getTeachingFigureCaption(lesson,lang='en') {
   if(isRopesFigure(lesson?.figure)) return ropesCaption(lesson.figure,lang);
   if(isFlagsFigure(lesson?.figure)) return flagsCaption(lesson.figure,lang);
   if(isGearFigure(lesson?.figure)) return gearCaption(lesson.figure,lang);
+  if(isChartworkFigure(lesson?.figure)) return chartworkCaption(lesson.figure,lang);
+  if(isSkipperFigure(lesson?.figure)) return skipperCaption(lesson.figure,lang);
   if(isColregsLesson(lesson)) return colregsFigureCaption(lesson,lang);
   const number=/^sail-(\d{2})$/.exec(String(lesson?.id??''))?.[1];
   const topic=TOPICS[Number(number)-1];

@@ -63,6 +63,14 @@
     "rigging": {
       "title": "Ropes and rigging",
       "outcome": "Choose the right rope or wire for each job, care for it, tie the key knots, and work out the pull a tackle gives."
+    },
+    "chartwork": {
+      "title": "Work on the chart",
+      "outcome": "Plot positions, convert compass courses and bearings, fix the boat, allow for current and leeway, and work out horizon distances, time and tides."
+    },
+    "skipper": {
+      "title": "The skipper’s knowledge",
+      "outcome": "Choose sails for the wind, keep the boat stable, prepare for heavy weather, run watches and the logbook, and know a skipper’s duties at sea."
     }
   },
   "lessons": {
@@ -1249,7 +1257,9 @@
         "In winter, lows cross the eastern Mediterranean from the west, and some deepen near Cyprus (their pressure drops further, so the wind gets stronger). Along the Israeli coast they usually bring a warm front first, with southerly to south-westerly wind, then a cold front with stormy south-westerly to westerly wind, rising seas and showers. A forecast of a cold front coming in from the sea means rough weather and high waves.",
         "Sharqiya is a strong, dry easterly wind that blows off the land, mainly in spring and autumn. It is felt most in the north of the country. Near the shore the sea stays flat because the wind blows offshore, but farther out it raises waves and can make the return to harbor hard. Winter easterlies are a different case: cold, strong easterly winds in winter usually come from a high pressure system to the north-east, over Russia, not from a low.",
         "In spring, a hot low can move along North Africa or up from the south. Ahead of it the wind is southerly, hot and dry, dust lowers the visibility along the Mediterranean coast, and Eilat gets southerly wind. When it passes, the wind turns west and the temperature drops.",
-        "Summer is usually settled: a north-westerly sea breeze builds along the Israeli coast in the afternoon and dies at night. In the Aegean, the Meltemi is a strong, dry north wind in July and August, often force 6 to 7 for days. Farther away, in the Adriatic, the Bora is a cold, dry, very gusty north-easterly wind that falls from the mountains in winter."
+        "Summer is usually settled: a north-westerly sea breeze builds along the Israeli coast in the afternoon and dies at night. In the Aegean, the Meltemi is a strong, dry north wind in July and August, often force 6 to 7 for days. Farther away, in the Adriatic, the Bora is a cold, dry, very gusty north-easterly wind that falls from the mountains in winter.",
+        "Two seasonal troughs, long fingers of low pressure, also shape the weather around Israel:\n• The Persian trough, in summer, reaches across from the Persian Gulf. It brings the steady north-westerly wind and humid heat of most summer days, and strengthens the afternoon sea breeze.\n• The Red Sea trough, mainly in autumn and spring, reaches north from the Red Sea. It usually brings hot, dry easterly wind (Sharqiya) and haze. When cold air lies above it, it becomes “active” and can set off sudden, violent thunderstorms with no front in sight.\nThe hot spring low from North Africa described above is often called a Libyan low.",
+        "Get the weather from more than one source:\n• The official marine forecast, which divides the sea into named areas; a map of the areas is published with it.\n• Radio and VHF weather broadcasts, and NAVTEX on larger boats.\n• Weather apps and websites. They show computer-model forecasts, so compare more than one model.\n• Your own barometer, the sky and the sea.\nKnow the units: pressure in hectopascals (hPa), the same as millibars, with 1013 hPa equal to 760 mmHg or 29.92 inches; temperature in °C, where °F = °C × 9 ÷ 5 + 32; and wind in knots, metres per second (1 m/s is about 2 knots) or Beaufort force."
       ],
       "observe": [
         "Before a passage, read the forecast for the whole region, not just your harbor, and find the nearest low.",
@@ -2820,6 +2830,518 @@
         ],
         "debrief": "You reviewed the light list, steered a night approach, joined the leading line and stopped in safe water."
       }
+    },
+    "sail-63": {
+      "title": "Latitude, longitude and the chart",
+      "concepts": [
+        "Every position on Earth has a latitude and a longitude:\n• Latitude is how far north or south of the equator you are, from 0° at the equator to 90° at the poles.\n• Longitude is how far east or west of the Greenwich meridian (the north–south line through Greenwich, near London) you are, from 0° to 180°.\nEach degree has 60 minutes (′), and minutes are written with decimals. Tel Aviv marina is at about 32°05′ N, 034°46′ E: latitude first, then longitude.",
+        "You can also give a position as a bearing and distance from a charted object, for example “270° from Jaffa lighthouse, 3 NM”. The bearing is measured from the object out to the boat. Draw the line from the object in that direction and measure the distance along it.",
+        "Most sea charts use the Mercator projection. The meridians (lines of longitude) are drawn parallel, so a straight line on the chart is a line of constant compass course. The price is that the scale grows as you move away from the equator, so a mile looks longer on the chart the farther north you go. So measure distance only on the latitude scale at the side of the chart, beside your position: one minute of latitude is one nautical mile. Never use the longitude scale along the top or bottom.",
+        "To measure a distance, open the dividers between the two points and read them on the latitude scale at the same height. To measure a direction, lay the plotter or parallel rulers along the line and read the angle against true north, or move the line to the compass rose printed on the chart. Its outer ring shows true directions, and the inner ring magnetic.",
+        "Chart symbols and abbreviations are explained in the booklet Chart 5011 (INT 1). Some you will use all the time:\n• Depths in metres below chart datum, the lowest water level the chart allows for.\n• Underlined figures: heights that dry at low water.\n• Seabed letters: S sand, M mud, R rock, Sh shells, Wd weed. They help you choose an anchorage.\n• A light: “Fl(3) 10s 15m 12M” means three flashes every 10 seconds, the light is 15 m above the water and its nominal range is 12 NM.",
+        "A large-scale chart shows a small area in great detail, such as a harbour plan; a small-scale chart shows a large area with less detail. Use the largest scale near the coast. A chart catalogue lists every chart and the area it covers, so you can choose the right ones before a passage.",
+        "A chart is only as good as its last correction. Hydrographic offices publish Notices to Mariners with changes: new wrecks, moved buoys, changed lights. Mark each correction on the chart and note its number in the bottom corner, so you can see how up to date the chart is."
+      ],
+      "observe": [
+        "Find the latitude and longitude scales on a chart, and measure one nautical mile on the latitude scale.",
+        "Look up three symbols you do not know in Chart 5011."
+      ],
+      "mistake": "Measuring a distance on the longitude scale, or on the latitude scale far from your own position.",
+      "quiz": [
+        {
+          "prompt": "Where do you measure a distance on a Mercator chart?",
+          "options": [
+            "On the latitude scale at the side, beside your position",
+            "On the longitude scale at the top",
+            "Anywhere, because the scale is the same everywhere"
+          ],
+          "explanation": "One minute of latitude is one nautical mile. The scale changes with latitude, so use the part of the scale level with your position."
+        },
+        {
+          "prompt": "A light is charted as “Fl(3) 10s 15m 12M”. What does “12M” tell you?",
+          "options": [
+            "It shows 12 flashes a minute",
+            "Its nominal range is 12 nautical miles",
+            "It is 12 m high"
+          ],
+          "explanation": "Fl(3) is three flashes, 10s the period, 15m the height and 12M the nominal range in nautical miles."
+        },
+        {
+          "prompt": "Your position is given as “090° from the lighthouse, 2 NM”. Where are you?",
+          "options": [
+            "2 NM west of the lighthouse",
+            "2 NM east of the lighthouse",
+            "2 NM north of the lighthouse"
+          ],
+          "explanation": "The bearing is measured from the object to the boat: 090° from the lighthouse puts you to its east."
+        }
+      ],
+      "transfer": "Practise chart work on a real paper chart with dividers and a plotter, and check every calculation with an instructor. The examples here are simplified."
+    },
+    "sail-64": {
+      "title": "Compass courses and bearings",
+      "concepts": [
+        "A direction can be given in three ways, and you must always say which:\n• True (T): measured from true north, as on the chart.\n• Magnetic (M): measured from magnetic north, where a compass with no error would point.\n• Compass (C): what your own compass actually shows.\nVariation turns true into magnetic, and deviation turns magnetic into compass. Lesson {lesson:sail-22} gives the rule: going from compass to true, add East errors and subtract West ones.",
+        "Variation depends on where you are and changes slowly over the years. The compass rose gives it with a year and a yearly change, for example “3°30′ E 2015 (8′ E)”. In 2025, ten years later, it has grown by 10 × 8′ = 80′, or 1°20′, to 4°50′ E. Round it to 5° E.",
+        "Deviation depends on the boat’s heading, not on the direction you are looking. Read it from the boat’s deviation card for the heading you are steering. A hand bearing compass, held well away from the boat’s metal and electrics, is usually taken to have no deviation: correct its bearings for variation only.",
+        "Work the same way for courses and bearings. Example, from compass to true: you steer 210° C, the deviation card gives 2° W and variation is 5° E. Magnetic = 210 − 2 = 208° M; True = 208 + 5 = 213° T. From true to compass you do the opposite: 213° T − 5° E = 208° M, and 208° M + 2° W = 210° C.",
+        "A relative bearing is measured from the bow, clockwise from 000° to 360°: 090° relative is abeam to starboard and 270° is abeam to port. Some crews use 0° to 180° red (port) or green (starboard) instead. To turn a relative bearing into a true one, add your true heading: heading 040° T and an object 100° relative give 140° T. If the sum is more than 360°, subtract 360°.",
+        "A transit, or leading line, is two charted objects in line, and the chart gives its true bearing. It is the best way to check the compass. Say the chart gives a transit as 076° T and variation is 5° E, so the magnetic bearing is 071° M. As the objects come into line, your steering compass reads 074° C. It reads 3° more than magnetic, so the deviation on this heading is 3° W.",
+        "You will meet several kinds of compass:\n• The steering compass: a magnetic card floating in liquid, gimballed to stay level, mounted where the helmsman can see it.\n• The hand bearing compass: for taking bearings of objects.\n• The electronic (fluxgate) compass: senses the Earth’s magnetism and feeds the autopilot and instruments. It is still magnetic, so it has variation and deviation too.\nA GPS gives your course over the ground, not where the bow points, and shows nothing useful when the boat is stopped."
+      ],
+      "observe": [
+        "Find the compass rose on a chart and work out this year’s variation from its yearly change.",
+        "Take a hand bearing of a fixed object and convert it to true."
+      ],
+      "mistake": "Using the deviation for the direction of the object instead of for the boat’s heading.",
+      "quiz": [
+        {
+          "prompt": "You steer 120° C. Deviation on this heading is 3° E and variation is 5° E. What is your true course?",
+          "options": [
+            "112° T",
+            "128° T",
+            "122° T"
+          ],
+          "explanation": "From compass to true, add East errors: 120 + 3 = 123° M, then 123 + 5 = 128° T."
+        },
+        {
+          "prompt": "Your true heading is 300° and a buoy bears 090° relative. What is its true bearing?",
+          "options": [
+            "030° T",
+            "210° T",
+            "390° T"
+          ],
+          "explanation": "300 + 090 = 390; subtract 360 to get 030° T."
+        },
+        {
+          "prompt": "A charted transit is 155° T, variation is 5° E, and the steering compass reads 152° C on the transit. What is the deviation?",
+          "options": [
+            "2° E",
+            "2° W",
+            "7° W"
+          ],
+          "explanation": "The magnetic bearing is 155 − 5 = 150° M. The compass reads 2° more than magnetic, so the deviation is 2° W. Check: 152 − 2 + 5 = 155° T."
+        }
+      ],
+      "transfer": "Practise chart work on a real paper chart with dividers and a plotter, and check every calculation with an instructor. The examples here are simplified."
+    },
+    "sail-65": {
+      "title": "Fix your position",
+      "concepts": [
+        "Navigators use three kinds of position, each with its own chart symbol:\n• Dead reckoning (DR): worked from your course and the distance run through the water. Mark it with a short cross line on the track.\n• Estimated position (EP): the DR corrected for current and leeway. Mark it with a triangle.\n• Fix: found from outside references such as bearings, ranges or GPS. Mark it with a small circle around a dot.\nWrite the time and the log reading beside every position.",
+        "A cross-bearing fix uses compass bearings of two or, better, three charted objects. Convert each bearing to true and draw it on the chart as a line ending at the object: you are somewhere on each line, so you are where they cross. Choose objects that are clearly identified and well apart in angle: two bearings about 90° apart, or three about 60° apart.",
+        "Take the bearings quickly, one after another. Take the object ahead or astern first, because its bearing changes slowly, and the object abeam last, because its bearing changes fastest. Three lines rarely meet at one point; they form a small triangle, the “cocked hat”. A small triangle means a good fix. Take the corner nearest to danger as your position until you can check it.",
+        "Other ways to fix the boat:\n• Bearing and range of one object: the bearing line and a circle of that distance around the object cross at one point. Radar gives both together.\n• Two ranges: two circles around two objects cross at two points; use a bearing or the depth to choose between them.\n• Range and depth: a rough position where the circle crosses the depth contour that matches your sounder reading, corrected for tide.",
+        "A running fix uses one object at two times, when nothing else is in sight. Take a bearing and note the time and the log. Keep a steady course, and when the bearing has changed by at least 30°, take a second. Move the first bearing line along your course by the distance run between the two bearings: where the moved line crosses the second bearing is your position. Any current you ignored makes it less accurate.",
+        "GPS gives an accurate fix almost anywhere, but it can fail, and a position typed into the wrong datum or a wrong waypoint can put you on the rocks. Plot the GPS position on the chart and log it regularly, at least every hour on passage. Check it now and then against a bearing or a depth: two independent methods that agree are worth far more than one."
+      ],
+      "observe": [
+        "Choose three charted objects along your coast that would give a good three-bearing fix.",
+        "Compare your sounder reading with the charted depth at your GPS position."
+      ],
+      "mistake": "Taking bearings of objects close together in angle, or taking the bearing abeam first.",
+      "quiz": [
+        {
+          "prompt": "Your three bearing lines make a small triangle. Which position do you use?",
+          "options": [
+            "The centre of the triangle",
+            "The corner nearest to danger",
+            "The corner farthest from danger"
+          ],
+          "explanation": "Until you can check it, assume you are in the most dangerous place the fix allows."
+        },
+        {
+          "prompt": "In a cross-bearing fix, which bearing should you take last?",
+          "options": [
+            "The object ahead",
+            "The object abeam",
+            "The object astern"
+          ],
+          "explanation": "The bearing of an object abeam changes fastest, so take it last, just before you plot."
+        },
+        {
+          "prompt": "What is a running fix?",
+          "options": [
+            "A fix from bearings of two objects taken at the same time",
+            "A fix from one object’s bearings at two times, with the first line moved by the distance run",
+            "A GPS position taken while the boat is moving"
+          ],
+          "explanation": "The first bearing line is moved along the course by the distance run and crossed with the second bearing."
+        }
+      ],
+      "transfer": "Practise chart work on a real paper chart with dividers and a plotter, and check every calculation with an instructor. The examples here are simplified."
+    },
+    "sail-66": {
+      "title": "Horizon, lights and passing distance",
+      "concepts": [
+        "The higher you are, the farther you can see. The distance to the horizon in nautical miles is about 2.08 × √(height of eye in metres), or about 1.15 × √(height in feet). Some tables use 1.17 for feet; the answers differ only a little. One metre is 3.28 feet. Sitting in a cockpit with your eye 2.5 m above the water, √2.5 ≈ 1.58, so the horizon is about 2.08 × 1.58 ≈ 3.3 NM away.",
+        "A tall object can be seen from farther away, because it has its own horizon too. Add the two distances: the greatest distance at which you can see an object = 2.08 × (√ height of eye + √ height of object), with both heights in metres. A lighthouse 49 m high has a horizon of 2.08 × 7 = 14.6 NM, so from an eye height of 2.5 m its light can show up to about 14.6 + 3.3 = 17.9 NM away.",
+        "You see a light at the shorter of two distances: this geometric range, and its luminous range, how far its brightness carries. The chart gives the nominal range, for example 12M. A light 49 m high with a 12M range shows at about 12 NM in clear weather, not 17.9 NM. When a strong light first appears over the horizon, its rising, you are about at its geometric range: with its bearing, that gives a rough fix. Heights of lights on the chart are measured above high water.",
+        "To pass a headland or a danger safely, first decide your passing distance, for example 1 NM. Draw a circle of that radius around the danger and plan your track to touch the outside of the circle. On the way, check your distance off with the radar range, with a bearing and the chart, or with a clearing bearing.",
+        "A clearing bearing is a bearing of a charted object that keeps you clear of a danger. Draw the line from the object past the edge of the danger and read its bearing, for example 040° T. Then write which side is safe: “not less than 040°”. Take the object’s bearing often; while it stays on the safe side, you are clear of the danger.",
+        "You can find your distance off from a single object with no chart work, by doubling the angle on the bow. Hold a steady course and note the object’s angle from the bow and the log. When the angle has doubled, your distance from the object equals the distance you have run. A common case is 45°, then 90° abeam: at 6 knots, if the angle goes from 45° to 90° in 30 minutes, you ran 3 NM, so you pass 3 NM off. Current makes the answer less accurate."
+      ],
+      "observe": [
+        "Estimate your height of eye in the cockpit and work out your distance to the horizon.",
+        "Find a light on your local chart and work out where you should first see it."
+      ],
+      "mistake": "Expecting to see a light at its geometric range when its luminous range is shorter, or the other way round.",
+      "quiz": [
+        {
+          "prompt": "Your eye is 4 m above the water. About how far is your horizon?",
+          "options": [
+            "About 2 NM",
+            "About 4.2 NM",
+            "About 8.3 NM"
+          ],
+          "explanation": "√4 = 2, and 2.08 × 2 ≈ 4.2 NM."
+        },
+        {
+          "prompt": "A headland light bears 45° on your bow. At 5 knots it is abeam (90°) 36 minutes later. How far off are you?",
+          "options": [
+            "3 NM",
+            "5 NM",
+            "1.5 NM"
+          ],
+          "explanation": "The angle doubled, so the distance off equals the distance run: 5 kn × 0.6 h = 3 NM."
+        },
+        {
+          "prompt": "A clearing bearing is marked “not less than 040°”. The object now bears 035°. What does it mean?",
+          "options": [
+            "You are clear of the danger",
+            "You are on the dangerous side and must turn away",
+            "The compass is wrong"
+          ],
+          "explanation": "The bearing is less than 040°, so you are on the danger side of the clearing line."
+        }
+      ],
+      "transfer": "Practise chart work on a real paper chart with dividers and a plotter, and check every calculation with an instructor. The examples here are simplified."
+    },
+    "sail-67": {
+      "title": "Allow for current and leeway",
+      "concepts": [
+        "Lesson {lesson:sail-39} showed that the boat moves through the water while the water itself moves. To reach a point you must steer a course that cancels both the current and leeway, the sideways slip the wind causes. The chart work for this is the course-to-steer triangle.",
+        "Leeway pushes the boat downwind of where it points. It is largest close-hauled in strong wind, often 5° or more, and small on a run. Estimate it from the angle between your wake and the centreline. To correct it, steer into the wind by the leeway angle: to make good 090° T with the wind from the north and 5° of leeway, steer 085° T.",
+        "To draw the course-to-steer triangle for one hour:\n1. Draw the track you want from your position A toward the destination B.\n2. From A draw the current for one hour: its set (direction) and drift (speed), for example 090° at 2 knots.\n3. From the end of the current line, open the dividers to your speed through the water, for example 5 knots, and mark where they cut the track line.\n4. The line from the end of the current to that mark is the course to steer. The distance from A to the mark is your speed over the ground.",
+        "Worked example: you want to make good 000° T, the current sets 090° at 2 knots and you sail at 5 knots. The triangle gives a course to steer of about 336° T, aimed 24° up into the current, and a speed over the ground of about 4.6 knots. A 12 NM leg then takes 12 ÷ 4.6 ≈ 2.6 hours, about 2 hours 37 minutes.",
+        "The same triangle works backwards to find your estimated position. If you steer 000° T at 5 knots for one hour and the current sets 090° at 2 knots, draw the water track 5 NM north, then add the current 2 NM east. Your EP is about 5.4 NM away, on a track of about 022° T.",
+        "Work in this order: solve the current triangle in true, then correct for leeway, then turn the true course into a compass course with variation and deviation. Information on currents comes from the chart, pilot books and current atlases. Along the Israeli coast the current is usually weak and often sets north, but it varies, so check your progress against fixes and correct the course as you go."
+      ],
+      "observe": [
+        "Next time you sail close-hauled, estimate your leeway from the angle of the wake.",
+        "Draw a course-to-steer triangle for a short leg on your local chart."
+      ],
+      "mistake": "Steering straight at the destination and letting the current carry you sideways, or applying leeway the wrong way.",
+      "quiz": [
+        {
+          "prompt": "In the course-to-steer triangle, what do you draw from your position first?",
+          "options": [
+            "Your speed through the water",
+            "The current for one hour",
+            "The compass course"
+          ],
+          "explanation": "Draw the current first; then swing your boat speed from its end to cut the track line."
+        },
+        {
+          "prompt": "You want to make good 180° T. The wind is from the west and leeway is 6°. Which way do you correct?",
+          "options": [
+            "Steer 174° T",
+            "Steer 186° T, toward the wind",
+            "Steer 180° T; leeway does not matter"
+          ],
+          "explanation": "With the wind from the west, leeway pushes you east. Steer 6° toward the west: 186° T."
+        },
+        {
+          "prompt": "You make 4.5 knots over the ground on a 9 NM leg. How long will it take?",
+          "options": [
+            "1 hour",
+            "2 hours",
+            "2.5 hours"
+          ],
+          "explanation": "Time = distance ÷ speed over the ground: 9 ÷ 4.5 = 2 hours."
+        }
+      ],
+      "transfer": "Practise chart work on a real paper chart with dividers and a plotter, and check every calculation with an instructor. The examples here are simplified."
+    },
+    "sail-68": {
+      "title": "Time and tides",
+      "concepts": [
+        "Navigation and radio use UTC (Coordinated Universal Time), the same as Greenwich Mean Time. Local time differs by your time zone. Each zone covers 15° of longitude, one hour. Israel is at about 34° E, in the zone two hours ahead of UTC: Israel Standard Time is UTC+2, and in summer, Israel Daylight Time, it is UTC+3.",
+        "To convert, apply the zone difference. In summer, 14:00 Israeli time is 14:00 − 3 = 11:00 UTC. In winter, 08:00 UTC is 08:00 + 2 = 10:00 Israeli time. Weather forecasts, tide tables and radio warnings often give UTC, so check which time a table uses, and whether it includes summer time. Write the time zone in the logbook, for example “ship’s time UTC+3”.",
+        "Tides are caused mainly by the Moon, with help from the Sun. Most coasts have two high waters and two low waters a day: about 6 hours 12 minutes from high to low, so each tide is about 50 minutes later than the day before. Spring tides, with the biggest range, come just after new and full moon; neap tides, with the smallest range, come at half moon.",
+        "Tide tables give the times and heights of high and low water at a port, as heights above chart datum. The water depth at a place is the charted depth plus the height of the tide. Over a drying bank, the depth is the height of the tide minus the underlined drying height. Lesson {lesson:sail-38} adds the clearance under the keel.",
+        "To estimate the height between high and low water, use the rule of twelfths. In the six hours from low to high water the tide rises 1, 2, 3, 3, 2 and 1 twelfths of its range. Example: low water 0.3 m at 08:00, high water 1.5 m at 14:00, a range of 1.2 m. At 10:00, after two hours, it has risen 1 + 2 = 3 twelfths: 3/12 × 1.2 = 0.3 m. The height is 0.3 + 0.3 = 0.6 m.",
+        "In the eastern Mediterranean the tide is small, only a few tens of centimetres, and wind and pressure often change the water level more than the tide does. In the Gulf of Eilat the range is larger. Wherever you sail, the moving tide also makes tidal streams, the flood and the ebb, which are strongest halfway between high and low water."
+      ],
+      "observe": [
+        "Convert the time of the next marine forecast from UTC to local time.",
+        "Look up today’s high and low water for a port you know, and note the range."
+      ],
+      "mistake": "Forgetting to convert a table’s UTC times, or its summer time, into the time on the boat’s clock.",
+      "quiz": [
+        {
+          "prompt": "It is 16:00 Israeli summer time. What is the time in UTC?",
+          "options": [
+            "13:00 UTC",
+            "14:00 UTC",
+            "19:00 UTC"
+          ],
+          "explanation": "Israeli summer time is UTC+3, so subtract 3 hours."
+        },
+        {
+          "prompt": "Low water is 0.2 m at 06:00 and high water is 1.4 m at 12:00. What is the height at 09:00?",
+          "options": [
+            "0.5 m",
+            "0.8 m",
+            "1.1 m"
+          ],
+          "explanation": "After three hours the tide has risen 1 + 2 + 3 = 6 twelfths, half the 1.2 m range: 0.2 + 0.6 = 0.8 m."
+        },
+        {
+          "prompt": "When do spring tides, with the biggest range, occur?",
+          "options": [
+            "At half moon",
+            "Just after new and full moon",
+            "Only in spring"
+          ],
+          "explanation": "Springs come when the Sun and Moon pull in line, at new and full moon; the name has nothing to do with the season."
+        }
+      ],
+      "transfer": "Practise chart work on a real paper chart with dividers and a plotter, and check every calculation with an instructor. The examples here are simplified."
+    },
+    "sail-69": {
+      "title": "Sails and balance",
+      "concepts": [
+        "A cruising yacht carries several sails, each for a job:\n• Mainsail: behind the mast, on the boom. It is made smaller by reefing.\n• Genoa: a large headsail that overlaps the mast. Good in light and moderate wind.\n• Jib: a smaller headsail that does not reach past the mast. Easier to handle in more wind.\n• Storm jib: a very small headsail of heavy cloth, often bright orange, for gale-force wind.\n• Trysail: a small, strong storm sail set in place of the mainsail, without the boom.",
+        "Downwind, in light and moderate wind, two light sails add power:\n• Spinnaker: a large, balloon-shaped symmetric sail set on a pole. Fast, but it needs a trained crew.\n• Gennaker (asymmetric spinnaker): tied at the bow with no pole, easier for a small crew.\nTake them down early when the wind rises, because a big downwind sail can make the boat roll and broach (swing up into the wind out of control).",
+        "Choose the sails for the wind and the crew. Light wind: full main and genoa, perhaps a gennaker downwind. Moderate wind: working sails, reefed when the boat heels too far. Strong wind: a reefed main and a small headsail, or the headsail partly rolled away. A rolled-up genoa loses its shape, so in really strong wind a proper storm jib sets better. In a storm: storm jib and trysail, or the storm jib alone.",
+        "The sails push on the boat at one point, the centre of effort (CE). The water resists the hull and keel sideways at another, the centre of lateral resistance (CLR). The boat turns around the CLR. When the CE is behind the CLR, the boat tries to turn up into the wind: weather helm. When it is in front, the boat tries to bear away: lee helm.",
+        "A little weather helm is good: if you let go of the wheel, the boat turns into the wind and slows down by itself. Too much weather helm brakes the boat and can make it round up. Heeling moves the sails’ push out to leeward of the hull, which adds weather helm, so a boat that heels too far gets harder to steer. To reduce weather helm, ease or reef the mainsail, drop the traveller to leeward, and reduce heel.",
+        "Use the sails to help the rudder (see Lesson {lesson:sail-18}). The mainsail alone turns the bow toward the wind, and the headsail alone turns it away. To bear away in strong wind, ease the mainsail first; to head up, ease the headsail. With the right balance between the two sails the boat steers easily and the rudder hardly works."
+      ],
+      "observe": [
+        "Note how the helm feels on a close reach before and after you ease the mainsail.",
+        "Find the storm jib aboard and check how it is set."
+      ],
+      "mistake": "Keeping a big genoa or spinnaker up as the wind rises, then fighting heavy weather helm with the rudder.",
+      "quiz": [
+        {
+          "prompt": "The boat has heavy weather helm on a close reach. What helps most?",
+          "options": [
+            "Ease or reef the mainsail and reduce heel",
+            "Pull the mainsail in harder",
+            "Unroll more genoa"
+          ],
+          "explanation": "Weather helm comes mainly from the mainsail and from heel. Easing or reefing the main moves the push forward and reduces heel."
+        },
+        {
+          "prompt": "Which sail is set in a storm in place of the mainsail?",
+          "options": [
+            "Gennaker",
+            "Trysail",
+            "Genoa"
+          ],
+          "explanation": "A trysail is a small, strong storm sail set without the boom."
+        },
+        {
+          "prompt": "Why is a little weather helm good?",
+          "options": [
+            "The boat goes faster with the rudder hard over",
+            "If the helm is let go, the boat turns into the wind and slows down",
+            "It stops the boat from heeling"
+          ],
+          "explanation": "A boat that rounds up gently when released is safer than one that bears away and gathers speed."
+        }
+      ],
+      "transfer": "Check these points against your own boat, its papers and the current regulations, and go through them with an instructor before you skipper."
+    },
+    "sail-70": {
+      "title": "Stability",
+      "concepts": [
+        "Two forces keep a boat upright. Its weight pulls down through the centre of gravity (G), and the water pushes up through the centre of buoyancy (B), the centre of the underwater part of the hull. When the boat is upright, G and B are one above the other.",
+        "When the boat heels, the underwater shape changes and B moves toward the low side. Weight and buoyancy are then no longer in line, and together they turn the boat back upright. The horizontal distance between them is the righting lever (GZ). The longer the lever, the harder the boat pushes back.",
+        "The lower the centre of gravity, the more stable the boat. The heavy keel keeps G low on a sailing yacht. Weight added high up raises G and cuts stability: heavy gear on deck, a dinghy full of water on the foredeck, or many people standing up. Stow heavy things low and near the middle of the boat, and never load the boat beyond the limits in its papers.",
+        "A wide, flat boat such as a catamaran is very stable at small angles: it heels little. A deep-keeled monohull heels more easily but keeps pushing back to large angles, so it can recover from a knockdown. Every boat has an angle at which the righting lever reaches zero; beyond it, the boat goes on over and may stay upside down. A catamaran, once past its own limit, stays upside down.",
+        "Free surface is dangerous. When a tank is part full, or water lies in the bilge, the liquid runs to the low side as the boat heels. Its weight moves the same way and acts as if G were higher, so the boat loses stability. Keep tanks either full or empty when you can, pump the bilge dry, and treat water coming aboard as a stability problem as well as a flooding one.",
+        "Stability also depends on keeping water out. Close the hatches and the washboards (the boards that close the companionway) in rough weather, because once the boat heels far enough for water to pour in, it can fill and sink fast. A stiff boat, with G low, rolls back quickly; a tender boat heels easily and rolls slowly. A boat that suddenly feels tender may have water inside: check the bilge."
+      ],
+      "observe": [
+        "List the heavy items aboard and check that they are stowed low and secured.",
+        "Look at the boat’s papers for the maximum number of people and load."
+      ],
+      "mistake": "Carrying heavy gear or water on deck, or leaving water sloshing in the bilge, and expecting the boat to stay as stable.",
+      "quiz": [
+        {
+          "prompt": "What makes a sailing yacht more stable?",
+          "options": [
+            "A higher centre of gravity",
+            "A lower centre of gravity",
+            "Heavy gear stowed on deck"
+          ],
+          "explanation": "A low G gives a longer righting lever when the boat heels."
+        },
+        {
+          "prompt": "Why are part-full tanks and water in the bilge dangerous?",
+          "options": [
+            "They make the boat heavier at the bow only",
+            "The liquid runs to the low side and reduces stability",
+            "They raise the centre of buoyancy"
+          ],
+          "explanation": "This free-surface effect moves weight to the low side and acts as if the centre of gravity were higher."
+        },
+        {
+          "prompt": "When the boat heels, what moves toward the low side?",
+          "options": [
+            "The centre of buoyancy",
+            "The centre of gravity",
+            "The mast step"
+          ],
+          "explanation": "The underwater shape changes, so B moves to the low side; G stays where the weight is."
+        }
+      ],
+      "transfer": "Check these points against your own boat, its papers and the current regulations, and go through them with an instructor before you skipper."
+    },
+    "sail-71": {
+      "title": "Heavy weather at sea",
+      "concepts": [
+        "The best way to handle a gale is to avoid it. Read the forecast and the barometer (Lesson {lesson:sail-20}), and decide early: reach shelter before it arrives, or head for open water with plenty of sea room, well away from a lee shore. Do not try to enter a harbour whose entrance is breaking (Lesson {lesson:sail-56}).",
+        "Prepare the boat before the wind builds, while it is still easy to move about:\n• Stow and lash everything below; secure the dinghy and anything loose on deck.\n• Close the hatches and portholes; have the washboards ready.\n• Rig the jacklines; check the bilge pumps and the lifejackets.\n• Reef early, and have the storm jib ready.\n• Plot your position and write it in the log.",
+        "Prepare the crew too. Everyone wears a lifejacket and a harness, and clips on before leaving the cockpit. Cook a hot meal and fill flasks before it gets rough. Give seasickness tablets early, because they work only before the sickness starts. Dress warmly and keep dry: cold and tiredness lead to mistakes.",
+        "Run the boat to save the crew’s strength. Shorten the watches, let the off-watch crew rest below, and keep one person on lookout. Brief tasks before anyone moves: one hand for yourself and one for the boat. Avoid going forward if you can, and keep a clear plan for a person overboard.",
+        "Heaving to stops the boat in rough weather, to rest, reef or cook. Tack without releasing the headsail, so it is backed (held on the windward side). Ease the mainsail and lash the helm to turn the boat toward the wind. The two balance: the boat lies at about 50° to the wind, drifts slowly downwind and rides the waves quietly.",
+        "In a real storm there are three main tactics:\n• Keep sailing slowly to windward under storm sails, taking the waves just off the bow.\n• Run before the waves with very little sail, towing a drogue (a small sea anchor) from the stern to slow the boat, so it does not surf too fast and broach.\n• Lie to a sea anchor from the bow (Lesson {lesson:sail-59}).\nDo not lie beam-on to big breaking waves with no sail: a breaking wave can roll the boat over."
+      ],
+      "observe": [
+        "Walk through your boat and decide what you would stow and lash before a gale.",
+        "Practise heaving to in moderate wind with an instructor."
+      ],
+      "mistake": "Waiting until the wind is already strong before reefing, stowing and clipping on.",
+      "quiz": [
+        {
+          "prompt": "How do you heave to?",
+          "options": [
+            "Back the headsail, ease the main and lash the helm toward the wind",
+            "Drop all sails and lie beam-on",
+            "Run downwind at full speed"
+          ],
+          "explanation": "The backed headsail and the helm balance each other, and the boat lies quietly at about 50° to the wind."
+        },
+        {
+          "prompt": "Why tow a drogue from the stern when running before a storm?",
+          "options": [
+            "To speed the boat up",
+            "To slow the boat down so it does not surf and broach",
+            "To keep the bow into the wind"
+          ],
+          "explanation": "A drogue slows the boat and keeps its stern to the waves."
+        },
+        {
+          "prompt": "When should you take seasickness tablets?",
+          "options": [
+            "When you first feel sick",
+            "Before the rough weather starts",
+            "Only after vomiting"
+          ],
+          "explanation": "They work only if taken before the sickness starts."
+        }
+      ],
+      "transfer": "Check these points against your own boat, its papers and the current regulations, and go through them with an instructor before you skipper."
+    },
+    "sail-72": {
+      "title": "Watches and the logbook",
+      "concepts": [
+        "On a passage someone must be in charge on deck at all times. A watch system shares the work so the crew can rest. With a small crew, two watches of 3 or 4 hours on and off is common; at night and in cold or rough weather, shorter watches keep people alert. The skipper stays out of the system or takes a light watch, so they can be called at any time.",
+        "The skipper writes standing orders: when the watch must call the skipper. Typical reasons are a vessel getting closer on a steady bearing, a change in the wind or the weather, a falling barometer, any doubt about the position, a change of course or sail, any damage, and simply feeling unsure. Calling too often is never wrong.",
+        "At a watch change, the new watch comes up a little early so their eyes can get used to the dark, which takes about 20 minutes. The outgoing watch hands over: the course and position, vessels in sight, the weather and the barometer, the sails, anything to watch for, and the skipper’s orders. The watch is not handed over until the new person understands the situation.",
+        "The watch keeps an all-round lookout, by eye and with radar and AIS where fitted, and listens on VHF channel 16. It checks the course and position at least every hour and writes them in the log, watches the sails, the bilge and any chafe, and makes sure everyone on deck at night is clipped on.",
+        "At anchor you also need an anchor watch. As soon as you are anchored, take bearings of two or three fixed objects or note a transit, and set the GPS anchor alarm. Check them regularly, and more often when the wind rises or shifts. Know how far the boat can swing, show the anchor light at night, and in strong wind keep the engine ready and someone on watch.",
+        "The logbook is the boat’s official record. Write in pen, regularly, and never rub anything out: strike a mistake through with one line so it can still be read. Record the departure and arrival, the crew, the position, course, speed and log reading (Lesson {lesson:sail-23}), the weather and the barometer, the engine hours and fuel, and every event: sail changes, traffic, damage, injuries and radio messages. After an accident, the log is the evidence of what happened."
+      ],
+      "observe": [
+        "Write a set of standing orders for a night watch on a short passage.",
+        "Take bearings of two fixed objects the next time you anchor, and check them an hour later."
+      ],
+      "mistake": "Handing over a watch with a quick “all fine”, or anchoring for the night without bearings or an alarm.",
+      "quiz": [
+        {
+          "prompt": "When should the watch call the skipper?",
+          "options": [
+            "Only in an emergency",
+            "Whenever something on the standing orders happens, or when in any doubt",
+            "Only at the end of the watch"
+          ],
+          "explanation": "Standing orders list the reasons; any doubt is also a reason to call."
+        },
+        {
+          "prompt": "How do you correct a mistake in the logbook?",
+          "options": [
+            "Rub it out and rewrite it",
+            "Strike it through with one line so it can still be read",
+            "Tear out the page"
+          ],
+          "explanation": "The log is a record and evidence; nothing should be erased."
+        },
+        {
+          "prompt": "Right after anchoring, what should the anchor watch set up?",
+          "options": [
+            "Bearings of fixed objects or a transit, and the GPS anchor alarm",
+            "Nothing until the wind rises",
+            "Only the deck lights"
+          ],
+          "explanation": "With a reference set from the start, you can tell at once if the anchor drags."
+        }
+      ],
+      "transfer": "Check these points against your own boat, its papers and the current regulations, and go through them with an instructor before you skipper."
+    },
+    "sail-73": {
+      "title": "A skipper’s duties and the law",
+      "concepts": [
+        "The skipper is responsible for the safety of the boat and of everyone aboard, and for keeping the rules. Never skipper after drinking alcohol or taking drugs. Know what your licence allows: which boats, how far from shore, and whether you may carry passengers for pay.",
+        "You must go to the help of people in distress at sea when you can do so without serious danger to your own boat and crew. Answer a distress call, and if you cannot help, relay it. After a collision, stay to help the other vessel and give your boat’s name and port.",
+        "Carry the boat’s papers and keep them valid:\n• The boat’s licence or registration certificate.\n• The seaworthiness certificate, with its list of required equipment (Lesson {lesson:sail-58}).\n• The insurance policy.\n• The skipper’s licence.\nA boat must be registered, and its name and registration number marked on the hull as the rules require.",
+        "Check that the insurance matches how the boat is used. A private boat, a boat rented out without a skipper (bareboat charter) and a boat carrying passengers for pay each need their own licence and insurance. A bareboat charter must be licensed and insured for hire, and carrying passengers for pay needs a special licence for both the boat and the skipper.",
+        "Before sailing, read the Notices to Mariners for your area. They warn of temporary changes: firing practice, works, moved buoys, unlit marks and closed areas. Keep out of closed and restricted areas shown on the chart or in the notices, such as naval areas and the waters near ports, oil terminals and tankers. Keep well clear of vessels and buoys showing that divers are down (flag A, Lesson {lesson:sail-61}).",
+        "Protect the sea. Do not throw rubbish, food, oil, fuel or chemicals overboard. Use the marina’s pump-out for the toilet tank, and refuel with care so nothing spills. In a marine nature reserve, anchoring, fishing and collecting may be forbidden: anchor on sand, never on coral or seagrass. Report any accident, injury or serious damage to the maritime authority."
+      ],
+      "observe": [
+        "Check that your boat’s licence, seaworthiness certificate and insurance are valid and aboard.",
+        "Read the current Notices to Mariners for your sailing area."
+      ],
+      "mistake": "Assuming a private licence and private insurance cover chartering the boat out or taking paying passengers.",
+      "quiz": [
+        {
+          "prompt": "You hear a distress call. What must you do?",
+          "options": [
+            "Ignore it if you are not the closest boat",
+            "Go to help if you can do so safely, and relay the call if you cannot",
+            "Only write it in the log"
+          ],
+          "explanation": "Helping people in distress is a duty at sea, as far as you can without seriously endangering your own boat."
+        },
+        {
+          "prompt": "A friend wants to pay you to take a group out for the day. What applies?",
+          "options": [
+            "Your private licence covers it",
+            "Carrying passengers for pay needs a special licence for the boat and the skipper",
+            "It is allowed if they wear lifejackets"
+          ],
+          "explanation": "Passengers for hire need a commercial licence and matching insurance."
+        },
+        {
+          "prompt": "Where do you find temporary changes such as a moved buoy or a firing area?",
+          "options": [
+            "In the Notices to Mariners",
+            "Only on the original chart",
+            "In the boat’s logbook"
+          ],
+          "explanation": "Notices to Mariners publish changes and warnings; check them before you sail."
+        }
+      ],
+      "transfer": "Check these points against your own boat, its papers and the current regulations, and go through them with an instructor before you skipper.",
+      "localNotes": [
+        "A coastal skipper’s licence (Skipper 30) in Israel allows motor and sailing vessels in coastal waters, and boats of any power, but not carrying passengers for pay or international voyages.",
+        "In Israel, report accidents to the Israel Shipping and Ports Authority. Read its Notices to Mariners before sailing, and do not approach Israeli ports, oil and chemical tankers, or closed naval areas except as the regulations allow."
+      ]
     }
   }
 }

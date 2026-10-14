@@ -3255,4 +3255,896 @@ export default {
       }
     }
   },
+  "decision-sail-63": {
+    "title": "Placez des positions sur la carte",
+    "brief": "Notez des positions, mesurez sur la bonne échelle et lisez les symboles de la carte pour préparer une navigation.",
+    "limitations": "Cet exercice évalue la lecture de carte à partir des informations fournies. Entraînez-vous sur une vraie carte avec un compas à pointes sèches et une règle Cras.",
+    "stages": {
+      "grid": {
+        "title": "Notez la position",
+        "brief": "Vous lisez votre position sur la carte pour l’annoncer à la radio.",
+        "goal": "Choisissez la bonne façon de l’écrire et de mesurer.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "chart": {
+            "label": "Sur la carte",
+            "text": "Le bateau est par 32 degrés 05 minutes nord et 34 degrés 46 minutes est. La carte est une carte Mercator."
+          }
+        },
+        "fields": {
+          "write": {
+            "label": "Comment l’écrivez-vous ?",
+            "options": {
+              "latlon": "32°05′ N, 034°46′ E",
+              "lonlat": "034°46′ N, 32°05′ E",
+              "degrees": "32° N, 34° E"
+            }
+          },
+          "scale": {
+            "label": "Où mesurez-vous les distances ?",
+            "options": {
+              "lat": "Sur l’échelle des latitudes, sur le bord, à hauteur du bateau",
+              "lon": "Sur l’échelle des longitudes, en haut",
+              "any": "Sur n’importe quelle échelle de la carte"
+            }
+          }
+        }
+      },
+      "from": {
+        "title": "Position par rapport à un phare",
+        "brief": "Le phare est votre repère.",
+        "goal": "Choisissez où se trouve le bateau.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "report": {
+            "label": "Annonce",
+            "text": "« Le bateau est au 180° du phare, à 3 NM. »"
+          }
+        },
+        "fields": {
+          "where": {
+            "label": "Où est le bateau ?",
+            "options": {
+              "south": "À 3 NM au sud du phare",
+              "north": "À 3 NM au nord du phare",
+              "west": "À 3 NM à l’ouest du phare"
+            }
+          }
+        }
+      },
+      "symbols": {
+        "title": "Lisez la carte",
+        "brief": "Vous prévoyez de mouiller et de passer un feu en chemin.",
+        "goal": "Lisez les symboles.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "light": {
+            "label": "Feu",
+            "text": "La carte indique « Fl(2) 6s 12m 9M »."
+          },
+          "bottom": {
+            "label": "Fond",
+            "text": "Le mouillage est marqué « S » et les roches voisines « R »."
+          }
+        },
+        "fields": {
+          "range": {
+            "label": "Portée nominale du feu",
+            "options": {}
+          },
+          "anchor": {
+            "label": "Où mouillez-vous ?",
+            "options": {
+              "sand": "Sur le sable (S)",
+              "rock": "Sur la roche (R)",
+              "either": "N’importe où ; la nature du fond n’a pas d’importance"
+            }
+          },
+          "update": {
+            "label": "Comment savez-vous que la carte est à jour ?",
+            "options": {
+              "notices": "Comparer les corrections avec les derniers avis aux navigateurs",
+              "date": "La date d’impression suffit",
+              "never": "Les cartes ne changent jamais"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-64": {
+    "title": "Convertissez les caps du compas",
+    "brief": "Passez des caps et relèvements compas aux valeurs magnétiques et vraies, et vérifiez le compas sur un alignement.",
+    "limitations": "Cet exercice évalue seulement le calcul au compas. La vraie déviation doit être mesurée sur votre propre bateau.",
+    "stages": {
+      "variation": {
+        "title": "Mettez à jour la déclinaison",
+        "brief": "La rose de la carte indique « 3°30′ E 2015 (8′ E) ». Nous sommes en 2025.",
+        "goal": "Calculez la déclinaison de cette année.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "rose": {
+            "label": "Rose de la carte",
+            "text": "Déclinaison 3°30′ E en 2015, qui augmente de 8′ E par an."
+          }
+        },
+        "fields": {
+          "var": {
+            "label": "Déclinaison de cette année, arrondie au degré Est le plus proche",
+            "options": {}
+          }
+        }
+      },
+      "course": {
+        "title": "Du cap vrai au cap compas",
+        "brief": "Vous devez faire une route de 213° T. La déclinaison est de 5° E. La courbe de déviation donne 2° W à ce cap.",
+        "goal": "Calculez le cap compas.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "card": {
+            "label": "Courbe de déviation",
+            "text": "Aux caps proches de 210°, la déviation est de 2° W."
+          }
+        },
+        "fields": {
+          "magnetic": {
+            "label": "Cap magnétique",
+            "options": {}
+          },
+          "compass": {
+            "label": "Cap compas à barrer",
+            "options": {}
+          }
+        }
+      },
+      "transit": {
+        "title": "Vérifiez sur un alignement",
+        "brief": "Vous croisez un alignement porté sur la carte au 076° T. La déclinaison est de 5° E.",
+        "goal": "Calculez la déviation.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "reading": {
+            "label": "Compas",
+            "text": "Quand les deux marques s’alignent, le compas de route indique 074°."
+          }
+        },
+        "fields": {
+          "dev": {
+            "label": "Déviation à ce cap",
+            "options": {
+              "3w": "3° W",
+              "3e": "3° E",
+              "2e": "2° E"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-65": {
+    "title": "Faites le point",
+    "brief": "Choisissez des objets pour un bon point, prenez les relèvements dans le bon ordre et décidez quoi faire d’un chapeau.",
+    "limitations": "Cet exercice évalue des choix de tracé à partir des observations fournies. Entraînez-vous à prendre de vrais relèvements avec un compas de relèvement.",
+    "stages": {
+      "choose": {
+        "title": "Choisissez les objets",
+        "brief": "Quatre objets portés sur la carte sont en vue.",
+        "goal": "Choisissez les trois meilleurs pour un point.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "objects": {
+            "label": "Objets",
+            "text": "Un phare devant, un clocher par le travers, un mât radio à seulement 10° du phare, et un cap derrière."
+          }
+        },
+        "fields": {
+          "pick": {
+            "label": "Utiliser",
+            "options": {
+              "light": "Le phare devant",
+              "church": "Le clocher par le travers",
+              "headland": "Le cap derrière",
+              "mast": "Le mât radio à 10° du phare"
+            }
+          }
+        }
+      },
+      "order": {
+        "title": "Prenez les relèvements",
+        "brief": "Vous prenez les trois relèvements l’un après l’autre.",
+        "goal": "Choisissez celui à prendre en dernier.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "speed": {
+            "label": "Bateau",
+            "text": "Vous faites 6 nœuds à cap constant."
+          }
+        },
+        "fields": {
+          "last": {
+            "label": "Quel relèvement en dernier ?",
+            "options": {
+              "abeam": "Le clocher par le travers",
+              "ahead": "Le phare devant",
+              "astern": "Le cap derrière"
+            }
+          }
+        }
+      },
+      "hat": {
+        "title": "Tracez le point",
+        "brief": "Les trois lignes forment un petit triangle. Un récif se trouve à l’est.",
+        "goal": "Choisissez votre position et la vérification suivante.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "triangle": {
+            "label": "Chapeau",
+            "text": "Le triangle mesure 0,2 NM ; son coin est est le plus proche du récif."
+          }
+        },
+        "fields": {
+          "use": {
+            "label": "Position à retenir",
+            "options": {
+              "danger": "Le coin le plus proche du récif",
+              "centre": "Le centre",
+              "far": "Le coin le plus éloigné du récif"
+            }
+          },
+          "next": {
+            "label": "Ensuite",
+            "options": {
+              "log": "Noter l’heure, la lecture du loch et le point dans le livre de bord",
+              "gps": "Le comparer avec le GPS",
+              "ignore": "Arrêter de vérifier ; le point est exact"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-66": {
+    "title": "Doublez le cap",
+    "brief": "Calculez où un feu apparaîtra, prévoyez une distance de passage et vérifiez-la par l’angle sur l’avant.",
+    "limitations": "Cet exercice évalue la préparation d’une navigation avec des chiffres fournis. La visibilité réelle, la réfraction et le courant changent les réponses.",
+    "stages": {
+      "rise": {
+        "title": "Quand le feu apparaîtra-t-il ?",
+        "brief": "Vous approchez de la côte de nuit.",
+        "goal": "Calculez les distances.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "light": {
+            "label": "Feu",
+            "text": "Le phare fait 49 m de haut, avec une portée nominale de 20M."
+          },
+          "eye": {
+            "label": "Vous",
+            "text": "Votre œil est à 2,5 m au-dessus de l’eau."
+          }
+        },
+        "fields": {
+          "geo": {
+            "label": "Distance à laquelle le feu peut apparaître au-dessus de l’horizon (2,08 × (√49 + √2,5))",
+            "options": {}
+          }
+        }
+      },
+      "clear": {
+        "title": "Préparez le relèvement de sécurité",
+        "brief": "Un récif s’avance depuis le cap. Vous voulez rester à l’écart.",
+        "goal": "Choisissez comment rester à l’écart.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "line": {
+            "label": "Carte",
+            "text": "La ligne qui part du phare et passe par le bord extérieur du récif est au 040° T. Les eaux saines sont là où le relèvement est supérieur à 040°."
+          }
+        },
+        "fields": {
+          "rule": {
+            "label": "Qu’écrivez-vous sur la carte ?",
+            "options": {
+              "nlt": "Pas moins de 040°",
+              "nmt": "Pas plus de 040°",
+              "exact": "Exactement 040°"
+            }
+          },
+          "reading": {
+            "label": "Le phare relève maintenant au 036° T. Que faites-vous ?",
+            "options": {
+              "away": "S’écarter du récif jusqu’à ce que le relèvement dépasse 040°",
+              "hold": "Garder le cap",
+              "closer": "Venir vers le récif"
+            }
+          }
+        }
+      },
+      "double": {
+        "title": "Vérifiez la distance",
+        "brief": "Vous naviguez à 5 nœuds à cap constant.",
+        "goal": "Calculez votre distance au phare.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "angles": {
+            "label": "Angles",
+            "text": "Le phare est à 45° sur l’avant à 21:00 et par le travers (90°) à 21:36."
+          }
+        },
+        "fields": {
+          "off": {
+            "label": "Distance au phare quand il est par le travers",
+            "options": {}
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-67": {
+    "title": "Tenez compte du courant et de la dérive",
+    "brief": "Résolvez le triangle du cap à suivre, corrigez la dérive et calculez la durée de la traversée.",
+    "limitations": "Cet exercice évalue un tracé de vecteurs avec un courant constant et fourni. Les vrais courants changent selon l’heure et le lieu.",
+    "stages": {
+      "triangle": {
+        "title": "Tracez le triangle",
+        "brief": "Vous voulez faire une route de 000° T vers un port situé 12 NM au nord.",
+        "goal": "Calculez le cap à suivre.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "current": {
+            "label": "Courant",
+            "text": "Le courant porte au 090° à 2 nœuds."
+          },
+          "boat": {
+            "label": "Bateau",
+            "text": "Vous faites 5 nœuds surface."
+          }
+        },
+        "fields": {
+          "steer": {
+            "label": "Cap à suivre (vrai)",
+            "options": {}
+          },
+          "sog": {
+            "label": "Vitesse fond",
+            "options": {}
+          }
+        }
+      },
+      "leeway": {
+        "title": "Corrigez la dérive",
+        "brief": "Le vent vient de l’ouest et vous estimez la dérive à 4°.",
+        "goal": "Choisissez le cap corrigé.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "wind": {
+            "label": "Vent",
+            "text": "Vent d’ouest ; le bateau glisse vers l’est."
+          }
+        },
+        "fields": {
+          "final": {
+            "label": "Cap à suivre après la dérive (vrai)",
+            "options": {}
+          }
+        }
+      },
+      "time": {
+        "title": "Calculez la durée",
+        "brief": "Vous partez à 10:00.",
+        "goal": "Calculez la durée de la traversée.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "leg": {
+            "label": "Étape",
+            "text": "12 NM à la vitesse fond que vous avez trouvée."
+          }
+        },
+        "fields": {
+          "hours": {
+            "label": "Durée de la traversée",
+            "options": {}
+          },
+          "check": {
+            "label": "En chemin",
+            "options": {
+              "fix": "Faire régulièrement le point et corriger le cap",
+              "trust": "Faire confiance au triangle sans vérifier",
+              "straight": "Barrer droit sur le port"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-68": {
+    "title": "Préparez avec l’heure et la marée",
+    "brief": "Convertissez les heures des prévisions, choisissez une fenêtre de marée et estimez la hauteur d’eau avec la règle des douzièmes.",
+    "limitations": "Cet exercice évalue des calculs d’heure et de marée avec des annuaires fictifs. Utilisez les annuaires officiels et gardez une marge de sécurité.",
+    "stages": {
+      "time": {
+        "title": "Convertissez la prévision",
+        "brief": "La prévision marine annonce une bascule du vent à 12:00 UTC. C’est l’été en Israël.",
+        "goal": "Convertissez l’heure.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "zone": {
+            "label": "Fuseau horaire",
+            "text": "L’heure d’été israélienne est UTC+3."
+          }
+        },
+        "fields": {
+          "local": {
+            "label": "Heure locale de la bascule du vent",
+            "options": {}
+          }
+        }
+      },
+      "height": {
+        "title": "Hauteur de la marée",
+        "brief": "Vous devez franchir un banc dans le golfe d’Eilat.",
+        "goal": "Estimez la hauteur de la marée.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "table": {
+            "label": "Annuaire des marées",
+            "text": "Basse mer 0,3 m à 08:00, pleine mer 1,5 m à 14:00."
+          }
+        },
+        "fields": {
+          "h10": {
+            "label": "Hauteur de marée à 10:00",
+            "options": {}
+          },
+          "h11": {
+            "label": "Hauteur de marée à 11:00",
+            "options": {}
+          }
+        }
+      },
+      "depth": {
+        "title": "Profondeur sur le banc",
+        "brief": "Le banc est porté sur la carte avec une hauteur qui découvre de 0,2 m (chiffre souligné).",
+        "goal": "Calculez la profondeur.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "crossing": {
+            "label": "Plan",
+            "text": "Vous prévoyez de passer à 11:00. Votre tirant d’eau est de 1,8 m."
+          }
+        },
+        "fields": {
+          "depth": {
+            "label": "Profondeur sur le banc à 11:00",
+            "options": {}
+          },
+          "go": {
+            "label": "Pouvez-vous passer ?",
+            "options": {
+              "no": "Non ; la profondeur est inférieure au tirant d’eau",
+              "yes": "Oui ; la marée monte"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-69": {
+    "title": "Choisissez les voiles",
+    "brief": "Choisissez la voilure selon la prévision et corrigez la barre ardente en équilibrant les voiles.",
+    "limitations": "Cet exercice évalue le choix des voiles à partir des rapports fournis. Entraînez-vous au port à établir les voiles de tempête avec un moniteur.",
+    "stages": {
+      "light": {
+        "title": "Un matin de petit temps",
+        "brief": "La prévision annonce 6 à 8 nœuds d’ouest, et vous naviguez au portant.",
+        "goal": "Choisissez la voilure.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "crew": {
+            "label": "Équipage",
+            "text": "Deux équipiers expérimentés et vous."
+          }
+        },
+        "fields": {
+          "plan": {
+            "label": "Voilure",
+            "options": {
+              "gennaker": "Grand-voile haute et gennaker",
+              "storm": "Tourmentin et voile de cape",
+              "reefed": "Deux ris et le foc"
+            }
+          }
+        }
+      },
+      "helm": {
+        "title": "Barre lourde",
+        "brief": "À midi, le vent souffle à 20 nœuds au bon plein. Le bateau gîte beaucoup et la barre tire fort vers le vent.",
+        "goal": "Choisissez quoi faire.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "feel": {
+            "label": "À la barre",
+            "text": "Le safran est très braqué rien que pour tenir le cap."
+          }
+        },
+        "fields": {
+          "fix": {
+            "label": "À faire",
+            "options": {
+              "reef": "Prendre un ris dans la grand-voile",
+              "traveler": "Descendre le chariot sous le vent",
+              "genoa": "Rouler une partie du génois pour garder l’équilibre avec la grand-voile arisée",
+              "harder": "Border davantage l’écoute de grand-voile"
+            }
+          }
+        }
+      },
+      "storm": {
+        "title": "Avis de coup de vent",
+        "brief": "Un coup de vent est annoncé pour la nuit et vous ne pouvez pas atteindre d’abri.",
+        "goal": "Choisissez la voilure de tempête.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "aboard": {
+            "label": "Voiles à bord",
+            "text": "Grand-voile à trois ris, génois sur enrouleur, tourmentin, voile de cape."
+          }
+        },
+        "fields": {
+          "plan": {
+            "label": "Voilure pour le coup de vent",
+            "options": {
+              "storm": "Tourmentin et voile de cape",
+              "genoa": "Un tiers du génois déroulé et grand-voile haute",
+              "none": "Aucune voile, travers aux vagues"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-70": {
+    "title": "Gardez le bateau stable",
+    "brief": "Rangez la charge, traitez l’eau libre à bord et jugez quand le bateau est devenu mou.",
+    "limitations": "Cet exercice évalue seulement le raisonnement sur la stabilité. Les données de stabilité et les limites de charge de votre bateau figurent dans ses papiers.",
+    "stages": {
+      "stow": {
+        "title": "Rangez la charge",
+        "brief": "Vous chargez le bateau pour une semaine de croisière.",
+        "goal": "Choisissez où mettre chaque chose.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "load": {
+            "label": "Charge",
+            "text": "Une ancre et une chaîne de rechange, 100 litres d’eau en bidons, une annexe gonflée avec son moteur hors-bord."
+          }
+        },
+        "fields": {
+          "stow": {
+            "label": "À faire",
+            "options": {
+              "low": "Ranger l’ancre, la chaîne et l’eau en bas et près du milieu",
+              "dinghy": "Remorquer ou dégonfler l’annexe plutôt que de la porter gonflée sur la plage avant",
+              "deck": "Saisir les bidons d’eau sur le rouf"
+            }
+          }
+        }
+      },
+      "free": {
+        "title": "De l’eau à l’intérieur",
+        "brief": "Par mer agitée, le bateau paraît soudain mou et roule lentement.",
+        "goal": "Choisissez quoi faire.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "bilge": {
+            "label": "Fonds",
+            "text": "Vous trouvez 20 cm d’eau qui clapote dans les fonds, et le réservoir de carburant est à moitié plein."
+          }
+        },
+        "fields": {
+          "act": {
+            "label": "À faire",
+            "options": {
+              "pump": "Pomper les fonds et trouver par où l’eau entre",
+              "close": "Fermer les panneaux et les panneaux de descente",
+              "ignore": "L’ignorer ; un peu d’eau n’a pas d’importance"
+            }
+          }
+        }
+      },
+      "limit": {
+        "title": "Jusqu’où peut-il gîter ?",
+        "brief": "L’équipage demande si le voilier peut chavirer.",
+        "goal": "Choisissez la bonne réponse.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "boat": {
+            "label": "Bateau",
+            "text": "Un monocoque à quille profonde."
+          }
+        },
+        "fields": {
+          "answer": {
+            "label": "Qu’est-ce qui est vrai ?",
+            "options": {
+              "lever": "Le bras de levier de redressement augmente avec la gîte, puis retombe à zéro à un grand angle ; au-delà, le bateau chavire",
+              "never": "Un quillard ne peut jamais chavirer",
+              "cat": "Il est aussi stable qu’un catamaran à tous les angles"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-71": {
+    "title": "Tenez dans un coup de vent",
+    "brief": "Préparez le bateau et l’équipage au gros temps, mettez-vous à la cape et choisissez une tactique de tempête.",
+    "limitations": "Cet exercice évalue des décisions de gros temps à partir des rapports fournis. Entraînez-vous à la cape avec un moniteur par vent modéré.",
+    "stages": {
+      "prepare": {
+        "title": "Avant que le vent forcisse",
+        "brief": "Un coup de vent est annoncé dans six heures et le port sûr le plus proche est trop loin.",
+        "goal": "Choisissez les préparatifs.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "now": {
+            "label": "Maintenant",
+            "text": "Vent de 15 nœuds qui forcit ; l’équipage est reposé."
+          }
+        },
+        "fields": {
+          "do": {
+            "label": "À faire maintenant",
+            "options": {
+              "stow": "Ranger et saisir tout à l’intérieur et sur le pont",
+              "jacklines": "Installer les lignes de vie et faire mettre un harnais à chacun",
+              "food": "Cuisiner un repas chaud et remplir des thermos",
+              "reef": "Prendre un ris tôt et préparer le tourmentin",
+              "wait": "Attendre que le vent soit fort avant de faire quoi que ce soit"
+            }
+          }
+        }
+      },
+      "heave": {
+        "title": "Mettez-vous à la cape",
+        "brief": "Vous devez faire reposer l’équipage et prendre le troisième ris.",
+        "goal": "Choisissez comment arrêter le bateau.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "sails": {
+            "label": "Voiles",
+            "text": "La grand-voile arisée et le tourmentin sont établis."
+          }
+        },
+        "fields": {
+          "how": {
+            "label": "Comment vous mettez-vous à la cape ?",
+            "options": {
+              "back": "Virer en laissant le foc à contre, choquer la grand-voile et amarrer la barre pour faire remonter l’étrave au vent",
+              "drop": "Affaler toutes les voiles",
+              "run": "Abattre et fuir vite"
+            }
+          }
+        }
+      },
+      "tactic": {
+        "title": "Mer déferlante",
+        "brief": "Les vagues déferlent maintenant et le bateau surfe dangereusement au portant.",
+        "goal": "Choisissez la tactique.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "room": {
+            "label": "Eau à courir",
+            "text": "Vous avez 40 NM d’eau libre sous le vent."
+          }
+        },
+        "fields": {
+          "tactic": {
+            "label": "Tactique",
+            "options": {
+              "drogue": "Fuir à sec de toile ou sous tourmentin en remorquant un traînard à l’arrière",
+              "beam": "Affaler toutes les voiles et rester travers à la mer",
+              "fast": "Fuir vite avec toute la toile"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-72": {
+    "title": "Assurez le quart de nuit",
+    "brief": "Transmettez un quart, décidez quand appeler le chef de bord et organisez la veille au mouillage.",
+    "limitations": "Cet exercice évalue des décisions de quart à partir des rapports fournis.",
+    "stages": {
+      "handover": {
+        "title": "Prenez le quart",
+        "brief": "Il est 02:00 et vous montez prendre le quart.",
+        "goal": "Choisissez ce que la relève doit couvrir.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "deck": {
+            "label": "Sur le pont",
+            "text": "Le quart sortant dit « tout va bien » et commence à descendre."
+          }
+        },
+        "fields": {
+          "cover": {
+            "label": "Demander",
+            "options": {
+              "position": "Le cap et la position",
+              "traffic": "Les navires en vue",
+              "weather": "La météo et le baromètre",
+              "orders": "Les consignes du chef de bord",
+              "nothing": "Rien ; « tout va bien » suffit"
+            }
+          }
+        }
+      },
+      "call": {
+        "title": "Appeler le chef de bord ?",
+        "brief": "À 03:10, les feux d’un navire se rapprochent à relèvement constant.",
+        "goal": "Décidez.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "orders": {
+            "label": "Consignes permanentes",
+            "text": "Appeler le chef de bord pour tout navire qui se rapproche à relèvement constant, tout changement de temps ou tout doute."
+          }
+        },
+        "fields": {
+          "act": {
+            "label": "Que faites-vous ?",
+            "options": {
+              "call": "Appeler le chef de bord maintenant",
+              "wait": "Attendre qu’il soit très proche",
+              "log": "Seulement le noter dans le livre de bord"
+            }
+          }
+        }
+      },
+      "anchor": {
+        "title": "Mouillez pour la nuit",
+        "brief": "Vous mouillez dans une baie et le vent peut tourner après minuit.",
+        "goal": "Organisez la veille au mouillage.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "bay": {
+            "label": "Baie",
+            "text": "Un phare et une jetée sont visibles ; le GPS a une alarme de mouillage."
+          }
+        },
+        "fields": {
+          "set": {
+            "label": "Mettre en place",
+            "options": {
+              "bearings": "Prendre des relèvements du phare et de la jetée",
+              "alarm": "Régler l’alarme de mouillage du GPS",
+              "light": "Allumer le feu de mouillage",
+              "sleep": "Tout le monde dort ; une ancre ne chasse jamais"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-73": {
+    "title": "Agissez en chef de bord",
+    "brief": "Remplissez les devoirs du chef de bord : papiers, appel de détresse, avis aux navigateurs et environnement.",
+    "limitations": "Cet exercice évalue des devoirs généraux. Vérifiez la réglementation en vigueur dans votre pays avant de partir.",
+    "stages": {
+      "papers": {
+        "title": "Vérifiez les papiers",
+        "brief": "Avant une sortie côtière, vous vérifiez les papiers du bateau.",
+        "goal": "Choisissez ce qui doit être à bord et valide.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "folder": {
+            "label": "Pochette",
+            "text": "Licence, certificat de navigabilité, police d’assurance, votre permis, un vieux reçu de marina."
+          }
+        },
+        "fields": {
+          "papers": {
+            "label": "Doit être valide et à bord",
+            "options": {
+              "licence": "La licence du bateau",
+              "seaworthy": "Le certificat de navigabilité",
+              "insurance": "La police d’assurance",
+              "skipper": "Votre permis de chef de bord"
+            }
+          }
+        }
+      },
+      "distress": {
+        "title": "Un appel de détresse",
+        "brief": "En route, vous entendez un Mayday d’un voilier à 5 NM. La mer est modérée.",
+        "goal": "Choisissez vos actions.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "you": {
+            "label": "Votre bateau",
+            "text": "Vous êtes bien préparé et pouvez le rejoindre en une heure."
+          }
+        },
+        "fields": {
+          "act": {
+            "label": "À faire",
+            "options": {
+              "help": "Aller lui porter assistance si c’est sans danger",
+              "reply": "Répondre à l’appel en donnant votre position et le temps pour le rejoindre",
+              "log": "Le noter dans le livre de bord",
+              "ignore": "Continuer ; quelqu’un d’autre ira"
+            }
+          }
+        }
+      },
+      "rules": {
+        "title": "Préparez la journée",
+        "brief": "Des amis proposent de vous payer pour les emmener dans une réserve naturelle.",
+        "goal": "Choisissez ce qui est correct.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "notice": {
+            "label": "Avis aux navigateurs",
+            "text": "Exercices de tir demain dans une zone sur votre route."
+          },
+          "reserve": {
+            "label": "Réserve",
+            "text": "Le mouillage sur les herbiers marins est interdit dans la réserve."
+          }
+        },
+        "fields": {
+          "pay": {
+            "label": "Pouvez-vous les emmener contre paiement ?",
+            "options": {
+              "no": "Non ; transporter des passagers payants demande un permis spécial",
+              "yes": "Oui, avec un permis de plaisance"
+            }
+          },
+          "plan": {
+            "label": "Plan",
+            "options": {
+              "avoid": "Contourner la zone de tir",
+              "sand": "Mouiller seulement sur le sable",
+              "rubbish": "Rapporter tous les déchets au port",
+              "seagrass": "Mouiller sur les herbiers, parce que l’ancre y tient bien"
+            }
+          }
+        }
+      }
+    }
+  },
 };

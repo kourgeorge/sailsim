@@ -3255,4 +3255,896 @@ export default {
       }
     }
   },
+  "decision-sail-63": {
+    "title": "Sitúa posiciones en la carta",
+    "brief": "Escribe posiciones, mide en la escala correcta y lee los símbolos de la carta para planificar una travesía.",
+    "limitations": "Esto evalúa la lectura de la carta solo a partir de la información dada. Practica en una carta real con compás de puntas y transportador.",
+    "stages": {
+      "grid": {
+        "title": "Escribe la posición",
+        "brief": "Lees tu posición en la carta para comunicarla por radio.",
+        "goal": "Elige la forma correcta de escribirla y medirla.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "chart": {
+            "label": "En la carta",
+            "text": "El barco está a 32 grados 05 minutos norte y 34 grados 46 minutos este. La carta es una carta Mercator."
+          }
+        },
+        "fields": {
+          "write": {
+            "label": "¿Cómo la escribes?",
+            "options": {
+              "latlon": "32°05′ N, 034°46′ E",
+              "lonlat": "034°46′ N, 32°05′ E",
+              "degrees": "32° N, 34° E"
+            }
+          },
+          "scale": {
+            "label": "¿Dónde mides las distancias?",
+            "options": {
+              "lat": "En la escala de latitud del lateral, a la altura del barco",
+              "lon": "En la escala de longitud de arriba",
+              "any": "En cualquier escala de la carta"
+            }
+          }
+        }
+      },
+      "from": {
+        "title": "Posición desde un faro",
+        "brief": "El faro es tu referencia.",
+        "goal": "Elige dónde está el barco.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "report": {
+            "label": "Comunicación",
+            "text": "«El barco está a 180° desde el faro, 3 NM»."
+          }
+        },
+        "fields": {
+          "where": {
+            "label": "¿Dónde está el barco?",
+            "options": {
+              "south": "3 NM al sur del faro",
+              "north": "3 NM al norte del faro",
+              "west": "3 NM al oeste del faro"
+            }
+          }
+        }
+      },
+      "symbols": {
+        "title": "Lee la carta",
+        "brief": "Piensas fondear y pasar una luz por el camino.",
+        "goal": "Lee los símbolos.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "light": {
+            "label": "Luz",
+            "text": "La carta muestra «Fl(2) 6s 12m 9M»."
+          },
+          "bottom": {
+            "label": "Fondo",
+            "text": "El fondeadero está marcado «S» y las rocas cercanas «R»."
+          }
+        },
+        "fields": {
+          "range": {
+            "label": "Alcance nominal de la luz",
+            "options": {}
+          },
+          "anchor": {
+            "label": "¿Dónde fondeas?",
+            "options": {
+              "sand": "En la arena (S)",
+              "rock": "En la roca (R)",
+              "either": "En cualquiera; el fondo no importa"
+            }
+          },
+          "update": {
+            "label": "¿Cómo sabes que la carta está actualizada?",
+            "options": {
+              "notices": "Compruebo las correcciones con los últimos Avisos a los Navegantes",
+              "date": "Basta con la fecha de impresión",
+              "never": "Las cartas nunca cambian"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-64": {
+    "title": "Convierte el compás",
+    "brief": "Convierte rumbos y demoras entre compás, magnético y verdadero, y comprueba el compás en una enfilación.",
+    "limitations": "Esto evalúa solo la aritmética del compás. El desvío real debe medirse en tu propio barco.",
+    "stages": {
+      "variation": {
+        "title": "Actualiza la declinación",
+        "brief": "La rosa de la carta muestra «3°30′ E 2015 (8′ E)». Este año es 2025.",
+        "goal": "Calcula la declinación de este año.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "rose": {
+            "label": "Rosa de la carta",
+            "text": "Declinación 3°30′ E en 2015, que aumenta 8′ E cada año."
+          }
+        },
+        "fields": {
+          "var": {
+            "label": "Declinación de este año, redondeada al grado este más cercano",
+            "options": {}
+          }
+        }
+      },
+      "course": {
+        "title": "Del rumbo al compás",
+        "brief": "Debes hacer 213° V. La declinación es 5° E. La tablilla de desvíos da 2° W a este rumbo.",
+        "goal": "Calcula el rumbo de compás.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "card": {
+            "label": "Tablilla de desvíos",
+            "text": "A rumbos cercanos a 210°, el desvío es 2° W."
+          }
+        },
+        "fields": {
+          "magnetic": {
+            "label": "Rumbo magnético",
+            "options": {}
+          },
+          "compass": {
+            "label": "Rumbo de compás a gobernar",
+            "options": {}
+          }
+        }
+      },
+      "transit": {
+        "title": "Comprueba en una enfilación",
+        "brief": "Cruzas una enfilación que en la carta es 076° V. La declinación es 5° E.",
+        "goal": "Calcula el desvío.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "reading": {
+            "label": "Compás",
+            "text": "Cuando las dos marcas se ponen en línea, el compás de gobierno marca 074°."
+          }
+        },
+        "fields": {
+          "dev": {
+            "label": "Desvío a este rumbo",
+            "options": {
+              "3w": "3° W",
+              "3e": "3° E",
+              "2e": "2° E"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-65": {
+    "title": "Sitúa el barco",
+    "brief": "Elige objetos para una buena situación, toma las demoras en el orden correcto y decide qué hacer con un triángulo de error.",
+    "limitations": "Esto evalúa decisiones de trazado a partir de observaciones dadas. Practica tomando demoras reales con un compás de marcación de mano.",
+    "stages": {
+      "choose": {
+        "title": "Elige los objetos",
+        "brief": "Hay cuatro objetos de la carta a la vista.",
+        "goal": "Elige los tres mejores para una situación.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "objects": {
+            "label": "Objetos",
+            "text": "Un faro por la proa, una torre de iglesia de través, una antena de radio a solo 10° del faro y un cabo por la popa."
+          }
+        },
+        "fields": {
+          "pick": {
+            "label": "Usa",
+            "options": {
+              "light": "El faro por la proa",
+              "church": "La torre de iglesia de través",
+              "headland": "El cabo por la popa",
+              "mast": "La antena de radio a 10° del faro"
+            }
+          }
+        }
+      },
+      "order": {
+        "title": "Toma las demoras",
+        "brief": "Tomas las tres demoras una tras otra.",
+        "goal": "Elige cuál tomar al final.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "speed": {
+            "label": "Barco",
+            "text": "Vas a 6 nudos con un rumbo constante."
+          }
+        },
+        "fields": {
+          "last": {
+            "label": "¿Qué demora va al final?",
+            "options": {
+              "abeam": "La torre de iglesia de través",
+              "ahead": "El faro por la proa",
+              "astern": "El cabo por la popa"
+            }
+          }
+        }
+      },
+      "hat": {
+        "title": "Traza la situación",
+        "brief": "Las tres líneas forman un pequeño triángulo. Hay un arrecife al este.",
+        "goal": "Elige tu posición y la siguiente comprobación.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "triangle": {
+            "label": "Triángulo de error",
+            "text": "El triángulo mide 0,2 NM de lado a lado; su vértice este es el más cercano al arrecife."
+          }
+        },
+        "fields": {
+          "use": {
+            "label": "Posición que usas",
+            "options": {
+              "danger": "El vértice más cercano al arrecife",
+              "centre": "El centro",
+              "far": "El vértice más alejado del arrecife"
+            }
+          },
+          "next": {
+            "label": "Después",
+            "options": {
+              "log": "Anotar la hora, la lectura de la corredera y la situación en el cuaderno de bitácora",
+              "gps": "Compararla con el GPS",
+              "ignore": "Dejar de comprobar; la situación es exacta"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-66": {
+    "title": "Pasa el cabo",
+    "brief": "Calcula dónde aparecerá una luz, planifica una distancia de paso y compruébala con el ángulo por la proa.",
+    "limitations": "Esto evalúa la planificación de la travesía con cifras dadas. La visibilidad real, la refracción y la corriente cambian los resultados.",
+    "stages": {
+      "rise": {
+        "title": "¿Cuándo se verá la luz?",
+        "brief": "Te acercas a la costa de noche.",
+        "goal": "Calcula las distancias.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "light": {
+            "label": "Luz",
+            "text": "El faro tiene 49 m de altura y un alcance nominal de 20M."
+          },
+          "eye": {
+            "label": "Tú",
+            "text": "Tu ojo está a 2,5 m sobre el agua."
+          }
+        },
+        "fields": {
+          "geo": {
+            "label": "Distancia a la que la luz puede aparecer sobre el horizonte (2,08 × (√49 + √2,5))",
+            "options": {}
+          }
+        }
+      },
+      "clear": {
+        "title": "Planifica la demora de seguridad",
+        "brief": "Un arrecife sale del cabo. Quieres mantenerte alejado de él.",
+        "goal": "Elige cómo mantenerte alejado.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "line": {
+            "label": "Carta",
+            "text": "La línea desde el faro que pasa por el borde exterior del arrecife es 040° V. El agua segura está donde la demora es mayor que 040°."
+          }
+        },
+        "fields": {
+          "rule": {
+            "label": "¿Qué escribes en la carta?",
+            "options": {
+              "nlt": "No menos de 040°",
+              "nmt": "No más de 040°",
+              "exact": "Exactamente 040°"
+            }
+          },
+          "reading": {
+            "label": "El faro demora ahora 036° V. ¿Qué haces?",
+            "options": {
+              "away": "Me aparto del arrecife hasta que la demora pase de 040°",
+              "hold": "Mantengo el rumbo",
+              "closer": "Me acerco al arrecife"
+            }
+          }
+        }
+      },
+      "double": {
+        "title": "Comprueba la distancia de paso",
+        "brief": "Navegas a 5 nudos con un rumbo constante.",
+        "goal": "Calcula tu distancia al faro.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "angles": {
+            "label": "Ángulos",
+            "text": "El faro está a 45° por la proa a las 21:00 y de través (90°) a las 21:36."
+          }
+        },
+        "fields": {
+          "off": {
+            "label": "Distancia al faro cuando está de través",
+            "options": {}
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-67": {
+    "title": "Corrige la corriente y el abatimiento",
+    "brief": "Resuelve el triángulo del rumbo a gobernar, corrige el abatimiento y calcula el tiempo de travesía.",
+    "limitations": "Esto evalúa el trabajo con vectores en la carta con una corriente constante y dada. Las corrientes reales cambian con el tiempo y el lugar.",
+    "stages": {
+      "triangle": {
+        "title": "Dibuja el triángulo",
+        "brief": "Quieres hacer 000° V hacia un puerto 12 NM al norte.",
+        "goal": "Resuelve el rumbo a gobernar.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "current": {
+            "label": "Corriente",
+            "text": "La corriente lleva rumbo 090° a 2 nudos."
+          },
+          "boat": {
+            "label": "Barco",
+            "text": "Navegas a 5 nudos en el agua."
+          }
+        },
+        "fields": {
+          "steer": {
+            "label": "Rumbo a gobernar (verdadero)",
+            "options": {}
+          },
+          "sog": {
+            "label": "Velocidad sobre el fondo",
+            "options": {}
+          }
+        }
+      },
+      "leeway": {
+        "title": "Corrige el abatimiento",
+        "brief": "El viento es del oeste y estimas 4° de abatimiento.",
+        "goal": "Elige el rumbo corregido.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "wind": {
+            "label": "Viento",
+            "text": "Viento del oeste; el barco se desliza hacia el este."
+          }
+        },
+        "fields": {
+          "final": {
+            "label": "Rumbo a gobernar tras el abatimiento (verdadero)",
+            "options": {}
+          }
+        }
+      },
+      "time": {
+        "title": "Calcula el tiempo",
+        "brief": "Sales a las 10:00.",
+        "goal": "Calcula el tiempo de travesía.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "leg": {
+            "label": "Tramo",
+            "text": "12 NM a la velocidad sobre el fondo que has hallado."
+          }
+        },
+        "fields": {
+          "hours": {
+            "label": "Tiempo de travesía",
+            "options": {}
+          },
+          "check": {
+            "label": "Por el camino",
+            "options": {
+              "fix": "Obtengo la situación con regularidad y corrijo el rumbo",
+              "trust": "Me fío del triángulo y no compruebo nada",
+              "straight": "Gobierno directamente al puerto"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-68": {
+    "title": "Planifica con el reloj y la marea",
+    "brief": "Convierte las horas de la previsión, elige una ventana de marea y estima la altura con la regla de los doceavos.",
+    "limitations": "Esto evalúa la aritmética de mareas y horas con tablas ficticias. Usa tablas oficiales y deja un margen de seguridad.",
+    "stages": {
+      "time": {
+        "title": "Convierte la previsión",
+        "brief": "La previsión marítima avisa de un cambio de viento a las 12:00 UTC. Es verano en Israel.",
+        "goal": "Convierte la hora.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "zone": {
+            "label": "Huso horario",
+            "text": "La hora de verano de Israel es UTC+3."
+          }
+        },
+        "fields": {
+          "local": {
+            "label": "Hora local del cambio de viento",
+            "options": {}
+          }
+        }
+      },
+      "height": {
+        "title": "Altura de la marea",
+        "brief": "Necesitas cruzar un bajo en el golfo de Eilat.",
+        "goal": "Estima la altura de la marea.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "table": {
+            "label": "Tabla de mareas",
+            "text": "Bajamar de 0,3 m a las 08:00, pleamar de 1,5 m a las 14:00."
+          }
+        },
+        "fields": {
+          "h10": {
+            "label": "Altura de la marea a las 10:00",
+            "options": {}
+          },
+          "h11": {
+            "label": "Altura de la marea a las 11:00",
+            "options": {}
+          }
+        }
+      },
+      "depth": {
+        "title": "Profundidad sobre el bajo",
+        "brief": "El bajo aparece en la carta con una altura de secado de 0,2 m (subrayada).",
+        "goal": "Calcula la profundidad.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "crossing": {
+            "label": "Plan",
+            "text": "Piensas cruzar a las 11:00. Tu calado es de 1,8 m."
+          }
+        },
+        "fields": {
+          "depth": {
+            "label": "Profundidad sobre el bajo a las 11:00",
+            "options": {}
+          },
+          "go": {
+            "label": "¿Puedes cruzar?",
+            "options": {
+              "no": "No; la profundidad es menor que el calado",
+              "yes": "Sí; la marea está subiendo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-69": {
+    "title": "Elige las velas",
+    "brief": "Elige el plan de velas para la previsión y corrige el timón ardiente equilibrando las velas.",
+    "limitations": "Esto evalúa la elección de velas a partir de los informes dados. Practica izar las velas de tormenta en puerto con un instructor.",
+    "stages": {
+      "light": {
+        "title": "Una mañana de viento flojo",
+        "brief": "La previsión es de 6 a 8 nudos del oeste, y navegas en popa.",
+        "goal": "Elige el plan de velas.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "crew": {
+            "label": "Tripulación",
+            "text": "Dos tripulantes con experiencia y tú."
+          }
+        },
+        "fields": {
+          "plan": {
+            "label": "Plan de velas",
+            "options": {
+              "gennaker": "Mayor completa y el gennaker",
+              "storm": "Tormentín y vela de capa",
+              "reefed": "Dos rizos y el foque"
+            }
+          }
+        }
+      },
+      "helm": {
+        "title": "Timón duro",
+        "brief": "A mediodía el viento es de 20 nudos en un descuartelar. El barco escora mucho y el timón tira con fuerza hacia el viento.",
+        "goal": "Elige qué hacer.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "feel": {
+            "label": "Al timón",
+            "text": "El timón va muy metido solo para mantener el rumbo."
+          }
+        },
+        "fields": {
+          "fix": {
+            "label": "Haz",
+            "options": {
+              "reef": "Toma rizos en la mayor",
+              "traveler": "Baja el carro a sotavento",
+              "genoa": "Enrolla algo de génova para que siga equilibrada con la mayor rizada",
+              "harder": "Caza más la escota de la mayor"
+            }
+          }
+        }
+      },
+      "storm": {
+        "title": "Aviso de temporal",
+        "brief": "Se prevé un temporal para la noche y no puedes llegar a un refugio.",
+        "goal": "Elige el plan de velas de tormenta.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "aboard": {
+            "label": "Velas a bordo",
+            "text": "Mayor con tres rizos, génova enrollable, tormentín, vela de capa."
+          }
+        },
+        "fields": {
+          "plan": {
+            "label": "Plan de velas para el temporal",
+            "options": {
+              "storm": "Tormentín y vela de capa",
+              "genoa": "Un tercio de la génova desenrollado y la mayor completa",
+              "none": "Ninguna vela, atravesado a las olas"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-70": {
+    "title": "Mantén el barco estable",
+    "brief": "Estiba la carga, ocúpate del agua suelta y juzga cuándo el barco se ha vuelto blando.",
+    "limitations": "Esto evalúa solo el razonamiento sobre estabilidad. Los datos de estabilidad y los límites de carga de tu barco están en su documentación.",
+    "stages": {
+      "stow": {
+        "title": "Estiba la carga",
+        "brief": "Cargas el barco para una semana de crucero.",
+        "goal": "Elige dónde va cada cosa.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "load": {
+            "label": "Carga",
+            "text": "Ancla y cadena de repuesto, 100 litros de agua en garrafas, una auxiliar inflada con fueraborda."
+          }
+        },
+        "fields": {
+          "stow": {
+            "label": "Haz",
+            "options": {
+              "low": "Estiba el ancla, la cadena y el agua abajo y cerca del centro",
+              "dinghy": "Remolca o desinfla la auxiliar en lugar de llevarla inflada en la proa",
+              "deck": "Trinca las garrafas de agua sobre el techo de la cámara"
+            }
+          }
+        }
+      },
+      "free": {
+        "title": "Agua abajo",
+        "brief": "Con mal tiempo, el barco de repente se nota blando y se balancea despacio.",
+        "goal": "Elige qué hacer.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "bilge": {
+            "label": "Sentina",
+            "text": "Encuentras 20 cm de agua moviéndose en la sentina, y el tanque de combustible está a medias."
+          }
+        },
+        "fields": {
+          "act": {
+            "label": "Haz",
+            "options": {
+              "pump": "Achica la sentina y busca por dónde entra el agua",
+              "close": "Cierra las escotillas y las tablas de la entrada",
+              "ignore": "Ignóralo; un poco de agua no importa"
+            }
+          }
+        }
+      },
+      "limit": {
+        "title": "¿Cuánto puede escorar?",
+        "brief": "La tripulación pregunta si el velero puede volcar.",
+        "goal": "Elige la respuesta correcta.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "boat": {
+            "label": "Barco",
+            "text": "Un monocasco de quilla profunda."
+          }
+        },
+        "fields": {
+          "answer": {
+            "label": "¿Qué es cierto?",
+            "options": {
+              "lever": "El brazo adrizante crece con la escora y después baja a cero con un ángulo grande; más allá, el barco vuelca",
+              "never": "Un barco de quilla nunca puede volcar",
+              "cat": "Es tan estable como un catamarán a cualquier ángulo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-71": {
+    "title": "Aguanta un temporal",
+    "brief": "Prepara el barco y la tripulación para el mal tiempo, ponte al pairo y elige una táctica de temporal.",
+    "limitations": "Esto evalúa decisiones de mal tiempo a partir de los informes dados. Practica ponerte al pairo con un instructor y viento moderado.",
+    "stages": {
+      "prepare": {
+        "title": "Antes de que suba el viento",
+        "brief": "Se prevé un temporal dentro de seis horas y el puerto seguro más cercano está demasiado lejos.",
+        "goal": "Elige los preparativos.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "now": {
+            "label": "Ahora",
+            "text": "Viento de 15 nudos y subiendo; la tripulación está descansada."
+          }
+        },
+        "fields": {
+          "do": {
+            "label": "Haz ahora",
+            "options": {
+              "stow": "Estiba y trinca todo abajo y en cubierta",
+              "jacklines": "Monta las líneas de vida y que todos se pongan el arnés",
+              "food": "Cocina una comida caliente y llena los termos",
+              "reef": "Toma rizos pronto y ten listo el tormentín",
+              "wait": "Espera a que el viento sea fuerte antes de hacer nada"
+            }
+          }
+        }
+      },
+      "heave": {
+        "title": "Ponte al pairo",
+        "brief": "Necesitas que la tripulación descanse y tomar el tercer rizo.",
+        "goal": "Elige cómo detener el barco.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "sails": {
+            "label": "Velas",
+            "text": "Llevas izados la mayor con rizos y el tormentín."
+          }
+        },
+        "fields": {
+          "how": {
+            "label": "¿Cómo te pones al pairo?",
+            "options": {
+              "back": "Vira por avante dejando el foque acuartelado, larga la mayor y trinca el timón para llevar la proa hacia el viento",
+              "drop": "Arría todas las velas",
+              "run": "Arriba y corre deprisa"
+            }
+          }
+        }
+      },
+      "tactic": {
+        "title": "Mar rompiente",
+        "brief": "Las olas ya rompen y el barco surfea peligrosamente en popa.",
+        "goal": "Elige la táctica.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "room": {
+            "label": "Espacio en el mar",
+            "text": "Tienes 40 NM de aguas abiertas a sotavento."
+          }
+        },
+        "fields": {
+          "tactic": {
+            "label": "Táctica",
+            "options": {
+              "drogue": "Corre a palo seco o con el tormentín, remolcando un drogue por la popa",
+              "beam": "Arría todas las velas y quédate atravesado",
+              "fast": "Corre deprisa con todo el trapo"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-72": {
+    "title": "Lleva la guardia nocturna",
+    "brief": "Releva una guardia, decide cuándo llamar al patrón y organiza una guardia de fondeo.",
+    "limitations": "Esto evalúa decisiones de guardia a partir de los informes dados.",
+    "stages": {
+      "handover": {
+        "title": "Recibe la guardia",
+        "brief": "Son las 02:00 y subes a hacer la guardia.",
+        "goal": "Elige qué debe incluir el relevo.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "deck": {
+            "label": "En cubierta",
+            "text": "La guardia saliente dice «todo bien» y empieza a bajar."
+          }
+        },
+        "fields": {
+          "cover": {
+            "label": "Pregunta por",
+            "options": {
+              "position": "Rumbo y posición",
+              "traffic": "Buques a la vista",
+              "weather": "Tiempo y barómetro",
+              "orders": "Las órdenes del patrón",
+              "nothing": "Nada; «todo bien» basta"
+            }
+          }
+        }
+      },
+      "call": {
+        "title": "¿Llamar al patrón?",
+        "brief": "A las 03:10 las luces de un buque se acercan con demora constante.",
+        "goal": "Decide.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "orders": {
+            "label": "Órdenes permanentes",
+            "text": "Llama al patrón ante cualquier buque que se acerque con demora constante, cualquier cambio del tiempo o cualquier duda."
+          }
+        },
+        "fields": {
+          "act": {
+            "label": "¿Qué haces?",
+            "options": {
+              "call": "Llamo al patrón ahora",
+              "wait": "Espero a que esté muy cerca",
+              "log": "Solo lo anoto en el cuaderno"
+            }
+          }
+        }
+      },
+      "anchor": {
+        "title": "Fondea para la noche",
+        "brief": "Fondeas en una bahía y el viento puede rolar después de medianoche.",
+        "goal": "Organiza la guardia de fondeo.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "bay": {
+            "label": "Bahía",
+            "text": "Se ven un faro y un espigón; el GPS tiene alarma de fondeo."
+          }
+        },
+        "fields": {
+          "set": {
+            "label": "Prepara",
+            "options": {
+              "bearings": "Toma demoras del faro y del espigón",
+              "alarm": "Activa la alarma de fondeo del GPS",
+              "light": "Enciende la luz de fondeo",
+              "sleep": "Que duerman todos; las anclas nunca garrean"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-73": {
+    "title": "Actúa como patrón",
+    "brief": "Cumple los deberes del patrón: documentación, una llamada de socorro, avisos y medio ambiente.",
+    "limitations": "Esto evalúa deberes generales. Comprueba la normativa vigente de tu país antes de navegar.",
+    "stages": {
+      "papers": {
+        "title": "Revisa la documentación",
+        "brief": "Antes de una salida costera revisas la documentación del barco.",
+        "goal": "Elige lo que debe estar a bordo y en vigor.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "folder": {
+            "label": "Carpeta",
+            "text": "Licencia, certificado de navegabilidad, póliza de seguro, tu título, un recibo antiguo de la marina."
+          }
+        },
+        "fields": {
+          "papers": {
+            "label": "Debe estar en vigor y a bordo",
+            "options": {
+              "licence": "La licencia del barco",
+              "seaworthy": "El certificado de navegabilidad",
+              "insurance": "La póliza de seguro",
+              "skipper": "Tu título de patrón"
+            }
+          }
+        }
+      },
+      "distress": {
+        "title": "Una llamada de socorro",
+        "brief": "En travesía oyes un Mayday de un velero a 5 NM. La mar está moderada.",
+        "goal": "Elige qué haces.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "you": {
+            "label": "Tu barco",
+            "text": "Estás bien preparado y puedes llegar hasta él en una hora."
+          }
+        },
+        "fields": {
+          "act": {
+            "label": "Haz",
+            "options": {
+              "help": "Dirígete a ayudar si es seguro",
+              "reply": "Responde a la llamada y da tu posición y el tiempo que tardarás en llegar",
+              "log": "Anótalo en el cuaderno de bitácora",
+              "ignore": "Sigue tu camino; ya irá otro"
+            }
+          }
+        }
+      },
+      "rules": {
+        "title": "Planifica el día",
+        "brief": "Unos amigos se ofrecen a pagarte para que los lleves a una reserva natural.",
+        "goal": "Elige lo correcto.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "notice": {
+            "label": "Aviso a los Navegantes",
+            "text": "Mañana hay ejercicios de tiro en una zona de tu ruta."
+          },
+          "reserve": {
+            "label": "Reserva",
+            "text": "En la reserva está prohibido fondear sobre las praderas marinas."
+          }
+        },
+        "fields": {
+          "pay": {
+            "label": "¿Puedes llevarlos cobrando?",
+            "options": {
+              "no": "No; los pasajeros que pagan exigen una licencia especial",
+              "yes": "Sí, con una licencia privada"
+            }
+          },
+          "plan": {
+            "label": "Plan",
+            "options": {
+              "avoid": "Rodear la zona de tiro",
+              "sand": "Fondear solo en arena",
+              "rubbish": "Traer toda la basura de vuelta a puerto",
+              "seagrass": "Fondear sobre las praderas marinas porque agarran bien"
+            }
+          }
+        }
+      }
+    }
+  },
 };
