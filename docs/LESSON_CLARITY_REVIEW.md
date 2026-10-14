@@ -147,7 +147,8 @@ These show the target style. Each fixes one page without much extra length.
 - **Done:** reader support for lists. A page line starting with "• " is now shown as a bullet list, and a list always starts after the page headline.
 - **Done:** step 1, the ten lessons that scored 2, rewritten in English and translated into all five languages. Page counts and quiz answers did not change.
 - **Done:** the lesson 62 "Haven lighthouse" quiz question (see below).
-- **Next:** step 2, the "split dense pages" lessons, then step 3, the light edits.
+- **Done:** step 2, the nine "split dense pages" lessons (1, 2, 3, 12, 23, 28, 35, 37, 42). Most dense pages became short lists. Two pages were split in two: the flag A/B/O/Q page in lesson 35 and the spring-lines page in lesson 37. The flooding tip moved from the refuelling page (lesson 2) to the flooding page (lesson 42). All five translations are updated.
+- **Next:** step 3, the light edits.
 
 ## What a rewrite would take
 
