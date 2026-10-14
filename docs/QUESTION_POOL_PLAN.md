@@ -178,11 +178,51 @@ The 134 questions still not covered need topics the course did not teach. Decisi
 | A. Groundwork | Placement, numbering, levels, cross-reference tokens | — | Done |
 | B. Weather | Read a weather chart; Fronts and clouds; Wind and waves; Eastern Mediterranean weather (`sail-54`–`57`) | "Stay in control", after "Choose a weather limit" | Done |
 | C. Safety equipment | Safety gear aboard; Life raft and abandoning ship (`sail-58`, `59`) | "Before you leave", after "Safety before speed" | Done |
-| D. Ropes and knots | Ropes, knots and pulleys | After "Lines, winches, and loads" | Next |
-| E. Signal flags | Signal flags and flag etiquette | "Share the water", after "Lights, marks, and signals" | Planned |
-| F. Gear failures and towing | Steering failure, jammed furler, towing, drogues | "Respond and review" | Planned |
-| G. Israeli rules | To decide: a full lesson, or more "Local rules: Israel" notes | — | Open question |
+| D. Ropes and knots | Ropes, wire, knots and pulleys (`sail-60`) | "Before you leave", after "Lines, winches, and loads" | Done |
+| E. Signal flags | Signal flags and visiting other countries (`sail-61`) | "Share the water", after "Lights, marks, and signals" | Done |
+| F. Gear failures and towing | When gear fails, and towing (`sail-62`) | "Respond and review", after "Distress and urgent action" | Done |
+| G. Israeli rules | "Local rules: Israel" notes in the lessons they belong to | Lessons 01, 25, 34, 58 and the new flags lesson | Done |
+| H. Final check | Re-check every remaining question against the official picture booklet; update counts and docs | — | In progress |
 
 Translations for each step are written by one agent per language from an English source file and merged only if their structure matches the English exactly.
 
 Manual browser scripts in `scripts/check-*.mjs` still select lessons by position, so they may need their indexes updated after lessons are inserted before the lessons they test.
+
+## Remaining questions by step (2026-10-14)
+
+**D. Ropes, wire, knots and pulleys** (about 15 questions: 90, 99, 101, 105, 107, 108, 118, 119, 132, 148, 254, 266, 280, 300; tow-rope 76 is in F)
+- Rope materials: nylon stretches (mooring and anchor lines), polyester stretches little (sheets, halyards), polypropylene floats, aramid fibres such as Kevlar and Dyneema are the strongest for their size.
+- Mooring and tow lines need high breaking strength. One strong line beats two weak ones. Every knot or splice weakens a rope.
+- Care: rinse in fresh water, dry, and store out of the sun.
+- Wire: markings such as 6/12 mean 6 strands of 12 wires. Stiff 1×19 wire is for standing rigging and guardrails; flexible 7×19 is for running rigging.
+- The topping lift holds up the boom when the main is down.
+- Pulleys: the gain equals the number of rope parts at the moving block. Two double blocks with the rope leaving the moving block give 5:1, so 320 kg on 4 parts needs 80 kg.
+- A few essential knots: bowline, cleat hitch, clove hitch, figure-of-eight, round turn and two half hitches.
+- Figures: rope types, a wire cross-section, block-and-tackle counting, the knots.
+
+**E. Signal flags and visiting other countries** (about 12: 60, 63, 64, 65, 66, 67, 68, 152, 218, 273, 345, 354)
+- Single code flags: A (divers, keep well clear), B (dangerous cargo, keep clear), O (man overboard), Q (my vessel is healthy, I request free pratique), N over C (distress).
+- Entering another country: the host country's courtesy flag under the starboard spreader, the yellow Q flag under the port spreader until cleared, and your own ensign at the stern.
+- Some countries need a cruising permit, such as Turkey's transit log.
+- Figure: the flags themselves.
+
+**F. When gear fails, and towing** (about 8: 76, 79, 100, 146, 149, 159, 161, 285)
+- Emergency tiller: fit it on the rudder stock when the steering cable or wheel shaft fails.
+- Jammed furler: reduce the load and try again, or let the halyard go and drop the sail on deck.
+- Broken shroud: turn at once so the broken side is to leeward, and ease the load.
+- Towing another boat:
+  - Check the sea, the fuel and the strength of the tow points.
+  - Use a long, heavy, stretchy line (for example about 50 m) in rough water.
+  - After a sharp turn with a slack line, the towed boat sheers after you as the line comes tight.
+- Figures: emergency tiller, broken shroud, towing.
+
+**G. Israeli rules as "Local rules: Israel" notes** (about 14: 37, 38, 39, 40, 42, 45, 49, 50, 51, 152, 301, 312, 352, 353; plus partial 24 and 47)
+- Bathing beaches, diving areas and closed areas are no-go. A declared bathing beach extends 50 m on each side and 300 m out from the low-tide line. Fishing vessels at work may sail near the shore. Goes in lesson 25 (lookout).
+- National voyages up to 12 NM from shore; a "boat" is 7–24 m long; seaworthiness inspection every 24 months; the equipment and anchor-weight rules are in Israel Shipping and Ports Authority publications. Goes in lesson 58 (safety gear).
+- Returning from abroad: within 25 NM, report to RCC Haifa on channel 16 (the IMOT entry report). Goes in the flags lesson and lesson 34.
+- Throwing rubbish into the sea is forbidden at any distance. Goes in lesson 01.
+- Notes don't add quiz questions, so the lessons stay the same for learners outside Israel.
+
+**H. Final check**
+- Re-check every remaining question. Some may already be covered, such as 183 (harbour-entrance waves), 284 (pilot books) and 252 (seaworthiness certificate).
+- About 25 questions depend on the separate exam picture booklet (light, shape, flag and weather-chart pictures). With a copy of that booklet, those could be checked too.

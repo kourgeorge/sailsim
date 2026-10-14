@@ -52,6 +52,11 @@ export const safetyLessons = [
         region: 'israel',
         text: 'The Israeli boat operator licence material expects, for example, a life raft on a private yacht sailing 15 NM from shore, at least 4 red parachute rockets, and a fire blanket where there is open-flame cooking. Your boat’s seaworthiness certificate gives the exact list; check the current Israeli regulations.',
       },
+      {
+        page: 0,
+        region: 'israel',
+        text: 'Under Israeli rules a boat is a vessel 7 to 24 m long. On a national voyage, along the Israeli coast, it may sail up to 12 NM from shore. A private boat’s seaworthiness is inspected every 24 months. The required equipment, including the anchor weight for the boat’s size, is set by the Israel Shipping and Ports Authority safety equipment regulations, published by the Authority and on the Ministry of Transport website.',
+      },
     ],
   ),
   lesson(

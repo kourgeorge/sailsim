@@ -91,7 +91,10 @@
           "explanation": "On-water instruction and assessment are still needed. The simulator omits many physical and environmental demands."
         }
       ],
-      "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
+      "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",
+      "localNotes": [
+        "Israeli regulations forbid throwing any rubbish or food waste into the sea, at any distance from shore. Keep it aboard and bring it back to harbor."
+      ]
     },
     "sail-58": {
       "title": "Safety gear aboard",
@@ -138,7 +141,8 @@
       ],
       "transfer": "Learn your own boat’s equipment with an instructor: fit the harness, read the flare instructions, find the extinguishers and attend a sea-survival course with a real life raft.",
       "localNotes": [
-        "The Israeli boat operator licence material expects, for example, a life raft on a private yacht sailing 15 NM from shore, at least 4 red parachute rockets, and a fire blanket where there is open-flame cooking. Your boat’s seaworthiness certificate gives the exact list; check the current Israeli regulations."
+        "The Israeli boat operator licence material expects, for example, a life raft on a private yacht sailing 15 NM from shore, at least 4 red parachute rockets, and a fire blanket where there is open-flame cooking. Your boat’s seaworthiness certificate gives the exact list; check the current Israeli regulations.",
+        "Under Israeli rules a boat is a vessel 7 to 24 m long. On a national voyage, along the Israeli coast, it may sail up to 12 NM from shore. A private boat’s seaworthiness is inspected every 24 months. The required equipment, including the anchor weight for the boat’s size, is set by the Israel Shipping and Ports Authority safety equipment regulations, published by the Authority and on the Ministry of Transport website."
       ]
     },
     "sail-59": {
@@ -257,6 +261,53 @@
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
+    },
+    "sail-60": {
+      "title": "Ropes, wire, knots and pulleys",
+      "concepts": [
+        "Ropes are made from different fibres, and each suits a different job. Nylon stretches a lot, so it absorbs shocks: use it for anchor and mooring lines. Polyester stretches little, so the sail keeps its shape: use it for sheets and halyards. Polypropylene floats, which suits a rescue throwing line, but it chafes and weakens in sunlight. Aramid and similar fibres, such as Kevlar and Dyneema, are the strongest for their size and hardly stretch.",
+        "A mooring or tow line needs a high breaking strength, and a tow line must also be long and able to stretch. One strong line is better than two weak ones, because a load rarely shares evenly between two lines. Every knot or splice weakens a rope: a knot can take away up to about half its strength, a splice much less. Chafe weakens it too, so protect lines where they pass through fairleads.",
+        "Look after your ropes: rinse the salt out with fresh water, dry them and store them coiled in the shade, because sunlight and salt crystals weaken the fibres. Check for chafe, cuts and stiff or glazed patches, and replace a rope before it fails.",
+        "Wire rope is described by its strands and wires. A marking such as 6/12 means 6 strands with 12 wires in each. 7×19 wire, 7 strands of 19 wires, is flexible and suits running rigging that bends round sheaves; 1×19 wire, a single strand of 19 wires, is stiff and stretches little, so it is used for standing rigging such as shrouds and for guardrails.",
+        "The topping lift is a line from the masthead to the end of the boom. It holds the boom up when the mainsail is lowered or reefed, so the boom does not drop into the cockpit or onto the crew.",
+        "A block and tackle multiplies your pull. Count the rope parts that hold up the moving block: with four parts, a 320 kg load needs about 80 kg of pull, ignoring friction. With two double blocks, if the rope leaves from the moving block there are five parts, a gain of 5 to 1; if it leaves from the fixed block, 4 to 1. You pull that much more rope for the same lift.",
+        "Know a few knots well enough to tie them in the dark. A bowline makes a loop that will not slip or jam; a cleat hitch makes a line fast to a cleat; a clove hitch quickly holds a fender on a rail; a figure-of-eight stops a line running out through a block; and a round turn and two half hitches ties a line to a ring or post under load."
+      ],
+      "observe": [
+        "Find the anchor line, a sheet and a halyard aboard and say which fibre each is made of, and why.",
+        "Count the parts of rope at the moving block of the mainsheet tackle and work out its gain."
+      ],
+      "mistake": "Joining two weak lines in place of one strong one, or forgetting that a knot weakens the rope it is tied in.",
+      "quiz": [
+        {
+          "prompt": "Which rope is the strongest for its thickness?",
+          "options": [
+            "Kevlar",
+            "Polypropylene",
+            "Nylon"
+          ],
+          "explanation": "Aramid fibres such as Kevlar are far stronger than nylon or polypropylene of the same size."
+        },
+        {
+          "prompt": "What does a knot do to a rope’s strength?",
+          "options": [
+            "It weakens the rope",
+            "It makes the rope stronger",
+            "Nothing"
+          ],
+          "explanation": "Every knot or splice weakens a rope; a knot can take away up to about half its strength."
+        },
+        {
+          "prompt": "Two double blocks, with the rope leaving from the moving block. What is the gain?",
+          "options": [
+            "5 to 1",
+            "2 to 1",
+            "4 to 1"
+          ],
+          "explanation": "Count the parts at the moving block: four between the blocks plus the one leaving it make five."
+        }
+      ],
+      "transfer": "Practise the knots with a real rope until you can tie them without looking, and ask an instructor to check how lines are led and protected aboard your boat."
     },
     "sail-04": {
       "title": "Read the instruments",
@@ -1400,7 +1451,10 @@
           "explanation": "Use all appropriate available means and keep an outside lookout."
         }
       ],
-      "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
+      "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",
+      "localNotes": [
+        "In Israel it is forbidden to sail in declared bathing beaches, diving areas and closed areas. A declared bathing beach extends 50 m beyond each side of the marked area and 300 m out to sea from the low-water line. A fishing vessel at work may sail close to the shore outside these areas. Check the current Israeli regulations."
+      ]
     },
     "sail-26": {
       "title": "Reason through encounters",
@@ -1469,6 +1523,53 @@
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
+    },
+    "sail-61": {
+      "title": "Signal flags and visiting other countries",
+      "concepts": [
+        "Single flags of the International Code of Signals carry short, urgent messages. Flag A, white and blue with a swallow-tailed end, means \"I have a diver down; keep well clear at slow speed.\" Flag B, red and swallow-tailed, means a vessel is loading, unloading or carrying dangerous goods such as fuel: keep clear, though you may still pass or enter a harbor with care. Flag O, red and yellow halves, means man overboard. Flag Q, plain yellow, means \"My vessel is healthy and I request free pratique\", permission to enter port.",
+        "Flags N over C, hoisted together, are a distress signal, and so is a square flag with a ball above or below it. A single code flag on its own never means distress. Flags are read from the top down, and a vessel at anchor may fly a signal flag as well as showing her black ball.",
+        "Your ensign, the flag of the country where the boat is registered, flies at the stern. In another country’s waters, also fly that country’s flag, the courtesy flag, under the starboard spreader. On first arrival, fly the yellow Q flag under the port spreader until customs and immigration have cleared you, then lower it.",
+        "Some countries require extra papers for a visiting yacht. Turkey, for example, issues a transit log at an official port of entry, which then allows free movement in Turkish coastal waters. Before you leave, check the entry rules, ports of entry and reporting requirements of every country on your route, and of your own country for the return."
+      ],
+      "observe": [
+        "Find the code flags aboard and name what each single flag means.",
+        "Before a trip abroad, list the flags you will fly and where each one goes."
+      ],
+      "mistake": "Treating a single code flag as a distress signal, or flying a courtesy flag in place of your own ensign.",
+      "quiz": [
+        {
+          "prompt": "A vessel arriving in port flies a plain yellow flag. What does it mean?",
+          "options": [
+            "My vessel is healthy and I request free pratique",
+            "I have a diver down",
+            "Man overboard"
+          ],
+          "explanation": "Flag Q asks for free pratique, permission to enter port. It comes down once the authorities have cleared you."
+        },
+        {
+          "prompt": "Where do you fly the courtesy flag of the country you are visiting?",
+          "options": [
+            "Under the starboard spreader",
+            "At the stern, in place of your ensign",
+            "Nowhere; it is optional"
+          ],
+          "explanation": "The courtesy flag goes under the starboard spreader; your own ensign stays at the stern."
+        },
+        {
+          "prompt": "A vessel near the harbor entrance flies flag B. What do you do?",
+          "options": [
+            "Enter, but keep well clear of her",
+            "Stop and wait outside for permission",
+            "Go alongside to offer help"
+          ],
+          "explanation": "Flag B means dangerous goods such as fuel. You may pass, but give her plenty of room."
+        }
+      ],
+      "transfer": "Learn the full International Code of Signals for the waters you sail, and check each country’s current entry rules before you go.",
+      "localNotes": [
+        "The Israeli boat operator licence material expects a vessel to carry the code flags N, A, B, C, Q and O. Returning to Israel from abroad, within 25 NM of the coast, report your position and identity to RCC Haifa on VHF channel 16; this entry report is called IMOT. Check the current Israeli regulations."
+      ]
     },
     "sail-28": {
       "title": "Make a passage decision",
@@ -1791,6 +1892,51 @@
         }
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior."
+    },
+    "sail-62": {
+      "title": "When gear fails, and towing",
+      "concepts": [
+        "If the wheel steering fails, fit the emergency tiller to the top of the rudder stock. It is the fix when a steering cable or the wheel’s shaft breaks, and it usually fits under a deck plate in the cockpit. Learn where it is stowed and practise fitting it in calm water. Near a harbor entrance, slow down, call for help early and keep well clear of the breakwater while you fit it.",
+        "If the roller furler jams as you roll the headsail away, first take the load off the sail. Bear away so the mainsail shelters it, or ease the sheet, and try again gently. Do not force it with a bigger winch, which can break the drum or the line. If it still will not turn, let the halyard go, pull the sail down onto the deck and tie it there.",
+        "If a loaded shroud breaks, act at once to take the strain off the mast. Tack or gybe so the broken side is to leeward and no longer carries the load, ease the sheets and reduce sail. Then rig a spare halyard to a strong point on that side as a temporary shroud before sailing on gently.",
+        "Before you take another boat in tow, check the sea state, your fuel and the strength of the points you will tie to on both boats. Use a long, strong line that can stretch, such as 50 m of thick nylon in a 2 m sea, made fast to strong points or to a bridle spread across both sides. In rough weather, lengthen the tow line and weight it so it does not snatch tight, and agree signals with the other crew.",
+        "Tow slowly and turn gently. With a short line, a sharp turn lets the line go slack; when it comes tight again, it jerks the towed boat’s bow round after you, so in a sharp turn to starboard her bow sheers hard to starboard and she can run into your stern. Turn wide and keep the line taut. In a harbor, towing alongside, lashed to your side, gives far better control."
+      ],
+      "observe": [
+        "Find the emergency tiller aboard and work out how it fits onto the rudder stock.",
+        "Look at the shrouds and decide which side carries the load on each tack."
+      ],
+      "mistake": "Forcing a jammed furler with a bigger winch, or towing on a short line and turning sharply.",
+      "quiz": [
+        {
+          "prompt": "When do you need the emergency tiller on a wheel-steered boat?",
+          "options": [
+            "When a steering cable or the wheel’s shaft breaks",
+            "Only when the rudder itself breaks",
+            "Whenever the engine is off"
+          ],
+          "explanation": "The emergency tiller fits straight onto the rudder stock, so it works when the wheel’s link to the rudder fails."
+        },
+        {
+          "prompt": "On starboard tack, the starboard shroud breaks. What do you do first?",
+          "options": [
+            "Tack so the broken side is to leeward",
+            "Hold your course and ease the backstay",
+            "Hoist more sail to steady the boat"
+          ],
+          "explanation": "The windward shroud carries the load. Tacking puts the broken side to leeward and takes the strain off the mast."
+        },
+        {
+          "prompt": "What tow line suits rough weather?",
+          "options": [
+            "A long, heavy line that can stretch",
+            "A short line, to keep the boats close",
+            "A thin line that will break before the cleats do"
+          ],
+          "explanation": "A long, heavy, stretchy line keeps the boats in step with the waves and stops it snatching tight."
+        }
+      ],
+      "transfer": "Fit the emergency tiller and rig a tow with an instructor in calm water before you need to do it for real."
     },
     "sail-35": {
       "title": "Your assessed first passage",

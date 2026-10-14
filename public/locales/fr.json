@@ -91,7 +91,10 @@
           "explanation": "Un enseignement et une évaluation sur l’eau restent nécessaires. Le simulateur omet de nombreuses contraintes physiques et environnementales."
         }
       ],
-      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "localNotes": [
+        "La réglementation israélienne interdit de jeter à la mer tout déchet ou reste de nourriture, quelle que soit la distance de la côte. Gardez-les à bord et rapportez-les au port."
+      ]
     },
     "sail-02": {
       "title": "Connaissez votre voilier",
@@ -1128,7 +1131,10 @@
           "explanation": "Utilisez tous les moyens appropriés disponibles et maintenez une veille extérieure."
         }
       ],
-      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau."
+      "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
+      "localNotes": [
+        "En Israël, il est interdit de naviguer dans les plages de baignade déclarées, les zones de plongée et les zones fermées. Une plage de baignade déclarée s’étend 50 m au-delà de chaque côté de la zone balisée et 300 m vers le large à partir de la laisse de basse mer. Un navire de pêche en action de pêche peut naviguer près du rivage en dehors de ces zones. Vérifiez la réglementation israélienne en vigueur."
+      ]
     },
     "sail-26": {
       "title": "Raisonnez face aux rencontres",
@@ -2568,7 +2574,8 @@
       ],
       "transfer": "Découvrez l’équipement de votre propre bateau avec un moniteur : ajustez le harnais, lisez le mode d’emploi des feux de détresse, repérez les extincteurs et suivez un stage de survie en mer avec un vrai radeau de survie.",
       "localNotes": [
-        "Le programme du permis de conduite de bateau israélien prévoit par exemple un radeau de survie sur un voilier de plaisance naviguant à 15 NM de la côte, au moins 4 fusées parachutes rouges et une couverture anti-feu là où l’on cuisine à flamme nue. Le certificat de navigabilité de votre bateau donne la liste exacte ; vérifiez la réglementation israélienne en vigueur."
+        "Le programme du permis de conduite de bateau israélien prévoit par exemple un radeau de survie sur un voilier de plaisance naviguant à 15 NM de la côte, au moins 4 fusées parachutes rouges et une couverture anti-feu là où l’on cuisine à flamme nue. Le certificat de navigabilité de votre bateau donne la liste exacte ; vérifiez la réglementation israélienne en vigueur.",
+        "Selon la réglementation israélienne, un bateau est un navire de 7 à 24 m de long. En navigation nationale, le long de la côte israélienne, il peut s’éloigner jusqu’à 12 NM du rivage. La navigabilité d’un bateau de plaisance privé est inspectée tous les 24 mois. L’équipement obligatoire, y compris le poids de l’ancre selon la taille du bateau, est fixé par le règlement sur l’équipement de sécurité de l’Autorité israélienne de la navigation et des ports, publié par l’Autorité et sur le site du ministère des Transports."
       ]
     },
     "sail-59": {
@@ -2616,6 +2623,145 @@
         }
       ],
       "transfer": "Découvrez l’équipement de votre propre bateau avec un moniteur : ajustez le harnais, lisez le mode d’emploi des feux de détresse, repérez les extincteurs et suivez un stage de survie en mer avec un vrai radeau de survie."
+    },
+    "sail-60": {
+      "title": "Cordages, câbles, nœuds et palans",
+      "concepts": [
+        "Les cordages sont faits de fibres différentes, et chacune convient à un usage différent. Le nylon s’étire beaucoup, il amortit donc les à-coups : utilisez-le pour la ligne de mouillage et les amarres. Le polyester s’étire peu, la voile garde donc sa forme : utilisez-le pour les écoutes et les drisses. Le polypropylène flotte, ce qui convient à une ligne de sauvetage à lancer, mais il s’use au frottement et s’affaiblit au soleil. L’aramide et les fibres proches, comme le Kevlar et le Dyneema, sont les plus résistantes à diamètre égal et ne s’étirent presque pas.",
+        "Une amarre ou une remorque doit avoir une forte charge de rupture, et une remorque doit aussi être longue et capable de s’étirer. Mieux vaut un seul cordage solide que deux faibles, car l’effort se répartit rarement de façon égale entre deux cordages. Tout nœud ou épissure affaiblit un cordage : un nœud peut lui faire perdre jusqu’à environ la moitié de sa résistance, une épissure beaucoup moins. Le ragage l’affaiblit aussi, alors protégez les cordages là où ils passent dans les chaumards.",
+        "Entretenez vos cordages : rincez le sel à l’eau douce, séchez-les et rangez-les lovés à l’ombre. Le soleil et les cristaux de sel affaiblissent les fibres. Cherchez le ragage, les coupures et les zones raides ou vitrifiées, et remplacez un cordage avant qu’il ne lâche.",
+        "Un câble se décrit par ses torons et ses fils. Un marquage comme 6/12 signifie 6 torons de 12 fils chacun. Le câble 7×19, 7 torons de 19 fils, est souple et convient au gréement courant qui passe sur des réas ; le câble 1×19, un seul toron de 19 fils, est raide et s’allonge peu, il sert donc au gréement dormant, comme les haubans, et aux filières.",
+        "La balancine est un cordage qui va de la tête de mât au bout de la bôme. Elle soutient la bôme quand la grand-voile est affalée ou réduite, pour que la bôme ne tombe pas dans le cockpit ni sur l’équipage.",
+        "Un palan multiplie votre force de traction. Comptez les brins de cordage qui portent la poulie mobile : avec quatre brins, une charge de 320 kg demande environ 80 kg de traction, sans compter le frottement. Avec deux poulies doubles, si le cordage part de la poulie mobile il y a cinq brins, soit un gain de 5 pour 1 ; s’il part de la poulie fixe, 4 pour 1. En échange, vous tirez d’autant plus de cordage pour la même levée.",
+        "Connaissez quelques nœuds assez bien pour les faire dans le noir. Le nœud de chaise fait une boucle qui ne glisse pas et ne se bloque pas ; le tour de taquet tourne un cordage sur un taquet ; le nœud de cabestan fixe vite une défense sur une filière ou un balcon ; le nœud en huit empêche un cordage de sortir d’une poulie ; et le tour mort et deux demi-clés amarre un cordage à un anneau ou à un poteau sous tension."
+      ],
+      "observe": [
+        "Repérez à bord la ligne de mouillage, une écoute et une drisse, et dites en quelle fibre est chacune, et pourquoi.",
+        "Comptez les brins à la poulie mobile du palan d’écoute de grand-voile et calculez son gain."
+      ],
+      "mistake": "Assembler deux cordages faibles au lieu d’en utiliser un solide, ou oublier qu’un nœud affaiblit le cordage sur lequel il est fait.",
+      "quiz": [
+        {
+          "prompt": "Quel cordage est le plus résistant à diamètre égal ?",
+          "options": [
+            "Kevlar",
+            "Polypropylène",
+            "Nylon"
+          ],
+          "explanation": "Les fibres aramides comme le Kevlar sont bien plus résistantes que le nylon ou le polypropylène de même diamètre."
+        },
+        {
+          "prompt": "Quel est l’effet d’un nœud sur la résistance d’un cordage ?",
+          "options": [
+            "Il affaiblit le cordage",
+            "Il rend le cordage plus solide",
+            "Aucun"
+          ],
+          "explanation": "Tout nœud ou épissure affaiblit un cordage ; un nœud peut lui faire perdre jusqu’à environ la moitié de sa résistance."
+        },
+        {
+          "prompt": "Deux poulies doubles, le cordage partant de la poulie mobile. Quel est le gain ?",
+          "options": [
+            "5 pour 1",
+            "2 pour 1",
+            "4 pour 1"
+          ],
+          "explanation": "Comptez les brins à la poulie mobile : quatre entre les poulies plus celui qui en part, cela fait cinq."
+        }
+      ],
+      "transfer": "Entraînez-vous aux nœuds avec un vrai cordage jusqu’à les faire sans regarder, et demandez à un moniteur de vérifier comment les cordages sont menés et protégés sur votre bateau."
+    },
+    "sail-61": {
+      "title": "Pavillons de signalisation et escales à l’étranger",
+      "concepts": [
+        "Les pavillons isolés du Code international des signaux transmettent des messages courts et urgents. Le pavillon A, blanc et bleu à extrémité en queue d’aronde, signifie « J’ai un plongeur en immersion ; tenez-vous à distance et à vitesse réduite. » Le pavillon B, rouge et en queue d’aronde, signifie qu’un navire charge, décharge ou transporte des marchandises dangereuses comme du carburant : écartez-vous, même si vous pouvez encore passer ou entrer au port avec prudence. Le pavillon O, moitié rouge et moitié jaune, signifie un homme à la mer. Le pavillon Q, entièrement jaune, signifie « Mon navire est indemne et je demande la libre pratique », c’est-à-dire l’autorisation d’entrer au port.",
+        "Les pavillons N sur C, hissés ensemble, constituent un signal de détresse, tout comme un pavillon carré avec une boule au-dessus ou au-dessous. Un pavillon du code hissé seul ne signifie jamais la détresse. Les pavillons se lisent de haut en bas, et un navire au mouillage peut arborer un pavillon de signalisation en plus de sa boule noire.",
+        "Votre pavillon national, celui du pays où le bateau est immatriculé, se porte à l’arrière. Dans les eaux d’un autre pays, arborez aussi le pavillon de ce pays, le pavillon de courtoisie, sous la barre de flèche tribord. À la première arrivée, hissez le pavillon jaune Q sous la barre de flèche bâbord jusqu’à ce que la douane et l’immigration vous aient autorisé, puis amenez-le.",
+        "Certains pays exigent des documents supplémentaires pour un yacht en visite. La Turquie, par exemple, délivre un transit log dans un port d’entrée officiel, qui permet ensuite de circuler librement dans les eaux côtières turques. Avant de partir, vérifiez les règles d’entrée, les ports d’entrée et les obligations de déclaration de chaque pays sur votre route, ainsi que celles de votre propre pays pour le retour."
+      ],
+      "observe": [
+        "Trouvez les pavillons du code à bord et dites ce que signifie chaque pavillon isolé.",
+        "Avant une navigation à l’étranger, listez les pavillons que vous arborerez et l’emplacement de chacun."
+      ],
+      "mistake": "Prendre un pavillon du code isolé pour un signal de détresse, ou arborer un pavillon de courtoisie à la place de votre pavillon national.",
+      "quiz": [
+        {
+          "prompt": "Un navire qui arrive au port arbore un pavillon entièrement jaune. Que signifie-t-il ?",
+          "options": [
+            "Mon navire est indemne et je demande la libre pratique",
+            "J’ai un plongeur en immersion",
+            "Homme à la mer"
+          ],
+          "explanation": "Le pavillon Q demande la libre pratique, c’est-à-dire l’autorisation d’entrer au port. On l’amène une fois que les autorités vous ont autorisé."
+        },
+        {
+          "prompt": "Où arborez-vous le pavillon de courtoisie du pays que vous visitez ?",
+          "options": [
+            "Sous la barre de flèche tribord",
+            "À l’arrière, à la place de votre pavillon national",
+            "Nulle part ; il est facultatif"
+          ],
+          "explanation": "Le pavillon de courtoisie se hisse sous la barre de flèche tribord ; votre propre pavillon national reste à l’arrière."
+        },
+        {
+          "prompt": "Un navire près de l’entrée du port arbore le pavillon B. Que faites-vous ?",
+          "options": [
+            "Vous entrez, mais en restant bien à l’écart de lui",
+            "Vous vous arrêtez et attendez l’autorisation à l’extérieur",
+            "Vous venez à couple pour proposer votre aide"
+          ],
+          "explanation": "Le pavillon B signale des marchandises dangereuses comme du carburant. Vous pouvez passer, mais laissez-lui beaucoup de place."
+        }
+      ],
+      "transfer": "Apprenez le Code international des signaux complet pour les eaux où vous naviguez, et vérifiez les règles d’entrée en vigueur de chaque pays avant de partir.",
+      "localNotes": [
+        "Le programme du permis de conduite de bateau israélien prévoit qu’un navire ait à bord les pavillons du code N, A, B, C, Q et O. En revenant de l’étranger vers Israël, à moins de 25 NM de la côte, annoncez votre position et votre identité au RCC Haifa sur le canal VHF 16 ; cette déclaration d’arrivée s’appelle IMOT. Vérifiez la réglementation israélienne en vigueur."
+      ]
+    },
+    "sail-62": {
+      "title": "Avaries de matériel et remorquage",
+      "concepts": [
+        "Si la barre à roue lâche, par exemple parce qu’un câble de direction ou l’axe de la roue casse, installez la barre franche de secours. Elle se monte en haut de la mèche du safran, généralement sous une trappe de pont dans le cockpit. Sachez où elle est rangée et entraînez-vous à la monter par mer calme. Près d’une entrée de port, ralentissez, appelez à l’aide tôt et restez bien à l’écart de la digue pendant que vous l’installez.",
+        "Si l’enrouleur se bloque au moment où vous voulez rouler le génois, commencez par soulager la voile. Abattez pour que la grand-voile la dévente, ou choquez l’écoute, puis réessayez doucement. Ne forcez pas avec un plus gros winch : vous pourriez casser le tambour ou le bout. S’il ne tourne toujours pas, larguez la drisse, affalez la voile sur le pont et amarrez-la.",
+        "Si un hauban sous charge casse, agissez immédiatement pour soulager le mât. Virez de bord ou empannez pour que le côté cassé passe sous le vent et ne porte plus la charge, choquez les écoutes et réduisez la voilure. Gréez ensuite une drisse de rechange sur un point solide de ce côté comme hauban provisoire, avant de reprendre la route en douceur.",
+        "Avant de prendre un autre bateau en remorque, vérifiez l’état de la mer, votre carburant et la solidité des points d’amarrage sur les deux bateaux. Utilisez une remorque longue et solide qui peut s’allonger, par exemple 50 m de nylon épais par une mer de 2 m, frappée sur des points solides ou sur une patte d’oie répartie des deux côtés. Par gros temps, allongez la remorque et lestez-la pour qu’elle ne se tende pas d’un coup, et convenez de signaux avec l’autre équipage.",
+        "Remorquez à faible vitesse et changez de cap en douceur, sans virage serré. Avec une remorque courte, un virage serré fait mollir la remorque ; quand elle se retend, elle fait pivoter brutalement l’étrave du bateau remorqué derrière vous : dans un virage serré sur tribord, son étrave part fortement sur tribord et il peut heurter votre arrière. Tournez large et gardez la remorque tendue. Au port, le remorquage à couple, amarré le long de votre bord, donne un bien meilleur contrôle."
+      ],
+      "observe": [
+        "Trouvez la barre franche de secours à bord et voyez comment elle se monte sur la mèche du safran.",
+        "Regardez les haubans et déterminez quel côté porte la charge à chaque amure."
+      ],
+      "mistake": "Forcer un enrouleur bloqué avec un plus gros winch, ou remorquer avec une remorque courte en virant serré.",
+      "quiz": [
+        {
+          "prompt": "Quand avez-vous besoin de la barre franche de secours sur un bateau à barre à roue ?",
+          "options": [
+            "Quand un câble de direction ou l’axe de la roue casse",
+            "Seulement quand le safran lui-même casse",
+            "Chaque fois que le moteur est arrêté"
+          ],
+          "explanation": "La barre franche de secours se monte directement sur la mèche du safran ; elle fonctionne donc quand la liaison entre la roue et le safran lâche."
+        },
+        {
+          "prompt": "Tribord amures, le hauban tribord casse. Que faites-vous d’abord ?",
+          "options": [
+            "Virer de bord pour que le côté cassé passe sous le vent",
+            "Garder le cap et choquer le pataras",
+            "Envoyer plus de toile pour stabiliser le bateau"
+          ],
+          "explanation": "Le hauban au vent porte la charge. Virer de bord met le côté cassé sous le vent et soulage le mât."
+        },
+        {
+          "prompt": "Quelle remorque convient par gros temps ?",
+          "options": [
+            "Une remorque longue et lourde qui peut s’allonger",
+            "Une remorque courte, pour garder les bateaux proches",
+            "Un bout fin qui cassera avant les taquets"
+          ],
+          "explanation": "Une remorque longue, lourde et élastique permet aux bateaux de suivre les vagues ensemble et l’empêche de se tendre d’un coup."
+        }
+      ],
+      "transfer": "Montez la barre franche de secours et gréez un remorquage avec un moniteur par mer calme, avant d’avoir à le faire pour de vrai."
     }
   }
 }

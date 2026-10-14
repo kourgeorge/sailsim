@@ -1,0 +1,764 @@
+{
+ "1": {
+  "page": 3,
+  "description": "Two lights side by side at the same height: green on viewer's left, red on viewer's right. No white light.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "2": {
+  "page": 3,
+  "description": "Vertical column top to bottom: white, white, red, red, red. Below at the bottom: green on left, red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel over 50 m constrained by her draught, making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "3": {
+  "page": 3,
+  "description": "Centre vertical column: red, white, red, then (lower) a white at the bottom. To the left two greens one above the other; to the right two reds one above the other. No sidelights.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel restricted in her ability to manoeuvre, showing the obstruction on her starboard side, seen from astern. [My own reading before checking the key: Vessel engaged in dredging/underwater operations (red-white-red), under way, seen from astern (bottom white = sternlight). Two reds mark the obstructed side, two greens the side on which it is safe to pass (reds on viewer's right = her starboard side when seen from astern).]",
+  "confidence": "high"
+ },
+ "4": {
+  "page": 3,
+  "description": "Red over white (vertical) at top centre; a further white lower and to the right; another white at the bottom centre. No sidelights.",
+  "interpretation": "Booklet answer key (pages 10-16): Fishing vessel seen from astern, net spread out on her starboard (right) side (extra white = gear direction). [My own reading before checking the key: Vessel engaged in fishing other than trawling (red over white) with outlying gear extending more than 150 m horizontally (extra all-round white toward the gear), under way, seen from astern (bottom white = sternlight).]",
+  "confidence": "high"
+ },
+ "5": {
+  "page": 3,
+  "description": "White at top centre; green on left and red on right in the middle; another white at the bottom centre, below the sidelights.",
+  "interpretation": "Booklet answer key (pages 10-16): Submarine seen from ahead. Note: Not a COLREG standard; the booklet's answer is a submarine (lower white below the sidelights). [My own reading before checking the key: Looks like a power-driven vessel seen head-on (masthead light + both sidelights) with a second white light drawn below the sidelights. Possibly meant as a 50 m+ vessel with two masthead lights in line, but the lower white sits below the sidelights, which does not fit the rules; unsure.]",
+  "confidence": "medium"
+ },
+ "6": {
+  "page": 3,
+  "description": "Two whites one above the other at upper left; one red below and slightly right of them; another red far to the right at the same low height.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel towing and towed vessel, length of tow under 200 m, heading left (seen from port side). [My own reading before checking the key: Power-driven vessel towing, tow length under 200 m (two masthead lights in a vertical line), seen from her port side (red sidelight), heading to the viewer's left; the far-right red is the towed vessel's port sidelight.]",
+  "confidence": "high"
+ },
+ "7": {
+  "page": 3,
+  "description": "Two reds one above the other at upper right; one white lower down on the left.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel under 50 m aground (two reds + one anchor light). [My own reading before checking the key: Two all-round reds = vessel not under command; the low white is probably her sternlight (making way, seen from astern/quarter). Could also be read as a vessel aground under 50 m (anchor light + two reds).]",
+  "confidence": "high"
+ },
+ "8": {
+  "page": 3,
+  "description": "Red over white in a vertical line at top centre; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Fishing vessel (net fishing, other than trawling) seen from ahead.",
+  "confidence": "high"
+ },
+ "9": {
+  "page": 3,
+  "description": "Green at top with two greens side by side below it (triangle of three greens); white below them; at bottom green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Mine-clearance vessel seen from ahead.",
+  "confidence": "high"
+ },
+ "10": {
+  "page": 3,
+  "description": "White over red vertical at top centre; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Pilot vessel on duty seen from ahead.",
+  "confidence": "high"
+ },
+ "11": {
+  "page": 3,
+  "description": "Wide picture. At left: two whites one above the other (far left); just right of them a vertical column red, white, red; below that a red; a white higher up to the right of the column; far to the right at the bottom a single red.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel and tow, tow under 200 m, towing vessel restricted in her ability to manoeuvre, heading left. [My own reading before checking the key: Power-driven vessel towing (two masthead lights vertical = tow under 200 m), 50 m or more (extra aft masthead light, higher, to the right), restricted in her ability to deviate from course (red-white-red), seen from her port side (red sidelight) heading left; the far-right red is the towed vessel's port sidelight.]",
+  "confidence": "high"
+ },
+ "12": {
+  "page": 3,
+  "description": "White high at upper right; white lower on the left; red lower centre-right.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel over 50 m making way, heading left.",
+  "confidence": "high"
+ },
+ "13": {
+  "page": 3,
+  "description": "Single red light.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel making way, heading left.",
+  "confidence": "high"
+ },
+ "14": {
+  "page": 3,
+  "description": "Red over green in a vertical line at top; a green lower and to the left.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel over 20 m making way (optional red-over-green masthead lights), heading right.",
+  "confidence": "high"
+ },
+ "15": {
+  "page": 3,
+  "description": "White at top centre; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel up to 50 m making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "16": {
+  "page": 3,
+  "description": "White at top; yellow below it labelled 'מנצנץ' (flashing); at bottom green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Fast vessel / air-cushion vessel (hovercraft) making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "17": {
+  "page": 3,
+  "description": "Yellow over white in a vertical line on the left; another white lower and to the right.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel and towed vessel, seen from astern. [My own reading before checking the key: Vessel towing seen from astern: yellow towing light above the white sternlight; the second white (lower right) is probably the sternlight of the towed vessel.]",
+  "confidence": "high"
+ },
+ "18": {
+  "page": 3,
+  "description": "Vertical line: white, yellow labelled 'מנצנץ' (flashing), white. No sidelights.",
+  "interpretation": "Booklet answer key (pages 10-16): Air-cushion vessel (hovercraft) seen from astern. [My own reading before checking the key: Flashing yellow suggests an air-cushion vessel; with no sidelights it may be seen from astern (bottom white = sternlight), but the top white then does not fit (masthead not visible from astern). Unsure.]",
+  "confidence": "high"
+ },
+ "19": {
+  "page": 3,
+  "description": "White at upper left; on the right a green with a white below it (vertical); a green at the bottom centre.",
+  "interpretation": "Booklet answer key (pages 10-16): Trawler making way, heading right (the extra aft white masthead light is mandatory over 50 m). [My own reading before checking the key: Vessel engaged in trawling (green over white) 50 m or more (extra aft masthead white, higher, on the left), making way, seen from her starboard side (green sidelight), heading to viewer's right.]",
+  "confidence": "high"
+ },
+ "20": {
+  "page": 4,
+  "description": "Two reds one above the other at the top; a white well below them, centred.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel not under command, making way, seen from astern. [My own reading before checking the key: Vessel not under command, making way, seen from astern (white = sternlight). Could also be read as vessel aground under 50 m.]",
+  "confidence": "high"
+ },
+ "21": {
+  "page": 4,
+  "description": "White over red vertical at the top; a white well below, centred.",
+  "interpretation": "Booklet answer key (pages 10-16): Pilot vessel on duty making way, seen from astern. [My own reading before checking the key: Pilot vessel on duty; lower white = sternlight (under way, seen from astern) or anchor light (pilot vessel at anchor).]",
+  "confidence": "high"
+ },
+ "22": {
+  "page": 4,
+  "description": "White at upper left; a vertical column red, white, red in the middle; a red lower right of the column; a large white high at upper right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel over 50 m restricted in her ability to manoeuvre, heading left. [My own reading before checking the key: Vessel restricted in her ability to manoeuvre, 50 m or more, making way, seen from her port side: forward masthead (lower, left), aft masthead (higher, right), red-white-red, port sidelight; heading to viewer's left.]",
+  "confidence": "high"
+ },
+ "23": {
+  "page": 4,
+  "description": "Vertical column: red, white, red, yellow, white; plus another white at bottom right.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel restricted in her ability to manoeuvre, with tow, seen from astern. [My own reading before checking the key: Vessel towing and restricted in her ability to deviate from course (red-white-red), seen from astern: yellow towing light over white sternlight; the extra white at lower right is probably the towed vessel's sternlight.]",
+  "confidence": "high"
+ },
+ "24": {
+  "page": 4,
+  "description": "Red over green vertical at upper left; a red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel over 20 m, heading left.",
+  "confidence": "high"
+ },
+ "25": {
+  "page": 4,
+  "description": "White at upper left; vertical column of three reds in the middle with a green below them; another white at upper right, slightly lower than the left white.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel over 50 m constrained by her draught, heading right.",
+  "confidence": "high"
+ },
+ "26": {
+  "page": 4,
+  "description": "Centre vertical column: red, white, red. Two greens one above the other on the left, two reds one above the other on the right. No sidelights, no masthead or stern light.",
+  "interpretation": "Booklet answer key (pages 10-16): Dredger, with lights showing on which side the obstruction is. [My own reading before checking the key: Vessel engaged in dredging/underwater operations, not making way (stopped or at anchor - she shows no anchor lights in this case). Two reds mark the obstructed side, two greens the side to pass.]",
+  "confidence": "high"
+ },
+ "27": {
+  "page": 4,
+  "description": "Single white light, low centre.",
+  "interpretation": "Booklet answer key (pages 10-16): All-round white light: vessel under 7 m with speed under 7 knots / vessel at anchor / rowing boat. [My own reading before checking the key: A single white: sternlight of a vessel seen from astern, an anchored vessel under 50 m, or a small power vessel under 7 m showing an all-round white. Ambiguous.]",
+  "confidence": "high"
+ },
+ "28": {
+  "page": 4,
+  "description": "Three whites in a vertical line at the top; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel over 50 m, length of tow under 200 m, seen from ahead. Note: Booklet answer: two towing masthead lights plus the aft masthead light in line (not tow over 200 m). [My own reading before checking the key: Power-driven vessel towing, tow length more than 200 m (three masthead lights in a vertical line), seen head-on.]",
+  "confidence": "high"
+ },
+ "29": {
+  "page": 4,
+  "description": "On the right: green with a white below it (vertical), and much lower another white. On the left, a little lower: two whites one above the other.",
+  "interpretation": "Booklet answer key (pages 10-16): Trawler with nets spread on her left side, seen from astern. Note: Booklet answer; the two whites on the left are not explained in COLREG terms. [My own reading before checking the key: Green over white = vessel trawling; the lower-right white may be her sternlight (seen from astern). The two vertical whites on the left are not clearly explained (maybe a second vessel). Unsure.]",
+  "confidence": "medium"
+ },
+ "30": {
+  "page": 4,
+  "description": "White at upper left; red at lower right (both drawn larger and without the grey outline used elsewhere).",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel under 50 m, heading left. [My own reading before checking the key: Power-driven vessel under 50 m seen from her port side (masthead light + port sidelight).]",
+  "confidence": "high"
+ },
+ "31": {
+  "page": 4,
+  "description": "Green at top with two overlapping greens below it, a white below those; a green at lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Mine-clearance vessel heading right. [My own reading before checking the key: Vessel engaged in mine clearance (three greens, two yardarm greens overlapping in side view), power-driven under 50 m, seen from her starboard side.]",
+  "confidence": "high"
+ },
+ "32": {
+  "page": 4,
+  "description": "Green at top, two greens side by side below it (triangle), white below them. No sidelights.",
+  "interpretation": "Booklet answer key (pages 10-16): Mine-clearance vessel seen from astern. [My own reading before checking the key: Vessel engaged in mine clearance seen from astern (white = sternlight).]",
+  "confidence": "high"
+ },
+ "33": {
+  "page": 4,
+  "description": "Two reds one above the other at top; a red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel not under command, heading left.",
+  "confidence": "high"
+ },
+ "34": {
+  "page": 4,
+  "description": "White over red vertical at top; green lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Pilot vessel on duty, heading right.",
+  "confidence": "high"
+ },
+ "35": {
+  "page": 4,
+  "description": "Vertical column: white, red, white, red; at bottom green on left, red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel restricted in her ability to manoeuvre, making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "36": {
+  "page": 4,
+  "description": "White at top (larger, no outline) with another white below it; at bottom green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel over 50 m seen from ahead.",
+  "confidence": "high"
+ },
+ "37": {
+  "page": 4,
+  "description": "Red over green vertical at top; white well below, centred.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel over 20 m making way, seen from astern.",
+  "confidence": "high"
+ },
+ "38": {
+  "page": 4,
+  "description": "Three reds in a vertical line at the top; white well below, centred.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel constrained by her draught making way, seen from astern.",
+  "confidence": "high"
+ },
+ "39": {
+  "page": 4,
+  "description": "Two reds one above the other in the centre; a white higher on the right; a white lower on the left.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel over 50 m aground.",
+  "confidence": "high"
+ },
+ "40": {
+  "page": 5,
+  "description": "White at top right; yellow below it labelled 'מנצנץ' (flashing); green lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Fast vessel / air-cushion vessel, heading right.",
+  "confidence": "high"
+ },
+ "41": {
+  "page": 5,
+  "description": "White at upper left with a green just below and to its right; another white lower at the right.",
+  "interpretation": "Booklet answer key (pages 10-16): Submarine, heading right. Note: Booklet answer is a submarine, not a power vessel over 50 m. [My own reading before checking the key: Power-driven vessel 50 m or more seen from her starboard side (aft masthead higher on left, forward masthead lower on right, green sidelight drawn high near the aft mast); heading to viewer's right.]",
+  "confidence": "high"
+ },
+ "42": {
+  "page": 5,
+  "description": "Vertical column red, white, red at top; a white well below, centred.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel restricted in her ability to manoeuvre, seen from astern. [My own reading before checking the key: Vessel restricted in her ability to manoeuvre; lower white = sternlight (making way, seen from astern) or anchor light (RAM at anchor).]",
+  "confidence": "high"
+ },
+ "43": {
+  "page": 5,
+  "description": "White at upper right; green at lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel up to 50 m, heading right.",
+  "confidence": "high"
+ },
+ "44": {
+  "page": 5,
+  "description": "White high at upper right; on the left a green with a white below it (vertical); red lower centre-right.",
+  "interpretation": "Booklet answer key (pages 10-16): Trawler at work, heading left.",
+  "confidence": "high"
+ },
+ "45": {
+  "page": 5,
+  "description": "Two reds one above the other at upper right; green lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel not under command making way, heading right.",
+  "confidence": "high"
+ },
+ "46": {
+  "page": 5,
+  "description": "White over red vertical at upper left; red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Pilot vessel on duty, heading left.",
+  "confidence": "high"
+ },
+ "47": {
+  "page": 5,
+  "description": "Left column: red, white, red. Right column, a little higher: four whites in a vertical line. At bottom green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel, tow over 200 m, restricted in her ability to manoeuvre, making way, seen from ahead. [My own reading before checking the key: Power-driven vessel towing, tow over 200 m (three towing masthead lights) and 50 m or more (fourth white = aft masthead in line), restricted in her ability to deviate from course (red-white-red), seen head-on.]",
+  "confidence": "high"
+ },
+ "48": {
+  "page": 5,
+  "description": "Single green light.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel, heading right.",
+  "confidence": "high"
+ },
+ "49": {
+  "page": 5,
+  "description": "Vertical column of three reds in the middle, and a fourth red lower down below them; a white on the left (middle height); a white higher at upper right.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel over 50 m constrained by her draught, heading left.",
+  "confidence": "high"
+ },
+ "50": {
+  "page": 5,
+  "description": "Centre column: white, red, white, red. Left of the column two reds one above the other; right of the column two greens one above the other. At bottom green on far left and red on far right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel restricted in her ability to manoeuvre making way, showing obstruction on the left side (as seen), seen from ahead.",
+  "confidence": "high"
+ },
+ "51": {
+  "page": 5,
+  "description": "Red over white vertical at upper right; green lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel engaged in net fishing (other than trawling), heading right.",
+  "confidence": "high"
+ },
+ "52": {
+  "page": 5,
+  "description": "White high at upper right with a red just below and to its left; another white on the left at middle height.",
+  "interpretation": "Booklet answer key (pages 10-16): Submarine, heading left. Note: Booklet answer is a submarine, not a power vessel over 50 m. [My own reading before checking the key: Power-driven vessel 50 m or more seen from her port side (forward masthead lower on left, aft masthead higher on right, red sidelight drawn near the aft mast); heading to viewer's left.]",
+  "confidence": "high"
+ },
+ "53": {
+  "page": 5,
+  "description": "Wide picture. On the right: two whites one above the other (lower one bright), another white higher and to their left, a green below. Far to the left at the bottom: a single green.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel with tow, tow under 200 m, heading right.",
+  "confidence": "high"
+ },
+ "54": {
+  "page": 5,
+  "description": "Right column: white, red, white, red. To its left two reds one above the other. Green at lower left.",
+  "interpretation": "Booklet answer key (pages 10-16): Dredger restricted in her ability to manoeuvre, seen from her starboard side, with the obstruction marked on that side. [My own reading before checking the key: Vessel engaged in dredging/underwater operations, making way, seen from her starboard side (green sidelight); the two reds show the obstruction is on this (her starboard) side.]",
+  "confidence": "high"
+ },
+ "55": {
+  "page": 5,
+  "description": "Red over white vertical at upper left; red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel engaged in net fishing (other than trawling), heading left.",
+  "confidence": "high"
+ },
+ "56": {
+  "page": 5,
+  "description": "Green at top, two overlapping greens below it, white below those (upper left); red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Mine-clearance vessel, heading left.",
+  "confidence": "high"
+ },
+ "57": {
+  "page": 5,
+  "description": "White at upper left with a red directly below it; two reds one above the other in the middle (a little lower); one red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel not under command with a pilot on board (white over red), heading left. [My own reading before checking the key: Unclear. Two vertical reds = not under command, and the lower-right red a port sidelight; the white-over-red at upper left looks like a pilot-vessel pair or masthead lights. Possibly NUC/pilot seen from port side; unsure.]",
+  "confidence": "high"
+ },
+ "58": {
+  "page": 5,
+  "description": "Red over green vertical at top; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel over 20 m making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "59": {
+  "page": 6,
+  "description": "Wide picture. On the right: a vertical column red, white, red; to its right two whites one above the other (lower one bright); a white higher and further left; green below. Far left at the bottom: a single green.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel and tow, tow under 200 m, towing vessel restricted in her ability to manoeuvre, heading right.",
+  "confidence": "high"
+ },
+ "60": {
+  "page": 6,
+  "description": "Wide picture. On the left: three whites in a vertical line, a white higher and to their right, a red below. Far right at the bottom: a single red.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel and tow, tow over 200 m, heading left.",
+  "confidence": "high"
+ },
+ "61": {
+  "page": 6,
+  "description": "White at upper right; another white (bright, no outline) lower left. No coloured lights.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel over 50 m at anchor (seen from her starboard side). [My own reading before checking the key: Vessel at anchor, 50 m or more, seen from abeam (forward anchor light higher - at the right).]",
+  "confidence": "high"
+ },
+ "62": {
+  "page": 6,
+  "description": "White at upper left; yellow below it labelled 'מנצנץ' (flashing); red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Fast vessel / air-cushion vessel, heading left.",
+  "confidence": "high"
+ },
+ "63": {
+  "page": 6,
+  "description": "Wide picture. Left: two whites in a vertical line with green on left and red on right below. Right: another green and red pair side by side (wider apart), slightly lower.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel pushing/towing another vessel alongside on her port side, both making way, seen from ahead. [My own reading before checking the key: Power-driven vessel towing, tow under 200 m (two vertical masthead lights), seen head-on; the second green/red pair is the towed vessel's sidelights.]",
+  "confidence": "high"
+ },
+ "64": {
+  "page": 6,
+  "description": "Green over white vertical at top; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Trawler at work making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "65": {
+  "page": 6,
+  "description": "Left column: white, red, white, red. To its right two greens one above the other. Red lower right.",
+  "interpretation": "Booklet answer key (pages 10-16): Dredger making way, seen from her port side, with the lights showing safe passage on the port side. [My own reading before checking the key: Vessel engaged in dredging/underwater operations, making way, seen from her port side (red sidelight); the two greens show she may be passed on this (her port) side.]",
+  "confidence": "high"
+ },
+ "66": {
+  "page": 6,
+  "description": "Two reds one above the other at top; below, green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel not under command making way, seen from ahead.",
+  "confidence": "high"
+ },
+ "67": {
+  "page": 6,
+  "description": "White at upper left; vertical column red, white, red, green in the middle; white on the right, a little lower than the left white.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel over 50 m restricted in her ability to manoeuvre, heading right.",
+  "confidence": "high"
+ },
+ "68": {
+  "page": 6,
+  "description": "Green at top with a second green just below and to its right (only two greens visible), white below; at bottom green on left and red on right.",
+  "interpretation": "Booklet answer key (pages 10-16): Mine-clearance vessel with a sweep (gear) on the left side only. [My own reading before checking the key: Probably a mine-clearance vessel seen (nearly) head-on, with one of the three greens hidden/missing; could also be misread as a trawler (green over white). Unsure.]",
+  "confidence": "high"
+ },
+ "69": {
+  "page": 6,
+  "description": "White at upper left; green lower left; white lower right at the same height as the green.",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel over 50 m, heading right. Note: Booklet answer; the drawing places the forward masthead low (at sidelight height). [My own reading before checking the key: Unclear. Masthead + green sidelight = power vessel under 50 m from starboard side; the low white at right might be a sternlight seen from the starboard quarter, but its position does not fit well.]",
+  "confidence": "medium"
+ },
+ "70": {
+  "page": 6,
+  "description": "Red, white, red in a vertical line only.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel engaged in diving / underwater work (red-white-red, not making way).",
+  "confidence": "high"
+ },
+ "71": {
+  "page": 6,
+  "description": "Red on left and green on right side by side, with yellow text 'מנצנצים' (flashing) beneath.",
+  "interpretation": "Booklet answer key (pages 10-16): Harbour / marina entrance signal lights (local Israeli harbour signal, not COLREG). [My own reading before checking the key: Flashing red and green side by side (red on viewer's left). Not a standard vessel light combination; sidelights cannot be seen this way round. Possibly a trick picture or local/harbour signal. Unsure.]",
+  "confidence": "high"
+ },
+ "72": {
+  "page": 6,
+  "description": "Wide picture. On the right: three whites in a vertical line, a white higher and to their left, a green below. Far left at the bottom: a single green.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel and tow, tow over 200 m, heading right.",
+  "confidence": "high"
+ },
+ "73": {
+  "page": 6,
+  "description": "White over green in a vertical line.",
+  "interpretation": "Booklet answer key (pages 10-16): Local warning signal: rough sea when leaving harbour (Beaufort 5 and above). Not a vessel light. [My own reading before checking the key: Power-driven vessel under 50 m seen from her starboard side (masthead light above green sidelight). Note it is white over green, not the trawling green over white.]",
+  "confidence": "high"
+ },
+ "74": {
+  "page": 6,
+  "description": "Green on left and red on right side by side, with yellow text 'מנצנצים' (flashing) beneath.",
+  "interpretation": "Booklet answer key (pages 10-16): Harbour / marina exit signal lights (local Israeli harbour signal, not COLREG). [My own reading before checking the key: Flashing green and red side by side (head-on arrangement). Not a standard COLREG combination; possibly a trick picture or local signal. Unsure.]",
+  "confidence": "high"
+ },
+ "75": {
+  "page": 7,
+  "description": "Single black cylinder on a vertical line (hoist).",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel constrained by her draught.",
+  "confidence": "high"
+ },
+ "76": {
+  "page": 7,
+  "description": "Three black balls: one at the top of a vertical line, two lower ones joined by a slanting line (yardarm) crossing the vertical line - one to the left, one to the right.",
+  "interpretation": "Booklet answer key (pages 10-16): Mine-clearance vessel at work, with sweep on both sides. [My own reading before checking the key: Vessel engaged in mine clearance: one ball at the foremast head and one at each end of the fore yard (drawn askew). Danger to approach within 1000 m.]",
+  "confidence": "high"
+ },
+ "77": {
+  "page": 7,
+  "description": "Single black ball on a vertical line.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel at anchor / meteorological warning on leaving harbour when shown on a harbour structure.",
+  "confidence": "high"
+ },
+ "78": {
+  "page": 7,
+  "description": "Vertical line: ball, diamond, ball; and a separate single diamond to the left at the same height as the middle diamond.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel restricted in her ability to manoeuvre (diamond = tow over 200 m). [My own reading before checking the key: Vessel towing, tow length over 200 m (diamond), and restricted in her ability to deviate from course (ball-diamond-ball).]",
+  "confidence": "high"
+ },
+ "79": {
+  "page": 7,
+  "description": "Vertical line: ball, diamond, ball.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel restricted in her ability to manoeuvre.",
+  "confidence": "high"
+ },
+ "80": {
+  "page": 7,
+  "description": "Two black balls in a vertical line.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel not under command.",
+  "confidence": "high"
+ },
+ "81": {
+  "page": 7,
+  "description": "Three black balls in a vertical line.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel aground.",
+  "confidence": "high"
+ },
+ "82": {
+  "page": 7,
+  "description": "Single black cone, point down.",
+  "interpretation": "Booklet answer key (pages 10-16): Sailing vessel proceeding under engine (motor-sailing).",
+  "confidence": "high"
+ },
+ "83": {
+  "page": 7,
+  "description": "Black square flag at the top of a staff with a black ball below it on the staff.",
+  "interpretation": "Booklet answer key (pages 10-16): In distress, requesting help.",
+  "confidence": "high"
+ },
+ "84": {
+  "page": 7,
+  "description": "Two black cones in a vertical line with points together (hourglass).",
+  "interpretation": "Booklet answer key (pages 10-16): Trawler at work (vessel engaged in fishing).",
+  "confidence": "high"
+ },
+ "85": {
+  "page": 7,
+  "description": "Single black cone, point up.",
+  "interpretation": "Booklet answer key (pages 10-16): Fishing vessel whose gear extends more than 150 m horizontally from the vessel. [My own reading before checking the key: Fishing vessel with outlying gear extending more than 150 m horizontally - cone point up shown in the direction of the gear.]",
+  "confidence": "high"
+ },
+ "86": {
+  "page": 7,
+  "description": "Single black diamond.",
+  "interpretation": "Booklet answer key (pages 10-16): Towing vessel, length of tow over 200 m.",
+  "confidence": "high"
+ },
+ "87": {
+  "page": 7,
+  "description": "Three vertical hoists: left two balls; centre ball, diamond, ball; right two diamonds.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel / dredger restricted in her ability to manoeuvre: obstruction on the side marked by balls, safe passage on the side marked by diamonds.",
+  "confidence": "high"
+ },
+ "88": {
+  "page": 7,
+  "description": "Two hoists: left two diamonds in a vertical line; right ball, diamond, ball.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel / dredger restricted in her ability to manoeuvre, safe passage on the side marked by diamonds. [My own reading before checking the key: Vessel engaged in dredging/underwater operations showing ball-diamond-ball and two diamonds = the side on which another vessel may pass (left as drawn); the obstruction balls not shown.]",
+  "confidence": "high"
+ },
+ "89": {
+  "page": 7,
+  "description": "Two hoists: left two balls in a vertical line; right ball, diamond, ball.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel / dredger restricted in her ability to manoeuvre, obstruction on the side marked by balls. [My own reading before checking the key: Vessel engaged in dredging/underwater operations: obstruction exists on the side of the two balls (left as drawn); pass-side diamonds not shown.]",
+  "confidence": "high"
+ },
+ "90": {
+  "page": 7,
+  "description": "Two hoists: left ball, diamond, ball; right two balls in a vertical line.",
+  "interpretation": "Booklet answer key (pages 10-16): Vessel / dredger restricted in her ability to manoeuvre, obstruction on the side marked by balls. [My own reading before checking the key: Vessel engaged in dredging/underwater operations: obstruction on the side of the two balls (right as drawn).]",
+  "confidence": "high"
+ },
+ "91": {
+  "page": 8,
+  "description": "Flag quartered red and white: top hoist red, top fly white, bottom hoist white, bottom fly red.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag U - 'You are running into danger'.",
+  "confidence": "high"
+ },
+ "92": {
+  "page": 8,
+  "description": "Small blue and white chequered flag (4x4 squares).",
+  "interpretation": "Booklet answer key (pages 10-16): Flag N - 'No' (negative).",
+  "confidence": "high"
+ },
+ "93": {
+  "page": 8,
+  "description": "Horizontal stripes top to bottom: blue, white, red, white, blue.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag C - 'Yes' (affirmative).",
+  "confidence": "high"
+ },
+ "94": {
+  "page": 8,
+  "description": "Three vertical bands from the hoist: red, white, blue.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag T - 'Keep clear of me; I am engaged in pair trawling'.",
+  "confidence": "high"
+ },
+ "95": {
+  "page": 8,
+  "description": "Plain red swallow-tailed flag.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag B - 'I am loading, discharging or carrying dangerous goods'.",
+  "confidence": "high"
+ },
+ "96": {
+  "page": 8,
+  "description": "White flag with a blue rectangle in the centre.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag S - 'My engines are going astern'.",
+  "confidence": "high"
+ },
+ "97": {
+  "page": 8,
+  "description": "Vertical stripes yellow and blue alternating (yellow at the hoist, blue at the fly).",
+  "interpretation": "Booklet answer key (pages 10-16): Flag G - 'I require a pilot'.",
+  "confidence": "high"
+ },
+ "98": {
+  "page": 8,
+  "description": "Swallow-tailed flag: white at the hoist, blue fly with swallowtail.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag A - 'Engaged in diving, keep clear'.",
+  "confidence": "high"
+ },
+ "99": {
+  "page": 8,
+  "description": "Flag in two vertical halves: yellow at the hoist, blue at the fly.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag K - 'I wish to communicate with you'.",
+  "confidence": "high"
+ },
+ "100": {
+  "page": 8,
+  "description": "Flag in two vertical halves: white at the hoist, red at the fly.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag H - 'I have a pilot on board'.",
+  "confidence": "high"
+ },
+ "101": {
+  "page": 8,
+  "description": "Flag quartered yellow and blue: top hoist yellow, top fly blue, bottom hoist blue, bottom fly yellow.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag L - 'You should stop your vessel immediately'. Note: Black quarters are drawn blue in the booklet.",
+  "confidence": "high"
+ },
+ "102": {
+  "page": 8,
+  "description": "Horizontal bands: yellow, blue (wider), yellow.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag D - 'Keep clear of me; I am manoeuvring with difficulty'.",
+  "confidence": "high"
+ },
+ "103": {
+  "page": 8,
+  "description": "Yellow flag with a blue circle (disc) in the centre.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag I - 'I am altering my course to port'. Note: Black disc is drawn blue in the booklet.",
+  "confidence": "high"
+ },
+ "104": {
+  "page": 8,
+  "description": "Flag divided diagonally: yellow triangle at the lower hoist, red triangle at the upper fly.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag O - 'Man overboard'.",
+  "confidence": "high"
+ },
+ "105": {
+  "page": 8,
+  "description": "Horizontal halves: blue over red.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag E - 'I am altering my course to starboard'.",
+  "confidence": "high"
+ },
+ "106": {
+  "page": 8,
+  "description": "Plain yellow flag.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag Q - 'My vessel is healthy and I request free pratique'.",
+  "confidence": "high"
+ },
+ "107": {
+  "page": 8,
+  "description": "White flag with a blue upright cross.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag X - 'Stop carrying out your intentions and watch for my signals'.",
+  "confidence": "high"
+ },
+ "108": {
+  "page": 8,
+  "description": "Blue flag with a white rectangle in the centre.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag P - all persons to return on board; on a fishing vessel - 'my nets are caught on an obstruction'.",
+  "confidence": "high"
+ },
+ "109": {
+  "page": 8,
+  "description": "White flag with a red diamond (lozenge) filling the middle.",
+  "interpretation": "Booklet answer key (pages 10-16): Flag F - 'I am disabled; communicate with me'.",
+  "confidence": "high"
+ },
+ "110": {
+  "page": 8,
+  "description": "White flag with a red diagonal cross (saltire).",
+  "interpretation": "Booklet answer key (pages 10-16): Flag V - 'I require assistance' (booklet stresses: NOT distress).",
+  "confidence": "high"
+ },
+ "111": {
+  "page": 9,
+  "description": "One dot. Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I am altering my course to starboard.'",
+  "confidence": "high"
+ },
+ "112": {
+  "page": 9,
+  "description": "One bar (one long/prolonged blast). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel making way in restricted visibility.",
+  "confidence": "high"
+ },
+ "113": {
+  "page": 9,
+  "description": "Three dots (three short blasts). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel operating astern propulsion.",
+  "confidence": "high"
+ },
+ "114": {
+  "page": 9,
+  "description": "Two dots (two short blasts). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I am altering my course to port.'",
+  "confidence": "high"
+ },
+ "115": {
+  "page": 9,
+  "description": "Five dots (five short blasts). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I do not understand your intentions/manoeuvre' (doubt / warning signal).",
+  "confidence": "high"
+ },
+ "116": {
+  "page": 9,
+  "description": "Bar, bar, dot, dot (two long then two short). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I intend to overtake you on your port (left) side.'",
+  "confidence": "high"
+ },
+ "117": {
+  "page": 9,
+  "description": "Bar, dot, bar, dot (long, short, long, short). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I agree to be overtaken.'",
+  "confidence": "high"
+ },
+ "118": {
+  "page": 9,
+  "description": "Bar, bar (two long blasts, with a gap). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Power-driven vessel under way in restricted visibility, stopped and not making way.",
+  "confidence": "high"
+ },
+ "119": {
+  "page": 9,
+  "description": "One very long continuous bar (continuous sounding). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I am in distress and require immediate help!' (continuous sounding).",
+  "confidence": "high"
+ },
+ "120": {
+  "page": 9,
+  "description": "Bar, dot, dot, dot (one long, three short). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I am loading/carrying/discharging dangerous cargo' / vessel being towed (restricted visibility). Note: 1 long + 3 short is the COLREG restricted-visibility signal for the (manned) towed vessel; the dangerous-cargo meaning is the booklet's own addition.",
+  "confidence": "high"
+ },
+ "121": {
+  "page": 9,
+  "description": "Bar, bar, dot (two long, one short). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): 'I intend to overtake you on your starboard (right) side.'",
+  "confidence": "high"
+ },
+ "122": {
+  "page": 9,
+  "description": "Bar, dot, dot (one long, two short). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Restricted visibility: vessel restricted in her ability to manoeuvre / constrained by her draught / not under command / sailing vessel / towing, making way.",
+  "confidence": "high"
+ },
+ "123": {
+  "page": 9,
+  "description": "Bar, dot, bar (long, short, long). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Distractor - not a valid signal (booklet answer for 123-126: 'מסיחים').",
+  "confidence": "high"
+ },
+ "124": {
+  "page": 9,
+  "description": "Bar, bar, bar (three long; slightly larger gap before the third). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Distractor - not a valid signal.",
+  "confidence": "high"
+ },
+ "125": {
+  "page": 9,
+  "description": "Dot, bar, bar (short, long, long). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Distractor - not a valid signal.",
+  "confidence": "high"
+ },
+ "126": {
+  "page": 9,
+  "description": "Dot, bar (short, long). Legend on page: read left to right; dot = short blast, short bar = long blast, very long bar = prolonged ('ממושך').",
+  "interpretation": "Booklet answer key (pages 10-16): Distractor - not a valid signal.",
+  "confidence": "high"
+ },
+ "127": {
+  "page": 2,
+  "description": "Title 'מצבי שייט' (encounter situations). Compass-rose diagram: 16 boat silhouettes arranged around a centre point, each pointing toward the centre, labelled A to P clockwise. A at top (blue boat, pointing down toward centre), B, C (green), D (orange), E at right (magenta/pink boat with red outline, pointing left), F, G (green), H, I at bottom (magenta boat, pointing up), J, K (green), L, M at left (blue boat, pointing right), N (orange), O (green), P. Boat colours: A and M blue; E and I magenta; C, G, K, O green; D, F, L, N orange; B, H, J, P grey. Dotted lines join opposite positions through the centre. Some letter boxes are coloured (A, M blue; C, K, O green; D orange; E, I red letters).",
+  "interpretation": "Booklet answer key (pages 10-16): Relative positions (encounter situations) between vessels.",
+  "confidence": "high"
+ }
+}

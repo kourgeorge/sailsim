@@ -14,7 +14,7 @@ const title=svg=>svg.match(/<title[^>]*>([^<]+)<\/title>/)?.[1];
 const description=svg=>svg.match(/<desc[^>]*>([^<]+)<\/desc>/)?.[1];
 
 test('every course lesson has an accessible, localized teaching diagram in all six languages',()=>{
-  assert.equal(course.length,59);
+  assert.equal(course.length,62);
   for(const lesson of course) {
     const english=renderTeachingFigure(lesson,'en');
     for(const lang of languages) {
@@ -166,5 +166,16 @@ test('spring-lines figure shows both springs and is translated',()=>{
     assert.match(svg,/data-spring="bow"/); assert.match(svg,/data-spring="stern"/);
     assert.doesNotMatch(svg,/undefined|NaN/);
     if(lang!=='en') assert.notEqual(getTeachingFigureCaption({figure:'spring-lines'},lang),getTeachingFigureCaption({figure:'spring-lines'},'en'));
+  }
+});
+
+test('every figure a lesson uses renders in all six languages with translated text',()=>{
+  const figures=new Set(course.flatMap(lesson=>[lesson.figure,...Object.values(lesson.conceptFigures??{})]).filter(Boolean));
+  assert.ok(figures.size>=20);
+  for(const figure of figures) for(const lang of languages) {
+    const svg=renderTeachingFigure({figure},lang),caption=getTeachingFigureCaption({figure},lang);
+    assert.match(svg,/^<svg/,figure); assert.ok(title(svg),figure); assert.ok(caption.length>35,`${figure} ${lang}`);
+    assert.doesNotMatch(svg,/undefined|NaN/,`${figure} ${lang}`);
+    if(lang!=='en') assert.notEqual(caption,getTeachingFigureCaption({figure},'en'),`${figure} ${lang}`);
   }
 });

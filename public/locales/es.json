@@ -91,7 +91,10 @@
           "explanation": "Siguen siendo necesarias la enseñanza y la evaluación en el agua. El simulador omite muchas exigencias físicas y ambientales."
         }
       ],
-      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "localNotes": [
+        "La normativa israelí prohíbe arrojar al mar cualquier basura o resto de comida, a cualquier distancia de la costa. Guárdalo a bordo y llévalo de vuelta a puerto."
+      ]
     },
     "sail-02": {
       "title": "Conoce tu velero",
@@ -1128,7 +1131,10 @@
           "explanation": "Usa todos los medios apropiados disponibles y mantén vigilancia exterior."
         }
       ],
-      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
+      "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
+      "localNotes": [
+        "En Israel está prohibido navegar en playas de baño declaradas, zonas de buceo y zonas cerradas. Una playa de baño declarada se extiende 50 m más allá de cada lado de la zona señalizada y 300 m mar adentro desde la línea de bajamar. Un pesquero faenando puede navegar cerca de la costa fuera de estas zonas. Consulta la normativa israelí vigente."
+      ]
     },
     "sail-26": {
       "title": "Razona los encuentros",
@@ -2568,7 +2574,8 @@
       ],
       "transfer": "Aprende el equipo de tu propio barco con un instructor: ajústate el arnés, lee las instrucciones de las bengalas, localiza los extintores y haz un curso de supervivencia en el mar con una balsa salvavidas real.",
       "localNotes": [
-        "El temario israelí de la licencia de patrón exige, por ejemplo, una balsa salvavidas en un yate privado que navegue a 15 NM de la costa, al menos 4 cohetes rojos con paracaídas y una manta ignífuga donde se cocine con llama. El certificado de navegabilidad de tu barco da la lista exacta; consulta la normativa israelí vigente."
+        "El temario israelí de la licencia de patrón exige, por ejemplo, una balsa salvavidas en un yate privado que navegue a 15 NM de la costa, al menos 4 cohetes rojos con paracaídas y una manta ignífuga donde se cocine con llama. El certificado de navegabilidad de tu barco da la lista exacta; consulta la normativa israelí vigente.",
+        "Según la normativa israelí, una embarcación es un buque de 7 a 24 m de eslora. En una navegación nacional, a lo largo de la costa israelí, puede alejarse hasta 12 NM de la costa. La navegabilidad de una embarcación privada se inspecciona cada 24 meses. El equipo obligatorio, incluido el peso del ancla según el tamaño del barco, lo fija el reglamento de equipos de seguridad de la Autoridad de Navegación y Puertos de Israel, publicado por la Autoridad y en la web del Ministerio de Transporte."
       ]
     },
     "sail-59": {
@@ -2616,6 +2623,145 @@
         }
       ],
       "transfer": "Aprende el equipo de tu propio barco con un instructor: ajústate el arnés, lee las instrucciones de las bengalas, localiza los extintores y haz un curso de supervivencia en el mar con una balsa salvavidas real."
+    },
+    "sail-60": {
+      "title": "Cabos, cables, nudos y aparejos",
+      "concepts": [
+        "Los cabos se fabrican con distintas fibras, y cada una sirve para un trabajo distinto. El nailon estira mucho, así que absorbe los tirones: úsalo para la línea de fondeo y los cabos de amarre. El poliéster estira poco, así que la vela conserva su forma: úsalo para escotas y drizas. El polipropileno flota, lo que va bien para un cabo de rescate que se lanza, pero se desgasta por roce y se debilita con el sol. La aramida y fibras parecidas, como el Kevlar y el Dyneema, son las más resistentes para su grosor y casi no estiran.",
+        "Un cabo de amarre o de remolque necesita una carga de rotura alta, y el de remolque además debe ser largo y capaz de estirar. Es mejor un cabo fuerte que dos débiles, porque la carga casi nunca se reparte por igual entre dos cabos. Todo nudo o costura debilita un cabo: un nudo puede quitarle hasta cerca de la mitad de su resistencia, una costura mucho menos. El roce también lo debilita, así que protege los cabos donde pasan por las guías.",
+        "Cuida tus cabos: enjuágalos con agua dulce para quitar la sal, sécalos y guárdalos adujados a la sombra. El sol y los cristales de sal debilitan las fibras. Busca roces, cortes y zonas rígidas o vidriosas, y cambia el cabo antes de que falle.",
+        "El cable de acero se describe por sus cordones y alambres. Una marca como 6/12 significa 6 cordones con 12 alambres cada uno. El cable 7×19, de 7 cordones de 19 alambres, es flexible y sirve para la jarcia de labor que dobla en roldanas; el cable 1×19, un solo cordón de 19 alambres, es rígido y estira poco, así que se usa en la jarcia firme, como los obenques, y en los guardamancebos.",
+        "El amantillo es un cabo que va del tope del palo al extremo de la botavara. Sostiene la botavara cuando se arría o se riza la mayor, para que no caiga sobre la bañera ni sobre la tripulación.",
+        "Un aparejo multiplica tu fuerza al tirar. Cuenta los guarnes de cabo que sostienen el motón móvil: con cuatro guarnes, una carga de 320 kg necesita unos 80 kg de tiro, sin contar la fricción. Con dos motones dobles, si el cabo sale del motón móvil hay cinco guarnes, una ganancia de 5 a 1; si sale del motón fijo, 4 a 1. A cambio, recoges esa misma proporción de cabo más para la misma elevación.",
+        "Aprende unos pocos nudos tan bien que puedas hacerlos a oscuras. El as de guía hace una gaza que no se corre ni se atasca; la vuelta de cornamusa sujeta un cabo a una cornamusa; el ballestrinque sujeta rápido una defensa a un candelero o a la regala; el nudo de ocho impide que un cabo se escape por un motón; y la vuelta redonda con dos medios cotes ata un cabo a una argolla o a un poste bajo carga."
+      ],
+      "observe": [
+        "Busca a bordo la línea de fondeo, una escota y una driza, y di de qué fibra es cada una y por qué.",
+        "Cuenta los guarnes de cabo en el motón móvil del aparejo de la escota de mayor y calcula su ganancia."
+      ],
+      "mistake": "Unir dos cabos débiles en lugar de usar uno fuerte, u olvidar que un nudo debilita el cabo en el que está hecho.",
+      "quiz": [
+        {
+          "prompt": "¿Qué cabo es el más resistente para su grosor?",
+          "options": [
+            "Kevlar",
+            "Polipropileno",
+            "Nailon"
+          ],
+          "explanation": "Las fibras de aramida como el Kevlar son mucho más resistentes que el nailon o el polipropileno del mismo grosor."
+        },
+        {
+          "prompt": "¿Qué le hace un nudo a la resistencia de un cabo?",
+          "options": [
+            "Debilita el cabo",
+            "Hace el cabo más fuerte",
+            "Nada"
+          ],
+          "explanation": "Todo nudo o costura debilita un cabo; un nudo puede quitarle hasta cerca de la mitad de su resistencia."
+        },
+        {
+          "prompt": "Dos motones dobles, con el cabo saliendo del motón móvil. ¿Cuál es la ganancia?",
+          "options": [
+            "5 a 1",
+            "2 a 1",
+            "4 a 1"
+          ],
+          "explanation": "Cuenta los guarnes en el motón móvil: cuatro entre los motones más el que sale de él suman cinco."
+        }
+      ],
+      "transfer": "Practica los nudos con un cabo de verdad hasta hacerlos sin mirar, y pide a un instructor que revise cómo se pasan y se protegen los cabos en tu barco."
+    },
+    "sail-61": {
+      "title": "Banderas de señales y visitas a otros países",
+      "concepts": [
+        "Las banderas sueltas del Código Internacional de Señales transmiten mensajes breves y urgentes. La bandera A, blanca y azul con el extremo en cola de golondrina, significa «Tengo un buzo sumergido; manténgase bien alejado y a poca velocidad». La bandera B, roja y en cola de golondrina, indica que un buque está cargando, descargando o transportando mercancías peligrosas, como combustible: mantente alejado, aunque puedes pasar o entrar en puerto con precaución. La bandera O, mitad roja y mitad amarilla, significa hombre al agua. La bandera Q, amarilla lisa, significa «Mi buque está sano y solicito libre plática», es decir, permiso para entrar en puerto.",
+        "Las banderas N sobre C, izadas juntas, son una señal de socorro, igual que una bandera cuadrada con una bola encima o debajo. Una sola bandera del código, por sí sola, nunca significa socorro. Las banderas se leen de arriba abajo, y un buque fondeado puede izar una bandera de señales además de mostrar su bola negra.",
+        "Tu pabellón, la bandera del país donde está matriculado el barco, se iza en la popa. En aguas de otro país, iza también la bandera de ese país, la bandera de cortesía, bajo la cruceta de estribor. Al llegar por primera vez, iza la bandera Q amarilla bajo la cruceta de babor hasta que aduanas e inmigración te hayan despachado, y después arríala.",
+        "Algunos países exigen documentación adicional a los yates que los visitan. Turquía, por ejemplo, expide un transit log en un puerto de entrada oficial, que después permite navegar libremente por las aguas costeras turcas. Antes de salir, comprueba las normas de entrada, los puertos de entrada y las obligaciones de notificación de cada país de tu ruta, y también las de tu propio país para el regreso."
+      ],
+      "observe": [
+        "Busca las banderas del código a bordo y di qué significa cada bandera suelta.",
+        "Antes de un viaje al extranjero, haz una lista de las banderas que izarás y dónde va cada una."
+      ],
+      "mistake": "Tomar una sola bandera del código por una señal de socorro, o izar la bandera de cortesía en lugar de tu propio pabellón.",
+      "quiz": [
+        {
+          "prompt": "Un buque que llega a puerto iza una bandera amarilla lisa. ¿Qué significa?",
+          "options": [
+            "Mi buque está sano y solicito libre plática",
+            "Tengo un buzo sumergido",
+            "Hombre al agua"
+          ],
+          "explanation": "La bandera Q solicita libre plática, el permiso para entrar en puerto. Se arría en cuanto las autoridades te han despachado."
+        },
+        {
+          "prompt": "¿Dónde se iza la bandera de cortesía del país que visitas?",
+          "options": [
+            "Bajo la cruceta de estribor",
+            "En la popa, en lugar de tu pabellón",
+            "En ningún sitio; es opcional"
+          ],
+          "explanation": "La bandera de cortesía va bajo la cruceta de estribor; tu propio pabellón se queda en la popa."
+        },
+        {
+          "prompt": "Un buque cerca de la bocana iza la bandera B. ¿Qué haces?",
+          "options": [
+            "Entro, pero me mantengo bien alejado de él",
+            "Me detengo y espero fuera a que me den permiso",
+            "Me abarloo para ofrecer ayuda"
+          ],
+          "explanation": "La bandera B indica mercancías peligrosas, como combustible. Puedes pasar, pero déjale mucho espacio."
+        }
+      ],
+      "transfer": "Aprende el Código Internacional de Señales completo para las aguas donde navegas y comprueba las normas de entrada vigentes de cada país antes de salir.",
+      "localNotes": [
+        "El temario israelí de la licencia de patrón espera que el barco lleve las banderas del código N, A, B, C, Q y O. Al regresar a Israel desde el extranjero, a menos de 25 NM de la costa, comunica tu posición e identidad a RCC Haifa por el canal 16 de VHF; esta notificación de entrada se llama IMOT. Consulta la normativa israelí vigente."
+      ]
+    },
+    "sail-62": {
+      "title": "Averías del equipo y remolque",
+      "concepts": [
+        "Si falla el gobierno de rueda, por ejemplo porque se rompe un guardín o el eje de la rueda, usa la caña de emergencia. Se monta en la parte superior de la mecha del timón, normalmente bajo una tapa de cubierta en la bañera. Aprende dónde está guardada y practica a montarla con mar en calma. Cerca de una bocana, reduce la velocidad, pide ayuda pronto y mantente bien alejado del rompeolas mientras la montas.",
+        "Si el enrollador se atasca al enrollar la vela de proa, primero quita carga a la vela. Arriba para que la mayor la abrigue, o lasca la escota, y vuelve a intentarlo con suavidad. No lo fuerces con un winche más grande, porque puedes romper el tambor o el cabo. Si aun así no gira, larga la driza, baja la vela a cubierta y átala allí.",
+        "Si se rompe un obenque cargado, actúa enseguida para quitar la tensión del palo. Vira o trasluce para que el costado roto quede a sotavento y deje de soportar la carga, lasca las escotas y reduce vela. Después, afirma una driza de respeto a un punto fuerte de ese costado como obenque provisional antes de seguir navegando con suavidad.",
+        "Antes de tomar otro barco a remolque, comprueba el estado de la mar, tu combustible y la resistencia de los puntos de amarre de los dos barcos. Usa un cabo largo, resistente y elástico, como 50 m de nailon grueso con una mar de 2 m, afirmado a puntos fuertes o a una brida repartida entre ambas bandas. Con mal tiempo, alarga el cabo de remolque y ponle peso para que no dé tirones, y acuerda señales con la otra tripulación.",
+        "Remolca despacio y haz los giros siempre suaves y amplios. Con un cabo corto, un giro brusco hace que el cabo quede flojo; cuando vuelve a tensarse, arrastra de golpe la proa del barco remolcado tras de ti, de modo que en un giro brusco a estribor su proa da una guiñada fuerte a estribor y puede chocar contra tu popa. Gira abierto y mantén el cabo tenso. En puerto, remolcar abarloado, trincado a tu costado, da mucho mejor control."
+      ],
+      "observe": [
+        "Busca la caña de emergencia a bordo y averigua cómo se monta en la mecha del timón.",
+        "Observa los obenques y decide qué costado soporta la carga en cada amura."
+      ],
+      "mistake": "Forzar un enrollador atascado con un winche más grande, o remolcar con un cabo corto y girar bruscamente.",
+      "quiz": [
+        {
+          "prompt": "¿Cuándo necesitas la caña de emergencia en un barco con rueda?",
+          "options": [
+            "Cuando se rompe un guardín o el eje de la rueda",
+            "Solo cuando se rompe el propio timón",
+            "Siempre que el motor está parado"
+          ],
+          "explanation": "La caña de emergencia se monta directamente en la mecha del timón, así que sirve cuando falla la unión entre la rueda y el timón."
+        },
+        {
+          "prompt": "Navegando amurado a estribor, se rompe el obenque de estribor. ¿Qué haces primero?",
+          "options": [
+            "Virar para que el costado roto quede a sotavento",
+            "Mantener el rumbo y lascar el backstay",
+            "Izar más vela para estabilizar el barco"
+          ],
+          "explanation": "El obenque de barlovento soporta la carga. Al virar, el costado roto queda a sotavento y se quita la tensión del palo."
+        },
+        {
+          "prompt": "¿Qué cabo de remolque conviene con mal tiempo?",
+          "options": [
+            "Un cabo largo, pesado y elástico",
+            "Un cabo corto, para mantener los barcos juntos",
+            "Un cabo fino que se rompa antes que las cornamusas"
+          ],
+          "explanation": "Un cabo largo, pesado y elástico mantiene los barcos al compás de las olas y evita que dé tirones."
+        }
+      ],
+      "transfer": "Monta la caña de emergencia y prepara un remolque con un instructor en aguas tranquilas antes de tener que hacerlo de verdad."
     }
   }
 }

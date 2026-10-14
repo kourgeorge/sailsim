@@ -2927,4 +2927,323 @@ export default {
       }
     }
   },
+  "decision-sail-60": {
+    "title": "Gréez les bons cordages",
+    "brief": "Choisissez les cordages selon leur usage, entretenez-les et calculez le gain d’un palan.",
+    "limitations": "Cet exercice évalue des choix à partir des informations fournies. Les diamètres et efforts réels dépendent du bateau ; vérifiez-les auprès du fabricant de cordages et d’un moniteur.",
+    "stages": {
+      "choose": {
+        "title": "Choisissez le cordage",
+        "brief": "Vous remplacez trois cordages avant la saison.",
+        "goal": "Choisissez la meilleure fibre pour chaque usage.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "jobs": {
+            "label": "Les trois usages",
+            "text": "Une ligne de mouillage et d’amarrage qui doit amortir les à-coups ; une drisse de grand-voile qui doit garder la forme de la voile ; une ligne de sauvetage à lancer qui doit flotter."
+          }
+        },
+        "fields": {
+          "anchor": {
+            "label": "Ligne de mouillage et d’amarrage",
+            "options": {
+              "nylon": "Nylon",
+              "polyester": "Polyester",
+              "polypropylene": "Polypropylène"
+            }
+          },
+          "halyard": {
+            "label": "Drisse de grand-voile",
+            "options": {
+              "polyester": "Polyester",
+              "nylon": "Nylon",
+              "polypropylene": "Polypropylène"
+            }
+          },
+          "rescue": {
+            "label": "Ligne de sauvetage à lancer",
+            "options": {
+              "polypropylene": "Polypropylène",
+              "nylon": "Nylon",
+              "polyester": "Polyester"
+            }
+          }
+        }
+      },
+      "care": {
+        "title": "Entretenez les cordages",
+        "brief": "Après une semaine de croisière, vous inspectez les cordages.",
+        "goal": "Choisissez quoi faire.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "salt": {
+            "label": "État",
+            "text": "Les cordages sont couverts de croûtes de sel. L’amarre avant est ragée là où elle passe dans le chaumard."
+          },
+          "spare": {
+            "label": "Cordages de rechange",
+            "text": "Vous avez une amarre neuve du bon diamètre, et deux vieux cordages plus fins."
+          }
+        },
+        "fields": {
+          "actions": {
+            "label": "À faire",
+            "options": {
+              "rinse": "Rincer les cordages à l’eau douce, les sécher et les ranger à l’ombre",
+              "replace": "Remplacer l’amarre ragée et la protéger au chaumard",
+              "double": "Nouer les deux vieux cordages plus fins à la place de l’amarre ragée",
+              "sun": "Laisser les cordages cuire au soleil pour sécher le sel"
+            }
+          }
+        }
+      },
+      "tackle": {
+        "title": "Calculez le palan",
+        "brief": "Vous hissez l’annexe de 320 kg avec un palan suspendu au bout de la bôme.",
+        "goal": "Calculez la traction et le gain, sans compter le frottement.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "rig": {
+            "label": "Le palan",
+            "text": "Quatre brins de cordage portent la poulie mobile accrochée à l’annexe."
+          },
+          "main": {
+            "label": "L’écoute de grand-voile",
+            "text": "L’écoute de grand-voile a deux poulies doubles, et le cordage part de la poulie de bôme, qui est mobile."
+          }
+        },
+        "fields": {
+          "pull": {
+            "label": "Traction nécessaire pour hisser l’annexe",
+            "options": {}
+          },
+          "gain": {
+            "label": "Gain du palan d’écoute de grand-voile",
+            "options": {}
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-61": {
+    "title": "Arriver dans un port étranger",
+    "brief": "Lisez les pavillons du code autour de vous, hissez les bons pavillons à l’arrivée et accomplissez correctement les formalités d’entrée.",
+    "limitations": "La signification des pavillons suit le Code international des signaux. Les règles d’entrée varient selon les pays et évoluent ; vérifiez-les avant chaque voyage.",
+    "stages": {
+      "read": {
+        "title": "Lire les pavillons autour de vous",
+        "brief": "En approchant d’un port étranger, vous voyez trois navires arborant chacun un pavillon du code isolé.",
+        "goal": "Choisissez la bonne réaction pour chacun.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "a": {
+            "label": "Premier navire",
+            "text": "Un petit bateau arborant le pavillon A, blanc et bleu à extrémité en queue d’aronde."
+          },
+          "b": {
+            "label": "Deuxième navire",
+            "text": "Un pétrolier près de l’entrée arborant le pavillon B, rouge et en queue d’aronde."
+          },
+          "o": {
+            "label": "Troisième navire",
+            "text": "Un voilier arborant le pavillon O, moitié rouge et moitié jaune."
+          }
+        },
+        "fields": {
+          "flagA": {
+            "label": "Navire au pavillon A",
+            "options": {
+              "clear": "Rester bien à l’écart à vitesse réduite : des plongeurs sont en immersion",
+              "help": "Venir à couple pour aider",
+              "ignore": "Aucune action nécessaire"
+            }
+          },
+          "flagB": {
+            "label": "Navire au pavillon B",
+            "options": {
+              "cargo": "Marchandises dangereuses : vous pouvez passer, mais restez bien à l’écart",
+              "divers": "Plongeurs en immersion",
+              "stop": "S’arrêter et attendre à l’extérieur du port"
+            }
+          },
+          "flagO": {
+            "label": "Navire au pavillon O",
+            "options": {
+              "mob": "Homme à la mer : veiller et proposer son aide",
+              "fuel": "Il fait le plein de carburant",
+              "healthy": "Il est indemne et demande à entrer au port"
+            }
+          }
+        }
+      },
+      "hoist": {
+        "title": "Hisser les pavillons d’arrivée",
+        "brief": "Vous entrez pour la première fois dans les eaux de ce pays.",
+        "goal": "Choisissez l’emplacement de chaque pavillon.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "aboard": {
+            "label": "Pavillons à bord",
+            "text": "Votre propre pavillon national, le pavillon du pays hôte et un pavillon jaune Q."
+          }
+        },
+        "fields": {
+          "flags": {
+            "label": "Hisser",
+            "options": {
+              "courtesy": "Pavillon du pays hôte sous la barre de flèche tribord",
+              "q": "Pavillon Q sous la barre de flèche bâbord jusqu’à l’autorisation",
+              "ensign": "Votre propre pavillon national à l’arrière",
+              "replace": "Pavillon du pays hôte à l’arrière à la place de votre pavillon national"
+            }
+          }
+        }
+      },
+      "clear": {
+        "title": "Faire les formalités et poursuivre",
+        "brief": "La douane et l’immigration vous ont autorisé au port d’entrée officiel. Vous prévoyez de longer la côte.",
+        "goal": "Choisissez les documents et les pavillons pour la croisière.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "papers": {
+            "label": "Documents d’entrée",
+            "text": "Ce pays délivre aux yachts en visite un transit log au port d’entrée."
+          }
+        },
+        "fields": {
+          "log": {
+            "label": "Que permet le transit log ?",
+            "options": {
+              "free": "Circuler librement dans les eaux côtières du pays",
+              "fishing": "La pêche commerciale",
+              "nothing": "Rien ; ce n’est qu’un souvenir"
+            }
+          },
+          "after": {
+            "label": "Après les formalités d’entrée",
+            "options": {
+              "lowerQ": "Amener le pavillon Q",
+              "courtesy": "Garder le pavillon de courtoisie dans ces eaux",
+              "ensign": "Amener votre propre pavillon national"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-62": {
+    "title": "Faire face aux avaries de matériel",
+    "brief": "Gérez une avarie de barre, un hauban cassé et un remorquage, à partir des rapports fournis.",
+    "limitations": "Cet exercice évalue des choix à partir des rapports fournis. Entraînez-vous à monter la barre franche de secours et à gréer un remorquage avec un moniteur.",
+    "stages": {
+      "steering": {
+        "title": "Perdre la barre",
+        "brief": "En entrant au moteur dans une marina, la roue tourne soudain dans le vide et le bateau ne répond plus.",
+        "goal": "Choisissez quoi faire.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "check": {
+            "label": "Vérification",
+            "text": "Le câble de direction a cassé. Le safran lui-même est intact. La digue est à 150 m devant."
+          }
+        },
+        "fields": {
+          "fix": {
+            "label": "Votre action",
+            "options": {
+              "tiller": "Monter la barre franche de secours sur la mèche du safran",
+              "engine": "Gouverner au moteur seul et continuer d’entrer",
+              "anchor": "Mouiller l’ancre dans l’entrée"
+            }
+          },
+          "also": {
+            "label": "Également",
+            "options": {
+              "slow": "Ralentir et rester à l’écart de la digue",
+              "call": "Prévenir la marina et appeler à l’aide tôt",
+              "speed": "Accélérer pour entrer avant que la situation n’empire"
+            }
+          }
+        }
+      },
+      "shroud": {
+        "title": "Un hauban casse",
+        "brief": "Vous naviguez au cap 150° par un vent de sud-ouest force 5.",
+        "goal": "Déterminez quel hauban est en charge et agissez.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "wind": {
+            "label": "Vent et amure",
+            "text": "Le vent vient du sud-ouest, donc il arrive par votre côté tribord : vous êtes tribord amures."
+          },
+          "break": {
+            "label": "Avarie",
+            "text": "Un hauban sous charge vient de casser avec un claquement."
+          }
+        },
+        "fields": {
+          "side": {
+            "label": "Quel hauban portait la charge ?",
+            "options": {
+              "starboard": "Le hauban tribord",
+              "port": "Le hauban bâbord",
+              "backstay": "Le pataras"
+            }
+          },
+          "act": {
+            "label": "Première action",
+            "options": {
+              "tack": "Virer de bord immédiatement pour que le côté cassé passe sous le vent",
+              "hold": "Garder le cap et reprendre le pataras",
+              "later": "Continuer à naviguer et affaler plus tard"
+            }
+          }
+        }
+      },
+      "tow": {
+        "title": "Prendre un bateau en remorque",
+        "brief": "Un voilier de 10 m en panne de moteur demande un remorquage. La mer est d’environ 2 m.",
+        "goal": "Choisissez la remorque et les préparatifs.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "lines": {
+            "label": "Cordages à bord",
+            "text": "Une amarre en nylon épais de 50 m, une écoute en polyester de 10 m et 10 m de chaîne."
+          },
+          "boats": {
+            "label": "Bateaux",
+            "text": "Les deux bateaux ont de solides taquets à l’avant et à l’arrière."
+          }
+        },
+        "fields": {
+          "line": {
+            "label": "Remorque",
+            "options": {
+              "long": "L’amarre en nylon épais de 50 m",
+              "short": "L’écoute en polyester de 10 m",
+              "chain": "Les 10 m de chaîne"
+            }
+          },
+          "prepare": {
+            "label": "Préparer",
+            "options": {
+              "fuel": "Vérifier que vous avez assez de carburant pour la charge supplémentaire",
+              "points": "Utiliser des points solides ou une patte d’oie sur les deux bateaux",
+              "signals": "Convenir de signaux avec l’autre équipage",
+              "fast": "Remorquer à pleine vitesse pour arriver vite"
+            }
+          }
+        }
+      }
+    }
+  },
 };

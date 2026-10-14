@@ -2927,4 +2927,323 @@ export default {
       }
     }
   },
+  "decision-sail-60": {
+    "title": "Elige los cabos adecuados",
+    "brief": "Elige cabos según su trabajo, cuídalos y calcula la ganancia de un aparejo.",
+    "limitations": "Esto evalúa decisiones a partir de la información dada. Los grosores y cargas reales dependen del barco; compruébalos con el fabricante del cabo y con un instructor.",
+    "stages": {
+      "choose": {
+        "title": "Elige el cabo",
+        "brief": "Vas a cambiar tres cabos antes de la temporada.",
+        "goal": "Elige la mejor fibra para cada trabajo.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "jobs": {
+            "label": "Los tres trabajos",
+            "text": "Una línea de fondeo y amarre que debe absorber tirones; una driza de mayor que debe mantener la forma de la vela; un cabo de rescate para lanzar que debe flotar."
+          }
+        },
+        "fields": {
+          "anchor": {
+            "label": "Línea de fondeo y amarre",
+            "options": {
+              "nylon": "Nailon",
+              "polyester": "Poliéster",
+              "polypropylene": "Polipropileno"
+            }
+          },
+          "halyard": {
+            "label": "Driza de mayor",
+            "options": {
+              "polyester": "Poliéster",
+              "nylon": "Nailon",
+              "polypropylene": "Polipropileno"
+            }
+          },
+          "rescue": {
+            "label": "Cabo de rescate para lanzar",
+            "options": {
+              "polypropylene": "Polipropileno",
+              "nylon": "Nailon",
+              "polyester": "Poliéster"
+            }
+          }
+        }
+      },
+      "care": {
+        "title": "Cuida los cabos",
+        "brief": "Tras una semana de travesía revisas los cabos.",
+        "goal": "Elige qué hacer.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "salt": {
+            "label": "Estado",
+            "text": "Los cabos tienen costras de sal. El cabo de amarre de proa está rozado donde pasa por la guía."
+          },
+          "spare": {
+            "label": "Cabos de repuesto",
+            "text": "Tienes un cabo de amarre nuevo del grosor adecuado y dos cabos viejos más finos."
+          }
+        },
+        "fields": {
+          "actions": {
+            "label": "Haz",
+            "options": {
+              "rinse": "Enjuaga los cabos con agua dulce, sécalos y guárdalos a la sombra",
+              "replace": "Cambia el cabo de amarre rozado y protégelo en la guía",
+              "double": "Une los dos cabos viejos más finos en lugar del rozado",
+              "sun": "Deja los cabos al sol para que se seque la sal"
+            }
+          }
+        }
+      },
+      "tackle": {
+        "title": "Calcula el aparejo",
+        "brief": "Levantas la auxiliar de 320 kg con un aparejo colgado del extremo de la botavara.",
+        "goal": "Calcula el tiro y la ganancia, sin contar la fricción.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "rig": {
+            "label": "El aparejo",
+            "text": "Cuatro guarnes de cabo sostienen el motón móvil enganchado a la auxiliar."
+          },
+          "main": {
+            "label": "La escota de mayor",
+            "text": "La escota de mayor tiene dos motones dobles, y el cabo sale del motón de la botavara, que es el que se mueve."
+          }
+        },
+        "fields": {
+          "pull": {
+            "label": "Tiro necesario para levantar la auxiliar",
+            "options": {}
+          },
+          "gain": {
+            "label": "Ganancia del aparejo de la escota de mayor",
+            "options": {}
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-61": {
+    "title": "Llegar a un puerto extranjero",
+    "brief": "Lee las banderas del código que te rodean, iza las banderas correctas al llegar y haz bien el despacho de entrada.",
+    "limitations": "El significado de las banderas sigue el Código Internacional de Señales. Las normas de entrada varían según el país y cambian; compruébalas antes de cada viaje.",
+    "stages": {
+      "read": {
+        "title": "Lee las banderas que te rodean",
+        "brief": "Al acercarte a un puerto extranjero, ves tres buques con banderas sueltas del código.",
+        "goal": "Elige la respuesta adecuada para cada uno.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "a": {
+            "label": "Primer buque",
+            "text": "Una embarcación pequeña con la bandera A, blanca y azul con el extremo en cola de golondrina."
+          },
+          "b": {
+            "label": "Segundo buque",
+            "text": "Un petrolero cerca de la bocana con la bandera B, roja y en cola de golondrina."
+          },
+          "o": {
+            "label": "Tercer buque",
+            "text": "Un yate con la bandera O, mitad roja y mitad amarilla."
+          }
+        },
+        "fields": {
+          "flagA": {
+            "label": "Buque con la bandera A",
+            "options": {
+              "clear": "Mantenerse bien alejado y a poca velocidad: hay buzos sumergidos",
+              "help": "Abarloarse para ayudar",
+              "ignore": "No hace falta hacer nada"
+            }
+          },
+          "flagB": {
+            "label": "Buque con la bandera B",
+            "options": {
+              "cargo": "Mercancías peligrosas: puedes pasar, pero mantente bien alejado",
+              "divers": "Buzos sumergidos",
+              "stop": "Detenerse y esperar fuera del puerto"
+            }
+          },
+          "flagO": {
+            "label": "Buque con la bandera O",
+            "options": {
+              "mob": "Hombre al agua: vigila y ofrece ayuda",
+              "fuel": "Está cargando combustible",
+              "healthy": "Está sano y pide entrar en puerto"
+            }
+          }
+        }
+      },
+      "hoist": {
+        "title": "Iza las banderas de llegada",
+        "brief": "Entras por primera vez en aguas del país.",
+        "goal": "Elige dónde va cada bandera.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "aboard": {
+            "label": "Banderas a bordo",
+            "text": "Tu propio pabellón, la bandera del país anfitrión y una bandera Q amarilla."
+          }
+        },
+        "fields": {
+          "flags": {
+            "label": "Izar",
+            "options": {
+              "courtesy": "Bandera del país anfitrión bajo la cruceta de estribor",
+              "q": "Bandera Q bajo la cruceta de babor hasta el despacho",
+              "ensign": "Tu propio pabellón en la popa",
+              "replace": "Bandera del país anfitrión en la popa, en lugar de tu pabellón"
+            }
+          }
+        }
+      },
+      "clear": {
+        "title": "Despacha la entrada y sigue navegando",
+        "brief": "Aduanas e inmigración te han despachado en el puerto de entrada oficial. Piensas navegar a lo largo de la costa.",
+        "goal": "Elige los documentos y las banderas para la travesía.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "papers": {
+            "label": "Documentos de entrada",
+            "text": "Este país expide a los yates visitantes un transit log en el puerto de entrada."
+          }
+        },
+        "fields": {
+          "log": {
+            "label": "¿Qué permite el transit log?",
+            "options": {
+              "free": "Navegar libremente por las aguas costeras del país",
+              "fishing": "La pesca comercial",
+              "nothing": "Nada; es solo un recuerdo"
+            }
+          },
+          "after": {
+            "label": "Después del despacho de entrada",
+            "options": {
+              "lowerQ": "Arriar la bandera Q",
+              "courtesy": "Mantener izada la bandera de cortesía en estas aguas",
+              "ensign": "Arriar tu propio pabellón"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-62": {
+    "title": "Resolver averías del equipo",
+    "brief": "Afronta una avería del gobierno, un obenque roto y un remolque a partir de los informes proporcionados.",
+    "limitations": "Evalúa decisiones a partir de los informes proporcionados. Practica a montar la caña de emergencia y a preparar un remolque con un instructor.",
+    "stages": {
+      "steering": {
+        "title": "Te quedas sin gobierno",
+        "brief": "Entrando a motor en una marina, la rueda de repente gira en vacío y el barco no responde.",
+        "goal": "Elige qué hacer.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "check": {
+            "label": "Comprobación",
+            "text": "El guardín se ha partido. El timón en sí no tiene daños. El rompeolas está 150 m por delante."
+          }
+        },
+        "fields": {
+          "fix": {
+            "label": "Tu acción",
+            "options": {
+              "tiller": "Montar la caña de emergencia en la mecha del timón",
+              "engine": "Gobernar solo con el motor y seguir entrando",
+              "anchor": "Fondear en la bocana"
+            }
+          },
+          "also": {
+            "label": "Además",
+            "options": {
+              "slow": "Reducir la velocidad y mantenerse alejado del rompeolas",
+              "call": "Avisar a la marina y pedir ayuda pronto",
+              "speed": "Acelerar para entrar antes de que empeore"
+            }
+          }
+        }
+      },
+      "shroud": {
+        "title": "Se rompe un obenque",
+        "brief": "Navegas a rumbo 150° con viento del suroeste de fuerza 5.",
+        "goal": "Averigua qué obenque está cargado y actúa.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "wind": {
+            "label": "Viento y amura",
+            "text": "El viento sopla del suroeste, así que entra por tu costado de estribor: navegas amurado a estribor."
+          },
+          "break": {
+            "label": "Daño",
+            "text": "Un obenque cargado acaba de romperse con un chasquido."
+          }
+        },
+        "fields": {
+          "side": {
+            "label": "¿Qué obenque soportaba la carga?",
+            "options": {
+              "starboard": "El obenque de estribor",
+              "port": "El obenque de babor",
+              "backstay": "El backstay"
+            }
+          },
+          "act": {
+            "label": "Primera acción",
+            "options": {
+              "tack": "Virar enseguida para que el costado roto quede a sotavento",
+              "hold": "Mantener el rumbo y cazar el backstay",
+              "later": "Seguir navegando y arriar las velas más tarde"
+            }
+          }
+        }
+      },
+      "tow": {
+        "title": "Toma un barco a remolque",
+        "brief": "Un yate de 10 m con avería de motor pide un remolque. Hay una mar de unos 2 m.",
+        "goal": "Elige el cabo y los preparativos.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "lines": {
+            "label": "Cabos a bordo",
+            "text": "Un cabo de nailon grueso de 50 m, una escota de poliéster de 10 m y 10 m de cadena."
+          },
+          "boats": {
+            "label": "Barcos",
+            "text": "Los dos barcos tienen cornamusas fuertes en proa y popa."
+          }
+        },
+        "fields": {
+          "line": {
+            "label": "Cabo de remolque",
+            "options": {
+              "long": "El cabo de nailon grueso de 50 m",
+              "short": "La escota de poliéster de 10 m",
+              "chain": "Los 10 m de cadena"
+            }
+          },
+          "prepare": {
+            "label": "Preparativos",
+            "options": {
+              "fuel": "Comprobar que tienes combustible para la carga adicional",
+              "points": "Usar puntos fuertes o una brida en ambos barcos",
+              "signals": "Acordar señales con la otra tripulación",
+              "fast": "Remolcar a toda máquina para llegar antes"
+            }
+          }
+        }
+      }
+    }
+  },
 };
