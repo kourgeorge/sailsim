@@ -99,12 +99,12 @@
     "sail-02": {
       "title": "Conoce tu velero",
       "concepts": [
-        "Proa es la parte delantera y popa la trasera. Mirando hacia proa, babor es la izquierda y estribor la derecha. Estos nombres pertenecen al barco y no cambian cuando te giras.",
-        "La vela mayor está detrás del mástil y la vela de proa delante. La botavara sostiene el pujamen de la mayor. La quilla aporta estabilidad y se opone al desplazamiento lateral; el timón gobierna cuando circula agua sobre él.",
+        "Proa es la parte delantera y popa la trasera. Mirando hacia proa, babor es la izquierda y estribor la derecha. Estos nombres pertenecen al barco y no cambian aunque te gires, así que «roca a babor» significa el mismo lado para todos a bordo.",
+        "La vela mayor está detrás del mástil y la vela de proa delante. La botavara es la percha que va a lo largo del pujamen (el borde inferior) de la mayor. La quilla, la pesada aleta que va debajo, ayuda a mantener el barco derecho y se opone a que el viento lo empuje de lado; el timón gobierna cuando circula agua sobre él.",
         "Usa Seguimiento para ver todo el barco, Puesto de gobierno para la vista de navegación y Bañera para observar la rueda, los winches y las pantallas."
       ],
       "observe": [
-        "Cambia a Bañera y localiza la rueda, el tambucho y los winches de escota.",
+        "Cambia a Bañera y localiza la rueda, el tambucho (los escalones que bajan a la cabina) y los winches para cazar los cabos.",
         "Cambia a Seguimiento e identifica la proa, el mástil, la botavara y las dos velas."
       ],
       "mistake": "Llamar babor o estribor a un costado según la dirección en la que estés mirando.",
@@ -171,10 +171,10 @@
       "title": "Lee los instrumentos",
       "concepts": [
         "El rumbo indica hacia dónde apunta la proa, medido en sentido horario desde el norte: 000° norte, 090° este, 180° sur y 270° oeste. La velocidad se muestra en nudos; un nudo equivale a una milla náutica por hora.",
-        "La pantalla multifunción detrás de la rueda y el panel bajo los controles muestran las mismas lecturas en tiempo real. El viento respecto al agua indica de dónde viene el viento relativo al agua en movimiento; su ángulo se mide desde la proa. La profundidad estima la altura de agua, no el margen bajo la quilla.",
-        "La corriente y el abatimiento pueden hacer que el rumbo sobre el fondo difiera del rumbo de proa y que la velocidad sobre el fondo difiera de la velocidad respecto al agua. Compara estas lecturas en el panel de instrumentos. Puedes ampliar la pantalla para leerla mejor.",
+        "La pantalla multifunción detrás de la rueda y el panel bajo los controles muestran las mismas lecturas en tiempo real. El viento respecto al agua es el viento medido en relación con el agua y no con la tierra (la lección {lesson:sail-05} lo explica); su ángulo se mide desde la proa. La profundidad estima la altura de agua, no el margen bajo la quilla: resta el calado de la quilla, o puedes varar en agua que parece bastante profunda.",
+        "La corriente y el abatimiento (el deslizamiento lateral por el viento) pueden apartarte de tu rumbo de proa. El rumbo y la velocidad sobre el fondo, del GPS, son tu trayectoria y tu velocidad reales sobre el lecho marino. Compáralos con el rumbo de proa y la velocidad respecto al agua en el panel. Puedes ampliar la pantalla para leerla mejor.",
         "La app combina un compás y un indicador de viento en una sola esfera. El norte permanece arriba, el este a la derecha, el sur abajo y el oeste a la izquierda, aunque giren el barco o la cámara. Lee hacia dónde apunta la proa del símbolo blanco del barco en la escala del compás para conocer tu rumbo.",
-        "La flecha dorada indica de dónde viene el viento respecto al agua. El sector sombreado no navegable rodea ese origen: marca rumbos demasiado cercanos al viento para navegar a vela. En este ejemplo, el barco blanco apunta al noreste, a 045°, mientras la flecha y el sector señalan el noroeste, a 315°. La lectura en nudos bajo la esfera es la velocidad del viento."
+        "La flecha dorada indica de dónde viene el viento respecto al agua. El sector sombreado no navegable rodea ese origen: marca los rumbos demasiado cercanos al viento para navegar a vela (se explica en la lección {lesson:sail-05}). En este ejemplo, el barco blanco apunta al noreste, a 045°, mientras la flecha y el sector señalan el noroeste, a 315°. La lectura en nudos bajo la esfera es la velocidad del viento."
       ],
       "observe": [
         "Abre Timón o Bañera y compara la pantalla multifunción detrás de la rueda con el panel bajo los controles.",
@@ -228,9 +228,9 @@
       "title": "De dónde viene el viento",
       "concepts": [
         "El viento se nombra por el lugar del que viene. Un viento del noroeste viene del noroeste (315°) y sopla hacia el sureste (135°). Barlovento es el lado por el que llega el viento; sotavento, el lado hacia el que sopla. Los navegantes nombran el origen porque de ahí vienen la fuerza del viento, las olas y el mal tiempo que se acerque.",
-        "Una vela es un ala flexible: solo funciona cuando el aire la recorre con cierto ángulo. Si apuntas la proa directamente al viento, la vela se alinea con el aire y flamea como una bandera, así que no impulsa el barco. La zona muerta es el conjunto de rumbos demasiado cercanos al viento para que la vela funcione: unos 40–45° a cada lado en la mayoría de los veleros de crucero, y 38° en este simulador. Para llegar a un punto situado contra el viento, navegas en zigzag por fuera de ella.",
-        "El viento que usas para navegar es el viento sobre el agua. Si el agua se mueve (una corriente), ese viento no coincide con el del parte meteorológico, que describe el viento sobre tierra. Cuando el barco avanza, además siente su propio flujo de aire, llamado viento aparente (lección {lesson:sail-17}). Sin corriente, lo que cuenta es el viento previsto.",
-        "El compás de la app muestra el viento como una veleta: la punta dorada señala de dónde viene el viento y el sector sombreado de la zona muerta queda a su alrededor. Los esquemas de aire en movimiento apuntan al revés, hacia donde va el aire. En el ejemplo, un viento de 315° y un rumbo de 045° están separados 90°: navegas de través. Cuando el barco gira, solo se mueve el símbolo blanco del barco; la flecha dorada y el sector se quedan donde está el viento."
+        "Una vela es un ala flexible: solo funciona cuando el aire la recorre con cierto ángulo. Si apuntas la proa directamente al viento, la vela se alinea con el aire y flamea como una bandera, así que no impulsa el barco. La zona muerta es el conjunto de rumbos demasiado cercanos al viento para que la vela funcione: unos 40–45° a cada lado en la mayoría de los veleros de crucero (en la esfera de un reloj, desde las 12 hasta entre la 1 y las 2), y 38° en este simulador. Para llegar a un punto situado contra el viento, navegas en zigzag por fuera de ella.",
+        "El viento que usas para navegar es el viento sobre el agua. Si el agua se mueve (una corriente), ese viento no coincide con el del parte meteorológico, que da el viento sobre un punto fijo: una corriente que va en el mismo sentido que el viento hace que el viento que sientes sea más flojo. Cuando el barco avanza, además siente su propio flujo de aire, llamado viento aparente (lección {lesson:sail-17}). Sin corriente, lo que cuenta es el viento previsto.",
+        "El compás de la app muestra el viento como una veleta: la punta dorada señala de dónde viene el viento. El sector sombreado de la zona muerta queda a su alrededor. Los esquemas de aire en movimiento apuntan al revés, hacia donde va el aire. En el ejemplo, un viento de 315° y un rumbo de 045° están separados 90°: navegas de través, con el viento entrando justo por el costado (lección {lesson:sail-09}). Cuando el barco gira, solo se mueve el símbolo blanco del barco; la flecha dorada y el sector se quedan donde está el viento."
       ],
       "observe": [
         "Sin corriente y con viento de 315°, compara los rumbos 315°, 045° y 135° en el compás.",
@@ -255,7 +255,7 @@
             "La quilla pesa demasiado",
             "La vela se alinea con el aire y flamea, así que no impulsa el barco"
           ],
-          "explanation": "Una vela necesita que el aire la recorra con cierto ángulo. Fuera de la zona muerta funciona como un ala; para avanzar contra el viento haces zigzag virando por avante."
+          "explanation": "Una vela necesita que el aire la recorra con cierto ángulo. Fuera de la zona muerta funciona como un ala; para avanzar contra el viento haces zigzag virando por avante, pasando la proa por el viento de un bordo al siguiente."
         },
         {
           "prompt": "¿Por qué la flecha dorada y el sector sombreado no navegable de la app señalan ambos 315° en este ejemplo?",
@@ -273,9 +273,9 @@
       "title": "Iza las velas",
       "concepts": [
         "Iza la mayor con la proa apuntando al viento. Así la vela se alinea con el aire y flamea casi sin carga, por lo que sube con facilidad y la botavara no puede moverse con fuerza. Con la escota largada, la vela no se llenará por sorpresa.",
-        "Antes de izar, comprueba que drizas y escotas están libres y sin vueltas, que tienes espacio para derivar y que nadie está en el recorrido de la botavara. La mayor suele izarse primero: va en la parte de atrás del barco y, como la cola de una veleta, ayuda a mantener la proa al viento mientras trabajas. Después se iza la vela de proa. En la app, Izar velas sube las dos a la vez; Sistemas del barco permite izar cada una por separado.",
-        "Una vela izada mirando al viento sigue sin impulsar el barco. Para empezar a moverte, arriba hasta que el viento entre bien por un costado y caza hasta que las velas dejen de flamear. Solo entonces funcionan como alas.",
-        "Navegando a motor cerca de un puerto, ten una vela lista para izar. Si el motor se para entre los espigones, desenrolla o iza una vela enseguida para que el barco siga teniendo propulsión y gobierno y puedas salir navegando. Fondear en la bocana la bloquea, y el ancla puede no agarrar antes de que el barco llegue a las rocas."
+        "Antes de izar, revisa los cabos, el espacio y la tripulación. Drizas y escotas deben estar libres y sin vueltas, porque un cabo con vueltas atasca la vela a media altura. Asegúrate de tener espacio para derivar mientras trabajas. Mantén a la tripulación fuera del recorrido de la botavara, que puede moverse de golpe. La mayor suele izarse primero: va en la parte de atrás del barco y, como la cola de una veleta, ayuda a mantener la proa al viento mientras trabajas. Después se iza la vela de proa. En la app, Izar velas sube las dos a la vez; Sistemas del barco permite izar cada una por separado.",
+        "Una vela izada mirando al viento sigue sin impulsar el barco. Para empezar a moverte, arriba (aparta la proa del viento) hasta que el viento entre bien por un costado y después caza (tira de las escotas) hasta que las velas dejen de flamear. Solo entonces funcionan como alas.",
+        "Las velas son también tu motor de reserva, así que ten una lista para izar cuando navegues a motor cerca de un puerto. Si el motor se para entre los espigones (los muros del puerto), desenrolla o iza una vela enseguida para que el barco siga teniendo propulsión y gobierno y puedas salir navegando. Fondear en la bocana la bloquea, y el ancla puede no agarrar antes de que el barco llegue a las rocas."
       ],
       "observe": [
         "Comienza el ejercicio aproado al viento y con las velas arriadas.",
@@ -317,12 +317,12 @@
       "concepts": [
         "Navegando de través, el viento llega a unos 90° del barco. Es el rumbo más fácil para empezar: estás lejos de la zona muerta y la vela puede colocarse con un ángulo claro respecto al viento, así que impulsa bien el barco hacia delante.",
         "Un velero pesa varias toneladas, así que acelera despacio. Además, la resistencia del agua crece rápidamente con la velocidad. El barco acelera hasta que el empuje de las velas iguala la resistencia del agua y luego se mantiene a una velocidad estable. Si cambian el viento o el ajuste de las velas, encuentra un nuevo equilibrio, también poco a poco.",
-        "El timón es una pequeña ala bajo el agua. Solo gobierna cuando el agua pasa por él, así que apenas actúa con el barco parado y responde mejor al ganar velocidad; haz movimientos pequeños. Una rueda funciona como el volante de un coche: gírala a babor y la proa va a babor. Una caña funciona al revés: empújala a estribor para llevar la proa a babor. Si el barco llega a moverse hacia atrás, el agua llega al timón por detrás y el mismo movimiento gira la proa hacia el otro lado.",
-        "El timón funciona mejor cuando el barco navega proa a las olas: el agua pasa rápido por la pala y la proa recibe cada ola. Navegando con las olas, sobre todo deprisa, cada ola levanta la popa y el flujo por el timón disminuye, de modo que el barco puede salirse de rumbo. Gobierna de forma activa y reduce la velocidad si cuesta mantener el rumbo."
+        "El timón es una pequeña ala bajo el agua que solo gobierna cuando el agua pasa por él. Por eso apenas actúa con el barco parado y responde mejor al ganar velocidad; haz movimientos pequeños. Hacia dónde gira la proa:\n• Rueda: funciona como el volante de un coche; gírala a babor y la proa va a babor.\n• Caña: funciona al revés; empújala a estribor para llevar la proa a babor.\n• Marcha atrás: el agua llega al timón por detrás, así que el mismo movimiento gira la proa hacia el otro lado.",
+        "Las olas también cambian lo bien que agarra el timón: el gobierno funciona mejor cuando el barco navega proa a las olas. Entonces el agua pasa rápido por la pala y la proa recibe cada ola. Navegando con las olas, sobre todo deprisa, cada ola levanta la popa y el flujo por el timón disminuye, de modo que el barco puede salirse de rumbo. Gobierna de forma activa y reduce la velocidad si cuesta mantener el rumbo."
       ],
       "observe": [
         "Comienza a 045° con viento del noroeste, las velas arriadas y el ancla izada.",
-        "Iza ambas velas y observa cómo aumenta la velocidad. Mantén el timón centrado mientras el velero gana gobierno."
+        "Iza ambas velas y observa cómo aumenta la velocidad. Mantén el timón centrado mientras el velero gana velocidad suficiente para gobernar."
       ],
       "mistake": "Aplicar todo el timón estando parado y esperar que el barco gire sobre sí mismo al instante.",
       "quiz": [
@@ -360,7 +360,7 @@
       "concepts": [
         "Gobierna mirando una referencia lejana, como un cabo o una nube, y usa la brújula para comprobarlo. Una referencia lejana muestra un giro al instante; el número de la brújula va con retraso y oscila con las olas.",
         "Un barco que gira sigue girando después de centrar el timón, porque lleva inercia de giro, como una puerta giratoria. Por eso, centra el timón antes de llegar al nuevo rumbo y deja que el barco se deslice hasta él. Si esperas a estar en el rumbo, te pasas, corriges hacia atrás y vas en zigzag. Correcciones pequeñas y tempranas dan una trayectoria recta.",
-        "Si necesitas timón constantemente solo para ir recto, el barco te está diciendo algo. Un velero que tiende todo el rato a girar hacia el viento (barco ardiente) suele llevar demasiada vela o escorar demasiado; largar la escota de mayor o tomar rizos lo soluciona (lección {lesson:sail-18}). Mantén también la vigilancia: un rumbo bien gobernado puede llevarte igualmente hacia un peligro."
+        "Si necesitas timón constantemente solo para ir recto, el barco te está diciendo algo. Un velero que tiende todo el rato a girar hacia el viento (barco ardiente) suele llevar demasiada vela o escorar demasiado; largar la escota de mayor (soltarla) o tomar rizos (hacer la vela más pequeña) lo soluciona (lección {lesson:sail-18}). Mantén también la vigilancia, porque un rumbo bien gobernado puede llevarte igualmente hacia un peligro."
       ],
       "observe": [
         "Aplica breves correcciones a babor o estribor y después selecciona Centrar.",
@@ -375,7 +375,7 @@
             "Aumentar el timón al máximo",
             "Bajar el ancla"
           ],
-          "explanation": "El barco tiene una respuesta de giro; reducir pronto la corrección ayuda a estabilizarlo."
+          "explanation": "El barco sigue girando un momento, como una puerta giratoria, así que reducir pronto la corrección ayuda a que el giro se estabilice."
         },
         {
           "prompt": "¿Qué secuencia de gobierno está completa?",
@@ -444,9 +444,9 @@
     "sail-10": {
       "title": "Navega de ceñida",
       "concepts": [
-        "¿Cómo puede un barco navegar hacia el viento? El aire que rodea la vela curva crea una fuerza, como la sustentación del ala de un avión. En ceñida, esa fuerza apunta sobre todo hacia el costado y solo un poco hacia delante. La quilla se agarra al agua y resiste la parte lateral, así que lo que queda empuja el barco hacia delante. Por eso en ceñida el barco escora más y va más lento que de través, y se desplaza un poco de lado (abatimiento).",
-        "Apuntar más cerca del viento no siempre es mejor. Si gobiernas demasiado cerca (orzar en exceso), la parte delantera de la vela empieza a flamear, el empuje cae y el barco se frena; con menos velocidad la quilla agarra menos y el barco abate más. Unos grados más abierto y con buena velocidad suele llevarte antes contra el viento. Al orzar, caza; si pierdes velocidad, arriba un poco.",
-        "Los catavientos son cintas cortas colocadas a ambos lados de la vela, cerca de su borde delantero. Cuando las dos van rectas hacia atrás, el aire fluye bien. Si se levanta o gira la de barlovento (el lado por el que llega el viento), estás demasiado cerca del viento o la vela está demasiado abierta: arriba un poco o caza. Si cae o gira la de sotavento, la vela está demasiado cazada: lárgala u orza un poco."
+        "¿Cómo puede un barco navegar hacia el viento? El aire que rodea la vela curva crea una fuerza, como la sustentación del ala de un avión. En ceñida, esa fuerza apunta sobre todo hacia el costado y solo un poco hacia delante. La quilla se agarra al agua y resiste la parte lateral, así que lo que queda empuja el barco hacia delante. Por eso en ceñida el barco va escorado (inclinado) y más lento que de través, y se desplaza un poco de lado (abatimiento).",
+        "Apuntar lo más cerca posible del viento no siempre es lo más rápido para avanzar contra él. Si gobiernas demasiado cerca del viento (orzar en exceso), la parte delantera de la vela empieza a flamear, el empuje cae y el barco se frena; con menos velocidad la quilla agarra menos, así que el barco también abate más. Unos grados más abierto y con buena velocidad suele llevarte antes contra el viento. Al orzar (girar hacia el viento), caza; si pierdes velocidad, arriba (aléjate de él) un poco.",
+        "Los catavientos son cintas cortas colocadas a ambos lados de la vela, cerca de su borde delantero. Cuando las dos van rectas hacia atrás, el aire fluye bien. Si una se porta mal:\n• La de barlovento (el lado por el que llega el viento) se levanta o gira: estás demasiado cerca del viento o la vela está demasiado abierta. Arriba un poco o caza.\n• La de sotavento cae o gira: la vela está demasiado cazada. Lárgala u orza un poco."
       ],
       "observe": [
         "Empieza de través y gobierna más cerca del viento.",
@@ -488,8 +488,8 @@
       "concepts": [
         "Arribar es alejar la proa del viento, con lo que aumenta el ángulo al viento. Larga las escotas mientras giras para que cada vela mantenga su ángulo con el viento. Si las dejas cazadas, la vela entra en pérdida: escora el barco y lo empuja de lado sin darle mucha velocidad.",
         "Al girar hacia la popa, la vela funciona menos como un ala y más como un paracaídas: el viento la empuja sobre todo desde atrás. La fuerza lateral disminuye, así que el barco escora menos y se nota más tranquilo. A un largo, con el viento entrando por detrás del costado, muchos barcos van rápidos y cómodos.",
-        "Cerca de la popa redonda, vigila la botavara. Si el viento pasa a entrar por el mismo lado en el que está la botavara (navegar con el viento por la aleta equivocada), puede meterse detrás de la vela y lanzar la botavara al otro lado en una trasluchada involuntaria. Mientras aprendes, quédate a unos 150° del viento o menos y ten claro hacia qué lado se movería la botavara.",
-        "Cuando alguien tenga que trabajar en la proa con viento fuerte y olas grandes, arriba hasta un largo. El barco escora menos, la proa golpea menos y el viento aparente baja, y a la vez te mantienes lejos de la popa cerrada, donde es fácil una trasluchada accidental. Mantén un rumbo firme hasta que la tripulación vuelva."
+        "Cerca de la popa redonda, vigila la botavara, porque puede cruzar al otro lado de repente. Si el viento pasa a entrar por el mismo lado en el que está la botavara (navegar con el viento por la aleta equivocada), puede provocar una trasluchada involuntaria: la popa pasa por el viento y la botavara cruza de golpe, golpeando cabezas y rompiendo equipo. Mientras aprendes, mantén el viento por la aleta (la esquina trasera), a unos 150° del viento o menos, y ten claro hacia qué lado se movería la botavara.",
+        "Cuando alguien tenga que trabajar en la proa (la cubierta de delante) con viento fuerte y olas grandes, arriba hasta un largo. El barco escora menos, la proa golpea menos y el viento aparente baja porque te mueves con el viento, y a la vez te mantienes lejos de la popa cerrada, donde es fácil una trasluchada accidental. Mantén un rumbo firme hasta que la tripulación vuelva."
       ],
       "observe": [
         "Aumenta el ángulo al viento y después larga la escota.",
@@ -529,9 +529,9 @@
     "sail-12": {
       "title": "Ajusta las velas observando la respuesta",
       "concepts": [
-        "Ajustar las velas es colocarlas con el ángulo correcto respecto al viento. Demasiado abierta, el borde delantero flamea: el aire no recorre bien la vela, así que empuja poco. Demasiado cazada, el aire se separa de la parte de atrás de la vela (entra en pérdida): el barco escora y se frena en vez de acelerar. El mejor ajuste está justo antes del punto en que empieza a flamear.",
+        "Ajustar las velas es colocarlas con el ángulo correcto respecto al viento. Demasiado abierta, el borde delantero flamea: el aire no recorre bien la vela, así que empuja poco. Demasiado cazada, el aire se separa de la parte de atrás de la vela (entra en pérdida), como un ala demasiado inclinada: el barco escora y se frena, pero no acelera. El mejor ajuste está justo antes del punto en que empieza a flamear.",
         "El método clásico: larga la escota despacio hasta que la parte delantera de la vela empiece a flamear y luego cázala justo hasta que deje de flamear. Los catavientos lo hacen más fácil de ver. Repítelo después de cada cambio de rumbo o rolada. «En caso de duda, larga»: una vela algo abierta cuesta poca velocidad; una demasiado cazada cuesta mucha.",
-        "Cambia una sola cosa cada vez y dale tiempo al barco. La velocidad cambia despacio (lección {lesson:sail-07}), así que espera varios segundos para ver si el cambio ayudó. En esta app, un ángulo de escota sugerido, calculado a partir del viento aparente, te permite comprobar el resultado; en un barco real ajustas mirando el borde delantero de la vela y los catavientos."
+        "Cambia una sola cosa cada vez y dale tiempo al barco. La velocidad cambia despacio (lección {lesson:sail-07}), así que espera varios segundos para ver si el cambio ayudó. En esta app, el valor «Sugerido» bajo el control deslizante de la escota de mayor, calculado a partir del viento aparente (el viento que siente el barco en movimiento), te permite comprobar el resultado; en un barco real ajustas mirando el borde delantero de la vela y los catavientos."
       ],
       "observe": [
         "Deja el timón centrado y modifica solo la escota.",
@@ -616,12 +616,12 @@
     "sail-14": {
       "title": "Haz una virada por avante controlada",
       "concepts": [
-        "Una virada por avante hace pasar la proa por el viento, de modo que el viento cambia al otro lado del barco y las velas cambian de banda. De ceñida a ceñida, es un giro de unos 90°. Antes de empezar, busca tráfico, comprueba que tienes espacio y avisa a la tripulación («¡Listos para virar!»).",
+        "Una virada por avante hace pasar la proa por el viento, de modo que el viento cambia al otro lado del barco y las velas cambian de banda. De ceñida a ceñida, es un giro de unos 90°. Antes de empezar, busca tráfico, comprueba que tienes espacio (agua libre, sin barcos ni costa con los que chocar mientras giras) y avisa a la tripulación con «¡Listos para virar!».",
         "La velocidad es lo que te hace pasar. Dentro de la zona muerta las velas flamean y no empujan, así que solo la inercia del barco lleva la proa al otro lado. Empieza con buena velocidad y gira de forma constante. Si vas demasiado lento, el barco se queda parado proa al viento (aproado, lección {lesson:sail-16}). Si giras demasiado bruscamente, el timón metido a tope actúa como freno.",
-        "En un velero real: mete el timón y anuncia el giro (por ejemplo, «¡Viramos!»); cuando la vela de proa empiece a flamear, suelta su escota antigua; cuando la proa pase el viento, caza la nueva escota en el otro lado; después centra el timón en la nueva ceñida y vuelve a ajustar las velas. Es normal perder algo de velocidad; recupérala antes de apuntar muy cerca del viento. En la app las velas cambian de banda automáticamente."
+        "En un velero real, cada paso de la virada tiene su momento:\n• Mete el timón y anuncia el giro, por ejemplo con «¡Viramos!», que significa que el giro empieza ahora.\n• Cuando la vela de proa empiece a flamear, suelta su escota antigua.\n• Cuando la proa pase el viento, caza la nueva escota en el otro lado.\n• Centra el timón en la nueva ceñida y vuelve a ajustar las velas.\nEs normal perder algo de velocidad; recupérala antes de apuntar muy cerca del viento. En la app las velas cambian de banda automáticamente."
       ],
       "observe": [
-        "Empieza con el viento por estribor y gira a estribor pasando por 315°.",
+        "Empieza con el viento por estribor y gira a estribor para que la proa pase por 315°, de donde viene el viento.",
         "Continúa más allá de la zona muerta, centra el timón y recupera velocidad."
       ],
       "mistake": "Detener el giro dentro de la zona muerta o llamar virada por avante a un cruce del viento por popa.",
@@ -660,12 +660,12 @@
       "title": "Haz una trasluchada planificada",
       "concepts": [
         "Una trasluchada hace pasar la popa por el viento. Es más peligrosa que una virada por avante porque las velas van llenas todo el tiempo. En la virada, las velas se quedan sin carga cuando la proa pasa el viento; en la trasluchada, el viento se mete detrás de la mayor y lanza la botavara de un lado a otro de la bañera con fuerza.",
-        "Por eso tienes que controlar la botavara. Avisa a la tripulación («¡Listos para trasluchar!») y que nadie tenga la cabeza en su recorrido. Antes de que la popa cruce el viento, caza la escota de mayor para que la botavara quede cerca de crujía y tenga poco recorrido. Gira despacio; cuando la botavara cruce, larga la escota con suavidad en la nueva banda y estabiliza el timón para que el barco no se vaya hacia el viento.",
-        "Hazla como un giro pequeño y deliberado, de un largo por un lado a un largo por el otro. Una trasluchada involuntaria, normalmente causada por navegar con el viento por la aleta equivocada, es la versión peligrosa porque nadie está preparado. En la app la botavara está animada, pero no se simula la fuerza de su golpe.",
+        "Por eso tienes que controlar la botavara y avisar a la tripulación («¡Listos para trasluchar!») para que nadie tenga la cabeza en su recorrido. Antes de que la popa cruce el viento, caza la escota de mayor para que la botavara quede cerca de crujía y tenga poco recorrido. Gira despacio. Cuando la botavara cruce, larga la escota con suavidad en la nueva banda. Después estabiliza el timón, porque el barco tiende a irse hacia el viento.",
+        "Hazla como un giro pequeño y deliberado, de un largo por un lado a un largo por el otro. Una trasluchada involuntaria es la versión peligrosa porque nadie está preparado. Suele deberse a navegar con el viento por la aleta equivocada (el viento entra por el mismo lado en el que está la botavara), cuando la botavara puede cruzar de golpe sin aviso. En la app la botavara está animada, pero no se simula la fuerza de su golpe.",
         "Con viento fuerte, una trasluchada puede romper material o herir a la tripulación. Si necesitas pasar de un largo a otro, piensa en dar la vuelta larga: orza, vira por avante y luego arriba en la nueva amura. Tarda más, pero la botavara nunca cruza con toda su fuerza."
       ],
       "observe": [
-        "Empieza al 160° con viento de 315°. Gira a babor hacia 135° y continúa cruzándolo.",
+        "Empieza al 160° con viento de 315°, de modo que el viento te llega por detrás en un largo. Gira a babor hacia 135° y continúa cruzándolo.",
         "Estabilízate cerca de 110° y mantén el viento bien por detrás del través."
       ],
       "mistake": "Tratar la trasluchada como un giro brusco sin aviso y con la escota de mayor totalmente suelta.",
@@ -704,11 +704,11 @@
       "title": "Recupérate de la pérdida de propulsión",
       "concepts": [
         "Quedar aproado al viento significa estar parado, o casi parado, apuntando hacia él. Las velas flamean, así que no hay propulsión, y al disminuir la velocidad el timón pierde agarre en el agua.",
-        "Evítalo conservando velocidad en la virada y sin orzar demasiado. Si lo notas pronto, aprovecha la velocidad que aún tienes: arriba enseguida hasta que las velas se llenen y después ajústalas para recuperar la propulsión.",
+        "Evítalo conservando velocidad en la virada y sin orzar demasiado (gobernar tan cerca del viento que las velas pierden potencia). Si lo notas pronto, aprovecha la velocidad que aún tienes: arriba enseguida hasta que las velas se llenen y después ajústalas para recuperar la propulsión.",
         "Un barco completamente parado necesita otra forma de girar. En un velero real, la tripulación puede sujetar la vela de proa hacia un costado (acuartelarla) para que el viento empuje la proa, o dejar que el barco retroceda y gobernarlo para girar, recordando que al ir hacia atrás el timón funciona al revés. Algunas tripulaciones usan el motor. El acuartelamiento no está modelado aquí, así que este ejercicio empieza con algo de velocidad: aprovéchala antes de que se agote."
       ],
       "observe": [
-        "Usa la arrancada restante para alejarte del rumbo 315°.",
+        "Usa la velocidad que aún tienes para alejarte de 315°, la dirección de la que viene el viento.",
         "No esperes a que la velocidad llegue a cero antes de corregir."
       ],
       "mistake": "Esperar que el timón haga girar un velero totalmente parado sin flujo de agua.",
@@ -720,7 +720,7 @@
             "La carta desaparecerá",
             "Las velas se volverán demasiado cortas"
           ],
-          "explanation": "Usa el gobierno restante para salir de la zona muerta."
+          "explanation": "El agua que aún pasa por el timón te permite gobernar, así que úsala para salir de la zona muerta."
         },
         {
           "prompt": "El barco se ha detenido aproado al viento y empieza a retroceder. ¿Qué pasa con el gobierno?",
@@ -802,10 +802,10 @@
     "sail-18": {
       "title": "Toma rizos antes de necesitarlos",
       "concepts": [
-        "La fuerza del viento crece con el cuadrado de su velocidad: 20 nudos empujan unas cuatro veces más que 10 nudos, no el doble. Por eso un aumento moderado del viento produce un gran aumento de la fuerza que escora el barco y carga el aparejo. Un rizo hace la mayor más pequeña y más baja, así que la fuerza es menor y actúa más abajo, lo que significa menos escora.",
+        "Un rizo hace la mayor más pequeña y más baja, y conviene tomarlo pronto. La fuerza del viento crece con el cuadrado de su velocidad: 20 nudos empujan unas cuatro veces más que 10 nudos, no el doble. Por eso un aumento moderado del viento produce un gran aumento de la fuerza que escora el barco y carga el aparejo. Una vela más pequeña y más baja recoge menos de esa fuerza y la mantiene más abajo, lo que significa menos escora.",
         "Escorar demasiado no hace el barco más rápido. El casco se desliza más de lado, el timón agarra menos y el barco tiende continuamente a orzar (timón ardiente). Señales de que toca tomar rizos: el timón está duro, el barco orza solo con las rachas y entra agua por la cubierta lateral. «Toma rizos en cuanto lo pienses»: es mucho más fácil antes de que suba el viento que mientras sube.",
-        "No hay una única velocidad del viento para tomar rizos: depende del barco, la tripulación, las rachas y la mar. Compara la escora y el timón antes y después de un rizo con el mismo rumbo. El control Rizo de la aplicación acorta la mayor de una sola vez; en un barco real supone manejar la driza y los cabos de rizo bajo carga, con la tripulación coordinada.",
-        "Las velas situadas detrás del punto de giro del barco, como la mayor, llevan la proa hacia el viento; la de proa, delante, la aparta. Arría la vela de proa y el barco orza; navega solo con la de proa y el barco arriba. En un barco de dos palos, como un queche, la vela de popa, llamada mesana, añade tendencia a orzar: cuando el timón se endurece o sube el viento, reduce o arría primero la mesana y luego toma rizos en la mayor.",
+        "No hay una única velocidad del viento para tomar rizos: depende del barco, la tripulación, las rachas y la mar. Compara la escora y el timón antes y después de un rizo con el mismo rumbo. El control Rizo de la aplicación acorta la mayor de una sola vez; en un barco real supone manejar bajo carga la driza (el cabo que sube y baja la vela) y los cabos de rizo (que bajan la parte inferior), con la tripulación coordinada.",
+        "La vela que reduces también cambia el gobierno. Las velas situadas detrás del punto de giro del barco (el punto alrededor del cual gira), como la mayor, llevan la proa hacia el viento; la de proa, delante, la aparta. Arría la vela de proa y el barco orza; navega solo con la de proa y el barco arriba. En un barco de dos palos, como un queche, la vela de popa, llamada mesana, añade tendencia a orzar: cuando el timón se endurece o sube el viento, reduce o arría primero la mesana y luego toma rizos en la mayor.",
         "En un temporal, reduce vela pero no la quites toda. Una vela pequeña y bien cazada mantiene el barco avanzando y gobernando y amortigua el balanceo; un barco sin ninguna vela queda atravesado a las olas y no se puede gobernar."
       ],
       "observe": [
@@ -846,10 +846,10 @@
     "sail-19": {
       "title": "Reduce la potencia deliberadamente",
       "concepts": [
-        "Un velero no tiene frenos. Cuando quitas potencia a las velas, el barco sigue avanzando por inercia y solo se frena por la resistencia del agua; un barco pesado puede deslizarse mucha distancia. Planifica la parada con tiempo y deja espacio de maniobra.",
-        "Formas de quitar potencia, de la más rápida a la más completa: largar las escotas hasta que las velas flameen, para que dejen de trabajar como alas; orzar hacia el viento, lo que reduce el ángulo y la propulsión; arriar las velas, lo que elimina la propulsión por completo. Al frenar, el timón agarra menos, así que el gobierno se vuelve lento y débil.",
-        "En un velero real también puedes ponerte al pairo: colocar las velas para que trabajen una contra otra, de modo que el barco casi se detiene y queda tranquilo. Eso no está modelado aquí. En este ejercicio, arría y espera a estar por debajo de 1 nudo. El ancla no es un freno.",
-        "Para ponerte al pairo, vira por avante sin soltar la vela de proa, de modo que quede cazada a barlovento. Luego pon el timón a barlovento y fila la mayor. La vela de proa a la contra empuja la proa lejos del viento mientras la mayor y el timón la devuelven, así que el barco queda a unos 60° del viento real y deriva despacio a sotavento. Sirve para descansar, tomar rizos o esperar con viento fuerte."
+        "Un velero no tiene frenos, así que planifica cada parada con tiempo. Cuando quitas potencia a las velas, el barco sigue avanzando por inercia y solo se frena por la resistencia del agua. Un barco pesado puede deslizarse mucha distancia, así que deja espacio de maniobra.",
+        "Formas de quitar potencia, de la más rápida a la más completa:\n• Larga las escotas hasta que las velas flameen, para que dejen de trabajar como alas.\n• Orza hacia el viento, lo que reduce el ángulo y la propulsión.\n• Arría las velas, lo que elimina la propulsión por completo.\nAl frenar, el timón agarra menos, así que el gobierno se vuelve lento y débil.",
+        "En este ejercicio, arría las velas y espera a que el barco frene por debajo de 1 nudo de velocidad. No uses el ancla como freno: soltarla con arrancada puede arrancar el equipo, dañar el barco o engancharse en el fondo.",
+        "En un velero real también puedes ponerte al pairo: colocar las velas para que trabajen una contra otra, de modo que el barco casi se detiene. Vira por avante sin soltar la vela de proa, para que quede sujeta en el lado equivocado (barlovento); es la vela de proa a la contra. Luego gobierna como si fueras a orzar (caña empujada lejos del viento) y fila la mayor. La vela de proa a la contra empuja la proa lejos del viento mientras la mayor y el timón la devuelven. El barco queda a unos 60° del viento real, entre ceñida y través, y deriva despacio a sotavento. Sirve para descansar, tomar rizos o esperar con viento fuerte; la app no lo simula."
       ],
       "observe": [
         "Compara la velocidad antes y después de arriar.",
@@ -977,9 +977,9 @@
     "sail-22": {
       "title": "Gobierna hacia un punto de paso",
       "concepts": [
-        "Una demora es la dirección desde tu posición hasta un objetivo. Antes de seguirla, decide si la derrota directa es segura y navegable a vela.",
-        "Una demora directa puede apuntar a la zona muerta o cruzar tierra. En esos casos, planifica otra ruta en vez de forzar la proa hacia el objetivo.",
-        "Hacia donde apunta la proa no siempre es hacia donde va el barco. La corriente y el abatimiento te desplazan de lado, así que apunta un poco corriente arriba de la marca. Comprueba de vez en cuando la demora a la marca: si sigue cambiando mientras mantienes el rumbo, te están sacando de la línea. En este ejercicio, pasa a menos de 35 metros de la boya 1."
+        "Una demora es la dirección desde tu posición hasta un objetivo, como un punto de paso (un punto planificado hacia el que gobiernas). Comprueba que la derrota directa, la línea que recorrerías sobre el fondo, es segura y navegable a vela.",
+        "Una demora directa puede apuntar a la zona muerta (el arco cercano al viento donde las velas no impulsan) o cruzar tierra. En ese caso, planifica otra ruta, por ejemplo virando por avante, en vez de forzar la proa hacia el objetivo.",
+        "Hacia donde apunta la proa no siempre es hacia donde va el barco. La corriente y el abatimiento (el viento que empuja el barco de lado sobre el agua) te sacan de rumbo. Apunta un poco corriente arriba de la marca para que la deriva te lleve hasta ella y no te haga pasarla. Comprueba de vez en cuando la demora a la marca: si sigue cambiando mientras mantienes el rumbo, te están sacando de la línea. En este ejercicio, pasa a menos de 35 metros de la boya 1."
       ],
       "observe": [
         "Abre la carta antes de cambiar de rumbo.",
@@ -1022,10 +1022,10 @@
     "sail-23": {
       "title": "Estima distancia y tiempo",
       "concepts": [
-        "Como primera estimación, distancia es velocidad multiplicada por tiempo. A 4 nudos, un tramo de 3 millas náuticas tarda 45 minutos si la velocidad es constante y no hay corriente.",
-        "La navegación por estima actualiza una posición anterior usando rumbo, velocidad y tiempo. La estimación real también considera corriente, abatimiento e incertidumbre; una posición obtenida por observaciones permite comprobarla.",
-        "Anota las suposiciones y actualiza la estimación cuando cambien las condiciones. No confundas una cifra de aspecto preciso con una predicción exacta.",
-        "Lleva un cuaderno de bitácora y rellénalo con regularidad. Cada anotación recoge la hora, la posición, el rumbo, la velocidad, la lectura de la corredera (distancia recorrida), la velocidad y dirección del viento, el estado de la mar y del tiempo, y los sucesos. Si falla la electrónica, la última posición, el rumbo, la velocidad y la distancia anotados te permiten calcular dónde estás por estima."
+        "Como primera estimación, la distancia es la velocidad multiplicada por el tiempo. A 4 nudos, un tramo de 3 millas náuticas tarda 3 ÷ 4 = 0,75 horas, o 45 minutos, si la velocidad se mantiene constante y no hay corriente.",
+        "La navegación por estima actualiza una posición anterior usando rumbo, velocidad y tiempo. Las estimaciones reales también tienen en cuenta corriente, abatimiento e incertidumbre; una situación (una posición obtenida con puntos de tierra, demoras o GPS, no con tu estimación) permite comprobarla.",
+        "Anota las suposiciones y actualiza la estimación cuando cambien las condiciones. Una cifra de aspecto preciso no es una predicción exacta: una hora de llegada de 14:37 sigue siendo una suposición si cambia la corriente.",
+        "Lleva un cuaderno de bitácora y rellénalo con regularidad. Cada anotación recoge:\n• dónde estás: la hora, la posición y la lectura de la corredera (distancia recorrida)\n• cómo te mueves: rumbo y velocidad\n• el tiempo: velocidad y dirección del viento, estado de la mar y del tiempo\n• los sucesos.\nSi falla la electrónica, la última posición, el rumbo, la velocidad y la distancia anotados te permiten calcular dónde estás por estima."
       ],
       "observe": [
         "Calcula el tiempo para 3 millas náuticas a 4 nudos antes de consultar la respuesta.",
@@ -1057,9 +1057,9 @@
     "sail-24": {
       "title": "Haz una travesía corta",
       "concepts": [
-        "Divide la ruta en tramos manejables con objetivos, peligros y un plan para el siguiente giro bien definidos. Mantén la vigilancia antes de cambiar de rumbo en una marca.",
+        "Divide la ruta en tramos, los trechos rectos entre puntos de giro, cada uno con un objetivo, sus peligros y un plan para el siguiente giro. Mira a tu alrededor antes de girar en una marca, porque los barcos suelen juntarse allí.",
         "Este ejercicio va desde el sur de la boya 1 hasta la boya 1 y después a la boya 2. El viento permite navegar directamente ambos tramos, pero aún debes girar y reajustar las velas.",
-        "Mantén al menos 3 metros de profundidad simulada. Varar invalida el intento y exige reiniciar; pasar las marcas no basta."
+        "Mantén al menos 3 metros de profundidad simulada, porque la quilla llega muy por debajo de la superficie y necesita margen. Si varas, el intento falla y empiezas de nuevo; pasar las marcas no basta."
       ],
       "observe": [
         "Estudia ambos tramos antes de salir.",
@@ -1102,9 +1102,9 @@
     "sail-25": {
       "title": "Mantén una vigilancia eficaz",
       "concepts": [
-        "Una vigilancia adecuada usa vista, oído y todos los medios apropiados disponibles. Observa a proa, a popa y a ambos costados; las velas y las estructuras pueden ocultar otras embarcaciones.",
+        "Una vigilancia adecuada usa la vista, el oído y ayudas como el radar, el AIS (seguimiento de barcos) y la radio. El reglamento de abordajes lo llama «todos los medios disponibles». Observa en todas direcciones, porque las velas y la cabina pueden ocultar otros barcos.",
         "Por qué una demora constante indica peligro: dos barcos con rumbos rectos que van a encontrarse mantienen el mismo ángulo entre sí hasta el punto de encuentro. Por eso, si otro barco mantiene la misma demora de compás, o sigue alineado con la misma parte de tu barco, mientras se acerca, estáis en rumbo de abordaje. Compruébalo pronto y repetidamente, y actúa en vez de esperar a estar seguro.",
-        "Las ayudas electrónicas apoyan la vigilancia, no la sustituyen. Este entorno contiene veleros amarrados estáticos y no evalúa la detección realista del tráfico."
+        "Las ayudas electrónicas apoyan la vigilancia, no la sustituyen. En la app los demás veleros no se mueven, así que no puede comprobar lo bien que detectas el tráfico real."
       ],
       "observe": [
         "Usa la cámara para observar el costado oculto por la vela de proa.",
@@ -1139,9 +1139,9 @@
     "sail-26": {
       "title": "Razona los encuentros",
       "concepts": [
-        "Las reglas deciden de antemano quién se aparta (cede el paso) y quién mantiene el rumbo (sigue a rumbo), para que los dos barcos no giren hacia el mismo lado. Entre dos veleros: con amuras distintas, se mantiene apartado el amurado a babor; con la misma amura, se mantiene apartado el de barlovento, porque normalmente puede arribar con más facilidad. La lección {lesson:sail-46} lo trata en detalle.",
-        "El barco que alcanza se mantiene apartado. Las responsabilidades entre buques, los canales estrechos, los dispositivos de tráfico, la visibilidad reducida y las normas locales pueden cambiar el análisis. No reduzcas las reglas a «la vela siempre tiene prioridad».",
-        "El barco que debe mantener rumbo y velocidad sigue teniendo responsabilidades y debe actuar cuando sea necesario para evitar un abordaje. Aprende el reglamento completo aplicable y las exigencias locales antes de navegar."
+        "Las reglas deciden de antemano quién se aparta (cede el paso) y quién sigue a rumbo, para que los dos barcos no giren hacia el mismo lado. Entre dos veleros: con amuras distintas, se mantiene apartado el amurado a babor (el viento le entra por su lado izquierdo, babor); con la misma amura, se mantiene apartado el de barlovento, porque normalmente puede arribar con más facilidad. La lección {lesson:sail-46} lo trata en detalle.",
+        "El barco que alcanza se mantiene apartado, porque el de delante puede no verlo. En un canal estrecho, un velero no debe estorbar a un buque que solo puede navegar con seguridad dentro de él; en un carril de tráfico, no debe estorbar a los buques de motor que siguen el carril. La niebla, los buques especiales y las normas locales también pueden cambiar quién se aparta. No reduzcas las reglas a «la vela siempre tiene prioridad».",
+        "El barco que sigue a rumbo también tiene responsabilidades y debe actuar cuando sea necesario para evitar un abordaje. Si el que debe apartarse claramente no lo hace, el que sigue a rumbo puede actuar por su cuenta; si el abordaje ya no puede evitarse solo con la maniobra del que debe apartarse, está obligado a actuar (Regla 17). Un buque de motor que lo haga debe evitar, si puede, girar a babor ante un buque situado por su babor. Aprende el reglamento completo y las exigencias locales antes de navegar."
       ],
       "observe": [
         "Identifica el costado de barlovento de cada barco antes de determinar su amura.",
@@ -1173,8 +1173,8 @@
     "sail-27": {
       "title": "Luces, marcas y señales",
       "concepts": [
-        "Las luces de navegación muestran la dirección de un buque y lo que está haciendo. La roja va en el costado de babor, la verde en estribor y la blanca en la popa. Si ves la roja y la verde a la vez, el buque viene directo hacia ti; solo la roja, ves su costado de babor; solo la verde, su costado de estribor; solo la blanca, estás mirando su popa.",
-        "En el contexto internacional de señales de maniobra, una pitada corta significa cambiar a estribor; dos, a babor; tres, dar propulsión atrás. Las señales de visibilidad reducida son otro sistema; las normas locales o de aguas interiores pueden diferir.",
+        "Las luces de navegación muestran la dirección de un buque y lo que está haciendo. La roja va en el costado de babor, la verde en estribor y la blanca en la popa. Si ves la roja y la verde a la vez, el buque viene directo hacia ti, así que actúa ya: puede que estéis en rumbo de colisión. Solo la roja, ves su costado de babor; solo la verde, su costado de estribor; solo la blanca, estás mirando su popa.",
+        "Cuando los buques de motor se ven, las pitadas cortas indican cómo maniobran; son las señales internacionales de maniobra. Una pitada corta significa «caigo a estribor», dos significan «caigo a babor» y tres «estoy dando atrás» (motor en marcha atrás), lo que no siempre significa que el barco ya se mueva hacia atrás. Las señales de niebla son otro sistema; las normas locales o de aguas interiores pueden diferir.",
         "La lección {lesson:sail-50} trata todas las luces, marcas y señales acústicas. Las reglas pueden variar en aguas interiores o locales, así que comprueba las que se aplican donde navegas antes de salir de noche o con visibilidad reducida."
       ],
       "observe": [
@@ -1199,7 +1199,7 @@
             "Caer a estribor",
             "Todo el repertorio de señales de niebla"
           ],
-          "explanation": "Dos pitadas cortas significan cambiar de rumbo a babor en ese contexto; no generalices sin comprobar las reglas aplicables."
+          "explanation": "Dos pitadas cortas de un barco a la vista significan «caigo a babor». Comprueba las reglas del lugar donde navegas antes de confiar en ello en otra parte."
         }
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco."
@@ -1207,9 +1207,9 @@
     "sail-28": {
       "title": "Decide sobre la travesía",
       "concepts": [
-        "Un plan de travesía incluye tripulación, previsión, ruta, peligros, limitaciones de marea, luz diurna, refugios, comunicaciones y una hora límite para regresar.",
-        "La buena práctica marinera incluye cambiar o abandonar el plan cuando dejan de cumplirse sus supuestos. No permitas que una promesa de llegada pese más que los márgenes de seguridad.",
-        "Situación: llevas tripulación principiante, queda poca luz, se prevé más viento y el destino está expuesto. Hay una alternativa abrigada cerca."
+        "Un plan de travesía responde a tres preguntas antes de salir:\n• ¿Quién va? La tripulación y su experiencia.\n• ¿Qué harán el tiempo y el agua? La previsión, las mareas, la luz diurna y los peligros de tu ruta.\n• ¿Adónde podemos ir si algo sale mal? Refugios (puertos o bahías cercanos donde resguardarse), cómo pedirás ayuda y una hora límite para regresar.",
+        "La buena práctica marinera incluye cambiar o abandonar el plan cuando dejan de cumplirse sus supuestos. No permitas que una promesa de llegada pese más que la seguridad, porque bajo presión la gente sigue navegando más allá del punto en que era fácil volver.",
+        "Así te ayuda el plan a decidir cuando cambian las condiciones. Llevas tripulación principiante, queda poca luz, se prevé más viento y el destino está expuesto. Hay una alternativa abrigada cerca."
       ],
       "observe": [
         "Enumera los factores que hacen menos adecuado el destino original.",
@@ -1288,10 +1288,10 @@
     "sail-30": {
       "title": "Elige un fondeadero",
       "concepts": [
-        "Busca abrigo, fondo con buen agarre, profundidad suficiente durante toda la marea y espacio de borneo sin alcanzar peligros ni otros barcos.",
-        "Un ancla agarra mejor cuando se tira de ella en horizontal, a lo largo del fondo, porque así se clava. Con poca línea largada, el tirón llega desde arriba y levanta el ancla. Por eso se larga varias veces la profundidad: la longitud extra y el peso de la cadena mantienen el tirón horizontal y suavizan los tirones de las olas. Larga más con viento fuerte. La relación de fondeo es la longitud de línea dividida entre la altura desde la roldana de proa hasta el fondo.",
-        "Ejemplo solo aritmético: con 5 m de agua y una roldana a 1 m sobre ella, una relación supuesta de 5:1 da 30 m de línea. El cálculo no prescribe cuánto largar. Añade los cambios de marea y evalúa el espacio de borneo.",
-        "Cada tipo de fondo pide un ancla distinta. Las anclas de garra y de arado, como la Bruce, la Delta y la CQR, se clavan bien en arena y fango; un rezón plegable sirve para roca o para un bote pequeño, y un ancla de seta es para fondeos permanentes en fango blando. La cadena pesa y mantiene el tiro bajo y a lo largo del fondo. Si usas cabo, elige uno que se hunda y estire, como el nailon: absorbe los tirones y no se acerca a las hélices. Muchos yates usan cadena con un tramo de cabo.",
+        "Busca abrigo, un fondo en el que el ancla pueda clavarse (como arena o fango) y profundidad suficiente en cualquier estado de la marea. Deja espacio para bornear sin alcanzar peligros ni otros barcos.",
+        "Un ancla agarra mejor cuando se tira de ella en horizontal, a lo largo del fondo, porque así se clava. Con poca línea largada (la línea es la cadena o el cabo entre el ancla y el barco), el tirón llega desde arriba y levanta el ancla. Por eso se larga varias veces la profundidad: la longitud extra y el peso de la cadena mantienen el tirón horizontal y suavizan los tirones de las olas. Larga más con viento fuerte. La relación de fondeo es la longitud de línea dividida entre la altura desde la roldana de proa hasta el fondo.",
+        "Ejemplo práctico: con 5 m de agua y la roldana de proa a 1 m sobre el agua, una relación de 5:1 da 30 m de línea. 5:1 es un punto de partida habitual con tiempo en calma; larga más con viento fuerte. Ten en cuenta también la marea y comprueba tu espacio de borneo.",
+        "Cada tipo de fondo marino pide un ancla distinta:\n• Las anclas de garra, como la Bruce, se clavan bien en arena y fango.\n• Las anclas de arado, como la Delta y la CQR, también se clavan bien en arena y fango.\n• Un rezón plegable sirve para roca o para un bote pequeño.\n• Un ancla de seta es para fondeos permanentes en fango blando.\nLa cadena pesa y mantiene el tiro bajo y a lo largo del fondo. Si usas cabo, elige uno que se hunda y estire, como el nailon: absorbe los tirones y no se acerca a las hélices. Muchos yates usan cadena con un tramo de cabo.",
         "A veces una sola ancla no basta para sujetar el barco. Usa dos cuando una no aguanta con viento fuerte, cuando el viento y la corriente tiran en direcciones distintas, o en un río donde la corriente se invierte. Sepáralas bien, unos 45° a cada lado de la proa con viento fuerte, o una a proa y otra a popa en un río estrecho, y procura que los fondeos no se enreden al bornear."
       ],
       "observe": [
@@ -1334,10 +1334,10 @@
       "title": "Reduce velocidad y después fondea",
       "concepts": [
         "Aproxímate despacio, contra el viento (o contra la corriente, lo que más afecte al barco), para que el barco se detenga por sí solo. Baja el ancla hasta el fondo cuando el barco se haya parado. Después deja que el viento empuje el barco hacia atrás mientras largas línea, para que la cadena quede tendida sobre el fondo en vez de amontonarse encima del ancla.",
-        "Cuando hayas largado suficiente línea, haz que el ancla agarre tirando suavemente de ella, a menudo con un poco de motor atrás. Comprueba que aguanta: elige dos objetos en tierra que estén alineados y observa si siguen alineados. Sigue comprobándolo con el tiempo, sobre todo cuando cambie el viento.",
+        "Cuando hayas largado suficiente línea, haz que el ancla agarre tirando suavemente de ella, a menudo con un poco de motor atrás. Comprueba que aguanta: elige dos objetos en tierra que estén alineados, como una farola delante del campanario de una iglesia, y observa si siguen alineados. Sigue comprobándolo con el tiempo, sobre todo cuando cambie el viento.",
         "También puedes notar si el ancla agarra apoyando la mano en la línea de fondeo. Un tiro firme indica que agarra; una vibración a tirones indica que garrea por el fondo, y la proa deja de apuntar al viento. Si garrea, larga primero más cadena, que a menudo la deja clavarse. Si sigue garreando, levántala y vuelve a fondear.",
-        "No dejes la carga del ancla sobre el molinete. Una vez fondeado, pon un cabo de amarre (snubber) desde la cadena a una cornamusa de proa, para que la cornamusa soporte el esfuerzo y el cabo absorba los tirones. Un ancla también ayuda a acercarse a tierra con la proa hacia el mar: fondéala mientras aún te acercas y controla la cadena mientras sale, para que el ancla detenga el barco de forma controlada.",
-        "En este ejercicio: arría y deja que la velocidad baje de 0,8 nudos con el ancla estibada. Fija un objetivo de 45 m y pon en marcha el molinete; larga poco a poco y se detiene al llegar al objetivo. Espera hasta que haya 45 m realmente largados, el molinete esté detenido y la velocidad sobre el fondo sea inferior a 0,2 nudos. Fondear antes de tiempo invalida el intento."
+        "No dejes la carga del ancla sobre el molinete (el chigre que sube la cadena), porque no está hecho para soportar tirones bruscos. Una vez fondeado, pon un cabo de amarre (snubber), un cabo corto desde la cadena a una cornamusa de proa, para que la cornamusa soporte el esfuerzo y el cabo absorba los tirones. Otro uso del ancla: puede ayudarte a acercarte a tierra con la proa hacia el mar. Fondéala mientras aún te acercas y controla la línea mientras sale, para que el ancla detenga el barco de forma controlada.",
+        "En este ejercicio: arría las velas y deja que la velocidad baje de 0,8 nudos (menos que el paso de una persona) con el ancla estibada. Fija un objetivo de 45 m de línea y pon en marcha el molinete; larga poco a poco y se detiene al llegar al objetivo. Espera hasta que haya 45 m realmente largados, el molinete esté detenido y la velocidad sobre el fondo sea inferior a 0,2 nudos. Fondear antes de tiempo invalida el intento."
       ],
       "observe": [
         "Reduce la potencia vélica mucho antes del punto de parada previsto.",
@@ -1389,9 +1389,9 @@
     "sail-32": {
       "title": "Prepárate para salir",
       "concepts": [
-        "Antes de zarpar, revisa de nuevo el entorno, la ruta prevista, las condiciones y la preparación de la tripulación. Asegura cabos y equipo y comprueba que todos saben qué ocurrirá después.",
+        "Antes de zarpar, revísalo todo de nuevo, porque las cosas cambian mientras estás fondeado. Puede que un barco nuevo esté cerca o que el viento haya rolado. Comprueba la ruta, las condiciones y la tripulación, asegura cabos y equipo, y explica a todos lo que ocurrirá después.",
         "Para levar el ancla, lleva el barco hasta ella en vez de arrastrar el barco con la línea. Avanza despacio a motor o a vela hacia el ancla mientras la tripulación recoge la línea sobrante. Cuando la línea está a pique (vertical), el tirón es vertical y el ancla se suelta del fondo con facilidad. El molinete sirve para subir la línea, no para remolcar el barco.",
-        "En cuanto el ancla se separa del fondo vas a la deriva, así que recupera rápido el gobierno a motor o a vela. En este ejercicio, la proa empieza sobre el ancla. Selecciona «Levar ancla» y espera a que esté completamente estibada; después iza las velas y establece un través estable. Si la línea se tensa, la recogida se interrumpe."
+        "En cuanto el ancla se separa del fondo vas a la deriva, así que recupera rápido el gobierno a motor o a vela. Tener gobierno significa llevar velocidad suficiente para que el timón funcione. Ahora pruébalo en la app: la proa empieza sobre el ancla. Selecciona «Levar ancla» y espera a que esté completamente estibada; después iza las velas y establece un través estable. Si la línea se tensa, la recogida se interrumpe."
       ],
       "observe": [
         "Confirma el viento y el rumbo deseado antes de liberar el barco.",
@@ -1437,9 +1437,9 @@
     "sail-33": {
       "title": "Prioridades ante una persona al agua",
       "concepts": [
-        "Da la alarma, mantén contacto visual continuo, señala a la persona y lanza los medios de flotación y señalización adecuados. Asigna funciones y pide ayuda según la situación.",
-        "Después, recupera el control del barco y vuelve. Mantente cerca: muchas recuperaciones fracasan porque el barco se aleja demasiado y se pierde de vista a la persona. Planifica la aproximación final de ceñida abierta, para poder frenar largando las velas y detenerte junto a la persona. Mantén la hélice en punto muerto o parada cerca de ella.",
-        "La luz de un aro salvavidas se enciende sola cuando el aro flota derecho en el agua, así que lánzalo con la luz unida; no esperes a probarla. Con viento fuerte y mar gruesa, volver a vela puede ser difícil de controlar: con el aro lanzado y alguien señalando, enrolla el foque, comprueba que no hay cabos en el agua, arranca el motor y acércate despacio, con la hélice parada cerca de la persona.",
+        "Cuando alguien cae al agua, actúa enseguida y reparte las tareas:\n• Grita «¡Persona al agua!».\n• Lanza enseguida un aro salvavidas y una señal (una boya con bandera o luz).\n• Señala a la persona sin parar: una cabeza entre las olas desaparece en segundos.\n• Pide ayuda y da una tarea a cada uno.",
+        "Después, recupera el control del barco y vuelve. Mantente cerca: muchas recuperaciones fracasan porque el barco se aleja demasiado y se pierde de vista a la persona. Planifica la aproximación final de ceñida abierta (el viento justo por delante del través), para poder frenar largando las velas o acelerar cazándolas, y detenerte junto a la persona. Mantén la hélice en punto muerto o parada cerca de ella.",
+        "La luz de un aro salvavidas se enciende sola cuando el aro flota derecho en el agua, así que lánzalo con la luz unida; no esperes a probarla. Con viento fuerte y mar gruesa, volver a vela puede ser difícil de controlar. Con el aro lanzado y alguien señalando:\n• Enrolla la vela de proa.\n• Comprueba que no hay cabos en el agua, porque un cabo puede enrollarse en la hélice.\n• Arranca el motor y acércate despacio, con la hélice parada cerca de la persona.",
         "Subir a la persona a bordo suele ser lo más difícil: un adulto mojado pesa mucho y el costado del barco es alto. Conoce el método de tu barco, como un arnés de izado, una driza en un winche o una escalera, antes de necesitarlo. Esta aplicación no tiene un modelo de persona al agua, así que la lección comprueba prioridades; practica la maniobra con un instructor y un objeto de entrenamiento."
       ],
       "observe": [
@@ -1530,9 +1530,9 @@
     "sail-35": {
       "title": "Tu primera travesía evaluada",
       "concepts": [
-        "Combina las habilidades sin prisas: establece un rumbo estable, ajusta bien las velas, cambia de amura pasando la proa por el viento, recupera el control y reduce velocidad hasta una parada planificada.",
-        "El simulador proporciona objetivos medibles, pero no gobierno automático. Debes completar cada etapa en orden. Varar o usar el ancla antes de la etapa final de parada invalida el intento.",
-        "La etapa final utiliza un fondeadero preparado en aguas profundas y un objetivo de 180 m de línea. Espera hasta que se hayan largado los 180 m, el molinete se detenga y la velocidad sobre el fondo baje de 0.2 nudos. Reserva unos 15 minutos para el ejercicio completo. Este objetivo es específico de estas condiciones de entrenamiento."
+        "Combina las habilidades del curso sin prisas, una etapa cada vez:\n• Mantén un rumbo estable.\n• Ajusta bien las velas.\n• Vira por avante y recupera el control.\n• Reduce velocidad hasta una parada planificada.",
+        "El simulador proporciona objetivos medibles, pero no gobierno automático. Debes completar cada etapa en orden. Varar o usar el ancla antes de la etapa final de parada invalida el intento, porque la prueba comprueba tu orden de trabajo, como en el mar.",
+        "La etapa final fondea en aguas profundas, así que el objetivo es de 180 m de línea. Es mucho más que los 45 m de antes, porque en aguas más profundas hace falta más línea (lección {lesson:sail-30}). Espera hasta que se hayan largado los 180 m, el molinete se detenga y la velocidad sobre el fondo baje de 0,2 nudos. Reserva unos 15 minutos para el ejercicio completo."
       ],
       "observe": [
         "Repasa la secuencia antes de seleccionar Comenzar práctica.",
@@ -1585,8 +1585,8 @@
     "sail-36": {
       "title": "De la simulación al mar",
       "concepts": [
-        "Repasa la diferencia entre explicar una tarea, realizarla en el modelo y hacerla en un velero real. Tu registro separa las pruebas teóricas de la práctica simulada y anota el uso de pistas.",
-        "El siguiente paso es la formación supervisada en el agua: preparación y revisión del equipo; nudos y manejo de cabos; izado, ajuste, rizos, viradas y trasluchadas con tripulación; maniobra a motor y atraque; fondeo real; vigilancia y navegación; y recuperación de persona al agua.",
+        "Saber, simular y hacerlo en un barco real son tres cosas distintas. Explicar una tarea, realizarla en este modelo y hacerla a bordo de un velero real ponen a prueba cosas diferentes. Tu registro separa las pruebas teóricas de la práctica simulada y anota el uso de pistas.",
+        "El siguiente paso es la formación supervisada en el agua, que incluye:\n• preparación y revisión del equipo\n• nudos y manejo de cabos\n• izado, ajuste de velas y rizos\n• viradas y trasluchadas con tripulación\n• maniobra a motor y atraque\n• fondeo real\n• vigilancia y navegación\n• recuperación de persona al agua",
         "Elige un instructor y condiciones adecuados a tu experiencia. Lleva tu registro, explica las limitaciones del simulador y pide una evaluación práctica individual. Completar el curso es un hito de aprendizaje, no una licencia ni un certificado de seguridad."
       ],
       "observe": [
@@ -1619,9 +1619,9 @@
     "sail-37": {
       "title": "Planifica la ruta y la alternativa",
       "concepts": [
-        "El plan de travesía conecta preparación, ruta, ejecución y seguimiento. Comprueba cartas y avisos vigentes, previsión, mareas y corrientes, luz diurna, barco, tripulación, combustible y comunicaciones. Señala peligros, aguas seguras, alternativas y puntos donde se reducen las opciones.",
-        "Fija puntos de decisión antes de salir. En este ejemplo ficticio, solo se acepta el cabo expuesto si siguen disponibles los márgenes meteorológicos y de luz acordados. Existe una alternativa abrigada antes del cabo; después, regresar podría resultar difícil.",
-        "La ruta debe revisarse continuamente. Compara el avance y las condiciones reales con el plan. Un criterio de desvío acordado evita seguir solo porque el destino está cerca. Comparte la ruta, las funciones y las contingencias.",
+        "Un plan de travesía conecta la preparación, la elección de la ruta, la navegación y el seguimiento del avance. Comprueba:\n• el agua: cartas actualizadas, avisos a los navegantes (actualizaciones oficiales sobre peligros nuevos o boyas movidas), mareas y corrientes\n• el tiempo: previsión y luz diurna\n• el barco y la tripulación: preparación, capacidad, combustible y comunicaciones\nSeñala peligros, aguas seguras, alternativas y puntos donde se reducen las opciones.",
+        "Fija los puntos de decisión antes de salir, mientras todavía tienes opciones. En un punto de decisión compruebas las condiciones y eliges seguir o desviarte. En este ejemplo ficticio, el cabo expuesto solo es aceptable si se mantienen los márgenes meteorológicos y de luz acordados. Existe una alternativa abrigada antes del cabo; después de pasarlo, regresar podría resultar difícil.",
+        "Trata la ruta como un plan que sigues revisando, no como una promesa. Compara el avance y las condiciones reales con el plan. Acuerda de antemano un criterio de desvío, porque evita que sigas adelante solo porque el destino está cerca. Comparte la ruta, las funciones de la tripulación y el plan alternativo.",
         "Para un puerto que no conoces, lee el derrotero, una guía náutica de la zona, junto con las cartas oficiales. Los derroteros describen accesos, fondeaderos, atraques y amarres, peligros y normas locales. También ayudan los informes recientes de navegantes que conocen la zona."
       ],
       "observe": [
@@ -1654,9 +1654,9 @@
     "sail-38": {
       "title": "Marea, profundidad y resguardo bajo la quilla",
       "concepts": [
-        "Las sondas de la carta se miden desde un nivel de bajamar definido llamado cero hidrográfico, así que casi siempre hay más agua de la que indica la carta. Suma una altura de marea prevista solo si usa el mismo datum, lugar, fecha y hora. La profundidad del agua no es el espacio bajo tu quilla, y una sonda puede medir desde la línea de flotación o desde la quilla, así que comprueba su corrección.",
-        "Ejemplo estático ficticio: 2,4 m de sonda de carta más 1,1 m de marea dan 3,5 m de profundidad. Restar 1,8 m de calado deja 1,7 m bajo la quilla. Si el ejercicio exige una reserva de 0,8 m, sobran 0,9 m sobre esa reserva. Es aritmética, no autorización para cruzar un bajo.",
-        "La planificación real también tiene en cuenta la marea más baja durante el paso, los errores del levantamiento y de la previsión, las olas, la escora y que el barco se hunde más al navegar rápido en aguas poco profundas (asentamiento dinámico). No sumes otra vez la marea a la lectura de la sonda: ya muestra la profundidad real del agua. Una buena lectura no demuestra que una ruta sea segura."
+        "Las sondas de la carta se miden desde un nivel de bajamar llamado cero hidrográfico, así que casi siempre hay más agua de la que indica la carta. Suma la altura de marea de este lugar y esta hora, medida desde el mismo nivel que la carta. La profundidad del agua no es el espacio bajo tu quilla. Una sonda puede medir desde la línea de flotación o desde la quilla, así que comprueba su corrección (la distancia desde donde mide hasta la parte inferior de la quilla).",
+        "Este es un ejemplo práctico con cifras inventadas, para un barco quieto y adrizado:\n• 2,4 m de sonda de carta más 1,1 m de altura de marea dan 3,5 m de profundidad de agua.\n• Resta 1,8 m de calado: quedan 1,7 m de resguardo estático bajo la quilla (el agua entre la quilla y el fondo).\n• Resta la reserva de 0,8 m del ejercicio: quedan 0,9 m.\nEs aritmética, no una autorización para cruzar un bajo.",
+        "La planificación real necesita más margen que esta simple suma, por estos motivos:\n• la marea cambia sin parar, así que usa la marea más baja durante el paso\n• los levantamientos y las previsiones nunca son exactos\n• las olas y la escora pueden acercar la quilla al fondo\n• asentamiento dinámico (squat): el barco se hunde más al navegar rápido en aguas poco profundas\nNo sumes otra vez la marea a la lectura de la sonda: ya muestra la profundidad real del agua. Una buena lectura no basta para demostrar que una ruta es segura."
       ],
       "observe": [
         "Separa datum, altura de marea, profundidad y calado en el dibujo.",
@@ -1790,10 +1790,10 @@
     "sail-42": {
       "title": "Pilotaje nocturno y comprobaciones cruzadas",
       "concepts": [
-        "Planifica la aproximación nocturna de día: anota las luces que esperas ver, en orden, y cómo reconocerás cada una, además de los peligros, las aguas seguras, las profundidades previstas y una alternativa segura. Una luz se identifica por su color, su ritmo y su período: «Fl W 6s» es un destello blanco cada 6 segundos. Cronometra varios ciclos completos; el color solo no basta, y las luces de tierra pueden confundir.",
+        "Planifica de día la aproximación nocturna: anota las luces que esperas ver, en orden, y cómo reconocerás cada una. Señala también los peligros, las aguas seguras, las profundidades previstas y una alternativa segura. Una luz se identifica por su color, su ritmo y su período: «Fl W 6s» es un destello blanco cada 6 segundos. Cronometra varios ciclos completos; el color solo no basta, y las luces de tierra pueden confundir.",
         "Una enfilación luminosa son dos luces, la trasera más alta y más lejana. Cuando la luz trasera está justo encima de la delantera, estás en la línea segura. Si la trasera se ve a la derecha de la delantera, estás a la derecha de la línea: desplázate a la izquierda hasta que vuelvan a alinearse. Dos marcas en tierra usadas de la misma forma de día también forman una enfilación.",
-        "Contrasta la posición electrónica con luces identificadas, demoras, enfilaciones y tendencias de profundidad, considerando marea y correcciones instrumentales. Dos pantallas con el mismo GPS no son posiciones independientes. Verifica escala, datum y actualizaciones: un símbolo preciso puede estar equivocado.",
-        "Aproximación ficticia: el plotter indica la ruta correcta, pero la enfilación luminosa esperada y la profundidad discrepan. No entres en agua más somera o restringida para resolver la duda. Reduce el riesgo, permanece en aguas seguras verificadas o vuelve a ellas si es viable, comprueba observaciones y revisa el plan."
+        "Contrasta la posición electrónica con pruebas independientes, como luces identificadas, demoras, enfilaciones y tendencias de profundidad. Ten en cuenta la marea y las correcciones de los instrumentos: la sonda puede medir desde la quilla, no desde la superficie. Dos pantallas que usan el mismo GPS no son posiciones independientes. Verifica la escala, las actualizaciones y el datum de la carta (su cuadrícula de referencia; si no coincide, tu posición se desplaza); un símbolo de aspecto preciso puede estar equivocado.",
+        "Cuando el plotter y lo que ves no coinciden, detente y comprueba. En esta aproximación ficticia el plotter indica que vas en la ruta, pero la enfilación luminosa esperada y la tendencia de la profundidad no coinciden. No entres en agua más somera o estrecha solo para resolver la duda. Reduce el riesgo, permanece en aguas seguras que hayas verificado o vuelve a ellas si puedes, contrasta las observaciones y revisa el plan."
       ],
       "observe": [
         "Enumera referencias en el orden de aproximación y cómo identificarás cada una.",
@@ -1825,9 +1825,9 @@
     "sail-43": {
       "title": "Entrar en la marina a motor",
       "concepts": [
-        "Un barco a motor no tiene frenos: la única forma rápida de frenar es dar marcha atrás, e incluso eso lleva tiempo. Avante y atrás describen el empuje de la hélice, no hacia dónde te mueves; en punto muerto el empuje desaparece, pero el barco sigue moviéndose. Así que planifica cada parada con mucha antelación.",
+        "Un barco a motor no tiene frenos: la única forma rápida de frenar es dar marcha atrás, e incluso eso lleva tiempo. Avante (hacia delante) y atrás (hacia atrás) describen el empuje de la hélice, no hacia dónde te mueves; en punto muerto el empuje desaparece, pero el barco sigue moviéndose. Así que planifica cada parada con mucha antelación.",
         "A poca velocidad pasa poca agua por el timón, así que gobierna mal. Un breve impulso avante lanza el agua de la hélice directamente sobre el timón y te da gobierno aunque el barco apenas se mueva, sin añadir mucha velocidad. Un barco gira alrededor de un punto cercano a la proa, así que al girar la popa se abre hacia el lado contrario: vigílala cerca de pantalanes y otros barcos.",
-        "En este ejercicio: sigue las marcas al 090°, 135° y 180° hasta el canal, sin superar 2,5 nudos. Después pasa a punto muerto y da un breve impulso de marcha atrás para detenerte en el círculo final, y termina en punto muerto por debajo de 0,15 nudos durante cinco segundos, sin tocar muelles ni barcos."
+        "En este ejercicio: sigue las marcas al 090° (este), 135° y 180° (sur) hasta el canal, el paso libre entre las filas de amarres. No superes 2,5 nudos, más o menos el paso de una persona. Después pasa a punto muerto y da un breve impulso de marcha atrás para detenerte en el círculo final, y termina en punto muerto por debajo de 0,15 nudos durante cinco segundos, sin tocar muelles ni barcos."
       ],
       "observe": [
         "Usa el deslizador del motor o W/S; N selecciona punto muerto. Centra el timón antes de pasarte.",
@@ -1876,9 +1876,9 @@
     "sail-44": {
       "title": "Atracar en una plaza de la marina",
       "concepts": [
-        "Entra en un atraque a la velocidad a la que aceptarías tocar el muelle, normalmente al paso de una persona o menos. Usa impulsos breves de motor con punto muerto entre ellos: cada impulso da un poco de gobierno y velocidad, y el punto muerto te deja valorar la deriva. Es más fácil añadir un poco de potencia que quitar demasiada.",
+        "Entra en un atraque (la plaza de un barco en un pantalán) a una velocidad con la que aceptarías tocar el muelle, normalmente al paso o menos. Usa impulsos breves de motor con punto muerto entre ellos: cada impulso da un poco de gobierno y velocidad, y el punto muerto te deja valorar la deriva. Es más fácil añadir un poco de potencia que quitar demasiada.",
         "A poca velocidad el viento empuja el barco de lado, y la proa, alta y ligera, es la primera en desviarse. En marcha atrás, la mayoría de las hélices también tiran de la popa hacia un lado (efecto lateral de la hélice), así que dar atrás para frenar puede desviar la popa. Planifica la aproximación para que estos efectos te acerquen al atraque y no te alejen, y guarda una salida por si sale mal.",
-        "En este ejercicio: acércate a la marca ámbar a 0,3–1 nudo, entra en la plaza norte y detén el centro del barco a menos de 2 metros del objetivo verde, al 090° ±10°. Termina en punto muerto por debajo de 0,15 nudos durante cinco segundos. Cualquier contacto termina el intento. En marcha atrás, el efecto lateral de la hélice lleva la popa a babor; las amarras no forman parte de este modelo."
+        "En este ejercicio, acércate a la marca ámbar a 0,3–1 nudo y continúa hasta la plaza norte. Para terminar necesitas:\n• posición: el centro del barco a menos de 2 metros del objetivo verde\n• dirección: rumbo 090° ±10°\n• velocidad: en punto muerto, por debajo de 0,15 nudos\n• tiempo: mantenido durante cinco segundos\nCualquier contacto termina el intento. En marcha atrás, el efecto lateral de la hélice lleva la popa a babor (a la izquierda, mirando hacia proa); las amarras no forman parte de este modelo."
       ],
       "observe": [
         "El círculo verde marca el centro del barco, no la proa. Deja espacio delante y a ambos lados.",
@@ -1923,8 +1923,8 @@
     "sail-45": {
       "title": "Desatracar y salir de la marina",
       "concepts": [
-        "Al ir hacia atrás, el timón queda en el extremo que va delante, así que gobierna poco y al revés: el mismo movimiento del timón gira la proa hacia el lado contrario que al avanzar. Mantén una velocidad de retroceso baja y constante, mueve poco el timón y mira hacia donde vas.",
-        "Retrocede lo suficiente para librar los pantalanes antes de girar. Cuando el barco gira, se mueven los dos extremos, así que girar entre los pantalanes puede hacer que los golpees. Detente, pasa a punto muerto y luego gira con marcha avante, donde el gobierno es más fuerte y funciona de forma normal.",
+        "Al ir hacia atrás, el timón queda en el extremo que va delante, así que gobierna poco y al revés. El mismo movimiento del timón gira la proa hacia el lado contrario que al avanzar. Mantén una velocidad de retroceso baja y constante y mueve poco el timón, porque el agua más rápida puede forzar el timón a una banda y hacer girar la proa de golpe. Mira hacia donde vas.",
+        "Retrocede lo suficiente para librar los fingers del pantalán (los pantalanes cortos y estrechos entre plazas) antes de girar. Cuando el barco gira, se mueven los dos extremos, así que girar entre ellos puede hacer que los golpees. Detente, pasa a punto muerto y luego gira con marcha avante, donde el gobierno es más fuerte y funciona de forma normal.",
         "En este ejercicio las amarras ya están soltadas. Retrocede a la primera marca al 090° a 0,3–1,2 nudos atrás, detente en el segundo objetivo y después usa avante y timón a babor para girar al norte y seguir las marcas de salida al 000°. No superes 2,5 nudos y mantente lejos de otros barcos."
       ],
       "observe": [
@@ -1950,7 +1950,7 @@
             "No puede gobernar",
             "Su efecto de giro se invierte"
           ],
-          "explanation": "El flujo de agua se invierte, por lo que la misma posición del timón gira la proa al lado contrario."
+          "explanation": "Al ir hacia atrás, el agua pasa por el timón en sentido contrario, así que la misma posición del timón gira la proa al lado contrario."
         }
       ],
       "practice": {
@@ -1978,10 +1978,10 @@
     "sail-46": {
       "title": "Encuentros a vela: amura, barlovento y alcance",
       "concepts": [
-        "Determina primero si los buques están a la vista, si existe riesgo de abordaje y si hay alcance, canal angosto o condición especial. Estos ejemplos aplican reglas internacionales, a la vista, en aguas abiertas y sin condición especial. Ambos mantienen vigilancia y obligaciones de evitar el abordaje.",
+        "Antes de aplicar las reglas entre veleros, hazte primero tres preguntas:\n• ¿Están los buques a la vista uno del otro?\n• ¿Existe riesgo de abordaje?\n• ¿Cambia el caso un alcance, un canal angosto o una condición especial del buque?\nEstos ejemplos de vela aplican el Reglamento Internacional con buques a la vista, en aguas abiertas y sin condición especial. Ambos mantienen la vigilancia y siguen siendo responsables de evitar el abordaje.",
         "Babor y estribor se definen mirando a proa. Viento por babor significa amura a babor; por estribor, amura a estribor. En la Regla 12, la banda de barlovento es la contraria a la que lleva la vela mayor. Mira la mayor, no solo el foque ni la posición del otro barco en la pantalla.",
-        "Con riesgo y amuras distintas, se aparta el velero amurado a babor. Con la misma amura, se aparta el de barlovento, porque normalmente puede arribar con más facilidad. Si vas amurado a babor y ves un velero a barlovento cuya amura no puedes determinar con certeza, apártate. Esta regla de duda no significa que siempre tenga preferencia el velero que ves a tu derecha.",
-        "Comprueba el alcance antes que las amuras. Alcanzas cuando te aproximas desde más de 22,5° a popa del través del otro buque: el sector de 135° alrededor de su popa. De noche corresponde a ver su luz de alcance y ninguna de costado. Todo buque que alcanza se mantiene apartado, incluso un velero que alcanza a un motor.",
+        "Con riesgo de abordaje y amuras distintas, se aparta el velero amurado a babor. Con la misma amura, el de barlovento (más cerca de donde viene el viento) se aparta del de sotavento (el que queda a favor del viento), porque normalmente puede arribar (alejarse del viento) con más facilidad. Si vas amurado a babor y ves un velero a barlovento cuya amura no puedes determinar con certeza, apártate. Esta regla de duda es específica; no significa que siempre tenga preferencia el velero que ves a tu derecha.",
+        "Comprueba el alcance antes de aplicar las reglas de amuras. Alcanzas cuando te aproximas desde más de 22,5° a popa del través del otro buque (por detrás de la línea que cruza su parte más ancha): más o menos desde atrás, en el sector de 135° alrededor de su popa. De noche corresponde a ver su luz de alcance y ninguna de costado. Todo buque que alcanza se mantiene apartado del alcanzado, incluso un velero que alcanza a un buque de motor.",
         "Si dudas de si estás alcanzando, considérate buque que alcanza. La obligación continúa hasta quedar definitivamente pasado y franco. Estar por el través o cambiar la demora relativa no convierte un alcance ya establecido en un cruce."
       ],
       "observe": [
@@ -2014,10 +2014,10 @@
     "sail-47": {
       "title": "A motor: vuelta encontrada, cruce y encuentros mixtos",
       "concepts": [
-        "Según la Regla 3, un velero navega a vela sin utilizar su maquinaria propulsora. Un yate propulsado por motor es de propulsión mecánica aunque lleve velas izadas. Un motor usado solo para cargar baterías no establece por sí mismo propulsión mecánica. Identifica la propulsión real.",
-        "Entre dos buques de motor a la vista que cruzan con riesgo, se aparta quien ve al otro por estribor y, si las circunstancias lo permiten, evita cortarle la proa. El otro mantiene inicialmente rumbo y velocidad según la Regla 17. Cambia de perspectiva: quien está a estribor de A puede ver a A por babor.",
-        "Dos buques de motor en rumbos opuestos o casi opuestos con riesgo caen ambos a estribor para pasar babor con babor. Si los dos giran a la derecha, siempre se alejan el uno del otro. Si dudas de si existe vuelta encontrada, considérala existente. Esta regla es para buques de motor; no la apliques automáticamente a dos veleros.",
-        "En un encuentro ordinario a la vista, un motor en navegación se aparta de un velero. Comprueba antes las excepciones de las Reglas 9, 10 y 13 y los estados especiales. Un velero que alcanza a un motor sigue apartándose; un yate propulsado por motor no reclama condición de velero. El tamaño por sí solo no decide.",
+        "Un barco solo cuenta como velero cuando navega a vela y su motor no lo impulsa (Regla 3). Un yate propulsado por motor es de propulsión mecánica aunque lleve velas izadas. Un motor en marcha solo para cargar baterías no significa por sí mismo que el motor impulse el barco. Determina cómo se propulsa realmente el barco antes de elegir una regla.",
+        "Cuando dos buques de motor a la vista se cruzan con riesgo de abordaje, se aparta el que tiene al otro por su estribor. Dicho de forma sencilla: si ves el otro barco a tu derecha, te apartas, normalmente girando a la derecha y pasando por su popa, sin cortarle la proa si puedes evitarlo. Al principio, el otro buque mantiene su rumbo y velocidad (Regla 17). Cambia de perspectiva: quien está a estribor de A ve a A por su babor.",
+        "Cuando dos buques de motor con riesgo de abordaje navegan directamente uno hacia el otro, proa con proa o casi, ambos caen a estribor. Así pasan babor con babor. Si los dos giran a la derecha, siempre se alejan el uno del otro. Si dudas de si existe esta situación de vuelta encontrada, considera que existe y actúa en consecuencia. Esta es la regla de vuelta encontrada para buques de motor; no la apliques automáticamente a dos veleros.",
+        "En un encuentro ordinario a la vista, un buque de motor en navegación se aparta de un velero. Comprueba antes las excepciones: canales angostos, dispositivos de separación de tráfico y alcance (Reglas 9, 10 y 13), y cualquier condición especial del buque. Un velero que alcanza a una lancha a motor sigue apartándose; un yate propulsado por motor no puede reclamar la condición de velero. El tamaño del buque por sí solo no decide estos encuentros ordinarios.",
         "«En navegación» significa no fondeado, no amarrado a tierra y no varado; un buque a la deriva con el motor parado sigue en navegación. Importa más el estado que el movimiento: un buque de propulsión mecánica parado pero en navegación conserva su obligación de apartarse.",
         "Dos buques menos habituales merecen una segunda mirada. Un aerodeslizador sobre su colchón de aire muestra una luz amarilla centelleante todo horizonte además de las luces de propulsión mecánica, y puede ser rápido. Un bote de remos puede mostrar las luces de un velero o tener lista una linterna blanca para mostrarla a tiempo. El Reglamento internacional no da a los botes de remos un lugar propio en el orden de preferencia, pero son lentos y bajos sobre el agua, así que apártate de ellos pronto."
       ],
@@ -2251,10 +2251,10 @@
     "sail-52": {
       "title": "Manejar un catamarán con dos motores",
       "concepts": [
-        "Un catamarán de crucero tiene dos cascos y motores separados. Ten en cuenta su manga al elegir atraque y espacio para girar. Poco calado no garantiza paso libre: comprueba barco, profundidad y márgenes. Los costados altos y la cabina ancha reciben viento a baja velocidad.",
+        "Un catamarán de crucero tiene dos cascos y motores muy separados. Ten en cuenta su manga (su anchura, mucho mayor que la de un monocasco de la misma eslora) al elegir atraque o espacio para girar. Poco calado no garantiza paso libre: comprueba el barco real, la profundidad y los márgenes. Los costados altos (los lados del casco por encima del agua) y una cabina ancha pueden recibir mucho viento a baja velocidad.",
         "Los motores están muy separados, así que cada uno empuja con un brazo de palanca largo: empujes opuestos hacen girar el barco casi sobre sí mismo. Mandos iguales producen principalmente avance o retroceso. Con timón centrado, babor avante y estribor atrás giran la proa a estribor; al invertirlos gira a babor. Usa impulsos suaves pasando por punto muerto. Igual posición de palanca no garantiza igual empuje avante y atrás: vigila rumbo y deriva.",
         "Empiezas en aguas abiertas con velas bajadas. Usa los mandos separados de babor y estribor para girar de 000° a 090° dentro del círculo inicial. Detén el giro y mantén ambos motores en punto muerto cinco segundos. Después usa el mando conjunto para llegar a la siguiente marca y detenerte en el círculo final. No superes 2,5 nudos y evita otros barcos.",
-        "A vela, un catamarán puede escorar poco aunque aumenten las cargas. Riza pronto según el fabricante, previsión, mar y tripulación. La manga aporta estabilidad inicial, no inmunidad al vuelco. Poca escora no justifica llevar más vela."
+        "A vela, un catamarán puede escorar poco aunque aumenten las cargas. Toma rizos pronto según las indicaciones del fabricante, la previsión, el estado de la mar y la capacidad de la tripulación. La manga ancha aporta estabilidad inicial, no inmunidad al vuelco. Poca escora no es permiso para llevar más vela: un monocasco se inclina para avisarte, pero un catamarán avisa poco antes de volcar, y luego se queda boca abajo."
       ],
       "observe": [
         "Centra el timón para pivotar; usa motores opuestos y reduce antes de 090° para anticipar la inercia.",
@@ -2269,7 +2269,7 @@
             "Babor atrás y estribor avante",
             "Ambos motores avante por igual"
           ],
-          "explanation": "El empuje separado forma un par de giro. Vigila la deriva: avante y atrás pueden tener distinta fuerza."
+          "explanation": "Un motor empuja hacia delante y el otro hacia atrás, así que el barco gira sobre sí mismo. Vigila la deriva, porque el empuje avante y el empuje atrás pueden ser distintos."
         },
         {
           "prompt": "Aumenta el viento pero el catamarán apenas escora. ¿Qué debe guiar el rizado?",
@@ -2304,8 +2304,8 @@
       "title": "Navega una aproximación nocturna",
       "concepts": [
         "De noche, una luz se reconoce por su color, su ritmo y su período, el tiempo que dura un ciclo completo. Observa dos o tres ciclos completos y cuenta, y luego compáralos con la carta. El color solo no basta: en tierra hay muchas luces blancas. Protege tu visión nocturna: baja el brillo de las pantallas y usa luz roja en la bañera.",
-        "Una enfilación luminosa son dos luces, la trasera más alta y más lejana. Cuando la luz trasera está justo encima de la delantera, estás en la línea. Si la trasera se ve a la derecha, estás a la derecha de la línea: desplázate a la izquierda hasta que vuelvan a alinearse. Contrástalo con el rumbo, la posición en la carta y la profundidad.",
-        "En este ejercicio (luces ficticias), el faro emite un destello blanco cada 6 segundos y la boya 1, uno amarillo cada 4 segundos. Gobierna al 000° con poco avante, pasando al este de la boya 1, y después entra en la enfilación al 027°. Mantén menos de 3 nudos y al menos 3 metros de profundidad; luego reduce, da un breve impulso atrás y mantén menos de 0,15 nudos en punto muerto al 027° durante cinco segundos."
+        "Una enfilación luminosa son dos luces, la trasera más alta y más lejana, que se usan como en la lección {lesson:sail-42}. Cuando la luz trasera está justo encima de la delantera, estás en la línea. Si la trasera se ve a la derecha, estás a la derecha de la línea: desplázate a la izquierda hasta que vuelvan a alinearse. Si nunca se alinean donde esperas, reduce la velocidad, quédate en aguas seguras y comprueba que son las luces correctas. Contrástalo con el rumbo, la posición en la carta y la profundidad.",
+        "En este ejercicio (luces ficticias), el faro emite un destello blanco cada 6 segundos y la boya 1, uno amarillo cada 4 segundos. Mantén menos de 3 nudos y al menos 3 metros de profundidad:\n• gobierna al 000° con poco avante\n• pasa al este de la boya 1\n• entra en la enfilación al 027°\n• reduce, da un breve impulso atrás y mantén menos de 0,15 nudos en punto muerto al 027° durante cinco segundos"
       ],
       "observe": [
         "Observa dos ciclos completos del faro, de 6 segundos cada uno, antes de partir. Las luces se detienen al pausar la simulación.",
@@ -2358,10 +2358,10 @@
     "sail-54": {
       "title": "Leer un mapa del tiempo",
       "concepts": [
-        "Un mapa del tiempo, o mapa sinóptico, muestra la presión del aire al nivel del mar. Las líneas llamadas isobaras unen lugares con la misma presión, normalmente cada 4 hectopascales (hPa, lo mismo que milibares). Una alta (A) suele traer tiempo estable; una baja (B) trae nubes, lluvia y viento más fuerte.",
+        "Un mapa del tiempo, o mapa sinóptico (una instantánea de toda la zona en un momento dado), muestra la presión del aire al nivel del mar. Las líneas llamadas isobaras unen lugares con la misma presión, normalmente cada 4 hectopascales (hPa, lo mismo que milibares). Una alta (A) suele traer tiempo estable; una baja (B) trae nubes, lluvia y viento más fuerte.",
         "Cuanto más juntas están las isobaras, más fuerte es el viento. Isobaras muy separadas indican viento flojo; isobaras apretadas indican viento duro. Sobre el mar, el viento sopla más o menos a lo largo de las isobaras, algo desviado hacia la presión más baja.",
-        "En el hemisferio norte, el viento gira alrededor de una baja en sentido antihorario y entra en espiral hacia su centro. Alrededor de una alta gira en sentido horario y sale en espiral. Si te pones de espaldas al viento, la baja queda a tu izquierda. Una vaguada es una baja alargada, una dorsal es una alta alargada, y un collado, o pantano barométrico, queda entre dos altas y dos bajas, con viento flojo y variable.",
-        "Para estimar el viento en un punto del mapa, busca allí las isobaras. Mira a qué lado está la baja y traza el viento a lo largo de las isobaras, algo desviado hacia la baja. Por ejemplo, con una baja al oeste, el viento sopla del sur; cuando la baja ya ha pasado al este, sopla del norte.",
+        "En el hemisferio norte, el viento gira alrededor de una baja en sentido antihorario y entra en espiral hacia su centro. Alrededor de una alta gira en sentido horario y sale en espiral. Si te pones de espaldas al viento, la baja queda a tu izquierda. En los mapas aparecen otras tres formas:\n• Una vaguada es una baja alargada, que trae nubes y lluvia como una baja.\n• Una dorsal es una alta alargada, que trae tiempo estable como una alta.\n• Un collado, o pantano barométrico, queda entre dos altas y dos bajas, con viento flojo y variable.",
+        "Para estimar el viento en un punto del mapa, busca allí las isobaras y mira a qué lado está la baja. Después traza el viento a lo largo de las isobaras, algo desviado hacia la baja. Por ejemplo, con una baja al oeste, el viento sopla del sur, porque gira alrededor de la baja en sentido antihorario. Cuando la baja ya ha pasado al este, sopla del norte.",
         "El barómetro muestra la tendencia, que importa más que la cifra. Una presión que baja sin parar, por ejemplo de 1000 a 992 hPa en ocho horas, indica que se acerca una baja y que el viento va a aumentar; una caída de 3 hPa o más en tres horas es un aviso. La presión que sube después de una baja suele traer cielos despejados y un cambio de viento. Anota la lectura en el cuaderno de bitácora cada pocas horas."
       ],
       "observe": [
@@ -2403,11 +2403,11 @@
     "sail-55": {
       "title": "Frentes y nubes",
       "concepts": [
-        "La mayoría de las bajas que cruzan el Mediterráneo son bajas frontales. En el hemisferio norte suele llegar primero un frente cálido, luego un sector cálido y después un frente frío, avanzando más o menos de oeste a este. En el mapa, el frente cálido se dibuja con semicírculos y el frente frío con triángulos.",
-        "Cuando se acerca un frente cálido, las nubes altas y finas se espesan y bajan hasta formar una capa gris. Llega lluvia continua, mala visibilidad y la presión baja. Al pasar el frente, el viento rola a la derecha, por ejemplo de sur a suroeste. En el sector cálido de detrás, las isobaras son casi rectas, la presión se mantiene y el aire es cálido y húmedo, a menudo con neblina o llovizna.",
+        "Un frente es el borde donde una masa de aire cálido se encuentra con aire frío. La mayoría de las bajas que cruzan el Mediterráneo son bajas frontales, que llevan frentes consigo. En el hemisferio norte suele llegar primero un frente cálido, luego un sector cálido y después un frente frío, avanzando más o menos de oeste a este. En el mapa, el frente cálido se dibuja con semicírculos y el frente frío con triángulos.",
+        "Cuando se acerca un frente cálido, las nubes altas y finas se espesan y bajan hasta formar una capa gris. Llega lluvia continua, la visibilidad es mala y la presión baja. Al pasar el frente, el viento rola a la derecha (gira en sentido horario), por ejemplo de sur a suroeste. En el sector cálido de detrás, las isobaras son casi rectas, la presión se mantiene y el aire es cálido y húmedo, a menudo con neblina o llovizna. La niebla marina se forma cuando aire cálido y húmedo como este pasa sobre agua más fría; cerca de la costa puede aparecer y desaparecer rápidamente.",
         "El frente frío trae el peor tiempo, con cúmulos de gran desarrollo, cumulonimbos y chubascos fuertes. A veces también trae tormentas y granizo. El viento cambia de golpe y con rachas al oeste o al noroeste. Detrás del frente la presión sube, el aire es más fresco y la visibilidad mejora mucho, aunque pueden seguir los chubascos con rachas.",
-        "El cumulonimbo es una nube de gran desarrollo vertical, a menudo con la cima plana en forma de yunque. Puede traer turbonadas, lluvia fuerte, granizo y rayos. Las nubes se forman cuando el aire que sube se enfría hasta su punto de rocío, y la base de la nube es la altura donde eso ocurre. Cuando el aire que sube se ha enfriado hasta la temperatura del aire que lo rodea, deja de subir: los meteorólogos dicen que el aire es estable a esa altura.",
-        "Durante una tormenta eléctrica, aléjate del mástil, los obenques y otros herrajes metálicos. Mantén a la tripulación agachada en el centro del barco y apaga los aparatos electrónicos que no necesites. Toma rizos pronto, porque la turbonada bajo un cumulonimbo puede llegar casi sin aviso. La niebla marina se forma cuando aire cálido y húmedo pasa sobre agua más fría; cerca de la costa puede aparecer y desaparecer rápidamente."
+        "El cumulonimbo es una nube de gran desarrollo vertical, a menudo con la cima plana en forma de yunque. Puede traer turbonadas, lluvia fuerte, granizo y rayos. Las nubes se forman cuando el aire que sube se enfría hasta su punto de rocío (la temperatura a la que su humedad se convierte en gotitas visibles). La base de la nube es la altura donde eso ocurre. El aire deja de subir cuando ya no está más caliente que el aire que lo rodea; los meteorólogos dicen que a esa altura el aire es estable.",
+        "Durante una tormenta eléctrica, aléjate del mástil, los obenques y otros herrajes metálicos. Mantén a la tripulación agachada en el centro del barco y apaga los aparatos electrónicos que no necesites. Toma rizos pronto, porque la turbonada bajo un cumulonimbo puede llegar casi sin aviso."
       ],
       "observe": [
         "Observa cómo cambian las nubes a lo largo del día: nubes altas y finas que se espesan y bajan suelen anunciar un frente cálido.",
@@ -2448,8 +2448,8 @@
     "sail-56": {
       "title": "Viento y olas",
       "concepts": [
-        "La escala de Beaufort describe el viento por su efecto sobre el mar. Fuerza 4 (11–16 nudos) trae muchos borreguillos; fuerza 5 (17–21), olas moderadas y rociones; fuerza 6 (22–27), olas grandes con crestas de espuma blanca por todas partes; fuerza 7 (28–33), mar gruesa con la espuma arrastrada en franjas; y fuerza 8 (34–40) es un temporal. Las previsiones suelen dar la fuerza Beaufort junto con las rachas esperadas.",
-        "La brisa marina se debe a la diferencia de temperatura entre la tierra y el mar. En un día de sol la tierra se calienta más rápido, el aire caliente sube sobre ella y el aire más fresco del mar entra hacia la costa, normalmente desde media mañana hasta la tarde. Por la noche la tierra se enfría y puede soplar hacia el mar un terral más flojo. Un viento catabático es aire frío que baja por la ladera de una montaña, a menudo fuerte y seco al pie de las montañas.",
+        "La escala de Beaufort describe el viento por su efecto sobre el mar. Las previsiones suelen dar la fuerza Beaufort junto con las rachas esperadas. Así se ve cada fuerza:\n• Fuerza 4 (11–16 nudos): muchos borreguillos (pequeñas crestas que rompen con espuma blanca).\n• Fuerza 5 (17–21): olas moderadas y rociones.\n• Fuerza 6 (22–27): olas grandes con crestas de espuma blanca por todas partes.\n• Fuerza 7 (28–33): mar gruesa con la espuma arrastrada en franjas.\n• Fuerza 8 (34–40): temporal.",
+        "La brisa marina se debe a la diferencia de temperatura entre la tierra y el mar. En un día de sol la tierra se calienta más rápido, el aire caliente sube sobre ella y el aire más fresco del mar entra hacia la costa, normalmente desde media mañana hasta la tarde. Por la noche la tierra se enfría y puede soplar hacia el mar un terral más flojo. Las montañas también crean sus propios vientos: un viento catabático es aire frío que baja por la ladera de una montaña, a menudo fuerte y seco al pie de las montañas.",
         "Las olas de viento las levanta el viento local. El mar de fondo está formado por olas que levantó un viento fuerte en una tormenta lejana y que han viajado mucho desde allí. Son largas, suaves y regulares, y pueden llegar antes o después de la propia tormenta. Cuando el viento local sopla contra el mar de fondo, este se hace más bajo; el viento contra la corriente, como explica la lección {lesson:sail-20}, hace las olas cortas y empinadas.",
         "Las olas se hacen más altas y empinadas al llegar a aguas poco profundas, y con mar de fondo pueden romper en la bocana de un puerto. Antes de entrar, observa las olas desde fuera: suelen llegar en series, con calmas entre ellas. Entra durante una calma y con velocidad suficiente para gobernar.",
         "Las olas que rompen cerca de la costa pueden destrozar un velero. El mar de fondo que llega de aguas profundas se frena y se levanta al llegar a poca profundidad, y luego rompe como un muro de agua blanca. En olas rompientes:\n• El barco puede surfear una ola, clavar la proa y atravesarse sin control (orzada o atravesada).\n• Una ola puede lanzar el barco contra las rocas, el rompeolas u otro barco.\n• Un tripulante puede caer al agua, y es muy difícil llegar hasta él entre las rompientes.\nLa peor posición es con el costado del barco a las olas, porque una ola rompiente puede volcarlo. Mantén la proa o la popa hacia ellas.",
@@ -2526,10 +2526,10 @@
     "sail-57": {
       "title": "El tiempo en el Mediterráneo oriental",
       "concepts": [
-        "En invierno, las bajas cruzan el Mediterráneo oriental desde el oeste, y algunas se profundizan cerca de Chipre. En la costa de Israel suelen traer primero un frente cálido, con viento del sur al suroeste, y después un frente frío con viento duro del suroeste al oeste, mar creciente y chubascos. Si la previsión anuncia un frente frío que llega desde el mar, espera mal tiempo y olas altas.",
-        "La Sharqiya es un viento del este fuerte y seco que sopla desde tierra. Aparece sobre todo en las estaciones de transición, primavera y otoño, y se nota más en el norte del país. Cerca de la costa el mar sigue llano porque el viento sopla desde tierra, pero más lejos levanta olas y puede dificultar el regreso a puerto. Los vientos del este fríos y fuertes del invierno suelen venir de una alta al nordeste, sobre Rusia, no de una baja.",
-        "En primavera, una baja cálida puede avanzar a lo largo del norte de África o subir desde el sur. Delante de ella el viento es del sur, cálido y seco, el polvo reduce la visibilidad en la costa mediterránea y en Eilat sopla viento del sur. Cuando pasa, el viento rola al oeste y baja la temperatura. A lo largo de la costa mediterránea, la visibilidad es mala mientras dura el polvo.",
-        "El verano suele ser estable, y por la tarde se levanta una brisa marina del noroeste en la costa de Israel, que se apaga por la noche. En el Egeo, el Meltemi es un viento del norte fuerte y seco en julio y agosto, a menudo de fuerza 6 a 7 durante días. En el Adriático, el Bora es un viento del nordeste frío, seco y muy racheado que baja de las montañas en invierno."
+        "En invierno, las bajas cruzan el Mediterráneo oriental desde el oeste, y algunas se profundizan cerca de Chipre. Al profundizarse, su presión baja aún más y el viento se refuerza. En la costa de Israel suelen traer primero un frente cálido, con viento del sur al suroeste, y después un frente frío con viento duro del suroeste al oeste, mar creciente y chubascos. Si la previsión anuncia un frente frío que llega desde el mar, espera mal tiempo y olas altas.",
+        "La Sharqiya es un viento del este fuerte y seco que sopla desde tierra, sobre todo en primavera y otoño. Se nota más en el norte del país. Cerca de la costa el mar sigue llano porque el viento sopla desde tierra, pero más lejos levanta olas y puede dificultar el regreso a puerto. Los vientos del este del invierno son otro caso: los vientos del este fríos y fuertes del invierno suelen venir de una alta al nordeste, sobre Rusia, no de una baja.",
+        "En primavera, una baja cálida puede avanzar a lo largo del norte de África o subir desde el sur. Delante de ella el viento es del sur, cálido y seco, el polvo reduce la visibilidad en la costa mediterránea y en Eilat sopla viento del sur. Cuando pasa, el viento rola al oeste y baja la temperatura.",
+        "El verano suele ser estable: por la tarde se levanta una brisa marina del noroeste en la costa de Israel, que se apaga por la noche. En el Egeo, el Meltemi es un viento del norte fuerte y seco en julio y agosto, a menudo de fuerza 6 a 7 durante días. Más lejos, en el Adriático, el Bora es un viento del nordeste frío, seco y muy racheado que baja de las montañas en invierno."
       ],
       "observe": [
         "Antes de una travesía, lee la previsión de toda la región, no solo la de tu puerto, y busca la baja más cercana.",
@@ -2667,11 +2667,11 @@
       "concepts": [
         "Los cabos se fabrican con distintas fibras, y cada una sirve para un trabajo distinto. El nailon estira mucho, así que absorbe los tirones: úsalo para la línea de fondeo y los cabos de amarre. El poliéster estira poco, así que la vela conserva su forma: úsalo para escotas y drizas. El polipropileno flota, lo que va bien para un cabo de rescate que se lanza, pero se desgasta por roce y se debilita con el sol. La aramida y fibras parecidas, como el Kevlar y el Dyneema, son las más resistentes para su grosor y casi no estiran.",
         "Un cabo de amarre o de remolque necesita una carga de rotura alta, y el de remolque además debe ser largo y capaz de estirar. Es mejor un cabo fuerte que dos débiles, porque la carga casi nunca se reparte por igual entre dos cabos. Todo nudo o costura debilita un cabo: un nudo puede quitarle hasta cerca de la mitad de su resistencia, una costura mucho menos. El roce también lo debilita, así que protege los cabos donde pasan por las guías.",
-        "Cuida tus cabos: enjuágalos con agua dulce para quitar la sal, sécalos y guárdalos adujados a la sombra. El sol y los cristales de sal debilitan las fibras. Busca roces, cortes y zonas rígidas o vidriosas, y cambia el cabo antes de que falle.",
-        "El cable de acero se describe por sus cordones y alambres. Una marca como 6/12 significa 6 cordones con 12 alambres cada uno. El cable 7×19, de 7 cordones de 19 alambres, es flexible y sirve para la jarcia de labor que dobla en roldanas; el cable 1×19, un solo cordón de 19 alambres, es rígido y estira poco, así que se usa en la jarcia firme, como los obenques, y en los guardamancebos.",
-        "El amantillo es un cabo que va del tope del palo al extremo de la botavara. Sostiene la botavara cuando se arría o se riza la mayor, para que no caiga sobre la bañera ni sobre la tripulación.",
-        "Un aparejo multiplica tu fuerza al tirar. Cuenta los guarnes de cabo que sostienen el motón móvil: con cuatro guarnes, una carga de 320 kg necesita unos 80 kg de tiro, sin contar la fricción. Con dos motones dobles, si el cabo sale del motón móvil hay cinco guarnes, una ganancia de 5 a 1; si sale del motón fijo, 4 a 1. A cambio, recoges esa misma proporción de cabo más para la misma elevación.",
-        "Aprende unos pocos nudos tan bien que puedas hacerlos a oscuras. El as de guía hace una gaza que no se corre ni se atasca; la vuelta de cornamusa sujeta un cabo a una cornamusa; el ballestrinque sujeta rápido una defensa a un candelero o a la regala; el nudo de ocho impide que un cabo se escape por un motón; y la vuelta redonda con dos medios cotes ata un cabo a una argolla o a un poste bajo carga."
+        "Cuida tus cabos, porque el sol y los cristales de sal debilitan las fibras. Enjuágalos con agua dulce para quitar la sal, sécalos y guárdalos adujados a la sombra. Busca roces, cortes y zonas rígidas o vidriosas, y cambia el cabo antes de que falle.",
+        "El cable de acero se describe por sus cordones y alambres. Una marca como 6/12 significa 6 cordones con 12 alambres cada uno. El cable 7×19, de 7 cordones de 19 alambres, es flexible y sirve para la jarcia de labor (los cabos que vas ajustando), que dobla en roldanas (las ruedas de las poleas). El cable 1×19, un solo cordón de 19 alambres, es rígido y estira poco, así que sirve para la jarcia firme (los cables fijos que sujetan el mástil), como los obenques de sus costados, y para los guardamancebos.",
+        "Otro cabo que encontrarás es el amantillo, que va del tope del palo (la parte más alta del mástil) al extremo de la botavara. Sostiene la botavara cuando se arría o se riza la mayor, para que no caiga sobre la bañera ni sobre la tripulación.",
+        "Un aparejo multiplica tu fuerza al tirar; la escota de mayor en la botavara es uno. Un motón es una polea: uno va fijo al barco y el otro se mueve con la carga. Cuenta los guarnes de cabo que sostienen el motón móvil: con cuatro guarnes, una carga de 320 kg necesita unos 80 kg de tiro, sin contar la fricción. Con dos motones dobles (dos roldanas cada uno), si el cabo sale del motón móvil hay cinco guarnes, una ganancia de 5 a 1; si sale del motón fijo, 4 a 1. A cambio, recoges esa misma proporción de cabo más para la misma elevación.",
+        "Aprende unos pocos nudos tan bien que puedas hacerlos a oscuras:\n• As de guía: hace una gaza que no se corre ni se atasca.\n• Vuelta de cornamusa: afirma un cabo a una cornamusa.\n• Ballestrinque: sujeta rápido una defensa a una barandilla.\n• Nudo de ocho: impide que un cabo se escape por un motón.\n• Vuelta redonda con dos medios cotes: ata un cabo a una argolla o a un poste bajo carga."
       ],
       "observe": [
         "Busca a bordo la línea de fondeo, una escota y una driza, y di de qué fibra es cada una y por qué.",
@@ -2760,11 +2760,11 @@
     "sail-62": {
       "title": "Averías del equipo y remolque",
       "concepts": [
-        "Si falla el gobierno de rueda, por ejemplo porque se rompe un guardín o el eje de la rueda, usa la caña de emergencia. Se monta en la parte superior de la mecha del timón, normalmente bajo una tapa de cubierta en la bañera. Aprende dónde está guardada y practica a montarla con mar en calma. Cerca de una bocana, reduce la velocidad, pide ayuda pronto y mantente bien alejado del rompeolas mientras la montas.",
+        "Si falla el gobierno de rueda, monta la caña de emergencia (una barra de gobierno) sobre la mecha del timón, el eje que hace girar la pala. Es la solución cuando se rompe un guardín o el eje de la rueda, y suele montarse bajo una tapa de cubierta en la bañera. Aprende dónde está guardada y practica a montarla con mar en calma. Cerca de una bocana, reduce la velocidad, pide ayuda pronto y mantente bien alejado del rompeolas mientras la montas.",
         "Si el enrollador se atasca al enrollar la vela de proa, primero quita carga a la vela. Arriba para que la mayor la abrigue, o lasca la escota, y vuelve a intentarlo con suavidad. No lo fuerces con un winche más grande, porque puedes romper el tambor o el cabo. Si aun así no gira, larga la driza, baja la vela a cubierta y átala allí.",
-        "Si se rompe un obenque cargado, actúa enseguida para quitar la tensión del palo. Vira o trasluce para que el costado roto quede a sotavento y deje de soportar la carga, lasca las escotas y reduce vela. Después, afirma una driza de respeto a un punto fuerte de ese costado como obenque provisional antes de seguir navegando con suavidad.",
-        "Antes de tomar otro barco a remolque, comprueba el estado de la mar, tu combustible y la resistencia de los puntos de amarre de los dos barcos. Usa un cabo largo, resistente y elástico, como 50 m de nailon grueso con una mar de 2 m, afirmado a puntos fuertes o a una brida repartida entre ambas bandas. Con mal tiempo, alarga el cabo de remolque y ponle peso para que no dé tirones, y acuerda señales con la otra tripulación.",
-        "Remolca despacio y haz los giros siempre suaves y amplios. Con un cabo corto, un giro brusco hace que el cabo quede flojo; cuando vuelve a tensarse, arrastra de golpe la proa del barco remolcado tras de ti, de modo que en un giro brusco a estribor su proa da una guiñada fuerte a estribor y puede chocar contra tu popa. Gira abierto y mantén el cabo tenso. En puerto, remolcar abarloado, trincado a tu costado, da mucho mejor control."
+        "Si se rompe un obenque cargado (un cable lateral que sujeta el mástil), actúa enseguida para quitar la tensión del palo. El obenque de barlovento es el que soporta la carga, así que vira o trasluce hasta que el costado roto quede a sotavento, lasca las escotas y reduce vela. Después, afirma una driza de respeto a un punto fuerte de ese costado como obenque provisional antes de seguir navegando con suavidad.",
+        "Antes de tomar otro barco a remolque, comprueba el estado de la mar, tu combustible y la resistencia de los puntos de amarre de los dos barcos. Usa un cabo largo, resistente y elástico, como 50 m de nailon grueso con una mar de 2 m; como regla práctica, los dos barcos deben montar una ola en el mismo momento. Afírmalo a puntos fuertes o a una brida repartida entre ambas bandas. Con mal tiempo, alarga el cabo de remolque y ponle peso para que no dé tirones, y acuerda señales con la otra tripulación.",
+        "Remolca despacio y gira con suavidad, porque un giro brusco hace que el barco remolcado dé bandazos. Con un cabo corto, un giro brusco deja el cabo flojo. Cuando vuelve a tensarse, arrastra de golpe su proa tras de ti como la punta de un látigo, de modo que en un giro brusco a estribor da una guiñada fuerte a estribor y puede chocar contra tu popa. Gira abierto y mantén el cabo tenso. En puerto, remolcar abarloado, trincado a tu costado, da mucho mejor control."
       ],
       "observe": [
         "Busca la caña de emergencia a bordo y averigua cómo se monta en la mecha del timón.",

@@ -148,7 +148,7 @@ These show the target style. Each fixes one page without much extra length.
 - **Done:** step 1, the ten lessons that scored 2, rewritten in English and translated into all five languages. Page counts and quiz answers did not change.
 - **Done:** the lesson 62 "Haven lighthouse" quiz question (see below).
 - **Done:** step 2, the nine "split dense pages" lessons (1, 2, 3, 12, 23, 28, 35, 37, 42). Most dense pages became short lists. Two pages were split in two: the flag A/B/O/Q page in lesson 35 and the spring-lines page in lesson 37. The flooding tip moved from the refuelling page (lesson 2) to the flooding page (lesson 42). All five translations are updated.
-- **Next:** step 3, the light edits.
+- **Done:** step 3, the light edits: 128 small changes across the remaining 43 lessons (terms explained, reasons added, packed lists turned into bullets, over-long headlines shortened). A separate fact check caught 12 errors in the drafts, which were corrected before translation. All five translations are updated.
 
 ## What a rewrite would take
 
