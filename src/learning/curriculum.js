@@ -4,9 +4,9 @@ import {marinaModule,marinaLessons} from './marina-course.js';
 import {colregsModule,colregsLessons} from './colregs-course.js';
 import {catamaranModule,catamaranLessons} from './catamaran-course.js';
 import {nightModule,nightLessons} from './night-course.js';
-import {weatherLessons} from './weather-course.js';
+import {weatherModule,weatherLessons} from './weather-course.js';
 import {safetyLessons} from './safety-course.js';
-import {ropesLessons} from './ropes-course.js';
+import {ropesModule,ropesLessons} from './ropes-course.js';
 import {flagsLessons} from './flags-course.js';
 import {gearLessons} from './gear-course.js';
 import {lessonLabs,quizLabs} from './lesson-labs.js';
@@ -348,6 +348,7 @@ modules.push(catamaranModule);
 lessons.push(...catamaranLessons);
 modules.push(nightModule);
 lessons.push(...nightLessons);
+modules.push(weatherModule,ropesModule);
 lessons.push(...[...weatherLessons,...safetyLessons,...ropesLessons,...flagsLessons,...gearLessons].map(lesson=>({...lesson,sub:modules.find(m=>m.id===lesson.module).outcome})));
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 // Supplemental pages retain the original general-purpose lesson diagrams.
@@ -377,10 +378,33 @@ lessons.find(l=>l.id==='sail-01').localNotes=[{page:1,region:'israel',text:'Isra
 lessons.find(l=>l.id==='sail-25').localNotes=[{page:0,region:'israel',text:'In Israel it is forbidden to sail in declared bathing beaches, diving areas and closed areas. A declared bathing beach extends 50 m beyond each side of the marked area and 300 m out to sea from the low-water line. A fishing vessel at work may sail close to the shore outside these areas. Check the current Israeli regulations.'}];
 lessons.find(l=>l.id==='sail-49').localNotes=[{page:2,region:'israel',text:'In the narrow Gulf of Eilat, a yacht must keep clear of a large ship that can navigate only within the channel, even though at open sea a power-driven vessel gives way to sail.'}];
 lessons.find(l=>l.id==='sail-56').localNotes=[{page:5,region:'israel',text:'Along the Israeli coast, Herzliya marina is usually the easiest to enter in high seas. Tel Aviv marina is smaller and waves break earlier near its entrance: the Israeli boat operator licence material advises that in a strong south-westerly wind and sea its entrance is dangerous, so carry on to Herzliya for shelter. Jaffa port is very hard to enter in big waves.'}];
-// Lesson ids are stable record keys. A lesson added later is placed after the lesson
-// it builds on; numbers and the mastery chain then follow course order.
-const PLACEMENT={'sail-54':'sail-20','sail-55':'sail-54','sail-56':'sail-55','sail-57':'sail-56','sail-58':'sail-01','sail-59':'sail-58','sail-60':'sail-03','sail-61':'sail-27','sail-62':'sail-34'};
-for(const [id,after] of Object.entries(PLACEMENT)){const from=lessons.findIndex(l=>l.id===id),[moved]=lessons.splice(from,1);lessons.splice(lessons.findIndex(l=>l.id===after)+1,0,moved);}
+// Lesson ids are stable record keys, so the course order is set here. It starts with
+// the basic ideas and live practice in the simulator; emergencies, the final
+// assessment and the deeper theory come after the learner can already sail.
+const COURSE_ORDER=[
+ 'sail-01','sail-02','sail-03','sail-04', // aboard
+ 'sail-05','sail-06','sail-07','sail-08', // wind
+ 'sail-09','sail-10','sail-11','sail-12', // trim
+ 'sail-13','sail-14','sail-15','sail-16', // maneuvers
+ 'sail-17','sail-18','sail-19','sail-20', // conditions
+ 'sail-21','sail-22','sail-23','sail-24', // navigation
+ 'sail-25','sail-26','sail-27','sail-61','sail-28', // seamanship
+ 'sail-29','sail-30','sail-31','sail-32', // harbor
+ 'sail-43','sail-44','sail-45', // marina
+ 'sail-58','sail-33','sail-34','sail-62','sail-59','sail-35','sail-36', // readiness
+ 'sail-54','sail-55','sail-56','sail-57', // weather
+ 'sail-46','sail-47','sail-48','sail-49','sail-50','sail-51', // colregs
+ 'sail-37','sail-38','sail-39','sail-40','sail-41','sail-42', // coastal-decisions
+ 'sail-53', // night-navigation
+ 'sail-60', // rigging
+ 'sail-52', // catamaran
+];
+if(COURSE_ORDER.length!==lessons.length||new Set(COURSE_ORDER).size!==lessons.length)throw new Error('COURSE_ORDER must list every lesson once');
+lessons.sort((a,b)=>COURSE_ORDER.indexOf(a.id)-COURSE_ORDER.indexOf(b.id));
+// The course page lists modules in this order, so each module's lessons must sit together.
+const moduleOrder=[...new Set(lessons.map(l=>l.module))];
+if(lessons.filter((l,i)=>!i||l.module!==lessons[i-1].module).length!==moduleOrder.length)throw new Error('COURSE_ORDER splits a module');
+modules.sort((a,b)=>moduleOrder.indexOf(a.id)-moduleOrder.indexOf(b.id));
 lessons.forEach((lesson,i)=>{lesson.number=i+1;lesson.prerequisite=i?lessons[i-1].id:null;});
 for(const lesson of lessons){if(lessonLabs[lesson.id])lesson.conceptLabs=lessonLabs[lesson.id];for(const [i,lab] of Object.entries(quizLabs[lesson.id]||{}))lesson.quiz[i].lab=lab;}
 export {lessons};

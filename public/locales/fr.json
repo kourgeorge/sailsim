@@ -55,6 +55,14 @@
     "night-navigation": {
       "title": "Navigation nocturne pratique",
       "outcome": "Naviguez avec des feux à éclats et un alignement, puis arrêtez-vous en eaux sûres."
+    },
+    "weather": {
+      "title": "Lire la météo",
+      "outcome": "Lire une carte météo, reconnaître les fronts et les nuages, et évaluer le vent, les vagues et la météo locale avant une navigation."
+    },
+    "rigging": {
+      "title": "Cordages et gréement",
+      "outcome": "Choisir le bon cordage ou câble pour chaque usage, l’entretenir, faire les nœuds essentiels et calculer la force que donne un palan."
     }
   },
   "lessons": {

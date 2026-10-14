@@ -1,11 +1,16 @@
 // Weather knowledge for sailors: charts, fronts, wind and waves, and eastern
-// Mediterranean patterns. These lessons sit in "Stay in control" after the
-// weather-limit lesson; their decision exercises live in decision-scenarios.js.
+// Mediterranean patterns. This deeper theory has its own module after the core
+// course; its decision exercises live in decision-scenarios.js.
+export const weatherModule = {
+  id: 'weather',
+  title: 'Read the weather',
+  outcome: 'Read a weather chart, recognize fronts and clouds, and judge wind, waves and local weather before a passage.',
+};
 const TRANSFER =
   'Use official marine forecasts and charts for real decisions. These examples are simplified and fictional; real weather varies.';
 const lesson = (id, title, concepts, observe, mistake, quiz, figure, conceptFigures = {}) => ({
   id,
-  module: 'conditions',
+  module: weatherModule.id,
   title,
   concepts,
   observe,

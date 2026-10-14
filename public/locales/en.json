@@ -55,6 +55,14 @@
     "night-navigation": {
       "title": "Practical night navigation",
       "outcome": "Navigate by flashing lights and a leading line, then make a controlled stop in safe water."
+    },
+    "weather": {
+      "title": "Read the weather",
+      "outcome": "Read a weather chart, recognize fronts and clouds, and judge wind, waves and local weather before a passage."
+    },
+    "rigging": {
+      "title": "Ropes and rigging",
+      "outcome": "Choose the right rope or wire for each job, care for it, tie the key knots, and work out the pull a tackle gives."
     }
   },
   "lessons": {

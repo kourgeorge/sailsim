@@ -1,10 +1,10 @@
-// Safety equipment and abandoning ship. These lessons sit in "Before you leave"
-// after "Safety before speed"; their decision exercises live in decision-scenarios.js.
+// Safety equipment and abandoning ship. These lessons sit in "Respond and review"
+// with the other emergency lessons; their decision exercises live in decision-scenarios.js.
 const TRANSFER =
   'Learn your own boat’s equipment with an instructor: fit the harness, read the flare instructions, find the extinguishers and attend a sea-survival course with a real life raft.';
 const lesson = (id, title, concepts, observe, mistake, quiz, figure, conceptFigures = {}, localNotes = undefined) => ({
   id,
-  module: 'aboard',
+  module: 'readiness',
   title,
   concepts,
   observe,

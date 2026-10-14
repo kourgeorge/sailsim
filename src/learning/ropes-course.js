@@ -1,5 +1,10 @@
-// Ropes, wire, knots and pulleys. This lesson sits in "Before you leave" after
-// "Lines, winches, and loads"; its decision exercise lives in decision-scenarios.js.
+// Ropes, wire, knots and pulleys. This detailed gear lesson has its own module
+// after the core course; its decision exercise lives in decision-scenarios.js.
+export const ropesModule = {
+  id: 'rigging',
+  title: 'Ropes and rigging',
+  outcome: 'Choose the right rope or wire for each job, care for it, tie the key knots, and work out the pull a tackle gives.',
+};
 const q = (prompt, options, correct, explanation) => ({ prompt, options, correct, explanation });
 const concepts = [
   'Ropes are made from different fibres, and each suits a different job. Nylon stretches a lot, so it absorbs shocks: use it for anchor and mooring lines. Polyester stretches little, so the sail keeps its shape: use it for sheets and halyards. Polypropylene floats, which suits a rescue throwing line, but it chafes and weakens in sunlight. Aramid and similar fibres, such as Kevlar and Dyneema, are the strongest for their size and hardly stretch.',
@@ -14,7 +19,7 @@ const concepts = [
 export const ropesLessons = [
   {
     id: 'sail-60',
-    module: 'aboard',
+    module: ropesModule.id,
     title: 'Ropes, wire, knots and pulleys',
     concepts,
     observe: [

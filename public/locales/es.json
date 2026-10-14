@@ -55,6 +55,14 @@
     "night-navigation": {
       "title": "Navegación nocturna práctica",
       "outcome": "Navega con luces intermitentes y una enfilación, y detente con control en aguas seguras."
+    },
+    "weather": {
+      "title": "Interpretar el tiempo",
+      "outcome": "Leer una carta meteorológica, reconocer frentes y nubes, y valorar el viento, las olas y el tiempo local antes de una travesía."
+    },
+    "rigging": {
+      "title": "Cabos y jarcia",
+      "outcome": "Elegir el cabo o el cable adecuado para cada tarea, cuidarlo, hacer los nudos clave y calcular la fuerza que da un aparejo."
     }
   },
   "lessons": {

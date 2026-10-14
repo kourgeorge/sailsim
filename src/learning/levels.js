@@ -2,7 +2,7 @@
 // its topic fits. Level ranges follow the lessons' course order.
 export const COURSE_LEVELS=[
  {id:'basic',title:'Basic',description:'Crew safety, wind, steering, and sail trim.',modules:['aboard','wind','trim','maneuvers']},
- {id:'intermediate',title:'Intermediate',description:'Maneuvers, navigation, harbor planning, and emergencies.',modules:['conditions','navigation','seamanship','harbor','readiness']},
+ {id:'intermediate',title:'Intermediate',description:'Maneuvers, navigation, harbor planning, and emergencies.',modules:['conditions','navigation','seamanship','harbor','marina','readiness']},
  {id:'advanced',title:'Advanced',description:'Coastal decisions, tides, weather, and passage planning.',modules:null},
 ];
 export function levelFor(lesson){return COURSE_LEVELS.find(level=>level.modules?.includes(lesson?.module))??COURSE_LEVELS[2];}
