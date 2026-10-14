@@ -971,7 +971,7 @@
       ],
       "transfer": "Pratiquez avec un moniteur qualifié à bord d’un vrai voilier. Le simulateur ne peut reproduire la coordination de l’équipage, les efforts ni tous les comportements du bateau.",
       "localNotes": [
-        "Israël utilise la région A de l’AISM. En entrant dans un port ou une marina israélienne depuis le large, le feu vert à éclats est à droite et le feu rouge à éclats à gauche."
+        "Israël utilise la région A de l’AISM. En entrant dans un port ou une marina israélienne depuis le large, le feu vert à éclats est à droite et le feu rouge à éclats à gauche. En sortant, c’est l’inverse : le feu vert est à votre gauche et le rouge à votre droite."
       ]
     },
     "sail-22": {
@@ -2141,7 +2141,10 @@
           "explanation": "Selon la Règle 34(c), deux prolongés et un bref demandent à passer sur tribord ; deux prolongés et deux brefs, sur bâbord. Donnez votre accord par prolongé-bref-prolongé-bref, ou émettez cinq brefs en cas de doute."
         }
       ],
-      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage."
+      "transfer": "Étudiez les règles internationales du RIPAM citées et les règles locales. Exercez-vous avec un moniteur : les schémas évaluent le raisonnement, pas la capacité réelle à éviter un abordage.",
+      "localNotes": [
+        "Dans l’étroit golfe d’Eilat, un voilier doit s’écarter d’un grand navire qui ne peut naviguer que dans le chenal, même si en haute mer le navire à propulsion mécanique s’écarte du voilier."
+      ]
     },
     "sail-50": {
       "title": "Lire les feux, marques et signaux sonores",
@@ -2483,14 +2486,17 @@
           "explanation": "La houle voyage loin de la tempête qui l’a formée ; elle peut donc arriver même par vent local faible."
         }
       ],
-      "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie."
+      "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie.",
+      "localNotes": [
+        "La documentation du permis de conducteur de bateau israélien indique que, par fort vent et mer de sud-ouest, l’entrée de la marina de Tel Aviv est dangereuse ; continuez jusqu’à la marina d’Herzliya pour vous abriter."
+      ]
     },
     "sail-57": {
       "title": "La météo en Méditerranée orientale",
       "concepts": [
         "En hiver, des dépressions traversent la Méditerranée orientale depuis l’ouest, et certaines se creusent près de Chypre. Sur la côte israélienne, elles apportent en général d’abord un front chaud, avec un vent de sud à sud-ouest. Vient ensuite un front froid, avec un vent tempétueux de sud-ouest à ouest, une mer qui grossit et des averses. Une prévision annonçant un front froid arrivant de la mer signifie gros temps et fortes vagues.",
         "La Charkiya est un vent d’est fort et sec qui souffle de la terre, surtout aux intersaisons. Elle se manifeste au printemps et en automne, et se fait surtout sentir dans le nord du pays. Près du rivage, la mer reste plate car le vent souffle de terre, mais plus au large il lève des vagues et peut rendre le retour au port difficile. En hiver, les vents d’est froids et forts viennent en général d’un anticyclone situé au nord-est, sur la Russie, et non d’une dépression.",
-        "Au printemps, une dépression chaude peut longer l’Afrique du Nord ou remonter du sud. À l’avant, le vent est de sud, chaud et sec, la poussière réduit la visibilité le long de la côte méditerranéenne, et Eilat reçoit un vent de sud. À son passage, le vent tourne à l’ouest et la température baisse.",
+        "Au printemps, une dépression chaude peut longer l’Afrique du Nord ou remonter du sud. À l’avant, le vent est de sud, chaud et sec, la poussière réduit la visibilité le long de la côte méditerranéenne, et Eilat reçoit un vent de sud. À son passage, le vent tourne à l’ouest et la température baisse. Le long de la côte méditerranéenne, la visibilité devient mauvaise tant que dure la poussière.",
         "L’été est en général stable : une brise de mer de nord-ouest se lève l’après-midi le long de la côte israélienne et tombe la nuit. En mer Égée, le Meltem est un vent du nord fort et sec en juillet et en août, souvent de force 6 à 7 pendant plusieurs jours. En Adriatique, la Bora est un vent de nord-est froid, sec et très rafaleux qui descend des montagnes en hiver."
       ],
       "observe": [
@@ -2674,7 +2680,7 @@
     "sail-61": {
       "title": "Pavillons de signalisation et escales à l’étranger",
       "concepts": [
-        "Les pavillons isolés du Code international des signaux transmettent des messages courts et urgents. Le pavillon A, blanc et bleu à extrémité en queue d’aronde, signifie « J’ai un plongeur en immersion ; tenez-vous à distance et à vitesse réduite. » Le pavillon B, rouge et en queue d’aronde, signifie qu’un navire charge, décharge ou transporte des marchandises dangereuses comme du carburant : écartez-vous, même si vous pouvez encore passer ou entrer au port avec prudence. Le pavillon O, moitié rouge et moitié jaune, signifie un homme à la mer. Le pavillon Q, entièrement jaune, signifie « Mon navire est indemne et je demande la libre pratique », c’est-à-dire l’autorisation d’entrer au port.",
+        "Les pavillons isolés du Code international des signaux transmettent des messages courts et urgents. Le pavillon A, blanc et bleu à extrémité en queue d’aronde, signifie « J’ai un plongeur en immersion ; tenez-vous à distance et à vitesse réduite. » Le pavillon B, rouge et en queue d’aronde, signifie qu’un navire charge, décharge ou transporte des marchandises dangereuses comme du carburant : écartez-vous, même si vous pouvez encore passer ou entrer au port avec prudence. Le pavillon O, moitié rouge et moitié jaune, signifie un homme à la mer. Le pavillon Q, entièrement jaune, signifie « Mon navire est indemne et je demande la libre pratique », c’est-à-dire l’autorisation d’entrer au port. De nuit, un navire transportant des marchandises dangereuses montre aussi un feu rouge visible sur tout l’horizon.",
         "Les pavillons N sur C, hissés ensemble, constituent un signal de détresse, tout comme un pavillon carré avec une boule au-dessus ou au-dessous. Un pavillon du code hissé seul ne signifie jamais la détresse. Les pavillons se lisent de haut en bas, et un navire au mouillage peut arborer un pavillon de signalisation en plus de sa boule noire.",
         "Votre pavillon national, celui du pays où le bateau est immatriculé, se porte à l’arrière. Dans les eaux d’un autre pays, arborez aussi le pavillon de ce pays, le pavillon de courtoisie, sous la barre de flèche tribord. À la première arrivée, hissez le pavillon jaune Q sous la barre de flèche bâbord jusqu’à ce que la douane et l’immigration vous aient autorisé, puis amenez-le.",
         "Certains pays exigent des documents supplémentaires pour un yacht en visite. La Turquie, par exemple, délivre un transit log dans un port d’entrée officiel, qui permet ensuite de circuler librement dans les eaux côtières turques. Avant de partir, vérifiez les règles d’entrée, les ports d’entrée et les obligations de déclaration de chaque pays sur votre route, ainsi que celles de votre propre pays pour le retour."

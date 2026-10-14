@@ -182,7 +182,7 @@ The 134 questions still not covered need topics the course did not teach. Decisi
 | E. Signal flags | Signal flags and visiting other countries (`sail-61`) | "Share the water", after "Lights, marks, and signals" | Done |
 | F. Gear failures and towing | When gear fails, and towing (`sail-62`) | "Respond and review", after "Distress and urgent action" | Done |
 | G. Israeli rules | "Local rules: Israel" notes in the lessons they belong to | Lessons 01, 25, 34, 58 and the new flags lesson | Done |
-| H. Final check | Re-check every remaining question against the official picture booklet; update counts and docs | — | In progress |
+| H. Final check | Re-check every remaining question against the official picture booklet; update counts and docs | — | Done: 343 of 362 covered |
 
 Translations for each step are written by one agent per language from an English source file and merged only if their structure matches the English exactly.
 
@@ -226,3 +226,12 @@ Manual browser scripts in `scripts/check-*.mjs` still select lessons by position
 **H. Final check**
 - Re-check every remaining question. Some may already be covered, such as 183 (harbour-entrance waves), 284 (pilot books) and 252 (seaworthiness certificate).
 - About 25 questions depend on the separate exam picture booklet (light, shape, flag and weather-chart pictures). With a copy of that booklet, those could be checked too.
+
+## Result (2026-10-14)
+
+343 of 362 questions are covered (95%). 19 are partial: 3 left out on purpose (147, 286, 288) and 16 weather-chart questions whose answers depend on the exam's own chart.
+
+**Official answers worth a second look:**
+- **Picture 28** (three whites in a line). The booklet calls it a tow under 200 m; the standard reading is a tow over 200 m, and that is what the course teaches.
+- **Picture 120** (one long, three short). The booklet gives "dangerous cargo"; under the rules it is the fog signal of a manned vessel being towed.
+- **Q330.** Both vessels show the green side of a small power vessel. The rule would make E give way, but the key says M does.

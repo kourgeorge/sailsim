@@ -1199,14 +1199,17 @@
           "explanation": "Swell travels far from the storm that made it, so it can arrive even in light local wind."
         }
       ],
-      "transfer": "Use official marine forecasts and charts for real decisions. These examples are simplified and fictional; real weather varies."
+      "transfer": "Use official marine forecasts and charts for real decisions. These examples are simplified and fictional; real weather varies.",
+      "localNotes": [
+        "The Israeli boat operator licence material advises that in a strong south-westerly wind and sea the Tel Aviv marina entrance is dangerous; carry on to Herzliya marina for shelter."
+      ]
     },
     "sail-57": {
       "title": "Eastern Mediterranean weather",
       "concepts": [
         "In winter, lows cross the eastern Mediterranean from the west, and some deepen near Cyprus. Along the Israeli coast they usually bring a warm front first, with southerly to south-westerly wind, then a cold front with stormy south-westerly to westerly wind, rising seas and showers. A forecast of a cold front coming in from the sea means rough weather and high waves.",
         "Sharqiya is a strong, dry easterly wind that blows off the land, mainly in the transition seasons, spring and autumn, and is felt most in the north of the country. Near the shore the sea stays flat because the wind blows offshore, but farther out it raises waves and can make the return to harbor hard. Cold, strong easterly winds in winter usually come from a high pressure system to the north-east, over Russia, not from a low.",
-        "In spring, a hot low can move along North Africa or up from the south. Ahead of it the wind is southerly, hot and dry, dust lowers the visibility along the Mediterranean coast, and Eilat gets southerly wind. When it passes, the wind turns west and the temperature drops.",
+        "In spring, a hot low can move along North Africa or up from the south. Ahead of it the wind is southerly, hot and dry, dust lowers the visibility along the Mediterranean coast, and Eilat gets southerly wind. When it passes, the wind turns west and the temperature drops. Along the Mediterranean coast the visibility becomes poor while the dust lasts.",
         "Summer is usually settled: a north-westerly sea breeze builds along the Israeli coast in the afternoon and dies at night. In the Aegean, the Meltemi is a strong, dry north wind in July and August, often force 6 to 7 for days. In the Adriatic, the Bora is a cold, dry, very gusty north-easterly wind that falls from the mountains in winter."
       ],
       "observe": [
@@ -1291,7 +1294,7 @@
       ],
       "transfer": "Practice this with a qualified instructor aboard a real yacht. The simulator cannot reproduce crew coordination, loads, or all vessel behavior.",
       "localNotes": [
-        "Israel uses IALA Region A. Coming into an Israeli harbor or marina from sea, the flashing green light is on your right and the flashing red light on your left."
+        "Israel uses IALA Region A. Coming into an Israeli harbor or marina from sea, the flashing green light is on your right and the flashing red light on your left. Leaving the harbor it is the other way round: the green light is on your left and the red on your right."
       ]
     },
     "sail-22": {
@@ -1527,7 +1530,7 @@
     "sail-61": {
       "title": "Signal flags and visiting other countries",
       "concepts": [
-        "Single flags of the International Code of Signals carry short, urgent messages. Flag A, white and blue with a swallow-tailed end, means \"I have a diver down; keep well clear at slow speed.\" Flag B, red and swallow-tailed, means a vessel is loading, unloading or carrying dangerous goods such as fuel: keep clear, though you may still pass or enter a harbor with care. Flag O, red and yellow halves, means man overboard. Flag Q, plain yellow, means \"My vessel is healthy and I request free pratique\", permission to enter port.",
+        "Single flags of the International Code of Signals carry short, urgent messages. Flag A, white and blue with a swallow-tailed end, means \"I have a diver down; keep well clear at slow speed.\" Flag B, red and swallow-tailed, means a vessel is loading, unloading or carrying dangerous goods such as fuel: keep clear, though you may still pass or enter a harbor with care. Flag O, red and yellow halves, means man overboard. Flag Q, plain yellow, means \"My vessel is healthy and I request free pratique\", permission to enter port. At night, a vessel carrying dangerous goods also shows an all-round red light.",
         "Flags N over C, hoisted together, are a distress signal, and so is a square flag with a ball above or below it. A single code flag on its own never means distress. Flags are read from the top down, and a vessel at anchor may fly a signal flag as well as showing her black ball.",
         "Your ensign, the flag of the country where the boat is registered, flies at the stern. In another country’s waters, also fly that country’s flag, the courtesy flag, under the starboard spreader. On first arrival, fly the yellow Q flag under the port spreader until customs and immigration have cleared you, then lower it.",
         "Some countries require extra papers for a visiting yacht. Turkey, for example, issues a transit log at an official port of entry, which then allows free movement in Turkish coastal waters. Before you leave, check the entry rules, ports of entry and reporting requirements of every country on your route, and of your own country for the return."
@@ -2553,7 +2556,10 @@
           "explanation": "Under Rule 34(c), two prolonged and one short ask to pass on the starboard side; two prolonged and two short, on the port side. Agree with prolonged-short-prolonged-short, or sound five short blasts if in doubt."
         }
       ],
-      "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence."
+      "transfer": "Study the cited International COLREG rules and the rules applicable to your waters. Rehearse these decisions with an instructor; diagrams assess reasoning, not real collision-avoidance competence.",
+      "localNotes": [
+        "In the narrow Gulf of Eilat, a yacht must keep clear of a large ship that can navigate only within the channel, even though at open sea a power-driven vessel gives way to sail."
+      ]
     },
     "sail-50": {
       "title": "Read lights, shapes and sound signals",

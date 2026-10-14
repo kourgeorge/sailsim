@@ -971,7 +971,7 @@
       ],
       "transfer": "Practica con un instructor cualificado a bordo de un velero real. El simulador no puede reproducir la coordinación de la tripulación, las cargas ni todo el comportamiento del barco.",
       "localNotes": [
-        "Israel usa la región A de IALA. Al entrar desde el mar en un puerto o marina israelí, la luz verde de destellos queda a tu derecha y la roja a tu izquierda."
+        "Israel usa la región A de IALA. Al entrar desde el mar en un puerto o marina israelí, la luz verde de destellos queda a tu derecha y la roja a tu izquierda. Al salir es al revés: la luz verde queda a tu izquierda y la roja a tu derecha."
       ]
     },
     "sail-22": {
@@ -2141,7 +2141,10 @@
           "explanation": "Según la Regla 34(c), dos prolongadas y una corta piden pasar por estribor; dos prolongadas y dos cortas, por babor. Da conformidad con prolongada-corta-prolongada-corta, o emite cinco cortas si dudas."
         }
       ],
-      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes."
+      "transfer": "Estudia las reglas internacionales del RIPA citadas y las aplicables a tus aguas. Practica con un instructor; los diagramas evalúan el razonamiento, no la competencia real para evitar abordajes.",
+      "localNotes": [
+        "En el estrecho golfo de Eilat, un velero debe apartarse de un buque grande que solo puede navegar dentro del canal, aunque en mar abierto el buque de propulsión mecánica cede el paso a la vela."
+      ]
     },
     "sail-50": {
       "title": "Interpretar luces, marcas y señales acústicas",
@@ -2483,14 +2486,17 @@
           "explanation": "El mar de fondo viaja lejos de la tormenta que lo formó, así que puede llegar aunque el viento local sea flojo."
         }
       ],
-      "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía."
+      "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía.",
+      "localNotes": [
+        "El material del título de patrón de embarcación de Israel indica que, con viento y mar fuertes del suroeste, la bocana del puerto deportivo de Tel Aviv es peligrosa; continúa hasta el puerto deportivo de Herzliya para refugiarte."
+      ]
     },
     "sail-57": {
       "title": "El tiempo en el Mediterráneo oriental",
       "concepts": [
         "En invierno, las bajas cruzan el Mediterráneo oriental desde el oeste, y algunas se profundizan cerca de Chipre. En la costa de Israel suelen traer primero un frente cálido, con viento del sur al suroeste, y después un frente frío con viento duro del suroeste al oeste, mar creciente y chubascos. Si la previsión anuncia un frente frío que llega desde el mar, espera mal tiempo y olas altas.",
         "La Sharqiya es un viento del este fuerte y seco que sopla desde tierra. Aparece sobre todo en las estaciones de transición, primavera y otoño, y se nota más en el norte del país. Cerca de la costa el mar sigue llano porque el viento sopla desde tierra, pero más lejos levanta olas y puede dificultar el regreso a puerto. Los vientos del este fríos y fuertes del invierno suelen venir de una alta al nordeste, sobre Rusia, no de una baja.",
-        "En primavera, una baja cálida puede avanzar a lo largo del norte de África o subir desde el sur. Delante de ella el viento es del sur, cálido y seco, el polvo reduce la visibilidad en la costa mediterránea y en Eilat sopla viento del sur. Cuando pasa, el viento rola al oeste y baja la temperatura.",
+        "En primavera, una baja cálida puede avanzar a lo largo del norte de África o subir desde el sur. Delante de ella el viento es del sur, cálido y seco, el polvo reduce la visibilidad en la costa mediterránea y en Eilat sopla viento del sur. Cuando pasa, el viento rola al oeste y baja la temperatura. A lo largo de la costa mediterránea, la visibilidad es mala mientras dura el polvo.",
         "El verano suele ser estable, y por la tarde se levanta una brisa marina del noroeste en la costa de Israel, que se apaga por la noche. En el Egeo, el Meltemi es un viento del norte fuerte y seco en julio y agosto, a menudo de fuerza 6 a 7 durante días. En el Adriático, el Bora es un viento del nordeste frío, seco y muy racheado que baja de las montañas en invierno."
       ],
       "observe": [
@@ -2674,7 +2680,7 @@
     "sail-61": {
       "title": "Banderas de señales y visitas a otros países",
       "concepts": [
-        "Las banderas sueltas del Código Internacional de Señales transmiten mensajes breves y urgentes. La bandera A, blanca y azul con el extremo en cola de golondrina, significa «Tengo un buzo sumergido; manténgase bien alejado y a poca velocidad». La bandera B, roja y en cola de golondrina, indica que un buque está cargando, descargando o transportando mercancías peligrosas, como combustible: mantente alejado, aunque puedes pasar o entrar en puerto con precaución. La bandera O, mitad roja y mitad amarilla, significa hombre al agua. La bandera Q, amarilla lisa, significa «Mi buque está sano y solicito libre plática», es decir, permiso para entrar en puerto.",
+        "Las banderas sueltas del Código Internacional de Señales transmiten mensajes breves y urgentes. La bandera A, blanca y azul con el extremo en cola de golondrina, significa «Tengo un buzo sumergido; manténgase bien alejado y a poca velocidad». La bandera B, roja y en cola de golondrina, indica que un buque está cargando, descargando o transportando mercancías peligrosas, como combustible: mantente alejado, aunque puedes pasar o entrar en puerto con precaución. La bandera O, mitad roja y mitad amarilla, significa hombre al agua. La bandera Q, amarilla lisa, significa «Mi buque está sano y solicito libre plática», es decir, permiso para entrar en puerto. De noche, un buque que transporta mercancías peligrosas muestra además una luz roja todo horizonte.",
         "Las banderas N sobre C, izadas juntas, son una señal de socorro, igual que una bandera cuadrada con una bola encima o debajo. Una sola bandera del código, por sí sola, nunca significa socorro. Las banderas se leen de arriba abajo, y un buque fondeado puede izar una bandera de señales además de mostrar su bola negra.",
         "Tu pabellón, la bandera del país donde está matriculado el barco, se iza en la popa. En aguas de otro país, iza también la bandera de ese país, la bandera de cortesía, bajo la cruceta de estribor. Al llegar por primera vez, iza la bandera Q amarilla bajo la cruceta de babor hasta que aduanas e inmigración te hayan despachado, y después arríala.",
         "Algunos países exigen documentación adicional a los yates que los visitan. Turquía, por ejemplo, expide un transit log en un puerto de entrada oficial, que después permite navegar libremente por las aguas costeras turcas. Antes de salir, comprueba las normas de entrada, los puertos de entrada y las obligaciones de notificación de cada país de tu ruta, y también las de tu propio país para el regreso."

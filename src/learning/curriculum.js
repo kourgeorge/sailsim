@@ -357,7 +357,7 @@ apparentWindLesson.challengeId='apparent-wind-lab';
 // Buoyage pages: Region A lateral marks, cardinal marks, then their lights in a lab.
 const chartLesson=lessons.find(l=>l.id==='sail-21');
 chartLesson.conceptFigures={3:'buoyage:lateral',4:'buoyage:cardinal'};
-chartLesson.localNotes=[{page:3,region:'israel',text:'Israel uses IALA Region A. Coming into an Israeli harbor or marina from sea, the flashing green light is on your right and the flashing red light on your left.'}];
+chartLesson.localNotes=[{page:3,region:'israel',text:'Israel uses IALA Region A. Coming into an Israeli harbor or marina from sea, the flashing green light is on your right and the flashing red light on your left. Leaving the harbor it is the other way round: the green light is on your left and the red on your right.'}];
 chartLesson.minutes=10;
 // Emergency pages: distress signals use their own card; minutes reflect the longer lessons.
 const distressLesson=lessons.find(l=>l.id==='sail-34');
@@ -372,6 +372,8 @@ lessons.find(l=>l.id==='sail-31').minutes=12;
 // Israeli rules a licence candidate needs, kept beside the general lessons.
 lessons.find(l=>l.id==='sail-01').localNotes=[{page:1,region:'israel',text:'Israeli regulations forbid throwing any rubbish or food waste into the sea, at any distance from shore. Keep it aboard and bring it back to harbor.'}];
 lessons.find(l=>l.id==='sail-25').localNotes=[{page:0,region:'israel',text:'In Israel it is forbidden to sail in declared bathing beaches, diving areas and closed areas. A declared bathing beach extends 50 m beyond each side of the marked area and 300 m out to sea from the low-water line. A fishing vessel at work may sail close to the shore outside these areas. Check the current Israeli regulations.'}];
+lessons.find(l=>l.id==='sail-49').localNotes=[{page:2,region:'israel',text:'In the narrow Gulf of Eilat, a yacht must keep clear of a large ship that can navigate only within the channel, even though at open sea a power-driven vessel gives way to sail.'}];
+lessons.find(l=>l.id==='sail-56').localNotes=[{page:3,region:'israel',text:'The Israeli boat operator licence material advises that in a strong south-westerly wind and sea the Tel Aviv marina entrance is dangerous; carry on to Herzliya marina for shelter.'}];
 // Lesson ids are stable record keys. A lesson added later is placed after the lesson
 // it builds on; numbers and the mastery chain then follow course order.
 const PLACEMENT={'sail-54':'sail-20','sail-55':'sail-54','sail-56':'sail-55','sail-57':'sail-56','sail-58':'sail-01','sail-59':'sail-58','sail-60':'sail-03','sail-61':'sail-27','sail-62':'sail-34'};

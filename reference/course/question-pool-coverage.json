@@ -7,10 +7,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
-   "sail-47",
-   "sail-50"
+   "sail-50",
+   "sail-47"
   ],
-  "note": "Picture is a power-driven ship (two masthead lights taught); a sailing vessel stands on, so keep course and speed.",
+  "note": "Picture 36 is a power-driven ship of 50 m or more seen head-on; it gives way to a sailing vessel, so you keep course and speed.",
   "needs_picture": true
  },
  {
@@ -36,7 +36,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Anchor lights plus two vertical all-round reds mean aground, now taught.",
+  "note": "Picture 39 shows anchor lights plus two vertical reds, which the course teaches as aground.",
   "needs_picture": true
  },
  {
@@ -49,7 +49,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Pilot lights white over red plus sidelights are now taught.",
+  "note": "Picture 46 is white over red with a red sidelight: a pilot vessel seen from her port side, as taught.",
   "needs_picture": true
  },
  {
@@ -75,7 +75,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "RAM making way adds masthead lights, sidelights and sternlight; 50 m+ shows two masthead lights.",
+  "note": "Picture 22 is red-white-red with two masthead lights and sidelights; the course teaches that a vessel restricted in ability to manoeuvre adds these when making way, and two masthead lights at 50 m+.",
   "needs_picture": true
  },
  {
@@ -88,7 +88,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Anchored vessel 50 m+ shows two white lights, forward one higher, now taught.",
+  "note": "Picture 61 shows two anchor lights, forward one higher; the course teaches this for an anchored vessel of 50 m+.",
   "needs_picture": true
  },
  {
@@ -101,7 +101,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Towing astern lights with tow under 200 m (two masthead lights, yellow towing light) now taught.",
+  "note": "Picture 28 shows three whites in a line, which the course teaches as a towing vessel; towing is the only matching option.",
   "needs_picture": true
  },
  {
@@ -114,7 +114,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Course gives fishing lights: red over white, and trawling green over white.",
+  "note": "Picture 8 is red over white with sidelights, taught as fishing other than trawling.",
   "needs_picture": true
  },
  {
@@ -167,7 +167,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Aground lights and the shallow-water warning are taught.",
+  "note": "Aground lights and the warning that the water there is shallow are taught.",
   "needs_picture": true
  },
  {
@@ -180,7 +180,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Aground day signal of three black balls is taught.",
+  "note": "Aground day signal of three black balls (picture 81) is taught.",
   "needs_picture": true
  },
  {
@@ -219,7 +219,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "A tug whose towing restricts her shows ball-diamond-ball, now taught.",
+  "note": "Ball-diamond-ball plus a diamond is a tug restricted by her towing work with a long tow, both taught.",
   "needs_picture": true
  },
  {
@@ -258,7 +258,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "A tow under 200 m needs no day shape, now stated.",
+  "note": "Picture 53 is a tug with a tow under 200 m; the course says only tows over 200 m show a day shape.",
   "needs_picture": true
  },
  {
@@ -270,10 +270,9 @@
   "coverage": "covered",
   "lessons": [
    "sail-25",
-   "sail-41",
    "sail-48"
   ],
-  "note": "Course teaches that a steady bearing with decreasing range means collision risk.",
+  "note": "Picture 1 is a sailing vessel seen head-on; the course teaches steady bearing with closing range means collision risk.",
   "needs_picture": true
  },
  {
@@ -308,12 +307,11 @@
   "answer": "b",
   "answer_text": "According to the rules of the open seas she must make way for me but in this case I am in its path and must make way to it.",
   "topic": "colregs_rules",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-49",
-   "sail-48"
+   "sail-49"
   ],
-  "note": "Not impeding big ships and Rule 2 are taught, but nothing specific on the Eilat bay case.",
+  "note": "Israel note: in the narrow Gulf of Eilat a yacht keeps clear of a large ship confined to the channel.",
   "needs_picture": false
  },
  {
@@ -484,9 +482,11 @@
   "answer": "a",
   "answer_text": "Bathing beaches, diving areas, closed areas.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Israeli no-sailing areas are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-25"
+  ],
+  "note": "Israeli note lists bathing beaches, diving areas and closed areas as forbidden.",
   "needs_picture": false
  },
  {
@@ -495,9 +495,11 @@
   "answer": "a",
   "answer_text": "Identification prior to entering the country, by a vessel to R.C.C. Haifa.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The I.M.O.T. reporting procedure is not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Israeli note explains IMOT as the entry report to RCC Haifa.",
   "needs_picture": false
  },
  {
@@ -506,9 +508,11 @@
   "answer": "c",
   "answer_text": "12 miles.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Israeli national-voyage distance limits are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note says a national voyage may go up to 12 NM from shore.",
   "needs_picture": false
  },
  {
@@ -517,9 +521,11 @@
   "answer": "c",
   "answer_text": "50 meters on each side of the declared area and to a distance of 300 meters of the low tide line.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Bathing beach boundaries are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-25"
+  ],
+  "note": "Israeli note gives the 50 m and 300 m bathing beach limits.",
   "needs_picture": false
  },
  {
@@ -541,9 +547,11 @@
   "answer": "b",
   "answer_text": "You can find the list of equipment in the Israel Ports Authority publications and on the Ministry of Transportation website.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Israeli seaworthiness regulations and where to find them are not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note says the equipment rules are published by the Ports Authority and on the Ministry of Transport website.",
   "needs_picture": false
  },
  {
@@ -578,9 +586,11 @@
   "answer": "b",
   "answer_text": "It is forbidden to throw garbage to sea at any time while sailing.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Garbage and pollution rules are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-01"
+  ],
+  "note": "Israeli note says no rubbish may be thrown into the sea at any distance.",
   "needs_picture": false
  },
  {
@@ -602,11 +612,12 @@
   "answer": "c",
   "answer_text": "It is allowed, it is a fishing vessel at work.",
   "topic": "law_regulations_israel",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
+   "sail-25",
    "sail-50"
   ],
-  "note": "Fishing day shape is taught, but not the Israeli rule on how close to shore vessels may go.",
+  "note": "Fishing day shape is taught and the Israeli note says a fishing vessel at work may sail close to shore outside banned areas.",
   "needs_picture": true
  },
  {
@@ -628,9 +639,11 @@
   "answer": "b",
   "answer_text": "Once every 24 months.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Seaworthiness inspection intervals are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note says a private boat is inspected every 24 months.",
   "needs_picture": false
  },
  {
@@ -639,9 +652,11 @@
   "answer": "c",
   "answer_text": "Initiate communication with RCC HAIFA on channel 16 (4X0) and report my location, identity, etc.",
   "topic": "radio_communication",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Reporting to RCC Haifa on approach to Israel is not taught; channel 16 is only mentioned for MAYDAY.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Israeli note says to report to RCC Haifa on channel 16 within 25 NM.",
   "needs_picture": false
  },
  {
@@ -650,9 +665,11 @@
   "answer": "a",
   "answer_text": "7 to 24 meters.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The Israeli legal definition of a boat by length is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note defines a boat as 7 to 24 m.",
   "needs_picture": false
  },
  {
@@ -730,7 +747,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Course says a sailing vessel in fog sounds one prolonged and two short blasts.",
+  "note": "A sailing vessel in fog sounds one prolonged and two short (picture 122), as taught.",
   "needs_picture": true
  },
  {
@@ -743,7 +760,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Tug fog signal and the towed vessel's prolonged plus three short are taught.",
+  "note": "One prolonged and two short then one prolonged and three short is a tug and its manned tow, as taught.",
   "needs_picture": true
  },
  {
@@ -756,7 +773,7 @@
   "lessons": [
    "sail-49"
   ],
-  "note": "Narrow-channel overtaking whistle signals are now taught.",
+  "note": "Two prolonged and two short means overtaking on your port side, as taught.",
   "needs_picture": true
  },
  {
@@ -765,9 +782,11 @@
   "answer": "b",
   "answer_text": "My ship is healthy, requesting permission for free operation within the port.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "International code flags such as Q are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Flag Q (picture 106) meaning healthy and requesting free pratique is taught.",
   "needs_picture": true
  },
  {
@@ -780,7 +799,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Course says two prolonged blasts means a power vessel underway but stopped and making no way.",
+  "note": "Two prolonged blasts mean a power vessel underway but stopped, as taught.",
   "needs_picture": true
  },
  {
@@ -793,7 +812,7 @@
   "lessons": [
    "sail-49"
   ],
-  "note": "Two prolonged and two short means overtaking on the port side, now taught.",
+  "note": "Picture 116 is the port-side overtaking signal, as taught.",
   "needs_picture": true
  },
  {
@@ -802,9 +821,11 @@
   "answer": "a",
   "answer_text": "Man overboard.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Code flag O (man overboard) is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Flag O (picture 104) for man overboard is taught.",
   "needs_picture": true
  },
  {
@@ -813,9 +834,11 @@
   "answer": "c",
   "answer_text": "On the starboard of the mast, the flag of the host country, to the port of the mast the Q flag, in the stern the Israeli flag on a pole.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Courtesy and Q flag customs on entering a foreign port are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Courtesy flag to starboard, Q to port and ensign at the stern are taught.",
   "needs_picture": false
  },
  {
@@ -824,9 +847,12 @@
   "answer": "a",
   "answer_text": "I will maintain at least 200 meters distance from the vessel.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The diver flag A and keeping 200 m clear are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61",
+   "sail-50"
+  ],
+  "note": "The white and blue swallow-tailed flag A and the Israeli 200 m distance are taught.",
   "needs_picture": false
  },
  {
@@ -835,9 +861,11 @@
   "answer": "c",
   "answer_text": "N. A. B. C. Q. O",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Required code flags on board are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Israeli note lists code flags N, A, B, C, Q and O.",
   "needs_picture": false
  },
  {
@@ -846,9 +874,11 @@
   "answer": "a",
   "answer_text": "A yellow flag, the flag of the country of registration, the flag of the host country.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Flags for entering foreign territorial waters are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Q flag, own ensign and courtesy flag on entering foreign waters are taught.",
   "needs_picture": false
  },
  {
@@ -857,9 +887,11 @@
   "answer": "c",
   "answer_text": "I can enter the marina, but must be vigilant and avoid getting too close.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Flag B (dangerous cargo) is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Flag B near a harbour entrance: you may enter but keep clear, as taught.",
   "needs_picture": false
  },
  {
@@ -899,7 +931,7 @@
   "lessons": [
    "sail-34"
   ],
-  "note": "Answer is distress; the sound distress signals (SOS, continuous horn) are taught. Judged from the answer.",
+  "note": "A continuous horn (picture 119) is taught as a distress signal.",
   "needs_picture": true
  },
  {
@@ -923,9 +955,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
+   "sail-61",
    "sail-50"
   ],
-  "note": "Flag A, red-white-red lights and the 200 m distance are all taught.",
+  "note": "Flag A, red-white-red at night (picture 70) and the 200 m distance are taught.",
   "needs_picture": true
  },
  {
@@ -960,9 +993,11 @@
   "answer": "b",
   "answer_text": "A 4 inch circumference rope, 50 meters long.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Towing and tow rope choice are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "The course recommends about 50 m of thick stretchy line in a 2 m sea.",
   "needs_picture": false
  },
  {
@@ -997,9 +1032,11 @@
   "answer": "d",
   "answer_text": "Answers “a” and “b” are correct.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Emergency steering is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "Emergency tiller for a broken steering cable or wheel shaft is taught.",
   "needs_picture": false
  },
  {
@@ -1142,9 +1179,11 @@
   "answer": "a",
   "answer_text": "High tensile strength.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Tow rope requirements are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "A tow line needs a high breaking strength, as taught.",
   "needs_picture": false
  },
  {
@@ -1257,9 +1296,11 @@
   "answer": "c",
   "answer_text": "High tensile strength.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Rope properties are not taught; rope work is left to an instructor.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "A mooring line needs a high breaking strength, as taught.",
   "needs_picture": false
  },
  {
@@ -1268,9 +1309,11 @@
   "answer": "b",
   "answer_text": "Attach the emergency steering handle on the axle of the rudder.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Steering failure and emergency tillers are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "Fit the emergency tiller to the rudder stock when the wheel fails, as taught.",
   "needs_picture": false
  },
  {
@@ -1279,9 +1322,11 @@
   "answer": "d",
   "answer_text": "Kevlar.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Rope materials and strengths are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Kevlar is taught as the strongest rope for its size.",
   "needs_picture": false
  },
  {
@@ -1330,9 +1375,11 @@
   "answer": "a",
   "answer_text": "It is better to tie one rope tightly to a secure point, than two weak ropes which together will provide the same strength as the strong rope.",
   "topic": "anchoring_mooring",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Mooring line selection and strength are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "One strong line beats two weak ones, as taught.",
   "needs_picture": false
  },
  {
@@ -1341,14 +1388,11 @@
   "answer": "c",
   "answer_text": "Continue north to shelter in the Herzliya marina.",
   "topic": "weather",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-20",
-   "sail-28",
-   "sail-37",
-   "sail-40"
+   "sail-56"
   ],
-  "note": "Diverting to a downwind harbor with a safe entrance is taught; choosing Herzliya over Tel Aviv needs local knowledge.",
+  "note": "Israel note: in a strong south-westerly, carry on to Herzliya rather than enter Tel Aviv marina.",
   "needs_picture": false
  },
  {
@@ -1357,9 +1401,11 @@
   "answer": "a",
   "answer_text": "Any knot or splice on the rope weakens the original strength.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Effect of knots and splices on rope strength is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Every knot or splice weakens a rope, as taught.",
   "needs_picture": false
  },
  {
@@ -1368,9 +1414,11 @@
   "answer": "a",
   "answer_text": "6 mains, 12 strings in each main.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wire rope construction markings are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Wire marking 6/12 as 6 strands of 12 wires is taught.",
   "needs_picture": false
  },
  {
@@ -1501,9 +1549,11 @@
   "answer": "d",
   "answer_text": "A 1x19 cable serves mostly for the safety railing.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wire rope types and uses are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "1x19 wire for standing rigging and guardrails is taught.",
   "needs_picture": false
  },
  {
@@ -1512,9 +1562,11 @@
   "answer": "d",
   "answer_text": "To support and secure the boom when the main sail is lowered.",
   "topic": "boat_knowledge_terms",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The topping lift is not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "The topping lift holds up the boom when the mainsail is lowered, as taught.",
   "needs_picture": false
  },
  {
@@ -1683,9 +1735,11 @@
   "answer": "b",
   "answer_text": "Wash them in sweet water and dry and store them in the shade.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Rope maintenance is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Rinse ropes in fresh water, dry and store in the shade, as taught.",
   "needs_picture": false
  },
  {
@@ -1866,9 +1920,11 @@
   "answer": "a",
   "answer_text": "The sea condition, the fuel quantity, the strength of the tie point.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Towing is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "Check sea state, fuel and strength of the tie points before towing, as taught.",
   "needs_picture": false
  },
  {
@@ -1881,7 +1937,7 @@
   "lessons": [
    "sail-14"
   ],
-  "note": "Course says a hard-over rudder acts as a brake, but not the 45 degree limit.",
+  "note": "Left out on purpose: the official answer looks wrong. The course says a hard-over rudder brakes but gives no 45 degree rule.",
   "needs_picture": false
  },
  {
@@ -1890,9 +1946,11 @@
   "answer": "d",
   "answer_text": "80 kilograms.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pulley mechanical advantage is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Four parts at the moving block lift 320 kg with about 80 kg of pull, exactly as taught.",
   "needs_picture": false
  },
  {
@@ -1901,9 +1959,11 @@
   "answer": "d",
   "answer_text": "Answers “a” and “c” are correct.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Jammed headsail furlers are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "For a jammed furler, take the load off and retry, or drop the sail to the deck, as taught.",
   "needs_picture": false
  },
  {
@@ -1938,9 +1998,11 @@
   "answer": "b",
   "answer_text": "Approval for free movement in Turkish coastal waters.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Foreign entry documents like a Turkish transit log are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "The Turkish transit log allowing free movement in coastal waters is taught.",
   "needs_picture": false
  },
  {
@@ -2028,9 +2090,11 @@
   "answer": "b",
   "answer_text": "That the towed vessel will veer its bow sharply to starboard.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Towing behaviour is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "After a sharp turn to starboard on a short tow, the towed boat's bow sheers hard to starboard, as taught.",
   "needs_picture": false
  },
  {
@@ -2053,9 +2117,11 @@
   "answer": "a",
   "answer_text": "Increase the length of the tow rope and make it as heavy is possible.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Towing in rough weather is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "In rough weather lengthen and weight the tow line, as taught.",
   "needs_picture": false
  },
  {
@@ -2317,7 +2383,7 @@
    "sail-55",
    "sail-57"
   ],
-  "note": "Front sequence is taught but the answer depends on which picture shows which stage.",
+  "note": "Front sequence and south-westerly wind before the cold front are taught, but which picture shows which stage is on the unseen chart.",
   "needs_picture": true
  },
  {
@@ -2339,9 +2405,11 @@
   "answer": "b",
   "answer_text": "Most likely at the entrance there will be high waves so I will try to time my entrance to a lull between waves.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The course does not teach that swell steepens at a harbor entrance or timing entry between waves.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-56"
+  ],
+  "note": "The course says swell steepens and breaks at a harbour entrance; time your entry for a lull.",
   "needs_picture": false
  },
  {
@@ -2434,9 +2502,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind rules are taught but the answer depends on where the low sits on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -2447,9 +2517,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Pressure rules are taught but the steady reading depends on the route on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -2460,9 +2532,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind rules are taught but point C's position on the chart is unknown.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -2513,9 +2587,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind rules are taught but the Bosphorus answer depends on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -2569,7 +2645,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "Optional red-over-green sailing lights and power gives way to sail are taught.",
+  "note": "Picture 58 is a sailing vessel with optional red-over-green lights seen head-on; power gives way to sail.",
   "needs_picture": true
  },
  {
@@ -2647,12 +2723,12 @@
   "answer": "d",
   "answer_text": "All the above answers are correct.",
   "topic": "lights_shapes",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-49",
    "sail-50"
   ],
-  "note": "RAM under 50 m and blocked-side lights are taught, but we cannot tell from the picture why there is no collision risk.",
+  "note": "Picture 65 is a dredger under 50 m (one masthead light) with her blocked side to starboard, seen from her port side; all three facts are taught.",
   "needs_picture": true
  },
  {
@@ -2719,7 +2795,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Ordinary tug and tow keeps out of the way of a sailing vessel, now stated.",
+  "note": "Picture 53 is an ordinary tug and tow, which keeps clear of a sailing vessel, as taught.",
   "needs_picture": true
  },
  {
@@ -2730,10 +2806,10 @@
   "topic": "colregs_rules",
   "coverage": "covered",
   "lessons": [
-   "sail-47",
-   "sail-50"
+   "sail-50",
+   "sail-47"
   ],
-  "note": "Black cone meaning motor-sailing (power-driven) and power giving way to sail are taught; picture assumed to show the cone.",
+  "note": "A cone point down means motor-sailing, so B is power-driven and the sailing yacht stands on.",
   "needs_picture": true
  },
  {
@@ -2742,12 +2818,12 @@
   "answer": "a",
   "answer_text": "Continue on course and speed.",
   "topic": "lights_shapes",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-46",
    "sail-50"
   ],
-  "note": "Tack rules and optional sailing lights are taught, but the other yacht's tack depends on the picture.",
+  "note": "Both are sailing vessels head-on; with an east wind H is on starboard tack and P on port tack, so H stands on.",
   "needs_picture": true
  },
  {
@@ -2761,7 +2837,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "Tug and tow follows the head-on rule; both turn to starboard.",
+  "note": "Picture 16 is a hovercraft and picture 28 a tug, both seen head-on; both power-driven, so both turn to starboard.",
   "needs_picture": true
  },
  {
@@ -2775,7 +2851,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "Both show the long-tow diamond, so ordinary power-driven rules apply.",
+  "note": "A diamond only marks a long tow; two such vessels follow the ordinary crossing rule.",
   "needs_picture": true
  },
  {
@@ -2786,10 +2862,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
-   "sail-47",
-   "sail-50"
+   "sail-50",
+   "sail-47"
   ],
-  "note": "Two ordinary power vessels crossing; the one with the other on her starboard gives way.",
+  "note": "K is a hovercraft showing her green side, so H is on her starboard and K gives way under the crossing rule.",
   "needs_picture": true
  },
  {
@@ -2802,7 +2878,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Tug and tow gives way to a sailing vessel, which stands on.",
+  "note": "P is a sailing vessel over 20 m and C an ordinary tug and tow, which keeps clear of sail.",
   "needs_picture": true
  },
  {
@@ -2811,11 +2887,12 @@
   "answer": "c",
   "answer_text": "J is anchored and flying a flag indicating its vessel is healthy and requesting permission to enter an anchorage. There is no need of action.",
   "topic": "lights_shapes",
-  "coverage": "not_covered",
+  "coverage": "covered",
   "lessons": [
+   "sail-61",
    "sail-50"
   ],
-  "note": "Code flags other than A (the health / pratique flag) are not taught.",
+  "note": "Flag Q plus an anchor ball means an anchored vessel requesting free pratique; no action needed.",
   "needs_picture": true
  },
  {
@@ -2828,7 +2905,7 @@
   "lessons": [
    "sail-34"
   ],
-  "note": "Flames on the vessel are a distress signal, and you must go and help.",
+  "note": "Flames on a vessel are taught as a distress signal.",
   "needs_picture": true
  },
  {
@@ -2841,7 +2918,7 @@
   "lessons": [
    "sail-46"
   ],
-  "note": "The overtaking vessel keeps clear, judged by seeing only the sternlight, is taught.",
+  "note": "Seeing only a sternlight (picture 37) means M is overtaking and keeps clear, as taught.",
   "needs_picture": true
  },
  {
@@ -2864,12 +2941,12 @@
   "answer": "c",
   "answer_text": "B yields to J.",
   "topic": "lights_shapes",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-47",
+   "sail-49",
    "sail-50"
   ],
-  "note": "The answer depends on pictures 35 and 15, which we cannot identify.",
+  "note": "J is restricted in ability to manoeuvre and B an ordinary power vessel, which gives her room.",
   "needs_picture": true
  },
  {
@@ -2883,7 +2960,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "Tug and tow follows the head-on rule; wind is irrelevant.",
+  "note": "Hovercraft and tug meet head-on; both power-driven, both turn to starboard.",
   "needs_picture": true
  },
  {
@@ -2894,9 +2971,10 @@
   "topic": "emergency_distress",
   "coverage": "covered",
   "lessons": [
-   "sail-34"
+   "sail-34",
+   "sail-61"
   ],
-  "note": "A flag with a ball below it is a distress signal; go and help. Judged from the answer.",
+  "note": "A square flag with a ball below it is taught as distress.",
   "needs_picture": true
  },
  {
@@ -2907,10 +2985,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
-   "sail-47",
-   "sail-50"
+   "sail-50",
+   "sail-47"
   ],
-  "note": "Two ordinary power vessels crossing; the one with the other on her starboard gives way.",
+  "note": "K is a hovercraft showing her green side, so K gives way under the crossing rule.",
   "needs_picture": true
  },
  {
@@ -2923,7 +3001,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Tug and tow gives way to a sailing vessel, which stands on.",
+  "note": "P is a sailing vessel and C an ordinary tug and tow, which keeps clear of sail.",
   "needs_picture": true
  },
  {
@@ -2934,9 +3012,10 @@
   "topic": "colregs_rules",
   "coverage": "covered",
   "lessons": [
-   "sail-49"
+   "sail-49",
+   "sail-50"
   ],
-  "note": "Between two special-status vessels the rules give neither priority; both act to avoid collision.",
+  "note": "Not under command meets restricted in ability to manoeuvre: neither has priority, both act, as taught.",
   "needs_picture": true
  },
  {
@@ -3049,11 +3128,11 @@
   "answer": "c",
   "answer_text": "This is a hot low typical of spring, the winds in Eilat will be from the south at about 15 knots and the visibility along the Mediterranean coast of Israel will be poor.",
   "topic": "weather",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-57"
   ],
-  "note": "Spring hot low, southerly at Eilat and dust are taught, but not 'poor' versus 'mediocre' visibility.",
+  "note": "In a spring hot low, dust makes the visibility along the coast poor.",
   "needs_picture": false
  },
  {
@@ -3064,9 +3143,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind and isobar rules are taught but point A's wind and pressure depend on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3116,9 +3197,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind rules are taught but Crete's wind depends on the low's position on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3142,9 +3225,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Tight isobars mean strong wind is taught, but where they are tight is on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3259,9 +3344,11 @@
   "answer": "c",
   "answer_text": "In the boat’s sea worthiness certificate.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "The seaworthiness certificate listing required equipment is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note says the seaworthiness certificate gives the required equipment list.",
   "needs_picture": false
  },
  {
@@ -3283,9 +3370,11 @@
   "answer": "d",
   "answer_text": "The power gain will be 5 times.",
   "topic": "boat_knowledge_terms",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pulley mechanical advantage is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Two double blocks with the rope leaving the moving block give 5 to 1, as taught.",
   "needs_picture": false
  },
  {
@@ -3336,9 +3425,10 @@
   "coverage": "partial",
   "lessons": [
    "sail-54",
+   "sail-55",
    "sail-57"
   ],
-  "note": "Wind rules are taught but the answer depends on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3362,9 +3452,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
+   "sail-61",
    "sail-50"
   ],
-  "note": "Flag A, anchor ball and the 200 m distance are all taught.",
+  "note": "Flag A plus an anchor ball means anchored with divers; keep 200 m off.",
   "needs_picture": true
  },
  {
@@ -3439,9 +3530,11 @@
   "answer": "a",
   "answer_text": "6 mains, 12 strings in each main.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Wire rope construction markings are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "Wire marking 6/12 as 6 strands of 12 wires is taught.",
   "needs_picture": false
  },
  {
@@ -3528,9 +3621,11 @@
   "answer": "c",
   "answer_text": "On the starboard side the Turkish flag, on the port side the “Q” flag and in the stern the Israeli flag.",
   "topic": "other",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Courtesy flags and the Q flag on arrival abroad are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Courtesy flag to starboard, Q to port and ensign at the stern are taught.",
   "needs_picture": false
  },
  {
@@ -3554,9 +3649,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-55"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Warm front wind shift is taught but the wind at that spot depends on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3567,9 +3664,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-55"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Cumulonimbus at the cold front is taught but where point F lies is unknown.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3580,9 +3679,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-55"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Best visibility behind the cold front is taught but whether that is A or B depends on the chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3618,9 +3719,11 @@
   "answer": "b",
   "answer_text": "That it will have as high a tensile strength as possible.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Mooring rope properties are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "A mooring line needs a high breaking strength, as taught.",
   "needs_picture": false
  },
  {
@@ -3668,9 +3771,11 @@
   "answer": "d",
   "answer_text": "Most of the information you need for navigating and routing in the given area.",
   "topic": "navigation_charts",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pilot books are not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-37"
+  ],
+  "note": "Pilot books and what they contain are taught.",
   "needs_picture": false
  },
  {
@@ -3679,9 +3784,11 @@
   "answer": "a",
   "answer_text": "The shroud is on the starboard side so you must execute a turn to reduce the pressure on the mast.",
   "topic": "sailing_theory_trim",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Rig failure such as a broken shroud is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-62"
+  ],
+  "note": "On course 150 with a south-west wind the starboard shroud is loaded; the course says turn to put the broken side to leeward.",
   "needs_picture": false
  },
  {
@@ -3692,11 +3799,9 @@
   "topic": "sailing_theory_trim",
   "coverage": "partial",
   "lessons": [
-   "sail-09",
-   "sail-10",
-   "sail-11"
+   "sail-09"
   ],
-  "note": "Heel, leeway and trim per point of sail are taught, but not relative speed of close vs beam reach.",
+  "note": "Left out on purpose: the official answer looks wrong (close reach is not usually faster than a beam reach).",
   "needs_picture": false
  },
  {
@@ -3720,10 +3825,9 @@
   "topic": "boat_handling_engine",
   "coverage": "partial",
   "lessons": [
-   "sail-29",
-   "sail-44"
+   "sail-29"
   ],
-  "note": "Prop walk is taught, but this answer (bow to port in reverse) contradicts Q78 and is left out by decision.",
+  "note": "Left out on purpose: the official answer (bow to port in reverse) contradicts the course and another exam answer.",
   "needs_picture": false
  },
  {
@@ -3853,9 +3957,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind rules are taught but point B's wind depends on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3877,9 +3983,11 @@
   "answer": "b",
   "answer_text": "That it has high tensile characteristics.",
   "topic": "ropes_knots",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Tow rope properties are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-60"
+  ],
+  "note": "A tow line needs a high breaking strength, as taught.",
   "needs_picture": false
  },
  {
@@ -3888,9 +3996,11 @@
   "answer": "a",
   "answer_text": "In the safety equipment regulations of the Israel Ports Authority there is a reference to this question.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Israeli safety equipment rules on anchor weight are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note says anchor weight is set in the Ports Authority safety equipment regulations.",
   "needs_picture": false
  },
  {
@@ -3941,9 +4051,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-55"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Visibility near fronts is taught but point A's position is on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3954,9 +4066,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-54"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Wind rules are taught but the wind along the route depends on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3967,9 +4081,11 @@
   "topic": "weather",
   "coverage": "partial",
   "lessons": [
-   "sail-55"
+   "sail-54",
+   "sail-55",
+   "sail-57"
   ],
-  "note": "Frontal zones are taught but which one covers Cyprus depends on the unseen chart.",
+  "note": "The answer depends on the exam's attached weather chart, which is not available; the course does give the general rules.",
   "needs_picture": false
  },
  {
@@ -3995,7 +4111,7 @@
   "lessons": [
    "sail-34"
   ],
-  "note": "Answer is distress; the sound distress signals are taught. Judged from the answer.",
+  "note": "A continuous horn is taught as a distress signal.",
   "needs_picture": true
  },
  {
@@ -4008,7 +4124,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Three black balls mean aground, now taught.",
+  "note": "Three black balls mean aground, as taught.",
   "needs_picture": true
  },
  {
@@ -4021,7 +4137,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Ordinary tug and tow keeps out of the way of a sailing vessel, now stated.",
+  "note": "An ordinary tug and tow keeps clear of a sailing vessel, as taught.",
   "needs_picture": true
  },
  {
@@ -4030,9 +4146,11 @@
   "answer": "b",
   "answer_text": "It is breaking the law. It is not allowed to sail in a declared beach area.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Bathing beach rules are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-25"
+  ],
+  "note": "Israeli note forbids sailing in a declared bathing beach, fishing vessels included.",
   "needs_picture": true
  },
  {
@@ -4045,7 +4163,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "A tow under 200 m needs no day shape, now stated.",
+  "note": "A tow under 200 m shows no day shape, as taught.",
   "needs_picture": true
  },
  {
@@ -4069,10 +4187,9 @@
   "topic": "colregs_rules",
   "coverage": "covered",
   "lessons": [
-   "sail-46",
-   "sail-50"
+   "sail-46"
   ],
-  "note": "Seeing only a sternlight means overtaking, and the overtaking vessel keeps clear regardless of tack.",
+  "note": "Seeing only a sternlight means overtaking, which keeps clear regardless of tack.",
   "needs_picture": true
  },
  {
@@ -4083,9 +4200,10 @@
   "topic": "emergency_distress",
   "coverage": "covered",
   "lessons": [
-   "sail-34"
+   "sail-34",
+   "sail-61"
   ],
-  "note": "A flag with a ball above it is a distress signal. Judged from the answer.",
+  "note": "A square flag with a ball above it is taught as distress.",
   "needs_picture": true
  },
  {
@@ -4112,7 +4230,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Aground lights and the warning to be careful are taught.",
+  "note": "Aground lights and the warning to keep clear are taught.",
   "needs_picture": true
  },
  {
@@ -4123,10 +4241,10 @@
   "topic": "colregs_rules",
   "coverage": "covered",
   "lessons": [
-   "sail-47",
+   "sail-46",
    "sail-48"
   ],
-  "note": "Give-way duties and substantial early action are taught.",
+  "note": "Both are sailing vessels head-on; with a west wind H is on port tack and gives way with a large early turn.",
   "needs_picture": true
  },
  {
@@ -4140,7 +4258,7 @@
    "sail-49",
    "sail-50"
   ],
-  "note": "A sailing vessel keeps clear of NUC/RAM vessels and their shapes are taught.",
+  "note": "Two black balls mean not under command; a sailing vessel keeps clear.",
   "needs_picture": true
  },
  {
@@ -4152,9 +4270,9 @@
   "coverage": "covered",
   "lessons": [
    "sail-46",
-   "sail-47"
+   "sail-48"
   ],
-  "note": "Tack and sail-vs-power give-way rules are taught.",
+  "note": "With a west wind J on 020 is on port tack and B on starboard tack, so J gives way.",
   "needs_picture": true
  },
  {
@@ -4165,9 +4283,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
+   "sail-61",
    "sail-50"
   ],
-  "note": "Flag A, anchor ball and the 200 m distance are all taught.",
+  "note": "Flag A plus an anchor ball means anchored with divers; keep 200 m off.",
   "needs_picture": true
  },
  {
@@ -4180,7 +4299,7 @@
   "lessons": [
    "sail-34"
   ],
-  "note": "Distress sound signals and the duty to go and help are taught. Judged from the answer.",
+  "note": "A continuous horn means distress, and the duty to help is taught.",
   "needs_picture": true
  },
  {
@@ -4206,7 +4325,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Fishing lights and the two-cones day shape are taught.",
+  "note": "Picture 55 is red over white (fishing); its day shape is two cones points together (picture 84).",
   "needs_picture": true
  },
  {
@@ -4259,7 +4378,7 @@
    "sail-50",
    "sail-49"
   ],
-  "note": "Motor-sailing cone, fishing cones and the cone-up gear marker beyond 150 m are taught.",
+  "note": "Cone point down makes O power-driven; two cones mean fishing and the cone point up marks gear out on that side.",
   "needs_picture": true
  },
  {
@@ -4272,7 +4391,7 @@
   "lessons": [
    "sail-47"
   ],
-  "note": "The power-driven crossing rule is taught.",
+  "note": "The power-driven crossing rule is taught (see the flag on this answer in the report).",
   "needs_picture": true
  },
  {
@@ -4285,7 +4404,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Fishing cones and aground three balls are taught.",
+  "note": "Fishing cones and the aground three balls are taught.",
   "needs_picture": true
  },
  {
@@ -4296,9 +4415,10 @@
   "topic": "colregs_rules",
   "coverage": "covered",
   "lessons": [
+   "sail-50",
    "sail-48"
   ],
-  "note": "Stand-on vessel keeps course and speed is taught.",
+  "note": "Picture 66 is not under command seen head-on; the sailing yacht keeps clear and B stands on.",
   "needs_picture": true
  },
  {
@@ -4312,7 +4432,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "Tug and tow follows the head-on rule; both turn to starboard.",
+  "note": "Hovercraft and tug meet head-on; both turn to starboard.",
   "needs_picture": true
  },
  {
@@ -4326,7 +4446,7 @@
    "sail-49",
    "sail-50"
   ],
-  "note": "Keeping clear of a fishing vessel and its lights are taught.",
+  "note": "K is a sailing vessel over 20 m and G is fishing (red over white); a sailing vessel keeps clear of fishing.",
   "needs_picture": true
  },
  {
@@ -4337,9 +4457,10 @@
   "topic": "lights_shapes",
   "coverage": "covered",
   "lessons": [
+   "sail-61",
    "sail-50"
   ],
-  "note": "Flag A, anchor ball and the 200 m distance are all taught.",
+  "note": "Flag A plus an anchor ball means anchored with divers; keep 200 m off.",
   "needs_picture": true
  },
  {
@@ -4353,7 +4474,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "A long-tow diamond is an ordinary power vessel that gives way to sail.",
+  "note": "A diamond marks only a long tow, an ordinary power vessel that gives way to sail.",
   "needs_picture": true
  },
  {
@@ -4367,7 +4488,7 @@
    "sail-47",
    "sail-50"
   ],
-  "note": "Israeli note says sailing boats also give way to rowing boats; the cone also marks M as power-driven.",
+  "note": "Israeli note says sailing boats also give way to rowing boats.",
   "needs_picture": true
  },
  {
@@ -4393,7 +4514,7 @@
   "lessons": [
    "sail-50"
   ],
-  "note": "Aground lights with two anchor lights for 50 m+ are taught.",
+  "note": "Anchor lights for 50 m+ plus two reds mean a large vessel aground, as taught.",
   "needs_picture": true
  },
  {
@@ -4407,7 +4528,7 @@
    "sail-50",
    "sail-47"
   ],
-  "note": "Diamond means tow over 200 m and ordinary crossing rules apply.",
+  "note": "Diamond means a tow over 200 m; the ordinary crossing rule decides who gives way.",
   "needs_picture": true
  },
  {
@@ -4421,7 +4542,7 @@
    "sail-46",
    "sail-50"
   ],
-  "note": "Sailing vessel lights and port tack giving way to starboard tack are taught.",
+  "note": "Sailing east in a north wind you are on port tack; the head-on sailing vessel is on starboard tack, so you give way.",
   "needs_picture": true
  },
  {
@@ -4430,11 +4551,11 @@
   "answer": "b",
   "answer_text": "As depicted in picture 75.",
   "topic": "lights_shapes",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-50"
   ],
-  "note": "Depends on pictures 38 and 75, which we cannot identify.",
+  "note": "Picture 38 is three reds, constrained by her draught, whose day shape is a cylinder (picture 75).",
   "needs_picture": true
  },
  {
@@ -4443,12 +4564,12 @@
   "answer": "a",
   "answer_text": "Based on the regulations, O yields to K.",
   "topic": "colregs_rules",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
-   "sail-47",
-   "sail-50"
+   "sail-50",
+   "sail-49"
   ],
-  "note": "Depends on pictures 11 and 14, which we cannot identify.",
+  "note": "K is a tug restricted by her tow (red-white-red); a sailing vessel keeps clear.",
   "needs_picture": true
  },
  {
@@ -4457,11 +4578,11 @@
   "answer": "b",
   "answer_text": "Picture 74.",
   "topic": "buoyage_marks",
-  "coverage": "partial",
+  "coverage": "covered",
   "lessons": [
    "sail-21"
   ],
-  "note": "Region A is taught for coming in; the answer depends on a picture of lights seen when leaving.",
+  "note": "Leaving an Israeli harbor the lights are reversed: green on your left, red on your right.",
   "needs_picture": true
  },
  {
@@ -4470,9 +4591,11 @@
   "answer": "c",
   "answer_text": "As depicted in picture 13.",
   "topic": "lights_shapes",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Code flags other than A are not taught, so flag 95 and its night lights are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "A vessel carrying dangerous goods shows an all-round red light at night (flag B by day).",
   "needs_picture": true
  },
  {
@@ -4562,9 +4685,11 @@
   "answer": "c",
   "answer_text": "Up to 12 miles from shore.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Israeli coastal-waters limits are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israeli note says a coastal (national) voyage may go up to 12 NM from shore.",
   "needs_picture": false
  },
  {
@@ -4573,9 +4698,11 @@
   "answer": "c",
   "answer_text": "50 meters on each side of the declared area, and 300 meters to sea from the low tide line.",
   "topic": "law_regulations_israel",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Bathing beach boundaries are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-25"
+  ],
+  "note": "Israeli note gives the 50 m and 300 m bathing beach limits.",
   "needs_picture": false
  },
  {
@@ -4584,9 +4711,11 @@
   "answer": "c",
   "answer_text": "I can enter the marina, but avoid getting too close to the ship as a precaution.",
   "topic": "lights_shapes",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Flag B (dangerous cargo) is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-61"
+  ],
+  "note": "Flag B near a harbour entrance: enter but keep clear, as taught.",
   "needs_picture": false
  },
  {
@@ -4610,10 +4739,10 @@
   "topic": "colregs_rules",
   "coverage": "covered",
   "lessons": [
-   "sail-48",
-   "sail-50"
+   "sail-50",
+   "sail-47"
   ],
-  "note": "Reading sidelights and stand-on duty to keep course and speed are taught.",
+  "note": "Picture 36 is a large power-driven ship head-on, which gives way to sail, so you keep course and speed.",
   "needs_picture": true
  },
  {
