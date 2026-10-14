@@ -39,7 +39,7 @@ function windObservations(run) {
 export function challengeCatalog() {
   return `<div class="challenge-catalog">${CHALLENGES.map((d, index) => {
     const best = readChallengeBest(storage, d.id);
-    return `<button class="challenge-choice" data-sailing-challenge="${d.id}"><span class="challenge-art" aria-hidden="true"><svg viewBox="0 0 100 65"><path class="challenge-grid" d="M0 20H100M0 40H100M20 0V65M50 0V65M80 0V65"/><path class="challenge-course-line" d="${['M5 50Q80 60 65 20T25 15', 'M12 50L40 32 68 40 86 12', 'M10 45Q50 15 76 32', 'M8 55Q25 40 30 15T80 5', 'M15 55L80 32 15 8', 'M15 15L60 15L85 50'][index]}"/></svg><span>${d.symbol}</span></span><span class="challenge-choice-copy"><small>${tr(d.difficulty)} · <bdi>${clock(d.goldTime)}</bdi> ${tr('gold target')}</small><strong>${tr(d.name)}</strong><span>${tr(d.description)}</span><small class="challenge-personal-best">${best ? `${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi>` : tr('Set your first record')}</small></span><span class="challenge-choice-arrow" aria-hidden="true">↗</span></button>`;
+    return `<button class="challenge-choice" data-sailing-challenge="${d.id}"><span class="challenge-art" aria-hidden="true"><svg viewBox="0 0 100 65"><path class="challenge-grid" d="M0 20H100M0 40H100M20 0V65M50 0V65M80 0V65"/><path class="challenge-course-line" d="${['M5 50Q80 60 65 20T25 15', 'M12 50L40 32 68 40 86 12', 'M10 45Q50 15 76 32', 'M8 55Q25 40 30 15T80 5', 'M15 55L80 32 15 8', 'M15 15L60 15L85 50', 'M50 58L22 30 50 14 78 30Z'][index]}"/></svg><span>${d.symbol}</span></span><span class="challenge-choice-copy"><small>${tr(d.difficulty)} · <bdi>${clock(d.goldTime)}</bdi> ${tr('gold target')}</small><strong>${tr(d.name)}</strong><span>${tr(d.description)}</span><small class="challenge-personal-best">${best ? `${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi>` : tr('Set your first record')}</small></span><span class="challenge-choice-arrow" aria-hidden="true">↗</span></button>`;
   }).join('')}</div>`;
 }
 
@@ -67,7 +67,7 @@ export function createChallengeUI({
   function briefing(id = selected, preview = false) {
     const d = getChallenge(id),
       best = readChallengeBest(storage, id);
-    const content = `<section class="challenge-briefing" data-no-translate><div class="eyebrow">${tr('CHALLENGE BRIEFING')}</div><h2>${tr(d.name)}</h2><p>${tr(d.description)}</p><p class="challenge-rule">${tr(d.instructions)}</p><div class="race-setup"><span>${tr('Wind')}<bdi>${d.conditions.windSpeed} kn · ${d.conditions.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${d.conditions.currentSpeed} kn · ${d.conditions.currentDirection}°</bdi></span><span>${tr('Time limit')}<bdi>${clock(d.timeLimit)}</bdi></span></div><p>${tr(d.engine ? 'Engine available. Sails start lowered.' : 'Sails only. The engine is disabled.')}</p><p>${tr('Wind and current stay fixed. Grounding or hull contact ends the attempt.')}</p><div class="challenge-medal-targets"><span>● ${tr('Gold')} <bdi>85+</bdi></span><span>● ${tr('Silver')} <bdi>65+</bdi></span><span>● ${tr('Bronze')} <bdi>1+</bdi></span></div><p>${tr('Complete the objective to earn a medal. Faster finishes score higher; treasure hints cost 10 points each.')}</p><p>${tr('Gold pace')} <bdi>${clock(d.goldTime)}</bdi> · ${tr('Silver pace')} <bdi>${clock(d.silverTime)}</bdi></p>${best ? `<p class="challenge-best">${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi></p>` : ''}<div class="training-actions"><button id="challenge-start" class="training-button primary">${tr('Start challenge')}</button><button id="challenge-library" class="training-button">${tr('All challenges')}</button></div></section>`;
+    const content = `<section class="challenge-briefing" data-no-translate><div class="eyebrow">${tr('CHALLENGE BRIEFING')}</div><h2>${tr(d.name)}</h2><p>${tr(d.description)}</p><p class="challenge-rule">${tr(d.instructions)}</p>${d.tips ? `<h3>${tr('How to do it')}</h3><ol class="challenge-tips">${d.tips.map((tip) => `<li>${tr(tip)}</li>`).join('')}</ol>` : ''}<div class="race-setup"><span>${tr('Wind')}<bdi>${d.conditions.windSpeed} kn · ${d.conditions.windDirection}°</bdi></span><span>${tr('Current')}<bdi>${d.conditions.currentSpeed} kn · ${d.conditions.currentDirection}°</bdi></span><span>${tr('Time limit')}<bdi>${clock(d.timeLimit)}</bdi></span></div><p>${tr(d.engine ? 'Engine available. Sails start lowered.' : 'Sails only. The engine is disabled.')}</p><p>${tr('Wind and current stay fixed. Grounding or hull contact ends the attempt.')}</p><div class="challenge-medal-targets"><span>● ${tr('Gold')} <bdi>85+</bdi></span><span>● ${tr('Silver')} <bdi>65+</bdi></span><span>● ${tr('Bronze')} <bdi>1+</bdi></span></div><p>${tr('Complete the objective to earn a medal. Faster finishes score higher; treasure hints cost 10 points each.')}</p><p>${tr('Gold pace')} <bdi>${clock(d.goldTime)}</bdi> · ${tr('Silver pace')} <bdi>${clock(d.silverTime)}</bdi></p>${best ? `<p class="challenge-best">${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi></p>` : ''}<div class="training-actions"><button id="challenge-start" class="training-button primary">${tr('Start challenge')}</button><button id="challenge-library" class="training-button">${tr('All challenges')}</button></div></section>`;
     if (preview) return content;
     selected = id;
     openBriefing(content);
@@ -109,7 +109,8 @@ export function createChallengeUI({
   function update() {
     if (!run || panel.hidden) return;
     const d = run.definition,
-      treasure = d.kind === 'treasure';
+      treasure = d.kind === 'treasure',
+      flag = d.kind === 'flag';
     const windLab = d.kind === 'wind-lab',
       windStage = d.stages?.[run.stage];
     const revealed = !treasure || run.hints.includes(run.stage);
@@ -129,6 +130,11 @@ export function createChallengeUI({
       } else if (treasure) {
         const origin = run.stage ? d.targets[run.stage - 1] : d.start;
         goal = `${format('Clue {number} of {total}', { number: run.stage + 1, total: d.targets.length })} · ${t(run.target.clue)} ${format('From {origin}: steer {bearing}° for {distance} m.', { origin: t(run.stage ? 'the last discovery' : 'the start'), bearing: bearing(origin, run.target), distance: Math.round(Math.hypot(origin.x - run.target.x, origin.z - run.target.z)) })}`;
+      } else if (flag) {
+        const miss = run.misses.at(-1);
+        goal = `${format('Call {number} of {total}', { number: run.stage + 1, total: d.calls.length })}: ${t(d.calls[run.stage].label)}.`;
+        if (miss && run.elapsed - miss.elapsed < 12)
+          goal += ` ${t('Last pass')}: ${t(miss.reason)}`;
       } else if (d.hold)
         goal = `${t('Continuous hold')} · \u2066${run.hold.toFixed(1)} / ${d.hold} s\u2069`;
       else
@@ -141,12 +147,12 @@ export function createChallengeUI({
     const goalNode = panel.querySelector('#challenge-live-goal');
     if (goalNode.textContent !== goal) goalNode.textContent = t(goal);
     const announcement = panel.querySelector('#challenge-announcement');
-    const milestone = `${run.status}:${run.stage}:${run.tacks}`;
+    const milestone = `${run.status}:${run.stage}:${run.tacks}:${run.misses.length}`;
     if (announcement.dataset.milestone !== milestone) {
       announcement.dataset.milestone = milestone;
       announcement.textContent =
         run.status === 'running'
-          ? treasure || windLab
+          ? treasure || windLab || flag
             ? goal
             : d.kind === 'tack'
               ? `${t('Tacks completed')}: ${run.tacks}`
@@ -161,8 +167,8 @@ export function createChallengeUI({
           ? (run.stage + run.hold / windStage.hold) / d.stages.length
           : d.hold
             ? run.hold / d.hold
-            : treasure
-              ? run.stage / d.targets.length
+            : treasure || flag
+              ? run.stage / (flag ? d.calls.length : d.targets.length)
               : Math.max(
                   0,
                   1 -
@@ -223,7 +229,7 @@ export function createChallengeUI({
         )
         .join(
           '',
-        )}<span>${tr('Minimum keel clearance')} <bdi>${run.minClearance.toFixed(1)} m</bdi></span>${run.hints.length ? `<span>${tr('Hint penalty')} <bdi>−${run.hints.length * 10}</bdi></span>` : ''}</div><div id="adventure-track"></div><div class="training-actions"><button id="adventure-again" class="training-button primary">${tr('Try again')}</button><button id="adventure-library" class="training-button">${tr('All challenges')}</button></div></section>`,
+        )}<span>${tr('Minimum keel clearance')} <bdi>${run.minClearance.toFixed(1)} m</bdi></span>${run.hints.length ? `<span>${tr('Hint penalty')} <bdi>−${run.hints.length * 10}</bdi></span>` : ''}${run.misses.length ? `<span>${tr('Wrong passes')} <bdi>${run.misses.length} · −${run.misses.length * 5}</bdi></span>` : ''}</div><div id="adventure-track"></div><div class="training-actions"><button id="adventure-again" class="training-button primary">${tr('Try again')}</button><button id="adventure-library" class="training-button">${tr('All challenges')}</button></div></section>`,
     );
     if (run.definition.kind === 'wind-lab') {
       const explanation = document.createElement('div');

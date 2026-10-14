@@ -24,7 +24,7 @@ import { refreshDerived, angleDifference, clamp, KNOT } from '../src/physics.js'
 import { challengesUI } from '../src/i18n/challenges.js';
 
 test('distinct authored challenges start safely and cannot complete untouched', () => {
-  assert.equal(new Set(CHALLENGES.map((d) => d.kind)).size, 6);
+  assert.equal(new Set(CHALLENGES.map((d) => d.kind)).size, 7);
   for (const d of CHALLENGES) {
     const run = createChallenge(d.id);
     assert.ok(run.minClearance > 1);
@@ -257,6 +257,8 @@ test('all six languages cover authored challenge text and preserve every placeho
         d.instructions,
         ...(d.stages ?? []).flatMap(stage => [stage.title, stage.instruction]),
         ...(d.debrief ? [d.debrief] : []),
+        ...(d.tips ?? []),
+        ...(d.calls ?? []).map((call) => call.label),
         ...d.targets.map((p) => p.clue).filter(Boolean),
       ])
         assert.ok(dictionary[text], text);
@@ -283,11 +285,59 @@ function trim(state) {
   state.jibSheet = state.suggestedJibSheet;
 }
 
+// Lines up 140 m back along the expected track (leeway included), then sails the
+// called point of sail and tack to a spot that leaves the flag 6 m to windward.
+function flagPilot(run, pilot) {
+  const s = run.state,
+    d = run.definition,
+    wind = d.conditions.windDirection;
+  if (pilot.stage !== run.stage) {
+    if (pilot.stage >= 0) Object.assign(pilot, { clear: 25, keep: s.heading });
+    const call = d.calls[run.stage],
+      h =
+        (wind - call.tack * (call.pointOfSail === 'close-hauled' ? 58 : 135)) * (Math.PI / 180);
+    const pass = {
+      x: run.target.x - call.tack * 6 * Math.cos(h),
+      z: run.target.z - call.tack * 6 * Math.sin(h),
+    };
+    Object.assign(pilot, {
+      stage: run.stage,
+      phase: 0,
+      pass,
+      setup: { x: pass.x - 140 * Math.sin(h), z: pass.z + 140 * Math.cos(h) },
+    });
+  }
+  const goal = pilot.phase ? pilot.pass : pilot.setup;
+  let bearing = targetBearing(s, goal);
+  if (s.speedOverGround > 0.5)
+    bearing -= clamp(angleDifference(s.courseOverGround, s.heading), -12, 12);
+  const off = angleDifference(wind, bearing),
+    current = Math.sign(angleDifference(wind, s.heading)) || 1;
+  let heading = Math.abs(off) < 46 ? wind - current * 46 : bearing;
+  if (pilot.phase) {
+    const call = d.calls[run.stage],
+      [low, high] = call.pointOfSail === 'close-hauled' ? [45, 58] : [115, 160];
+    heading = wind - call.tack * clamp(call.tack * off, low, high);
+  }
+  if (pilot.clear > 0) {
+    pilot.clear -= 0.1;
+    heading = pilot.keep;
+  }
+  steer(s, heading);
+  trim(s);
+  if (!pilot.phase && distance(s, pilot.setup) < 20) Object.assign(pilot, { phase: 1, best: Infinity });
+  if (pilot.phase) {
+    pilot.best = Math.min(pilot.best, distance(s, pilot.pass));
+    if (distance(s, pilot.pass) > pilot.best + 25) pilot.phase = 0;
+  }
+}
+
 test('every challenge and both passage choices can be completed through the production physics', () => {
   for (const id of [...CHALLENGES.map((d) => d.id), 'outer-passage']) {
     const run = createChallenge(id === 'outer-passage' ? 'shallow-shortcut' : id);
     let phase = 0,
       stopped = false;
+    const flag = { stage: -1, clear: 0 };
     while (run.status === 'running') {
       const s = run.state;
       if (id === 'apparent-wind-lab') {
@@ -329,6 +379,8 @@ test('every challenge and both passage choices can be completed through the prod
           s.throttle = 0;
           s.rudder = 0;
         }
+      } else if (id === 'flag-approach') {
+        flagPilot(run, flag);
       } else if (id === 'anchor-bullseye') {
         if (!stopped) {
           const point = { x: 150, z: 230 };
@@ -350,6 +402,7 @@ test('every challenge and both passage choices can be completed through the prod
     assert.ok(run.score >= 1 && run.score <= 100);
     assert.ok(run.track.samples.length > 20);
     assert.equal(run.state.collisionCount, 0);
+    if (id === 'flag-approach') assert.equal(run.misses.length, 0);
     if (id === 'apparent-wind-lab') {
       const [stopped, reach, broad] = run.observations;
       assert.equal(run.observations.length, 3);
@@ -360,6 +413,61 @@ test('every challenge and both passage choices can be completed through the prod
       assert.ok(reach.boatSpeed < reach.trueSpeed, 'does not misrepresent a cruising yacht as a racing foiler');
     }
   }
+});
+
+// Places the boat so the flag is `side` m from the centreline (positive = starboard),
+// sailing `angle` degrees off the wind (positive = starboard tack).
+function flagPass(run, { angle, side = 4, speed = 5, sails = 1 }) {
+  const s = run.state,
+    heading = (run.definition.conditions.windDirection - angle + 360) % 360,
+    h = (heading * Math.PI) / 180;
+  const place = (forward) =>
+    Object.assign(s, {
+      heading,
+      speed,
+      sails,
+      x: run.target.x - side * Math.cos(h) - forward * Math.sin(h),
+      z: run.target.z - side * Math.sin(h) + forward * Math.cos(h),
+    });
+  place(1);
+  refreshDerived(s);
+  assessChallenge(run, 0.1);
+  place(-1);
+  assessChallenge(run, 0.1);
+}
+
+test('flag passes count only on the called point of sail and tack, close, windward and moving', () => {
+  const run = createChallenge('flag-approach');
+  assert.equal(run.definition.calls[0].tack, -1, 'first call is port tack');
+  const misses = [
+    [{ angle: -45, side: 4 }, 'The flag was on your leeward side. Keep it upwind of the boat.'],
+    [{ angle: -45, side: -9 }, 'Too wide. Pass within 5 m of the hull.'],
+    [{ angle: -45, side: -4, speed: 0.4 }, 'Keep moving as you pass. Do not stop beside the flag.'],
+    [{ angle: -90, side: -4 }, 'Wrong point of sail for this call.'],
+    [{ angle: -45, side: -4, sails: 0 }, 'Wrong point of sail for this call.'],
+    [{ angle: 45, side: 4 }, 'Wrong tack for this call.'],
+  ];
+  for (const [pass, reason] of misses) {
+    flagPass(run, pass);
+    assert.equal(run.misses.at(-1).reason, reason);
+    assert.equal(run.stage, 0);
+  }
+  flagPass(run, { angle: -45, side: -40 });
+  assert.equal(run.misses.length, misses.length, 'sailing by far away is not an attempt');
+  flagPass(run, { angle: -45, side: -4 });
+  assert.equal(run.stage, 1);
+  flagPass(run, { angle: 50, side: 5 });
+  flagPass(run, { angle: 140, side: 6 });
+  assert.equal(run.status, 'running');
+  flagPass(run, { angle: -130, side: -3 });
+  assert.equal(run.status, 'completed');
+  run.elapsed = run.definition.goldTime;
+  assert.equal(challengeScore(run), 85 - misses.length * 5);
+  assert.equal(challengeChart(run).cues.flag.heading, 180, 'flag streams downwind');
+  const hit = createChallenge('flag-approach');
+  Object.assign(hit.state, hit.target);
+  assessChallenge(hit, 0.1);
+  assert.equal(hit.reason, 'The hull touched the flag.');
 });
 
 test('wind observations need a fresh continuous hold and explicit action, not cached displays', () => {

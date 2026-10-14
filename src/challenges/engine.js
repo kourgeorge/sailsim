@@ -14,6 +14,7 @@ import { createSailingTrack, captureSailingTrack } from '../navigation/sailing-t
 import { markEntryFraction } from '../racing/race.js';
 import { getChallenge } from './catalog.js';
 import { windLabReadings, windLabRequirements } from './apparent-wind.js';
+import { flagGeometry, flagRequirements, judgeFlagPass } from './flag-approach.js';
 
 const RAD = Math.PI / 180;
 const FIXED_STEP = 1 / 30;
@@ -40,6 +41,7 @@ export function createChallenge(id) {
     observations: [],
     hold: 0,
     hints: [],
+    misses: [],
     tacks: 0,
     tackSide: Math.sign(angleDifference(state.heading, state.waterWindDirection)),
     previousAngle: angleDifference(state.heading, state.waterWindDirection),
@@ -51,6 +53,7 @@ export function createChallenge(id) {
     score: 0,
     medal: null,
   };
+  if (definition.kind === 'flag') run.flagForward = flagGeometry(state, run.target).forward;
   return run;
 }
 
@@ -95,6 +98,7 @@ export function challengeRequirements(run) {
   const s = run.state,
     d = run.definition;
   if (d.kind === 'wind-lab') return windLabRequirements(run);
+  if (d.kind === 'flag') return flagRequirements(run);
   const range = distance(s, run.target);
   if (d.kind === 'rescue') {
     const geometry = rescueGeometry(run);
@@ -226,7 +230,10 @@ export function challengeScore(run) {
       : run.elapsed <= silverTime
         ? 85 - (20 * (run.elapsed - goldTime)) / (silverTime - goldTime)
         : 65 - (25 * (run.elapsed - silverTime)) / (timeLimit - silverTime);
-  return Math.max(1, Math.min(100, Math.round(timeScore - run.hints.length * 10)));
+  return Math.max(
+    1,
+    Math.min(100, Math.round(timeScore - run.hints.length * 10 - run.misses.length * 5)),
+  );
 }
 
 export function finishChallenge(run, reason = 'Challenge ended', completed = false) {
@@ -290,6 +297,12 @@ export function assessChallenge(run, dt, previous = run.state) {
       : 0;
     return;
   }
+  if (d.kind === 'flag') {
+    const result = judgeFlagPass(run);
+    if (result === 'hit') return finishChallenge(run, 'The hull touched the flag.');
+    if (result === 'pass' && ++run.stage === d.calls.length) finishChallenge(run, '', true);
+    return;
+  }
   if (d.kind === 'tack') {
     countTacks(run, dt);
     if (run.status !== 'running') return;
@@ -349,6 +362,10 @@ export function challengeChart(run) {
     cues: {
       target: revealed && d.kind !== 'wind-lab' ? run.target : null,
       rescue: d.kind === 'rescue' ? run.target : null,
+      flag:
+        d.kind === 'flag'
+          ? { ...run.target, heading: (d.conditions.windDirection + 180) % 360 }
+          : null,
       alternatives: d.alternatives,
       route:
         d.kind === 'treasure'

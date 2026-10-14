@@ -57,6 +57,14 @@ export function createTrainingCues(scene) {
   rescuePole.position.set(.85, 1.3, .1);
   const rescueFlag = add(rescue, new THREE.PlaneGeometry(.8, .48), rescueOrange);
   rescueFlag.position.set(1.2, 2.25, .1);
+  // A tall pole with a flag streaming downwind; the cue heading is the downwind bearing.
+  const flagMark = new THREE.Group(); group.add(flagMark);
+  flat(flagMark, new THREE.RingGeometry(.35, .6, 24), rescueOrange);
+  const flagPole = add(flagMark, new THREE.CylinderGeometry(.05, .05, 3.6, 6), rescueWhite);
+  flagPole.position.y = 1.8;
+  const flagCloth = add(flagMark, new THREE.PlaneGeometry(1.1, .7), rescueOrange);
+  flagCloth.rotation.y = Math.PI / 2;
+  flagCloth.position.set(0, 3.2, -.55);
   const corridor = new THREE.Group();group.add(corridor);
   const boundaries = [-1, 1].map(() => flat(corridor, new THREE.PlaneGeometry(1, 1), faint));
   const trailGeometry = new THREE.BufferGeometry();
@@ -80,6 +88,7 @@ export function createTrainingCues(scene) {
       group.visible = Boolean(cues);
       if (!cues) { trailGeometry.setDrawRange(0, 0); return; }
       place(rescue, cues.rescue);
+      place(flagMark, cues.flag);
       if (place(gate, cues.gate)) {
         const width = length(cues.gate.width, 18, 2, 500);
         posts.forEach((post, i) => { post.position.x = (i ? 1 : -1) * width / 2; });

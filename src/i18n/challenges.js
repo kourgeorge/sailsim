@@ -1,7 +1,9 @@
 import { apparentWindRows } from './apparent-wind.js';
+import { flagApproachRows } from './flag-approach.js';
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
   ...apparentWindRows,
+  ...flagApproachRows,
   'Find your next adventure.': [
     'Encuentra tu próxima aventura.',
     'Trouvez votre prochaine aventure.',
