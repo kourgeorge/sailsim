@@ -2522,6 +2522,100 @@
         }
       ],
       "transfer": "Para decisiones reales, usa previsiones y mapas marítimos oficiales. Estos ejemplos son simplificados y ficticios; el tiempo real varía."
+    },
+    "sail-58": {
+      "title": "Equipo de seguridad a bordo",
+      "concepts": [
+        "El equipo de seguridad obligatorio depende del tamaño del barco y de lo lejos de la costa que navegue. La lista de tu barco está en su certificado de navegabilidad: comprueba el equipo con ella antes de cada temporada y antes de una travesía más larga.",
+        "Un arnés de seguridad te sujeta al barco para que no caigas al agua con mal tiempo. Engánchate antes de salir de la bañera, a puntos fuertes o a las líneas de vida: cabos o cintas resistentes que van de proa a popa por ambos pasillos laterales. Mantén corta la línea del arnés y engánchate en la banda de barlovento cuando puedas.",
+        "Cada tipo de bengala tiene su propia función a bordo. Un cohete rojo con paracaídas sube unos 300 m y arde unos 40 segundos, así que se ve desde lejos de día o de noche. Una bengala roja de mano muestra tu posición exacta a alguien cercano y sigue ardiendo aunque caiga al agua. El humo naranja solo sirve de día y además indica a un helicóptero la dirección del viento. Sustituye las bengalas antes de su fecha de caducidad, guárdalas secas y a mano, y sostén las bengalas de mano por fuera de la banda de sotavento.",
+        "Elige el extintor según el tipo de fuego. La espuma sofoca los líquidos que arden, como el combustible y el aceite, porque los aísla del aire; el extintor de polvo sirve para la mayoría de los fuegos, incluidos los de combustible y los eléctricos; el de dióxido de carbono (CO2) es adecuado para fuegos eléctricos y en el compartimento del motor; una manta ignífuga sofoca el fuego de una sartén en la cocina. Nunca uses agua sobre combustible ardiendo ni sobre equipos eléctricos con tensión. Sabe dónde está cada extintor y revisa su manómetro y su fecha de revisión.",
+        "Al repostar, para el motor, apaga cualquier llama y cierra las escotillas. Desconecta también la bomba de achique automática para que no eche al mar el combustible derramado. Ten preparados trapos absorbentes, comprueba que el respiradero del tanque está libre y vigila el indicador para que el tanque no rebose. Si una vía de agua grave supera a las bombas de achique, la bomba de agua salada de refrigeración del motor también puede achicar la sentina, en barcos preparados para cambiar su toma."
+      ],
+      "observe": [
+        "Busca el certificado de navegabilidad de tu barco y compara el equipo de seguridad que figura en él con lo que hay a bordo.",
+        "Lee las instrucciones impresas en cada bengala y localiza su fecha de caducidad."
+      ],
+      "mistake": "Llevar bengalas caducadas o un extintor inadecuado, o enganchar el arnés a un herraje débil como un guardamancebo.",
+      "quiz": [
+        {
+          "prompt": "¿Para qué sirve un arnés de seguridad?",
+          "options": [
+            "Para evitar que la tripulación caiga al agua con mal tiempo",
+            "Para sujetar el equipo en cubierta",
+            "Para mantener la botavara en su sitio"
+          ],
+          "explanation": "Enganchado a puntos fuertes o a las líneas de vida, el arnés te mantiene unido al barco."
+        },
+        {
+          "prompt": "¿Cuándo puedes usar un cohete rojo con paracaídas?",
+          "options": [
+            "De día y de noche",
+            "Solo de noche",
+            "Solo de día"
+          ],
+          "explanation": "Sube muy alto y arde con mucha intensidad, así que se ve desde lejos a cualquier hora del día."
+        },
+        {
+          "prompt": "¿Para qué tipo de fuego sirve principalmente la espuma?",
+          "options": [
+            "Líquidos que arden, como el combustible y el aceite",
+            "Equipos eléctricos con tensión",
+            "Cualquier tipo de fuego"
+          ],
+          "explanation": "La espuma cubre el líquido que arde y lo aísla del aire. Usa polvo o CO2 en los fuegos eléctricos."
+        }
+      ],
+      "transfer": "Aprende el equipo de tu propio barco con un instructor: ajústate el arnés, lee las instrucciones de las bengalas, localiza los extintores y haz un curso de supervivencia en el mar con una balsa salvavidas real.",
+      "localNotes": [
+        "El temario israelí de la licencia de patrón exige, por ejemplo, una balsa salvavidas en un yate privado que navegue a 15 NM de la costa, al menos 4 cohetes rojos con paracaídas y una manta ignífuga donde se cocine con llama. El certificado de navegabilidad de tu barco da la lista exacta; consulta la normativa israelí vigente."
+      ]
+    },
+    "sail-59": {
+      "title": "Balsa salvavidas y abandono del barco",
+      "concepts": [
+        "Abandona el barco solo cuando quedarse a bordo sea claramente más peligroso. Por ejemplo, cuando se hunde o arde sin control. Antes de irte, envía una llamada de socorro, ponte el chaleco salvavidas y ropa de abrigo, y coge la bolsa de abandono: agua, un VHF portátil, una radiobaliza, bengalas y pastillas contra el mareo. Si puedes, sube directamente a la balsa en lugar de saltar al agua.",
+        "Estiba la balsa salvavidas en cubierta o en el púlpito de popa, en su soporte, lista para lanzarla rápido. Su boza, el cabo que la une al barco, debe estar firme a un punto fuerte. Una zafa hidrostática libera la balsa automáticamente si el barco se hunde: a unos pocos metros de profundidad se suelta, la balsa sube a la superficie y la boza tira de ella y la abre.",
+        "Para lanzarla, comprueba que la boza está atada al barco, tira la balsa por la banda de sotavento y saca la boza. Su longitud total, impresa en el contenedor, termina en un tirón que dispara la botella de gas e infla la balsa. Cuando la balsa está llena, sus válvulas de alivio silban al salir el gas sobrante. Mantenla atada al costado mientras sube la tripulación.",
+        "Si la balsa se infla boca abajo, un nadador se sube a la botella de gas de su fondo. Agarra la cinta de adrizamiento y se echa hacia atrás, dando la vuelta a la balsa. Hazlo desde el lado de sotavento, para que el viento ayude a voltear la balsa hacia ti.",
+        "Cuando estéis todos dentro, corta la boza con el cuchillo de seguridad de la balsa. Aléjate remando del barco que se hunde y larga el ancla de capa de la balsa para quedarte cerca de la posición que comunicaste y estabilizar la balsa. Toma pastillas contra el mareo enseguida, porque los vómitos hacen perder agua del cuerpo. Cierra la capota, achica, mantente abrigado y vigila. Raciona el agua y guarda las bengalas para cuando veas un barco o una aeronave. La balsa lleva bengalas, un cabo de rescate flotante, un achicador, un kit de reparación y un manual de supervivencia; el respondedor de radar (SART) es un elemento aparte para la bolsa de abandono.",
+        "Un ancla de capa es un gran cono o paracaídas que se larga con un cabo largo. Desde la proa de un barco o una balsa mantiene la proa al viento y a las olas y reduce mucho la deriva; en un temporal de supervivencia, sin velas, evita que el yate quede atravesado a la mar. Un drogue es más pequeño y se remolca por la popa: frena al barco que corre delante de olas grandes para que no surfee, guiñe y atraviese."
+      ],
+      "observe": [
+        "Localiza dónde está estibada la balsa salvavidas de tu barco y lee su contenedor: longitud de la boza, fecha de revisión y zafa hidrostática.",
+        "Comprueba qué hay en la bolsa de abandono y quién es responsable de cogerla."
+      ],
+      "mistake": "Saltar al agua antes de que la balsa esté lista, u olvidar atar la boza antes de tirar la balsa por la borda.",
+      "quiz": [
+        {
+          "prompt": "¿Qué hace la zafa hidrostática de una balsa salvavidas?",
+          "options": [
+            "Libera la balsa automáticamente si el barco se hunde",
+            "Hace sonar una alarma en caso de socorro",
+            "Mantiene la balsa bloqueada hasta su revisión"
+          ],
+          "explanation": "A unos pocos metros de profundidad suelta la balsa para que suba a la superficie y se infle."
+        },
+        {
+          "prompt": "La balsa se ha inflado boca abajo. ¿Cómo se adriza?",
+          "options": [
+            "Un nadador se pone de pie sobre la botella de gas, agarra la cinta de adrizamiento y se echa hacia atrás",
+            "Desinflarla y volver a inflarla",
+            "No se puede usar; hay que lanzar otra balsa"
+          ],
+          "explanation": "La cinta de adrizamiento del fondo permite que una sola persona ponga la balsa derecha, mejor desde el lado de sotavento."
+        },
+        {
+          "prompt": "Todos están en la balsa y lejos del barco. ¿Qué haces primero?",
+          "options": [
+            "Tomar pastillas contra el mareo",
+            "Disparar todas las bengalas para tranquilizar a la tripulación",
+            "Comerse las raciones de comida"
+          ],
+          "explanation": "El mareo deshidrata rápidamente a las personas en una balsa. Guarda las bengalas para cuando haya un barco o una aeronave a la vista."
+        }
+      ],
+      "transfer": "Aprende el equipo de tu propio barco con un instructor: ajústate el arnés, lee las instrucciones de las bengalas, localiza los extintores y haz un curso de supervivencia en el mar con una balsa salvavidas real."
     }
   }
 }

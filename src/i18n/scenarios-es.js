@@ -2742,4 +2742,189 @@ export default {
       }
     }
   },
+  "decision-sail-58": {
+    "title": "Revisa el equipo de seguridad",
+    "brief": "Revisa el equipo de seguridad antes de una salida costera, elige la bengala adecuada y combate un incendio con el extintor correcto.",
+    "limitations": "Esto evalúa decisiones a partir de informes proporcionados. No prueba equipos reales, ni el disparo de bengalas ni la extinción de incendios.",
+    "stages": {
+      "inspect": {
+        "title": "Revisa el equipo de seguridad",
+        "brief": "Revisas el equipo antes de una salida de un día a lo largo de la costa.",
+        "goal": "Elige lo que hay que arreglar antes de salir.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "flares": {
+            "label": "Caja de bengalas",
+            "text": "Dos cohetes rojos con paracaídas caducaron el año pasado; las bengalas de mano y el humo naranja están en fecha."
+          },
+          "fire": {
+            "label": "Extintores",
+            "text": "El manómetro de un extintor de polvo marca en rojo; el del otro marca en verde."
+          },
+          "harness": {
+            "label": "Arneses",
+            "text": "Hay un arnés para cada uno de los cuatro tripulantes, y las líneas de vida están montadas."
+          }
+        },
+        "fields": {
+          "fix": {
+            "label": "Arreglar antes de salir",
+            "options": {
+              "flares": "Sustituir los cohetes con paracaídas caducados",
+              "extinguisher": "Sustituir o revisar el extintor que marca en rojo",
+              "harness": "Comprar más arneses",
+              "ignore": "Dejarlo como está; solo es una salida de un día"
+            }
+          }
+        }
+      },
+      "flare": {
+        "title": "Elige la bengala adecuada",
+        "brief": "Más tarde, el motor ha fallado y necesitas ayuda.",
+        "goal": "Relaciona cada situación con la señal adecuada.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "ship": {
+            "label": "De noche",
+            "text": "Un barco está a unas 6 NM y no ha respondido por radio."
+          },
+          "helicopter": {
+            "label": "De día",
+            "text": "Un helicóptero de rescate te está buscando justo encima."
+          }
+        },
+        "fields": {
+          "night": {
+            "label": "De noche, barco a 6 NM",
+            "options": {
+              "rocket": "Cohete rojo con paracaídas",
+              "smoke": "Humo naranja",
+              "hand": "Nada todavía; esperar a que se acerque"
+            }
+          },
+          "day": {
+            "label": "De día, helicóptero encima",
+            "options": {
+              "smoke": "Humo naranja, que además indica el viento",
+              "rocket": "Cohete rojo con paracaídas disparado directamente hacia él",
+              "none": "Ninguna señal; ya te ha visto"
+            }
+          }
+        }
+      },
+      "fire": {
+        "title": "Combate un incendio en el motor",
+        "brief": "Sale humo del compartimento del motor.",
+        "goal": "Elige el extintor y las acciones.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "source": {
+            "label": "El fuego",
+            "text": "Arde gasóleo en el compartimento del motor."
+          }
+        },
+        "fields": {
+          "agent": {
+            "label": "¿Qué extintor?",
+            "options": {
+              "powder": "Polvo, o espuma, por una abertura pequeña",
+              "water": "Un cubo de agua",
+              "open": "Abrir del todo la tapa para ver mejor primero"
+            }
+          },
+          "actions": {
+            "label": "Además",
+            "options": {
+              "engine": "Parar el motor",
+              "fuel": "Cortar el combustible",
+              "wind": "Girar el barco para que el humo se aleje de la tripulación",
+              "hatches": "Abrir todas las escotillas para que entre aire fresco"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-59": {
+    "title": "Abandono del barco",
+    "brief": "Prepárate para abandonar un yate que se hunde, adriza una balsa volcada y realiza las primeras acciones a bordo de ella.",
+    "limitations": "Esto solo evalúa decisiones a partir de informes proporcionados. Practica con una balsa salvavidas real en un curso de supervivencia en el mar.",
+    "stages": {
+      "prepare": {
+        "title": "Prepárate para abandonar",
+        "brief": "El agua sube más rápido de lo que las bombas pueden achicar y la tripulación no encuentra la vía de agua.",
+        "goal": "Ordena las acciones.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "status": {
+            "label": "Situación",
+            "text": "El yate se hundirá en unos veinte minutos. Hace mal tiempo, pero la mar no rompe."
+          }
+        },
+        "fields": {
+          "order": {
+            "label": "Orden de las acciones",
+            "options": {
+              "mayday": "Enviar un MAYDAY y una alerta de socorro DSC",
+              "dress": "Ponerse el chaleco salvavidas y ropa de abrigo",
+              "bag": "Coger la bolsa de abandono",
+              "launch": "Atar la boza, lanzar la balsa y subir a ella"
+            }
+          }
+        }
+      },
+      "right": {
+        "title": "Adriza la balsa",
+        "brief": "La balsa se ha inflado boca abajo junto al costado.",
+        "goal": "Elige cómo adrizarla.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "raft": {
+            "label": "La balsa",
+            "text": "Sigue atada al yate por su boza. La botella de gas y la cinta de adrizamiento están en su fondo, ahora hacia arriba."
+          }
+        },
+        "fields": {
+          "method": {
+            "label": "¿Cómo la adrizas?",
+            "options": {
+              "strap": "Un nadador se pone de pie sobre la botella de gas, agarra la cinta de adrizamiento y se echa hacia atrás, desde el lado de sotavento",
+              "deflate": "Desinflarla y volver a inflarla",
+              "abandon": "Dejarla y esperar otra balsa"
+            }
+          }
+        }
+      },
+      "aboard": {
+        "title": "Primeras acciones en la balsa",
+        "brief": "Todos están a bordo de la balsa.",
+        "goal": "Elige las primeras acciones.",
+        "success": "Etapa superada. El plan confirmado se mantiene en la siguiente etapa.",
+        "retry": "Revisa la información y corrige la tarea resaltada. Esta etapa aún no está superada.",
+        "facts": {
+          "now": {
+            "label": "Ahora",
+            "text": "La balsa sigue atada al yate que se hunde. Ya se ha pedido rescate; todavía no se ve ningún barco."
+          }
+        },
+        "fields": {
+          "actions": {
+            "label": "Hacer ahora",
+            "options": {
+              "cut": "Cortar la boza y alejarse del yate",
+              "anchor": "Largar el ancla de capa para quedarse cerca de la posición comunicada",
+              "tablets": "Dar a todos pastillas contra el mareo",
+              "flares": "Disparar ahora todas las bengalas",
+              "seawater": "Beber agua de mar para ahorrar agua dulce"
+            }
+          }
+        }
+      }
+    }
+  },
 };

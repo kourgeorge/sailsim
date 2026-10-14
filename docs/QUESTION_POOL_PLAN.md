@@ -177,8 +177,8 @@ The 134 questions still not covered need topics the course did not teach. Decisi
 | --- | --- | --- | --- |
 | A. Groundwork | Placement, numbering, levels, cross-reference tokens | — | Done |
 | B. Weather | Read a weather chart; Fronts and clouds; Wind and waves; Eastern Mediterranean weather (`sail-54`–`57`) | "Stay in control", after "Choose a weather limit" | Done |
-| C. Safety equipment | Safety gear aboard; Life raft and abandoning ship | "Before you leave", after "Safety before speed" | Next |
-| D. Ropes and knots | Ropes, knots and pulleys | After "Lines, winches, and loads" | Planned |
+| C. Safety equipment | Safety gear aboard; Life raft and abandoning ship (`sail-58`, `59`) | "Before you leave", after "Safety before speed" | Done |
+| D. Ropes and knots | Ropes, knots and pulleys | After "Lines, winches, and loads" | Next |
 | E. Signal flags | Signal flags and flag etiquette | "Share the water", after "Lights, marks, and signals" | Planned |
 | F. Gear failures and towing | Steering failure, jammed furler, towing, drogues | "Respond and review" | Planned |
 | G. Israeli rules | To decide: a full lesson, or more "Local rules: Israel" notes | — | Open question |

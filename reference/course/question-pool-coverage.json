@@ -528,9 +528,11 @@
   "answer": "c",
   "answer_text": "Life raft.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Required equipment by boat length and distance, such as a life raft, is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israel note: life raft for a private yacht sailing 15 NM from shore.",
   "needs_picture": false
  },
  {
@@ -550,9 +552,11 @@
   "answer": "a",
   "answer_text": "A fire fighting blanket.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Fire blankets and galley fire equipment are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israel note: fire blanket where there is open-flame cooking.",
   "needs_picture": false
  },
  {
@@ -611,9 +615,11 @@
   "answer": "c",
   "answer_text": "A vessel must carry at least 4 parachute rockets.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pyrotechnics and parachute rockets are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israel note: at least 4 red parachute rockets.",
   "needs_picture": false
  },
  {
@@ -655,9 +661,11 @@
   "answer": "c",
   "answer_text": "A red hand torch will continue to burn if it has fallen into the water.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Hand flares and their properties are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "A red hand flare keeps burning even if dropped in water.",
   "needs_picture": false
  },
  {
@@ -666,9 +674,11 @@
   "answer": "b",
   "answer_text": "A vessel must carry at least 4 parachute rockets.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pyrotechnic requirements for national trips are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Israel note: at least 4 red parachute rockets.",
   "needs_picture": false
  },
  {
@@ -937,9 +947,11 @@
   "answer": "a",
   "answer_text": "Both during the day and at night.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Parachute rockets are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Parachute rockets are for day or night.",
   "needs_picture": false
  },
  {
@@ -1037,9 +1049,11 @@
   "answer": "c",
   "answer_text": "You send a swimmer who will stand on the gas container, grab the rope intended for it, and right the life raft.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life rafts and righting an upside-down raft are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "A swimmer stands on the gas bottle and pulls the righting strap.",
   "needs_picture": false
  },
  {
@@ -1048,9 +1062,11 @@
   "answer": "a",
   "answer_text": "Slow the vessel down when coming off high waves.",
   "topic": "boat_handling_engine",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Drogues and sea anchors are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "A drogue astern slows a boat running down waves.",
   "needs_picture": false
  },
  {
@@ -1085,9 +1101,11 @@
   "answer": "c",
   "answer_text": "Safety of the crew in inclement weather to prevent going overboard.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Safety harnesses are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "The harness keeps the crew from going overboard in rough weather.",
   "needs_picture": false
  },
  {
@@ -1135,9 +1153,11 @@
   "answer": "b",
   "answer_text": "Have the survivors take a pill against sea sickness.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life raft procedures after abandoning ship are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "Take seasickness tablets first once aboard the raft.",
   "needs_picture": false
  },
  {
@@ -1159,9 +1179,11 @@
   "answer": "c",
   "answer_text": "Releases the life raft automatically at a certain depth.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life rafts and hydrostatic releases are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "The hydrostatic release frees the raft at a depth of a few metres.",
   "needs_picture": false
  },
  {
@@ -1268,9 +1290,11 @@
   "answer": "a",
   "answer_text": "Life rope is a rope tied from bow to stern and used for attaching the safety harness while working on deck in stormy weather.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Jacklines and safety harnesses are not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Jacklines run bow to stern for clipping the harness.",
   "needs_picture": false
  },
  {
@@ -1355,9 +1379,11 @@
   "answer": "d",
   "answer_text": "On the bottom of the raft is a strap for righting the raft.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life raft features are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "The righting strap is on the bottom of the raft.",
   "needs_picture": false
  },
  {
@@ -1366,9 +1392,11 @@
   "answer": "b",
   "answer_text": "To prevent drifting and maintain the bow or stern of the boat to the wind and waves.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Sea anchors / drogues are not mentioned.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "A sea anchor holds the bow to wind and waves and reduces drift.",
   "needs_picture": false
  },
  {
@@ -1377,9 +1405,11 @@
   "answer": "c",
   "answer_text": "Leave the bilge pump switch on auto.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Refuelling safety is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Switch the automatic bilge pump off while refuelling.",
   "needs_picture": false
  },
  {
@@ -1895,9 +1925,11 @@
   "answer": "b",
   "answer_text": "Cast a floating anchor, to stabilize the boat facing the wind and waves.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Storm tactics with a sea anchor are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "In a survival storm a sea anchor keeps the boat end-on to the seas.",
   "needs_picture": false
  },
  {
@@ -2071,9 +2103,11 @@
   "answer": "c",
   "answer_text": "Tied on deck or on the stern railing and make sure the painter line is tied.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life raft stowage is not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "Stow the raft on deck or the stern rail with the painter tied.",
   "needs_picture": false
  },
  {
@@ -2937,9 +2971,11 @@
   "answer": "c",
   "answer_text": "A foam extinguisher is appropriate primarily for liquid fires.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Fire extinguisher types are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Foam is mainly for burning liquids.",
   "needs_picture": false
  },
  {
@@ -2961,9 +2997,11 @@
   "answer": "a",
   "answer_text": "Extinguishing a fire with foam is accomplished by separating the burning material from the oxygen in the air.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "How foam extinguishers work is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Foam cuts the burning liquid off from the air.",
   "needs_picture": false
  },
  {
@@ -3141,9 +3179,11 @@
   "answer": "b",
   "answer_text": "When the one-way valve begins to whistle.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life rafts are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "The relief valves whistle when the raft is full.",
   "needs_picture": false
  },
  {
@@ -3165,9 +3205,11 @@
   "answer": "d",
   "answer_text": "All the above statements are correct.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life raft painter is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "The painter ties the raft to the boat, fires the inflation and its length is on the canister.",
   "needs_picture": false
  },
  {
@@ -3358,9 +3400,11 @@
   "answer": "a",
   "answer_text": "In a life raft there will be at least one floating anchor.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life raft contents are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "The raft carries its own sea anchor.",
   "needs_picture": false
  },
  {
@@ -3406,9 +3450,11 @@
   "answer": "d",
   "answer_text": "In rough weather to secure the crew from going overboard.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Safety harnesses are not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "The harness keeps the crew from going overboard in rough weather.",
   "needs_picture": false
  },
  {
@@ -3469,9 +3515,11 @@
   "answer": "a",
   "answer_text": "The engine water pump.",
   "topic": "emergency_distress",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pumping out flooding with the engine water pump is not taught.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "The engine sea-water pump can pump the bilge in heavy flooding.",
   "needs_picture": false
  },
  {
@@ -3581,9 +3629,11 @@
   "answer": "d",
   "answer_text": "A red hand torch will continue to burn even after it has fallen into the water.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Pyrotechnics and hand flares are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "A red hand flare keeps burning even if dropped in water.",
   "needs_picture": false
  },
  {
@@ -3814,9 +3864,11 @@
   "answer": "c",
   "answer_text": "A portable S.A.R.T. device.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Life raft contents and SART are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-59"
+  ],
+  "note": "A SART is a separate grab-bag item, not raft equipment.",
   "needs_picture": false
  },
  {
@@ -4543,9 +4595,11 @@
   "answer": "a",
   "answer_text": "Both at day and night.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Parachute flares are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Parachute rockets are for day or night.",
   "needs_picture": false
  },
  {
@@ -4594,9 +4648,11 @@
   "answer": "c",
   "answer_text": "A foam extinguisher is appropriate for a liquids fire.",
   "topic": "safety_equipment",
-  "coverage": "not_covered",
-  "lessons": [],
-  "note": "Fire extinguisher types are not covered.",
+  "coverage": "covered",
+  "lessons": [
+   "sail-58"
+  ],
+  "note": "Foam is mainly for burning liquids.",
   "needs_picture": false
  },
  {

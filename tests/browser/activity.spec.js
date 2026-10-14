@@ -39,7 +39,7 @@ test('lesson briefing owns launch and displays the setup that will actually be a
   await selectLesson(page, positionOf('sail-09'));
   await page.locator('#practice-start').click();
   const briefing = page.locator('#practice-briefing');
-  await expect(briefing.locator('.practice-kind')).toContainText('Lesson 09');
+  await expect(briefing.locator('.practice-kind')).toContainText(`Lesson ${String(positionOf('sail-09') + 1).padStart(2, '0')}`);
   await expect(briefing.locator('h2')).toHaveText('Find a beam reach');
   const condition = (name) =>
     briefing

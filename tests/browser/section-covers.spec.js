@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { CHALLENGES } from '../../src/challenges/catalog.js';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 async function fallback(context) {
   await context.addInitScript(() => {
@@ -54,7 +57,7 @@ test(
     await page.goto('./');
     await home(page, 'learn');
     await page.locator('#cover-course').click();
-    await page.locator('[data-library-lesson="8"]').click();
+    await page.locator(`[data-library-lesson="${positionOf('sail-09')}"]`).click();
     await page.locator('#practice-start').click();
     await page.locator('#practice-launch').click();
     await expect(page.locator('#section-cover')).toBeHidden();
@@ -194,7 +197,7 @@ test('mobile covers and exit support six languages and 200% text', async ({ brow
     await home(page, 'challenge');
     await navigate(page, 'learn');
     await page.locator('#cover-course').click();
-    await page.locator('[data-library-lesson="8"]').click();
+    await page.locator(`[data-library-lesson="${positionOf('sail-09')}"]`).click();
     await page.locator('#practice-start').click();
     await page.locator('#practice-launch').click();
     await expect(page.locator('body')).toHaveAttribute('data-session', 'active');

@@ -2522,6 +2522,100 @@
         }
       ],
       "transfer": "Pour les vraies décisions, utilisez les bulletins et cartes météo marines officiels. Ces exemples sont simplifiés et fictifs ; la vraie météo varie."
+    },
+    "sail-58": {
+      "title": "L’équipement de sécurité à bord",
+      "concepts": [
+        "L’équipement de sécurité obligatoire dépend de la taille du bateau et de son éloignement de la côte. La liste propre à votre bateau figure sur son certificat de navigabilité : vérifiez l’équipement par rapport à cette liste avant chaque saison et avant une sortie plus longue.",
+        "Un harnais vous attache au bateau pour que vous ne puissiez pas passer par-dessus bord par gros temps. Attachez-vous avant de quitter le cockpit, à des points d’ancrage solides ou aux lignes de vie : des cordages ou des sangles solides tendus de l’avant à l’arrière le long des deux passavants. Gardez la longe courte et attachez-vous au vent quand c’est possible.",
+        "Chaque type de feu de détresse a son propre rôle et son moment d’emploi. Une fusée parachute rouge monte à environ 300 m et brûle environ 40 secondes : on la voit de loin, de jour comme de nuit. Un feu à main rouge indique votre position exacte à quelqu’un de proche et continue de brûler même s’il tombe à l’eau. Le fumigène orange ne sert que de jour et montre aussi à un hélicoptère la direction du vent. Remplacez les feux avant leur date de péremption, rangez-les au sec et à portée de main, et tenez les feux à main tendus au-dessus du bord sous le vent.",
+        "Choisissez toujours l’extincteur adapté au type de feu. La mousse étouffe les liquides en feu, comme le carburant et l’huile, en les privant d’air ; la poudre agit sur la plupart des feux, y compris ceux de carburant et d’origine électrique ; le dioxyde de carbone (CO2) convient aux feux électriques et aux feux de compartiment moteur ; une couverture anti-feu étouffe un feu de poêle dans la cuisine. N’utilisez jamais d’eau sur du carburant en feu ni sur un équipement électrique sous tension. Sachez où se trouve chaque extincteur et vérifiez son manomètre et sa date de révision.",
+        "Pendant le plein, arrêtez le moteur et éteignez toute flamme. Fermez les panneaux et coupez la pompe de cale automatique pour qu’elle ne rejette pas de carburant renversé à la mer. Gardez des chiffons absorbants prêts, vérifiez que l’évent du réservoir est dégagé et surveillez la jauge pour éviter un débordement. Si une forte voie d’eau dépasse les pompes de cale, la pompe à eau de mer de refroidissement du moteur peut aussi pomper la cale, sur les bateaux équipés pour basculer son aspiration."
+      ],
+      "observe": [
+        "Trouvez le certificat de navigabilité de votre bateau et comparez la liste d’équipement de sécurité avec ce qui est à bord.",
+        "Lisez le mode d’emploi imprimé sur chaque feu de détresse et trouvez sa date de péremption."
+      ],
+      "mistake": "Garder des feux de détresse périmés ou le mauvais extincteur, ou attacher un harnais à une ferrure fragile comme une filière.",
+      "quiz": [
+        {
+          "prompt": "À quoi sert un harnais ?",
+          "options": [
+            "Empêcher l’équipage de passer par-dessus bord par gros temps",
+            "Arrimer le matériel sur le pont",
+            "Maintenir la bôme en place"
+          ],
+          "explanation": "Attaché à des points solides ou aux lignes de vie, le harnais vous garde relié au bateau."
+        },
+        {
+          "prompt": "Quand peut-on utiliser une fusée parachute rouge ?",
+          "options": [
+            "De jour comme de nuit",
+            "Seulement la nuit",
+            "Seulement le jour"
+          ],
+          "explanation": "Elle monte haut et brûle avec éclat : on la voit de loin à toute heure."
+        },
+        {
+          "prompt": "À quel type de feu la mousse est-elle surtout destinée ?",
+          "options": [
+            "Les liquides en feu, comme le carburant et l’huile",
+            "Les équipements électriques sous tension",
+            "Tous les types de feu"
+          ],
+          "explanation": "La mousse recouvre le liquide en feu et le prive d’air. Utilisez la poudre ou le CO2 sur les feux électriques."
+        }
+      ],
+      "transfer": "Découvrez l’équipement de votre propre bateau avec un moniteur : ajustez le harnais, lisez le mode d’emploi des feux de détresse, repérez les extincteurs et suivez un stage de survie en mer avec un vrai radeau de survie.",
+      "localNotes": [
+        "Le programme du permis de conduite de bateau israélien prévoit par exemple un radeau de survie sur un voilier de plaisance naviguant à 15 NM de la côte, au moins 4 fusées parachutes rouges et une couverture anti-feu là où l’on cuisine à flamme nue. Le certificat de navigabilité de votre bateau donne la liste exacte ; vérifiez la réglementation israélienne en vigueur."
+      ]
+    },
+    "sail-59": {
+      "title": "Le radeau de survie et l’abandon du navire",
+      "concepts": [
+        "N’abandonnez le bateau que lorsque rester à bord est nettement plus dangereux, par exemple s’il coule ou brûle sans contrôle. Avant de partir, lancez un appel de détresse, enfilez gilets de sauvetage et vêtements chauds, et prenez le sac de survie : eau, VHF portable, balise de détresse, feux de détresse et comprimés contre le mal de mer. Montez directement dans le radeau si vous le pouvez, plutôt que de sauter à l’eau.",
+        "Rangez le radeau de survie dans son berceau, sur le pont ou le balcon arrière. Il doit être prêt à être mis à l’eau rapidement, avec sa bosse, le cordage qui le relie au bateau, frappée sur un point solide. Un largueur hydrostatique libère automatiquement le radeau si le bateau coule : à quelques mètres de profondeur, il se déclenche, le radeau remonte et la bosse le fait s’ouvrir.",
+        "Pour mettre le radeau à l’eau, vérifiez d’abord que la bosse est attachée au bateau. Jetez ensuite le radeau par-dessus bord du côté sous le vent et tirez sur la bosse. Une fois toute sa longueur sortie (elle est inscrite sur le conteneur), une dernière traction déclenche la bouteille de gaz et gonfle le radeau. Une fois le radeau plein, ses soupapes de surpression sifflent en laissant échapper le gaz en trop. Gardez-le amarré le long du bord pendant que l’équipage embarque.",
+        "Un radeau qui se gonfle à l’envers peut être redressé par une seule personne. Un nageur monte sur la bouteille de gaz fixée sous le fond, saisit la sangle de redressement et se penche en arrière pour faire basculer le radeau. Faites-le du côté sous le vent, pour que le vent aide le radeau à se retourner vers vous.",
+        "Une fois tout le monde à bord, coupez la bosse avec le couteau de sécurité du radeau. Éloignez-vous à la pagaie du bateau qui coule et mouillez l’ancre flottante du radeau pour rester près de la position signalée et stabiliser le radeau. Prenez tout de suite des comprimés contre le mal de mer, car vomir fait perdre l’eau du corps. Fermez le taud, écopez, restez au chaud et faites le guet. Rationnez l’eau et gardez les feux de détresse pour le moment où vous voyez un navire ou un aéronef. Le radeau contient des feux de détresse, une ligne de sauvetage flottante, une écope, un nécessaire de réparation et un manuel de survie ; un transpondeur radar (SART) est un équipement à part, à mettre dans le sac de survie.",
+        "Une ancre flottante est un grand cône ou parachute filé au bout d’une longue ligne. Depuis l’avant d’un bateau ou d’un radeau, elle maintient l’avant face au vent et aux vagues et réduit fortement la dérive ; dans une tempête de survie sans voile restante, elle empêche un voilier de rester travers à la mer. Un traînard est plus petit et se remorque à l’arrière : il ralentit un bateau qui fuit devant de grosses vagues, pour qu’il ne parte pas au surf, ne fasse pas d’embardée et ne parte pas au lof."
+      ],
+      "observe": [
+        "Trouvez où est rangé le radeau de survie de votre bateau et lisez son conteneur : longueur de la bosse, date de révision et largueur hydrostatique.",
+        "Vérifiez le contenu du sac de survie et qui est chargé de le prendre."
+      ],
+      "mistake": "Sauter à l’eau avant que le radeau soit prêt, ou oublier d’attacher la bosse avant de jeter le radeau par-dessus bord.",
+      "quiz": [
+        {
+          "prompt": "À quoi sert le largueur hydrostatique d’un radeau de survie ?",
+          "options": [
+            "Libérer automatiquement le radeau si le bateau coule",
+            "Déclencher une alarme en cas de détresse",
+            "Garder le radeau verrouillé jusqu’à sa révision"
+          ],
+          "explanation": "À quelques mètres de profondeur, il libère le radeau, qui remonte et se gonfle."
+        },
+        {
+          "prompt": "Le radeau s’est gonflé à l’envers. Comment le redresser ?",
+          "options": [
+            "Un nageur monte sur la bouteille de gaz, tient la sangle de redressement et se penche en arrière",
+            "Le dégonfler et le regonfler",
+            "Il est inutilisable ; mettre à l’eau un autre radeau"
+          ],
+          "explanation": "La sangle de redressement sous le fond permet à une seule personne de remettre le radeau à l’endroit, de préférence du côté sous le vent."
+        },
+        {
+          "prompt": "Tout le monde est dans le radeau, à l’écart du bateau. Que faites-vous en premier ?",
+          "options": [
+            "Prendre des comprimés contre le mal de mer",
+            "Tirer tous les feux de détresse pour rassurer l’équipage",
+            "Manger les rations de nourriture"
+          ],
+          "explanation": "Le mal de mer déshydrate vite les occupants d’un radeau. Gardez les feux de détresse pour le moment où un navire ou un aéronef est en vue."
+        }
+      ],
+      "transfer": "Découvrez l’équipement de votre propre bateau avec un moniteur : ajustez le harnais, lisez le mode d’emploi des feux de détresse, repérez les extincteurs et suivez un stage de survie en mer avec un vrai radeau de survie."
     }
   }
 }

@@ -19,6 +19,7 @@ A question is **covered** when the course states the fact needed to pick the rig
 | 2026-10-13, after batch 4 (docking and anchoring) | 196 (54%) | 32 (9%) | 134 (37%) |
 | 2026-10-13, after batch 5 (sail handling and weather decisions) | 216 (60%) | 12 (3%) | 134 (37%) |
 | 2026-10-14, after the weather lessons | 255 (70%) | 29 (8%) | 78 (22%) |
+| 2026-10-14, after the safety-equipment lessons | 283 (78%) | 29 (8%) | 50 (14%) |
 
 ## By topic
 
@@ -28,9 +29,9 @@ A question is **covered** when the course states the fact needed to pick the rig
 | Lights and day shapes | 60 | 53 | 4 | 3 | 218, 345, 354 |
 | Right-of-way rules | 44 | 42 | 2 | 0 |  |
 | Sailing theory and trim | 40 | 38 | 1 | 1 | 285 |
-| Emergencies and distress | 28 | 23 | 0 | 5 | 83, 91, 110, 151, 272 |
-| Safety equipment | 25 | 3 | 0 | 22 | 41, 43, 48, 52, 53, 75, 87, 93, 102, 109, 111, 165, 230, 232, 246, 248, 263, 267, 281, 299, 355, 359 |
-| Boat handling under engine | 20 | 10 | 2 | 8 | 79, 84, 100, 146, 149, 159, 161, 183 |
+| Emergencies and distress | 28 | 28 | 0 | 0 |  |
+| Safety equipment | 25 | 25 | 0 | 0 |  |
+| Boat handling under engine | 20 | 11 | 2 | 7 | 79, 100, 146, 149, 159, 161, 183 |
 | Anchoring and mooring | 18 | 17 | 0 | 1 | 105 |
 | Sound signals | 16 | 16 | 0 | 0 |  |
 | Israeli law and regulations | 15 | 0 | 1 | 14 | 37, 38, 39, 40, 42, 45, 49, 51, 152, 252, 301, 312, 352, 353 |
@@ -44,7 +45,6 @@ A question is **covered** when the course states the fact needed to pick the rig
 ## Biggest remaining gaps
 
 1. **Weather (mostly done):** 16 remaining questions depend on chart pictures that are not in the PDF.
-2. **Safety equipment:** life rafts and their automatic release, fire extinguisher types, flare types and storage, harnesses, sea anchors.
 3. **Israeli law and regulations** and **ropes and knots:** not taught at all.
 4. **Signal flags** other than A (B, O, Q, quarantine/health, flags for entering a foreign port).
 

@@ -5,6 +5,7 @@ import {colregsModule,colregsLessons} from './colregs-course.js';
 import {catamaranModule,catamaranLessons} from './catamaran-course.js';
 import {nightModule,nightLessons} from './night-course.js';
 import {weatherLessons} from './weather-course.js';
+import {safetyLessons} from './safety-course.js';
 import {lessonLabs,quizLabs} from './lesson-labs.js';
 // A module groups related lessons. Each lesson contains teaching pages, questions,
 // and its assessed training. Practical assessments only use simulated capabilities.
@@ -341,7 +342,7 @@ modules.push(catamaranModule);
 lessons.push(...catamaranLessons);
 modules.push(nightModule);
 lessons.push(...nightLessons);
-lessons.push(...weatherLessons.map(lesson=>({...lesson,sub:modules.find(m=>m.id===lesson.module).outcome})));
+lessons.push(...[...weatherLessons,...safetyLessons].map(lesson=>({...lesson,sub:modules.find(m=>m.id===lesson.module).outcome})));
 for(const scenario of decisionScenarios){const lesson=lessons.find(l=>l.id===scenario.lessonId);if(lesson){lesson.decisionScenarioId=scenario.id;lesson.decisionObjectiveIds=scenario.stages.map(stage=>stage.id);}}
 // Supplemental pages retain the original general-purpose lesson diagrams.
 for(const [id,pages] of [['sail-04',[3,4]],['sail-05',[3]]]){const lesson=lessons.find(l=>l.id===id);lesson.conceptFigures=Object.fromEntries(pages.map(i=>[i,'app-compass']));lesson.quiz[2].figure='app-compass';}
@@ -367,7 +368,7 @@ lessons.find(l=>l.id==='sail-30').minutes=10;
 lessons.find(l=>l.id==='sail-31').minutes=12;
 // Lesson ids are stable record keys. A lesson added later is placed after the lesson
 // it builds on; numbers and the mastery chain then follow course order.
-const PLACEMENT={'sail-54':'sail-20','sail-55':'sail-54','sail-56':'sail-55','sail-57':'sail-56'};
+const PLACEMENT={'sail-54':'sail-20','sail-55':'sail-54','sail-56':'sail-55','sail-57':'sail-56','sail-58':'sail-01','sail-59':'sail-58'};
 for(const [id,after] of Object.entries(PLACEMENT)){const from=lessons.findIndex(l=>l.id===id),[moved]=lessons.splice(from,1);lessons.splice(lessons.findIndex(l=>l.id===after)+1,0,moved);}
 lessons.forEach((lesson,i)=>{lesson.number=i+1;lesson.prerequisite=i?lessons[i-1].id:null;});
 for(const lesson of lessons){if(lessonLabs[lesson.id])lesson.conceptLabs=lessonLabs[lesson.id];for(const [i,lab] of Object.entries(quizLabs[lesson.id]||{}))lesson.quiz[i].lab=lab;}

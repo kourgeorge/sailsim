@@ -170,7 +170,7 @@ test.describe('session lifecycle', () => {
       await expect(page.locator('#practice-start')).toBeVisible();
       await page.locator('button[data-section=learn]').click();
       await page.locator('#cover-course').click();
-      await page.locator('[data-library-lesson="8"]').click();
+      await page.locator(`[data-library-lesson="${positionOf('sail-09')}"]`).click();
       await page.locator('#practice-start').click();
       await page.locator('#practice-launch').click();
       await expectSession(page);

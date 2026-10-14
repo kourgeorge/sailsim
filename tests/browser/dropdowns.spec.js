@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 test.beforeEach(async ({ context }) => {
   await context.addInitScript(() => {
@@ -58,7 +61,7 @@ test('race setup and dynamically rendered training menus share the component wit
   await page.locator('#race-weather').selectOption('fixed');
   await page.locator('[data-mode=learn]').click();
   await page.locator('#cover-course').click();
-  await page.locator('[data-library-lesson="45"]').click();
+  await page.locator(`[data-library-lesson="${positionOf('sail-46')}"]`).click();
   await page.locator('#lesson-briefing').click();
   await page.locator('#reader-start-training').click();
   await page.locator('#practice-launch').click();

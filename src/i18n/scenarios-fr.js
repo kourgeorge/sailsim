@@ -2742,4 +2742,189 @@ export default {
       }
     }
   },
+  "decision-sail-58": {
+    "title": "Vérifier l’équipement de sécurité",
+    "brief": "Inspectez l’équipement de sécurité avant une sortie côtière, choisissez le bon feu de détresse et combattez un incendie avec le bon extincteur.",
+    "limitations": "Cet exercice évalue des choix à partir de rapports fournis. Il ne teste ni le matériel réel, ni le tir de feux de détresse, ni la lutte contre un vrai incendie.",
+    "stages": {
+      "inspect": {
+        "title": "Inspecter l’équipement de sécurité",
+        "brief": "Vous vérifiez l’équipement avant une sortie à la journée le long de la côte.",
+        "goal": "Choisissez ce qui doit être réglé avant de partir.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "flares": {
+            "label": "Boîte de feux de détresse",
+            "text": "Deux fusées parachutes rouges sont périmées depuis l’an dernier ; les feux à main et le fumigène orange sont valides."
+          },
+          "fire": {
+            "label": "Extincteurs",
+            "text": "Le manomètre d’un extincteur à poudre est dans le rouge ; celui de l’autre est dans le vert."
+          },
+          "harness": {
+            "label": "Harnais",
+            "text": "Il y a un harnais pour chacun des quatre équipiers, et les lignes de vie sont en place."
+          }
+        },
+        "fields": {
+          "fix": {
+            "label": "À régler avant de partir",
+            "options": {
+              "flares": "Remplacer les fusées parachutes périmées",
+              "extinguisher": "Remplacer ou faire réviser l’extincteur dans le rouge",
+              "harness": "Acheter d’autres harnais",
+              "ignore": "Ne rien changer ; ce n’est qu’une sortie à la journée"
+            }
+          }
+        }
+      },
+      "flare": {
+        "title": "Choisir le bon feu de détresse",
+        "brief": "Plus tard, le moteur est en panne et vous avez besoin d’aide.",
+        "goal": "Associez chaque situation au bon signal.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "ship": {
+            "label": "De nuit",
+            "text": "Un navire se trouve à environ 6 NM et n’a pas répondu à la radio."
+          },
+          "helicopter": {
+            "label": "De jour",
+            "text": "Un hélicoptère de sauvetage vous cherche juste au-dessus de vous."
+          }
+        },
+        "fields": {
+          "night": {
+            "label": "De nuit, navire à 6 NM",
+            "options": {
+              "rocket": "Fusée parachute rouge",
+              "smoke": "Fumigène orange",
+              "hand": "Rien pour l’instant ; attendre qu’il se rapproche"
+            }
+          },
+          "day": {
+            "label": "De jour, hélicoptère au-dessus",
+            "options": {
+              "smoke": "Fumigène orange, qui montre aussi le vent",
+              "rocket": "Fusée parachute rouge tirée droit sur lui",
+              "none": "Aucun signal ; il vous a déjà vu"
+            }
+          }
+        }
+      },
+      "fire": {
+        "title": "Combattre un feu moteur",
+        "brief": "De la fumée sort du compartiment moteur.",
+        "goal": "Choisissez l’extincteur et les actions.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "source": {
+            "label": "Le feu",
+            "text": "Du gazole brûle dans le compartiment moteur."
+          }
+        },
+        "fields": {
+          "agent": {
+            "label": "Quel extincteur ?",
+            "options": {
+              "powder": "Poudre, ou mousse, par une petite ouverture",
+              "water": "Un seau d’eau",
+              "open": "Ouvrir grand le capot pour mieux voir d’abord"
+            }
+          },
+          "actions": {
+            "label": "À faire aussi",
+            "options": {
+              "engine": "Arrêter le moteur",
+              "fuel": "Couper l’arrivée de carburant",
+              "wind": "Orienter le bateau pour que la fumée s’éloigne de l’équipage",
+              "hatches": "Ouvrir tous les panneaux pour aérer"
+            }
+          }
+        }
+      }
+    }
+  },
+  "decision-sail-59": {
+    "title": "Abandonner le navire",
+    "brief": "Préparez l’abandon d’un voilier qui coule, redressez un radeau retourné et effectuez les premières actions à bord.",
+    "limitations": "Cet exercice évalue uniquement des décisions à partir de rapports fournis. Entraînez-vous avec un vrai radeau de survie lors d’un stage de survie en mer.",
+    "stages": {
+      "prepare": {
+        "title": "Préparer l’abandon",
+        "brief": "L’eau monte plus vite que les pompes ne peuvent l’évacuer, et l’équipage ne trouve pas la voie d’eau.",
+        "goal": "Mettez les actions dans l’ordre.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "status": {
+            "label": "Situation",
+            "text": "Le voilier coulera dans une vingtaine de minutes. Le temps est mauvais, mais la mer ne déferle pas."
+          }
+        },
+        "fields": {
+          "order": {
+            "label": "Ordre des actions",
+            "options": {
+              "mayday": "Lancer un MAYDAY et une alerte de détresse ASN",
+              "dress": "Enfiler gilets de sauvetage et vêtements chauds",
+              "bag": "Prendre le sac de survie",
+              "launch": "Attacher la bosse, mettre le radeau à l’eau et embarquer"
+            }
+          }
+        }
+      },
+      "right": {
+        "title": "Redresser le radeau",
+        "brief": "Le radeau s’est gonflé à l’envers le long du bord.",
+        "goal": "Choisissez comment le redresser.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "raft": {
+            "label": "Le radeau",
+            "text": "Il est toujours relié au voilier par sa bosse. La bouteille de gaz et la sangle de redressement sont sur son fond retourné."
+          }
+        },
+        "fields": {
+          "method": {
+            "label": "Comment le redressez-vous ?",
+            "options": {
+              "strap": "Un nageur monte sur la bouteille de gaz, tient la sangle de redressement et se penche en arrière, du côté sous le vent",
+              "deflate": "Le dégonfler et le regonfler",
+              "abandon": "Le laisser et attendre un autre radeau"
+            }
+          }
+        }
+      },
+      "aboard": {
+        "title": "Premières actions dans le radeau",
+        "brief": "Tout le monde est à bord du radeau.",
+        "goal": "Choisissez les premières actions.",
+        "success": "Étape validée. Le plan engagé est conservé pour la suivante.",
+        "retry": "Relisez les informations et corrigez la tâche signalée. Cette étape n’est pas validée.",
+        "facts": {
+          "now": {
+            "label": "Maintenant",
+            "text": "Le radeau est toujours relié au voilier qui coule. Les secours ont été demandés ; aucun navire n’est encore en vue."
+          }
+        },
+        "fields": {
+          "actions": {
+            "label": "À faire maintenant",
+            "options": {
+              "cut": "Couper la bosse et s’éloigner du voilier",
+              "anchor": "Mouiller l’ancre flottante pour rester près de la position signalée",
+              "tablets": "Donner à chacun des comprimés contre le mal de mer",
+              "flares": "Tirer tous les feux de détresse maintenant",
+              "seawater": "Boire de l’eau de mer pour économiser l’eau douce"
+            }
+          }
+        }
+      }
+    }
+  },
 };

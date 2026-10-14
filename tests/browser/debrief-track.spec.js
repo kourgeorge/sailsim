@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 test.beforeEach(async ({ page }) => {
   await page.addInitScript(() => {
@@ -25,7 +28,7 @@ test('a sailing lesson debrief saves its actual route and restores it on mobile 
   await page.goto('./');
   await page.locator('button[data-mode="learn"]').click();
   await page.locator('#cover-course').click();
-  await page.locator('[data-library-lesson="13"]').click();
+  await page.locator(`[data-library-lesson="${positionOf('sail-14')}"]`).click();
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await page.clock.runFor(4500);

@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 test('catamaran lesson launches twin-engine controls and preserves a real pivot attempt', async ({
   page,
@@ -14,7 +17,7 @@ test('catamaran lesson launches twin-engine controls and preserves a real pivot 
   await page.goto('./');
   await page.locator('button[data-mode="learn"]').click();
   await page.locator('#cover-course').click();
-  await page.locator('[data-library-lesson="51"]').click();
+  await page.locator(`[data-library-lesson="${positionOf('sail-52')}"]`).click();
   await page.locator('#lesson-briefing').click();
   await expect(page.locator('.reader-heading h1')).toHaveText(
     'Handle a catamaran with twin engines',

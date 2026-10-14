@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 test('exports real scene pixels in desktop and mobile helm views and offers save/share recovery', async ({
   page,
@@ -129,7 +132,7 @@ test('capture stays on the simulation toolbar in lessons and races, with an expl
   await page.setViewportSize({ width: 390, height: 844 });
   await page.goto('./?lang=he');
   await page.locator('#cover-course').click();
-  await page.locator('[data-library-lesson="8"]').click();
+  await page.locator(`[data-library-lesson="${positionOf('sail-09')}"]`).click();
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   const capture = page.locator('.mobile-scene-toolbar #scene-capture');

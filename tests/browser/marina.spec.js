@@ -1,5 +1,8 @@
 import { test, expect } from '@playwright/test';
 import { readFileSync } from 'node:fs';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 const select = async (page, index) => {
   await page.locator('button[data-mode=learn]').click();
@@ -23,20 +26,20 @@ test.describe('marina lesson flow', () => {
     page.on('pageerror', (e) => errors.push(e.message));
     await page.goto('./');
     await expect(page.locator('body')).toHaveAttribute('data-activity', 'ready');
-    await expect(page.locator('#progress-label')).toHaveText('0 / 53');
-    for (const [index, steps] of [
-      [42, 3],
-      [43, 2],
-      [44, 4],
+    await expect(page.locator('#progress-label')).toHaveText(`0 / ${lessons.length}`);
+    for (const [id, steps] of [
+      ['sail-43', 3],
+      ['sail-44', 2],
+      ['sail-45', 4],
     ]) {
-      await select(page, index);
+      await select(page, positionOf(id));
       await page.locator('#practice-start').click();
       await expect(page.locator('.practice-briefing-goals li')).toHaveCount(steps);
       await expect(page.locator('.practice-conditions')).toContainText('3 knots');
       await page.locator('#practice-launch').click();
       await expect(page.locator('body')).toHaveAttribute('data-activity', 'training-running');
       await expect(page.locator('#engine-throttle')).toBeVisible();
-      await page.locator('#engine-throttle').fill(index === 44 ? '-0.3' : '0.3');
+      await page.locator('#engine-throttle').fill(id === 'sail-45' ? '-0.3' : '0.3');
       await expect
         .poll(async () => Math.abs(Number(await page.locator('#speed').textContent())))
         .toBeGreaterThan(0.1);
@@ -52,13 +55,13 @@ test.describe('marina lesson flow', () => {
             (id) =>
               JSON.parse(localStorage.getItem('sail-training-v1')).records[id]?.lastPracticeResult
                 ?.status,
-            `sail-${index + 1}`,
+            id,
           ),
         )
         .toBe('failed');
       const record = await page.evaluate(
         (id) => JSON.parse(localStorage.getItem('sail-training-v1')).records[id],
-        `sail-${index + 1}`,
+        id,
       );
       expect(record.attempts).toBe(1);
       expect(record.practice).toBe(false);
@@ -77,7 +80,7 @@ test.describe('marina lesson flow', () => {
         readFileSync(new URL(`../../public/locales/${code}.json`, import.meta.url), 'utf8'),
       );
       await expect(page.locator('html')).toHaveAttribute('lang', code);
-      await select(page, 43);
+      await select(page, positionOf('sail-44'));
       await page.locator('#lesson-briefing').click();
       await expect(page.locator('.reader-heading h1')).toHaveText(pack.lessons['sail-44'].title);
       await expect(page.locator('.teaching-figure')).toBeVisible();
@@ -102,7 +105,7 @@ test('marina targets render on the water and chart and clear on leaving lessons'
   page.on('pageerror', (e) => errors.push(e.message));
   await page.goto('./');
   await expect(page.locator('#scene canvas')).toHaveCount(0);
-  await select(page, 43);
+  await select(page, positionOf('sail-44'));
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
   await expect(page.locator('body')).toHaveAttribute('data-session', 'active', { timeout: 90000 });

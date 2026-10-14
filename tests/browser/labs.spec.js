@@ -1,4 +1,7 @@
 import { test, expect } from '@playwright/test';
+import { lessons } from '../../src/learning/curriculum.js';
+// Lessons are found by id: added lessons can change course positions.
+const positionOf = (id) => lessons.findIndex((lesson) => lesson.id === id);
 
 // WebGL is not needed to read lessons; skipping it keeps these tests fast.
 async function openLesson(page, index, { lang, readerPage = 0, lessonId } = {}) {
@@ -24,7 +27,7 @@ test('sail force lab responds to the keyboard, ticks tasks and stops on page cha
 }) => {
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
-  await openLesson(page, 11, { lessonId: 'sail-12' });
+  await openLesson(page, positionOf('sail-12'), { lessonId: 'sail-12' });
   const lab = page.locator('.reader-figure .lab[data-lab="sail-force"]');
   await expect(lab).toBeVisible();
   await expect(lab).toHaveAttribute('data-lab-status', 'luffing');
@@ -61,7 +64,7 @@ test('sail force lab responds to the keyboard, ticks tasks and stops on page cha
 });
 
 test('compass lab works right-to-left without mirroring the dial', async ({ page }) => {
-  await openLesson(page, 3, { lang: 'he', lessonId: 'sail-04', readerPage: 4 });
+  await openLesson(page, positionOf('sail-04'), { lang: 'he', lessonId: 'sail-04', readerPage: 4 });
   const lab = page.locator('.reader-figure .lab[data-lab="compass-wind"]');
   await expect(lab).toBeVisible();
   await expect(lab).toHaveAttribute('dir', 'rtl');
@@ -77,7 +80,7 @@ test('compass lab works right-to-left without mirroring the dial', async ({ page
 });
 
 test('labs fit a phone screen with controls under the drawing', async ({ page }) => {
-  await openLesson(page, 11, { lessonId: 'sail-12' });
+  await openLesson(page, positionOf('sail-12'), { lessonId: 'sail-12' });
   await page.setViewportSize({ width: 390, height: 844 });
   const lab = page.locator('.reader-figure .lab');
   await expect(lab).toBeVisible();
@@ -92,7 +95,7 @@ test('time-based labs play, step and stop their loop when the page changes', asy
   const errors = [];
   page.on('pageerror', (error) => errors.push(error.message));
   await page.emulateMedia({ reducedMotion: 'reduce' });
-  await openLesson(page, 13, { lessonId: 'sail-14', readerPage: 1 });
+  await openLesson(page, positionOf('sail-14'), { lessonId: 'sail-14', readerPage: 1 });
   const lab = page.locator('.reader-figure .lab[data-lab="tack-gybe"]');
   await expect(lab).toBeVisible();
   // Reduced motion: nothing moves until the learner asks.
