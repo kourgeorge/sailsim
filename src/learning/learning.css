@@ -15,3 +15,12 @@
 /* Readable lesson list: a clear title, and a secondary line that is small but not faint. */
 .lesson-row strong,.course-module .lesson-row strong{font-size:calc(13px * var(--text-scale,1));font-weight:600;line-height:1.35;color:#d6e2e3}
 .lesson-row small,.course-module .lesson-row small{font-size:calc(11px * var(--text-scale,1));font-weight:500;letter-spacing:.01em;line-height:1.45;margin-top:3px;color:#a4bac0}
+/* Mastered lessons carry a faint green tint wherever lessons are listed, plus a badge on the open lesson. */
+.lesson-row.complete{background:#8fc79a0f}
+.lesson-row.complete.current{background:#8fc79a1a}
+.lesson-row.complete .lesson-index{border-color:#8fc79a55;color:#c3dabc}
+.lesson-row.complete.current .lesson-index{color:#203640;border-color:var(--gold)}
+.course-library section>button.complete{background:#8fc79a12;padding-inline:10px;margin-inline:-10px;width:calc(100% + 20px)}
+.course-library section>button.complete>span{color:#d3e8d4}
+.scene-title .lesson-status{display:inline-flex;align-items:center;gap:5px;padding:1px 9px;border:1px solid #8fc79a66;border-radius:999px;background:#8fc79a1a;color:#c8e6cc;white-space:nowrap}
+.scene-title .lesson-status[hidden]{display:none}

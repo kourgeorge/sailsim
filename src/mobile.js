@@ -189,6 +189,7 @@ export function mountMobileLayout() {
       button.type = 'button';
       button.className = 'mobile-lesson';
       button.dataset.mobileLesson = original.dataset.courseLesson;
+      button.classList.toggle('complete', original.classList.contains('complete'));
       const number = original.querySelector('.lesson-index').cloneNode(true);
       const name = document.createElement('span');
       name.textContent = original.querySelector('strong').textContent;

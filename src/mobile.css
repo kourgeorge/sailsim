@@ -82,6 +82,7 @@
   .mobile-lesson:hover { color: #456367; background: #e4e9df; border-color: #78948a; }
   .mobile-lesson[aria-current] { background: #244b51; border-color: #244b51; color: #fff1d5; }
   .mobile-lesson[aria-current]:hover { color: #fff1d5; background: #315b60; border-color: #315b60; }
+  .mobile-lesson.complete:not([aria-current]) { background: #dbead4; border-color: #86b08c; }
   .mobile-lesson .lesson-index { flex-shrink: 0; font-size: calc(11px * var(--text-scale, 1)); color: inherit; border-color: currentColor; }
   html[data-text-size] .mobile-sheet .lesson-card { position: static; inset: auto; width: 100%; max-width: none; min-height: 0; max-height: none !important; margin: 0; padding: 20px !important; border: 0; border-radius: 0; background: none; box-shadow: none; overflow: visible; transform: none; opacity: 1; pointer-events: auto; }
   .mobile-sheet .lesson-copy { width: 100%; max-width: none; }

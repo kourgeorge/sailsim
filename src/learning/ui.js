@@ -116,6 +116,7 @@ export function createLearning({
     text('#lesson-level', t(levelFor(l).title));
     text('#lesson-section', modules.find((m) => m.id === l.module).title);
     text('#lesson-number', String(index + 1).padStart(2, '0'));
+    copy.querySelector('#lesson-status').hidden = !completed().has(l.id);
     text('#scene-heading', l.title);
     text('#scene-subheading', l.sub);
     text(
@@ -174,6 +175,7 @@ export function createLearning({
       active = attempt?.status === 'active';
     $('#lesson-level').textContent = t(levelFor(l).title);
     $('#lesson-section').textContent = modules.find((m) => m.id === l.module).title;
+    $('#lesson-status').hidden = !mastered;
     setCues(
       getMode() === 'learn' && (prepared || active)
         ? marinaCues(l, active ? attempt.index : 0)
@@ -207,7 +209,7 @@ export function createLearning({
             ? l.practice.steps[attempt.index].label
             : (l.practice ? r.practice : r.decision)
               ? 'Training evidence saved.'
-              : 'Start training to perform assessed tasks. Study material is available separately.';
+              : 'Start the tutorial to perform assessed tasks. Study material is available separately.';
     let panel = $('#training-actions');
     if (!panel) {
       panel = document.createElement('div');
@@ -217,12 +219,13 @@ export function createLearning({
     panel.hidden = getMode() !== 'learn';
     const scored = attempt ? practiceAssessment(attempt, l) : null,
       previous = scored?.status !== 'active' ? scored : null;
-    panel.innerHTML = `${active ? '<div class="practice-session-label" id="practice-session-label" role="status"></div>' : ''}<div class="training-actions">${active ? '<button id="practice-toggle" class="training-button primary"></button><button id="practice-end" class="training-button end-practice">End simulation</button>' : `<button id="practice-start" class="training-button primary">${playbackIcon()} Start training</button>`}<button id="lesson-briefing" class="training-button">Study material</button></div><div class="training-status-line"><span>${active ? `<span id="practice-goal-count" data-no-translate>${esc(t('Goals completed'))}: <bdi dir="ltr" id="practice-goal-count-value"></bdi></span>` : l.practice ? 'Live boat handling' : 'Interactive seamanship'}</span>${active ? `<strong id="practice-live-score" class="practice-score" data-no-translate>${esc(t('Live score'))}: <bdi id="practice-score-value" dir="ltr"></bdi></strong>` : ''}</div>${active ? `${practiceRequirementsMarkup()}<div class="checkpoint-progress"><div id="checkpoint-fill"></div></div><div class="checkpoint-meta"><span id="checkpoint-status"></span><button id="practice-hint">Show hint</button></div><div id="practice-ground-speed" class="checkpoint-meta practice-ground-speed" data-no-translate hidden><span>${esc(t('Ground speed'))}: <bdi id="practice-ground-speed-value" dir="ltr">—</bdi></span><span id="practice-ground-speed-limit">${esc(t('Speed limit'))}: <bdi id="practice-ground-speed-threshold" dir="ltr"></bdi></span></div><div id="practice-anchor-rode" class="checkpoint-meta practice-anchor-rode" data-no-translate hidden><span>${esc(t('Rode paid out'))}: <bdi id="practice-anchor-rode-value" dir="ltr">—</bdi></span><span id="practice-anchor-operation-goal"></span></div><p id="practice-tip" hidden></p>` : ''}<div class="training-actions">${active ? '<button id="training-goals" class="training-button">Show briefing</button>' : ''}${!active && (previous || r.lastPracticeResult || r.lastDecisionResult) ? '<button id="practice-debrief" class="training-button">View debrief</button>' : ''}</div>`;
+    panel.innerHTML = `${active ? '<div class="practice-session-label" id="practice-session-label" role="status"></div>' : ''}<div class="training-actions">${active ? '<button id="practice-toggle" class="training-button primary"></button><button id="practice-end" class="training-button end-practice">End simulation</button>' : `<button id="practice-start" class="training-button primary">${playbackIcon()} Start tutorial</button>`}<button id="lesson-briefing" class="training-button">Study material</button></div><div class="training-status-line"><span>${active ? `<span id="practice-goal-count" data-no-translate>${esc(t('Goals completed'))}: <bdi dir="ltr" id="practice-goal-count-value"></bdi></span>` : l.practice ? 'Live boat handling' : 'Interactive seamanship'}</span>${active ? `<strong id="practice-live-score" class="practice-score" data-no-translate>${esc(t('Live score'))}: <bdi id="practice-score-value" dir="ltr"></bdi></strong>` : ''}</div>${active ? `${practiceRequirementsMarkup()}<div class="checkpoint-progress"><div id="checkpoint-fill"></div></div><div class="checkpoint-meta"><span id="checkpoint-status"></span><button id="practice-hint">Show hint</button></div><div id="practice-ground-speed" class="checkpoint-meta practice-ground-speed" data-no-translate hidden><span>${esc(t('Ground speed'))}: <bdi id="practice-ground-speed-value" dir="ltr">—</bdi></span><span id="practice-ground-speed-limit">${esc(t('Speed limit'))}: <bdi id="practice-ground-speed-threshold" dir="ltr"></bdi></span></div><div id="practice-anchor-rode" class="checkpoint-meta practice-anchor-rode" data-no-translate hidden><span>${esc(t('Rode paid out'))}: <bdi id="practice-anchor-rode-value" dir="ltr">—</bdi></span><span id="practice-anchor-operation-goal"></span></div><p id="practice-tip" hidden></p>` : ''}<div class="training-actions">${active ? '<button id="training-goals" class="training-button">Show briefing</button>' : ''}${!active && (previous || r.lastPracticeResult || r.lastDecisionResult) ? '<button id="practice-debrief" class="training-button">View debrief</button>' : ''}</div>`;
     if (!active) {
       const [studyActions, practiceActions] = panel.querySelectorAll('.training-actions');
-      studyActions.classList.add('lesson-study-actions');
+      // Study material and Start tutorial share one row on the lesson card.
       practiceActions.classList.add('lesson-practice-actions');
-      practiceActions.prepend($('#practice-start'));
+      practiceActions.prepend($('#lesson-briefing'), $('#practice-start'));
+      studyActions.remove();
       const debrief = $('#practice-debrief');
       if (debrief) {
         const reviewActions = document.createElement('div');
@@ -410,7 +413,7 @@ export function createLearning({
               .filter((l) => l.module === m.id)
               .map(
                 (l) =>
-                  `<button data-library-lesson="${lessons.indexOf(l)}"><span>${mastered.has(l.id) ? '✓' : '○'} ${esc(l.title)}</span><small>${l.practice ? 'Live boat handling' : 'Interactive seamanship'}</small></button>`,
+                  `<button data-library-lesson="${lessons.indexOf(l)}" ${mastered.has(l.id) ? 'class="complete"' : ''}><span>${mastered.has(l.id) ? '✓' : '○'} <bdi dir="ltr" data-no-translate>${String(lessons.indexOf(l) + 1).padStart(2, '0')}</bdi> ${esc(l.title)}</span><small>${l.practice ? 'Live boat handling' : 'Interactive seamanship'}</small></button>`,
               )
               .join('')}</section>`,
         )
