@@ -45,6 +45,9 @@ export function createScene(
     antialias: true,
     alpha: true,
     powerPreference: 'high-performance',
+    // The view spans 8 cm to 80 km. Normal depth runs out of precision far
+    // away, so distant land and water flicker; reversed depth keeps it steady.
+    reversedDepthBuffer: true,
   });
   const gl = renderer.getContext(),
     debug = gl.getExtension('WEBGL_debug_renderer_info');

@@ -57,6 +57,12 @@ export function createAtmosphere(scene, sunDirection, location, quality) {
   const sky = new Sky();
   sky.name = 'Atmospheric sky';
   sky.scale.setScalar(location.coordinates ? 60000 : 4500);
+  // The stock sky pins itself to the far plane, which is depth 0 when the
+  // renderer reverses depth. Otherwise it would draw over the whole scene.
+  sky.material.vertexShader = sky.material.vertexShader.replace(
+    'gl_Position.z = gl_Position.w;',
+    '#ifdef USE_REVERSED_DEPTH_BUFFER\n gl_Position.z = 0.0;\n #else\n gl_Position.z = gl_Position.w;\n #endif',
+  );
   const u = sky.material.uniforms;
   u.turbidity.value = location.character?.turbidity??(fjord ? 2 : 1.8);
   u.rayleigh.value = fjord ? 2.5 : 2.8;
