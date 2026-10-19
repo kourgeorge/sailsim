@@ -9,5 +9,5 @@ playwright-report/
 __pycache__/
 *.py[cod]
 
-# Transient browser failure captures
-artifacts/**/failure.png
+# Screenshots and results written by browser checks, for local review only
+artifacts/

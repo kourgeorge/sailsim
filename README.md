@@ -46,7 +46,7 @@ node scripts/check-anchor-monitor.mjs --training-sog # Natural stopping/anchorin
 node scripts/check-anchor-monitor.mjs --training-layout # Visible live rode feedback, English/Arabic
 ```
 
-Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`.
+Browser scripts require the development server and Playwright Chromium (`npx playwright install chromium` if missing). Run browser suites sequentially, especially with software WebGL. Results and screenshots go in `artifacts/`, which git ignores; open them locally to review.
 
 `npm run test:browser` uses the production build and owns port 5198. It covers multi-tab progress, language changes, desktop/mobile training, music muting and exclusive source switching, rendered audio signals, and real WebGL pause/resume rendering. UI state tests use the supported WebGL fallback; the rendering test uses Chromium's software GPU. Failures retain screenshots and traces in `test-results/`. GitHub Pages pushes run affected unit tests and four browser smoke journeys; broader coverage is selectable. See [choosing test coverage](docs/TESTING.md) for profiles, feature areas and change-based selection.
 

@@ -1,9 +1,0 @@
-{
-  "passed": true,
-  "assessmentFixesOnly": true,
-  "scenarios": 1,
-  "languages": [
-    "en"
-  ],
-  "errors": []
-}
