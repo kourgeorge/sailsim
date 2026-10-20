@@ -130,16 +130,12 @@ test('mobile race briefing and controls fit large Hebrew text', async ({
   ]) {
     await page.setViewportSize(viewport);
     await expectClearRaceReadings(page);
-    await expect(page.locator('#chart-toggle')).toBeHidden();
+    await expect(page.locator('.mobile-scene-toolbar #chart-toggle')).toBeInViewport({ ratio: 1 });
   }
   await page.locator('#play').click();
-  await page.locator('#mobile-menu-toggle').click();
-  await expect(page.locator('#mobile-menu #chart-toggle')).toBeInViewport({ ratio: 1 });
-  await page.locator('#mobile-menu #chart-toggle').click();
+  await page.locator('.mobile-scene-toolbar #chart-toggle').click();
   await expect(page.locator('#large-chart')).toHaveAttribute('data-vessel-visible', 'true');
-  await expect(page.locator('#mobile-menu')).toBeHidden();
   await page.locator('#close-modal').click();
-  await expect(page.locator('#mobile-menu-toggle')).toBeFocused();
   await page.locator('#mobile-tab-sails').click();
   await expect(page.locator('#cockpit-jib-sheet')).toBeVisible();
   expect(await page.evaluate(() => document.documentElement.scrollWidth <= innerWidth)).toBe(true);

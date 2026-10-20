@@ -11,10 +11,14 @@ export function mountSceneCapture({ getScene, openModal, toast }) {
   button.setAttribute('aria-haspopup', 'dialog');
   button.innerHTML =
     '<svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7"><path d="M8 5 6 8H3v12h18V8h-3l-2-3H8Z"/><circle cx="12" cy="13" r="4"/></svg>';
+  const label = document.createElement('span');
+  label.className = 'scene-capture-label';
+  label.textContent = t('Capture scene');
+  button.append(label);
   const mobile = matchMedia('(max-width: 900px)');
   function arrange() {
     document
-      .querySelector(mobile.matches ? '.mobile-scene-toolbar' : '#session-controls')
+      .querySelector(mobile.matches ? '#mobile-menu .mobile-session-tools' : '#session-controls')
       .append(button);
   }
   mobile.addEventListener('change', arrange);

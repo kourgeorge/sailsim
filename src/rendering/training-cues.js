@@ -57,14 +57,23 @@ export function createTrainingCues(scene) {
   rescuePole.position.set(.85, 1.3, .1);
   const rescueFlag = add(rescue, new THREE.PlaneGeometry(.8, .48), rescueOrange);
   rescueFlag.position.set(1.2, 2.25, .1);
-  // A tall pole with a flag streaming downwind; the cue heading is the downwind bearing.
+  // A tall pole with a large flag streaming downwind; the cue heading is the downwind bearing.
+  // Sized to read clearly from the 200 m start, with a white band for contrast. Seen from
+  // straight downwind the cloth is edge-on, so a top ball keeps the mark visible from any side.
   const flagMark = new THREE.Group(); group.add(flagMark);
-  flat(flagMark, new THREE.RingGeometry(.35, .6, 24), rescueOrange);
-  const flagPole = add(flagMark, new THREE.CylinderGeometry(.05, .05, 3.6, 6), rescueWhite);
-  flagPole.position.y = 1.8;
-  const flagCloth = add(flagMark, new THREE.PlaneGeometry(1.1, .7), rescueOrange);
+  flat(flagMark, new THREE.RingGeometry(.8, 1.6, 32), rescueOrange);
+  const flagFloat = add(flagMark, new THREE.SphereGeometry(.75, 16, 10), rescueOrange);
+  flagFloat.scale.y = .6; flagFloat.position.y = .2;
+  const flagPole = add(flagMark, new THREE.CylinderGeometry(.12, .12, 10, 8), rescueWhite);
+  flagPole.position.y = 5;
+  const flagTop = add(flagMark, new THREE.SphereGeometry(.8, 16, 10), rescueOrange);
+  flagTop.position.y = 10.4;
+  const flagCloth = add(flagMark, new THREE.PlaneGeometry(3.6, 2.4), rescueOrange);
   flagCloth.rotation.y = Math.PI / 2;
-  flagCloth.position.set(0, 3.2, -.55);
+  flagCloth.position.set(0, 8.6, -1.8);
+  const flagBand = add(flagMark, new THREE.PlaneGeometry(3.6, .6), rescueWhite);
+  flagBand.rotation.y = Math.PI / 2;
+  flagBand.position.set(.01, 8.6, -1.8);
   const corridor = new THREE.Group();group.add(corridor);
   const boundaries = [-1, 1].map(() => flat(corridor, new THREE.PlaneGeometry(1, 1), faint));
   const trailGeometry = new THREE.BufferGeometry();

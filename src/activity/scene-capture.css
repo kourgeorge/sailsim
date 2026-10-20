@@ -32,17 +32,19 @@
 #scene-capture-preview #capture-message {
   margin-bottom: 0;
 }
+#scene-capture .scene-capture-label {
+  display: none;
+}
 @media (max-width: 900px) {
+  /* The map takes the toolbar slot beside the live readings; capture lives in the menu. */
   body[data-session='active'] .mobile-scene-toolbar {
     grid-template-columns: 48px minmax(0, 1fr) 48px;
   }
-  /* Reserve the final button slot beside the live readings, including when
-     landscape layout leaves room for the compass at the end of the toolbar. */
-  body[data-session='active'] .simulator:has(#scene-capture:not([hidden])) .mobile-indicators {
+  body[data-session='active'] .simulator:has(.mobile-scene-toolbar #chart-toggle:not([hidden])) .mobile-indicators {
     padding-inline-end: 56px;
     overflow-wrap: anywhere;
   }
-  .mobile-scene-toolbar #scene-capture {
+  body[data-session='active'] .mobile-scene-toolbar #chart-toggle {
     grid-column: 3;
     grid-row: 1;
     align-self: center;
@@ -52,7 +54,13 @@
     height: 48px;
     padding: 12px;
   }
-  .mobile-scene-toolbar #scene-capture[hidden] {
+  body[data-session='active'] .mobile-scene-toolbar #chart-toggle .mobile-chart-label {
     display: none;
+  }
+  #mobile-menu #scene-capture .scene-capture-label {
+    display: inline;
+  }
+  #mobile-menu #scene-capture svg {
+    flex: none;
   }
 }

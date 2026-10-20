@@ -49,6 +49,7 @@ test('exports real scene pixels in desktop and mobile helm views and offers save
       });
     }
     const capture = page.locator('#scene-capture');
+    if (view === 'helm') await page.locator('#mobile-menu-toggle').click();
     await expect(capture).toBeInViewport({ ratio: 1 });
     await expect(capture).toBeEnabled();
     await capture.click();
@@ -118,7 +119,7 @@ test('exports real scene pixels in desktop and mobile helm views and offers save
   expect(errors).toEqual([]);
 });
 
-test('capture stays on the simulation toolbar in lessons and races, with an explicit graphics fallback', async ({
+test('capture moves to the simulation menu on mobile in lessons and races, with an explicit graphics fallback', async ({
   page,
   context,
 }) => {
@@ -135,21 +136,26 @@ test('capture stays on the simulation toolbar in lessons and races, with an expl
   await page.locator(`[data-library-lesson="${positionOf('sail-09')}"]`).click();
   await page.locator('#practice-start').click();
   await page.locator('#practice-launch').click();
-  const capture = page.locator('.mobile-scene-toolbar #scene-capture');
+  const capture = page.locator('#mobile-menu #scene-capture');
+  const map = page.locator('.mobile-scene-toolbar #chart-toggle');
+  await expect(map).toBeInViewport({ ratio: 1 });
+  const mapBox = await map.boundingBox();
+  const lessonBox = await page.locator('#mobile-lesson-toggle').boundingBox();
+  expect(lessonBox.x).toBeGreaterThanOrEqual(mapBox.x + mapBox.width);
+  await page.locator('#mobile-menu-toggle').click();
   await expect(capture).toBeInViewport({ ratio: 1 });
   await expect(capture).toBeDisabled();
   await expect(capture).toHaveAttribute('title', 'צילום הסצנה אינו זמין בדפדפן זה.');
-  const buttonBox = await capture.boundingBox();
-  const lessonBox = await page.locator('#mobile-lesson-toggle').boundingBox();
-  expect(lessonBox.x).toBeGreaterThanOrEqual(buttonBox.x + buttonBox.width);
-  await page.locator('#mobile-menu-toggle').click();
   await page.locator('#session-exit').click();
   await expect(capture).toBeHidden();
   await page.locator('[data-section=challenge]').click();
   await page.locator('.cover-section-browser > summary').click();
   await page.locator('[data-race-course=harbor-sprint]').click();
   await page.locator('#race-start').click();
+  await expect(map).toBeInViewport({ ratio: 1 });
+  await page.locator('#mobile-menu-toggle').click();
   await expect(capture).toBeInViewport({ ratio: 1 });
+  await page.locator('#mobile-menu .mobile-sheet-close').click();
   await page.setViewportSize({ width: 1180, height: 820 });
   await expect(page.locator('#session-controls #scene-capture')).toBeInViewport({ ratio: 1 });
 });

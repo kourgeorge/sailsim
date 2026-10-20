@@ -340,7 +340,7 @@ export function mountMobileLayout() {
     moves.push({node, placeholder, target, before});
   }
   menu.addEventListener('click', event => {
-    if (event.target.closest('button[data-mode], [data-camera], #systems-toggle, #chart-toggle, #session-exit, #session-restart, #help, #conditions, #reset, #location-select, #sound-settings, #sound-options')) menu.close();
+    if (event.target.closest('button[data-mode], [data-camera], #systems-toggle, #chart-toggle, #scene-capture, #session-exit, #session-restart, #help, #conditions, #reset, #location-select, #sound-settings, #sound-options')) menu.close();
   }, true);
   camera.addEventListener('change', () => menu.close());
   lessonSheet.addEventListener('click', event => {
@@ -364,17 +364,16 @@ export function mountMobileLayout() {
     const menuTitle = t(immersive ? 'Simulation controls' : 'Menu');
     if (document.querySelector('#mobile-menu-title').textContent !== menuTitle) document.querySelector('#mobile-menu-title').textContent = menuTitle;
     if (immersive) {
-      if (cameraViews.parentElement !== sessionTools) sessionTools.append(cameraViews, systemsButton, chartButton);
+      // The map takes the scene-capture slot in the toolbar; capture lives here.
+      if (cameraViews.parentElement !== sessionTools) cameraHeading.after(cameraViews, systemsButton);
+      if (chartButton.parentElement !== toolbar) toolbar.insertBefore(chartButton, lessonButton);
       // The regular menu toolbar is hidden during a session; keep sound reachable.
       if (soundControls.parentElement !== sessionTools) sessionTools.append(soundControls);
     } else {
       if (cameraViews.parentElement !== views) cameraPlaceholder.after(cameraViews);
       if (systemsButton.parentElement !== views) systemsPlaceholder.after(systemsButton);
       if (soundControls.parentElement !== views) soundPlaceholder.after(soundControls);
-      if (chartButton.parentElement === sessionTools) {
-        if (mobile.matches) toolbar.insertBefore(chartButton, lessonButton);
-        else moves.find(({node}) => node === chartButton).placeholder.after(chartButton);
-      }
+      if (chartButton.parentElement === toolbar && !mobile.matches) moves.find(({node}) => node === chartButton).placeholder.after(chartButton);
     }
   }
   const syncOverlayLabels = () => {
