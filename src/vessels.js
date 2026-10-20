@@ -19,6 +19,8 @@ export const MONOHULL = freeze({
   mainArea: 30,
   jibArea: 22,
   airDensity: 1.225,
+  // Longitudinal sail effort relative to the keel centre, forward positive (m).
+  sailEffort: {main:-1.4,jib:2.5},
   bowHeight: 1.2,
   fairlead: { x: 0, y: 1.2, z: -6.6 },
   helmEye: [0, 3.65, 6.7],

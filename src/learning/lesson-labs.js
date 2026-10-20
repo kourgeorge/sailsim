@@ -39,6 +39,7 @@ export const lessonLabs={
  'sail-50':{0:{id:'lights-aspect',initial:{vessel:'power'},tasks:['sternOnly','power']},13:{id:'night-way',tasks:['special','own','day']}},
  'sail-53':{0:{id:'lights-flash',tasks:['twoCycles','isoOc']},1:{id:'lights-leading',tasks:['onLine','left']}},
  'sail-56':{6:{id:'surf-entry',tasks:['watch','face','enter']}},
+ 'sail-71':{4:{id:'heave-to',tasks:['balance','wait']}},
 };
 /** Quiz questions that show a lab: {lessonId: {questionIndex: spec}}. */
 export const quizLabs={};

@@ -13,6 +13,7 @@ export function rigVisualState(state) {
       -side * clamp((state.mainSheet ?? state.trim ?? 45) + (state.traveler ?? 0), 0, 90) * RAD,
     travelerX: (-side * clamp(state.traveler ?? 0, -20, 20)) / 20,
     windVaneAngle: -wind * RAD,
+    jibAngle: ((state.vesselId!=='catamaran'&&state.jibSide)||-side)*(state.jibSheet??40)*RAD,
   };
 }
 

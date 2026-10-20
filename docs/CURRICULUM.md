@@ -54,6 +54,12 @@ Lesson 17, **True and apparent wind**, retains its original explanations, veloci
 
 The debrief compares the three measured boat speeds, water-relative wind speeds/angles, and apparent wind speeds/angles. This exercise demonstrates the mechanism with the cruising yacht; it does not claim that the yacht sails at racing-foil speeds or alter its resistance model. It is an additional challenge and leaves Lesson 17’s existing decision assessment and course progress IDs intact. Challenge personal bests use the existing score/time storage; the detailed observation log remains available in the current run’s debrief.
 
+## Heaving-to
+
+Lesson 71 links to **Challenges → Heave To**. Hold the headsail sheet before tacking, ease the main and set the helm toward the wind. Passing requires a retained-sheet bow crossing, a backed jib, both sails raised, neutral engine and anchor raised, then 30 continuous seconds at 40–70° to the water-relative wind, at most 1.5 knots through the water (including leeway), and at most 0.2°/s yaw. Breaking any requirement resets the hold. Grounding, hull contact and timeout retain the challenge failure rules. The lesson mini-lab also advances the production engine from a position just after the tack.
+
+The monohull engine models backed-jib pressure normal to the held sail, including negative forward drive, and main/jib turning moments at effort centres aft/forward of the keel. Hull drag, leeway and rudder response determine the resulting equilibrium. The sheet side is visible on the 3D sail and available in Vessel systems. Holding a jib enables sail balance dynamics, which remain active when the sheet is released. The coefficients are empirical; these exercises assess the modeled boat and do not validate heavy-sea tactics or replace training aboard a yacht.
+
 ## Feedback and records
 
 The live card reports the current physical checkpoint, continuous timer and score; the decision workspace shows required reports, task products and stage scores. Optional coaching uses the current state and exercise stage. The course record saves knowledge evidence, separate physical/decision passes, attempts, hints, revised answers, the selected lesson and the latest five reports per training format in browser local storage. Reports retain completed goals, deductions, submitted actions and contact evidence where applicable. Records can be exported as JSON. Completed evidence restores after refresh; active attempts do not resume across page reload. The former six-lesson click badges are not migrated into assessed mastery.

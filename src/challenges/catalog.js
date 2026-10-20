@@ -1,5 +1,6 @@
 import { APPARENT_WIND_LAB } from './apparent-wind.js';
 import { FLAG_APPROACH } from './flag-approach.js';
+import { HEAVE_TO } from './heave-to.js';
 // Authored positions use the same metres, compass bearings and depth model as the chart.
 export const CHALLENGES = [
   {
@@ -138,6 +139,7 @@ export const CHALLENGES = [
   },
   APPARENT_WIND_LAB,
   FLAG_APPROACH,
+  HEAVE_TO,
 ];
 
 export function getChallenge(id) {

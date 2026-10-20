@@ -158,7 +158,7 @@ export function createYacht(mat,{detailed=true}={}){
   const rollRadius=.3+.7*Math.sqrt(1-pose.jib);jibRoll.scale.set(rollRadius,1,rollRadius);
   const mainLuff=Math.max(pose.mainMoving?.7:0,state.mainFlow==='Luffing'?1:state.mainFlow==='Stalled'?.45:.08);
   mainsail.update(time,mainLuff,{side:-sign,outhaul:state.outhaul??.5,vang:state.vang??.5});
-  jib.update(time,Math.max(pose.jibMoving?.7:0,state.jibFlow==='Luffing'?1:.08),{angle:-sign*(state.jibSheet??40)*Math.PI/180,side:-sign,outhaul:.5,vang:.7,deploy:pose.jib});
+  jib.update(time,Math.max(pose.jibMoving?.7:0,state.jibFlow==='Luffing'?1:.08),{angle:rig.jibAngle,side:-sign,outhaul:.5,vang:.7,deploy:pose.jib});
   travelerCar.position.x=rig.travelerX;
   throttleLever.rotation.x=-(state.throttle??0)*.7;
   wheel.rotation.z=-state.rudder*Math.PI/180*2;rudder.rotation.y=-state.rudder*Math.PI/180;windVane.rotation.y=rig.windVaneAngle;

@@ -187,7 +187,7 @@ lesson('conditions','Reduce power deliberately',[
  'A sailing yacht has no brakes, so plan every stop early. When you take power out of the sails, the boat keeps moving on its momentum and slows only as water drag works on it. A heavy boat can glide a long way, so leave sea room.',
  'Ways to take power out, from quickest to most complete:\n• Ease the sheets until the sails flap, so they stop working as wings.\n• Head up toward the wind, which reduces the angle and the drive.\n• Lower the sails, which removes drive completely.\nAs the boat slows, the rudder grips less, so steering becomes slow and weak.',
  'In this exercise, lower the sails and wait until the speed is below 1 knot. Do not use the anchor as a brake: dropping it at speed can rip out the gear, damage the boat or snag the bottom.',
- 'On a real yacht you can also heave to: set the sails to work against each other so the boat almost stops. Tack without releasing the headsail, so it stays held on the wrong (windward) side; this is the backed headsail. Then steer as if to head up (tiller pushed away from the wind) and ease the main. The backed headsail pushes the bow away from the wind while the main and rudder push it back. The boat lies about 60° off the true wind, between close hauled and a beam reach, and drifts slowly to leeward. Use it to rest, reef or wait in strong wind; the app does not model it.'
+ 'On a real yacht you can also heave to: set the sails to work against each other so the boat almost stops. Tack without releasing the headsail, so it stays held on the wrong (windward) side; this is the backed headsail. Then steer as if to head up (tiller pushed away from the wind) and ease the main. The backed headsail pushes the bow away from the wind while the main and rudder push it back. The boat lies about 60° off the true wind, between close hauled and a beam reach, and drifts slowly to leeward. Use it to rest, reef or wait in strong wind. Practise with the live Heave To challenge linked from Lesson {lesson:sail-71}.'
 ],['Compare the speed before and after lowering sails.','Notice the delay and the reduction in rudder authority.'], 'Dropping an anchor at speed as a routine way to stop.',[
  q('What remains after you lower the sails?',['Momentum','Full sail driving force','Guaranteed steering at zero speed'],0,'The boat continues to move until drag reduces its speed.'),
  q('Why leave room when slowing down?',['A yacht always reverses instantly','Stopping distance and declining steerage need to be anticipated','The compass becomes unreliable at low speed'],1,'Plan your speed reduction early enough to remain in control.')],{setup:{heading:45,speed:4,trim:34},steps:[step('Lower the sails','sails',0,1),step('Coast below 1 knot without anchoring','coast',1,3)],debrief:'You allowed momentum to decay instead of expecting an immediate stop.'});
@@ -360,6 +360,9 @@ apparentWindLesson.conceptFigures={5:'faster-than-wind'};
 apparentWindLesson.quiz[3].figure='faster-than-wind';
 apparentWindLesson.minutes=10;
 apparentWindLesson.challengeId='apparent-wind-lab';
+const heaveToLesson=lessons.find(lesson=>lesson.id==='sail-71');
+heaveToLesson.challengeId='heave-to';
+heaveToLesson.challengeName='Heave To';
 // Buoyage pages: Region A lateral marks, cardinal marks, then their lights in a lab.
 const chartLesson=lessons.find(l=>l.id==='sail-21');
 chartLesson.conceptFigures={3:'buoyage:lateral',4:'buoyage:cardinal'};

@@ -52,6 +52,21 @@ test('all challenges launch, pause, restart and end with a recorded path without
     await page.waitForTimeout(350);
     await expect(page.locator('#challenge-clock')).toHaveText(clock);
     await expect(page.locator('#challenge-navigation')).toHaveText(target);
+    if (definition.kind === 'heave-to') {
+      await expect(page.locator('#challenge-navigation')).toBeEmpty();
+      const hold = page.locator('#challenge-hold-jib');
+      await expect(hold).toHaveAttribute('aria-pressed', 'false');
+      await hold.click();
+      await expect(hold).toHaveText('Release headsail sheet');
+      await expect(hold).toHaveAttribute('aria-pressed', 'true');
+      await page.locator('#systems-toggle').click();
+      await expect(page.locator('#vessel-jibSide')).toHaveValue('-1');
+      await page.locator('#systems-close').click();
+      await hold.click();
+      await expect(hold).toHaveText('Hold headsail sheet');
+      await expect(hold).toHaveAttribute('aria-pressed', 'false');
+      await page.screenshot({ path: testInfo.outputPath('heave-to-challenge.png') });
+    }
     if (definition.kind === 'treasure') {
       await expect(page.locator('#challenge-navigation')).toBeEmpty();
       await page.locator('#challenge-reveal').click();

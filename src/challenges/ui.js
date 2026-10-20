@@ -14,6 +14,8 @@ import { translate, getLanguage } from '../i18n/runtime.js';
 import { challengesUI } from '../i18n/challenges.js';
 import { mountSailingTrack } from '../navigation/sailing-track-view.js';
 import './challenges.css';
+import { applyControlPatch } from '../vessel-controls.js';
+import { apparentWind, refreshDerived } from '../physics.js';
 
 const esc = (value) =>
   String(value).replace(
@@ -39,7 +41,7 @@ function windObservations(run) {
 export function challengeCatalog() {
   return `<div class="challenge-catalog">${CHALLENGES.map((d, index) => {
     const best = readChallengeBest(storage, d.id);
-    return `<button class="challenge-choice" data-sailing-challenge="${d.id}"><span class="challenge-art" aria-hidden="true"><svg viewBox="0 0 100 65"><path class="challenge-grid" d="M0 20H100M0 40H100M20 0V65M50 0V65M80 0V65"/><path class="challenge-course-line" d="${['M5 50Q80 60 65 20T25 15', 'M12 50L40 32 68 40 86 12', 'M10 45Q50 15 76 32', 'M8 55Q25 40 30 15T80 5', 'M15 55L80 32 15 8', 'M15 15L60 15L85 50', 'M50 58L22 30 50 14 78 30Z'][index]}"/></svg><span>${d.symbol}</span></span><span class="challenge-choice-copy"><small>${tr(d.difficulty)} · <bdi>${clock(d.goldTime)}</bdi> ${tr('gold target')}</small><strong>${tr(d.name)}</strong><span>${tr(d.description)}</span><small class="challenge-personal-best">${best ? `${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi>` : tr('Set your first record')}</small></span><span class="challenge-choice-arrow" aria-hidden="true">↗</span></button>`;
+    return `<button class="challenge-choice" data-sailing-challenge="${d.id}"><span class="challenge-art" aria-hidden="true"><svg viewBox="0 0 100 65"><path class="challenge-grid" d="M0 20H100M0 40H100M20 0V65M50 0V65M80 0V65"/><path class="challenge-course-line" d="${['M5 50Q80 60 65 20T25 15', 'M12 50L40 32 68 40 86 12', 'M10 45Q50 15 76 32', 'M8 55Q25 40 30 15T80 5', 'M15 55L80 32 15 8', 'M15 15L60 15L85 50', 'M50 58L22 30 50 14 78 30Z'][index % 7]}"/></svg><span>${d.symbol}</span></span><span class="challenge-choice-copy"><small>${tr(d.difficulty)} · <bdi>${clock(d.goldTime)}</bdi> ${tr('gold target')}</small><strong>${tr(d.name)}</strong><span>${tr(d.description)}</span><small class="challenge-personal-best">${best ? `${tr('Personal best')} · <bdi>${best.score}/100 · ${clock(best.elapsed)}</bdi>` : tr('Set your first record')}</small></span><span class="challenge-choice-arrow" aria-hidden="true">↗</span></button>`;
   }).join('')}</div>`;
 }
 
@@ -98,6 +100,19 @@ export function createChallengeUI({
       if (run.status !== 'running') results();
     };
     panel.querySelector('#challenge-live-details').before(record);
+    if (run.definition.kind === 'heave-to') {
+      const hold = document.createElement('button');
+      hold.id = 'challenge-hold-jib';
+      hold.className = 'training-button primary';
+      hold.onclick = () => {
+        applyControlPatch(run.state, {
+          jibSide: run.state.jibSide ? 0 : -(Math.sign(apparentWind(run.state).angle) || 1),
+        });
+        refreshDerived(run.state);
+        update();
+      };
+      panel.querySelector('#challenge-live-details').before(hold);
+    }
     const instruction = document.createElement('p');
     instruction.id = 'challenge-wind-instruction';
     instruction.hidden = run.definition.kind !== 'wind-lab';
@@ -120,7 +135,7 @@ export function createChallengeUI({
     panel.querySelector('#challenge-clock').textContent =
       `${clock(run.elapsed)} / ${clock(d.timeLimit)}`;
     panel.querySelector('#challenge-navigation').textContent =
-      revealed && !windLab
+      revealed && !windLab && d.kind !== 'heave-to'
         ? `${Math.round(Math.hypot(run.target.x - run.state.x, run.target.z - run.state.z))} m · ${bearing(run.state, run.target)}°`
         : '';
     let goal = run.reason;
@@ -183,6 +198,12 @@ export function createChallengeUI({
       .join('');
     const requirements = panel.querySelector('#challenge-requirements');
     if (requirements.innerHTML !== rows) requirements.innerHTML = rows;
+    const hold = panel.querySelector('#challenge-hold-jib');
+    if (hold) {
+      hold.textContent = t(run.state.jibSide ? 'Release headsail sheet' : 'Hold headsail sheet');
+      hold.setAttribute('aria-pressed', String(Boolean(run.state.jibSide)));
+      hold.disabled = run.status !== 'running';
+    }
     const reveal = panel.querySelector('#challenge-reveal');
     reveal.hidden = !treasure || run.status !== 'running';
     reveal.disabled = run.hints.includes(run.stage);
@@ -231,17 +252,16 @@ export function createChallengeUI({
           '',
         )}<span>${tr('Minimum keel clearance')} <bdi>${run.minClearance.toFixed(1)} m</bdi></span>${run.hints.length ? `<span>${tr('Hint penalty')} <bdi>−${run.hints.length * 10}</bdi></span>` : ''}${run.misses.length ? `<span>${tr('Wrong passes')} <bdi>${run.misses.length} · −${run.misses.length * 5}</bdi></span>` : ''}</div><div id="adventure-track"></div><div class="training-actions"><button id="adventure-again" class="training-button primary">${tr('Try again')}</button><button id="adventure-library" class="training-button">${tr('All challenges')}</button></div></section>`,
     );
-    if (run.definition.kind === 'wind-lab') {
+    if (run.definition.kind === 'wind-lab' || run.definition.kind === 'heave-to') {
       const explanation = document.createElement('div');
       explanation.innerHTML = `${windObservations(run)}<p>${tr(run.definition.debrief)}</p>`;
       document.querySelector('#adventure-track').before(explanation);
     }
-    const marks =
-      run.definition.kind === 'wind-lab'
-        ? []
-        : run.definition.kind === 'treasure'
-          ? run.definition.targets.slice(0, run.stage)
-          : [run.target];
+    const marks = ['wind-lab', 'heave-to'].includes(run.definition.kind)
+      ? []
+      : run.definition.kind === 'treasure'
+        ? run.definition.targets.slice(0, run.stage)
+        : [run.target];
     mountSailingTrack(document.querySelector('#adventure-track'), run.track, { marks });
     document.querySelector('#adventure-again').onclick = start;
     document.querySelector('#adventure-library').onclick = onLibrary;

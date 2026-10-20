@@ -1,5 +1,6 @@
 import { apparentWindRows } from './apparent-wind.js';
 import { flagApproachRows } from './flag-approach.js';
+import { heaveToChallengeRows } from './heave-to-challenge.js';
 // Columns: Spanish, French, Russian, Hebrew, Arabic.
 const rows = {
   ...apparentWindRows,
@@ -508,6 +509,7 @@ const rows = {
   ],
 };
 
+Object.assign(rows, heaveToChallengeRows);
 export const challengesUI = Object.fromEntries(
   ['en', 'es', 'fr', 'ru', 'he', 'ar'].map((language, i) => [
     language,

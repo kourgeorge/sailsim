@@ -23,7 +23,7 @@ export function initialState(locationId = DEFAULT_LOCATION_ID, vesselId = 'monoh
   const location=getLocation(locationId);
   const waterWind=windOverWater({...location.conditions,heading:location.start.heading});
   return {locationId:location.id,vesselId:getVessel(vesselId).id,timeOfDay:'day',sky:'fair',...location.start,speed:0,rudder:0,trim:45,mainSheet:45,jibSheet:40,sails:1,
-    mainHoist:1,jibHoist:1,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
+    mainHoist:1,jibHoist:1,jibSide:0,jibBacked:false,sailBalance:false,reef:false,reefLevel:0,traveler:0,vang:.45,outhaul:.5,throttle:0,
     anchor:false,anchorRode:180,anchorPaidRode:0,anchorWinchRunning:false,anchorStatus:'Stowed',anchorScope:0,anchorTension:0,anchorDragging:false,
     ...location.conditions,heel:0,leeway:0,yawRate:0,rollRate:0,capsized:false,
     portThrottle:0,starboardThrottle:0,stabilityLoad:0,windwardHullLoad:.5,
@@ -73,6 +73,8 @@ function reconcile(s) {
   }
   for(const [key,min,max,fallback] of [['mainSheet',0,90,45],['jibSheet',0,90,40],['mainHoist',0,1,1],['jibHoist',0,1,1],['rudder',-35,35,0],['traveler',-20,20,0],['vang',0,1,.45],['outhaul',0,1,.5],['throttle',-1,1,0],['reefLevel',0,2,0],['anchorRode',0,250,180]])s[key]=clamp(Number.isFinite(s[key])?s[key]:fallback,min,max);
   s.reefLevel=Math.round(s.reefLevel);s.trim=s.mainSheet;s.sails=Math.max(s.mainHoist,s.jibHoist);s.reef=s.reefLevel>0;
+  s.jibSide=[-1,1].includes(s.jibSide)?s.jibSide:0;
+  if(s.jibSide && getVessel(s).type==='monohull')s.sailBalance=true;
   s._controls={trim:s.trim,mainSheet:s.mainSheet,sails:s.sails,reef:s.reef,reefLevel:s.reefLevel};
   if(getVessel(s).type==='catamaran'){
     if(s._engineThrottle!==undefined&&s.throttle!==s._engineThrottle){s.portThrottle=s.throttle;s.starboardThrottle=s.throttle;}
@@ -109,14 +111,27 @@ function sailForce(angle,sheet,area,pressure,noGo,shape=1) {
     efficiency:area>0&&best>0?clamp(c.drive/best,0,1)*noGo:0,
     flow:area===0?'Lowered':noGo<.1||c.alpha<5?'Luffing':c.alpha>40&&Math.abs(angle)<120?'Stalled':'Drawing'};
 }
-function sailDynamics(s) {
+// A held sheet fixes the clew to one side of the hull. When the wind crosses
+// the bow the jib becomes a pressure plate: its normal force has an aft
+// component, rather than the forward drive of a normally trimmed sail.
+// The coefficients, like the normal sail polar, are empirical teaching values.
+export function backedJibForce(angle,sheet,area,pressure,side) {
+  const a=clamp(sheet,0,90)*RAD;
+  const incidence=Math.sin((sheet+side*angle)*RAD);
+  const force=pressure*area*1.3*incidence*Math.abs(incidence);
+  return {drive:-force*Math.sin(a),side:-side*force*Math.cos(a),efficiency:0,flow:area>0?'Backed':'Lowered'};
+}
+export function sailDynamics(s) {
   const vessel=getVessel(s);
   const aw=apparentWind(s),water=windOverWater(s),a=Math.abs(aw.angle);
   const noGo=s.capsized?0:noGoFactor(water.angle,vessel), pressure=.5*vessel.airDensity*(aw.speed*KNOT)**2;
   const reefArea=[1,.72,.48][s.reefLevel];
   const shape=1-.18*Math.abs(s.outhaul-clamp(water.speed/25,0,1))-.12*Math.abs(s.vang-clamp(a/140,.2,.85));
   const main=sailForce(aw.angle,clamp(s.mainSheet+s.traveler,0,90),vessel.mainArea*s.mainHoist*reefArea,pressure,noGo,shape);
-  const jib=sailForce(aw.angle,s.jibSheet,vessel.jibArea*s.jibHoist,pressure,noGo);
+  const backed=vessel.type==='monohull'&&s.jibSide!==0&&s.jibSide*aw.angle>=0&&Math.abs(aw.angle)<160;
+  const jib=backed&&!s.capsized
+    ?backedJibForce(aw.angle,s.jibSheet,vessel.jibArea*s.jibHoist,pressure,s.jibSide)
+    :sailForce(aw.angle,s.jibSheet,vessel.jibArea*s.jibHoist,pressure,noGo);
   return {aw,water,main,jib,reefArea};
 }
 function sailTelemetry(s,{aw,water,main,jib}) {
@@ -124,6 +139,9 @@ function sailTelemetry(s,{aw,water,main,jib}) {
   s.waterWindSpeed=water.speed;s.waterWindDirection=water.direction;s.waterWindAngle=water.angle;
   s.suggestedMainSheet=clamp(suggestedSheet(aw.angle)-s.traveler,0,90);s.suggestedJibSheet=suggestedSheet(aw.angle);
   s.mainEfficiency=main.efficiency;s.jibEfficiency=jib.efficiency;s.mainFlow=main.flow;s.jibFlow=jib.flow;
+  s.jibBacked=jib.flow==='Backed';
+  const arms=getVessel(s).sailEffort;
+  s.sailYawMoment=s.sailBalance&&arms?main.side*arms.main+jib.side*arms.jib:0;
 }
 function anchorTelemetry(s) {
   const snapshot=anchorSnapshot(s);
@@ -189,7 +207,11 @@ function integrate(s,dt) {
   const flow=u+(s.throttle>0?.35*s.throttle:0);
   // Prop walk: astern thrust swings the stern to port (bow to starboard) until water flows past the rudder.
   const walk=s.throttle<0&&vessel.propWalk?-s.throttle*vessel.propWalk.astern*clamp(1-Math.abs(u)/vessel.propWalk.fadeSpeed,0,1):0;
-  const targetYaw=(flow/VESSEL.waterline)*Math.tan(s.rudder*RAD)/RAD+walk+hull.yaw;
+  // Effort aft of the keel (main) heads up; effort forward (jib) bears away.
+  // Integrate the resulting yaw moment against hull yaw damping. No heading
+  // or speed target is imposed: sail trim, area and helm determine equilibrium.
+  const sailMoment=s.sailBalance?main.side*vessel.sailEffort.main+jib.side*vessel.sailEffort.jib:0;
+  const targetYaw=(flow/VESSEL.waterline)*Math.tan(s.rudder*RAD)/RAD+walk+hull.yaw+sailMoment/(yawInertia/1.6)/RAD;
   s.yawRate+=(targetYaw-s.yawRate)*(1-Math.exp(-dt/1.6));
   const targetHeel=clamp(-lateral*.011*reefArea,-38,38);
   s.heel+=(targetHeel-s.heel)*(1-Math.exp(-dt/2));

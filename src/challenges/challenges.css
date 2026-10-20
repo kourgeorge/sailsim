@@ -84,4 +84,6 @@
 
 #challenge-record-wind{width:100%;white-space:normal;overflow-wrap:anywhere;font-size:inherit;min-height:44px;margin-top:8px}
 #challenge-record-wind:disabled{opacity:.6;cursor:default}
+#challenge-hold-jib{width:100%;white-space:normal;overflow-wrap:anywhere;font-size:inherit;min-height:44px;margin-top:8px}
+#challenge-hold-jib[aria-pressed=true]{background:#315f50;border-color:#9fc3ac}
 .challenge-tips{margin:0 0 12px;padding-inline-start:22px;line-height:1.5}.challenge-tips li+li{margin-top:4px}

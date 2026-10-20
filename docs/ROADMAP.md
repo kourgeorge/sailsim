@@ -31,7 +31,7 @@ Choose a representative yacht and a documented operating envelope. Collect suita
 
 Validate changes against both quantitative reference cases and all existing training scenarios. Test frame-rate sensitivity and extreme inputs. Keep calibration data separate from validation cases. Publish deviations instead of calling the model accurate merely because tests pass.
 
-Sail balance, backed headsail behavior, aerodynamic braking and heaving-to need explicit work before adding assessed heave-to exercises. Wave-induced motion should be coupled to a defensible force model before visual sea state is treated as a handling condition. Uniform current and aesthetic waves must remain clearly identified until replaced.
+The monohull now supports a held jib sheet, backed-headsail pressure and braking, and main/jib yaw moments about the keel. The Heave To challenge requires a retained-sheet tack and a sustained slow, steady drift; Lesson 71 links to it and its mini-lab uses the same engine. Coefficients and effort centres are empirical, rather than validated yacht polars. Wave-induced motion should be coupled to a defensible force model before visual sea state is treated as a handling condition. Uniform current and aesthetic waves must remain clearly identified until replaced.
 
 ### 3. Build navigation decisions around trustworthy data
 

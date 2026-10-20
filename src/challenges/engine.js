@@ -15,6 +15,7 @@ import { markEntryFraction } from '../racing/race.js';
 import { getChallenge } from './catalog.js';
 import { windLabReadings, windLabRequirements } from './apparent-wind.js';
 import { flagGeometry, flagRequirements, judgeFlagPass } from './flag-approach.js';
+import { heaveToRequirements, observeHeaveToTack } from './heave-to.js';
 
 const RAD = Math.PI / 180;
 const FIXED_STEP = 1 / 30;
@@ -52,6 +53,10 @@ export function createChallenge(id) {
     track: createSailingTrack(state),
     score: 0,
     medal: null,
+    heaveTack: false,
+    heaveHeldSide: 0,
+    heavePreviousSheet: state.jibSide,
+    heavePreviousAngle: state.waterWindAngle,
   };
   if (definition.kind === 'flag') run.flagForward = flagGeometry(state, run.target).forward;
   return run;
@@ -99,6 +104,7 @@ export function challengeRequirements(run) {
     d = run.definition;
   if (d.kind === 'wind-lab') return windLabRequirements(run);
   if (d.kind === 'flag') return flagRequirements(run);
+  if (d.kind === 'heave-to') return heaveToRequirements(run);
   const range = distance(s, run.target);
   if (d.kind === 'rescue') {
     const geometry = rescueGeometry(run);
@@ -290,6 +296,7 @@ export function assessChallenge(run, dt, previous = run.state) {
   if (d.clearance && run.minClearance < d.clearance)
     return finishChallenge(run, 'Keel clearance fell below 1 m.');
   if (run.elapsed >= d.timeLimit) return finishChallenge(run, 'Time limit reached');
+  if (d.kind === 'heave-to') observeHeaveToTack(run);
   if (d.kind === 'wind-lab') {
     const hold = d.stages[run.stage].hold;
     run.hold = challengeRequirements(run).every((item) => item.met)
@@ -360,7 +367,7 @@ export function challengeChart(run) {
   return {
     ...d.chart,
     cues: {
-      target: revealed && d.kind !== 'wind-lab' ? run.target : null,
+      target: revealed && !['wind-lab', 'heave-to'].includes(d.kind) ? run.target : null,
       rescue: d.kind === 'rescue' ? run.target : null,
       flag:
         d.kind === 'flag'
