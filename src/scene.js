@@ -188,6 +188,8 @@ export function createScene(
     Boolean(
       document.querySelector('.mobile-controls-drawer.is-open, #systems-drawer:not([hidden])'),
     );
+  const systemsOpen = () =>
+    mobile.matches && Boolean(document.querySelector('#systems-drawer:not([hidden])'));
   let secretEncounters = 0;
   container.dataset.secretEncounters = '0';
   const secretTaps = createSecretTaps(() => {
@@ -197,7 +199,8 @@ export function createScene(
   });
   const encounterDirection = new THREE.Vector3();
   const pointerDown = (e) => {
-    if (controlsOpen() || !e.isPrimary || e.button !== 0 || dragPointer !== null) return;
+    // The boat controls close once a swipe starts, so follow it from here.
+    if (systemsOpen() || !e.isPrimary || e.button !== 0 || dragPointer !== null) return;
     secretTaps.down(e);
     dragPointer = e.pointerId;
     lastX = e.clientX;
@@ -207,10 +210,11 @@ export function createScene(
   const pointerMove = (e) => {
     if (e.pointerId !== dragPointer) return;
     secretTaps.move(e);
-    if (controlsOpen()) {
+    if (systemsOpen()) {
       pointerUp(e);
       return;
     }
+    if (controlsOpen()) return;
     orbit += (e.clientX - lastX) * 0.006;
     elevation = THREE.MathUtils.clamp(elevation + (e.clientY - lastY) * 0.003, -0.3, 0.65);
     lastX = e.clientX;

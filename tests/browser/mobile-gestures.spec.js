@@ -93,12 +93,12 @@ test('touch drags dock the compass at four corners and save the chosen position'
     const box = await compass.boundingBox();
     await touch(client, 'touchStart', box.x + box.width / 2, box.y + box.height / 2);
     await touch(client, 'touchMove', x, y);
-    await expect(page.locator('.compass-dock-target')).toHaveCount(4);
+    await expect(page.locator('.mobile-dock-target')).toHaveCount(4);
     await expect(compass).toHaveClass(/is-dragging/);
     await touch(client, 'touchEnd');
     await expect(compass).toHaveAttribute('data-compass-position', position);
     await expectClearCompass(page);
-    await expect(page.locator('.compass-dock-target')).toHaveCount(0);
+    await expect(page.locator('.mobile-dock-target')).toHaveCount(0);
     expect(await page.evaluate(() => scrollY)).toBe(0);
   }
   await compass.tap();
@@ -186,6 +186,27 @@ test('a diagonal slider drag keeps changing the sail control without scrolling i
   await expect(page.locator('#mobile-controls-drawer')).toHaveClass(/is-open/);
 });
 
+test('swiping the scene closes mobile controls, while swipes inside them do not', async ({
+  page,
+  context,
+}) => {
+  await explore(page);
+  const client = await context.newCDPSession(page);
+  const drawer = page.locator('#mobile-controls-drawer');
+  await page.locator('#mobile-tab-sails').tap();
+  await expect(drawer).toBeVisible();
+  const box = await drawer.boundingBox();
+  await swipe(
+    client,
+    { x: box.x + box.width / 2, y: box.y + box.height - 20 },
+    { x: box.x + box.width / 2, y: box.y + 40 },
+  );
+  await expect(drawer).toBeVisible();
+  await swipe(client, { x: 100, y: 300 }, { x: 210, y: 320 });
+  await expect(drawer).toBeHidden();
+  await expect(page.locator('#mobile-tab-sails')).toHaveAttribute('aria-selected', 'false');
+});
+
 test('tapping outside mobile controls closes the pane while inside controls and tabs remain usable', async ({
   page,
 }) => {
@@ -212,7 +233,7 @@ test('tapping outside mobile controls closes the pane while inside controls and 
 });
 
 test(
-  'open mobile controls take priority over camera gestures in the 3D scene',
+  'swiping the 3D scene closes open mobile controls and turns the camera',
   { tag: '@webgl' },
   async ({ page, context }, testInfo) => {
     test.setTimeout(180000);
@@ -229,10 +250,10 @@ test(
     await settle();
     const beforePan = await frames();
     await swipe(client, { x: 100, y: 300 }, { x: 210, y: 320 });
-    expect(await frames()).toBe(beforePan);
-    // Some touch browsers synthesize a click after this gesture as well.
-    if (!(await page.locator('#mobile-controls-drawer').isVisible()))
-      await page.locator('#mobile-tab-sails').tap();
+    await expect(page.locator('#mobile-controls-drawer')).toBeHidden();
+    await expect.poll(frames).toBeGreaterThan(beforePan);
+    await settle();
+    await page.locator('#mobile-tab-sails').tap();
     const slider = page.locator('#trim');
     await slider.fill('10');
     await settle();

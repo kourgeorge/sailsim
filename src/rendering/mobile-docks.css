@@ -1,0 +1,26 @@
+.mobile-dock-targets { display: none; }
+
+@media (max-width: 900px) {
+  /* Docked panels are placed in scene pixels, so they ignore the reading direction. */
+  .simulator > .mobile-dock {
+    position: absolute;
+    inset: 0 auto auto 0 !important;
+    transform: translate(var(--dock-x, 12px), var(--dock-y, 144px));
+  }
+  .mobile-dock.is-snapping { transition: transform .18s ease-out; }
+  .mobile-dock.is-dragging { cursor: grabbing; transition: none; border-color: var(--gold); box-shadow: 0 10px 32px #001c2566; }
+  .mobile-dock-targets { display: block; position: absolute; inset: 0; z-index: 4; pointer-events: none; padding: max(12px, env(safe-area-inset-top)) max(12px, env(safe-area-inset-right)) max(12px, env(safe-area-inset-bottom)) max(12px, env(safe-area-inset-left)); }
+  .mobile-dock-target { position: absolute; border: 1px dashed #ecc78e99; border-radius: 9px; background: #102e3b33; }
+  .mobile-dock-target.is-nearest { border: 2px solid var(--gold); background: #ecc78e22; }
+
+  /* Race and challenge panels move by their title row; the rest stays scrollable. */
+  #race-hud.mobile-dock, #challenge-hud.mobile-dock { padding-top: 18px; }
+  #race-hud.mobile-dock::before, #challenge-hud.mobile-dock::before { content: ''; position: absolute; top: 7px; left: calc(50% - 12px); width: 24px; height: 3px; border-radius: 2px; background: #95adb480; pointer-events: none; }
+  /* The title row reaches up over the grip so the whole top edge can be dragged. */
+  .mobile-dock :is(.race-hud-top, .challenge-hud-top) { margin-top: -18px; padding-top: 18px; touch-action: none; user-select: none; -webkit-user-select: none; -webkit-touch-callout: none; cursor: grab; }
+  .mobile-dock :is(.race-hud-top, .challenge-hud-top) button { cursor: pointer; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-dock.is-snapping { transition: none; }
+}

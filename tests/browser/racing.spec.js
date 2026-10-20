@@ -142,6 +142,43 @@ test('mobile race briefing and controls fit large Hebrew text', async ({
   await page.screenshot({ path: testInfo.outputPath('race-mobile-he.png') });
 });
 
+test('the mobile race standings can be dragged to another corner and keep their place', async ({
+  page,
+  context,
+}) => {
+  await context.addInitScript(() => {
+    const original = HTMLCanvasElement.prototype.getContext;
+    HTMLCanvasElement.prototype.getContext = function (type, ...args) {
+      return /webgl/.test(type) ? null : original.call(this, type, ...args);
+    };
+  });
+  await page.setViewportSize({ width: 390, height: 844 });
+  await page.goto('./');
+  await page.locator('[data-section="challenge"]').click();
+  await page.locator('#cover-browser-title').click();
+  await page.locator('[data-race-course="channel-chase"]').click();
+  await page.locator('#race-start').click();
+  await page.locator('#play').click();
+  const hud = page.locator('#race-hud');
+  await expect(hud).toHaveAttribute('data-dock-position', 'top-left');
+  await expectClearRaceReadings(page);
+  const box = await hud.boundingBox();
+  await page.mouse.move(box.x + 30, box.y + 8);
+  await page.mouse.down();
+  await page.mouse.move(box.x + 30, 640, { steps: 8 });
+  await expect(page.locator('.mobile-dock-target').first()).toBeVisible();
+  await page.mouse.up();
+  await expect(hud).toHaveAttribute('data-dock-position', 'bottom-left');
+  await expect(page.locator('.mobile-dock-target')).toHaveCount(0);
+  await expectClearRaceReadings(page);
+  expect(await page.evaluate(() => localStorage.getItem('sail-race-hud-position'))).toBe(
+    'bottom-left',
+  );
+  // The options button in the dragged title row still opens its menu.
+  await page.locator('#race-menu').click();
+  await expect(page.locator('#race-restart')).toBeVisible();
+});
+
 test('race bots and rings render in the real 3D scene and appear on the chart', async ({
   page,
 }, testInfo) => {

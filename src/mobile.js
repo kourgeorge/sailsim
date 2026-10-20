@@ -1,5 +1,6 @@
 import {translate as t} from './i18n/runtime.js';
-import {mountMobileCompass} from './rendering/mobile-compass.js';
+import {mountMobileCompass, mountMobilePanel} from './rendering/mobile-compass.js';
+import {createMobileDocks} from './rendering/mobile-docks.js';
 import {mountTouchSliders} from './cockpit/touch-sliders.js';
 
 // Reuse the actual cockpit controls: changing layouts must preserve their state
@@ -135,6 +136,20 @@ export function mountMobileLayout() {
   // camera. Tabs retain their own switch/toggle action; controls keep theirs.
   document.addEventListener('click', event => {
     if (mobile.matches && open && !drawer.contains(event.target) && !tabs.contains(event.target)) dismissControls();
+  }, true);
+  // Swiping the scene to look around also closes the controls, and the same
+  // swipe goes on to turn the camera once they are out of the way.
+  let sceneSwipe = null;
+  document.addEventListener('pointerdown', event => {
+    sceneSwipe = mobile.matches && open && event.isPrimary && event.target.closest('#scene') ? {id: event.pointerId, x: event.clientX, y: event.clientY} : null;
+  }, true);
+  document.addEventListener('pointermove', event => {
+    if (event.pointerId !== sceneSwipe?.id || Math.hypot(event.clientX - sceneSwipe.x, event.clientY - sceneSwipe.y) < 10) return;
+    sceneSwipe = null;
+    if (open) dismissControls();
+  }, true);
+  for (const type of ['pointerup', 'pointercancel']) document.addEventListener(type, event => {
+    if (event.pointerId === sceneSwipe?.id) sceneSwipe = null;
   }, true);
   tabs.addEventListener('keydown', event => {
     const visible = panels.filter(({button}) => !button.hidden);
@@ -424,6 +439,9 @@ export function mountMobileLayout() {
     new MutationObserver(syncOverlayLabels).observe(document.querySelector(selector), {childList: true, characterData: true, subtree: true});
   }
   arrangeOverlays();
-  mountMobileCompass(simulator, mobile);
+  const docks = createMobileDocks(simulator, mobile);
+  mountMobileCompass(simulator, mobile, docks);
+  mountMobilePanel(simulator.querySelector('#race-hud'), mobile, docks, {storageKey: 'sail-race-hud-position', handle: '.race-hud-top'});
+  mountMobilePanel(simulator.querySelector('#challenge-hud'), mobile, docks, {storageKey: 'sail-challenge-hud-position', handle: '.challenge-hud-top'});
   mountTouchSliders(mobile);
 }
